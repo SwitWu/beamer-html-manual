@@ -1,0 +1,3265 @@
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8" />
+<meta name="generator" content="LaTeX Lwarp package" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The beamer class- <a href=https://github.com/josephwright/beamer target=-blank >https://github.com/josephwright/beamer</a>- User Guide for version 3.70. — How To Import Presentations Based on Other Packages and Classes</title>
+<link rel="stylesheet" type="text/css" href="style.css" />
+
+<script>
+// Lwarp MathJax emulation code
+//
+// Based on code by Davide P. Cervone.
+// Equation numbering: https://github.com/mathjax/MathJax/issues/2427
+// Starred and ifnextchar macros: https://github.com/mathjax/MathJax/issues/2428
+// \left, \right delimiters: https://github.com/mathjax/MathJax/issues/2535
+//
+// Modified by Brian Dunn to adjust equation numbering and add subequations.
+//
+// LaTeX can use \seteqnumber{subequations?}{section}{number} before each equation.
+// subequations? is 0 usually, 1 if inside subequations.
+// section is a string printed as-is, or empty.
+// number is auto-incremented by MathJax between equations.
+//
+MathJax = {
+  subequations: "0",
+  section: "",
+  loader: {
+    load: ['[tex]/tagformat', '[tex]/textmacros'],
+  },
+  startup: {
+    ready() {
+      // These would be replaced by import commands if you wanted to make
+      // a proper extension.
+      const Configuration = MathJax._.input.tex.Configuration.Configuration;
+      const CommandMap = MathJax._.input.tex.SymbolMap.CommandMap;
+      const Macro = MathJax._.input.tex.Symbol.Macro;
+      const TexError = MathJax._.input.tex.TexError.default;
+      const ParseUtil = MathJax._.input.tex.ParseUtil.default;
+      const expandable = MathJax._.util.Options.expandable;
+
+        // Insert the replacement string into the TeX string, and check
+        // that there haven't been too many maxro substitutions (prevents
+        // infinite loops).
+        const useArgument = (parser, text) => {
+          parser.string = ParseUtil.addArgs(parser, text, parser.string.slice(parser.i));
+          parser.i = 0;
+          if (++parser.macroCount > parser.configuration.options.maxMacros) {
+            throw new TexError('MaxMacroSub1',
+            'MathJax maximum macro substitution count exceeded; ' +
+            'is there a recursive macro call?');
+          }
+        }
+
+        // Create the command map for:
+        //     \ifstar, \ifnextchar, \ifblank, \ifstrequal, \gsub, \seteqnumber
+        new CommandMap('Lwarp-macros', {
+          ifstar: 'IfstarFunction',
+          ifnextchar: 'IfnextcharFunction',
+          ifblank: 'IfblankFunction',
+          ifstrequal: 'IfstrequalFunction',
+          gsubstitute: 'GsubstituteFunction',
+          seteqnumber: 'SeteqnumberFunction'
+        }, {
+          // This function implements an ifstar macro.
+          IfstarFunction(parser, name) {
+             const resultstar = parser.GetArgument(name);
+             const resultnostar = parser.GetArgument(name);
+             const star = parser.GetStar();                 // true if there is a *
+             useArgument(parser, star ? resultstar : resultnostar);
+          },
+
+          // This function implements an ifnextchar macro.
+          IfnextcharFunction(parser, name) {
+            let whichchar = parser.GetArgument(name);
+            if (whichchar.match(/^(?:0x[0-9A-F]+|[0-9]+)$/i)) {
+              // $ syntax highlighting
+              whichchar = String.fromCodePoint(parseInt(whichchar));
+            }
+            const resultnextchar = parser.GetArgument(name);
+            const resultnotnextchar = parser.GetArgument(name);
+            const gotchar = (parser.GetNext() === whichchar);
+            useArgument(parser, gotchar ? resultnextchar : resultnotnextchar);
+          },
+
+          // This function implements an ifblank macro.
+          IfblankFunction(parser, name) {
+            const blankarg = parser.GetArgument(name);
+            const resultblank = parser.GetArgument(name);
+            const resultnotblank = parser.GetArgument(name);
+            const isblank = (blankarg.trim() == "");
+            useArgument(parser, isblank ? resultblank : resultnotblank);
+          },
+
+          // This function implements an ifstrequal macro.
+          IfstrequalFunction(parser, name) {
+            const strequalfirst = parser.GetArgument(name);
+            const strequalsecond = parser.GetArgument(name);
+            const resultequal = parser.GetArgument(name);
+            const resultnotequal = parser.GetArgument(name);
+            const isequal = (strequalfirst == strequalsecond);
+            useArgument(parser, isequal ? resultequal : resultnotequal);
+          },
+
+          // This function implements a gsub macro.
+          GsubstituteFunction(parser, name) {
+            const gsubfirst = parser.GetArgument(name);
+            const gsubsecond = parser.GetArgument(name);
+            const gsubthird = parser.GetArgument(name);
+            let gsubresult=gsubfirst.replace(gsubsecond, gsubthird);
+            useArgument(parser, gsubresult);
+          },
+
+          // This function modifies the equation numbers.
+          SeteqnumberFunction(parser, name) {
+              // Get the macro parameters
+              const star = parser.GetStar();                  // true if there is a *
+              const optBrackets = parser.GetBrackets(name);   // contents of optional brackets
+              const newsubequations = parser.GetArgument(name); // the subequations argument
+              const neweqsection = parser.GetArgument(name); // the eq section argument
+              const neweqnumber = parser.GetArgument(name);   // the eq number argument
+              MathJax.config.subequations=newsubequations ;   // a string with boolean meaning
+              MathJax.config.section=neweqsection ;           // a string with numeric meaning
+              parser.tags.counter = parser.tags.allCounter = neweqnumber ;
+          }
+
+        });
+
+        // Create the Lwarp-macros package
+        Configuration.create('Lwarp-macros', {
+          handler: {macro: ['Lwarp-macros']}
+        });
+
+        MathJax.startup.defaultReady();
+
+        // For forward references:
+        MathJax.startup.input[0].preFilters.add(({math}) => {
+          if (math.inputData.recompile){
+              MathJax.config.subequations = math.inputData.recompile.subequations;
+              MathJax.config.section = math.inputData.recompile.section;
+          }
+        });
+        MathJax.startup.input[0].postFilters.add(({math}) => {
+          if (math.inputData.recompile){
+              math.inputData.recompile.subequations = MathJax.config.subequations;
+              math.inputData.recompile.section = MathJax.config.section;
+          }
+        });
+
+          // For \left, \right with unicode-math:
+          const {DelimiterMap} = MathJax._.input.tex.SymbolMap;
+          const {Symbol} = MathJax._.input.tex.Symbol;
+          const {MapHandler} = MathJax._.input.tex.MapHandler;
+          const delimiter = MapHandler.getMap('delimiter');
+          delimiter.add('\\lBrack', new Symbol('\\lBrack', '\u27E6'));
+          delimiter.add('\\rBrack', new Symbol('\\rBrack', '\u27E7'));
+          delimiter.add('\\lAngle', new Symbol('\\lAngle', '\u27EA'));
+          delimiter.add('\\rAngle', new Symbol('\\rAngle', '\u27EB'));
+          delimiter.add('\\lbrbrak', new Symbol('\\lbrbrak', '\u2772'));
+          delimiter.add('\\rbrbrak', new Symbol('\\rbrbrak', '\u2773'));
+          delimiter.add('\\lbag', new Symbol('\\lbag', '\u27C5'));
+          delimiter.add('\\rbag', new Symbol('\\rbag', '\u27C6'));
+          delimiter.add('\\llparenthesis', new Symbol('\\llparenthesis', '\u2987'));
+          delimiter.add('\\rrparenthesis', new Symbol('\\rrparenthesis', '\u2988'));
+          delimiter.add('\\llangle', new Symbol('\\llangle', '\u2989'));
+          delimiter.add('\\rrangle', new Symbol('\\rrangle', '\u298A'));
+          delimiter.add('\\Lbrbrak', new Symbol('\\Lbrbrak', '\u27EC'));
+          delimiter.add('\\Rbrbrak', new Symbol('\\Rbrbrak', '\u27ED'));
+          delimiter.add('\\lBrace', new Symbol('\\lBrace', '\u2983'));
+          delimiter.add('\\rBrace', new Symbol('\\rBrace', '\u2984'));
+          delimiter.add('\\lParen', new Symbol('\\lParen', '\u2985'));
+          delimiter.add('\\rParen', new Symbol('\\rParen', '\u2986'));
+          delimiter.add('\\lbrackubar', new Symbol('\\lbrackubar', '\u298B'));
+          delimiter.add('\\rbrackubar', new Symbol('\\rbrackubar', '\u298C'));
+          delimiter.add('\\lbrackultick', new Symbol('\\lbrackultick', '\u298D'));
+          delimiter.add('\\rbracklrtick', new Symbol('\\rbracklrtick', '\u298E'));
+          delimiter.add('\\lbracklltick', new Symbol('\\lbracklltick', '\u298F'));
+          delimiter.add('\\rbrackurtick', new Symbol('\\rbrackurtick', '\u2990'));
+          delimiter.add('\\langledot', new Symbol('\\langledot', '\u2991'));
+          delimiter.add('\\rangledot', new Symbol('\\rangledot', '\u2992'));
+          delimiter.add('\\lparenless', new Symbol('\\lparenless', '\u2993'));
+          delimiter.add('\\rparengtr', new Symbol('\\rparengtr', '\u2994'));
+          delimiter.add('\\Lparengtr', new Symbol('\\Lparengtr', '\u2995'));
+          delimiter.add('\\Rparenless', new Symbol('\\Rparenless', '\u2996'));
+          delimiter.add('\\lblkbrbrak', new Symbol('\\lblkbrbrak', '\u2997'));
+          delimiter.add('\\rblkbrbrak', new Symbol('\\rblkbrbrak', '\u2998'));
+          delimiter.add('\\lvzigzag', new Symbol('\\lvzigzag', '\u29D8'));
+          delimiter.add('\\rvzigzag', new Symbol('\\rvzigzag', '\u29D9'));
+          delimiter.add('\\Lvzigzag', new Symbol('\\Lvzigzag', '\u29DA'));
+          delimiter.add('\\Rvzigzag', new Symbol('\\Rvzigzag', '\u29DB'));
+          delimiter.add('\\lcurvyangle', new Symbol('\\lcurvyangle', '\u29FC'));
+          delimiter.add('\\rcurvyangle', new Symbol('\\rcurvyangle', '\u29FD'));
+          delimiter.add('\\Vvert', new Symbol('\\Vvert', '\u2980'));
+    }     // ready
+  },      // startup
+
+  tex: {
+    packages: {'[+]': ['tagformat', 'Lwarp-macros', 'textmacros']},
+    tags: "ams",
+         tagformat: {
+             number: function (n) {
+                 if(MathJax.config.subequations==0)
+                     return(MathJax.config.section + n);
+                 else
+                     return(MathJax.config.section + String.fromCharCode(96+n));
+             },
+         },
+  }
+}
+</script>
+
+<script
+    id="MathJax-script"
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"
+></script>
+
+</head>
+<body>
+
+
+<a id="beameruserguide-autopage-579"></a>
+<nav class="topnavigation"><a href="home.html" class="linkhome" >
+Home</a></nav>
+
+
+<div class="bodyandsidetoc">
+<div class="sidetoccontainer">
+
+
+<nav class="sidetoc">
+
+
+<div class="sidetoctitle">
+
+<p>
+<span class="sidetocthetitle">The <span class="beamer-name"><span class="textsc">beamer</span></span> <i>class</i><br />
+<a href="https://github.com/josephwright/beamer" target="_blank" >https://github.com/josephwright/beamer</a><br />
+User Guide for version 3.70.</span>
+</p>
+
+<p>
+Contents
+</p>
+</div>
+
+
+<div class="sidetoccontents">
+
+<p>
+<a href="home.html" class="linkhome" >
+Home</a>
+</p>
+
+<p>
+<a href="Introduction.html#autosec-7" class="tocsection" >
+<span class="sectionnumber">1</span>&#x2003;Introduction</a>
+</p>
+
+
+<p>
+<a href="Getting-Started.html#autosec-21" class="tocpart" >
+<span class="sectionnumber">I</span>&#x2003;Getting Started</a>
+</p>
+
+
+<p>
+<a href="Installation.html#autosec-24" class="tocsection" >
+<span class="sectionnumber">2</span>&#x2003;Installation</a>
+</p>
+
+
+<p>
+<a href="Tutorial-Euclid-Presentation.html#autosec-42" class="tocsection" >
+<span class="sectionnumber">3</span>&#x2003;Tutorial: Euclid’s Presentation</a>
+</p>
+
+
+<p>
+<a href="Workflow-For-Creating-Beamer-Presentation.html#autosec-93" class="tocsection" >
+<span class="sectionnumber">4</span>&#x2003;Workflow For Creating a Beamer Presentation</a>
+</p>
+
+
+<p>
+<a href="Guidelines-Creating-Presentations.html#autosec-116" class="tocsection" >
+<span class="sectionnumber">5</span>&#x2003;Guidelines for Creating Presentations</a>
+</p>
+
+
+<p>
+<a href="Solution-Templates.html#autosec-141" class="tocsection" >
+<span class="sectionnumber">6</span>&#x2003;Solution Templates</a>
+</p>
+
+
+<p>
+<a href="Licenses-Copyright.html#autosec-144" class="tocsection" >
+<span class="sectionnumber">7</span>&#x2003;Licenses and Copyright</a>
+</p>
+
+
+<p>
+<a href="Building-Presentation.html#autosec-185" class="tocpart" >
+<span class="sectionnumber">II</span>&#x2003;Building a Presentation</a>
+</p>
+
+
+<p>
+<a href="Creating-Frames.html#autosec-188" class="tocsection" >
+<span class="sectionnumber">8</span>&#x2003;Creating Frames</a>
+</p>
+
+
+<p>
+<a href="Creating-Overlays.html#autosec-234" class="tocsection" >
+<span class="sectionnumber">9</span>&#x2003;Creating Overlays</a>
+</p>
+
+
+<p>
+<a href="Structuring-Presentation-The-Static-Global-Structure.html#autosec-295" class="tocsection" >
+<span class="sectionnumber">10</span>&#x2003;Structuring a Presentation: The Static Global Structure</a>
+</p>
+
+
+<p>
+<a href="Structuring-Presentation-The-Interactive-Global-Structure.html#autosec-322" class="tocsection" >
+<span class="sectionnumber">11</span>&#x2003;Structuring a Presentation: The Interactive Global Structure</a>
+</p>
+
+
+<p>
+<a href="Structuring-Presentation-The-Local-Structure.html#autosec-336" class="tocsection" >
+<span class="sectionnumber">12</span>&#x2003;Structuring a Presentation: The Local Structure</a>
+</p>
+
+
+<p>
+<a href="Graphics.html#autosec-380" class="tocsection" >
+<span class="sectionnumber">13</span>&#x2003;Graphics</a>
+</p>
+
+
+<p>
+<a href="Animations-Sounds-Slide-Transitions.html#autosec-390" class="tocsection" >
+<span class="sectionnumber">14</span>&#x2003;Animations, Sounds, and Slide Transitions</a>
+</p>
+
+
+<p>
+<a href="Changing-Way-Things-Look.html#autosec-410" class="tocpart" >
+<span class="sectionnumber">III</span>&#x2003;Changing the Way Things Look</a>
+</p>
+
+
+<p>
+<a href="Themes.html#autosec-413" class="tocsection" >
+<span class="sectionnumber">15</span>&#x2003;Themes</a>
+</p>
+
+
+<p>
+<a href="Inner-Themes-Outer-Themes-Templates.html#autosec-428" class="tocsection" >
+<span class="sectionnumber">16</span>&#x2003;Inner Themes, Outer Themes, and Templates</a>
+</p>
+
+
+<p>
+<a href="Colors.html#autosec-452" class="tocsection" >
+<span class="sectionnumber">17</span>&#x2003;Colors</a>
+</p>
+
+
+<p>
+<a href="Fonts.html#autosec-481" class="tocsection" >
+<span class="sectionnumber">18</span>&#x2003;Fonts</a>
+</p>
+
+
+<p>
+<a href="Creating-Supporting-Material.html#autosec-497" class="tocpart" >
+<span class="sectionnumber">IV</span>&#x2003;Creating Supporting Material</a>
+</p>
+
+
+<p>
+<a href="Adding-Notes-Yourself.html#autosec-500" class="tocsection" >
+<span class="sectionnumber">19</span>&#x2003;Adding Notes for Yourself</a>
+</p>
+
+
+<p>
+<a href="Creating-Transparencies.html#autosec-512" class="tocsection" >
+<span class="sectionnumber">20</span>&#x2003;Creating Transparencies</a>
+</p>
+
+
+<p>
+<a href="Creating-Handouts-Lecture-Notes.html#autosec-521" class="tocsection" >
+<span class="sectionnumber">21</span>&#x2003;Creating Handouts and Lecture Notes</a>
+</p>
+
+
+<p>
+<a href="Taking-Advantage-Multiple-Screens.html#autosec-546" class="tocsection" >
+<span class="sectionnumber">22</span>&#x2003;Taking Advantage of Multiple Screens</a>
+</p>
+
+
+<p>
+<a href="Howtos.html#autosec-554" class="tocpart" >
+<span class="sectionnumber">V</span>&#x2003;Howtos</a>
+</p>
+
+
+<p>
+<a href="How-To-Uncover-Things-Piecewise.html#autosec-557" class="tocsection" >
+<span class="sectionnumber">23</span>&#x2003;How To Uncover Things Piecewise</a>
+</p>
+
+
+<p>
+<a href="How-To-Import-Presentations-Based-on-Other-Packages-Classes.html#autosec-580" class="tocsection" >
+<span class="sectionnumber">24</span>&#x2003;How To Import Presentations Based on Other Packages and Classes</a>
+</p>
+
+
+</div>
+
+</nav>
+
+</div>
+
+
+<main class="bodycontainer">
+
+
+<section class="textbody">
+
+<h1>The <span class="beamer-name"><span class="textsc">beamer</span></span> <i>class</i><br />
+<a href="https://github.com/josephwright/beamer" target="_blank" >https://github.com/josephwright/beamer</a><br />
+User Guide for version 3.70.</h1>
+
+<!--MathJax customizations:-->
+
+
+<div class="hidden">
+
+\(\newcommand{\footnotename}{footnote}\)
+
+\(\def \LWRfootnote {1}\)
+
+\(\newcommand {\footnote }[2][\LWRfootnote ]{{}^{\mathrm {#1}}}\)
+
+\(\newcommand {\footnotemark }[1][\LWRfootnote ]{{}^{\mathrm {#1}}}\)
+
+\(\let \LWRorighspace \hspace \)
+
+\(\renewcommand {\hspace }{\ifstar \LWRorighspace \LWRorighspace }\)
+
+\(\newcommand {\mathnormal }[1]{{#1}}\)
+
+\(\newcommand \ensuremath [1]{#1}\)
+
+\(\newcommand {\LWRframebox }[2][]{\fbox {#2}} \newcommand {\framebox }[1][]{\LWRframebox } \)
+
+\(\newcommand {\setlength }[2]{}\)
+
+\(\newcommand {\addtolength }[2]{}\)
+
+\(\newcommand {\setcounter }[2]{}\)
+
+\(\newcommand {\addtocounter }[2]{}\)
+
+\(\newcommand {\arabic }[1]{}\)
+
+\(\newcommand {\number }[1]{}\)
+
+\(\newcommand {\noalign }[1]{\text {#1}\notag \\}\)
+
+\(\newcommand {\cline }[1]{}\)
+
+\(\newcommand {\directlua }[1]{\text {(directlua)}}\)
+
+\(\newcommand {\luatexdirectlua }[1]{\text {(directlua)}}\)
+
+\(\newcommand {\protect }{}\)
+
+\(\def \LWRabsorbnumber #1 {}\)
+
+\(\def \LWRabsorbquotenumber &quot;#1 {}\)
+
+\(\newcommand {\LWRabsorboption }[1][]{}\)
+
+\(\newcommand {\LWRabsorbtwooptions }[1][]{\LWRabsorboption }\)
+
+\(\def \mathchar {\ifnextchar &quot;\LWRabsorbquotenumber \LWRabsorbnumber }\)
+
+\(\def \mathcode #1={\mathchar }\)
+
+\(\let \delcode \mathcode \)
+
+\(\let \delimiter \mathchar \)
+
+\(\def \oe {\unicode {x0153}}\)
+
+\(\def \OE {\unicode {x0152}}\)
+
+\(\def \ae {\unicode {x00E6}}\)
+
+\(\def \AE {\unicode {x00C6}}\)
+
+\(\def \aa {\unicode {x00E5}}\)
+
+\(\def \AA {\unicode {x00C5}}\)
+
+\(\def \o {\unicode {x00F8}}\)
+
+\(\def \O {\unicode {x00D8}}\)
+
+\(\def \l {\unicode {x0142}}\)
+
+\(\def \L {\unicode {x0141}}\)
+
+\(\def \ss {\unicode {x00DF}}\)
+
+\(\def \SS {\unicode {x1E9E}}\)
+
+\(\def \dag {\unicode {x2020}}\)
+
+\(\def \ddag {\unicode {x2021}}\)
+
+\(\def \P {\unicode {x00B6}}\)
+
+\(\def \copyright {\unicode {x00A9}}\)
+
+\(\def \pounds {\unicode {x00A3}}\)
+
+\(\let \LWRref \ref \)
+
+\(\renewcommand {\ref }{\ifstar \LWRref \LWRref }\)
+
+\( \newcommand {\multicolumn }[3]{#3}\)
+
+\(\require {textcomp}\)
+
+\(\newcommand {\intertext }[1]{\text {#1}\notag \\}\)
+
+\(\let \Hat \hat \)
+
+\(\let \Check \check \)
+
+\(\let \Tilde \tilde \)
+
+\(\let \Acute \acute \)
+
+\(\let \Grave \grave \)
+
+\(\let \Dot \dot \)
+
+\(\let \Ddot \ddot \)
+
+\(\let \Breve \breve \)
+
+\(\let \Bar \bar \)
+
+\(\let \Vec \vec \)
+
+</div>
+
+<p>
+<!--
+...... section How To Import Presentations Based on Other Packages and Classes ......
+-->
+<h4 id="autosec-580"><span class="sectionnumber">24&#x2003;</span>How To Import Presentations Based on<br />
+Other Packages and Classes</h4>
+<a id="beameruserguide-autopage-580"></a>
+<a id="beameruserguide-autofile-29"></a>
+
+<p>
+The <span class="beamer-name"><span class="textsc">beamer</span></span> class comes with a number of emulation layers for classes or packages that do not support <span class="beamer-name"><span class="textsc">beamer</span></span> directly. For
+example, the package <span class="texttt">beamerseminar</span> maps some (not all) commands of the <span class="textsc">seminar</span> class to appropriate <span class="beamer-name"><span class="textsc">beamer</span></span> commands. This way,
+individual slides or whole sets of slides that have been prepared for a presentation using <span class="textsc">seminar</span> can be used inside <span class="beamer-name"><span class="textsc">beamer</span></span>, provided they are reasonably simple.
+</p>
+
+<p>
+None of the emulation layers is a perfect substitute for the original (emulations seldom are) and it is not intended that they ever will be. If you want/need/prefer the features of another class, use that class for preparing your presentations. The intention of these layers is
+just to help speed up creating <span class="beamer-name"><span class="textsc">beamer</span></span> presentations that use parts of old presentations. You can simply copy these parts in verbatim, without having to worry about the subtle differences in syntax.
+</p>
+
+<p>
+A useful effect of using an emulation layer is that you get access to all the features of <span class="beamer-name"><span class="textsc">beamer</span></span> while using the syntax of another class. For example, you can use the <span
+class="texttt">article</span> mode to create a nice article version of a <span class="textsc">prosper</span> talk.
+</p>
+<!--
+...... subsection Prosper, HA-Prosper and Powerdot ......
+-->
+<h5 id="autosec-581"><span class="sectionnumber">24.1&#x2003;</span>Prosper, HA-Prosper and Powerdot</h5>
+<a id="beameruserguide-autopage-581"></a>
+
+
+<a id="section-prosper"></a>
+
+<p>
+The package <span class="texttt">beamerprosper</span> maps the commands of the <span class="textsc">prosper</span> package, developed by Fre&#x0301;de&#x0301;ric Goualard, to <span class="beamer-name"><span class="textsc">beamer</span></span>
+commands. Also, some commands of the <span class="textsc">ha</span>-<span class="textsc">prosper</span> and <span class="textsc">powerdot</span> packages, developed by Hendri Adriaens, are mapped to <span class="beamer-name"><span
+class="textsc">beamer</span></span> commands. <em>These mappings cannot perfectly emulate all of Prosper!</em> Rather, these mappings are intended as an aid when porting parts of presentations created using <span class="textsc">prosper</span> to <span
+class="beamer-name"><span class="textsc">beamer</span></span>. <em>No styles are implemented that mimic Prosper styles.</em> Rather, the normal <span class="beamer-name"><span class="textsc">beamer</span></span> themes must be used (although, one
+could implement <span class="beamer-name"><span class="textsc">beamer</span></span> themes that mimics existing <span class="textsc">prosper</span> styles; we have not done that and do not intend to).
+</p>
+
+<p>
+The workflow for creating a <span class="beamer-name"><span class="textsc">beamer</span></span> presentation that uses <span class="textsc">prosper</span> code is the following:
+</p>
+<ul style="list-style-type:none">
+
+<li>
+<p>
+1. Use the document class <span class="texttt">beamer</span>, not <span class="texttt">prosper</span>. Most options passed to <span class="texttt">prosper</span> do not apply to <span class="texttt">beamer</span> and should be omitted.
+</p>
+
+</li>
+<li>
+
+<p>
+2. Add a <span class="texttt">\usepackage{beamerprosper}</span> to start the emulation.
+</p>
+
+</li>
+<li>
+
+<p>
+3. If you add slides relying on <span class="textsc">ha</span>-<span class="textsc">prosper</span>, you may wish to add the option <span class="texttt">framesassubsections</span> to <span class="texttt">beamerprosper</span>, though we do not
+recommend it (use the normal <span class="texttt">\subsection</span> command instead; it gives you more fine-grained control).
+</p>
+
+</li>
+<li>
+
+<p>
+4. If you also copy the title commands, it may be necessary to adjust the content of commands like <span class="texttt">\title</span> or <span class="texttt">\author</span>. Note that in <span class="textsc">prosper</span> the <span
+class="texttt">\email</span> command is given outside the <span class="texttt">\author</span> command, whereas in <span class="beamer-name"><span class="textsc">beamer</span></span> and also in <span class="textsc">ha</span>-<span
+class="textsc">prosper</span> it is given inside.
+</p>
+
+</li>
+<li>
+
+<p>
+5. When copying slides containing the command <span class="texttt">\includegraphics</span>, you will almost surely have to adjust its usage. If you use pdf<span class="latexlogofont"><span class="latexlogo">L<span class="latexlogosup">a</span>T<span
+class="latexlogosub">e</span>X</span></span> to typeset the presentation, than you cannot include PostScript files. You should convert them to <span class="texttt">.pdf</span> or to <span class="texttt">.png</span> and adjust any usage of <span
+class="texttt">\includegraphics</span> accordingly.
+</p>
+
+</li>
+<li>
+
+<p>
+6. When starting to change things, you can use all of <span class="beamer-name"><span class="textsc">beamer</span></span>’s commands and even mix them with <span class="textsc">prosper</span> commands.
+</p>
+</li>
+</ul>
+
+<p>
+An example can be found in the file <span class="texttt">beamerexample-prosper.tex</span>.
+</p>
+
+<p>
+There are, unfortunately, quite a few places where you may run into problems:
+</p>
+<ul style="list-style-type:none">
+
+<li>
+<p>
+• In <span class="beamer-name"><span class="textsc">beamer</span></span>, the command <span class="texttt">\PDForPS</span> will do exactly what the name suggests: insert the first argument when run by <span class="texttt">pdflatex</span>, insert the
+second argument when run by <span class="texttt">latex</span>. However, in <span class="textsc">prosper</span>, the code inserted for the <span class="pgf-name"><span class="textsc">pdf</span></span> case is actually PostScript code, which is only later
+converted to <span class="pgf-name"><span class="textsc">pdf</span></span> by some external program. You will need to adjust this PostScript code such that it works with <span class="texttt">pdflatex</span> (which is not always possible).
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+• If you used fine-grained spacing commands, like adding a little horizontal skip here and a big negative vertical skip there, the typesetting of the text may be poor. It may be a good idea to just remove these spacing commands.
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+• If you use <span class="texttt">pstricks</span> commands, you will either have to stick to using <span class="texttt">latex</span> and <span class="texttt">dvips</span> or will have to work around them using, for example, <span
+class="texttt">pgf</span>. Porting lots of <span class="texttt">pstricks</span> code is bound to be difficult, if you wish to switch over to <span class="texttt">pdflatex</span>, so be warned. You can read more about that in Section&nbsp;<a
+href="Graphics.html#section-graphics">13</a> that talks about graphics.
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+• If the file cannot be compiled because some <span class="textsc">prosper</span> command is not implemented, you will have to delete this command and try to mimic its behavior using some <span class="beamer-name"><span
+class="textsc">beamer</span></span> command.
+</p>
+</li>
+</ul>
+
+
+<div class="package">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+<span class="extracttheme">\usepackage{<span class="declare">beamerprosper</span>}</span>
+</p>
+<p>
+Include this package in a <span class="texttt">beamer</span> presentation to get access to <span class="textsc">prosper</span> commands. Use <span class="texttt">beamer</span> as the document class, not <span class="texttt">prosper</span>. Most of the
+options passed to the class <span class="texttt">prosper</span> make no sense in <span class="texttt">beamer</span>, so just delete them.
+</p>
+<p>
+This package takes the following options:
+</p>
+<ul style="list-style-type:none">
+
+<li>
+<p>
+• <span class="declare"><span class="texttt">framesassubsections</span></span> causes each frame to create its own subsection with the frame title as subsection name. This behavior mimics <span class="textsc">ha</span>-<span
+class="textsc">prosper</span>’s behavior. In a long talk this will create way too many subsections.
+</p>
+</li>
+</ul>
+<p>
+The <span class="texttt">framesassubsections</span> option has no effect in <span class="texttt">article</span> mode.
+</p>
+<p>
+<i>Example: </i>
+</p>
+<pre class="verbatim">
+\documentclass[notes]{beamer}
+
+\usepackage[framesassubsections]{beamerprosper}
+
+\title{A Beamer Presentation Using (HA-)Prosper Commands}
+\subtitle{Subtitles Are Also Supported}
+\author{Till Tantau}
+\institution{The Institution is Mapped To Institute}
+
+\begin{document}
+
+\maketitle
+
+\tsectionandpart{Introduction}
+
+\overlays{2}{
+\begin{slide}{About this file}
+  \begin{itemstep}
+  \item
+    This is a beamer presentation.
+  \item
+    You can use the prosper and the HA-prosper syntax.
+  \item
+    This is done by mapping prosper and HA-prosper commands to beamer
+    commands.
+  \item
+    The emulation is by no means perfect.
+  \end{itemstep}
+\end{slide}
+}
+
+\section{Second Section}
+\subsection{A subsection}
+\begin{frame}
+  \frametitle{A frame created using the \texttt{frame} environment.}
+
+  \begin{itemize}[<+->]
+  \item You can still use the original beamer syntax.
+  \item The emulation is intended only to make recycling slides
+    easier, not to install a whole new syntax for beamer.
+  \end{itemize}
+\end{frame}
+
+\begin{notes}{Notes for these slides}
+My notes for these slides.
+\end{notes}
+\end{document}
+</pre>
+<p>
+You can run, for example, pdf<span class="latexlogofont"><span class="latexlogo">L<span class="latexlogosup">a</span>T<span class="latexlogosub">e</span>X</span></span> on the file to get a <span class="beamer-name"><span
+class="textsc">beamer</span></span> presentation with overlays. Adding the <span class="texttt">notes</span> option will also show the notes. Certain commands, like <span class="texttt">\LeftFoot</span>, are ignored. You can change the theme using the
+usual commands. You can also use all normal <span class="beamer-name"><span class="textsc">beamer</span></span> commands and concepts, like overlay-specifications, in the file. You can also create an <span class="texttt">article</span> version by using the
+class <span class="texttt">article</span> and including the package <span class="texttt">beamerarticle</span>.
+</p>
+</li>
+</ul>
+</div>
+
+<p>
+In the following, the effects of <span class="textsc">prosper</span> commands in <span class="beamer-name"><span class="textsc">beamer</span></span> are listed.
+</p>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\email</kbd></span>{<span class="meta"><span class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+Simply typesets its argument in typewriter text. Should hence be given <em>inside</em> the <span class="texttt">\author</span> command.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\institution</kbd></span>{<span class="meta"><span class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+This command is mapped to <span class="beamer-name"><span class="textsc">beamer</span></span>’s <span class="texttt">\institute</span> command if given <em>outside</em> the <span class="texttt">\author</span> command, otherwise it typesets its
+argument in a smaller font.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\Logo</kbd></span><span class="opt"><span class="texttt">(</span><span class="meta"><span class="angle">&langle;</span><i>x</i><span class="angle">&rangle;</span></span><span class="texttt">,</span><span
+class="meta"><span class="angle">&langle;</span><i>y</i><span class="angle">&rangle;</span></span><span class="texttt">)</span></span>{<span class="meta"><span class="angle">&langle;</span><i>logo text</i><span
+class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+This is mapped to <span class="texttt">\logo{</span><span class="meta"><span class="angle">&langle;</span><i>logo text</i><span class="angle">&rangle;</span></span><span class="texttt">}</span>. The coordinates are ignored.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="environment">
+
+<ul style="list-style-type:none">
+
+
+<div class="begin-environment">
+<div class="translatormanualentryheadline"><li>
+<p>
+\begin{<span class="declare">slide</span>}<span class="opt"><span class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>options</i><span class="angle">&rangle;</span></span><span
+class="oarg-right-bracket">]</span></span>{<span class="meta"><span class="angle">&langle;</span><i>frame title</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+</div>
+
+<div class="translatormanualentryheadline">
+</li>
+<li>
+
+<p>
+  <span class="meta"><span class="angle">&langle;</span><i>environment contents</i><span class="angle">&rangle;</span></span>
+</p>
+</div>
+
+<div class="end-environment">
+
+<div class="translatormanualentryheadline">
+</li>
+<li>
+
+<p>
+\end{<span class="declare">slide</span>}
+</p>
+</div>
+</div>
+<p>
+Inserts a frame with the <span class="texttt">fragile=singleslide</span> option set. The <span class="meta"><span class="angle">&langle;</span><i>frame title</i><span class="angle">&rangle;</span></span> will be enclosed in a <span
+class="texttt">\frametitle</span> command.
+</p>
+<p>
+The following <span class="meta"><span class="angle">&langle;</span><i>options</i><span class="angle">&rangle;</span></span> may be given:
+</p>
+<ul style="list-style-type:none">
+
+<li>
+<p>
+• <span class="declare"><span class="texttt">trans=</span><span class="meta"><span class="angle">&langle;</span><i>prosper transition</i><span class="angle">&rangle;</span></span></span> installs the specified <span class="meta"><span
+class="angle">&langle;</span><i>prosper transition</i><span class="angle">&rangle;</span></span> as the transition effect when showing the slide.
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+• <span class="declare"><span class="meta"><span class="angle">&langle;</span><i>prosper transition</i><span class="angle">&rangle;</span></span></span> has the same effect as <span class="texttt">trans=</span><span class="meta"><span
+class="angle">&langle;</span><i>prosper transition</i><span class="angle">&rangle;</span></span>.
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+• <span class="declare"><span class="texttt">toc=</span><span class="meta"><span class="angle">&langle;</span><i>entry</i><span class="angle">&rangle;</span></span></span> overrides the subsection table of contents entry created by this slide by
+<span class="meta"><span class="angle">&langle;</span><i>entry</i><span class="angle">&rangle;</span></span>. Note that a subsection entry is created for a slide only if the <span class="texttt">framesassubsections</span> options is specified.
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+• <span class="declare"><span class="texttt">template</span>=<span class="meta"><span class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span></span></span> is ignored.
+</p>
+</li>
+</ul>
+<p>
+<i>Example: </i>The following two texts have the same effect:
+</p>
+<pre class="verbatim">
+\begin{slide}[trans=Glitter,toc=short]{A Title}
+  Hi!
+\end{slide}
+</pre>
+<p>
+and
+</p>
+<pre class="verbatim">
+\subsection{short} % omitted, if framesassubsections is not specified
+\begin{frame}[fragile=singleslide]
+  \transglitter
+  \frametitle{A Title}
+  Hi!
+\end{frame}
+</pre>
+</li>
+</ul>
+
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\overlays</kbd></span>{<span class="meta"><span class="angle">&langle;</span><i>number</i><span class="angle">&rangle;</span></span>}{<span class="meta"><span class="angle">&langle;</span><i>slide
+environment</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+This will put the <span class="meta"><span class="angle">&langle;</span><i>slide environment</i><span class="angle">&rangle;</span></span> into a frame that does not have the <span class="texttt">fragile</span> option and which can hence contain
+overlaid text. The <span class="meta"><span class="angle">&langle;</span><i>number</i><span class="angle">&rangle;</span></span> is ignored since the number of necessary overlays is computed automatically by <span class="beamer-name"><span
+class="textsc">beamer</span></span>.
+</p>
+<p>
+<i>Example: </i>The following code fragments have the same effect:
+</p>
+<pre class="verbatim">
+\overlays{2}{
+\begin{slide}{A Title}
+  \begin{itemstep}
+  \item Hi!
+  \item Ho!
+  \end{itemstep}
+\end{slide}}
+</pre>
+<p>
+and
+</p>
+<pre class="verbatim">
+\subsection{A Title} % omitted, if framesassubsections is not specified
+\begin{frame}
+  \frametitle{A Title}
+  \begin{itemstep}
+  \item Hi!
+  \item Ho!
+  \end{itemstep}
+\end{frame}
+</pre>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\fromSlide</kbd></span>{<span class="meta"><span class="angle">&langle;</span><i>slide number</i><span class="angle">&rangle;</span></span>}{<span class="meta"><span class="angle">&langle;</span><i>text</i><span
+class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+This is mapped to <span class="texttt">\uncover<</span><span class="meta"><span class="angle">&langle;</span><i>slide number</i><span class="angle">&rangle;</span></span><span class="texttt">->{</span><span class="meta"><span
+class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span></span><span class="texttt">}</span>.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\fromSlide</kbd></span><span class="texttt">*</span>{<span class="meta"><span class="angle">&langle;</span><i>slide number</i><span class="angle">&rangle;</span></span>}{<span class="meta"><span
+class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+This is mapped to <span class="texttt">\only<</span><span class="meta"><span class="angle">&langle;</span><i>slide number</i><span class="angle">&rangle;</span></span><span class="texttt">->{</span><span class="meta"><span
+class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span></span><span class="texttt">}</span>.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\onlySlide</kbd></span>{<span class="meta"><span class="angle">&langle;</span><i>slide number</i><span class="angle">&rangle;</span></span>}{<span class="meta"><span class="angle">&langle;</span><i>text</i><span
+class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+This is mapped to <span class="texttt">\uncover<</span><span class="meta"><span class="angle">&langle;</span><i>slide number</i><span class="angle">&rangle;</span></span><span class="texttt">>{</span><span class="meta"><span
+class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span></span><span class="texttt">}</span>.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\onlySlide</kbd></span><span class="texttt">*</span>{<span class="meta"><span class="angle">&langle;</span><i>slide number</i><span class="angle">&rangle;</span></span>}{<span class="meta"><span
+class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+This is mapped to <span class="texttt">\only<</span><span class="meta"><span class="angle">&langle;</span><i>slide number</i><span class="angle">&rangle;</span></span><span class="texttt">>{</span><span class="meta"><span
+class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span></span><span class="texttt">}</span>.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\untilSlide</kbd></span>{<span class="meta"><span class="angle">&langle;</span><i>slide number</i><span class="angle">&rangle;</span></span>}{<span class="meta"><span class="angle">&langle;</span><i>text</i><span
+class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+This is mapped to <span class="texttt">\uncover<-</span><span class="meta"><span class="angle">&langle;</span><i>slide number</i><span class="angle">&rangle;</span></span><span class="texttt">>{</span><span class="meta"><span
+class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span></span><span class="texttt">}</span>.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\untilSlide</kbd></span><span class="texttt">*</span>{<span class="meta"><span class="angle">&langle;</span><i>slide number</i><span class="angle">&rangle;</span></span>}{<span class="meta"><span
+class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+This is mapped to <span class="texttt">\only<-</span><span class="meta"><span class="angle">&langle;</span><i>slide number</i><span class="angle">&rangle;</span></span><span class="texttt">>{</span><span class="meta"><span
+class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span></span><span class="texttt">}</span>.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\FromSlide</kbd></span>{<span class="meta"><span class="angle">&langle;</span><i>slide number</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+This is mapped to <span class="texttt">\onslide<</span><span class="meta"><span class="angle">&langle;</span><i>slide number</i><span class="angle">&rangle;</span></span><span class="texttt">-></span>.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\OnlySlide</kbd></span>{<span class="meta"><span class="angle">&langle;</span><i>slide number</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+This is mapped to <span class="texttt">\onslide<</span><span class="meta"><span class="angle">&langle;</span><i>slide number</i><span class="angle">&rangle;</span></span><span class="texttt">></span>.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\UntilSlide</kbd></span>{<span class="meta"><span class="angle">&langle;</span><i>slide number</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+This is mapped to <span class="texttt">\onslide<-</span><span class="meta"><span class="angle">&langle;</span><i>slide number</i><span class="angle">&rangle;</span></span><span class="texttt">></span>.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\slideCaption</kbd></span>{<span class="meta"><span class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+This is mapped to <span class="texttt">\date{</span><span class="meta"><span class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span></span><span class="texttt">}</span>.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\fontTitle</kbd></span>{<span class="meta"><span class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+Simply inserts <span class="meta"><span class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span></span>.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\fontText</kbd></span>{<span class="meta"><span class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+Simply inserts <span class="meta"><span class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span></span>.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\PDFtransition</kbd></span>{<span class="meta"><span class="angle">&langle;</span><i>prosper transition</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+Maps the <span class="meta"><span class="angle">&langle;</span><i>prosper transition</i><span class="angle">&rangle;</span></span> to an appropriate <span class="texttt">\transxxxx</span> command.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="environment">
+
+<ul style="list-style-type:none">
+
+
+<div class="begin-environment">
+<div class="translatormanualentryheadline"><li>
+<p>
+\begin{<span class="declare">Itemize</span>}
+</p>
+</div>
+</div>
+
+<div class="translatormanualentryheadline">
+</li>
+<li>
+
+<p>
+  <span class="meta"><span class="angle">&langle;</span><i>environment contents</i><span class="angle">&rangle;</span></span>
+</p>
+</div>
+
+<div class="end-environment">
+
+<div class="translatormanualentryheadline">
+</li>
+<li>
+
+<p>
+\end{<span class="declare">Itemize</span>}
+</p>
+</div>
+</div>
+<p>
+This is mapped to <span class="texttt">itemize</span>.
+</p>
+</li>
+</ul>
+
+</div>
+
+
+<div class="environment">
+
+<ul style="list-style-type:none">
+
+
+<div class="begin-environment">
+<div class="translatormanualentryheadline"><li>
+<p>
+\begin{<span class="declare">itemstep</span>}
+</p>
+</div>
+</div>
+
+<div class="translatormanualentryheadline">
+</li>
+<li>
+
+<p>
+  <span class="meta"><span class="angle">&langle;</span><i>environment contents</i><span class="angle">&rangle;</span></span>
+</p>
+</div>
+
+<div class="end-environment">
+
+<div class="translatormanualentryheadline">
+</li>
+<li>
+
+<p>
+\end{<span class="declare">itemstep</span>}
+</p>
+</div>
+</div>
+<p>
+This is mapped to <span class="texttt">itemize</span> with the option <span class="texttt">[<+->]</span>.
+</p>
+</li>
+</ul>
+
+</div>
+
+
+<div class="environment">
+
+<ul style="list-style-type:none">
+
+
+<div class="begin-environment">
+<div class="translatormanualentryheadline"><li>
+<p>
+\begin{<span class="declare">enumstep</span>}
+</p>
+</div>
+</div>
+
+<div class="translatormanualentryheadline">
+</li>
+<li>
+
+<p>
+  <span class="meta"><span class="angle">&langle;</span><i>environment contents</i><span class="angle">&rangle;</span></span>
+</p>
+</div>
+
+<div class="end-environment">
+
+<div class="translatormanualentryheadline">
+</li>
+<li>
+
+<p>
+\end{<span class="declare">enumstep</span>}
+</p>
+</div>
+</div>
+<p>
+This is mapped to <span class="texttt">enumerate</span> with the option <span class="texttt">[<+->]</span>.
+</p>
+</li>
+</ul>
+
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\hiddenitem</kbd></span>
+</p>
+</div>
+<p>
+This is mapped to <span class="texttt">\addtocounter{beamerpauses}{1}</span>.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\prosperpart</kbd></span><span class="opt"><span class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>options</i><span class="angle">&rangle;</span></span><span
+class="oarg-right-bracket">]</span></span>{<span class="meta"><span class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+This command has the same effect as <span class="textsc">prosper</span>’s <span class="texttt">\part</span> command. <span class="beamer-name"><span class="textsc">beamer</span></span>’s normal <span class="texttt">\part</span> command
+retains its normal semantics. Thus, you might wish to replace all occurrences of <span class="texttt">\part</span> by <span class="texttt">\prosperpart</span>.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\tsection</kbd></span><span class="opt"><span class="texttt">*</span></span>{<span class="meta"><span class="angle">&langle;</span><i>section name</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+Creates a section named <span class="meta"><span class="angle">&langle;</span><i>section name</i><span class="angle">&rangle;</span></span>. The star, if present, is ignored.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\tsectionandpart</kbd></span><span class="opt"><span class="texttt">*</span></span>{<span class="meta"><span class="angle">&langle;</span><i>part text</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+Mapped to a <span class="texttt">\section</span> command followed by a <span class="texttt">\prosperpart</span> command.
+</p>
+<p>
+In <span class="texttt">article</span> mode, no part page is added.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\dualslide</kbd></span><span class="opt"><span class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>x</i><span class="angle">&rangle;</span></span><span
+class="oarg-right-bracket">]</span></span><span class="opt"><span class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>y</i><span class="angle">&rangle;</span></span><span
+class="oarg-right-bracket">]</span></span><span class="opt"><span class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>z</i><span class="angle">&rangle;</span></span><span
+class="oarg-right-bracket">]</span></span>{<span class="meta"><span class="angle">&langle;</span><i>options</i><span class="angle">&rangle;</span></span>}{<span class="meta"><span class="angle">&langle;</span><i>left column</i><span
+class="angle">&rangle;</span></span>}{<span class="meta"><span class="angle">&langle;</span><i>right column</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+This command is mapped to a <span class="texttt">columns</span> environment. The <span class="meta"><span class="angle">&langle;</span><i>left column</i><span class="angle">&rangle;</span></span> text is shown in the left column, the <span
+class="meta"><span class="angle">&langle;</span><i>right column</i><span class="angle">&rangle;</span></span> text is shown in the right column. The options <span class="meta"><span class="angle">&langle;</span><i>x</i><span
+class="angle">&rangle;</span></span>, <span class="meta"><span class="angle">&langle;</span><i>y</i><span class="angle">&rangle;</span></span>, and <span class="meta"><span class="angle">&langle;</span><i>z</i><span
+class="angle">&rangle;</span></span> are ignored. Also, all <span class="meta"><span class="angle">&langle;</span><i>options</i><span class="angle">&rangle;</span></span> are ignored, except for <span class="declare"><span
+class="texttt">lcolwidth=</span></span> and <span class="declare"><span class="texttt">rcolwidth=</span></span>. These set the width of the left or right column, respectively.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\PDForPS</kbd></span>{<span class="meta"><span class="angle">&langle;</span><i>PostScript text</i><span class="angle">&rangle;</span></span>}{<span class="meta"><span class="angle">&langle;</span><i>PDF
+text</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+Inserts either the <span class="meta"><span class="angle">&langle;</span><i>PostScript text</i><span class="angle">&rangle;</span></span> or the <span class="meta"><span class="angle">&langle;</span><i>PDF text</i><span
+class="angle">&rangle;</span></span>, depending on whether <span class="texttt">latex</span> or <span class="texttt">pdflatex</span> is used. When porting, the <span class="meta"><span class="angle">&langle;</span><i>PDF text</i><span
+class="angle">&rangle;</span></span> will most likely be <em>incorrect</em>, since in <span class="textsc">prosper</span> the <span class="meta"><span class="angle">&langle;</span><i>PDF text</i><span class="angle">&rangle;</span></span> is
+actually PostScript text that is later transformed to <span class="pgf-name"><span class="textsc">pdf</span></span> by some external program.
+</p>
+<p>
+If the <span class="meta"><span class="angle">&langle;</span><i>PDF text</i><span class="angle">&rangle;</span></span> contains an <span class="texttt">\includegraphics</span> command (which is its usual use), you should change the name of the
+graphic file that is included to a name ending <span class="texttt">.pdf</span>, <span class="texttt">.png</span>, or <span class="texttt">.jpg</span>. Typically, you will have to convert your graphic to this format.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\onlyInPDF</kbd></span><span class="meta"><span class="angle">&langle;</span><i>PDF text</i><span class="angle">&rangle;</span></span>
+</p>
+</div>
+<p>
+The <span class="meta"><span class="angle">&langle;</span><i>PDF text</i><span class="angle">&rangle;</span></span> is only included if <span class="texttt">pdflatex</span> is used. The same as for the command <span
+class="texttt">\PDForPS</span> applies here.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\onlyInPS</kbd></span><span class="meta"><span class="angle">&langle;</span><i>PS text</i><span class="angle">&rangle;</span></span>
+</p>
+</div>
+<p>
+The <span class="meta"><span class="angle">&langle;</span><i>PS text</i><span class="angle">&rangle;</span></span> is only included if <span class="texttt">latex</span> is used.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="environment">
+
+<ul style="list-style-type:none">
+
+
+<div class="begin-environment">
+<div class="translatormanualentryheadline"><li>
+<p>
+\begin{<span class="declare">notes</span>}{<span class="meta"><span class="angle">&langle;</span><i>title</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+</div>
+
+<div class="translatormanualentryheadline">
+</li>
+<li>
+
+<p>
+  <span class="meta"><span class="angle">&langle;</span><i>environment contents</i><span class="angle">&rangle;</span></span>
+</p>
+</div>
+
+<div class="end-environment">
+
+<div class="translatormanualentryheadline">
+</li>
+<li>
+
+<p>
+\end{<span class="declare">notes</span>}
+</p>
+</div>
+</div>
+<p>
+Mapped to <span class="texttt">\note{\textbf{</span><span class="meta"><span class="angle">&langle;</span><i>title</i><span class="angle">&rangle;</span></span><span class="texttt">}</span><span class="meta"><span
+class="angle">&langle;</span><i>environment contents</i><span class="angle">&rangle;</span></span><span class="texttt">}</span> (more or less).
+</p>
+</li>
+</ul>
+
+</div>
+
+<p>
+The following commands are parsed by <span class="beamer-name"><span class="textsc">beamer</span></span>, but have no effect:
+</p>
+<ul style="list-style-type:none">
+
+<li>
+<p>
+• <span class="texttt">\myitem</span>,
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+• <span class="texttt">\FontTitle</span>,
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+• <span class="texttt">\FontText</span>,
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+• <span class="texttt">\ColorFoot</span>,
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+• <span class="texttt">\DefaultTransition</span>,
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+• <span class="texttt">\NoFrenchBabelItemize</span>,
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+• <span class="texttt">\TitleSlideNav</span>,
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+• <span class="texttt">\NormalSlideNav</span>,
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+• <span class="texttt">\HAPsetup</span>,
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+• <span class="texttt">\LeftFoot</span>, and
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+• <span class="texttt">\RightFoot</span>.
+</p>
+</li>
+</ul>
+<!--
+...... subsection Seminar ......
+-->
+<h5 id="autosec-587"><span class="sectionnumber">24.2&#x2003;</span>Seminar</h5>
+<a id="beameruserguide-autopage-587"></a>
+
+
+<a id="section-seminar"></a>
+
+<p>
+The package <span class="texttt">beamerseminar</span> maps a subset of the commands of the <span class="textsc">seminar</span> package to <span class="beamer-name"><span class="textsc">beamer</span></span>. As for <span
+class="textsc">prosper</span>, the emulation cannot be perfect. For example, no portrait slides are supported, no automatic page breaking, the framing of slides is not emulated. Unfortunately, for all frames (<span class="texttt">slide</span> environments) that
+contain overlays, you have to put the environment into a <span class="texttt">frame</span> environment “by hand” and must remove all occurrences of <span class="texttt">\newslide</span> inside the environment by closing the slide and opening a new one (and
+then putting these into <span class="texttt">frame</span> environments).
+</p>
+
+<p>
+The workflow for the migration is the following:
+</p>
+<ul style="list-style-type:none">
+
+<li>
+<p>
+1. Use the document class <span class="texttt">beamer</span>, not <span class="texttt">seminar</span>. Most options passed to <span class="texttt">seminar</span> do not apply to <span class="texttt">beamer</span> and should be omitted.
+</p>
+
+</li>
+<li>
+
+<p>
+2. If you copy parts of a presentation that is mixed with normal text, add the <span class="texttt">ignorenonframetext</span> option and place <em>every</em> <span class="texttt">slide</span> environment inside a <span class="texttt">frame</span> since
+<span class="beamer-name"><span class="textsc">beamer</span></span> will not recognize the <span class="texttt">\begin{slide}</span> as the beginning of a frame.
+</p>
+
+</li>
+<li>
+
+<p>
+3. Add a <span class="texttt">\usepackage{beamerseminar}</span> to start the emulation. Add the option <span class="texttt">accumulated</span> if you wish to create a presentation to be held with a video projector.
+</p>
+
+</li>
+<li>
+
+<p>
+4. Possibly add commands to install themes and templates.
+</p>
+
+</li>
+<li>
+
+<p>
+5. There should not be commands in the preamble having to do with page and slide styles. They do not apply to <span class="texttt">beamer</span>.
+</p>
+
+</li>
+<li>
+
+<p>
+6. If a <span class="texttt">\newslide</span> command is used in a <span class="texttt">slide</span> (or similarly <span class="texttt">slide*</span>) environment that contains an overlay, you must replace it by a closing <span
+class="texttt">\end{slide}</span> and an opening <span class="texttt">\begin{slide}</span>.
+</p>
+
+</li>
+<li>
+
+<p>
+7. Next, for each <span class="texttt">slide</span> or <span class="texttt">slide*</span> environment that contains an overlay, you must place a <span class="texttt">frame</span> environment around it. You can remove the <span
+class="texttt">slide</span> environment (and hence effectively replace it by <span class="texttt">frame</span>), unless you use the <span class="texttt">accumulated</span> option.
+</p>
+
+</li>
+<li>
+
+<p>
+8. If you use <span class="texttt">\section</span> or <span class="texttt">\subsection</span> commands inside slides, you will have to move them <em>outside</em> the frames. It may then be necessary to add a <span class="texttt">\frametitle</span>
+command to the slide.
+</p>
+
+</li>
+<li>
+
+<p>
+9. If you use pdf<span class="latexlogofont"><span class="latexlogo">L<span class="latexlogosup">a</span>T<span class="latexlogosub">e</span>X</span></span> to typeset the presentation, you cannot include PostScript files. You should convert them to
+<span class="texttt">.pdf</span> or to <span class="texttt">.png</span> and adjust any usage of <span class="texttt">\includegraphics</span> accordingly.
+</p>
+
+</li>
+<li>
+
+<p>
+10. When starting to change things, you can use all of <span class="beamer-name"><span class="textsc">beamer</span></span>’s commands and even mix them with <span class="textsc">seminar</span> commands.
+</p>
+</li>
+</ul>
+
+<p>
+An example can be found in the file <span class="texttt">beamerexample-seminar.tex</span>.
+</p>
+
+<p>
+There are, unfortunately, numerous places where you may run into problems:
+</p>
+<ul style="list-style-type:none">
+
+<li>
+<p>
+• The whole <span class="texttt">note</span> management of <span class="texttt">seminar</span> is so different from <span class="texttt">beamer</span>’s, that you will have to edit notes “by hand.” In particular, commands like <span
+class="texttt">\ifslidesonly</span> and <span class="texttt">\ifslide</span> may not do exactly what you expect.
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+• If you use <span class="texttt">pstricks</span> commands, you will either have to stick to using <span class="texttt">latex</span> and <span class="texttt">dvips</span> or will have to work around them using, for example, <span
+class="texttt">pgf</span>. Porting lots of <span class="texttt">pstricks</span> code is bound to be difficult, if you wish to switch over to <span class="texttt">pdflatex</span>, so be warned.
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+• If the file cannot be compiled because some <span class="textsc">seminar</span> command is not implemented, you will have to delete this command and try to mimic its behavior using some <span class="beamer-name"><span
+class="textsc">beamer</span></span> command.
+</p>
+</li>
+</ul>
+
+
+<div class="package">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+<span class="extracttheme">\usepackage{<span class="declare">beamerseminar</span>}</span>
+</p>
+<p>
+Include this package in a <span class="texttt">beamer</span> presentation to get access to <span class="textsc">seminar</span> commands. Use <span class="texttt">beamer</span> as the document class, not <span class="texttt">seminar</span>. Most of the
+options passed to the class <span class="texttt">seminar</span> make no sense in <span class="texttt">beamer</span>, so just delete them.
+</p>
+<p>
+This package takes the following options:
+</p>
+<ul style="list-style-type:none">
+
+<li>
+<p>
+• <span class="declare"><span class="texttt">accumulated</span></span> causes overlays to be accumulated. The original behavior of the <span class="textsc">seminar</span> package is that in each overlay only the really “new” part of the overlay is shown.
+This makes sense, if you really print out the overlays on transparencies and then really stack overlays on top of each other. For a presentation with a video projector, you rather want to present an “accumulated” version of the overlays. This is what this option does: When
+the new material of the \(i\)-th overlay is shown, the material of all previous overlays is also shown.
+</p>
+</li>
+</ul>
+<p>
+<i>Example: </i>The following example is an extract of <span class="texttt">beamerexample-seminar.tex</span>:
+</p>
+<pre class="verbatim">
+\documentclass[ignorenonframetext]{beamer}
+\usepackage[accumulated]{beamerseminar}
+\usepackage{beamerthemeclassic}
+
+\title{A beamer presentation using seminar commands}
+\author{Till Tantau}
+
+\let\heading=\frametitle
+
+\begin{document}
+
+\begin{frame}
+  \maketitle
+\end{frame}
+
+This is some text outside any frame. It will only be shown in the
+article version.
+
+\begin{frame}
+  \begin{slide}
+    \heading{This is a frame title.}
+
+    \begin{enumerate}
+      {\overlay1
+      \item Overlays are a little tricky in seminar.
+        {\overlay2
+        \item But it is possible to use them in beamer.
+        }
+      }
+    \end{enumerate}
+  \end{slide}
+\end{frame}
+\end{document}
+</pre>
+<p>
+You can use all normal <span class="beamer-name"><span class="textsc">beamer</span></span> commands and concepts, like overlay-specifications, in the file. You can also create an <span class="texttt">article</span> version by using the class <span
+class="texttt">article</span> and including the package <span class="texttt">beamerarticle</span>.
+</p>
+</li>
+</ul>
+</div>
+
+<p>
+In the following, the effects of <span class="textsc">seminar</span> commands in <span class="beamer-name"><span class="textsc">beamer</span></span> are listed.
+</p>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\overlay</kbd></span>{<span class="meta"><span class="angle">&langle;</span><i>number</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+Shows the material till the end of the current <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> group only on overlay numbered \(\hbox {\meta {number}}+1\) or, if the <span
+class="texttt">accumulated</span> option is given, from that overlay on. Usages of this command may be nested (as in <span class="textsc">seminar</span>). If an <span class="texttt">\overlay</span> command is given inside another, it temporarily
+“overrules” the outer one as demonstrated in the following example, where it is assumed that the <span class="texttt">accumulated</span> option is given.
+</p>
+<p>
+<i>Example: </i>
+</p>
+<pre class="verbatim">
+\begin{frame}
+  \begin{slide}
+    This is shown from the first slide on.
+    {\overlay{2}
+      This is shown from the third slide on.
+      {\overlay{1}
+        This is shown from the second slide on.
+      }
+      This is shown once more from the third slide on.
+    }
+  \end{slide}
+\end{frame}
+</pre>
+</li>
+</ul>
+</div>
+
+
+<div class="environment">
+
+<ul style="list-style-type:none">
+
+
+<div class="begin-environment">
+<div class="translatormanualentryheadline"><li>
+<p>
+\begin{<span class="declare">slide</span>}<span class="opt"><span class="texttt">*</span></span>
+</p>
+</div>
+</div>
+
+<div class="translatormanualentryheadline">
+</li>
+<li>
+
+<p>
+  <span class="meta"><span class="angle">&langle;</span><i>environment contents</i><span class="angle">&rangle;</span></span>
+</p>
+</div>
+
+<div class="end-environment">
+
+<div class="translatormanualentryheadline">
+</li>
+<li>
+
+<p>
+\end{<span class="declare">slide</span>}
+</p>
+</div>
+</div>
+<p>
+Mainly installs an <span class="texttt">\overlay{0}</span> around the <span class="meta"><span class="angle">&langle;</span><i>environment contents</i><span class="angle">&rangle;</span></span>. If the <span class="texttt">accumulated</span>
+option is given, this has no effect, but otherwise it will cause the main text of the slide to be shown <em>only</em> on the first slide. This is useful if you really wish to physically place slides on top of each other.
+</p>
+<p>
+The starred version does the same as the nonstarred one.
+</p>
+<p>
+If this command is not issued inside a <span class="texttt">\frame</span>, it sets up a frame with the <span class="texttt">fragile=singleframe</span> option set. Thus, this frame will contain only a single slide.
+</p>
+<p>
+<i>Example: </i>
+</p>
+<pre class="verbatim">
+\begin{slide}
+  Some text.
+\end{slide}
+
+\frame{
+\begin{slide}
+  Some text. And an {\overlay{1} overlay}.
+\end{slide}
+}
+</pre>
+</li>
+</ul>
+
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\red</kbd></span>
+</p>
+</div>
+<p>
+Mapped to <span class="texttt">\color{red}</span>.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\blue</kbd></span>
+</p>
+</div>
+<p>
+Mapped to <span class="texttt">\color{blue}</span>.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\green</kbd></span>
+</p>
+</div>
+<p>
+Mapped to <span class="texttt">\color{green}</span>.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\ifslide</kbd></span>
+</p>
+</div>
+<p>
+True in the <span class="texttt">presentation</span> modes, false in the <span class="texttt">article</span> mode.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\ifslidesonly</kbd></span>
+</p>
+</div>
+<p>
+Same as <span class="texttt">\ifslide</span>.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\ifarticle</kbd></span>
+</p>
+</div>
+<p>
+False in the <span class="texttt">presentation</span> modes, true in the <span class="texttt">article</span> mode.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\ifportrait</kbd></span>
+</p>
+</div>
+<p>
+Always false.
+</p>
+</li>
+</ul>
+</div>
+
+<p>
+The following commands are parsed by <span class="beamer-name"><span class="textsc">beamer</span></span>, but have no effect:
+</p>
+<ul style="list-style-type:none">
+
+<li>
+<p>
+• <span class="texttt">\ptsize</span>.
+</p>
+</li>
+</ul>
+<!--
+...... subsection FoilTeX ......
+-->
+<h5 id="autosec-591"><span class="sectionnumber">24.3&#x2003;</span>Foil<span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span></h5>
+<a id="beameruserguide-autopage-591"></a>
+
+
+<a id="section-foiltex"></a>
+
+<p>
+The package <span class="texttt">beamerfoils</span> maps a subset of the commands of the <span class="textsc">foils</span> package to <span class="beamer-name"><span class="textsc">beamer</span></span>. Since this package defines only few
+non-standard <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> commands and since <span class="beamer-name"><span class="textsc">beamer</span></span> implements all the standard
+commands, the emulation layer is pretty simple.
+</p>
+
+<p>
+A copyright notice: The Foil<span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> package has a restricted license. For this reason, no example from the <span class="textsc">foils</span> package is
+included in the <span class="beamer-name"><span class="textsc">beamer</span></span> class. The emulation itself does not use the code of the <span class="textsc">foils</span> package (rather, it just maps <span class="textsc">foils</span> commands to
+<span class="beamer-name"><span class="textsc">beamer</span></span> commands). For this reason, our understanding is that the <em>emulation</em> offered by the <span class="beamer-name"><span class="textsc">beamer</span></span> class is “free” and
+legally so. IBM has a copyright on the <span class="textsc">foils</span> class, not on the effect the commands of this class have. (At least, that’s our understanding of things.)
+</p>
+
+<p>
+The workflow for the migration is the following:
+</p>
+<ul style="list-style-type:none">
+
+<li>
+<p>
+1. Use the document class <span class="texttt">beamer</span>, not <span class="texttt">foils</span>.
+</p>
+
+</li>
+<li>
+
+<p>
+2. Add a <span class="texttt">\usepackage{beamerfoils}</span> to start the emulation.
+</p>
+
+</li>
+<li>
+
+<p>
+3. Possibly add commands to install themes and templates.
+</p>
+
+</li>
+<li>
+
+<p>
+4. If the command <span class="texttt">\foilhead</span> is used inside a <span class="texttt">\frame</span> command or <span class="texttt">frame</span> environment, it behaves like <span class="texttt">\frametitle</span>. If it used outside a frame, it
+will start a new frame (with the <span class="texttt">allowframebreaks</span> option, thus no overlays are allowed). This frame will persist till the next occurrence of <span class="texttt">\foilhead</span> or of the new command <span
+class="texttt">\endfoil</span>. Note that a <span class="texttt">\frame</span> command will <em>not</em> end a frame started using <span class="texttt">\foilhead</span>.
+</p>
+
+</li>
+<li>
+
+<p>
+5. If you rely on automatic frame creation based on <span class="texttt">\foilhead</span>, you will need to insert an <span class="texttt">\endfoil</span> before the end of the document to end the last frame.
+</p>
+
+</li>
+<li>
+
+<p>
+6. If you use pdf<span class="latexlogofont"><span class="latexlogo">L<span class="latexlogosup">a</span>T<span class="latexlogosub">e</span>X</span></span> to typeset the presentation, than you cannot include PostScript files. You should convert them
+to <span class="texttt">.pdf</span> or to <span class="texttt">.png</span> and adjust any usage of <span class="texttt">\includegraphics</span> accordingly.
+</p>
+
+</li>
+<li>
+
+<p>
+7. Sizes of objects are different in <span class="beamer-name"><span class="textsc">beamer</span></span>, since the scaling is done by the viewer, not by the class. Thus a framebox of size 6 inches will be way too big in a <span class="beamer-name"><span
+class="textsc">beamer</span></span> presentation. You will have to manually adjust explicit dimension occurring in a foil<span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> presentation.
+</p>
+</li>
+</ul>
+
+
+<div class="package">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+<span class="extracttheme">\usepackage{<span class="declare">beamerfoils</span>}</span>
+</p>
+<p>
+Include this package in a <span class="texttt">beamer</span> presentation to get access to <span class="textsc">foils</span> commands. Use <span class="texttt">beamer</span> as the document class, not <span class="texttt">foils</span>.
+</p>
+<p>
+<i>Example: </i>In the following example, frames are automatically created. The <span class="texttt">\endfoil</span> at the end is needed to close the last frame.
+</p>
+<pre class="verbatim">
+\documentclass{beamer}
+\usepackage{beamerfoils}
+
+\begin{document}
+
+\maketitle
+
+\foilhead{First Frame}
+
+This is on the first frame.
+\pagebreak
+This is on the second frame, which is a continuation of the first.
+
+\foilhead{Third Frame}
+
+This is on the third frame.
+
+\endfoil
+\end{document}
+</pre>
+<p>
+<i>Example: </i>In this example, frames are manually inserted. No <span class="texttt">\endfoil</span> is needed.
+</p>
+<pre class="verbatim">
+\documentclass{beamer}
+\usepackage{beamerfoils}
+
+\begin{document}
+
+\frame{\maketitle}
+
+\frame{
+\foilhead{First Frame}
+This is on the first frame.
+}
+
+\frame{
+\foilhead{Second Frame}
+This is on the second frame.
+}
+\end{document}
+</pre>
+</li>
+</ul>
+</div>
+
+<p>
+In the following, the effects of <span class="textsc">foils</span> commands in <span class="beamer-name"><span class="textsc">beamer</span></span> are listed.
+</p>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\MyLogo</kbd></span>{<span class="meta"><span class="angle">&langle;</span><i>logo text</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+This is mapped to <span class="texttt">\logo</span>, though the logo is internally stored, such that it can be switched on and off using <span class="texttt">\LogoOn</span> and <span class="texttt">\LogoOff</span>.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\LogoOn</kbd></span>
+</p>
+</div>
+<p>
+Makes the logo visible.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\LogoOff</kbd></span>
+</p>
+</div>
+<p>
+Makes the logo invisible.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\foilhead</kbd></span><span class="opt"><span class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>dimension</i><span class="angle">&rangle;</span></span><span
+class="oarg-right-bracket">]</span></span>{<span class="meta"><span class="angle">&langle;</span><i>frame title</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+If used inside a <span class="texttt">\frame</span> command or <span class="texttt">frame</span> environment, this is mapped to <span class="texttt">\frametitle{</span><span class="meta"><span class="angle">&langle;</span><i>frame title</i><span
+class="angle">&rangle;</span></span><span class="texttt">}</span>. If used outside any frames, a new frame is started with the option <span class="texttt">allowframebreaks</span>. If a frame was previously started using this command, it will be closed before
+the next frame is started. The <span class="meta"><span class="angle">&langle;</span><i>dimension</i><span class="angle">&rangle;</span></span> is ignored.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\rotatefoilhead</kbd></span><span class="opt"><span class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>dimension</i><span class="angle">&rangle;</span></span><span
+class="oarg-right-bracket">]</span></span>{<span class="meta"><span class="angle">&langle;</span><i>frame title</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+This command has exactly the same effect as <span class="texttt">\foilhead</span>.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\endfoil</kbd></span>
+</p>
+</div>
+<p>
+This is a command that is <em>not</em> available in <span class="textsc">foils</span>. In <span class="beamer-name"><span class="textsc">beamer</span></span>, it can be used to end a frame that has automatically been opened using <span
+class="texttt">\foildhead</span>. This command must be given before the end of the document if the last frame was opened using <span class="texttt">\foildhead</span>.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="environment">
+
+<ul style="list-style-type:none">
+
+
+<div class="begin-environment">
+<div class="translatormanualentryheadline"><li>
+<p>
+\begin{<span class="declare">boldequation</span>}<span class="opt"><span class="texttt">*</span></span>
+</p>
+</div>
+</div>
+
+<div class="translatormanualentryheadline">
+</li>
+<li>
+
+<p>
+  <span class="meta"><span class="angle">&langle;</span><i>environment contents</i><span class="angle">&rangle;</span></span>
+</p>
+</div>
+
+<div class="end-environment">
+
+<div class="translatormanualentryheadline">
+</li>
+<li>
+
+<p>
+\end{<span class="declare">boldequation</span>}
+</p>
+</div>
+</div>
+<p>
+This is mapped to the <span class="texttt">equation</span> or the <span class="texttt">equation*</span> environment, with <span class="texttt">\boldmath</span> switched on.
+</p>
+</li>
+</ul>
+
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\FoilTeX</kbd></span>
+</p>
+</div>
+<p>
+Typesets the foil<span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> name as in the <span class="textsc">foils</span> package.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\bm</kbd></span>{<span class="meta"><span class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+Implemented as in the <span class="textsc">foils</span> package.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\bmstyle</kbd></span>{<span class="meta"><span class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span></span>}{<span class="meta"><span class="angle">&langle;</span><i>more text</i><span
+class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+Implemented as in the <span class="textsc">foils</span> package.
+</p>
+</li>
+</ul>
+</div>
+
+<p>
+The following additional theorem-like environments are predefined:
+</p>
+<ul style="list-style-type:none">
+
+<li>
+<p>
+• <span class="texttt">Theorem*</span>,
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+• <span class="texttt">Lemma*</span>,
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+• <span class="texttt">Corollary*</span>,
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+• <span class="texttt">Proposition*</span>, and
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+• <span class="texttt">Definition*</span>.
+</p>
+</li>
+</ul>
+
+<p>
+For example, the first is defined using <span class="texttt">\newtheorem*{Theorem*}{Theorem}</span>.
+</p>
+
+<p>
+The following commands are parsed by <span class="beamer-name"><span class="textsc">beamer</span></span>, but have no effect:
+</p>
+<ul style="list-style-type:none">
+
+<li>
+<p>
+• <span class="texttt">\leftheader</span>,
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+• <span class="texttt">\rightheader</span>,
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+• <span class="texttt">\leftfooter</span>,
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+• <span class="texttt">\rightfooter</span>,
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+• <span class="texttt">\Restriction</span>, and
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+• <span class="texttt">\marginpar</span>.
+</p>
+</li>
+</ul>
+<!--
+...... subsection TeXPower ......
+-->
+<h5 id="autosec-594"><span class="sectionnumber">24.4&#x2003;</span><span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span>Power</h5>
+<a id="beameruserguide-autopage-594"></a>
+
+
+<a id="section-texpower"></a>
+
+<p>
+The package <span class="texttt">beamertexpower</span> maps a subset of the commands of the <span class="textsc">texpower</span> package, due to Stephan Lehmke, to <span class="beamer-name"><span class="textsc">beamer</span></span>. This subset
+is currently rather small, so a lot of adaptions may be necessary. Note that <span class="textsc">texpower</span> is not a full class by itself, but a package that needs another class, like <span class="texttt">seminar</span> or <span
+class="texttt">prosper</span> to do the actual typesetting. It may thus be necessary to additionally load an emulation layer for these also. Indeed, it <em>might</em> be possible to directly use <span class="textsc">texpower</span> inside <span
+class="beamer-name"><span class="textsc">beamer</span></span>, but we have not tried that. Perhaps this will be possible in the future.
+</p>
+
+<p>
+Currently, the package <span class="texttt">beamertexpower</span> mostly just maps the <span class="texttt">\stepwise</span> and related commands to appropriate <span class="beamer-name"><span class="textsc">beamer</span></span> commands. The
+<span class="texttt">\pause</span> command need not be mapped since it is directly implemented by <span class="beamer-name"><span class="textsc">beamer</span></span> anyway.
+</p>
+
+<p>
+The workflow for the migration is the following:
+</p>
+<ul style="list-style-type:none">
+
+<li>
+<p>
+1. Replace the document class by <span class="texttt">beamer</span>. If the document class is <span class="texttt">seminar</span> or <span class="texttt">prosper</span>, you can use the above emulation layers, that is, you can include the files <span
+class="texttt">beamerseminar</span> or <span class="texttt">beamerprosper</span> to emulate the class.
+</p>
+<p>
+All notes on what to do for the emulation of <span class="textsc">seminar</span> or <span class="textsc">prosper</span> also apply here.
+</p>
+
+</li>
+<li>
+
+<p>
+2. Additionally, add <span class="texttt">\usepackage{beamertexpower}</span> to start the emulation.
+</p>
+</li>
+</ul>
+
+
+<div class="package">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+<span class="extracttheme">\usepackage{<span class="declare">beamertexpower</span>}</span>
+</p>
+<p>
+Include this package in a <span class="texttt">beamer</span> presentation to get access to the <span class="textsc">texpower</span> commands having to do with the <span class="texttt">\stepwise</span> command.
+</p>
+</li>
+</ul>
+</div>
+
+<p>
+A note on the <span class="texttt">\pause</span> command: Both <span class="beamer-name"><span class="textsc">beamer</span></span> and <span class="textsc">texpower</span> implement this command and they have the same semantics; so there is no
+need to map this command to anything different in <span class="texttt">beamertexpower</span>. However, a difference is that <span class="texttt">\pause</span> can be used almost anywhere in <span class="beamer-name"><span
+class="textsc">beamer</span></span>, whereas it may only be used in non-nested situations in <span class="textsc">texpower</span>. Since <span class="beamer-name"><span class="textsc">beamer</span></span> is only more flexible than <span
+class="textsc">texpower</span> here, this will not cause problems when porting.
+</p>
+
+<p>
+In the following, the effect of <span class="textsc">texpower</span> commands in <span class="beamer-name"><span class="textsc">beamer</span></span> are listed.
+</p>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\stepwise</kbd></span>{<span class="meta"><span class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+As in <span class="textsc">texpower</span>, this initiates text in which commands like <span class="texttt">\step</span> or <span class="texttt">\switch</span> may be given. Text contained in a <span class="texttt">\step</span> command will be
+enclosed in an <span class="texttt">\only</span> command with the overlay specification <span class="texttt"><+(1)-></span>. This means that the text of the first <span class="texttt">\step</span> is inserted from the second slide onward, the text of the
+second <span class="texttt">\step</span> is inserted from the third slide onward, and so on.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\parstepwise</kbd></span>{<span class="meta"><span class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+Same as <span class="texttt">\stepwise</span>, only <span class="texttt">\uncover</span> is used instead of <span class="texttt">\only</span> when mapping the <span class="texttt">\step</span> command.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\liststepwise</kbd></span>{<span class="meta"><span class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+Same as <span class="texttt">\stepwise</span>, only an invisible horizontal line is inserted before the <span class="meta"><span class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span></span>. This is presumably useful for solving some
+problems related to vertical spacing in <span class="textsc">texpower</span>.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\step</kbd></span>{<span class="meta"><span class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+This is either mapped to <span class="texttt">\only<+(1)-></span><span class="meta"><span class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span></span> or to <span class="texttt">\uncover<+(1)-></span><span
+class="meta"><span class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span></span>, depending on whether this command is used inside a <span class="texttt">\stepwise</span> environment or inside a <span
+class="texttt">\parstepwise</span> environment.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\steponce</kbd></span>{<span class="meta"><span class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+This is either mapped to <span class="texttt">\only<+(1)></span><span class="meta"><span class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span></span> or to <span class="texttt">\uncover<+(1)></span><span
+class="meta"><span class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span></span>, depending on whether this command is used inside a <span class="texttt">\stepwise</span> environment or inside a <span
+class="texttt">\parstepwise</span> environment.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\switch</kbd></span>{<span class="meta"><span class="angle">&langle;</span><i>alternate text</i><span class="angle">&rangle;</span></span>}{<span class="meta"><span class="angle">&langle;</span><i>text</i><span
+class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+This is mapped to <span class="texttt">\alt<+(1)->{</span><span class="meta"><span class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span></span><span class="texttt">}{</span><span class="meta"><span
+class="angle">&langle;</span><i>alternate text</i><span class="angle">&rangle;</span></span><span class="texttt">}</span>. Note that the arguments are swapped.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\bstep</kbd></span>{<span class="meta"><span class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+This is always mapped to <span class="texttt">\uncover<+(1)-></span><span class="meta"><span class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span></span>.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\dstep</kbd></span>
+</p>
+</div>
+<p>
+This just advances the counter <span class="texttt">beamerpauses</span> by one. It has no other effect.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\vstep</kbd></span>
+</p>
+</div>
+<p>
+Same as <span class="texttt">\dstep</span>.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\restep</kbd></span>{<span class="meta"><span class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+Same as <span class="texttt">\step</span>, but the <span class="meta"><span class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span></span> is shown on the same slide as the previous <span class="texttt">\step</span> command.
+This is implemented by first decreasing the counter <span class="texttt">beamerpauses</span> by one before calling <span class="texttt">\step</span>.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\reswitch</kbd></span>{<span class="meta"><span class="angle">&langle;</span><i>alternate text</i><span class="angle">&rangle;</span></span>}<span class="meta"><span class="angle">&langle;</span><i>text</i><span
+class="angle">&rangle;</span></span>
+</p>
+</div>
+<p>
+Like <span class="texttt">\restep</span>, only for the <span class="texttt">\switch</span> command.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\rebstep</kbd></span><span class="meta"><span class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span></span>
+</p>
+</div>
+<p>
+Like <span class="texttt">\restep</span>, only for the <span class="texttt">\bstep</span> command.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\redstep</kbd></span>
+</p>
+</div>
+<p>
+This command has no effect.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\revstep</kbd></span>
+</p>
+</div>
+<p>
+This command has no effect.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\boxedsteps</kbd></span>
+</p>
+</div>
+<p>
+Temporarily (for the current <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> group) changes the effect of <span class="texttt">\step</span> to issue an <span class="texttt">\uncover</span>,
+even if used inside a <span class="texttt">\stepwise</span> environment.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\nonboxedsteps</kbd></span>
+</p>
+</div>
+<p>
+Temporarily (for the current <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> group) changes the effect of <span class="texttt">\step</span> to issue an <span class="texttt">\only</span>, even if
+used inside a <span class="texttt">\parstepwise</span> environment.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\code</kbd></span>{<span class="meta"><span class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+Typesets the argument using a boldface typewriter font.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\codeswitch</kbd></span>
+</p>
+</div>
+<p>
+Switches to a boldface typewriter font.
+</p>
+</li>
+</ul>
+</div>
+<a id="beameruserguide-autofile-last"></a>
+</section>
+
+</main>
+
+</div>
+
+
+<nav class="botnavigation"><a href="home.html" class="linkhome" >
+Home</a></nav>
+
+</body>
+</html>

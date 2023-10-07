@@ -1,0 +1,2852 @@
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8" />
+<meta name="generator" content="LaTeX Lwarp package" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The beamer class- <a href=https://github.com/josephwright/beamer target=-blank >https://github.com/josephwright/beamer</a>- User Guide for version 3.70. — Structuring a Presentation: The Static Global Structure</title>
+<link rel="stylesheet" type="text/css" href="style.css" />
+
+<script>
+// Lwarp MathJax emulation code
+//
+// Based on code by Davide P. Cervone.
+// Equation numbering: https://github.com/mathjax/MathJax/issues/2427
+// Starred and ifnextchar macros: https://github.com/mathjax/MathJax/issues/2428
+// \left, \right delimiters: https://github.com/mathjax/MathJax/issues/2535
+//
+// Modified by Brian Dunn to adjust equation numbering and add subequations.
+//
+// LaTeX can use \seteqnumber{subequations?}{section}{number} before each equation.
+// subequations? is 0 usually, 1 if inside subequations.
+// section is a string printed as-is, or empty.
+// number is auto-incremented by MathJax between equations.
+//
+MathJax = {
+  subequations: "0",
+  section: "",
+  loader: {
+    load: ['[tex]/tagformat', '[tex]/textmacros'],
+  },
+  startup: {
+    ready() {
+      // These would be replaced by import commands if you wanted to make
+      // a proper extension.
+      const Configuration = MathJax._.input.tex.Configuration.Configuration;
+      const CommandMap = MathJax._.input.tex.SymbolMap.CommandMap;
+      const Macro = MathJax._.input.tex.Symbol.Macro;
+      const TexError = MathJax._.input.tex.TexError.default;
+      const ParseUtil = MathJax._.input.tex.ParseUtil.default;
+      const expandable = MathJax._.util.Options.expandable;
+
+        // Insert the replacement string into the TeX string, and check
+        // that there haven't been too many maxro substitutions (prevents
+        // infinite loops).
+        const useArgument = (parser, text) => {
+          parser.string = ParseUtil.addArgs(parser, text, parser.string.slice(parser.i));
+          parser.i = 0;
+          if (++parser.macroCount > parser.configuration.options.maxMacros) {
+            throw new TexError('MaxMacroSub1',
+            'MathJax maximum macro substitution count exceeded; ' +
+            'is there a recursive macro call?');
+          }
+        }
+
+        // Create the command map for:
+        //     \ifstar, \ifnextchar, \ifblank, \ifstrequal, \gsub, \seteqnumber
+        new CommandMap('Lwarp-macros', {
+          ifstar: 'IfstarFunction',
+          ifnextchar: 'IfnextcharFunction',
+          ifblank: 'IfblankFunction',
+          ifstrequal: 'IfstrequalFunction',
+          gsubstitute: 'GsubstituteFunction',
+          seteqnumber: 'SeteqnumberFunction'
+        }, {
+          // This function implements an ifstar macro.
+          IfstarFunction(parser, name) {
+             const resultstar = parser.GetArgument(name);
+             const resultnostar = parser.GetArgument(name);
+             const star = parser.GetStar();                 // true if there is a *
+             useArgument(parser, star ? resultstar : resultnostar);
+          },
+
+          // This function implements an ifnextchar macro.
+          IfnextcharFunction(parser, name) {
+            let whichchar = parser.GetArgument(name);
+            if (whichchar.match(/^(?:0x[0-9A-F]+|[0-9]+)$/i)) {
+              // $ syntax highlighting
+              whichchar = String.fromCodePoint(parseInt(whichchar));
+            }
+            const resultnextchar = parser.GetArgument(name);
+            const resultnotnextchar = parser.GetArgument(name);
+            const gotchar = (parser.GetNext() === whichchar);
+            useArgument(parser, gotchar ? resultnextchar : resultnotnextchar);
+          },
+
+          // This function implements an ifblank macro.
+          IfblankFunction(parser, name) {
+            const blankarg = parser.GetArgument(name);
+            const resultblank = parser.GetArgument(name);
+            const resultnotblank = parser.GetArgument(name);
+            const isblank = (blankarg.trim() == "");
+            useArgument(parser, isblank ? resultblank : resultnotblank);
+          },
+
+          // This function implements an ifstrequal macro.
+          IfstrequalFunction(parser, name) {
+            const strequalfirst = parser.GetArgument(name);
+            const strequalsecond = parser.GetArgument(name);
+            const resultequal = parser.GetArgument(name);
+            const resultnotequal = parser.GetArgument(name);
+            const isequal = (strequalfirst == strequalsecond);
+            useArgument(parser, isequal ? resultequal : resultnotequal);
+          },
+
+          // This function implements a gsub macro.
+          GsubstituteFunction(parser, name) {
+            const gsubfirst = parser.GetArgument(name);
+            const gsubsecond = parser.GetArgument(name);
+            const gsubthird = parser.GetArgument(name);
+            let gsubresult=gsubfirst.replace(gsubsecond, gsubthird);
+            useArgument(parser, gsubresult);
+          },
+
+          // This function modifies the equation numbers.
+          SeteqnumberFunction(parser, name) {
+              // Get the macro parameters
+              const star = parser.GetStar();                  // true if there is a *
+              const optBrackets = parser.GetBrackets(name);   // contents of optional brackets
+              const newsubequations = parser.GetArgument(name); // the subequations argument
+              const neweqsection = parser.GetArgument(name); // the eq section argument
+              const neweqnumber = parser.GetArgument(name);   // the eq number argument
+              MathJax.config.subequations=newsubequations ;   // a string with boolean meaning
+              MathJax.config.section=neweqsection ;           // a string with numeric meaning
+              parser.tags.counter = parser.tags.allCounter = neweqnumber ;
+          }
+
+        });
+
+        // Create the Lwarp-macros package
+        Configuration.create('Lwarp-macros', {
+          handler: {macro: ['Lwarp-macros']}
+        });
+
+        MathJax.startup.defaultReady();
+
+        // For forward references:
+        MathJax.startup.input[0].preFilters.add(({math}) => {
+          if (math.inputData.recompile){
+              MathJax.config.subequations = math.inputData.recompile.subequations;
+              MathJax.config.section = math.inputData.recompile.section;
+          }
+        });
+        MathJax.startup.input[0].postFilters.add(({math}) => {
+          if (math.inputData.recompile){
+              math.inputData.recompile.subequations = MathJax.config.subequations;
+              math.inputData.recompile.section = MathJax.config.section;
+          }
+        });
+
+          // For \left, \right with unicode-math:
+          const {DelimiterMap} = MathJax._.input.tex.SymbolMap;
+          const {Symbol} = MathJax._.input.tex.Symbol;
+          const {MapHandler} = MathJax._.input.tex.MapHandler;
+          const delimiter = MapHandler.getMap('delimiter');
+          delimiter.add('\\lBrack', new Symbol('\\lBrack', '\u27E6'));
+          delimiter.add('\\rBrack', new Symbol('\\rBrack', '\u27E7'));
+          delimiter.add('\\lAngle', new Symbol('\\lAngle', '\u27EA'));
+          delimiter.add('\\rAngle', new Symbol('\\rAngle', '\u27EB'));
+          delimiter.add('\\lbrbrak', new Symbol('\\lbrbrak', '\u2772'));
+          delimiter.add('\\rbrbrak', new Symbol('\\rbrbrak', '\u2773'));
+          delimiter.add('\\lbag', new Symbol('\\lbag', '\u27C5'));
+          delimiter.add('\\rbag', new Symbol('\\rbag', '\u27C6'));
+          delimiter.add('\\llparenthesis', new Symbol('\\llparenthesis', '\u2987'));
+          delimiter.add('\\rrparenthesis', new Symbol('\\rrparenthesis', '\u2988'));
+          delimiter.add('\\llangle', new Symbol('\\llangle', '\u2989'));
+          delimiter.add('\\rrangle', new Symbol('\\rrangle', '\u298A'));
+          delimiter.add('\\Lbrbrak', new Symbol('\\Lbrbrak', '\u27EC'));
+          delimiter.add('\\Rbrbrak', new Symbol('\\Rbrbrak', '\u27ED'));
+          delimiter.add('\\lBrace', new Symbol('\\lBrace', '\u2983'));
+          delimiter.add('\\rBrace', new Symbol('\\rBrace', '\u2984'));
+          delimiter.add('\\lParen', new Symbol('\\lParen', '\u2985'));
+          delimiter.add('\\rParen', new Symbol('\\rParen', '\u2986'));
+          delimiter.add('\\lbrackubar', new Symbol('\\lbrackubar', '\u298B'));
+          delimiter.add('\\rbrackubar', new Symbol('\\rbrackubar', '\u298C'));
+          delimiter.add('\\lbrackultick', new Symbol('\\lbrackultick', '\u298D'));
+          delimiter.add('\\rbracklrtick', new Symbol('\\rbracklrtick', '\u298E'));
+          delimiter.add('\\lbracklltick', new Symbol('\\lbracklltick', '\u298F'));
+          delimiter.add('\\rbrackurtick', new Symbol('\\rbrackurtick', '\u2990'));
+          delimiter.add('\\langledot', new Symbol('\\langledot', '\u2991'));
+          delimiter.add('\\rangledot', new Symbol('\\rangledot', '\u2992'));
+          delimiter.add('\\lparenless', new Symbol('\\lparenless', '\u2993'));
+          delimiter.add('\\rparengtr', new Symbol('\\rparengtr', '\u2994'));
+          delimiter.add('\\Lparengtr', new Symbol('\\Lparengtr', '\u2995'));
+          delimiter.add('\\Rparenless', new Symbol('\\Rparenless', '\u2996'));
+          delimiter.add('\\lblkbrbrak', new Symbol('\\lblkbrbrak', '\u2997'));
+          delimiter.add('\\rblkbrbrak', new Symbol('\\rblkbrbrak', '\u2998'));
+          delimiter.add('\\lvzigzag', new Symbol('\\lvzigzag', '\u29D8'));
+          delimiter.add('\\rvzigzag', new Symbol('\\rvzigzag', '\u29D9'));
+          delimiter.add('\\Lvzigzag', new Symbol('\\Lvzigzag', '\u29DA'));
+          delimiter.add('\\Rvzigzag', new Symbol('\\Rvzigzag', '\u29DB'));
+          delimiter.add('\\lcurvyangle', new Symbol('\\lcurvyangle', '\u29FC'));
+          delimiter.add('\\rcurvyangle', new Symbol('\\rcurvyangle', '\u29FD'));
+          delimiter.add('\\Vvert', new Symbol('\\Vvert', '\u2980'));
+    }     // ready
+  },      // startup
+
+  tex: {
+    packages: {'[+]': ['tagformat', 'Lwarp-macros', 'textmacros']},
+    tags: "ams",
+         tagformat: {
+             number: function (n) {
+                 if(MathJax.config.subequations==0)
+                     return(MathJax.config.section + n);
+                 else
+                     return(MathJax.config.section + String.fromCharCode(96+n));
+             },
+         },
+  }
+}
+</script>
+
+<script
+    id="MathJax-script"
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"
+></script>
+
+</head>
+<body>
+
+
+<a id="beameruserguide-autopage-294"></a>
+<nav class="topnavigation"><a href="home.html" class="linkhome" >
+Home</a></nav>
+
+
+<div class="bodyandsidetoc">
+<div class="sidetoccontainer">
+
+
+<nav class="sidetoc">
+
+
+<div class="sidetoctitle">
+
+<p>
+<span class="sidetocthetitle">The <span class="beamer-name"><span class="textsc">beamer</span></span> <i>class</i><br />
+<a href="https://github.com/josephwright/beamer" target="_blank" >https://github.com/josephwright/beamer</a><br />
+User Guide for version 3.70.</span>
+</p>
+
+<p>
+Contents
+</p>
+</div>
+
+
+<div class="sidetoccontents">
+
+<p>
+<a href="home.html" class="linkhome" >
+Home</a>
+</p>
+
+<p>
+<a href="Introduction.html#autosec-7" class="tocsection" >
+<span class="sectionnumber">1</span>&#x2003;Introduction</a>
+</p>
+
+
+<p>
+<a href="Getting-Started.html#autosec-21" class="tocpart" >
+<span class="sectionnumber">I</span>&#x2003;Getting Started</a>
+</p>
+
+
+<p>
+<a href="Installation.html#autosec-24" class="tocsection" >
+<span class="sectionnumber">2</span>&#x2003;Installation</a>
+</p>
+
+
+<p>
+<a href="Tutorial-Euclid-Presentation.html#autosec-42" class="tocsection" >
+<span class="sectionnumber">3</span>&#x2003;Tutorial: Euclid’s Presentation</a>
+</p>
+
+
+<p>
+<a href="Workflow-For-Creating-Beamer-Presentation.html#autosec-93" class="tocsection" >
+<span class="sectionnumber">4</span>&#x2003;Workflow For Creating a Beamer Presentation</a>
+</p>
+
+
+<p>
+<a href="Guidelines-Creating-Presentations.html#autosec-116" class="tocsection" >
+<span class="sectionnumber">5</span>&#x2003;Guidelines for Creating Presentations</a>
+</p>
+
+
+<p>
+<a href="Solution-Templates.html#autosec-141" class="tocsection" >
+<span class="sectionnumber">6</span>&#x2003;Solution Templates</a>
+</p>
+
+
+<p>
+<a href="Licenses-Copyright.html#autosec-144" class="tocsection" >
+<span class="sectionnumber">7</span>&#x2003;Licenses and Copyright</a>
+</p>
+
+
+<p>
+<a href="Building-Presentation.html#autosec-185" class="tocpart" >
+<span class="sectionnumber">II</span>&#x2003;Building a Presentation</a>
+</p>
+
+
+<p>
+<a href="Creating-Frames.html#autosec-188" class="tocsection" >
+<span class="sectionnumber">8</span>&#x2003;Creating Frames</a>
+</p>
+
+
+<p>
+<a href="Creating-Overlays.html#autosec-234" class="tocsection" >
+<span class="sectionnumber">9</span>&#x2003;Creating Overlays</a>
+</p>
+
+
+<p>
+<a href="Structuring-Presentation-The-Static-Global-Structure.html#autosec-295" class="tocsection" >
+<span class="sectionnumber">10</span>&#x2003;Structuring a Presentation: The Static Global Structure</a>
+</p>
+
+
+<p>
+<a href="Structuring-Presentation-The-Interactive-Global-Structure.html#autosec-322" class="tocsection" >
+<span class="sectionnumber">11</span>&#x2003;Structuring a Presentation: The Interactive Global Structure</a>
+</p>
+
+
+<p>
+<a href="Structuring-Presentation-The-Local-Structure.html#autosec-336" class="tocsection" >
+<span class="sectionnumber">12</span>&#x2003;Structuring a Presentation: The Local Structure</a>
+</p>
+
+
+<p>
+<a href="Graphics.html#autosec-380" class="tocsection" >
+<span class="sectionnumber">13</span>&#x2003;Graphics</a>
+</p>
+
+
+<p>
+<a href="Animations-Sounds-Slide-Transitions.html#autosec-390" class="tocsection" >
+<span class="sectionnumber">14</span>&#x2003;Animations, Sounds, and Slide Transitions</a>
+</p>
+
+
+<p>
+<a href="Changing-Way-Things-Look.html#autosec-410" class="tocpart" >
+<span class="sectionnumber">III</span>&#x2003;Changing the Way Things Look</a>
+</p>
+
+
+<p>
+<a href="Themes.html#autosec-413" class="tocsection" >
+<span class="sectionnumber">15</span>&#x2003;Themes</a>
+</p>
+
+
+<p>
+<a href="Inner-Themes-Outer-Themes-Templates.html#autosec-428" class="tocsection" >
+<span class="sectionnumber">16</span>&#x2003;Inner Themes, Outer Themes, and Templates</a>
+</p>
+
+
+<p>
+<a href="Colors.html#autosec-452" class="tocsection" >
+<span class="sectionnumber">17</span>&#x2003;Colors</a>
+</p>
+
+
+<p>
+<a href="Fonts.html#autosec-481" class="tocsection" >
+<span class="sectionnumber">18</span>&#x2003;Fonts</a>
+</p>
+
+
+<p>
+<a href="Creating-Supporting-Material.html#autosec-497" class="tocpart" >
+<span class="sectionnumber">IV</span>&#x2003;Creating Supporting Material</a>
+</p>
+
+
+<p>
+<a href="Adding-Notes-Yourself.html#autosec-500" class="tocsection" >
+<span class="sectionnumber">19</span>&#x2003;Adding Notes for Yourself</a>
+</p>
+
+
+<p>
+<a href="Creating-Transparencies.html#autosec-512" class="tocsection" >
+<span class="sectionnumber">20</span>&#x2003;Creating Transparencies</a>
+</p>
+
+
+<p>
+<a href="Creating-Handouts-Lecture-Notes.html#autosec-521" class="tocsection" >
+<span class="sectionnumber">21</span>&#x2003;Creating Handouts and Lecture Notes</a>
+</p>
+
+
+<p>
+<a href="Taking-Advantage-Multiple-Screens.html#autosec-546" class="tocsection" >
+<span class="sectionnumber">22</span>&#x2003;Taking Advantage of Multiple Screens</a>
+</p>
+
+
+<p>
+<a href="Howtos.html#autosec-554" class="tocpart" >
+<span class="sectionnumber">V</span>&#x2003;Howtos</a>
+</p>
+
+
+<p>
+<a href="How-To-Uncover-Things-Piecewise.html#autosec-557" class="tocsection" >
+<span class="sectionnumber">23</span>&#x2003;How To Uncover Things Piecewise</a>
+</p>
+
+
+<p>
+<a href="How-To-Import-Presentations-Based-on-Other-Packages-Classes.html#autosec-580" class="tocsection" >
+<span class="sectionnumber">24</span>&#x2003;How To Import Presentations Based on Other Packages and Classes</a>
+</p>
+
+
+</div>
+
+</nav>
+
+</div>
+
+
+<main class="bodycontainer">
+
+
+<section class="textbody">
+
+<h1>The <span class="beamer-name"><span class="textsc">beamer</span></span> <i>class</i><br />
+<a href="https://github.com/josephwright/beamer" target="_blank" >https://github.com/josephwright/beamer</a><br />
+User Guide for version 3.70.</h1>
+
+<!--MathJax customizations:-->
+
+
+<div class="hidden">
+
+\(\newcommand{\footnotename}{footnote}\)
+
+\(\def \LWRfootnote {1}\)
+
+\(\newcommand {\footnote }[2][\LWRfootnote ]{{}^{\mathrm {#1}}}\)
+
+\(\newcommand {\footnotemark }[1][\LWRfootnote ]{{}^{\mathrm {#1}}}\)
+
+\(\let \LWRorighspace \hspace \)
+
+\(\renewcommand {\hspace }{\ifstar \LWRorighspace \LWRorighspace }\)
+
+\(\newcommand {\mathnormal }[1]{{#1}}\)
+
+\(\newcommand \ensuremath [1]{#1}\)
+
+\(\newcommand {\LWRframebox }[2][]{\fbox {#2}} \newcommand {\framebox }[1][]{\LWRframebox } \)
+
+\(\newcommand {\setlength }[2]{}\)
+
+\(\newcommand {\addtolength }[2]{}\)
+
+\(\newcommand {\setcounter }[2]{}\)
+
+\(\newcommand {\addtocounter }[2]{}\)
+
+\(\newcommand {\arabic }[1]{}\)
+
+\(\newcommand {\number }[1]{}\)
+
+\(\newcommand {\noalign }[1]{\text {#1}\notag \\}\)
+
+\(\newcommand {\cline }[1]{}\)
+
+\(\newcommand {\directlua }[1]{\text {(directlua)}}\)
+
+\(\newcommand {\luatexdirectlua }[1]{\text {(directlua)}}\)
+
+\(\newcommand {\protect }{}\)
+
+\(\def \LWRabsorbnumber #1 {}\)
+
+\(\def \LWRabsorbquotenumber &quot;#1 {}\)
+
+\(\newcommand {\LWRabsorboption }[1][]{}\)
+
+\(\newcommand {\LWRabsorbtwooptions }[1][]{\LWRabsorboption }\)
+
+\(\def \mathchar {\ifnextchar &quot;\LWRabsorbquotenumber \LWRabsorbnumber }\)
+
+\(\def \mathcode #1={\mathchar }\)
+
+\(\let \delcode \mathcode \)
+
+\(\let \delimiter \mathchar \)
+
+\(\def \oe {\unicode {x0153}}\)
+
+\(\def \OE {\unicode {x0152}}\)
+
+\(\def \ae {\unicode {x00E6}}\)
+
+\(\def \AE {\unicode {x00C6}}\)
+
+\(\def \aa {\unicode {x00E5}}\)
+
+\(\def \AA {\unicode {x00C5}}\)
+
+\(\def \o {\unicode {x00F8}}\)
+
+\(\def \O {\unicode {x00D8}}\)
+
+\(\def \l {\unicode {x0142}}\)
+
+\(\def \L {\unicode {x0141}}\)
+
+\(\def \ss {\unicode {x00DF}}\)
+
+\(\def \SS {\unicode {x1E9E}}\)
+
+\(\def \dag {\unicode {x2020}}\)
+
+\(\def \ddag {\unicode {x2021}}\)
+
+\(\def \P {\unicode {x00B6}}\)
+
+\(\def \copyright {\unicode {x00A9}}\)
+
+\(\def \pounds {\unicode {x00A3}}\)
+
+\(\let \LWRref \ref \)
+
+\(\renewcommand {\ref }{\ifstar \LWRref \LWRref }\)
+
+\( \newcommand {\multicolumn }[3]{#3}\)
+
+\(\require {textcomp}\)
+
+\(\newcommand {\intertext }[1]{\text {#1}\notag \\}\)
+
+\(\let \Hat \hat \)
+
+\(\let \Check \check \)
+
+\(\let \Tilde \tilde \)
+
+\(\let \Acute \acute \)
+
+\(\let \Grave \grave \)
+
+\(\let \Dot \dot \)
+
+\(\let \Ddot \ddot \)
+
+\(\let \Breve \breve \)
+
+\(\let \Bar \bar \)
+
+\(\let \Vec \vec \)
+
+</div>
+
+<p>
+<!--
+...... section Structuring a Presentation: The Static Global Structure ......
+-->
+<h4 id="autosec-295"><span class="sectionnumber">10&#x2003;</span>Structuring a Presentation: The Static Global Structure</h4>
+<a id="beameruserguide-autopage-295"></a>
+<a id="beameruserguide-autofile-12"></a>
+
+<p>
+This section lists the commands that are used for structuring a presentation “globally” using commands like <span class="texttt">\section</span> or <span class="texttt">\part</span>. These commands are used to create a <em>static</em> structure, meaning that
+the resulting presentation is normally presented one slide after the other in the order the slides occur. Section&nbsp;<a href="Structuring-Presentation-The-Interactive-Global-Structure.html#section-nonlinear">11</a> explains which commands can be used to
+create the <em>interactive</em> structure. For the interactive structure, you must interact with the presentation program, typically by clicking on hyperlinks, to advance the presentation.
+</p>
+<!--
+...... subsection Adding a Title Page ......
+-->
+<h5 id="autosec-296"><span class="sectionnumber">10.1&#x2003;</span>Adding a Title Page</h5>
+<a id="beameruserguide-autopage-296"></a>
+
+
+<p>
+You can use the <span class="texttt">\titlepage</span> command to insert a title page into a frame. By default, it will arrange the following elements on the title page: the document title, the authors’ names, their affiliation, a title graphic, and a date.
+</p>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\titlepage</kbd></span>
+</p>
+</div>
+<p>
+Inserts the text of a title page into the current frame.
+</p>
+<p>
+<i>Example: </i><span class="texttt">\begin{frame}\titlepage\end{frame}</span>
+</p>
+<p>
+<i>Example: </i><span class="texttt">\begin{frame}[plain]\titlepage\end{frame}</span> for a titlepage that fills the whole frame.
+</p>
+
+<div class="element">
+<ul style="list-style-type:none">
+
+<li>
+<p>
+<span class="element-headline"><b>Beamer-Template/-Color/-Font</b> <span class="element-declare"><span class="declare">title page</span></span></span>
+</p>
+<p>
+This template is invoked when the <span class="texttt">\titlepage</span> command is used.
+</p>
+<p>
+The following template options are predefined:
+</p>
+<ul style="list-style-type:none">
+
+<li>
+<p>
+• <span class="itemoption"><kbd>[<span class="declare">default</span>]</kbd><span class="opt"><span class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>alignment</i><span
+class="angle">&rangle;</span></span><span class="oarg-right-bracket">]</span></span></span> The title page is typeset showing the title, followed by the author, their affiliation, the date, and a titlegraphic. If any of these are missing, they are not shown. Except
+for the titlegraphic, if the <span class="beamer-name"><span class="textsc">beamer</span></span>-color <span class="texttt">title</span>, <span class="texttt">author</span>, <span class="texttt">institute</span>, or <span
+class="texttt">date</span> is defined, respectively, it is used as textcolor for these entries. If a background color is defined for them, a colored bar in the corresponding color is drawn behind them, spanning the text width. The corresponding <span
+class="beamer-name"><span class="textsc">beamer</span></span>-fonts are used for these entries. The following templates are used by the title page:
+</p>
+
+
+<div class="element">
+<ul style="list-style-type:none">
+
+
+<li>
+<p>
+<span class="element-headline"><b>Beamer-Template/-Color/-Font</b> <span class="element-declare"><span class="declare">title</span></span></span>
+</p>
+<p>
+
+
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="element">
+<ul style="list-style-type:none">
+
+
+<li>
+<p>
+<span class="element-headline"><b>Beamer-Template/-Color/-Font</b> <span class="element-declare"><span class="declare">author</span></span></span>
+</p>
+<p>
+
+
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="element">
+<ul style="list-style-type:none">
+
+
+<li>
+<p>
+<span class="element-headline"><b>Beamer-Template/-Color/-Font</b> <span class="element-declare"><span class="declare">institute</span></span></span>
+</p>
+<p>
+
+
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="element">
+<ul style="list-style-type:none">
+
+
+<li>
+<p>
+<span class="element-headline"><b>Beamer-Template/-Color/-Font</b> <span class="element-declare"><span class="declare">date</span></span></span>
+</p>
+<p>
+
+
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="element">
+<ul style="list-style-type:none">
+
+
+<li>
+<p>
+<span class="element-headline"><b>Beamer-Template</b> <span class="element-declare"><span class="declare">titlegraphic</span></span></span>
+</p>
+<p>
+
+
+</p>
+</li>
+</ul>
+</div>
+<p>
+The <span class="meta"><span class="angle">&langle;</span><i>alignment</i><span class="angle">&rangle;</span></span> option is passed on the <span class="texttt">beamercolorbox</span> and can be used, for example, to flush the title page to the left by
+specifying <span class="texttt">left</span> here.
+</p>
+</li>
+</ul>
+<p>
+The following commands are useful for this template:
+</p>
+<ul style="list-style-type:none">
+
+<li>
+<p>
+• <kbd><span class="declare">\insertauthor</span></kbd> inserts a version of the author’s name that is useful for the title page.
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+• <kbd><span class="declare">\insertdate</span></kbd> inserts the date.
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+• <kbd><span class="declare">\insertinstitute</span></kbd> inserts the institute.
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+• <kbd><span class="declare">\inserttitle</span></kbd> inserts a version of the document title that is useful for the title page.
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+• <kbd><span class="declare">\insertsubtitle</span></kbd> inserts a version of the document title that is useful for the title page.
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+• <kbd><span class="declare">\inserttitlegraphic</span></kbd> inserts the title graphic into a template.
+</p>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+
+<p>
+For compatibility with other classes, in <span class="texttt">article</span> mode the following command is also provided:
+</p>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\maketitle</kbd></span>
+</p>
+</div>
+<p>
+If used inside a frame, it has the same effect as <span class="texttt">\titlepage</span>. If used outside a frame, it has the same effect as <span class="texttt">\begin{frame}\titlepage\end{frame}</span>; in other words, a frame is added if necessary.
+</p>
+</li>
+</ul>
+</div>
+
+<p>
+Before you invoke the title page command, you must specify all elements you wish to be shown. This is done using the following commands:
+</p>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\title</kbd></span><span class="opt"><span class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>short title</i><span class="angle">&rangle;</span></span><span
+class="oarg-right-bracket">]</span></span>{<span class="meta"><span class="angle">&langle;</span><i>title</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+The <span class="meta"><span class="angle">&langle;</span><i>short title</i><span class="angle">&rangle;</span></span> is used in headlines and footlines. Inside the <span class="meta"><span class="angle">&langle;</span><i>title</i><span
+class="angle">&rangle;</span></span> line breaks can be inserted using the double-backslash command.
+</p>
+<p>
+<i>Example: </i>
+</p>
+<pre class="verbatim">
+\title{The Beamer Class}
+\title[Short Version]{A Very Long Title\\Over Several Lines}
+</pre>
+<p>
+The short form is ignored in <span class="texttt">article</span> mode.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\subtitle</kbd></span><span class="opt"><span class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>short subtitle</i><span class="angle">&rangle;</span></span><span
+class="oarg-right-bracket">]</span></span>{<span class="meta"><span class="angle">&langle;</span><i>subtitle</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+The <span class="meta"><span class="angle">&langle;</span><i>short subtitle</i><span class="angle">&rangle;</span></span> is not used by default, but is available via the insert <span class="texttt">\insertshortsubtitle</span>. The subtitle is shown
+below the title in a smaller font.
+</p>
+<p>
+<i>Example: </i>
+</p>
+<pre class="verbatim">
+\title{The Beamer Class}
+\subtitle{An easily paced introduction with many examples.}
+</pre>
+<p>
+This command causes the subtitle to be appended to the title with a linebreak and a <span class="texttt">\normalsize</span> command issued before it. This may or may not be what you would like to happen.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\author</kbd></span><span class="opt"><span class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>short author names</i><span class="angle">&rangle;</span></span><span
+class="oarg-right-bracket">]</span></span>{<span class="meta"><span class="angle">&langle;</span><i>author names</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+The names should be separated using the command <span class="texttt">\and</span>. In case authors have different affiliations, they should be suffixed by the command <span class="texttt">\inst</span> with different parameters.
+</p>
+<p>
+<i>Example: </i><span class="texttt">\author[Hemaspaandra et al.]{L. Hemaspaandra\inst{1} \and T. Tantau\inst{2}}</span>
+</p>
+<p>
+The short form is ignored in <span class="texttt">article</span> mode.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\institute</kbd></span><span class="opt"><span class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>short institute</i><span class="angle">&rangle;</span></span><span
+class="oarg-right-bracket">]</span></span>{<span class="meta"><span class="angle">&langle;</span><i>institute</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+If more than one institute is given, they should be separated using the command <span class="texttt">\and</span> and they should be prefixed by the command <span class="texttt">\inst</span> with different parameters.
+</p>
+<p>
+<i>Example: </i>
+</p>
+<pre class="verbatim">
+\institute[Universities of Rijeka and Berlin]{
+  \inst{1}Department of Informatics\\
+  University of Rijeka
+  \and
+  \inst{2}Fakult\"at f\"ur Elektrotechnik und Informatik\\
+  Technical University of Berlin}
+</pre>
+<p>
+The short form is ignored in <span class="texttt">article</span> mode. The long form is also ignored, except if the document class (like <span class="texttt">llncs</span>) defines it.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\date</kbd></span><span class="opt"><span class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>short date</i><span class="angle">&rangle;</span></span><span
+class="oarg-right-bracket">]</span></span>{<span class="meta"><span class="angle">&langle;</span><i>date</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+<i>Example: </i><span class="texttt">\date{\today}</span> or <span class="texttt">\date[STACS 2003]{STACS Conference, 2003}</span>.
+</p>
+<p>
+The short form is ignored in <span class="texttt">article</span> mode.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\titlegraphic</kbd></span>{<span class="meta"><span class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+The <span class="meta"><span class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span></span> is shown as title graphic. Typically, a picture environment is used as <span class="meta"><span
+class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span></span>.
+</p>
+<p>
+<i>Example: </i><span class="texttt">\titlegraphic{\pgfuseimage{titlegraphic}}</span>
+</p>
+<p>
+The command is ignored in <span class="texttt">article</span> mode.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\subject</kbd></span>{<span class="meta"><span class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+Enters the <span class="meta"><span class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span></span> as the subject text in the <span class="pgf-name"><span class="textsc">pdf</span></span> document info. It currently has no other
+effect.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\keywords</kbd></span>{<span class="meta"><span class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+Enters the <span class="meta"><span class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span></span> as keywords in the <span class="pgf-name"><span class="textsc">pdf</span></span> document info. It currently has no other effect.
+</p>
+</li>
+</ul>
+</div>
+
+<p>
+By default, the <span class="texttt">\title</span> and <span class="texttt">\author</span> commands will also insert their arguments into a resulting <span class="pgf-name"><span class="textsc">pdf</span></span>-file in the document information fields.
+This may cause problems if you use complicated things like boxes as arguments to these commands. In this case, you might wish to switch off the automatic generation of these entries using the following class option:
+</p>
+
+
+<div class="classoption">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+<span class="classoption-heading">\documentclass[<span class="declare">usepdftitle=false</span>]{beamer}</span>
+</p>
+<p>
+Suppresses the automatic generation of title and author entries in the <span class="pgf-name"><span class="textsc">pdf</span></span> document information.
+</p>
+</li>
+</ul>
+</div>
+<!--
+...... subsection Adding Sections and Subsections ......
+-->
+<h5 id="autosec-300"><span class="sectionnumber">10.2&#x2003;</span>Adding Sections and Subsections</h5>
+<a id="beameruserguide-autopage-300"></a>
+
+
+<p>
+You can structure your text using the commands <span class="texttt">\section</span> and <span class="texttt">\subsection</span>. Unlike standard <span class="latexlogofont"><span class="latexlogo">L<span class="latexlogosup">a</span>T<span
+class="latexlogosub">e</span>X</span></span>, these commands will not create a heading at the position where you use them. Rather, they will add an entry to the table of contents and also to the navigation bars.
+</p>
+
+<p>
+In order to create a line break in the table of contents (usually not a good idea), you can use the command <span class="texttt">\breakhere</span>. Note that the standard command <span class="texttt">\\</span> is modified so that it’s no longer robust (see
+Section 9.3; using <span class="texttt">\protect\\</span> or <span class="texttt">\newline</span> will also be fine).
+</p>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\section</kbd></span><span class="opt"><<span class="meta"><span class="angle">&langle;</span><i>mode specification</i><span class="angle">&rangle;</span></span>></span><span class="opt"><span
+class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>short section name</i><span class="angle">&rangle;</span></span><span class="oarg-right-bracket">]</span></span>{<span class="meta"><span
+class="angle">&langle;</span><i>section name</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+Starts a section. No heading is created. By default the <span class="meta"><span class="angle">&langle;</span><i>section name</i><span class="angle">&rangle;</span></span> is shown in the table of contents and in the navigation bars; if <span
+class="meta"><span class="angle">&langle;</span><i>short section name</i><span class="angle">&rangle;</span></span> is specified, it will be used in the navigation bars instead; if <span class="meta"><span class="angle">&langle;</span><i>short section
+name</i><span class="angle">&rangle;</span></span> is explicitly empty, it will not appear in the navigation bars. If a <span class="meta"><span class="angle">&langle;</span><i>mode specification</i><span class="angle">&rangle;</span></span> is given,
+the command only has an effect for the specified modes.
+</p>
+<p>
+<i>Example: </i><span class="texttt">\section[Summary]{Summary of Main Results}</span>
+</p>
+<p>
+The <span class="meta"><span class="angle">&langle;</span><i>mode specification</i><span class="angle">&rangle;</span></span> allows you to provide an alternate section command in <span class="texttt">article</span> mode. This is necessary for
+example if the <span class="meta"><span class="angle">&langle;</span><i>short section name</i><span class="angle">&rangle;</span></span> is unsuitable for the table of contents:
+</p>
+<p>
+<i>Example: </i>
+</p>
+<pre class="verbatim">
+\section<presentation>[Results]{Results on the Main Problem}
+\section<article>{Results on the Main Problem}
+</pre>
+
+<div class="element">
+<ul style="list-style-type:none">
+
+<li>
+<p>
+<span class="element-headline"><b>Beamer-Template/-Color/-Font</b> <span class="element-declare"><span class="declare">section in toc</span></span></span>
+</p>
+<p>
+This template is used when a section entry is to be typeset. For the permissible <span class="meta"><span class="angle">&langle;</span><i>options</i><span class="angle">&rangle;</span></span> see the parent template <span
+class="texttt">table of contents</span>.
+</p>
+<p>
+The following commands are useful for this template:
+</p>
+<ul style="list-style-type:none">
+
+<li>
+<p>
+• <kbd><span class="declare">\inserttocsection</span></kbd> inserts the table of contents version of the current section name.
+</p>
+</li>
+<li>
+
+
+<p>
+• <kbd><span class="declare">\inserttocsectionnumber</span></kbd> inserts the number of the current section (in the table of contents).
+</p>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+
+<div class="element">
+<ul style="list-style-type:none">
+
+<li>
+<p>
+<span class="element-headline"><b>Beamer-Template/-Color/-Font</b> <span class="element-declare"><span class="declare">section in toc shaded</span></span></span>
+</p>
+<p>
+This template is used instead of the previous one if the section should be shown in a shaded way, because it is not the current section. For the permissible <span class="meta"><span class="angle">&langle;</span><i>options</i><span
+class="angle">&rangle;</span></span> see the parent template <span class="texttt">table of contents</span>.
+</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\section</kbd></span><span class="opt"><<span class="meta"><span class="angle">&langle;</span><i>mode specification</i><span class="angle">&rangle;</span></span>></span><span class="declare"><span
+class="texttt">*</span></span>{<span class="meta"><span class="angle">&langle;</span><i>section name</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+Starts a section without an entry in the table of contents. No heading is created, but the <span class="meta"><span class="angle">&langle;</span><i>section name</i><span class="angle">&rangle;</span></span> is shown in the navigation bar.
+</p>
+<p>
+<i>Example: </i><span class="texttt">\section*{Outline}</span>
+</p>
+<p>
+<i>Example: </i><span class="texttt">\section<beamer>*{Outline}</span>
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\subsection</kbd></span><span class="opt"><<span class="meta"><span class="angle">&langle;</span><i>mode specification</i><span class="angle">&rangle;</span></span>></span><span class="opt"><span
+class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>short subsection name</i><span class="angle">&rangle;</span></span><span class="oarg-right-bracket">]</span></span>{<span class="meta"><span
+class="angle">&langle;</span><i>subsection name</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+This command works the same way as the <span class="texttt">\section</span> command.
+</p>
+<p>
+<i>Example: </i><span class="texttt">\subsection[Applications]{Applications to the Reduction of Pollution}</span>
+</p>
+
+<div class="element">
+<ul style="list-style-type:none">
+
+<li>
+<p>
+<span class="element-headline"><b>Beamer-Template/-Color/-Font</b> <span class="element-declare"><span class="declare">subsection in toc</span></span></span>
+</p>
+<p>
+Like <span class="texttt">section in toc</span>, only for subsection.
+</p>
+<p>
+In addition to the inserts for the <span class="texttt">section in toc</span> template, the following commands are available for this template:
+</p>
+<ul style="list-style-type:none">
+
+<li>
+<p>
+• <kbd><span class="declare">\inserttocsubsection</span></kbd> inserts the table of contents version of the current subsection name.
+</p>
+</li>
+<li>
+
+
+<p>
+• <kbd><span class="declare">\inserttocsubsectionnumber</span></kbd> inserts the number of the current subsection (in the table of contents).
+</p>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+
+<div class="element">
+<ul style="list-style-type:none">
+
+<li>
+<p>
+<span class="element-headline"><b>Beamer-Template/-Color/-Font</b> <span class="element-declare"><span class="declare">subsection in toc shaded</span></span></span>
+</p>
+<p>
+Like <span class="texttt">section in toc shaded</span>, only for subsections.
+</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\subsection</kbd></span><span class="opt"><<span class="meta"><span class="angle">&langle;</span><i>mode specification</i><span class="angle">&rangle;</span></span>></span><span class="declare"><span
+class="texttt">*</span></span>{<span class="meta"><span class="angle">&langle;</span><i>subsection name</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+Starts a subsection without an entry in the table of contents. No heading is created, but the <span class="meta"><span class="angle">&langle;</span><i>subsection name</i><span class="angle">&rangle;</span></span> is shown in the navigation bar,
+<em>except</em> if <span class="meta"><span class="angle">&langle;</span><i>subsection name</i><span class="angle">&rangle;</span></span> is empty. In this case, neither a table of contents entry nor a navigation bar entry is created, <em>but</em> any frames
+in this “empty” subsection are shown in the navigation bar.
+</p>
+<p>
+<i>Example: </i>
+</p>
+<pre class="verbatim">
+\section{Summary}
+
+  \begin{frame}
+    This frame is not shown in the navigation bar
+  \end{frame}
+
+  \subsection*{}
+
+  \begin{frame}
+    This frame is shown in the navigation bar, but no subsection entry is shown.
+  \end{frame}
+
+  \subsection*{A subsection}
+
+  \begin{frame}
+    Normal frame, shown in navigation bar. The subsection name is
+    also shown in the navigation bar, but not in the table of contents.
+  \end{frame}
+</pre>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\subsubsection</kbd></span><span class="opt"><<span class="meta"><span class="angle">&langle;</span><i>mode specification</i><span class="angle">&rangle;</span></span>></span><span class="opt"><span
+class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>short subsubsection name</i><span class="angle">&rangle;</span></span><span class="oarg-right-bracket">]</span></span>{<span class="meta"><span
+class="angle">&langle;</span><i>subsubsection name</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+This command works the like <span class="texttt">\subsection</span>. However, subsubsections are supported less well than subsections. For example, in the table of contents subsubsections are always shown with the same shading/hiding parameters as the subsection.
+</p>
+<p>
+We <em>strongly</em> discourage the use of subsubsections in presentations. If you do not use them, you will give a better presentation.
+</p>
+<p>
+<i>Example: </i><span class="texttt">\subsubsection[Applications]{Applications to the Reduction of Pollution}</span>
+</p>
+
+<div class="element">
+<ul style="list-style-type:none">
+
+<li>
+<p>
+<span class="element-headline"><b>Beamer-Template/-Color/-Font</b> <span class="element-declare"><span class="declare">subsubsection in toc</span></span></span>
+</p>
+<p>
+Like <span class="texttt">subsection in toc</span>, only for subsection.
+</p>
+<p>
+In addition to the inserts for the <span class="texttt">subsection in toc</span> template, the following commands are available for this template:
+</p>
+<ul style="list-style-type:none">
+
+<li>
+<p>
+• <kbd><span class="declare">\inserttocsubsubsection</span></kbd> inserts the table of contents version of the current subsubsection name.
+</p>
+</li>
+<li>
+
+
+<p>
+• <kbd><span class="declare">\inserttocsubsubsectionnumber</span></kbd> inserts the number of the current subsubsection (in the table of contents).
+</p>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+
+<div class="element">
+<ul style="list-style-type:none">
+
+<li>
+<p>
+<span class="element-headline"><b>Beamer-Template/-Color/-Font</b> <span class="element-declare"><span class="declare">subsubsection in toc shaded</span></span></span>
+</p>
+<p>
+Like <span class="texttt">subsection in toc shaded</span>, only for subsubsections.
+</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\subsubsection</kbd></span><span class="opt"><<span class="meta"><span class="angle">&langle;</span><i>mode specification</i><span class="angle">&rangle;</span></span>></span><span class="declare"><span
+class="texttt">*</span></span>{<span class="meta"><span class="angle">&langle;</span><i>subsubsection name</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+Starts a subsubsection without an entry in the table of contents. No heading is created, but the <span class="meta"><span class="angle">&langle;</span><i>subsubsection name</i><span class="angle">&rangle;</span></span> is shown in a possible sidebar.
+</p>
+</li>
+</ul>
+</div>
+
+<p>
+Often, you may want a certain type of frame to be shown directly after a section or subsection starts. For example, you may wish every subsection to start with a frame showing the table of contents with the current subsection highlighted. To facilitate this, you can use
+the following commands.
+</p>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\AtBeginSection</kbd></span><span class="opt"><span class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>special star text</i><span class="angle">&rangle;</span></span><span
+class="oarg-right-bracket">]</span></span>{<span class="meta"><span class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+The given text will be inserted at the beginning of every section. If the <span class="meta"><span class="angle">&langle;</span><i>special star text</i><span class="angle">&rangle;</span></span> parameter is specified, this text will be used for starred sections
+instead. Different calls of this command will not “add up” the given texts (like the <span class="texttt">\AtBeginDocument</span> command does), but will overwrite any previous text.
+</p>
+<p>
+<i>Example: </i>
+</p>
+<pre class="verbatim">
+\AtBeginSection[] % Do nothing for \section*
+{
+  \begin{frame}<beamer>
+    \frametitle{Outline}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+</pre>
+<p>
+This command has no effect in <span class="texttt">article</span> mode.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\AtBeginSubsection</kbd></span><span class="opt"><span class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>special star text</i><span class="angle">&rangle;</span></span><span
+class="oarg-right-bracket">]</span></span>{<span class="meta"><span class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+The given text will be inserted at the beginning of every subsection. If the <span class="meta"><span class="angle">&langle;</span><i>special star text</i><span class="angle">&rangle;</span></span> parameter is specified, this text will be used for starred
+subsections instead. Different calls of this command will not “add up” the given texts.
+</p>
+<p>
+<i>Example: </i>
+</p>
+<pre class="verbatim">
+\AtBeginSubsection[] % Do nothing for \subsection*
+{
+  \begin{frame}<beamer>
+    \frametitle{Outline}
+    \tableofcontents[currentsection,currentsubsection]
+  \end{frame}
+}
+</pre>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\AtBeginSubsubsection</kbd></span><span class="opt"><span class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>special star text</i><span
+class="angle">&rangle;</span></span><span class="oarg-right-bracket">]</span></span>{<span class="meta"><span class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+Like <span class="texttt">\AtBeginSubsection</span>, only for subsubsections.
+</p>
+</li>
+</ul>
+</div>
+
+<p>
+<span class="beamer-name"><span class="textsc">beamer</span></span> also provides <span class="texttt">\sectionpage</span> and <span class="texttt">\subsectionpage</span> commands, which are used to fill a frame with section or subsection number
+and title in a stylish way. They are very similar to <span class="texttt">\partpage</span> command described below.
+</p>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\sectionpage</kbd></span>
+</p>
+</div>
+<p>
+This command shows a frame with the section number and title of the current section.
+</p>
+<p>
+<i>Example: </i>
+</p>
+<pre class="verbatim">
+\section{A section}
+
+  \begin{frame}
+    \sectionpage
+  \end{frame}
+
+  \begin{frame}
+    Some text.
+  \end{frame}
+</pre>
+
+<div class="element">
+<ul style="list-style-type:none">
+
+<li>
+<p>
+<span class="element-headline"><b>Beamer-Template</b> <span class="element-declare"><span class="declare">section page</span></span></span>
+</p>
+<p>
+This template is invoked when the <span class="texttt">\sectionpage</span> command is used.
+</p>
+<p>
+The following template options are predefined:
+</p>
+<ul style="list-style-type:none">
+
+<li>
+<p>
+• <span class="itemoption"><kbd>[<span class="declare">default</span>]</kbd><span class="opt"><span class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>alignment</i><span
+class="angle">&rangle;</span></span><span class="oarg-right-bracket">]</span></span></span> The section page is typeset showing the current section number and, below, the current section title. The templates
+</p>
+
+
+<div class="element">
+<ul style="list-style-type:none">
+
+
+<li>
+<p>
+<span class="element-headline"><b>Beamer-Color/-Font</b> <span class="element-declare"><span class="declare">section name</span></span></span>
+</p>
+<p>
+
+
+</p>
+</li>
+</ul>
+</div>
+<p>
+and
+</p>
+
+
+<div class="element">
+<ul style="list-style-type:none">
+
+
+<li>
+<p>
+<span class="element-headline"><b>Beamer-Color/-Font</b> <span class="element-declare"><span class="declare">section title</span></span></span>
+</p>
+<p>
+
+
+</p>
+</li>
+</ul>
+</div>
+<p>
+are used, including the background color of <span class="texttt">section title</span>. As for the <span class="texttt">title page</span> template, the <span class="meta"><span class="angle">&langle;</span><i>alignment</i><span
+class="angle">&rangle;</span></span> option is passed on the <span class="texttt">beamercolorbox</span>.
+</p>
+</li>
+</ul>
+<p>
+The following commands are useful for this template:
+</p>
+<ul style="list-style-type:none">
+
+<li>
+<p>
+• <kbd><span class="declare">\insertsection</span></kbd> inserts the title of the current section.
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+• <kbd><span class="declare">\insertsectionnumber</span></kbd> inserts the current section number.
+</p>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\subsectionpage</kbd></span>
+</p>
+</div>
+<p>
+Works the same way as the <span class="texttt">\sectionpage</span>.
+</p>
+
+<div class="element">
+<ul style="list-style-type:none">
+
+<li>
+<p>
+<span class="element-headline"><b>Beamer-Template</b> <span class="element-declare"><span class="declare">subsection page</span></span></span>
+</p>
+<p>
+The following template options are predefined:
+</p>
+<ul style="list-style-type:none">
+
+<li>
+<p>
+• <span class="itemoption"><kbd>[<span class="declare">default</span>]</kbd><span class="opt"><span class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>alignment</i><span
+class="angle">&rangle;</span></span><span class="oarg-right-bracket">]</span></span></span>
+</p>
+<p>
+The templates
+</p>
+
+
+<div class="element">
+<ul style="list-style-type:none">
+
+
+<li>
+<p>
+<span class="element-headline"><b>Beamer-Color/-Font</b> <span class="element-declare"><span class="declare">subsection name</span></span></span>
+</p>
+<p>
+
+
+</p>
+</li>
+</ul>
+</div>
+<p>
+and
+</p>
+
+
+<div class="element">
+<ul style="list-style-type:none">
+
+
+<li>
+<p>
+<span class="element-headline"><b>Beamer-Color/-Font</b> <span class="element-declare"><span class="declare">subsection title</span></span></span>
+</p>
+<p>
+
+
+</p>
+</li>
+</ul>
+</div>
+<p>
+are used, including the background color of <span class="texttt">subsection title</span>. As for the <span class="texttt">title page</span> template, the <span class="meta"><span class="angle">&langle;</span><i>alignment</i><span
+class="angle">&rangle;</span></span> option is passed on the <span class="texttt">beamercolorbox</span>.
+</p>
+</li>
+</ul>
+<p>
+The following commands are useful for this template:
+</p>
+<ul style="list-style-type:none">
+
+<li>
+<p>
+• <kbd><span class="declare">\insertsubsection</span></kbd> inserts the title of the current subsection.
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+• <kbd><span class="declare">\insertsubsectionnumber</span></kbd> inserts the current subsection number.
+</p>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<!--
+...... subsection Adding Parts ......
+-->
+<h5 id="autosec-306"><span class="sectionnumber">10.3&#x2003;</span>Adding Parts</h5>
+<a id="beameruserguide-autopage-306"></a>
+
+
+<p>
+If you give a long talk (like a lecture), you may wish to break up your talk into several parts. Each such part acts like a little “talk of its own” with its own table of contents, its own navigation bars, and so on. Inside one part, the sections and subsections of the other parts
+are not shown at all.
+</p>
+
+<p>
+To create a new part, use the <span class="texttt">\part</span> command. All sections and subsections following this command will be “local” to that part. Like the <span class="texttt">\section</span> and <span class="texttt">\subsection</span> command,
+the <span class="texttt">\part</span> command does not cause any frame or special text to be produced. However, it is often advisable for the start of a new part to use the command <span class="texttt">\partpage</span> to insert some text into a frame that
+“advertises” the beginning of a new part.
+</p>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\part</kbd></span><span class="opt"><<span class="meta"><span class="angle">&langle;</span><i>mode specification</i><span class="angle">&rangle;</span></span>></span><span class="opt"><span
+class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>short part name</i><span class="angle">&rangle;</span></span><span class="oarg-right-bracket">]</span></span>{<span class="meta"><span
+class="angle">&langle;</span><i>part name</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+Starts a part. The <span class="meta"><span class="angle">&langle;</span><i>part name</i><span class="angle">&rangle;</span></span> will be shown when the <span class="texttt">\partpage</span> command is used. The <span class="meta"><span
+class="angle">&langle;</span><i>short part name</i><span class="angle">&rangle;</span></span> is not shown anywhere by default, but it is accessible via the command <span class="texttt">\insertshortpart</span>.
+</p>
+<p>
+<i>Example: </i>
+</p>
+<pre class="verbatim">
+\begin{document}
+  \begin{frame}
+  \titlepage
+  \end{frame}
+
+  \section*{Outlines}
+  \subsection{Part I: Review of Previous Lecture}
+  \begin{frame}
+    \frametitle{Outline of Part I}
+    \tableofcontents[part=1]
+  \end{frame}
+  \subsection{Part II: Today's Lecture}
+  \begin{frame}
+    \frametitle{Outline of Part II}
+    \tableofcontents[part=2]
+  \end{frame}
+
+  \part{Review of Previous Lecture}
+  \begin{frame}
+    \partpage
+  \end{frame}
+  \section[Previous Lecture]{Summary of the Previous Lecture}
+  \subsection{Topics}
+  \begin{frame}...\end{frame}
+  \subsection{Learning Objectives}
+  \begin{frame}...\end{frame}
+
+  \part{Today's Lecture}
+  \begin{frame}
+    \partpage
+  \end{frame}
+  \section{Topic A}
+  \begin{frame}
+    \tableofcontents[currentsection]
+  \end{frame}
+  \subsection{Foo}
+  \begin{frame}...\end{frame}
+  \section{Topic B}
+  \begin{frame}
+    \tableofcontents[currentsection]
+  \end{frame}
+  \subsection{bar}
+  \begin{frame}...\end{frame}
+\end{document}
+</pre>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\partpage</kbd></span>
+</p>
+</div>
+<p>
+Works like <span class="texttt">\titlepage</span>, only that the current part, not the current presentation is “advertised.”
+</p>
+<p>
+<i>Example: </i><span class="texttt">\begin{frame}\partpage\end{frame}</span>
+</p>
+
+<div class="element">
+<ul style="list-style-type:none">
+
+<li>
+<p>
+<span class="element-headline"><b>Beamer-Template</b> <span class="element-declare"><span class="declare">part page</span></span></span>
+</p>
+<p>
+This template is invoked when the <span class="texttt">\partpage</span> command is used.
+</p>
+<p>
+The following template options are predefined:
+</p>
+<ul style="list-style-type:none">
+
+<li>
+<p>
+• <span class="itemoption"><kbd>[<span class="declare">default</span>]</kbd><span class="opt"><span class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>alignment</i><span
+class="angle">&rangle;</span></span><span class="oarg-right-bracket">]</span></span></span> The part page is typeset showing the current part number and, below, the current part title. The templates
+</p>
+
+
+<div class="element">
+<ul style="list-style-type:none">
+
+
+<li>
+<p>
+<span class="element-headline"><b>Beamer-Color/-Font</b> <span class="element-declare"><span class="declare">part name</span></span></span>
+</p>
+<p>
+
+
+</p>
+</li>
+</ul>
+</div>
+<p>
+and
+</p>
+
+
+<div class="element">
+<ul style="list-style-type:none">
+
+
+<li>
+<p>
+<span class="element-headline"><b>Beamer-Color/-Font</b> <span class="element-declare"><span class="declare">part title</span></span></span>
+</p>
+<p>
+
+
+</p>
+</li>
+</ul>
+</div>
+<p>
+are used, including the background color of <span class="texttt">part title</span>. As for the <span class="texttt">title page</span> template, the <span class="meta"><span class="angle">&langle;</span><i>alignment</i><span
+class="angle">&rangle;</span></span> option is passed on the <span class="texttt">beamercolorbox</span>.
+</p>
+</li>
+</ul>
+<p>
+The following commands are useful for this template:
+</p>
+<ul style="list-style-type:none">
+
+<li>
+<p>
+• <kbd><span class="declare">\insertpart</span></kbd> inserts the current part name.
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+• <kbd><span class="declare">\insertpartnumber</span></kbd> inserts the current part number as an Arabic number into a template.
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+• <kbd><span class="declare">\insertromanpartnumber</span></kbd> inserts the current part number as a Roman number into a template.
+</p>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\AtBeginPart</kbd></span>{<span class="meta"><span class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+The given text will be inserted at the beginning of every part.
+</p>
+<p>
+<i>Example: </i>
+</p>
+<pre class="verbatim">
+\AtBeginPart{
+  \begin{frame}
+    \partpage
+  \end{frame}
+}
+</pre>
+</li>
+</ul>
+</div>
+<!--
+...... subsection Splitting a Course Into Lectures ......
+-->
+<h5 id="autosec-309"><span class="sectionnumber">10.4&#x2003;</span>Splitting a Course Into Lectures</h5>
+<a id="beameruserguide-autopage-309"></a>
+
+
+<p>
+When using <span class="beamer-name"><span class="textsc">beamer</span></span> with the <span class="texttt">article</span> mode, you may wish to have the lecture notes of a whole course reside in one file. In this case, only a few frames are actually part
+of any particular lecture.
+</p>
+
+<p>
+The <span class="texttt">\lecture</span> command makes it easy to select only a certain set of frames from a file to be presented. This command takes (among other things) a label name. If you say <span class="texttt">\includeonlylecture</span> with this
+label name, then only the frames following the corresponding <span class="texttt">\lecture</span> command are shown. The frames following other <span class="texttt">\lecture</span> commands are suppressed.
+</p>
+
+<p>
+By default, the <span class="texttt">\lecture</span> command has no other effect. It does not create any frames or introduce entries in the table of contents. However, you can use <span class="texttt">\AtBeginLecture</span> to have <span
+class="beamer-name"><span class="textsc">beamer</span></span> insert, say, a title page at the beginning of (each) lecture.
+</p>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\lecture</kbd></span><span class="opt"><span class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>short lecture name</i><span class="angle">&rangle;</span></span><span
+class="oarg-right-bracket">]</span></span>{<span class="meta"><span class="angle">&langle;</span><i>lecture name</i><span class="angle">&rangle;</span></span>}{<span class="meta"><span class="angle">&langle;</span><i>lecture label</i><span
+class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+Starts a lecture. The <span class="meta"><span class="angle">&langle;</span><i>lecture name</i><span class="angle">&rangle;</span></span> will be available via the <span class="texttt">\insertlecture</span> command. The <span class="meta"><span
+class="angle">&langle;</span><i>short lecture name</i><span class="angle">&rangle;</span></span> is available via the <span class="texttt">\insertshortlecture</span> command.
+</p>
+<p>
+<i>Example: </i>
+</p>
+<pre class="verbatim">
+\begin{document}
+\lecture{Vector Spaces}{week 1}
+
+\section{Introduction}
+...
+\section{Summary}
+
+\lecture{Scalar Products}{week 2}
+
+\section{Introduction}
+...
+\section{Summary}
+
+\end{document}
+</pre>
+<p>
+This command has no effect in <span class="texttt">article</span> mode.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\includeonlylecture</kbd></span><span class="meta"><span class="angle">&langle;</span><i>lecture label</i><span class="angle">&rangle;</span></span>
+</p>
+</div>
+<p>
+Causes all <span class="texttt">\frame</span>, <span class="texttt">frame</span>, <span class="texttt">\section</span>, <span class="texttt">\subsection</span>, and <span class="texttt">\part</span> commands following a <span
+class="texttt">\lecture</span> command to be suppressed, except if the lecture’s label matches the <span class="meta"><span class="angle">&langle;</span><i>lecture label</i><span class="angle">&rangle;</span></span>. Frames before any <span
+class="texttt">\lecture</span> commands are always included. This command should be given in the preamble.
+</p>
+<p>
+<i>Example: </i><span class="texttt">\includeonlylecture{week 1}</span>
+</p>
+<p>
+This command has no effect in <span class="texttt">article</span> mode.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\AtBeginLecture</kbd></span>{<span class="meta"><span class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+The given text will be inserted at the beginning of every lecture.
+</p>
+<p>
+<i>Example: </i>
+</p>
+<pre class="verbatim">
+\AtBeginLecture{
+  \begin{frame}
+    \Large Today's Lecture: \insertlecture
+  \end{frame}
+}
+</pre>
+<p>
+This command has no effect in <span class="texttt">article</span> mode.
+</p>
+</li>
+</ul>
+</div>
+<!--
+...... subsection Adding a Table of Contents ......
+-->
+<h5 id="autosec-312"><span class="sectionnumber">10.5&#x2003;</span>Adding a Table of Contents</h5>
+<a id="beameruserguide-autopage-312"></a>
+
+
+<p>
+You can create a table of contents using the command <span class="texttt">\tableofcontents</span>. Unlike the normal <span class="latexlogofont"><span class="latexlogo">L<span class="latexlogosup">a</span>T<span
+class="latexlogosub">e</span>X</span></span> table of contents command, this command takes an optional parameter in square brackets that can be used to create certain special effects.
+</p>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\tableofcontents</kbd></span><span class="opt"><span class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>comma-separated option list</i><span
+class="angle">&rangle;</span></span><span class="oarg-right-bracket">]</span></span>
+</p>
+</div>
+<p>
+Inserts a table of contents into the current frame.
+</p>
+<p>
+<i>Example: </i>
+</p>
+<pre class="verbatim">
+\section*{Outline}
+\begin{frame}
+  \tableofcontents
+\end{frame}
+
+\section{Introduction}
+\begin{frame}
+  \tableofcontents[currentsection]
+\end{frame}
+\subsection{Why?}
+\begin{frame}...\end{frame}
+\begin{frame}...\end{frame}
+\subsection{Where?}
+\begin{frame}...\end{frame}
+
+\section{Results}
+\begin{frame}
+  \tableofcontents[currentsection]
+\end{frame}
+\subsection{Because}
+\begin{frame}...\end{frame}
+\subsection{Here}
+\begin{frame}...\end{frame}
+</pre>
+<p>
+The following options can be given:
+</p>
+<ul style="list-style-type:none">
+
+<li>
+<p>
+• <span class="declare"><span class="texttt">currentsection</span></span> causes all sections but the current to be shown in a semi-transparent way. Also, all subsections but those in the current section are shown in the semi-transparent way. This command is a
+shorthand for specifying the following options:
+</p>
+<pre class="verbatim">
+sectionstyle=show/shaded,subsectionstyle=show/show/shaded
+</pre>
+</li>
+<li>
+
+
+<p>
+• <span class="declare"><span class="texttt">currentsubsection</span></span> causes all subsections but the current subsection in the current section to be shown in a semi-transparent way. This command is a shorthand for specifying the option <span
+class="texttt">subsectionstyle=show/shaded</span>.
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+• <span class="declare"><span class="texttt">firstsection=</span><span class="meta"><span class="angle">&langle;</span><i>section number</i><span class="angle">&rangle;</span></span></span> specifies which section should be numbered as
+section&nbsp;“1.” This is useful if you have a first section (like an overview section) that should not receive a number. Section numbers are not shown by default. To show them, you must install a different table of contents templates.
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+• <span class="declare"><span class="texttt">hideallsubsections</span></span> causes all subsections to be hidden. This command is a shorthand for specifying the option <span class="texttt">subsectionstyle=hide</span>.
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+• <span class="declare"><span class="texttt">hideothersubsections</span></span> causes the subsections of sections other than the current one to be hidden. This command is a shorthand for specifying the option <span
+class="texttt">subsectionstyle=show/show/hide</span>.
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+• <span class="declare"><span class="texttt">lastsection=</span><span class="meta"><span class="angle">&langle;</span><i>section number</i><span class="angle">&rangle;</span></span></span> similar to <span class="texttt">firstsection</span>,
+this option specifies which section should be the last numbered section. This is useful if you have unnumbered sections at the end, like a summary or outlook. Section numbers are not shown by default. To show them, you must install a different table of contents templates.
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+• <span class="declare"><span class="texttt">part=</span><span class="meta"><span class="angle">&langle;</span><i>part number</i><span class="angle">&rangle;</span></span></span> causes the table of contents of part <span class="meta"><span
+class="angle">&langle;</span><i>part number</i><span class="angle">&rangle;</span></span> to be shown, instead of the table of contents of the current part (which is the default). This option can be combined with the other options, although combining it with
+the <span class="texttt">current</span> option obviously makes no sense.
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+• <span class="declare"><span class="texttt">pausesections</span></span> causes a <span class="texttt">\pause</span> command to be issued before each section. This is useful if you wish to show the table of contents in an incremental way.
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+• <span class="declare"><span class="texttt">pausesubsections</span></span> causes a <span class="texttt">\pause</span> command to be issued before each subsection.
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+• <span class="declare"><span class="texttt">sections=</span>{<span class="meta"><span class="angle">&langle;</span><i>overlay specification</i><span class="angle">&rangle;</span></span>}</span> causes only the sections mentioned in the <span
+class="meta"><span class="angle">&langle;</span><i>overlay specification</i><span class="angle">&rangle;</span></span> to be shown. For example, <span class="texttt">sections={<2-4| handout:0>}</span> causes only the second, third, and fourth section
+to be shown in the normal version, nothing to be shown in the handout version, and everything to be shown in all other versions. For convenience, if you omit the pointed brackets, the specification is assumed to apply to all versions. Thus <span
+class="texttt">sections={2-4}</span> causes sections two, three, and four to be shown in all versions.
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+• <span class="declare"><span class="texttt">sectionstyle=</span><span class="meta"><span class="angle">&langle;</span><i>style for current section</i><span class="angle">&rangle;</span></span><span class="texttt">/</span><span
+class="meta"><span class="angle">&langle;</span><i>style for other sections</i><span class="angle">&rangle;</span></span></span> specifies how sections should be displayed. Allowed <span class="meta"><span
+class="angle">&langle;</span><i>styles</i><span class="angle">&rangle;</span></span> are <span class="texttt">show</span>, <span class="texttt">shaded</span>, and <span class="texttt">hide</span>. The first will show the section title normally, the
+second will show it in a semi-transparent way, and the third will completely suppress it. You can also omit the second style, in which case the first is used for all sections (this is not really useful).
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+• <span class="declare"><span class="texttt">subsectionstyle=</span><span class="meta"><span class="angle">&langle;</span><i>style for current subsection</i><span class="angle">&rangle;</span></span><span class="texttt">/</span><span
+class="meta"><span class="angle">&langle;</span><i>style for other subsections in current section</i><span class="angle">&rangle;</span></span><span class="texttt">/</span><br />
+<span class="meta"><span class="angle">&langle;</span><i>style for subsections in other sections</i><span class="angle">&rangle;</span></span></span> specifies how subsections should be displayed. The same styles as for the <span
+class="texttt">sectionstyle</span> option may be given. You can omit the last style, in which case the second also applies to the last, and you can omit the last two, in which case the first applies to all.
+</p>
+<p>
+<i>Example: </i><span class="texttt">subsectionstyle=shaded</span> causes all subsections to be shaded.
+</p>
+<p>
+<i>Example: </i><span class="texttt">subsectionstyle=hide</span> causes all subsections to be hidden.
+</p>
+<p>
+<i>Example: </i><span class="texttt">subsectionstyle=show/shaded</span> causes all subsections but the current subsection in the current section to be shown in a semi-transparent way.
+</p>
+<p>
+<i>Example: </i><span class="texttt">subsectionstyle=show/show/hide</span> causes all subsections outside the current section to be suppressed.
+</p>
+<p>
+<i>Example: </i><span class="texttt">subsectionstyle=show/shaded/hide</span> causes all subsections outside the current section to be suppressed and only the current subsection in the current section to be highlighted.
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+• <span class="declare"><span class="texttt">subsubsectionstyle=</span><span class="meta"><span class="angle">&langle;</span><i>style for current subsubsection</i><span class="angle">&rangle;</span></span><span class="texttt">/</span><span
+class="meta"><span class="angle">&langle;</span><i>style for other subsubsections in current subsection</i><span class="angle">&rangle;</span></span><span class="texttt">/</span><br />
+<span class="meta"><span class="angle">&langle;</span><i>style for subsubsections in other subsections in current section</i><span class="angle">&rangle;</span></span><span class="texttt">/</span><span class="meta"><span
+class="angle">&langle;</span><i>style for subsubsections in other subsections in other sections</i><span class="angle">&rangle;</span></span></span> specifies how subsubsections should be displayed. The same styles as for the <span
+class="texttt">sectionstyle</span> option may be given. You can omit styles from the end of the list, in which case the last given style will also be applied to the omitted styles. This option operates in an analogous manner to <span
+class="texttt">subsectionstyle</span>.
+</p>
+</li>
+</ul>
+<p>
+The last examples are useful if you do not wish to show too many details when presenting the talk outline.
+</p>
+<p>
+The options are ignored in <span class="texttt">article</span> mode.
+</p>
+
+<div class="element">
+<ul style="list-style-type:none">
+
+<li>
+<p>
+<span class="element-headline"><b>Parent Beamer-Template</b> <span class="element-declare"><span class="declare">sections/subsections in toc</span></span></span>
+</p>
+<p>
+This is a parent template, whose children are <span class="texttt">section in toc</span> and <span class="texttt">subsection in toc</span>. This means that if you use the <span class="texttt">\setbeamertemplate</span> command on this template, the
+command is instead called for both of these children (with the same arguments).
+</p>
+<p>
+The following template options are predefined:
+</p>
+<ul style="list-style-type:none">
+
+<li>
+<p>
+• <span class="itemoption"><kbd>[<span class="declare">default</span>]</kbd></span> In the default setting, the sections and subsections are typeset using the fonts and colors <span class="texttt">section in toc</span> and <span
+class="texttt">subsection in toc</span>, though the background colors are ignored. The subsections are indented.
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+• <span class="itemoption"><kbd>[<span class="declare">sections numbered</span>]</kbd></span> Similar to the default setting, but the section numbers are also shown. The subsections are not numbered.
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+• <span class="itemoption"><kbd>[<span class="declare">subsections numbered</span>]</kbd></span> This time, the subsections are numbered, but not the sections. Nevertheless, since the subsections are “fully numbered” as in “1.2” or “3.2,” if every section has
+at least one subsection, the section numbered will not really be missed.
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+• <span class="itemoption"><kbd>[<span class="declare">circle</span>]</kbd></span> Draws little circles before the sections. Inside the circles the section number is shown. The <span class="beamer-name"><span class="textsc">beamer</span></span>-font
+and color <span class="texttt">section number projected</span> is used for typesetting the circles, that is, the circle gets the background color and the text inside the circle the foreground color.
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+• <span class="itemoption"><kbd>[<span class="declare">square</span>]</kbd></span> Similar to the <span class="texttt">circle</span> option, except that small squares are used instead of circles. Small, unnumbered squares are shown in front of the
+subsections.
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+• <span class="itemoption"><kbd>[<span class="declare">ball</span>]</kbd></span> Like <span class="texttt">square</span>, the only difference being the balls are used instead of squares.
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+• <span class="itemoption"><kbd>[<span class="declare">ball unnumbered</span>]</kbd></span> Similar to <span class="texttt">ball</span>, except that no numbering is used. This option makes the table of contents look more like an <span
+class="texttt">itemize</span>.
+</p>
+</li>
+</ul>
+<p>
+If none of the above options suits you, you have to change the templates <span class="texttt">section in toc</span> and <span class="texttt">subsection in toc</span> directly.
+</p>
+</li>
+</ul>
+</div>
+
+<div class="element">
+<ul style="list-style-type:none">
+
+<li>
+<p>
+<span class="element-headline"><b>Parent Beamer-Template</b> <span class="element-declare"><span class="declare">sections/subsections in toc shaded</span></span></span>
+</p>
+<p>
+A parent template with children <span class="texttt">section in toc shaded</span> and <span class="texttt">subsection in toc shaded</span>. They are used to render section and subsection entries when they are currently shaded; like all non-current
+subsections in <span class="texttt">\tableofcontents[currentsubsection]</span>.
+</p>
+<p>
+The following template options are predefined:
+</p>
+<ul style="list-style-type:none">
+
+<li>
+<p>
+• <span class="itemoption"><kbd>[<span class="declare">default</span>]</kbd><span class="opt"><span class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>opaqueness</i><span
+class="angle">&rangle;</span></span><span class="oarg-right-bracket">]</span></span></span> In the default setting, the templates <span class="texttt">section in toc shaded</span> and <span class="texttt">subsection in toc shaded</span> just
+show whatever the nonshaded versions of these templates show, but only <span class="meta"><span class="angle">&langle;</span><i>opaqueness</i><span class="angle">&rangle;</span></span>% opaque. The default is 20%.
+</p>
+<p>
+<i>Example: </i><span class="texttt">\setbeamertemplate{section in toc shaded}[default][50]</span> makes dimmed entries 50% transparent.
+</p>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<!--
+...... subsection Adding a Bibliography ......
+-->
+<h5 id="autosec-315"><span class="sectionnumber">10.6&#x2003;</span>Adding a Bibliography</h5>
+<a id="beameruserguide-autopage-315"></a>
+
+
+<p>
+You can use the bibliography environment and the <span class="texttt">\cite</span> commands of <span class="latexlogofont"><span class="latexlogo">L<span class="latexlogosup">a</span>T<span class="latexlogosub">e</span>X</span></span> in a
+<span class="beamer-name"><span class="textsc">beamer</span></span> presentation. You will typically have to typeset your bibliography items partly “by hand.” Nevertheless, you <em>can</em> use <span class="texttt">bibtex</span> to create a “first
+approximation” of the bibliography. Copy the content of the file <span class="texttt">main.bbl</span> into your presentation. If you are not familiar with <span class="texttt">bibtex</span>, you may wish to consult its documentation. It is a powerful tool for
+creating high-quality citations.
+</p>
+
+<p>
+Using <span class="texttt">bibtex</span> or your editor, place your bibliographic references in the environment <span class="texttt">thebibliography</span>. This (standard <span class="latexlogofont"><span class="latexlogo">L<span
+class="latexlogosup">a</span>T<span class="latexlogosub">e</span>X</span></span>) environment takes one parameter, which should be the longest <span class="texttt">\bibitem</span> label in the following list of bibliographic entries.
+</p>
+
+
+<div class="environment">
+
+<ul style="list-style-type:none">
+
+
+<div class="begin-environment">
+<div class="translatormanualentryheadline"><li>
+<p>
+\begin{<span class="declare">thebibliography</span>}{<span class="meta"><span class="angle">&langle;</span><i>longest label text</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+</div>
+
+<div class="translatormanualentryheadline">
+</li>
+<li>
+
+<p>
+  <span class="meta"><span class="angle">&langle;</span><i>environment contents</i><span class="angle">&rangle;</span></span>
+</p>
+</div>
+
+<div class="end-environment">
+
+<div class="translatormanualentryheadline">
+</li>
+<li>
+
+<p>
+\end{<span class="declare">thebibliography</span>}
+</p>
+</div>
+</div>
+<p>
+Inserts a bibliography into the current frame. The <span class="meta"><span class="angle">&langle;</span><i>longest label text</i><span class="angle">&rangle;</span></span> is used to determine the indentation of the list. However, several predefined options
+for the typesetting of the bibliography ignore this parameter since they replace the references by a symbol.
+</p>
+<p>
+Inside the environment, use a (standard <span class="latexlogofont"><span class="latexlogo">L<span class="latexlogosup">a</span>T<span class="latexlogosub">e</span>X</span></span>) <span class="texttt">\bibitem</span> command for each reference
+item. Inside each item, use a (standard <span class="latexlogofont"><span class="latexlogo">L<span class="latexlogosup">a</span>T<span class="latexlogosub">e</span>X</span></span>) <span class="texttt">\newblock</span> command to separate the
+authors’ names, the title, the book/journal reference, and any notes. Each of these commands may introduce a new line or color or other formatting, as specified by the template for bibliographies.
+</p>
+<p>
+The environment must be placed inside a frame. If the bibliography does not fit on one frame, you should split it (create a new frame and a second <span class="texttt">thebibliography</span> environment) or use the <span
+class="texttt">allowframebreaks</span> option. Even better, you should reconsider whether it is a good idea to present so many references.
+</p>
+<p>
+<i>Example: </i>
+</p>
+<pre class="verbatim">
+\begin{frame}
+  \frametitle{For Further Reading}
+
+  \begin{thebibliography}{Dijkstra, 1982}
+  \bibitem[Salomaa, 1973]{Salomaa1973}
+    A.~Salomaa.
+    \newblock {\em Formal Languages}.
+    \newblock Academic Press, 1973.
+
+  \bibitem[Dijkstra, 1982]{Dijkstra1982}
+    E.~Dijkstra.
+    \newblock Smoothsort, an alternative for sorting in situ.
+    \newblock {\em Science of Computer Programming}, 1(3):223--233, 1982.
+  \end{thebibliography}
+\end{frame}
+</pre>
+<p>
+Four templates govern the appearance of the author, title, journal, and note text. These author templates are inserted before the first block of the entry (the first block is all text before the first occurrence of a <span class="texttt">\newblock</span> command). The
+title template is inserted before the second block (the text between the first and second occurrence of <span class="texttt">\newblock</span>). Likewise for the journal and note templates.
+</p>
+<p>
+The templates are inserted <em>before</em> the blocks and you do not have access to the blocks themselves via insert commands. The corresponding <span class="beamer-name"><span class="textsc">beamer</span></span>-color and -font are also installed before the
+blocks.
+</p>
+
+
+<div class="element">
+<ul style="list-style-type:none">
+
+<li>
+<p>
+<span class="element-headline"><b>Beamer-Template/-Color/-Font</b> <span class="element-declare"><span class="declare">bibliography entry author</span></span></span>
+</p>
+<p>
+This template is inserted before the author of a bibliography entry. The color and font are also installed. Note that the effect of this template will persist until the end of the bibliography item or until one of the following templates undo the effect.
+</p>
+<p>
+By default, this template does nothing. The default color is the structure color.
+</p>
+</li>
+</ul>
+</div>
+
+<div class="element">
+<ul style="list-style-type:none">
+
+<li>
+<p>
+<span class="element-headline"><b>Beamer-Template/-Color/-Font</b> <span class="element-declare"><span class="declare">bibliography entry title</span></span></span>
+</p>
+<p>
+This template is inserted before the title of a bibliography entry (more precisely, it is inserted after the first occurrence of the <span class="texttt">\newblock</span> command). By default, this template starts a new paragraph, causing a line break. The default color is
+the normal text color.
+</p>
+</li>
+</ul>
+</div>
+
+<div class="element">
+<ul style="list-style-type:none">
+
+<li>
+<p>
+<span class="element-headline"><b>Beamer-Template/-Color/-Font</b> <span class="element-declare"><span class="declare">bibliography entry location</span></span></span>
+</p>
+<p>
+This template is inserted before the journal of a bibliography entry (the second <span class="texttt">\newblock</span>). By default, this template starts a new paragraph. The default color is a slightly transparent version of the structure color.
+</p>
+</li>
+</ul>
+</div>
+
+<div class="element">
+<ul style="list-style-type:none">
+
+<li>
+<p>
+<span class="element-headline"><b>Beamer-Template/-Color/-Font</b> <span class="element-declare"><span class="declare">bibliography entry note</span></span></span>
+</p>
+<p>
+This template is inserted before any note text at the end of a bibliography entry (it is inserted before the third <span class="texttt">\newblock</span>). By default, this template starts a new paragraph. The default color is the same as for the journal.
+</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\bibitem</kbd></span><span class="opt"><<span class="meta"><span class="angle">&langle;</span><i>overlay specification</i><span class="angle">&rangle;</span></span>></span><span class="opt"><span
+class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>citation text</i><span class="angle">&rangle;</span></span><span class="oarg-right-bracket">]</span></span>{<span class="meta"><span
+class="angle">&langle;</span><i>label name</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+The <span class="meta"><span class="angle">&langle;</span><i>citation text</i><span class="angle">&rangle;</span></span> is inserted into the text when the item is cited using <span class="texttt">\cite{</span><span class="meta"><span
+class="angle">&langle;</span><i>label name</i><span class="angle">&rangle;</span></span><span class="texttt">}</span> in the main presentation text. For a <span class="beamer-name"><span class="textsc">beamer</span></span> presentation, this
+should usually be as long as possible.
+</p>
+<p>
+Use <span class="texttt">\newblock</span> commands to separate the authors’s names, the title, the book/journal reference, and any notes. If the <span class="meta"><span class="angle">&langle;</span><i>overlay specification</i><span
+class="angle">&rangle;</span></span> is present, the entry will only be shown on the specified slides.
+</p>
+<p>
+<i>Example: </i>
+</p>
+<pre class="verbatim">
+\bibitem[Dijkstra, 1982]{Dijkstra1982}
+  E.~Dijkstra.
+  \newblock Smoothsort, an alternative for sorting in situ.
+  \newblock {\em Science of Computer Programming}, 1(3):223--233, 1982.
+</pre>
+
+<div class="element">
+<ul style="list-style-type:none">
+
+<li>
+<p>
+<span class="element-headline"><b>Beamer-Template/-Color/-Font</b> <span class="element-declare"><span class="declare">bibliography item</span></span></span>
+</p>
+<p>
+Color/font parents: <kbd>item</kbd>
+</p>
+<p>
+This template is used to render the bibliography item. Unlike normal <span class="latexlogofont"><span class="latexlogo">L<span class="latexlogosup">a</span>T<span class="latexlogosub">e</span>X</span></span>, the default template for the
+bibliography does not repeat the citation text (like “[Dijkstra, 1982]”) before each item in the bibliography. Instead, a cute, small article symbol is drawn. The rationale is that the audience will not be able to remember any abbreviated citation texts till the end of the talk.
+</p>
+<p>
+The following template options are predefined:
+</p>
+<ul style="list-style-type:none">
+
+<li>
+<p>
+• <span class="itemoption"><kbd>[<span class="declare">default</span>]</kbd></span> Draws a cute little article icon as the reference. Use this for journal articles, parts of books (like conference proceedings), or technical reports.
+</p>
+</li>
+<li>
+
+
+<p>
+• <span class="itemoption"><kbd>[<span class="declare">article</span>]</kbd></span> Alias for the default.
+</p>
+</li>
+<li>
+
+
+<p>
+• <span class="itemoption"><kbd>[<span class="declare">book</span>]</kbd></span> Draws a cute little book icon as the reference. Use this for, well, books.
+</p>
+</li>
+<li>
+
+
+<p>
+• <span class="itemoption"><kbd>[<span class="declare">online</span>]</kbd></span> Draws a cute little globe icon as the reference. Use this for websites and the like.
+</p>
+</li>
+<li>
+
+
+<p>
+• <span class="itemoption"><kbd>[<span class="declare">triangle</span>]</kbd></span> Draws a triangle as the reference. This is more in keeping with the standard itemize items.
+</p>
+</li>
+<li>
+
+
+<p>
+• <span class="itemoption"><kbd>[<span class="declare">text</span>]</kbd></span> Uses the reference text (like “[Dijkstra, 1982]”) as the reference text. Be sure you know what you are doing if you use this.
+</p>
+</li>
+</ul>
+<p>
+The following insert is useful for the template:
+</p>
+<ul style="list-style-type:none">
+
+<li>
+<p>
+• <kbd><span class="declare">\insertbiblabel</span></kbd> inserts the current citation label.
+</p>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<!--
+...... subsection Adding an Appendix ......
+-->
+<h5 id="autosec-318"><span class="sectionnumber">10.7&#x2003;</span>Adding an Appendix</h5>
+<a id="beameruserguide-autopage-318"></a>
+
+
+<p>
+You can add an appendix to your talk by using the <span class="texttt">\appendix</span> command. You should put frames and perhaps whole subsections into the appendix that you do not intend to show during your presentation, but which might be useful to answer
+a question. The <span class="texttt">\appendix</span> command essentially just starts a new part named <span class="texttt">\appendixname</span>. However, it also sets up certain hyperlinks. Like other parts, the appendix is kept separate from your actual talk.
+</p>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\appendix</kbd></span><span class="opt"><<span class="meta"><span class="angle">&langle;</span><i>mode specification</i><span class="angle">&rangle;</span></span>></span>
+</p>
+</div>
+<p>
+Starts the appendix in the specified modes. All frames, all <span class="texttt">\subsection</span> commands, and all <span class="texttt">\section</span> commands used after this command will not be shown as part of the normal navigation bars.
+</p>
+<p>
+<i>Example: </i>
+</p>
+<pre class="verbatim">
+\begin{document}
+\begin{frame}
+  \titlepage
+\end{frame}
+\section*{Outline}
+\begin{frame}
+  \tableofcontents
+\end{frame}
+\section{Main Text}
+\begin{frame}
+  Some text
+\end{frame}
+\section*{Summary}
+\begin{frame}
+  Summary text
+\end{frame}
+
+\appendix
+\section{\appendixname}
+\begin{frame}
+  \tableofcontents
+\end{frame}
+\subsection{Additional material}
+\begin{frame}
+  Details
+\end{frame}
+\begin{frame}
+  Text omitted in main talk.
+\end{frame}
+\subsection{Even more additional material}
+\begin{frame}
+  More details
+\end{frame}
+\end{document}
+</pre>
+</li>
+</ul>
+</div>
+</section>
+
+</main>
+
+</div>
+
+
+<nav class="botnavigation"><a href="home.html" class="linkhome" >
+Home</a></nav>
+
+</body>
+</html>

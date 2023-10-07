@@ -12,7 +12,7 @@
 %
 % See the file LICENSE.md for more details.
 
-\documentclass{ltxdoc}
+\documentclass[doc2]{ltxdoc}
 
 \def\beamerugversion{3.70}
 \def\beamerugpgfversion{3.1.7}
@@ -22,22 +22,29 @@
 \usepackage{lmodern}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
+
+\usepackage[mathjax,HomeHTMLFilename=home]{lwarp}
+\setcounter{FileDepth}{1}
+\setcounter{SideTOCDepth}{1}
+\CSSFilename{style.css}
+\boolfalse{CombineHigherDepths}
+
+\usepackage{fancyvrb}
+
 \usepackage{amsmath,amssymb}
 \usepackage{pifont}
-\usepackage{makeidx}
+% \usepackage{makeidx}
 \usepackage{pgf,xcolor}
-\usepackage[pdfborder={0 0 0},bookmarksnumbered]{hyperref}
+\usepackage{hyperref}
 \usepackage[left=2.25cm,right=2.25cm,top=2.5cm,bottom=2.5cm,nohead]{geometry}
 \usepackage{translator}
 \usepackage{tikz}
 \usepackage{beamerarticle}
-
 \input{beamerbasenavigationsymbols}
+\usepackage{graphicx}
+\graphicspath{{beamerthemeexample/}}
 \input{beamerug-macros}
-
-\makeindex
-
-%\includeonly{beamerug-introduction}
+% \makeindex
 
 \begin{document}
 
@@ -121,7 +128,7 @@ User Guide for version \beamerugversion.}
 \Large User Guide for version \beamerugversion.}
 \author{\href{mailto:tantau@users.sourceforge.net}{Till Tantau}, \href{mailto:joseph.wright@morningstar2.co.uk}{Joseph Wright}, \href{mailto:vmiletic@inf.uniri.hr}{Vedran Mileti\'c}}
 
-\maketitle
+% \maketitle
 
 \tableofcontents
 
@@ -146,7 +153,6 @@ At the end of this part you will find a summary of the solutions templates that 
 \include{beamerug-guidelines}
 \include{beamerug-solutions}
 \include{beamerug-license}
-
 
 
 \part{Building a Presentation}
@@ -214,6 +220,6 @@ The second howto explains how you can import (parts or) presentations created us
 \include{beamerug-tricks}
 \include{beamerug-emulation}
 
-\printindex
+% \printindex
 
 \end{document}

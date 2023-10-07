@@ -1,0 +1,1434 @@
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8" />
+<meta name="generator" content="LaTeX Lwarp package" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The beamer class- <a href=https://github.com/josephwright/beamer target=-blank >https://github.com/josephwright/beamer</a>- User Guide for version 3.70. — Structuring a Presentation: The Interactive Global Structure</title>
+<link rel="stylesheet" type="text/css" href="style.css" />
+
+<script>
+// Lwarp MathJax emulation code
+//
+// Based on code by Davide P. Cervone.
+// Equation numbering: https://github.com/mathjax/MathJax/issues/2427
+// Starred and ifnextchar macros: https://github.com/mathjax/MathJax/issues/2428
+// \left, \right delimiters: https://github.com/mathjax/MathJax/issues/2535
+//
+// Modified by Brian Dunn to adjust equation numbering and add subequations.
+//
+// LaTeX can use \seteqnumber{subequations?}{section}{number} before each equation.
+// subequations? is 0 usually, 1 if inside subequations.
+// section is a string printed as-is, or empty.
+// number is auto-incremented by MathJax between equations.
+//
+MathJax = {
+  subequations: "0",
+  section: "",
+  loader: {
+    load: ['[tex]/tagformat', '[tex]/textmacros'],
+  },
+  startup: {
+    ready() {
+      // These would be replaced by import commands if you wanted to make
+      // a proper extension.
+      const Configuration = MathJax._.input.tex.Configuration.Configuration;
+      const CommandMap = MathJax._.input.tex.SymbolMap.CommandMap;
+      const Macro = MathJax._.input.tex.Symbol.Macro;
+      const TexError = MathJax._.input.tex.TexError.default;
+      const ParseUtil = MathJax._.input.tex.ParseUtil.default;
+      const expandable = MathJax._.util.Options.expandable;
+
+        // Insert the replacement string into the TeX string, and check
+        // that there haven't been too many maxro substitutions (prevents
+        // infinite loops).
+        const useArgument = (parser, text) => {
+          parser.string = ParseUtil.addArgs(parser, text, parser.string.slice(parser.i));
+          parser.i = 0;
+          if (++parser.macroCount > parser.configuration.options.maxMacros) {
+            throw new TexError('MaxMacroSub1',
+            'MathJax maximum macro substitution count exceeded; ' +
+            'is there a recursive macro call?');
+          }
+        }
+
+        // Create the command map for:
+        //     \ifstar, \ifnextchar, \ifblank, \ifstrequal, \gsub, \seteqnumber
+        new CommandMap('Lwarp-macros', {
+          ifstar: 'IfstarFunction',
+          ifnextchar: 'IfnextcharFunction',
+          ifblank: 'IfblankFunction',
+          ifstrequal: 'IfstrequalFunction',
+          gsubstitute: 'GsubstituteFunction',
+          seteqnumber: 'SeteqnumberFunction'
+        }, {
+          // This function implements an ifstar macro.
+          IfstarFunction(parser, name) {
+             const resultstar = parser.GetArgument(name);
+             const resultnostar = parser.GetArgument(name);
+             const star = parser.GetStar();                 // true if there is a *
+             useArgument(parser, star ? resultstar : resultnostar);
+          },
+
+          // This function implements an ifnextchar macro.
+          IfnextcharFunction(parser, name) {
+            let whichchar = parser.GetArgument(name);
+            if (whichchar.match(/^(?:0x[0-9A-F]+|[0-9]+)$/i)) {
+              // $ syntax highlighting
+              whichchar = String.fromCodePoint(parseInt(whichchar));
+            }
+            const resultnextchar = parser.GetArgument(name);
+            const resultnotnextchar = parser.GetArgument(name);
+            const gotchar = (parser.GetNext() === whichchar);
+            useArgument(parser, gotchar ? resultnextchar : resultnotnextchar);
+          },
+
+          // This function implements an ifblank macro.
+          IfblankFunction(parser, name) {
+            const blankarg = parser.GetArgument(name);
+            const resultblank = parser.GetArgument(name);
+            const resultnotblank = parser.GetArgument(name);
+            const isblank = (blankarg.trim() == "");
+            useArgument(parser, isblank ? resultblank : resultnotblank);
+          },
+
+          // This function implements an ifstrequal macro.
+          IfstrequalFunction(parser, name) {
+            const strequalfirst = parser.GetArgument(name);
+            const strequalsecond = parser.GetArgument(name);
+            const resultequal = parser.GetArgument(name);
+            const resultnotequal = parser.GetArgument(name);
+            const isequal = (strequalfirst == strequalsecond);
+            useArgument(parser, isequal ? resultequal : resultnotequal);
+          },
+
+          // This function implements a gsub macro.
+          GsubstituteFunction(parser, name) {
+            const gsubfirst = parser.GetArgument(name);
+            const gsubsecond = parser.GetArgument(name);
+            const gsubthird = parser.GetArgument(name);
+            let gsubresult=gsubfirst.replace(gsubsecond, gsubthird);
+            useArgument(parser, gsubresult);
+          },
+
+          // This function modifies the equation numbers.
+          SeteqnumberFunction(parser, name) {
+              // Get the macro parameters
+              const star = parser.GetStar();                  // true if there is a *
+              const optBrackets = parser.GetBrackets(name);   // contents of optional brackets
+              const newsubequations = parser.GetArgument(name); // the subequations argument
+              const neweqsection = parser.GetArgument(name); // the eq section argument
+              const neweqnumber = parser.GetArgument(name);   // the eq number argument
+              MathJax.config.subequations=newsubequations ;   // a string with boolean meaning
+              MathJax.config.section=neweqsection ;           // a string with numeric meaning
+              parser.tags.counter = parser.tags.allCounter = neweqnumber ;
+          }
+
+        });
+
+        // Create the Lwarp-macros package
+        Configuration.create('Lwarp-macros', {
+          handler: {macro: ['Lwarp-macros']}
+        });
+
+        MathJax.startup.defaultReady();
+
+        // For forward references:
+        MathJax.startup.input[0].preFilters.add(({math}) => {
+          if (math.inputData.recompile){
+              MathJax.config.subequations = math.inputData.recompile.subequations;
+              MathJax.config.section = math.inputData.recompile.section;
+          }
+        });
+        MathJax.startup.input[0].postFilters.add(({math}) => {
+          if (math.inputData.recompile){
+              math.inputData.recompile.subequations = MathJax.config.subequations;
+              math.inputData.recompile.section = MathJax.config.section;
+          }
+        });
+
+          // For \left, \right with unicode-math:
+          const {DelimiterMap} = MathJax._.input.tex.SymbolMap;
+          const {Symbol} = MathJax._.input.tex.Symbol;
+          const {MapHandler} = MathJax._.input.tex.MapHandler;
+          const delimiter = MapHandler.getMap('delimiter');
+          delimiter.add('\\lBrack', new Symbol('\\lBrack', '\u27E6'));
+          delimiter.add('\\rBrack', new Symbol('\\rBrack', '\u27E7'));
+          delimiter.add('\\lAngle', new Symbol('\\lAngle', '\u27EA'));
+          delimiter.add('\\rAngle', new Symbol('\\rAngle', '\u27EB'));
+          delimiter.add('\\lbrbrak', new Symbol('\\lbrbrak', '\u2772'));
+          delimiter.add('\\rbrbrak', new Symbol('\\rbrbrak', '\u2773'));
+          delimiter.add('\\lbag', new Symbol('\\lbag', '\u27C5'));
+          delimiter.add('\\rbag', new Symbol('\\rbag', '\u27C6'));
+          delimiter.add('\\llparenthesis', new Symbol('\\llparenthesis', '\u2987'));
+          delimiter.add('\\rrparenthesis', new Symbol('\\rrparenthesis', '\u2988'));
+          delimiter.add('\\llangle', new Symbol('\\llangle', '\u2989'));
+          delimiter.add('\\rrangle', new Symbol('\\rrangle', '\u298A'));
+          delimiter.add('\\Lbrbrak', new Symbol('\\Lbrbrak', '\u27EC'));
+          delimiter.add('\\Rbrbrak', new Symbol('\\Rbrbrak', '\u27ED'));
+          delimiter.add('\\lBrace', new Symbol('\\lBrace', '\u2983'));
+          delimiter.add('\\rBrace', new Symbol('\\rBrace', '\u2984'));
+          delimiter.add('\\lParen', new Symbol('\\lParen', '\u2985'));
+          delimiter.add('\\rParen', new Symbol('\\rParen', '\u2986'));
+          delimiter.add('\\lbrackubar', new Symbol('\\lbrackubar', '\u298B'));
+          delimiter.add('\\rbrackubar', new Symbol('\\rbrackubar', '\u298C'));
+          delimiter.add('\\lbrackultick', new Symbol('\\lbrackultick', '\u298D'));
+          delimiter.add('\\rbracklrtick', new Symbol('\\rbracklrtick', '\u298E'));
+          delimiter.add('\\lbracklltick', new Symbol('\\lbracklltick', '\u298F'));
+          delimiter.add('\\rbrackurtick', new Symbol('\\rbrackurtick', '\u2990'));
+          delimiter.add('\\langledot', new Symbol('\\langledot', '\u2991'));
+          delimiter.add('\\rangledot', new Symbol('\\rangledot', '\u2992'));
+          delimiter.add('\\lparenless', new Symbol('\\lparenless', '\u2993'));
+          delimiter.add('\\rparengtr', new Symbol('\\rparengtr', '\u2994'));
+          delimiter.add('\\Lparengtr', new Symbol('\\Lparengtr', '\u2995'));
+          delimiter.add('\\Rparenless', new Symbol('\\Rparenless', '\u2996'));
+          delimiter.add('\\lblkbrbrak', new Symbol('\\lblkbrbrak', '\u2997'));
+          delimiter.add('\\rblkbrbrak', new Symbol('\\rblkbrbrak', '\u2998'));
+          delimiter.add('\\lvzigzag', new Symbol('\\lvzigzag', '\u29D8'));
+          delimiter.add('\\rvzigzag', new Symbol('\\rvzigzag', '\u29D9'));
+          delimiter.add('\\Lvzigzag', new Symbol('\\Lvzigzag', '\u29DA'));
+          delimiter.add('\\Rvzigzag', new Symbol('\\Rvzigzag', '\u29DB'));
+          delimiter.add('\\lcurvyangle', new Symbol('\\lcurvyangle', '\u29FC'));
+          delimiter.add('\\rcurvyangle', new Symbol('\\rcurvyangle', '\u29FD'));
+          delimiter.add('\\Vvert', new Symbol('\\Vvert', '\u2980'));
+    }     // ready
+  },      // startup
+
+  tex: {
+    packages: {'[+]': ['tagformat', 'Lwarp-macros', 'textmacros']},
+    tags: "ams",
+         tagformat: {
+             number: function (n) {
+                 if(MathJax.config.subequations==0)
+                     return(MathJax.config.section + n);
+                 else
+                     return(MathJax.config.section + String.fromCharCode(96+n));
+             },
+         },
+  }
+}
+</script>
+
+<script
+    id="MathJax-script"
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"
+></script>
+
+</head>
+<body>
+
+
+<a id="beameruserguide-autopage-321"></a>
+<nav class="topnavigation"><a href="home.html" class="linkhome" >
+Home</a></nav>
+
+
+<div class="bodyandsidetoc">
+<div class="sidetoccontainer">
+
+
+<nav class="sidetoc">
+
+
+<div class="sidetoctitle">
+
+<p>
+<span class="sidetocthetitle">The <span class="beamer-name"><span class="textsc">beamer</span></span> <i>class</i><br />
+<a href="https://github.com/josephwright/beamer" target="_blank" >https://github.com/josephwright/beamer</a><br />
+User Guide for version 3.70.</span>
+</p>
+
+<p>
+Contents
+</p>
+</div>
+
+
+<div class="sidetoccontents">
+
+<p>
+<a href="home.html" class="linkhome" >
+Home</a>
+</p>
+
+<p>
+<a href="Introduction.html#autosec-7" class="tocsection" >
+<span class="sectionnumber">1</span>&#x2003;Introduction</a>
+</p>
+
+
+<p>
+<a href="Getting-Started.html#autosec-21" class="tocpart" >
+<span class="sectionnumber">I</span>&#x2003;Getting Started</a>
+</p>
+
+
+<p>
+<a href="Installation.html#autosec-24" class="tocsection" >
+<span class="sectionnumber">2</span>&#x2003;Installation</a>
+</p>
+
+
+<p>
+<a href="Tutorial-Euclid-Presentation.html#autosec-42" class="tocsection" >
+<span class="sectionnumber">3</span>&#x2003;Tutorial: Euclid’s Presentation</a>
+</p>
+
+
+<p>
+<a href="Workflow-For-Creating-Beamer-Presentation.html#autosec-93" class="tocsection" >
+<span class="sectionnumber">4</span>&#x2003;Workflow For Creating a Beamer Presentation</a>
+</p>
+
+
+<p>
+<a href="Guidelines-Creating-Presentations.html#autosec-116" class="tocsection" >
+<span class="sectionnumber">5</span>&#x2003;Guidelines for Creating Presentations</a>
+</p>
+
+
+<p>
+<a href="Solution-Templates.html#autosec-141" class="tocsection" >
+<span class="sectionnumber">6</span>&#x2003;Solution Templates</a>
+</p>
+
+
+<p>
+<a href="Licenses-Copyright.html#autosec-144" class="tocsection" >
+<span class="sectionnumber">7</span>&#x2003;Licenses and Copyright</a>
+</p>
+
+
+<p>
+<a href="Building-Presentation.html#autosec-185" class="tocpart" >
+<span class="sectionnumber">II</span>&#x2003;Building a Presentation</a>
+</p>
+
+
+<p>
+<a href="Creating-Frames.html#autosec-188" class="tocsection" >
+<span class="sectionnumber">8</span>&#x2003;Creating Frames</a>
+</p>
+
+
+<p>
+<a href="Creating-Overlays.html#autosec-234" class="tocsection" >
+<span class="sectionnumber">9</span>&#x2003;Creating Overlays</a>
+</p>
+
+
+<p>
+<a href="Structuring-Presentation-The-Static-Global-Structure.html#autosec-295" class="tocsection" >
+<span class="sectionnumber">10</span>&#x2003;Structuring a Presentation: The Static Global Structure</a>
+</p>
+
+
+<p>
+<a href="Structuring-Presentation-The-Interactive-Global-Structure.html#autosec-322" class="tocsection" >
+<span class="sectionnumber">11</span>&#x2003;Structuring a Presentation: The Interactive Global Structure</a>
+</p>
+
+
+<p>
+<a href="Structuring-Presentation-The-Local-Structure.html#autosec-336" class="tocsection" >
+<span class="sectionnumber">12</span>&#x2003;Structuring a Presentation: The Local Structure</a>
+</p>
+
+
+<p>
+<a href="Graphics.html#autosec-380" class="tocsection" >
+<span class="sectionnumber">13</span>&#x2003;Graphics</a>
+</p>
+
+
+<p>
+<a href="Animations-Sounds-Slide-Transitions.html#autosec-390" class="tocsection" >
+<span class="sectionnumber">14</span>&#x2003;Animations, Sounds, and Slide Transitions</a>
+</p>
+
+
+<p>
+<a href="Changing-Way-Things-Look.html#autosec-410" class="tocpart" >
+<span class="sectionnumber">III</span>&#x2003;Changing the Way Things Look</a>
+</p>
+
+
+<p>
+<a href="Themes.html#autosec-413" class="tocsection" >
+<span class="sectionnumber">15</span>&#x2003;Themes</a>
+</p>
+
+
+<p>
+<a href="Inner-Themes-Outer-Themes-Templates.html#autosec-428" class="tocsection" >
+<span class="sectionnumber">16</span>&#x2003;Inner Themes, Outer Themes, and Templates</a>
+</p>
+
+
+<p>
+<a href="Colors.html#autosec-452" class="tocsection" >
+<span class="sectionnumber">17</span>&#x2003;Colors</a>
+</p>
+
+
+<p>
+<a href="Fonts.html#autosec-481" class="tocsection" >
+<span class="sectionnumber">18</span>&#x2003;Fonts</a>
+</p>
+
+
+<p>
+<a href="Creating-Supporting-Material.html#autosec-497" class="tocpart" >
+<span class="sectionnumber">IV</span>&#x2003;Creating Supporting Material</a>
+</p>
+
+
+<p>
+<a href="Adding-Notes-Yourself.html#autosec-500" class="tocsection" >
+<span class="sectionnumber">19</span>&#x2003;Adding Notes for Yourself</a>
+</p>
+
+
+<p>
+<a href="Creating-Transparencies.html#autosec-512" class="tocsection" >
+<span class="sectionnumber">20</span>&#x2003;Creating Transparencies</a>
+</p>
+
+
+<p>
+<a href="Creating-Handouts-Lecture-Notes.html#autosec-521" class="tocsection" >
+<span class="sectionnumber">21</span>&#x2003;Creating Handouts and Lecture Notes</a>
+</p>
+
+
+<p>
+<a href="Taking-Advantage-Multiple-Screens.html#autosec-546" class="tocsection" >
+<span class="sectionnumber">22</span>&#x2003;Taking Advantage of Multiple Screens</a>
+</p>
+
+
+<p>
+<a href="Howtos.html#autosec-554" class="tocpart" >
+<span class="sectionnumber">V</span>&#x2003;Howtos</a>
+</p>
+
+
+<p>
+<a href="How-To-Uncover-Things-Piecewise.html#autosec-557" class="tocsection" >
+<span class="sectionnumber">23</span>&#x2003;How To Uncover Things Piecewise</a>
+</p>
+
+
+<p>
+<a href="How-To-Import-Presentations-Based-on-Other-Packages-Classes.html#autosec-580" class="tocsection" >
+<span class="sectionnumber">24</span>&#x2003;How To Import Presentations Based on Other Packages and Classes</a>
+</p>
+
+
+</div>
+
+</nav>
+
+</div>
+
+
+<main class="bodycontainer">
+
+
+<section class="textbody">
+
+<h1>The <span class="beamer-name"><span class="textsc">beamer</span></span> <i>class</i><br />
+<a href="https://github.com/josephwright/beamer" target="_blank" >https://github.com/josephwright/beamer</a><br />
+User Guide for version 3.70.</h1>
+
+<!--MathJax customizations:-->
+
+
+<div class="hidden">
+
+\(\newcommand{\footnotename}{footnote}\)
+
+\(\def \LWRfootnote {1}\)
+
+\(\newcommand {\footnote }[2][\LWRfootnote ]{{}^{\mathrm {#1}}}\)
+
+\(\newcommand {\footnotemark }[1][\LWRfootnote ]{{}^{\mathrm {#1}}}\)
+
+\(\let \LWRorighspace \hspace \)
+
+\(\renewcommand {\hspace }{\ifstar \LWRorighspace \LWRorighspace }\)
+
+\(\newcommand {\mathnormal }[1]{{#1}}\)
+
+\(\newcommand \ensuremath [1]{#1}\)
+
+\(\newcommand {\LWRframebox }[2][]{\fbox {#2}} \newcommand {\framebox }[1][]{\LWRframebox } \)
+
+\(\newcommand {\setlength }[2]{}\)
+
+\(\newcommand {\addtolength }[2]{}\)
+
+\(\newcommand {\setcounter }[2]{}\)
+
+\(\newcommand {\addtocounter }[2]{}\)
+
+\(\newcommand {\arabic }[1]{}\)
+
+\(\newcommand {\number }[1]{}\)
+
+\(\newcommand {\noalign }[1]{\text {#1}\notag \\}\)
+
+\(\newcommand {\cline }[1]{}\)
+
+\(\newcommand {\directlua }[1]{\text {(directlua)}}\)
+
+\(\newcommand {\luatexdirectlua }[1]{\text {(directlua)}}\)
+
+\(\newcommand {\protect }{}\)
+
+\(\def \LWRabsorbnumber #1 {}\)
+
+\(\def \LWRabsorbquotenumber &quot;#1 {}\)
+
+\(\newcommand {\LWRabsorboption }[1][]{}\)
+
+\(\newcommand {\LWRabsorbtwooptions }[1][]{\LWRabsorboption }\)
+
+\(\def \mathchar {\ifnextchar &quot;\LWRabsorbquotenumber \LWRabsorbnumber }\)
+
+\(\def \mathcode #1={\mathchar }\)
+
+\(\let \delcode \mathcode \)
+
+\(\let \delimiter \mathchar \)
+
+\(\def \oe {\unicode {x0153}}\)
+
+\(\def \OE {\unicode {x0152}}\)
+
+\(\def \ae {\unicode {x00E6}}\)
+
+\(\def \AE {\unicode {x00C6}}\)
+
+\(\def \aa {\unicode {x00E5}}\)
+
+\(\def \AA {\unicode {x00C5}}\)
+
+\(\def \o {\unicode {x00F8}}\)
+
+\(\def \O {\unicode {x00D8}}\)
+
+\(\def \l {\unicode {x0142}}\)
+
+\(\def \L {\unicode {x0141}}\)
+
+\(\def \ss {\unicode {x00DF}}\)
+
+\(\def \SS {\unicode {x1E9E}}\)
+
+\(\def \dag {\unicode {x2020}}\)
+
+\(\def \ddag {\unicode {x2021}}\)
+
+\(\def \P {\unicode {x00B6}}\)
+
+\(\def \copyright {\unicode {x00A9}}\)
+
+\(\def \pounds {\unicode {x00A3}}\)
+
+\(\let \LWRref \ref \)
+
+\(\renewcommand {\ref }{\ifstar \LWRref \LWRref }\)
+
+\( \newcommand {\multicolumn }[3]{#3}\)
+
+\(\require {textcomp}\)
+
+\(\newcommand {\intertext }[1]{\text {#1}\notag \\}\)
+
+\(\let \Hat \hat \)
+
+\(\let \Check \check \)
+
+\(\let \Tilde \tilde \)
+
+\(\let \Acute \acute \)
+
+\(\let \Grave \grave \)
+
+\(\let \Dot \dot \)
+
+\(\let \Ddot \ddot \)
+
+\(\let \Breve \breve \)
+
+\(\let \Bar \bar \)
+
+\(\let \Vec \vec \)
+
+</div>
+
+<p>
+<!--
+...... section Structuring a Presentation: The Interactive Global Structure ......
+-->
+<h4 id="autosec-322"><span class="sectionnumber">11&#x2003;</span>Structuring a Presentation: The Interactive Global Structure</h4>
+<a id="beameruserguide-autopage-322"></a>
+<a id="beameruserguide-autofile-13"></a> <a id="section-nonlinear"></a>
+<!--
+...... subsection Adding Hyperlinks and Buttons ......
+-->
+<h5 id="autosec-323"><span class="sectionnumber">11.1&#x2003;</span>Adding Hyperlinks and Buttons</h5>
+<a id="beameruserguide-autopage-323"></a>
+
+
+<p>
+To create anticipated nonlinear jumps in your talk structure, you can add hyperlinks to your presentation. A hyperlink is a text (usually rendered as a button) that, when you click on it, jumps the presentation to some other slide. Creating such a button is a three-step
+process:
+</p>
+<ul style="list-style-type:none">
+
+<li>
+<p>
+1. You specify a target using the command <span class="texttt">\hypertarget</span> or (easier) the command <span class="texttt">\label</span>. In some cases, see below, this step may be skipped.
+</p>
+
+</li>
+<li>
+
+<p>
+2. You render the button using <span class="texttt">\beamerbutton</span> or a similar command. This will <em>render</em> the button, but clicking it will not yet have any effect.
+</p>
+
+</li>
+<li>
+
+<p>
+3. You put the button inside a <span class="texttt">\hyperlink</span> command. Now clicking it will jump to the target of the link.
+</p>
+</li>
+</ul>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\hypertarget</kbd></span><span class="opt"><<span class="meta"><span class="angle">&langle;</span><i>overlay specification</i><span class="angle">&rangle;</span></span>></span>{<span class="meta"><span
+class="angle">&langle;</span><i>target name</i><span class="angle">&rangle;</span></span>}{<span class="meta"><span class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+If the <span class="meta"><span class="angle">&langle;</span><i>overlay specification</i><span class="angle">&rangle;</span></span> is present, the <span class="meta"><span class="angle">&langle;</span><i>text</i><span
+class="angle">&rangle;</span></span> is the target for hyper jumps to <span class="meta"><span class="angle">&langle;</span><i>target name</i><span class="angle">&rangle;</span></span> only on the specified slide. On all other slides, the text is shown
+normally. Note that you <em>must</em> add an overlay specification to the <span class="texttt">\hypertarget</span> command whenever you use it on frames that have multiple slides (otherwise <span class="texttt">pdflatex</span> rightfully complains that you
+have defined the same target on different slides).
+</p>
+<p>
+<i>Example: </i>
+</p>
+<pre class="verbatim">
+\begin{frame}
+  \begin{itemize}
+  \item<1-> First item.
+  \item<2-> Second item.
+  \item<3-> Third item.
+  \end{itemize}
+
+  \hyperlink{jumptosecond}{\beamergotobutton{Jump to second slide}}
+  \hypertarget<2>{jumptosecond}{}
+\end{frame}
+</pre>
+<p>
+You must say <span class="texttt">\usepackage[hyperref]{beamerarticle}</span> or <span class="texttt">\usepackage{hyperref}</span> in your preamble to use this command in <span class="texttt">article</span> mode.
+</p>
+</li>
+</ul>
+</div>
+
+<p>
+The <span class="texttt">\label</span> command creates a hypertarget as a side-effect and the <span class="texttt">label=</span><span class="meta"><span class="angle">&langle;</span><i>name</i><span class="angle">&rangle;</span></span> option of
+the <span class="texttt">\frame</span> command creates a label named <span class="meta"><span class="angle">&langle;</span><i>name</i><span class="angle">&rangle;</span></span><span class="texttt"><</span><span class="meta"><span
+class="angle">&langle;</span><i>slide number</i><span class="angle">&rangle;</span></span><span class="texttt">></span> for each slide of the frame as a side-effect. Thus the above example could be written more easily as:
+</p>
+<pre class="verbatim">
+\begin{frame}[label=threeitems]
+  \begin{itemize}
+  \item<1-> First item.
+  \item<2-> Second item.
+  \item<3-> Third item.
+  \end{itemize}
+
+  \hyperlink{threeitems<2>}{\beamergotobutton{Jump to second slide}}
+\end{frame}
+
+</pre>
+
+<p>
+The following commands can be used to specify in an abstract way what a button will be used for.
+</p>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\beamerbutton</kbd></span>{<span class="meta"><span class="angle">&langle;</span><i>button text</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+Draws a button with the given <span class="meta"><span class="angle">&langle;</span><i>button text</i><span class="angle">&rangle;</span></span>.
+</p>
+<p>
+<i>Example: </i><span class="texttt">\hyperlink{somewhere}{\beamerbutton{Go somewhere}}</span>
+</p>
+<p>
+This command (and the following) just insert their argument in <span class="texttt">article</span> mode.
+</p>
+
+<div class="element">
+<ul style="list-style-type:none">
+
+<li>
+<p>
+<span class="element-headline"><b>Beamer-Template/-Color/-Font</b> <span class="element-declare"><span class="declare">button</span></span></span>
+</p>
+<p>
+When the <span class="texttt">\beamerbutton</span> command is called, this template is used to render the button. Inside the template you can use the command <span class="texttt">\insertbuttontext</span> to insert the argument that was passed to <span
+class="texttt">\beamerbutton</span>.
+</p>
+<p>
+The following template options are predefined:
+</p>
+<ul style="list-style-type:none">
+
+<li>
+<p>
+• <span class="itemoption"><kbd>[<span class="declare">default</span>]</kbd></span> Typesets the button with rounded corners. The fore- and background of the <span class="beamer-name"><span class="textsc">beamer</span></span>-color <span
+class="texttt">button</span> are used and also the <span class="beamer-name"><span class="textsc">beamer</span></span>-font <span class="texttt">button</span>. The border of the button gets the foreground of the <span class="beamer-name"><span
+class="textsc">beamer</span></span>-color <span class="texttt">button border</span>.
+</p>
+</li>
+</ul>
+<p>
+The following inserts are useful for this element:
+</p>
+<ul style="list-style-type:none">
+
+<li>
+<p>
+• <kbd><span class="declare">\insertbuttontext</span></kbd> inserts the text of the current button. Inside “Goto-Buttons” (see below) this text is prefixed by the insert <span class="texttt">\insertgotosymbol</span> and similarly for skip and return buttons.
+</p>
+</li>
+<li>
+
+
+<p>
+• <kbd><span class="declare">\insertgotosymbol</span></kbd> This text is inserted at the beginning of goto buttons. Redefine this command to change the symbol.
+</p>
+<p>
+<i>Example: </i><span class="texttt">\renewcommand{\insertgotosymbol}{\somearrowcommand}</span>
+</p>
+</li>
+<li>
+
+
+<p>
+• <kbd><span class="declare">\insertskipsymbol</span></kbd> This text is inserted at the beginning of skip buttons.
+</p>
+</li>
+<li>
+
+
+<p>
+• <kbd><span class="declare">\insertreturnsymbol</span></kbd> This text is inserted at the beginning of return buttons.
+</p>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+
+<div class="element">
+<ul style="list-style-type:none">
+
+<li>
+<p>
+<span class="element-headline"><b>Beamer-Color</b> <span class="element-declare"><span class="declare">button border</span></span></span>
+</p>
+<p>
+The foreground of this color is used to render the border of buttons.
+</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\beamergotobutton</kbd></span>{<span class="meta"><span class="angle">&langle;</span><i>button text</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+Draws a button with the given <span class="meta"><span class="angle">&langle;</span><i>button text</i><span class="angle">&rangle;</span></span>. Before the text, a small symbol (usually a right-pointing arrow) is inserted that indicates that pressing this
+button will jump to another “area” of the presentation.
+</p>
+<p>
+<i>Example: </i><span class="texttt">\hyperlink{detour}{\beamergotobutton{Go to detour}}</span>
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\beamerskipbutton</kbd></span>{<span class="meta"><span class="angle">&langle;</span><i>button text</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+The symbol drawn for this button is usually a double right arrow. Use this button if pressing it will skip over a well-defined part of your talk.
+</p>
+<p>
+<i>Example: </i>
+</p>
+<pre class="verbatim">
+\begin{frame}
+  \begin{theorem}
+    ...
+  \end{theorem}
+
+  \begin{overprint}
+  \onslide<1>
+    \hfill\hyperlinkframestartnext{\beamerskipbutton{Skip proof}}
+  \onslide<2>
+    \begin{proof}
+      ...
+    \end{proof}
+  \end{overprint}
+\end{frame}
+</pre>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\beamerreturnbutton</kbd></span>{<span class="meta"><span class="angle">&langle;</span><i>button text</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+The symbol drawn for this button is usually a left-pointing arrow. Use this button if pressing it will return from a detour.
+</p>
+<p>
+<i>Example: </i>
+</p>
+<pre class="verbatim">
+\begin{frame}<1>[label=mytheorem]
+  \begin{theorem}
+    ...
+  \end{theorem}
+
+  \begin{overprint}
+  \onslide<1>
+    \hfill\hyperlink{mytheorem<2>}{\beamergotobutton{Go to proof details}}
+  \onslide<2>
+    \begin{proof}
+      ...
+    \end{proof}
+    \hfill\hyperlink{mytheorem<1>}{\beamerreturnbutton{Return}}
+  \end{overprint}
+\end{frame}
+\appendix
+\againframe<2>{mytheorem}
+</pre>
+</li>
+</ul>
+</div>
+
+<p>
+To make a button “clickable” you must place it in a command like <span class="texttt">\hyperlink</span>. The command <span class="texttt">\hyperlink</span> is a standard command of the <span class="texttt">hyperref</span> package. The <span
+class="beamer-name"><span class="textsc">beamer</span></span> class defines a whole bunch of other hyperlink commands that you can also use.
+</p>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\hyperlink</kbd></span><span class="opt"><<span class="meta"><span class="angle">&langle;</span><i>overlay specification</i><span class="angle">&rangle;</span></span>></span>{<span class="meta"><span
+class="angle">&langle;</span><i>target name</i><span class="angle">&rangle;</span></span>}{<span class="meta"><span class="angle">&langle;</span><i>link text</i><span class="angle">&rangle;</span></span>}<span class="opt"><<span
+class="meta"><span class="angle">&langle;</span><i>overlay specification</i><span class="angle">&rangle;</span></span>></span>
+</p>
+</div>
+<p>
+Only one <span class="meta"><span class="angle">&langle;</span><i>overlay specification</i><span class="angle">&rangle;</span></span> may be given. The <span class="meta"><span class="angle">&langle;</span><i>link text</i><span
+class="angle">&rangle;</span></span> is typeset in the usual way. If you click anywhere on this text, you will jump to the slide on which the <span class="texttt">\hypertarget</span> command was used with the parameter <span class="meta"><span
+class="angle">&langle;</span><i>target name</i><span class="angle">&rangle;</span></span>. If an <span class="meta"><span class="angle">&langle;</span><i>overlay specification</i><span class="angle">&rangle;</span></span> is present, the hyperlink
+(including the <span class="meta"><span class="angle">&langle;</span><i>link text</i><span class="angle">&rangle;</span></span>) is completely suppressed on the non-specified slides.
+</p>
+</li>
+</ul>
+</div>
+
+<p>
+The following commands have a predefined target; otherwise they behave exactly like <span class="texttt">\hyperlink</span>. In particular, they all also accept an overlay specification and they also accept it at the end, rather than at the beginning.
+</p>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\hyperlinkslideprev</kbd></span><span class="opt"><<span class="meta"><span class="angle">&langle;</span><i>overlay specification</i><span class="angle">&rangle;</span></span>></span>{<span class="meta"><span
+class="angle">&langle;</span><i>link text</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+Clicking the text jumps one slide back.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\hyperlinkslidenext</kbd></span><span class="opt"><<span class="meta"><span class="angle">&langle;</span><i>overlay specification</i><span class="angle">&rangle;</span></span>></span>{<span class="meta"><span
+class="angle">&langle;</span><i>link text</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+Clicking the text jumps one slide forward.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\hyperlinkframestart</kbd></span><span class="opt"><<span class="meta"><span class="angle">&langle;</span><i>overlay specification</i><span class="angle">&rangle;</span></span>></span>{<span class="meta"><span
+class="angle">&langle;</span><i>link text</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+Clicking the text jumps to the first slide of the current frame.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\hyperlinkframeend</kbd></span><span class="opt"><<span class="meta"><span class="angle">&langle;</span><i>overlay specification</i><span class="angle">&rangle;</span></span>></span>{<span class="meta"><span
+class="angle">&langle;</span><i>link text</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+Clicking the text jumps to the last slide of the current frame.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\hyperlinkframestartnext</kbd></span><span class="opt"><<span class="meta"><span class="angle">&langle;</span><i>overlay specification</i><span class="angle">&rangle;</span></span>></span>{<span class="meta"><span
+class="angle">&langle;</span><i>link text</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+Clicking the text jumps to the first slide of the next frame.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\hyperlinkframeendprev</kbd></span><span class="opt"><<span class="meta"><span class="angle">&langle;</span><i>overlay specification</i><span class="angle">&rangle;</span></span>></span>{<span class="meta"><span
+class="angle">&langle;</span><i>link text</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+Clicking the text jumps to the last slide of the previous frame.
+</p>
+</li>
+</ul>
+</div>
+
+<p>
+The previous four command exist also with “<span class="texttt">frame</span>” replaced by “<span class="texttt">subsection</span>” everywhere, and also again with “<span class="texttt">frame</span>” replaced by “<span class="texttt">section</span>”.
+</p>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\hyperlinkpresentationstart</kbd></span><span class="opt"><<span class="meta"><span class="angle">&langle;</span><i>overlay specification</i><span class="angle">&rangle;</span></span>></span>{<span
+class="meta"><span class="angle">&langle;</span><i>link text</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+Clicking the text jumps to the first slide of the presentation.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\hyperlinkpresentationend</kbd></span><span class="opt"><<span class="meta"><span class="angle">&langle;</span><i>overlay specification</i><span class="angle">&rangle;</span></span>></span>{<span class="meta"><span
+class="angle">&langle;</span><i>link text</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+Clicking the text jumps to the last slide of the presentation. This <em>excludes</em> the appendix.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\hyperlinkappendixstart</kbd></span><span class="opt"><<span class="meta"><span class="angle">&langle;</span><i>overlay specification</i><span class="angle">&rangle;</span></span>></span>{<span class="meta"><span
+class="angle">&langle;</span><i>link text</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+Clicking the text jumps to the first slide of the appendix. If there is no appendix, this will jump to the last slide of the document.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\hyperlinkappendixend</kbd></span><span class="opt"><<span class="meta"><span class="angle">&langle;</span><i>overlay specification</i><span class="angle">&rangle;</span></span>></span>{<span class="meta"><span
+class="angle">&langle;</span><i>link text</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+Clicking the text jumps to the last slide of the appendix.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\hyperlinkdocumentstart</kbd></span><span class="opt"><<span class="meta"><span class="angle">&langle;</span><i>overlay specification</i><span class="angle">&rangle;</span></span>></span>{<span class="meta"><span
+class="angle">&langle;</span><i>link text</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+Clicking the text jumps to the first slide of the presentation.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\hyperlinkdocumentend</kbd></span><span class="opt"><<span class="meta"><span class="angle">&langle;</span><i>overlay specification</i><span class="angle">&rangle;</span></span>></span>{<span class="meta"><span
+class="angle">&langle;</span><i>link text</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+Clicking the text jumps to the last slide of the presentation or, if an appendix is present, to the last slide of the appendix.
+</p>
+</li>
+</ul>
+</div>
+<!--
+...... subsection Repeating a Frame at a Later Point ......
+-->
+<h5 id="autosec-328"><span class="sectionnumber">11.2&#x2003;</span>Repeating a Frame at a Later Point</h5>
+<a id="beameruserguide-autopage-328"></a>
+
+
+<p>
+Sometimes you may wish some slides of a frame to be shown in your main talk, but wish some “supplementary” slides of the frame to be shown only in the appendix. In this case, the <span class="texttt">\againframe</span> command is useful.
+</p>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\againframe</kbd></span><span class="opt"><<span class="meta"><span class="angle">&langle;</span><i>overlay specification</i><span class="angle">&rangle;</span></span>></span><span class="opt"><span
+class="texttt">[<</span><span class="meta"><span class="angle">&langle;</span><i>default overlay specification</i><span class="angle">&rangle;</span></span><span class="texttt">>]</span></span><span class="opt"><span
+class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>options</i><span class="angle">&rangle;</span></span><span class="oarg-right-bracket">]</span></span>{<span class="meta"><span
+class="angle">&langle;</span><i>name</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+Resumes a frame that was previously created using <span class="texttt">\frame</span> with the option <span class="texttt">label=</span><span class="meta"><span class="angle">&langle;</span><i>name</i><span class="angle">&rangle;</span></span>.
+You must have used this option, just placing a label inside a frame “by hand” is not enough. You can use this command to “continue” a frame that has been interrupted by another frame. The effect of this command is to call the <span class="texttt">\frame</span>
+command with the given <span class="meta"><span class="angle">&langle;</span><i>overlay specification</i><span class="angle">&rangle;</span></span>, <span class="meta"><span class="angle">&langle;</span><i>default overlay specification</i><span
+class="angle">&rangle;</span></span> (if present), and <span class="meta"><span class="angle">&langle;</span><i>options</i><span class="angle">&rangle;</span></span> (if present) and with the original frame’s contents.
+</p>
+<p>
+<i>Example: </i>
+</p>
+<pre class="verbatim">
+\begin{frame}<1-2>[label=myframe]
+  \begin{itemize}
+  \item<alert@1> First subject.
+  \item<alert@2> Second subject.
+  \item<alert@3> Third subject.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  Some stuff explaining more on the second matter.
+\end{frame}
+
+\againframe<3>{myframe}
+</pre>
+<p>
+The effect of the above code is to create four slides. In the first two, the items 1 and&nbsp;2 are highlighted. The third slide contains the text “Some stuff explaining more on the second matter.” The fourth slide is identical to the first two slides, except that the third point
+is now highlighted.
+</p>
+<p>
+<i>Example: </i>
+</p>
+<pre class="verbatim">
+\begin{frame}<1>[label=Cantor]
+  \frametitle{Main Theorem}
+
+  \begin{Theorem}
+    $\alpha < 2^\alpha$ for all ordinals~$\alpha$.
+  \end{Theorem}
+
+  \begin{overprint}
+  \onslide<1>
+    \hyperlink{Cantor<2>}{\beamergotobutton{Proof details}}
+
+  \onslide<2->
+    % this is only shown in the appendix, where this frame is resumed.
+    \begin{proof}
+      As shown by Cantor, ...
+    \end{proof}
+
+    \hfill\hyperlink{Cantor<1>}{\beamerreturnbutton{Return}}
+  \end{overprint}
+\end{frame}
+
+...
+\appendix
+
+\againframe<2>{Cantor}
+</pre>
+<p>
+In this example, the proof details are deferred to a slide in the appendix. Hyperlinks are setup, so that one can jump to the proof and go back.
+</p>
+<p>
+This command is ignored in <span class="texttt">article</span> mode.
+</p>
+</li>
+</ul>
+</div>
+<!--
+...... subsection Adding Anticipated Zooming ......
+-->
+<h5 id="autosec-331"><span class="sectionnumber">11.3&#x2003;</span>Adding Anticipated Zooming</h5>
+<a id="beameruserguide-autopage-331"></a>
+
+
+<a id="section-zooming"></a>
+
+<p>
+Anticipated zooming is necessary when you have a very complicated graphic that you are not willing to simplify since, indeed, all the complex details merit an explanation. In this case, use the command <span class="texttt">\framezoom</span>. It allows you to specify
+that clicking on a certain area of a frame should zoom out this area. You can then explain the details. Clicking on the zoomed out picture will take you back to the original one.
+</p>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\framezoom</kbd></span><<span class="meta"><span class="angle">&langle;</span><i>button overlay specification</i><span class="angle">&rangle;</span></span>><<span class="meta"><span
+class="angle">&langle;</span><i>zoomed overlay specification</i><span class="angle">&rangle;</span></span>><span class="opt"><span class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>options</i><span
+class="angle">&rangle;</span></span><span class="oarg-right-bracket">]</span></span><br />
+<span class="texttt">(</span><span class="meta"><span class="angle">&langle;</span><i>upper left x</i><span class="angle">&rangle;</span></span><span class="texttt">,</span><span class="meta"><span class="angle">&langle;</span><i>upper left
+y</i><span class="angle">&rangle;</span></span><span class="texttt">)(</span><span class="meta"><span class="angle">&langle;</span><i>zoom area width</i><span class="angle">&rangle;</span></span><span class="texttt">,</span><span
+class="meta"><span class="angle">&langle;</span><i>zoom area depth</i><span class="angle">&rangle;</span></span><span class="texttt">)</span>
+</p>
+</div>
+<p>
+This command should be given somewhere at the beginning of a frame. When given, two different things will happen, depending on whether the <span class="meta"><span class="angle">&langle;</span><i>button overlay specification</i><span
+class="angle">&rangle;</span></span> applies to the current slide of the frame or whether the <span class="meta"><span class="angle">&langle;</span><i>zoomed overlay specification</i><span class="angle">&rangle;</span></span> applies. These overlay
+specifications should not overlap.
+</p>
+<p>
+If the <span class="meta"><span class="angle">&langle;</span><i>button overlay specification</i><span class="angle">&rangle;</span></span> applies, a clickable area is created inside the frame. The size of this area is given by <span class="meta"><span
+class="angle">&langle;</span><i>zoom area width</i><span class="angle">&rangle;</span></span> and <span class="meta"><span class="angle">&langle;</span><i>zoom area depth</i><span class="angle">&rangle;</span></span>, which are two normal
+<span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> dimensions (like <span class="texttt">1cm</span> or <span class="texttt">20pt</span>). The upper left corner of this area is given by <span
+class="meta"><span class="angle">&langle;</span><i>upper left x</i><span class="angle">&rangle;</span></span> and <span class="meta"><span class="angle">&langle;</span><i>upper left y</i><span class="angle">&rangle;</span></span>, which are also
+<span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> dimensions. They are measures <em>relative to the place where the first normal text of a frame would go</em>. Thus, the location <span
+class="texttt">(0pt,0pt)</span> is at the beginning of the normal text (which excludes the headline and also the frame title).
+</p>
+<p>
+By default, the button is clickable, but it will not be indicated in any special way. You can draw a border around the button by using the following <span class="meta"><span class="angle">&langle;</span><i>option</i><span class="angle">&rangle;</span></span>:
+</p>
+<ul style="list-style-type:none">
+
+<li>
+<p>
+• <span class="declare"><span class="texttt">border</span></span><span class="opt"><span class="texttt">=</span><span class="meta"><span class="angle">&langle;</span><i>width in pixels</i><span class="angle">&rangle;</span></span></span>
+will draw a border around the specified button area. The default width is 1 pixel. The color of this button is the <span class="texttt">linkbordercolor</span> of <span class="texttt">hyperref</span>. <span class="beamer-name"><span
+class="textsc">beamer</span></span> sets this color to a 50% gray by default.<br />
+To change this, you can use the command <span class="texttt">\hypersetup{linkbordercolor={</span><span class="meta"><span class="angle">&langle;</span><i>red</i><span class="angle">&rangle;</span></span><span class="texttt"> </span><span
+class="meta"><span class="angle">&langle;</span><i>green</i><span class="angle">&rangle;</span></span><span class="texttt"> </span><span class="meta"><span class="angle">&langle;</span><i>blue</i><span
+class="angle">&rangle;</span></span><span class="texttt">}}</span>, where <span class="meta"><span class="angle">&langle;</span><i>red</i><span class="angle">&rangle;</span></span>, <span class="meta"><span
+class="angle">&langle;</span><i>green</i><span class="angle">&rangle;</span></span>, and <span class="meta"><span class="angle">&langle;</span><i>blue</i><span class="angle">&rangle;</span></span> are values between 0 and 1.
+</p>
+</li>
+</ul>
+<p>
+When you press the button created in this way, the viewer application will hyperjump to the first of the frames specified by the <span class="meta"><span class="angle">&langle;</span><i>zoomed overlay specification</i><span
+class="angle">&rangle;</span></span>. For the slides to which this overlay specification applies, the following happens:
+</p>
+<p>
+The exact same area as the one specified before is “zoomed out” to fill the whole normal text area of the frame. Everything else, including the sidebars, the headlines and footlines, and even the frame title retain their normal size. The zooming is performed in such a way
+that the whole specified area is completely shown. The aspect ratio is kept correct and the zoomed area will possibly show more than just the specified area if the aspect ratio of this area and the aspect ratio of the available text area do not agree.
+</p>
+<p>
+Behind the whole text area (which contains the zoomed area) a big invisible “Back” button is put. Thus clicking anywhere on the text area will jump back to the original (unzoomed) picture.
+</p>
+<p>
+You can specify several zoom areas for a single frame. In this case, you should specify different <span class="meta"><span class="angle">&langle;</span><i>zoomed overlay specification</i><span class="angle">&rangle;</span></span>, but you can specify the same
+<span class="meta"><span class="angle">&langle;</span><i>button overlay specification</i><span class="angle">&rangle;</span></span>. You cannot nest zoomings in the sense that you cannot have a zoom button on a slide that is in some <span
+class="meta"><span class="angle">&langle;</span><i>zoomed overlay specification</i><span class="angle">&rangle;</span></span>. However, you can have overlapping and even nested <span class="meta"><span class="angle">&langle;</span><i>button
+overlay specification</i><span class="angle">&rangle;</span></span>. When clicking on an area that belongs to several buttons, the one given last will “win” (it should hence be the smallest one).
+</p>
+<p>
+If you do not wish to have the frame title shown on a zoomed slide, you can add an overlay specification to the <span class="texttt">\frametitle</span> command that simply suppresses the title for the slide. Also, by using the <span class="texttt">plain</span>
+option, you can have the zoomed slide fill the whole page.
+</p>
+<p>
+<i>Example: </i>A simple case
+</p>
+<pre class="verbatim">
+\begin{frame}
+  \frametitle{A Complicated Picture}
+
+  \framezoom<1><2>(0cm,0cm)(2cm,1.5cm)
+  \framezoom<1><3>(1cm,3cm)(2cm,1.5cm)
+  \framezoom<1><4>(3cm,2cm)(3cm,2cm)
+
+  \pgfimage[height=8cm]{complicatedimagefilename}
+\end{frame}
+</pre>
+<p>
+<i>Example: </i>A more complicate case in which the zoomed parts completely fill the frames.
+</p>
+<pre class="verbatim">
+\begin{frame}<1>[label=zooms]
+  \frametitle<1>{A Complicated Picture}
+
+  \framezoom<1><2>[border](0cm,0cm)(2cm,1.5cm)
+  \framezoom<1><3>[border](1cm,3cm)(2cm,1.5cm)
+  \framezoom<1><4>[border](3cm,2cm)(3cm,2cm)
+
+  \pgfimage[height=8cm]{complicatedimagefilename}
+\end{frame}
+\againframe<2->[plain]{zooms}
+</pre>
+</li>
+</ul>
+</div>
+</section>
+
+</main>
+
+</div>
+
+
+<nav class="botnavigation"><a href="home.html" class="linkhome" >
+Home</a></nav>
+
+</body>
+</html>

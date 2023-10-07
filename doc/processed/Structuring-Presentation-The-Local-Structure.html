@@ -1,0 +1,3080 @@
+
+<!DOCTYPE html>
+
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta content="LaTeX Lwarp package" name="generator">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Structuring a Presentation: The Local Structure - Beamer Manual</title>
+<link href="style.css?v=20231007" rel="stylesheet" type="text/css">
+
+<script async id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+<script async src="lwarp-mathjax-emulation.js"></script><link href="https://cdn.jsdelivr.net/npm/@docsearch/css@3" rel="stylesheet"></head>
+<body>
+<a id="beameruserguide-autopage-335"></a>
+
+<div class="bodyandsidetoc grid-container"><header><div id="hamburger-button">☰</div><strong><a href="home.html">Beamer Manual</a></strong><div id="search"></div></header><div class="sidetoccontainer" id="local-toc-container"><nav class="sidetoc"><div class="sidetoctitle"><p>On this page</p></div><div class="sidetoccontents"><p><a class="tocsubsection" href="#sec-12.1">Itemizations, Enumerations, and Descriptions</a></p><p><a class="tocsubsection" href="#sec-12.2">Highlighting</a></p><p><a class="tocsubsection" href="#sec-12.3">Block Environments</a></p><p><a class="tocsubsection" href="#sec-12.4">Theorem Environments</a></p><p><a class="tocsubsection" href="#sec-12.5">Framed and Boxed Text</a></p><p><a class="tocsubsection" href="#sec-12.6">Figures and Tables</a></p><p><a class="tocsubsection" href="#sec-12.7">Splitting a Frame into Multiple Columns</a></p><p><a class="tocsubsection" href="#sec-12.8">Positioning Text and Graphics Absolutely</a></p><p><a class="tocsubsection" href="#sec-12.9">Verbatim and Fragile Text</a></p><p><a class="tocsubsection" href="#sec-12.10">Abstract</a></p><p><a class="tocsubsection" href="#sec-12.11">Verse, Quotations, Quotes</a></p><p><a class="tocsubsection" href="#sec-12.12">Footnotes</a></p></div></nav></div>
+<div class="sidetoccontainer" id="chapter-toc-container">
+<nav class="sidetoc">
+<div class="sidetoctitle">
+<p>
+<span class="sidetocthetitle">The <span class="beamer-name"><span class="textsc">beamer</span></span> <i>class</i><br>
+<a href="https://github.com/josephwright/beamer" target="_blank">https://github.com/josephwright/beamer</a><br>
+User Guide for version 3.70.</span>
+</p>
+<p>
+Contents
+</p>
+</div>
+<div class="sidetoccontents">
+
+<p>
+<a class="tocsection" href="Introduction.html">Introduction</a>
+</p>
+<p>
+<a class="tocpart" href="Getting-Started.html">Getting Started</a>
+</p>
+
+
+
+
+
+
+<p class="current-part">
+<a class="tocpart" href="Building-Presentation.html">Building a Presentation</a>
+</p>
+<p class="current-part">
+<a class="tocsection" href="Creating-Frames.html">Creating Frames</a>
+</p>
+<p class="current-part">
+<a class="tocsection" href="Creating-Overlays.html">Creating Overlays</a>
+</p>
+<p class="current-part">
+<a class="tocsection" href="Structuring-Presentation-The-Static-Global-Structure.html">Structuring a Presentation: The Static Global Structure</a>
+</p>
+<p class="current-part">
+<a class="tocsection" href="Structuring-Presentation-The-Interactive-Global-Structure.html">Structuring a Presentation: The Interactive Global Structure</a>
+</p>
+<p class="current current-part">
+<a class="tocsection" href="Structuring-Presentation-The-Local-Structure.html">Structuring a Presentation: The Local Structure</a>
+</p>
+<p class="current-part">
+<a class="tocsection" href="Graphics.html">Graphics</a>
+</p>
+<p class="current-part">
+<a class="tocsection" href="Animations-Sounds-Slide-Transitions.html">Animations, Sounds, and Slide Transitions</a>
+</p>
+<p>
+<a class="tocpart" href="Changing-Way-Things-Look.html">Changing the Way Things Look</a>
+</p>
+
+
+
+
+<p>
+<a class="tocpart" href="Creating-Supporting-Material.html">Creating Supporting Material</a>
+</p>
+
+
+
+
+<p>
+<a class="tocpart" href="Howtos.html">Howtos</a>
+</p>
+
+
+</div>
+</nav>
+</div>
+<main class="bodycontainer">
+<section class="textbody">
+<h2 class="inserted">Building a Presentation</h2>
+<!--MathJax customizations:-->
+<div class="hidden">
+
+\(\newcommand{\footnotename}{footnote}\)
+
+\(\def \LWRfootnote {1}\)
+
+\(\newcommand {\footnote }[2][\LWRfootnote ]{{}^{\mathrm {#1}}}\)
+
+\(\newcommand {\footnotemark }[1][\LWRfootnote ]{{}^{\mathrm {#1}}}\)
+
+\(\let \LWRorighspace \hspace \)
+
+\(\renewcommand {\hspace }{\ifstar \LWRorighspace \LWRorighspace }\)
+
+\(\newcommand {\mathnormal }[1]{{#1}}\)
+
+\(\newcommand \ensuremath [1]{#1}\)
+
+\(\newcommand {\LWRframebox }[2][]{\fbox {#2}} \newcommand {\framebox }[1][]{\LWRframebox } \)
+
+\(\newcommand {\setlength }[2]{}\)
+
+\(\newcommand {\addtolength }[2]{}\)
+
+\(\newcommand {\setcounter }[2]{}\)
+
+\(\newcommand {\addtocounter }[2]{}\)
+
+\(\newcommand {\arabic }[1]{}\)
+
+\(\newcommand {\number }[1]{}\)
+
+\(\newcommand {\noalign }[1]{\text {#1}\notag \\}\)
+
+\(\newcommand {\cline }[1]{}\)
+
+\(\newcommand {\directlua }[1]{\text {(directlua)}}\)
+
+\(\newcommand {\luatexdirectlua }[1]{\text {(directlua)}}\)
+
+\(\newcommand {\protect }{}\)
+
+\(\def \LWRabsorbnumber #1 {}\)
+
+\(\def \LWRabsorbquotenumber "#1 {}\)
+
+\(\newcommand {\LWRabsorboption }[1][]{}\)
+
+\(\newcommand {\LWRabsorbtwooptions }[1][]{\LWRabsorboption }\)
+
+\(\def \mathchar {\ifnextchar "\LWRabsorbquotenumber \LWRabsorbnumber }\)
+
+\(\def \mathcode #1={\mathchar }\)
+
+\(\let \delcode \mathcode \)
+
+\(\let \delimiter \mathchar \)
+
+\(\def \oe {\unicode {x0153}}\)
+
+\(\def \OE {\unicode {x0152}}\)
+
+\(\def \ae {\unicode {x00E6}}\)
+
+\(\def \AE {\unicode {x00C6}}\)
+
+\(\def \aa {\unicode {x00E5}}\)
+
+\(\def \AA {\unicode {x00C5}}\)
+
+\(\def \o {\unicode {x00F8}}\)
+
+\(\def \O {\unicode {x00D8}}\)
+
+\(\def \l {\unicode {x0142}}\)
+
+\(\def \L {\unicode {x0141}}\)
+
+\(\def \ss {\unicode {x00DF}}\)
+
+\(\def \SS {\unicode {x1E9E}}\)
+
+\(\def \dag {\unicode {x2020}}\)
+
+\(\def \ddag {\unicode {x2021}}\)
+
+\(\def \P {\unicode {x00B6}}\)
+
+\(\def \copyright {\unicode {x00A9}}\)
+
+\(\def \pounds {\unicode {x00A3}}\)
+
+\(\let \LWRref \ref \)
+
+\(\renewcommand {\ref }{\ifstar \LWRref \LWRref }\)
+
+\( \newcommand {\multicolumn }[3]{#3}\)
+
+\(\require {textcomp}\)
+
+\(\newcommand {\intertext }[1]{\text {#1}\notag \\}\)
+
+\(\let \Hat \hat \)
+
+\(\let \Check \check \)
+
+\(\let \Tilde \tilde \)
+
+\(\let \Acute \acute \)
+
+\(\let \Grave \grave \)
+
+\(\let \Dot \dot \)
+
+\(\let \Ddot \ddot \)
+
+\(\let \Breve \breve \)
+
+\(\let \Bar \bar \)
+
+\(\let \Vec \vec \)
+
+</div>
+<p>
+<!--
+...... section Structuring a Presentation: The Local Structure ......
+-->
+<h4 id="autosec-336"><span class="sectionnumber" id="sec-12">12</span> Structuring a Presentation: The Local Structure</h4>
+<a id="beameruserguide-autopage-336"></a>
+<a id="beameruserguide-autofile-14"></a>
+<p>
+<span class="latexlogofont"><span class="latexlogo">L<span class="latexlogosup">a</span>T<span class="latexlogosub">e</span>X</span></span> provides different commands for structuring text &ldquo;locally,&rdquo; for example, via the <span class="texttt">itemize</span> environment. These environments are also available in the <span class="beamer-name"><span class="textsc">beamer</span></span> class, although their appearance has been slightly changed. Furthermore, the <span class="beamer-name"><span class="textsc">beamer</span></span> class also defines some new commands and environments, see below, that may help you to structure your text.
+</p>
+<!--
+...... subsection Itemizations, Enumerations, and Descriptions ......
+-->
+<h5 id="autosec-337"><a id="section-enumerate"></a><span><span class="sectionnumber" id="sec-12.1">12.1</span> Itemizations, Enumerations, and Descriptions</span><a class="anchor-link" href="#sec-12.1">&para;</a></h5>
+<a id="beameruserguide-autopage-337"></a>
+
+<p>
+There are three predefined environments for creating lists, namely <span class="texttt">enumerate</span>, <span class="texttt">itemize</span>, and <span class="texttt">description</span>. The first two can be nested to depth three, but nesting them to this
+depth creates totally unreadable slides.
+</p>
+<p>
+The <span class="texttt">\item</span> command is overlay specification-aware. If an overlay specification is provided, the item will only be shown on the specified slides, see the following example. If the <span class="texttt">\item</span> command is to take an
+optional argument and an overlay specification, the overlay specification can either come first as in <span class="texttt">\item&lt;1&gt;[Cat]</span> or come last as in <span class="texttt">\item[Cat]&lt;1&gt;</span>.
+</p>
+<pre class="verbatim">
+\begin{frame}
+  There are three important points:
+  \begin{enumerate}
+  \item&lt;1-&gt; A first one,
+  \item&lt;2-&gt; a second one with a bunch of subpoints,
+    \begin{itemize}
+    \item first subpoint. (Only shown from second slide on!).
+    \item&lt;3-&gt; second subpoint added on third slide.
+    \item&lt;4-&gt; third subpoint added on fourth slide.
+    \end{itemize}
+  \item&lt;5-&gt; and a third one.
+  \end{enumerate}
+\end{frame}
+</pre>
+<div class="environment">
+
+<div class="begin-environment">
+<div class="translatormanualentryheadline">
+<p>
+\begin{<span class="declare">itemize</span>}<span class="opt"><span class="texttt">[&lt;</span><span class="meta"><span class="angle">&langle;</span><i>default overlay specification</i><span class="angle">&rangle;</span></span><span class="texttt">&gt;]</span></span>
+</p>
+</div>
+</div>
+<div class="translatormanualentryheadline">
+
+
+<p>
+<span class="meta"><span class="angle">&langle;</span><i>environment contents</i><span class="angle">&rangle;</span></span>
+</p>
+</div>
+<div class="end-environment">
+<div class="translatormanualentryheadline">
+
+
+<p>
+\end{<span class="declare">itemize</span>}
+</p>
+</div>
+</div>
+<p>
+Used to display a list of items that do not have a special ordering. Inside the environment, use an <span class="texttt">\item</span> command for each topic.
+</p>
+<p>
+If the optional parameter <span class="meta"><span class="angle">&langle;</span><i>default overlay specification</i><span class="angle">&rangle;</span></span> is given, in every occurrence of an <span class="texttt">\item</span> command that does not
+have an overlay specification attached to it, the <span class="meta"><span class="angle">&langle;</span><i>default overlay specification</i><span class="angle">&rangle;</span></span> is used. By setting this specification to be an incremental overlay
+specification, see Section&nbsp;<a href="Creating-Overlays.html#section-incremental">9.6.4</a>, you can implement, for example, a step-wise uncovering of the items. The <span class="meta"><span class="angle">&langle;</span><i>default overlay
+specification</i><span class="angle">&rangle;</span></span> is inherited by subenvironments. Naturally, in a subenvironment you can reset it locally by setting it to <span class="texttt">&lt;1-&gt;</span>.
+</p>
+<p>
+<i>Example: </i>
+</p>
+<pre class="verbatim">
+\begin{itemize}
+\item This is important.
+\item This is also important.
+\end{itemize}
+</pre>
+<p>
+<i>Example: </i>
+</p>
+<pre class="verbatim">
+\begin{itemize}[&lt;+-&gt;]
+\item This is shown from the first slide on.
+\item This is shown from the second slide on.
+\item This is shown from the third slide on.
+\item&lt;1-&gt; This is shown from the first slide on.
+\item This is shown from the fourth slide on.
+\end{itemize}
+</pre>
+<p>
+<i>Example: </i>
+</p>
+<pre class="verbatim">
+\begin{itemize}[&lt;+-| alert@+&gt;]
+\item This is shown from the first slide on and alerted on the first slide.
+\item This is shown from the second slide on and alerted on the second slide.
+\item This is shown from the third slide on and alerted on the third slide.
+\end{itemize}
+</pre>
+<p>
+<i>Example: </i>
+</p>
+<pre class="verbatim">
+\newenvironment{mystepwiseitemize}{\begin{itemize}[&lt;+-| alert@+&gt;]}{\end{itemize}}
+</pre>
+<p>
+The appearance of an <span class="texttt">itemize</span> list is governed by several templates. The first template concerns the way the little marker introducing each item is typeset:
+</p>
+<div class="element">
+
+
+<p>
+<span class="element-headline"><b>Parent Beamer-Template</b> <span class="element-declare"><span class="declare">itemize items</span></span></span>
+</p>
+<p>
+This template is a parent template, whose children are <span class="texttt">itemize item</span>, <span class="texttt">itemize subitem</span>, and <span class="texttt">itemize subsubitem</span>. This means that if you use the <span class="texttt">\setbeamertemplate</span> command on this template, the command is instead called for all of these children (with the same arguments).
+</p>
+<p>
+The following template options are predefined:
+</p>
+
+
+<p>
+&bull; <span class="itemoption"><kbd>[<span class="declare">default</span>]</kbd></span> The default item marker is a small triangle colored with the foreground of the <span class="beamer-name"><span class="textsc">beamer</span></span>-color <span class="texttt">itemize item</span> (or, for subitems, <span class="texttt">itemize subitem</span> etc.). Note that these colors will automatically change under certain circumstances such as inside an example block or inside an <span class="texttt">alertenv</span> environment.
+</p>
+
+
+<p>
+&bull; <span class="itemoption"><kbd>[<span class="declare">triangle</span>]</kbd></span> Alias for the default.
+</p>
+
+
+<p>
+&bull; <span class="itemoption"><kbd>[<span class="declare">circle</span>]</kbd></span> Uses little circles (or dots) as item markers.
+</p>
+
+
+<p>
+&bull; <span class="itemoption"><kbd>[<span class="declare">square</span>]</kbd></span> Uses little squares as item markers.
+</p>
+
+
+<p>
+&bull; <span class="itemoption"><kbd>[<span class="declare">ball</span>]</kbd></span> Uses little balls as item markers.
+</p>
+
+
+
+
+</div>
+<div class="element">
+
+
+<p>
+<span class="element-headline"><b>Beamer-Template/-Color/-Font</b> <span class="element-declare"><span class="declare">itemize item</span></span></span>
+</p>
+<p>
+Color/font parents: <kbd>item</kbd>
+</p>
+<p>
+This template (with <span class="texttt">item</span> instead of <span class="texttt">items</span>) governs how the marker in front of a first-level item is typeset. &ldquo;First-level&rdquo; refers to the level of nesting. See the <span class="texttt">itemize items</span>
+template for the <span class="meta"><span class="angle">&langle;</span><i>options</i><span class="angle">&rangle;</span></span> that may be given.
+</p>
+<p>
+When the template is inserted, the <span class="beamer-name"><span class="textsc">beamer</span></span>-font and -color <span class="texttt">itemize item</span> is installed. Typically, the font is ignored by the template as some special symbol is drawn
+anyway, by the font may be important if an optional argument is given to the <span class="texttt">\item</span> command as in <span class="texttt">\item[First]</span>.
+</p>
+<p>
+The font and color inherit from the <span class="texttt">item</span> font and color, which are explained at the end of this section.
+</p>
+
+
+</div>
+<div class="element">
+
+
+<p>
+<span class="element-headline"><b>Beamer-Template/-Color/-Font</b> <span class="element-declare"><span class="declare">itemize subitem</span></span></span>
+</p>
+<p>
+Color/font parents: <kbd>subitem</kbd>
+</p>
+<p>
+Like <span class="texttt">itemize item</span>, only for second-level items. An item of an itemize inside an enumerate counts as a second-level item.
+</p>
+
+
+</div>
+<div class="element">
+
+
+<p>
+<span class="element-headline"><b>Beamer-Template/-Color/-Font</b> <span class="element-declare"><span class="declare">itemize subsubitem</span></span></span>
+</p>
+<p>
+Color/font parents: <kbd>subsubitem</kbd>
+</p>
+<p>
+Like <span class="texttt">itemize item</span>, only for third-level items.
+</p>
+
+
+</div>
+
+
+</div>
+<div class="environment">
+
+<div class="begin-environment">
+<div class="translatormanualentryheadline">
+<p>
+\begin{<span class="declare">enumerate</span>}<span class="opt"><span class="texttt">[&lt;</span><span class="meta"><span class="angle">&langle;</span><i>default overlay specification</i><span class="angle">&rangle;</span></span><span class="texttt">&gt;]</span></span><span class="opt"><span class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>mini template</i><span class="angle">&rangle;</span></span><span class="oarg-right-bracket">]</span></span>
+</p>
+</div>
+</div>
+<div class="translatormanualentryheadline">
+
+
+<p>
+<span class="meta"><span class="angle">&langle;</span><i>environment contents</i><span class="angle">&rangle;</span></span>
+</p>
+</div>
+<div class="end-environment">
+<div class="translatormanualentryheadline">
+
+
+<p>
+\end{<span class="declare">enumerate</span>}
+</p>
+</div>
+</div>
+<p>
+Used to display a list of items that are ordered. Inside the environment, use an <span class="texttt">\item</span> command for each topic. By default, before each item increasing Arabic numbers followed by a dot are printed (as in &ldquo;1.&rdquo; and &ldquo;2.&rdquo;). This can be changed
+by specifying a different template, see below.
+</p>
+<p>
+The first optional argument <span class="meta"><span class="angle">&langle;</span><i>default overlay specification</i><span class="angle">&rangle;</span></span> has exactly the same effect as for the <span class="texttt">itemize</span> environment. It is
+&ldquo;detected&rdquo; by the opening <span class="texttt">&lt;</span>-sign in the <span class="meta"><span class="angle">&langle;</span><i>default overlay specification</i><span class="angle">&rangle;</span></span>. Thus, if there is only one optional argument and if
+this argument does not start with <span class="texttt">&lt;</span>, then it is considered to be a <span class="meta"><span class="angle">&langle;</span><i>mini template</i><span class="angle">&rangle;</span></span>.
+</p>
+<p>
+The syntax of the <span class="meta"><span class="angle">&langle;</span><i>mini template</i><span class="angle">&rangle;</span></span> is the same as the syntax of mini templates in the <span class="texttt">enumerate</span> package (you do not need
+to include the <span class="texttt">enumerate</span> package, this is done automatically). Roughly spoken, the text of the <span class="meta"><span class="angle">&langle;</span><i>mini template</i><span class="angle">&rangle;</span></span> is printed
+before each item, but any occurrence of a <span class="texttt">1</span> in the mini template is replaced by the current item number, an occurrence of the letter <span class="texttt">A</span> is replaced by the \(i\)-th letter of the alphabet (in uppercase) for the
+\(i\)-th item, and the letters <span class="texttt">a</span>, <span class="texttt">i</span>, and <span class="texttt">I</span> are replaced by the corresponding lowercase letters, lowercase Roman letters, and uppercase Roman letters, respectively. So the mini
+template <span class="texttt">(i)</span> would yield the items (i), (ii), (iii), (iv), and so on. The mini template <span class="texttt">A.)</span> would yield the items A.), B.), C.), D.) and so on. For more details on the possible mini templates, see the
+documentation of the <span class="texttt">enumerate</span> package. Note that there is also a template that governs the appearance of the mini template.
+</p>
+<p>
+<i>Example: </i>
+</p>
+<pre class="verbatim">
+\begin{enumerate}
+\item This is important.
+\item This is also important.
+\end{enumerate}
+
+\begin{enumerate}[(i)]
+\item First Roman point.
+\item Second Roman point.
+\end{enumerate}
+
+\begin{enumerate}[&lt;+-&gt;][(i)]
+\item First Roman point.
+\item Second Roman point, uncovered on second slide.
+\end{enumerate}
+</pre>
+<p>
+To use the <span class="meta"><span class="angle">&langle;</span><i>mini template</i><span class="angle">&rangle;</span></span>, you have to include the package <span class="texttt">enumerate</span>.
+</p>
+<div class="element">
+
+
+<p>
+<span class="element-headline"><b>Parent Beamer-Template</b> <span class="element-declare"><span class="declare">enumerate items</span></span></span>
+</p>
+<p>
+Similar to <span class="texttt">itemize items</span>, this template is a parent template, whose children are <span class="texttt">enumerate item</span>, <span class="texttt">enumerate subitem</span>, <span class="texttt">enumerate subsubitem</span>,
+and <span class="texttt">enumerate mini template</span>. These templates govern how the text (the number) of an enumeration is typeset.
+</p>
+<p>
+The following template options are predefined:
+</p>
+
+
+<p>
+&bull; <span class="itemoption"><kbd>[<span class="declare">default</span>]</kbd></span> The default enumeration marker uses the scheme 1., 2., 3. for the first level, 1.1, 1.2, 1.3 for the second level and 1.1.1, 1.1.2, 1.1.3 for the third level.
+</p>
+
+
+<p>
+&bull; <span class="itemoption"><kbd>[<span class="declare">circle</span>]</kbd></span> Places the numbers inside little circles. The colors are taken from <span class="texttt">item projected</span> or <span class="texttt">subitem projected</span> or
+<span class="texttt">subsubitem projected</span>.
+</p>
+
+
+<p>
+&bull; <span class="itemoption"><kbd>[<span class="declare">square</span>]</kbd></span> Places the numbers on little squares.
+</p>
+
+
+<p>
+&bull; <span class="itemoption"><kbd>[<span class="declare">ball</span>]</kbd></span> &ldquo;Projects&rdquo; the numbers onto little balls.
+</p>
+
+
+
+
+</div>
+<div class="element">
+
+
+<p>
+<span class="element-headline"><b>Beamer-Template/-Color/-Font</b> <span class="element-declare"><span class="declare">enumerate item</span></span></span>
+</p>
+<p>
+This template governs how the number in front of a first-level item is typeset. The level here refers to the level of enumeration nesting only. Thus an enumerate inside an itemize is a first-level enumerate (but it uses the second-level <span class="texttt">itemize/enumerate body</span>).
+</p>
+<p>
+When the template is inserted, the <span class="beamer-name"><span class="textsc">beamer</span></span>-font and -color <span class="texttt">enumerate item</span> are installed.
+</p>
+<p>
+The following command is useful for this template:
+</p>
+
+
+<p>
+&bull; <kbd><span class="declare">\insertenumlabel</span></kbd> inserts the current number of the top-level enumeration (as an Arabic number). This insert is also available in the next two templates.
+</p>
+
+
+
+
+</div>
+<div class="element">
+
+
+<p>
+<span class="element-headline"><b>Beamer-Template/-Color/-Font</b> <span class="element-declare"><span class="declare">enumerate subitem</span></span></span>
+</p>
+<p>
+Like <span class="texttt">enumerate item</span>, only for second-level items.
+</p>
+
+
+<p>
+&bull; <kbd><span class="declare">\insertsubenumlabel</span></kbd> inserts the current number of the second-level enumeration (as an Arabic number).
+</p>
+
+
+<p>
+<i>Example: </i>
+</p>
+<pre class="verbatim">
+\setbeamertemplate{enumerate subitem}{\insertenumlabel-\insertsubenumlabel}
+</pre>
+
+
+</div>
+<div class="element">
+
+
+<p>
+<span class="element-headline"><b>Beamer-Template/-Color/-Font</b> <span class="element-declare"><span class="declare">enumerate subsubitem</span></span></span>
+</p>
+<p>
+Like <span class="texttt">enumerate item</span>, only for third-level items.
+</p>
+
+
+<p>
+&bull; <kbd><span class="declare">\insertsubsubenumlabel</span></kbd> inserts the current number of the second-level enumeration (as an Arabic number).
+</p>
+
+
+
+
+</div>
+<div class="element">
+
+
+<p>
+<span class="element-headline"><b>Beamer-Template/-Color/-Font</b> <span class="element-declare"><span class="declare">enumerate mini template</span></span></span>
+</p>
+<p>
+This template is used to typeset the number that arises from a mini template.
+</p>
+
+
+<p>
+&bull; <kbd><span class="declare">\insertenumlabel</span></kbd> inserts the current number rendered by this mini template. For example, if the <span class="meta"><span class="angle">&langle;</span><i>mini template</i><span class="angle">&rangle;</span></span> is <span class="texttt">(i)</span> and this command is used in the fourth item, <span class="texttt">\insertenumlabel</span> would yield <span class="texttt">(iv)</span>.
+</p>
+
+
+
+
+</div>
+
+
+</div>
+<p>
+The following templates govern how the <em>body</em> of an <span class="texttt">itemize</span> or an <span class="texttt">enumerate</span> is typeset.
+</p>
+<div class="element">
+
+
+<p>
+<span class="element-headline"><b>Beamer-Template</b> <span class="element-declare"><span class="declare">itemize/enumerate body begin</span></span></span>
+</p>
+<p>
+This template is inserted at the beginning of a first-level <span class="texttt">itemize</span> or <span class="texttt">enumerate</span> environment. Furthermore, before this template is inserted, the <span class="beamer-name"><span class="textsc">beamer</span></span>-font and -color <span class="texttt">itemize/enumerate body</span> is used.
+</p>
+
+
+</div>
+<div class="element">
+
+
+<p>
+<span class="element-headline"><b>Beamer-Template</b> <span class="element-declare"><span class="declare">itemize/enumerate body end</span></span></span>
+</p>
+<p>
+This template is inserted at the end of a first-level <span class="texttt">itemize</span> or <span class="texttt">enumerate</span> environment.
+</p>
+
+
+</div>
+<p>
+There exist corresponding templates like <span class="texttt">itemize/enumerate subbody begin</span> for second- and third-level itemize or enumerates.
+</p>
+<div class="element">
+
+
+<p>
+<span class="element-headline"><b>Parent Beamer-Template</b> <span class="element-declare"><span class="declare">items</span></span></span>
+</p>
+<p>
+This template is a parent template of <span class="texttt">itemize items</span> and <span class="texttt">enumerate items</span>.
+</p>
+<p>
+<i>Example: </i><span class="texttt">\setbeamertemplate{items}[circle]</span> will cause all items in <span class="texttt">itemize</span> or <span class="texttt">enumerate</span> environments to become circles (of the appropriate size, color, and font).
+</p>
+
+
+</div>
+<a id="section-descriptions"></a>
+<div class="environment">
+
+<div class="begin-environment">
+<div class="translatormanualentryheadline">
+<p>
+\begin{<span class="declare">description</span>}<span class="opt"><span class="texttt">[&lt;</span><span class="meta"><span class="angle">&langle;</span><i>default overlay specification</i><span class="angle">&rangle;</span></span><span class="texttt">&gt;]</span></span><span class="opt"><span class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>long text</i><span class="angle">&rangle;</span></span><span class="oarg-right-bracket">]</span></span>
+</p>
+</div>
+</div>
+<div class="translatormanualentryheadline">
+
+
+<p>
+<span class="meta"><span class="angle">&langle;</span><i>environment contents</i><span class="angle">&rangle;</span></span>
+</p>
+</div>
+<div class="end-environment">
+<div class="translatormanualentryheadline">
+
+
+<p>
+\end{<span class="declare">description</span>}
+</p>
+</div>
+</div>
+<p>
+Like <span class="texttt">itemize</span>, but used to display a list that explains or defines labels. The width of <span class="meta"><span class="angle">&langle;</span><i>long text</i><span class="angle">&rangle;</span></span> is used to set the
+indentation. Normally, you choose the widest label in the description and copy it here. If you do not give this argument, the default width is used, which can be changed using <span class="texttt">\setbeamersize</span> with the argument <span class="texttt">description width=</span><span class="meta"><span class="angle">&langle;</span><i>width</i><span class="angle">&rangle;</span></span>.
+</p>
+<p>
+As for <span class="texttt">enumerate</span>, the <span class="meta"><span class="angle">&langle;</span><i>default overlay specification</i><span class="angle">&rangle;</span></span> is detected by an opening&nbsp;<span class="texttt">&lt;</span>. The
+effect is the same as for <span class="texttt">enumerate</span> and <span class="texttt">itemize</span>.
+</p>
+<p>
+<i>Example: </i>
+</p>
+<pre class="verbatim">
+\begin{description}
+\item[Lion] King of the savanna.
+\item[Tiger] King of the jungle.
+\end{description}
+
+\begin{description}[longest label]
+\item&lt;1-&gt;[short] Some text.
+\item&lt;2-&gt;[longest label] Some text.
+\item&lt;3-&gt;[long label] Some text.
+\end{description}
+</pre>
+<p>
+<i>Example: </i>The following has the same effect as the previous example:
+</p>
+<pre class="verbatim">
+\begin{description}[&lt;+-&gt;][longest label]
+\item[short] Some text.
+\item[longest label] Some text.
+\item[long label] Some text.
+\end{description}
+</pre>
+<div class="element">
+
+
+<p>
+<span class="element-headline"><b>Beamer-Template/-Color/-Font</b> <span class="element-declare"><span class="declare">description item</span></span></span>
+</p>
+<p>
+This template is used to typeset the description items. When this template is called, the <span class="beamer-name"><span class="textsc">beamer</span></span>-font and -color <span class="texttt">description item</span> are installed.
+</p>
+<p>
+The following template options are predefined:
+</p>
+
+
+<p>
+&bull; <span class="itemoption"><kbd>[<span class="declare">default</span>]</kbd></span> By default, the description item text is just inserted without any modification.
+</p>
+
+
+<p>
+The main insert that is useful inside this template is:
+</p>
+
+
+<p>
+&bull; <kbd><span class="declare">\insertdescriptionitem</span></kbd> inserts the text of the current description item.
+</p>
+
+
+
+
+</div>
+<div class="element">
+
+
+<p>
+<span class="element-headline"><b>Beamer-Template</b> <span class="element-declare"><span class="declare">description body begin</span></span></span>
+</p>
+<p>
+This template is inserted at the beginning of a <span class="texttt">description</span> environment. Furthermore, before this template is inserted, the <span class="beamer-name"><span class="textsc">beamer</span></span>-font and -color <span class="texttt">description body</span> is used.
+</p>
+
+
+</div>
+<div class="element">
+
+
+<p>
+<span class="element-headline"><b>Beamer-Template</b> <span class="element-declare"><span class="declare">description body end</span></span></span>
+</p>
+<p>
+This template is inserted at the end of a <span class="texttt">description</span> environment.
+</p>
+
+
+</div>
+
+
+</div>
+<p>
+In order to simplify changing the color or font of items, the different kinds of items inherit from or just use the following &ldquo;general&rdquo; <span class="beamer-name"><span class="textsc">beamer</span></span>-color and fonts:
+</p>
+<div class="element">
+
+
+<p>
+<span class="element-headline"><b>Beamer-Color/-Font</b> <span class="element-declare"><span class="declare">item</span></span></span>
+</p>
+<p>
+Color parents: <kbd>local structure</kbd>
+</p>
+<p>
+Font parents: <kbd>structure</kbd>
+</p>
+<p>
+This color/font serves as a parent for the individual items of <span class="texttt">itemize</span> and <span class="texttt">enumerate</span> environments, but also for items in the table of contents. Since its color parent is the <span class="texttt">local structure</span>, a change of that color causes the color of items to change accordingly.
+</p>
+
+
+</div>
+<div class="element">
+
+
+<p>
+<span class="element-headline"><b>Beamer-Color/-Font</b> <span class="element-declare"><span class="declare">item projected</span></span></span>
+</p>
+<p>
+Color/font parents: <kbd>item</kbd>
+</p>
+<p>
+This is a special &ldquo;version&rdquo; of the <span class="texttt">item</span> color and font that should be used by templates that render items with text (as in an enumeration) and which &ldquo;project&rdquo; this text onto something like a ball or a square or whatever. While the normal
+<span class="texttt">item</span> color typically has a transparent background, the <span class="texttt">item projected</span> typically has a colored background and, say, a white foreground.
+</p>
+
+
+</div>
+<div class="element">
+
+
+<p>
+<span class="element-headline"><b>Beamer-Color/-Font</b> <span class="element-declare"><span class="declare">subitem</span></span></span>
+</p>
+<p>
+Color/font parents: <kbd>item</kbd>
+</p>
+<p>
+Same as <span class="texttt">item</span> for subitems, that is, for items on the second level of indentation.
+</p>
+
+
+</div>
+<div class="element">
+
+
+<p>
+<span class="element-headline"><b>Beamer-Color/-Font</b> <span class="element-declare"><span class="declare">subitem projected</span></span></span>
+</p>
+<p>
+Color/font parents: <kbd>item projected</kbd>
+</p>
+<p>
+Same as <span class="texttt">item projected</span> for subitems, that is, for items on the second level of indentation.
+</p>
+
+
+</div>
+<div class="element">
+
+
+<p>
+<span class="element-headline"><b>Beamer-Color/-Font</b> <span class="element-declare"><span class="declare">subsubitem</span></span></span>
+</p>
+<p>
+Color/font parents: <kbd>subitem</kbd>
+</p>
+<p>
+Same as <span class="texttt">subitem</span> for subsubitems, that is, for items on the third level of indentation.
+</p>
+
+
+</div>
+<div class="element">
+
+
+<p>
+<span class="element-headline"><b>Beamer-Color/-Font</b> <span class="element-declare"><span class="declare">subsubitem projected</span></span></span>
+</p>
+<p>
+Color/font parents: <kbd>subitem projected</kbd>
+</p>
+<p>
+Same as <span class="texttt">subitem projected</span> for subsubitems, that is, for items on the third level of indentation.
+</p>
+
+
+</div>
+<!--
+...... subsection Highlighting ......
+-->
+<h5 id="autosec-347"><span><span class="sectionnumber" id="sec-12.2">12.2</span> Highlighting</span><a class="anchor-link" href="#sec-12.2">&para;</a></h5>
+<a id="beameruserguide-autopage-347"></a>
+<p>
+The <span class="beamer-name"><span class="textsc">beamer</span></span> class predefines commands and environments for highlighting text. Using these commands makes it easy to change the appearance of a document by changing the theme.
+</p>
+<div class="command">
+
+
+<p>
+</p>
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\structure</kbd></span><span class="opt">&lt;<span class="meta"><span class="angle">&langle;</span><i>overlay specification</i><span class="angle">&rangle;</span></span>&gt;</span>{<span class="meta"><span class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+The given text is marked as part of the structure, that is, it is supposed to help the audience see the structure of your presentation. If the <span class="meta"><span class="angle">&langle;</span><i>overlay specification</i><span class="angle">&rangle;</span></span> is present, the command only has an effect on the specified slides.
+</p>
+<p>
+<i>Example: </i><span class="texttt">\structure{Paragraph Heading.}</span>
+</p>
+<p>
+Internally, this command just puts the <em>text</em> inside a <span class="texttt">structureenv</span> environment.
+</p>
+<p>
+Structure text is typeset as bold text. This can be changed by modifying the templates.
+</p>
+<div class="element">
+
+
+<p>
+<span class="element-headline"><b>Beamer-Color/-Font</b> <span class="element-declare"><span class="declare">structure</span></span></span>
+</p>
+<p>
+This color/font is used when structured text is typeset, but it is also widely used as a base for many other colors including the headings of blocks, item buttons, and titles. In most color themes, the colors for navigational elements in the headline or the footline are derived
+from the foreground color of <span class="texttt">structure</span>. By changing the structure color you can easily change the &ldquo;basic color&rdquo; of your presentation, other than the color of normal text. See also the related color <span class="texttt">local structure</span> and the related font <span class="texttt">tiny structure</span>.
+</p>
+<p>
+Inside the <span class="texttt">\structure</span> command, the background of the color is ignored, but this is not necessarily true for elements that inherit their color from <span class="texttt">structure</span>. There is no template <span class="texttt">structure</span>, use <span class="texttt">structure begin</span> and <span class="texttt">structure end</span> instead.
+</p>
+
+
+</div>
+<div class="element">
+
+
+<p>
+<span class="element-headline"><b>Beamer-Color</b> <span class="element-declare"><span class="declare">local structure</span></span></span>
+</p>
+<p>
+This color should be used to typeset structural elements that change their color according to the &ldquo;local environment.&rdquo; For example, an item &ldquo;button&rdquo; in an <span class="texttt">itemize</span> environment changes its color according to circumstances. If it is used
+inside an example block, it should have the <span class="texttt">example text</span> color; if it is currently &ldquo;alerted&rdquo; it should have the <span class="texttt">alerted text</span> color. This color is setup by certain environments to have the color that should be
+used to typeset things like item buttons. Since the color used for items, <span class="texttt">item</span>, inherits from this color by default, items automatically change their color according to the current situation.
+</p>
+<p>
+If you write your own environment in which the item buttons and similar structural elements should have a different color, you should change the color <span class="texttt">local structure</span> inside these environments.
+</p>
+
+
+</div>
+<div class="element">
+
+
+<p>
+<span class="element-headline"><b>Beamer-Font</b> <span class="element-declare"><span class="declare">tiny structure</span></span></span>
+</p>
+<p>
+This special font is used for &ldquo;tiny&rdquo; structural text. Basically, this font should be used whenever a structural element uses a tiny font. The idea is that the tiny versions of the <span class="texttt">structure</span> font often are not suitable. For example, it is often
+necessary to use a boldface version for them. Also, one might wish to have serif smallcaps structural text, but still retain normal sans-serif tiny structural text.
+</p>
+
+
+</div>
+
+
+</div>
+<div class="environment">
+
+<div class="begin-environment">
+<div class="translatormanualentryheadline">
+<p>
+\begin{<span class="declare">structureenv</span>}<span class="opt">&lt;<span class="meta"><span class="angle">&langle;</span><i>overlay specification</i><span class="angle">&rangle;</span></span>&gt;</span>
+</p>
+</div>
+</div>
+<div class="translatormanualentryheadline">
+
+
+<p>
+<span class="meta"><span class="angle">&langle;</span><i>environment contents</i><span class="angle">&rangle;</span></span>
+</p>
+</div>
+<div class="end-environment">
+<div class="translatormanualentryheadline">
+
+
+<p>
+\end{<span class="declare">structureenv</span>}
+</p>
+</div>
+</div>
+<p>
+Environment version of the <span class="texttt">\structure</span> command.
+</p>
+<div class="element">
+
+
+<p>
+<span class="element-headline"><b>Beamer-Template</b> <span class="element-declare"><span class="declare">structure begin</span></span></span>
+</p>
+<p>
+This text is inserted at the beginning of a <span class="texttt">structureenv</span> environment.
+</p>
+<p>
+The following template options are predefined:
+</p>
+
+
+<p>
+&bull; <span class="itemoption"><kbd>[<span class="declare">default</span>]</kbd></span>
+</p>
+<p>
+The text is typeset in boldface.
+</p>
+
+
+
+
+</div>
+<div class="element">
+
+
+<p>
+<span class="element-headline"><b>Beamer-Template</b> <span class="element-declare"><span class="declare">structure end</span></span></span>
+</p>
+<p>
+This text is inserted at the end of a <span class="texttt">structureenv</span> environment.
+</p>
+
+
+</div>
+
+
+</div>
+<div class="command">
+
+
+<p>
+</p>
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\alert</kbd></span><span class="opt">&lt;<span class="meta"><span class="angle">&langle;</span><i>overlay specification</i><span class="angle">&rangle;</span></span>&gt;</span>{<span class="meta"><span class="angle">&langle;</span><i>highlighted text</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+The given text is highlighted, typically by coloring the text red. If the <span class="meta"><span class="angle">&langle;</span><i>overlay specification</i><span class="angle">&rangle;</span></span> is present, the command only has an effect on the specified
+slides.
+</p>
+<p>
+<i>Example: </i><span class="texttt">This is \alert{important}.</span>
+</p>
+<p>
+Internally, this command just puts the <em>highlighted text</em> inside an <span class="texttt">alertenv</span>.
+</p>
+<p>
+Alerted text is typeset as emphasized text. This can be changed by modifying the templates, see below.
+</p>
+<div class="element">
+
+
+<p>
+<span class="element-headline"><b>Beamer-Color/-Font</b> <span class="element-declare"><span class="declare">alerted text</span></span></span>
+</p>
+<p>
+This color/font is used when alerted text is typeset. The background is currently ignored. There is no template <span class="texttt">alerted text</span>, rather there are templates <span class="texttt">alerted text begin</span> and <span class="texttt">alerted text end</span> that are inserted before and after alerted text.
+</p>
+
+
+</div>
+
+
+</div>
+<div class="environment">
+
+<div class="begin-environment">
+<div class="translatormanualentryheadline">
+<p>
+\begin{<span class="declare">alertenv</span>}<span class="opt">&lt;<span class="meta"><span class="angle">&langle;</span><i>overlay specification</i><span class="angle">&rangle;</span></span>&gt;</span>
+</p>
+</div>
+</div>
+<div class="translatormanualentryheadline">
+
+
+<p>
+<span class="meta"><span class="angle">&langle;</span><i>environment contents</i><span class="angle">&rangle;</span></span>
+</p>
+</div>
+<div class="end-environment">
+<div class="translatormanualentryheadline">
+
+
+<p>
+\end{<span class="declare">alertenv</span>}
+</p>
+</div>
+</div>
+<p>
+Environment version of the <span class="texttt">\alert</span> command.
+</p>
+<div class="element">
+
+
+<p>
+<span class="element-headline"><b>Beamer-Template</b> <span class="element-declare"><span class="declare">alerted text begin</span></span></span>
+</p>
+<p>
+This text is inserted at the beginning of a an <span class="texttt">alertenv</span> environment.
+</p>
+<p>
+The following template options are predefined:
+</p>
+
+
+<p>
+&bull; <span class="itemoption"><kbd>[<span class="declare">default</span>]</kbd></span>
+</p>
+<p>
+This changes the color <span class="texttt">local structure</span> to <span class="texttt">alerted text</span>. This causes things like buttons or items to be colored in the same color as the alerted text, which is often visually pleasing. See also the <span class="texttt">\structure</span> command.
+</p>
+<p>
+The text is emphasized.
+</p>
+
+
+
+
+</div>
+<div class="element">
+
+
+<p>
+<span class="element-headline"><b>Beamer-Template</b> <span class="element-declare"><span class="declare">alerted text end</span></span></span>
+</p>
+<p>
+This text is inserted at the end of an <span class="texttt">alertenv</span> environment.
+</p>
+
+
+</div>
+
+
+</div>
+<!--
+...... subsection Block Environments ......
+-->
+<h5 id="autosec-348"><a id="predefined"></a><span><span class="sectionnumber" id="sec-12.3">12.3</span> Block Environments</span><a class="anchor-link" href="#sec-12.3">&para;</a></h5>
+<a id="beameruserguide-autopage-348"></a>
+
+<p>
+The <span class="beamer-name"><span class="textsc">beamer</span></span> class predefines an environment for typesetting a &ldquo;block&rdquo; of text that has a heading. The appearance of blocks can easily be changed using the following template:
+</p>
+<div class="element">
+
+
+<p>
+<span class="element-headline"><b>Parent Beamer-Template</b> <span class="element-declare"><span class="declare">blocks</span></span></span>
+</p>
+<p>
+Changing this parent template changes the templates of normal blocks, alerted blocks, and example blocks.
+</p>
+<p>
+<i>Example: </i><span class="texttt">\setbeamertemplate{blocks}[default]</span>
+</p>
+<p>
+<i>Example: </i><span class="texttt">\setbeamertemplate{blocks}[rounded][shadow=true]</span>
+</p>
+<p>
+The following template options are predefined:
+</p>
+
+
+<p>
+&bull; <span class="itemoption"><kbd>[<span class="declare">default</span>]</kbd></span> The default setting typesets the block title on its own line. If a background is specified either for the <span class="texttt">block title</span> or for the <span class="texttt">block body</span>, this background color is used as background of the title or body, respectively. For alerted and example blocks, the corresponding <span class="beamer-name"><span class="textsc">beamer</span></span>-colors and -fonts are used,
+instead.
+</p>
+
+
+<p>
+&bull; <span class="itemoption"><kbd>[<span class="declare">rounded</span>]</kbd><span class="opt"><span class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>shadow=true</i><span class="angle">&rangle;</span></span><span class="oarg-right-bracket">]</span></span></span> Makes the blocks &ldquo;rounded.&rdquo; This means that the corners of the backgrounds of the blocks are &ldquo;rounded off.&rdquo; If the <span class="texttt">shadow=true</span>
+option is given, a &ldquo;shadow&rdquo; is drawn behind the block.
+</p>
+
+
+
+
+</div>
+<div class="environment">
+
+<div class="begin-environment">
+<div class="translatormanualentryheadline">
+<p>
+\begin{<span class="declare">block</span>}<span class="opt">&lt;<span class="meta"><span class="angle">&langle;</span><i>action specification</i><span class="angle">&rangle;</span></span>&gt;</span>{<span class="meta"><span class="angle">&langle;</span><i>block title</i><span class="angle">&rangle;</span></span>}<span class="opt">&lt;<span class="meta"><span class="angle">&langle;</span><i>action specification</i><span class="angle">&rangle;</span></span>&gt;</span>
+</p>
+</div>
+</div>
+<div class="translatormanualentryheadline">
+
+
+<p>
+<span class="meta"><span class="angle">&langle;</span><i>environment contents</i><span class="angle">&rangle;</span></span>
+</p>
+</div>
+<div class="end-environment">
+<div class="translatormanualentryheadline">
+
+
+<p>
+\end{<span class="declare">block</span>}
+</p>
+</div>
+</div>
+<p>
+Only one <span class="meta"><span class="angle">&langle;</span><i>action specification</i><span class="angle">&rangle;</span></span> may be given. Inserts a block, like a definition or a theorem, with the title <span class="meta"><span class="angle">&langle;</span><i>block title</i><span class="angle">&rangle;</span></span>. If the <span class="meta"><span class="angle">&langle;</span><i>action specification</i><span class="angle">&rangle;</span></span> is present, the given actions
+are taken on the specified slides, see Section&nbsp;<a href="Creating-Overlays.html#section-action-specifications">9.6.3</a>. In the example, the definition is shown only from slide 3 onward.
+</p>
+<p>
+<i>Example: </i>
+</p>
+<pre class="verbatim">
+  \begin{block}&lt;3-&gt;{Definition}
+    A \alert{set} consists of elements.
+  \end{block}
+</pre>
+<p>
+The block name is typeset in bold.
+</p>
+<div class="element">
+
+
+<p>
+<span class="element-headline"><b>Beamer-Template</b> <span class="element-declare"><span class="declare">block begin</span></span></span>
+</p>
+<p>
+This template is inserted at the beginning of a block before the <span class="meta"><span class="angle">&langle;</span><i>environment contents</i><span class="angle">&rangle;</span></span>. Inside this template, the block title can be accessed via the
+following insert:
+</p>
+
+
+<p>
+&bull; <kbd><span class="declare">\insertblocktitle</span></kbd> Inserts the <span class="meta"><span class="angle">&langle;</span><i>block title</i><span class="angle">&rangle;</span></span> into the template.
+</p>
+
+
+<p>
+When the template starts, no special color or font is installed (for somewhat complicated reasons). Thus, this template should install the correct colors and fonts for the title and the body itself.
+</p>
+
+
+</div>
+<div class="element">
+
+
+<p>
+<span class="element-headline"><b>Beamer-Template</b> <span class="element-declare"><span class="declare">block end</span></span></span>
+</p>
+<p>
+This template is inserted at the end of a block.
+</p>
+
+
+</div>
+<div class="element">
+
+
+<p>
+<span class="element-headline"><b>Beamer-Color/-Font</b> <span class="element-declare"><span class="declare">block title</span></span></span>
+</p>
+<p>
+This <span class="beamer-name"><span class="textsc">beamer</span></span>-color/-font should be used to typeset the title of the block. Since neither the color nor the font are setup automatically, the template <span class="texttt">block begin</span> must do
+so itself.
+</p>
+<p>
+The default block template and also the <span class="texttt">rounded</span> version honor the background of this color.
+</p>
+
+
+</div>
+<div class="element">
+
+
+<p>
+<span class="element-headline"><b>Beamer-Color/-Font</b> <span class="element-declare"><span class="declare">block body</span></span></span>
+</p>
+<p>
+This <span class="beamer-name"><span class="textsc">beamer</span></span>-color/-font should be used to typeset the body of the block, that is, the <span class="meta"><span class="angle">&langle;</span><i>environment contents</i><span class="angle">&rangle;</span></span>. As for <span class="texttt">block title</span>, the color and font must be setup by the template <span class="texttt">block begin</span>.
+</p>
+
+
+</div>
+
+
+</div>
+<div class="environment">
+
+<div class="begin-environment">
+<div class="translatormanualentryheadline">
+<p>
+\begin{<span class="declare">alertblock</span>}<span class="opt">&lt;<span class="meta"><span class="angle">&langle;</span><i>action specification</i><span class="angle">&rangle;</span></span>&gt;</span>{<span class="meta"><span class="angle">&langle;</span><i>block title</i><span class="angle">&rangle;</span></span>}<span class="opt">&lt;<span class="meta"><span class="angle">&langle;</span><i>action specification</i><span class="angle">&rangle;</span></span>&gt;</span>
+</p>
+</div>
+</div>
+<div class="translatormanualentryheadline">
+
+
+<p>
+<span class="meta"><span class="angle">&langle;</span><i>environment contents</i><span class="angle">&rangle;</span></span>
+</p>
+</div>
+<div class="end-environment">
+<div class="translatormanualentryheadline">
+
+
+<p>
+\end{<span class="declare">alertblock</span>}
+</p>
+</div>
+</div>
+<p>
+Inserts a block whose title is highlighting. Behaves like the <span class="texttt">block</span> environment otherwise.
+</p>
+<p>
+<i>Example: </i>
+</p>
+<pre class="verbatim">
+ \begin{alertblock}{Wrong Theorem}
+   $1=2$.
+ \end{alertblock}
+</pre>
+<p>
+The block name is typeset in bold and is emphasized.
+</p>
+<div class="element">
+
+
+<p>
+<span class="element-headline"><b>Beamer-Template</b> <span class="element-declare"><span class="declare">block alerted begin</span></span></span>
+</p>
+<p>
+Same applies as for normal blocks.
+</p>
+
+
+</div>
+<div class="element">
+
+
+<p>
+<span class="element-headline"><b>Beamer-Template</b> <span class="element-declare"><span class="declare">block alerted end</span></span></span>
+</p>
+<p>
+Same applies as for normal blocks.
+</p>
+
+
+</div>
+<div class="element">
+
+
+<p>
+<span class="element-headline"><b>Beamer-Color/-Font</b> <span class="element-declare"><span class="declare">block title alerted</span></span></span>
+</p>
+<p>
+Same applies as for normal blocks.
+</p>
+
+
+</div>
+<div class="element">
+
+
+<p>
+<span class="element-headline"><b>Beamer-Color/-Font</b> <span class="element-declare"><span class="declare">block body alerted</span></span></span>
+</p>
+<p>
+Same applies as for normal blocks.
+</p>
+
+
+</div>
+
+
+</div>
+<div class="environment">
+
+<div class="begin-environment">
+<div class="translatormanualentryheadline">
+<p>
+\begin{<span class="declare">exampleblock</span>}<span class="opt">&lt;<span class="meta"><span class="angle">&langle;</span><i>action specification</i><span class="angle">&rangle;</span></span>&gt;</span>{<span class="meta"><span class="angle">&langle;</span><i>block title</i><span class="angle">&rangle;</span></span>}<span class="opt">&lt;<span class="meta"><span class="angle">&langle;</span><i>overlay specification</i><span class="angle">&rangle;</span></span>&gt;</span>
+</p>
+</div>
+</div>
+<div class="translatormanualentryheadline">
+
+
+<p>
+<span class="meta"><span class="angle">&langle;</span><i>environment contents</i><span class="angle">&rangle;</span></span>
+</p>
+</div>
+<div class="end-environment">
+<div class="translatormanualentryheadline">
+
+
+<p>
+\end{<span class="declare">exampleblock</span>}
+</p>
+</div>
+</div>
+<p>
+Inserts a block that is supposed to be an example. Behaves like the <span class="texttt">block</span> environment otherwise.
+</p>
+<p>
+<i>Example: </i>In the following example, the block is completely suppressed on the first slide (it does not even occupy any space).
+</p>
+<pre class="verbatim">
+  \begin{exampleblock}{Example}<only@2->
+    The set $\{1,2,3,5\}$ has four elements.
+  \end{exampleblock}
+</only@2-></pre>
+<p>
+The block name is typeset in italics.
+</p>
+<div class="element">
+
+
+<p>
+<span class="element-headline"><b>Beamer-Template</b> <span class="element-declare"><span class="declare">block example begin</span></span></span>
+</p>
+<p>
+Same applies as for normal blocks.
+</p>
+
+
+</div>
+<div class="element">
+
+
+<p>
+<span class="element-headline"><b>Beamer-Template</b> <span class="element-declare"><span class="declare">block example end</span></span></span>
+</p>
+<p>
+Same applies as for normal blocks.
+</p>
+
+
+</div>
+<div class="element">
+
+
+<p>
+<span class="element-headline"><b>Beamer-Color/-Font</b> <span class="element-declare"><span class="declare">block title example</span></span></span>
+</p>
+<p>
+Same applies as for normal blocks.
+</p>
+
+
+</div>
+<div class="element">
+
+
+<p>
+<span class="element-headline"><b>Beamer-Color/-Font</b> <span class="element-declare"><span class="declare">block body example</span></span></span>
+</p>
+<p>
+Same applies as for normal blocks.
+</p>
+
+
+</div>
+
+
+</div>
+<!--
+...... subsection Theorem Environments ......
+-->
+<h5 id="autosec-352"><a id="section-theorems"></a><span><span class="sectionnumber" id="sec-12.4">12.4</span> Theorem Environments</span><a class="anchor-link" href="#sec-12.4">&para;</a></h5>
+<a id="beameruserguide-autopage-352"></a>
+
+<p>
+The <span class="beamer-name"><span class="textsc">beamer</span></span> class predefines several environments, like <span class="texttt">theorem</span> or <span class="texttt">definition</span> or <span class="texttt">proof</span>, that you can use
+to typeset things like, well, theorems, definitions, or proofs. The complete list is the following: <span class="texttt">theorem</span>, <span class="texttt">corollary</span>, <span class="texttt">definition</span>, <span class="texttt">definitions</span>,
+<span class="texttt">fact</span>, <span class="texttt">example</span>, and <span class="texttt">examples</span>. The following German block environments are also predefined: <span class="texttt">Problem</span>, <span class="texttt">Loesung</span>,
+<span class="texttt">Definition</span>, <span class="texttt">Satz</span>, <span class="texttt">Beweis</span>, <span class="texttt">Folgerung</span>, <span class="texttt">Lemma</span>, <span class="texttt">Fakt</span>, <span class="texttt">Beispiel</span>, and <span class="texttt">Beispiele</span>.
+</p>
+<p>
+Here is a typical example on how to use them:
+</p>
+<pre class="verbatim">
+\begin{frame}
+  \frametitle{A Theorem on Infinite Sets}
+
+  \begin{theorem}&lt;1-&gt;
+    There exists an infinite set.
+  \end{theorem}
+
+  \begin{proof}&lt;2-&gt;
+    This follows from the axiom of infinity.
+  \end{proof}
+
+  \begin{example}&lt;3-&gt;[Natural Numbers]
+    The set of natural numbers is infinite.
+  \end{example}
+\end{frame}
+</pre>
+<p>
+In the following, only the English versions are discussed. The German ones behave analogously.
+</p>
+<div class="environment">
+
+<div class="begin-environment">
+<div class="translatormanualentryheadline">
+<p>
+\begin{<span class="declare">theorem</span>}<span class="opt">&lt;<span class="meta"><span class="angle">&langle;</span><i>action specification</i><span class="angle">&rangle;</span></span>&gt;</span><span class="opt"><span class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>additional text</i><span class="angle">&rangle;</span></span><span class="oarg-right-bracket">]</span></span><span class="opt">&lt;<span class="meta"><span class="angle">&langle;</span><i>action specification</i><span class="angle">&rangle;</span></span>&gt;</span>
+</p>
+</div>
+</div>
+<div class="translatormanualentryheadline">
+
+
+<p>
+<span class="meta"><span class="angle">&langle;</span><i>environment contents</i><span class="angle">&rangle;</span></span>
+</p>
+</div>
+<div class="end-environment">
+<div class="translatormanualentryheadline">
+
+
+<p>
+\end{<span class="declare">theorem</span>}
+</p>
+</div>
+</div>
+<p>
+Inserts a theorem. Only one <span class="meta"><span class="angle">&langle;</span><i>action specification</i><span class="angle">&rangle;</span></span> may be given. If present, the <span class="meta"><span class="angle">&langle;</span><i>additional
+text</i><span class="angle">&rangle;</span></span> is shown behind the word &ldquo;Theorem&rdquo; in rounded brackets (although this can be changed by the template).
+</p>
+<p>
+The appearance of the theorem is governed by the templates <span class="texttt">theorem begin</span> and <span class="texttt">theorem end</span>, see their description later on for details on how to change these. Every theorem is put into a <span class="texttt">block</span> environment, thus the templates for blocks also apply.
+</p>
+<p>
+The theorem style (a concept from <span class="texttt">amsthm</span>) used for this environment is <span class="texttt">plain</span>. In this style, the body of a theorem should be typeset in italics. The head of the theorem should be typeset in a bold font, but
+this is usually overruled by the templates.
+</p>
+<p>
+If the option <span class="texttt">envcountsect</span> is given either as class option in one of the <span class="texttt">presentation</span> modes or as an option to the package <span class="texttt">beamerarticle</span> in <span class="texttt">article</span> mode, then the numbering of the theorems is local to each section with the section number prefixing the theorem number; otherwise they are numbered consecutively throughout the presentation or article. We recommend using this option
+in <span class="texttt">article</span> mode.
+</p>
+<p>
+By default, no theorem numbers are shown in the <span class="texttt">presentation</span> modes.
+</p>
+<p>
+<i>Example: </i>
+</p>
+<pre class="verbatim">
+\begin{theorem}[Kummer, 1992]
+  If $\#^_A^n$ is $n$-enumerable, then $A$ is recursive.
+\end{theorem}
+
+\begin{theorem}&lt;2-&gt;[Tantau, 2002]
+  If $\#_A^2$ is $2$-fa-enumerable, then $A$ is regular.
+\end{theorem}
+</pre>
+
+
+</div>
+<p>
+The environments <span class="declare"><span class="texttt">corollary</span></span>, <span class="declare"><span class="texttt">fact</span></span>, and <span class="declare"><span class="texttt">lemma</span></span> behave exactly the same way.
+</p>
+<div class="classoption">
+<ul style="list-style-type:none">
+<li>
+<p>
+<span class="classoption-heading">\documentclass[<span class="declare">envcountsect</span>]{beamer}</span>
+</p>
+<p>
+Causes theorems, definitions, and so on to be numbered locally to each section. Thus, the first theorem of the second section would be Theorem&nbsp;2.1 (assuming that there are no definitions, lemmas, or corollaries earlier in the section).
+</p>
+</li>
+</ul>
+</div>
+<div class="environment">
+
+<div class="begin-environment">
+<div class="translatormanualentryheadline">
+<p>
+\begin{<span class="declare">definition</span>}<span class="opt">&lt;<span class="meta"><span class="angle">&langle;</span><i>action specification</i><span class="angle">&rangle;</span></span>&gt;</span><span class="opt"><span class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>additional text</i><span class="angle">&rangle;</span></span><span class="oarg-right-bracket">]</span></span><span class="opt">&lt;<span class="meta"><span class="angle">&langle;</span><i>action specification</i><span class="angle">&rangle;</span></span>&gt;</span>
+</p>
+</div>
+</div>
+<div class="translatormanualentryheadline">
+
+
+<p>
+<span class="meta"><span class="angle">&langle;</span><i>environment contents</i><span class="angle">&rangle;</span></span>
+</p>
+</div>
+<div class="end-environment">
+<div class="translatormanualentryheadline">
+
+
+<p>
+\end{<span class="declare">definition</span>}
+</p>
+</div>
+</div>
+<p>
+Behaves like the <span class="texttt">theorem</span> environment, except that the theorem style <span class="texttt">definition</span> is used. In this style, the body of a theorem is typeset in an upright font.
+</p>
+
+
+</div>
+<p>
+The environment <span class="declare"><span class="texttt">definitions</span></span> behaves exactly the same way.
+</p>
+<div class="environment">
+
+<div class="begin-environment">
+<div class="translatormanualentryheadline">
+<p>
+\begin{<span class="declare">example</span>}<span class="opt">&lt;<span class="meta"><span class="angle">&langle;</span><i>action specification</i><span class="angle">&rangle;</span></span>&gt;</span><span class="opt"><span class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>additional text</i><span class="angle">&rangle;</span></span><span class="oarg-right-bracket">]</span></span><span class="opt">&lt;<span class="meta"><span class="angle">&langle;</span><i>action specification</i><span class="angle">&rangle;</span></span>&gt;</span>
+</p>
+</div>
+</div>
+<div class="translatormanualentryheadline">
+
+
+<p>
+<span class="meta"><span class="angle">&langle;</span><i>environment contents</i><span class="angle">&rangle;</span></span>
+</p>
+</div>
+<div class="end-environment">
+<div class="translatormanualentryheadline">
+
+
+<p>
+\end{<span class="declare">example</span>}
+</p>
+</div>
+</div>
+<p>
+Behaves like the <span class="texttt">theorem</span> environment, except that the theorem style <span class="texttt">example</span> is used. A side-effect of using this theorem style is that the <span class="meta"><span class="angle">&langle;</span><i>environment contents</i><span class="angle">&rangle;</span></span> is put in an <span class="texttt">exampleblock</span> instead of a <span class="texttt">block</span>.
+</p>
+
+
+</div>
+<p>
+The environment <span class="declare"><span class="texttt">examples</span></span> behaves exactly the same way.
+</p>
+<p>
+The default template for typesetting theorems suppresses the theorem number, even if this number is &ldquo;available&rdquo; for typesetting (which it is by default in all predefined environments; but if you define your own environment using <span class="texttt">\newtheorem*</span> no number will be available).
+</p>
+<p>
+In <span class="texttt">article</span> mode, theorems are automatically numbered. By specifying the class option <span class="texttt">envcountsect</span>, theorems will be numbered locally to each section, which is usually a good idea, except for very short
+articles.
+</p>
+<div class="environment">
+
+<div class="begin-environment">
+<div class="translatormanualentryheadline">
+<p>
+\begin{<span class="declare">proof</span>}<span class="opt">&lt;<span class="meta"><span class="angle">&langle;</span><i>action specification</i><span class="angle">&rangle;</span></span>&gt;</span><span class="opt"><span class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>proof name</i><span class="angle">&rangle;</span></span><span class="oarg-right-bracket">]</span></span><span class="opt">&lt;<span class="meta"><span class="angle">&langle;</span><i>action specification</i><span class="angle">&rangle;</span></span>&gt;</span>
+</p>
+</div>
+</div>
+<div class="translatormanualentryheadline">
+
+
+<p>
+<span class="meta"><span class="angle">&langle;</span><i>environment contents</i><span class="angle">&rangle;</span></span>
+</p>
+</div>
+<div class="end-environment">
+<div class="translatormanualentryheadline">
+
+
+<p>
+\end{<span class="declare">proof</span>}
+</p>
+</div>
+</div>
+<p>
+Typesets a proof. If the optional <span class="meta"><span class="angle">&langle;</span><i>proof name</i><span class="angle">&rangle;</span></span> is given, it completely replaces the word &ldquo;Proof.&rdquo; This is different from normal theorems, where the optional
+argument is shown in brackets.
+</p>
+<p>
+At the end of the theorem, a <span class="texttt">\qed</span> symbol is shown, except if you say <span class="texttt">\qedhere</span> earlier in the proof (this is exactly as in <span class="texttt">amsthm</span>). The default <span class="texttt">\qed</span> symbol is an open circle. To completely suppress the symbol, write <span class="texttt">\def\qedsymbol{}</span> in your preamble. To get a closed square, say
+</p>
+<pre class="verbatim">
+\setbeamertemplate{qed symbol}{\vrule width1.5ex height1.5ex depth0pt}
+</pre>
+<p>
+If you use <span class="texttt">babel</span> and a different language, the text &ldquo;Proof&rdquo; is replaced by whatever is appropriate in the selected language.
+</p>
+<p>
+<i>Example: </i>
+</p>
+<pre class="verbatim">
+\begin{proof}&lt;2-&gt;[Sketch of proof]
+  Suppose ...
+\end{proof}
+</pre>
+<div class="element">
+
+
+<p>
+<span class="element-headline"><b>Beamer-Template/-Color/-Font</b> <span class="element-declare"><span class="declare">qed symbol</span></span></span>
+</p>
+<p>
+The symbol is shown at the end of every proof.
+</p>
+
+
+</div>
+
+
+</div>
+<p>
+You can define new environments using the following command:
+</p>
+<div class="command">
+
+
+<p>
+</p>
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\newtheorem</kbd></span><span class="opt"><span class="texttt">*</span></span>{<span class="meta"><span class="angle">&langle;</span><i>environment name</i><span class="angle">&rangle;</span></span>}<span class="opt"><span class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>numbered same as</i><span class="angle">&rangle;</span></span><span class="oarg-right-bracket">]</span></span>{<span class="meta"><span class="angle">&langle;</span><i>head text</i><span class="angle">&rangle;</span></span>}<span class="opt"><span class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>number
+within</i><span class="angle">&rangle;</span></span><span class="oarg-right-bracket">]</span></span>
+</p>
+</div>
+<p>
+This command is used exactly the same way as in the <span class="texttt">amsthm</span> package (as a matter of fact, it is the command from that package). For example, the two optional arguments, <span class="meta"><span class="angle">&langle;</span><i>numbered same as</i><span class="angle">&rangle;</span></span> and <span class="meta"><span class="angle">&langle;</span><i>number within</i><span class="angle">&rangle;</span></span>, are mutually exclusive;
+see the documentation of <span class="texttt">amsthm</span> for details. The only difference is that environments declared using this command are overlay specification-aware in <span class="beamer-name"><span class="textsc">beamer</span></span> and that,
+when typeset, are typeset according to <span class="beamer-name"><span class="textsc">beamer</span></span>&rsquo;s templates.
+</p>
+<p>
+Environments declared using this command are also overlay specification-aware in <span class="texttt">article</span> mode.
+</p>
+<p>
+<i>Example: </i><span class="texttt">\newtheorem{observation}[theorem]{Observation}</span>
+</p>
+
+
+</div>
+<p>
+You can also use <span class="texttt">amsthm</span>&rsquo;s command <span class="texttt">\newtheoremstyle</span> to define new theorem styles. Note that the default template for theorems will ignore any head font setting, but will honor the body font setting.
+</p>
+<p>
+If you wish to define the environments like <span class="texttt">theorem</span> differently (for example, have it numbered within each subsection), you can use the following class option to disable the definition of the predefined environments:
+</p>
+<div class="classoption">
+<ul style="list-style-type:none">
+<li>
+<p>
+<span class="classoption-heading">\documentclass[<span class="declare">notheorems</span>]{beamer}</span>
+</p>
+<p>
+Switches off the definition of default blocks like <span class="texttt">theorem</span>, but still loads <span class="texttt">amsthm</span> and makes theorems overlay specification-aware.
+</p>
+</li>
+</ul>
+</div>
+<p>
+The option is also available as a package option for <span class="texttt">beamerarticle</span> and has the same effect.
+</p>
+<p>
+In the <span class="texttt">article</span> version, the package <span class="texttt">amsthm</span> sometimes clashes with the document class. In this case you can use the following option, which is once more available as a class option for <span class="beamer-name"><span class="textsc">beamer</span></span> and as a package option for <span class="texttt">beamerarticle</span>, to switch off the loading of <span class="texttt">amsthm</span> altogether.
+</p>
+<div class="classoption">
+<ul style="list-style-type:none">
+<li>
+<p>
+<span class="classoption-heading">\documentclass[<span class="declare">noamsthm</span>]{beamer}</span>
+</p>
+<p>
+Does not load <span class="texttt">amsthm</span> and also not <span class="texttt">amsmath</span>. Environments like <span class="texttt">theorem</span> or <span class="texttt">proof</span> will not be available.
+</p>
+</li>
+</ul>
+</div>
+<div class="classoption">
+<ul style="list-style-type:none">
+<li>
+<p>
+<span class="classoption-heading">\documentclass[<span class="declare">noamssymb</span>]{beamer}</span>
+</p>
+<p>
+Does not load <span class="texttt">amssymb</span>. This option is mainly intended for users who are loading specialist font packages. Note that <span class="texttt">\blacktriangleright</span> needs to be defined if <span class="texttt">itemize</span>
+environments are in use.
+</p>
+</li>
+</ul>
+</div>
+<div class="classoption">
+<ul style="list-style-type:none">
+<li>
+<p>
+<span class="classoption-heading">\documentclass[<span class="declare">leqno</span>]{beamer}</span>
+</p>
+<p>
+Place equation numbers on the left.
+</p>
+</li>
+</ul>
+</div>
+<div class="classoption">
+<ul style="list-style-type:none">
+<li>
+<p>
+<span class="classoption-heading">\documentclass[<span class="declare">fleqn</span>]{beamer}</span>
+</p>
+<p>
+Position equations at a fixed indent from the left margin rather than centered in the text column.
+</p>
+</li>
+</ul>
+</div>
+<div class="element">
+
+
+<p>
+<span class="element-headline"><b>Parent Beamer-Template</b> <span class="element-declare"><span class="declare">theorems</span></span></span>
+</p>
+<p>
+This template is a parent of <span class="texttt">theorem begin</span> and <span class="texttt">theorem end</span>, see the first for a detailed discussion of how the theorem templates are set.
+</p>
+<p>
+<i>Example: </i><span class="texttt">\setbeamertemplate{theorems}[numbered]</span>
+</p>
+<p>
+The following template options are predefined:
+</p>
+
+
+<p>
+&bull; <span class="itemoption"><kbd>[<span class="declare">default</span>]</kbd></span> By default, theorems are typeset as follows: The font specification for the body is honored, the font specification for the head is ignored. No theorem number is printed.
+</p>
+
+
+<p>
+&bull; <span class="itemoption"><kbd>[<span class="declare">normal font</span>]</kbd></span> Like the default, except all font specifications for the body are ignored. Thus, the fonts are used that are normally used for blocks.
+</p>
+
+
+<p>
+&bull; <span class="itemoption"><kbd>[<span class="declare">numbered</span>]</kbd></span> This option is like the default, except that the theorem number is printed for environments that are numbered.
+</p>
+
+
+<p>
+&bull; <span class="itemoption"><kbd>[<span class="declare">ams style</span>]</kbd></span> This causes theorems to be put in a <span class="texttt">block</span> or <span class="texttt">exampleblock</span>, but to be otherwise typeset as is normally done
+in <span class="texttt">amsthm</span>. Thus the head font and body font depend on the setting for the theorem to be typeset and theorems are numbered.
+</p>
+
+
+
+
+</div>
+<div class="element">
+
+
+<p>
+<span class="element-headline"><b>Beamer-Template</b> <span class="element-declare"><span class="declare">theorem begin</span></span></span>
+</p>
+<p>
+Whenever an environment declared using the command <span class="texttt">\newtheorem</span> is to be typeset, this template is inserted at the beginning and the template <span class="texttt">theorem end</span> at the end. If there is an overlay specification
+when an environment like <span class="texttt">theorem</span> is used, this overlay specification will directly follow the <span class="meta"><span class="angle">&langle;</span><i>block beginning template</i><span class="angle">&rangle;</span></span> upon
+invocation. This is even true if there was an optional argument to the <span class="texttt">theorem</span> environment. This optional argument is available via the insert <span class="texttt">\inserttheoremaddition</span>.
+</p>
+<p>
+Numerous inserts are available in this template, see below.
+</p>
+<p>
+Before the template starts, the font is set to the body font prescribed by the environment to be typeset.
+</p>
+<p>
+<i>Example: </i>The following typesets theorems like <span class="texttt">amsthm</span>:
+</p>
+<pre class="verbatim">
+\setbeamertemplate{theorem begin}
+{%
+  \begin{\inserttheoremblockenv}
+  {%
+    \inserttheoremheadfont
+    \inserttheoremname
+    \inserttheoremnumber
+    \ifx\inserttheoremaddition\@empty\else\ (\inserttheoremaddition)\fi%
+    \inserttheorempunctuation
+  }%
+}
+\setbeamertemplate{theorem end}{\end{\inserttheoremblockenv}}
+</pre>
+<p>
+<i>Example: </i>In the following example, all font &ldquo;suggestions&rdquo; for the environment are suppressed or ignored; and the theorem number is suppressed.
+</p>
+<pre class="verbatim">
+\setbeamertemplate{theorem begin}
+{%
+  \normalfont% ignore body font
+  \begin{\inserttheoremblockenv}
+  {%
+    \inserttheoremname
+    \ifx\inserttheoremaddition\@empty\else\ (\inserttheoremaddition)\fi%
+  }%
+}
+\setbeamertemplate{theorem end}{\end{\inserttheoremblockenv}}
+</pre>
+<p>
+The following inserts are available inside this template:
+</p>
+
+
+<p>
+&bull; <kbd><span class="declare">\inserttheoremblockenv</span></kbd> This will normally expand to <span class="texttt">block</span>, but if a theorem that has theorem style <span class="texttt">example</span> is typeset, it will expand to <span class="texttt">exampleblock</span>. Thus you can use this insert to decide which environment should be used when typesetting the theorem.
+</p>
+
+
+<p>
+&bull; <kbd><span class="declare">\inserttheoremheadfont</span></kbd> This will expand to a font changing command that switches to the font to be used in the head of the theorem. By not inserting it, you can ignore the head font.
+</p>
+
+
+<p>
+&bull; <kbd><span class="declare">\inserttheoremname</span></kbd> This will expand to the name of the environment to be typeset (like &ldquo;Theorem&rdquo; or &ldquo;Corollary&rdquo;).
+</p>
+
+
+<p>
+&bull; <kbd><span class="declare">\inserttheoremnumber</span></kbd> This will expand to the number of the current theorem preceded by a space or to nothing, if the current theorem does not have a number.
+</p>
+
+
+<p>
+&bull; <kbd><span class="declare">\inserttheoremaddition</span></kbd> This will expand to the optional argument given to the environment or will be empty, if there was no optional argument.
+</p>
+
+
+<p>
+&bull; <kbd><span class="declare">\inserttheorempunctuation</span></kbd> This will expand to the punctuation character for the current environment. This is usually a period.
+</p>
+
+
+
+
+</div>
+<div class="element">
+
+
+<p>
+<span class="element-headline"><b>Beamer-Template</b> <span class="element-declare"><span class="declare">theorem end</span></span></span>
+</p>
+<p>
+Inserted at the end of a theorem.
+</p>
+
+
+</div>
+<div class="element">
+
+
+<p>
+<span class="element-headline"><b>Beamer-Template</b> <span class="element-declare"><span class="declare">proof begin</span></span></span>
+</p>
+<p>
+Inserted at the beginning of a <span class="texttt">proof</span> environment. This template behaves like a normal <span class="texttt">block begin</span> template by default.
+</p>
+
+
+<p>
+&bull; <kbd><span class="declare">\insertproofname</span></kbd> This will expand to the proof name, followed by a period most of the time.
+</p>
+
+
+
+
+</div>
+<div class="element">
+
+
+<p>
+<span class="element-headline"><b>Beamer-Template</b> <span class="element-declare"><span class="declare">proof end</span></span></span>
+</p>
+<p>
+Inserted at the end of a <span class="texttt">proof</span> environment.
+</p>
+
+
+</div>
+<!--
+...... subsection Framed and Boxed Text ......
+-->
+<h5 id="autosec-359"><span><span class="sectionnumber" id="sec-12.5">12.5</span> Framed and Boxed Text</span><a class="anchor-link" href="#sec-12.5">&para;</a></h5>
+<a id="beameruserguide-autopage-359"></a>
+<p>
+In order to draw a frame (a rectangle) around some text, you can use <span class="latexlogofont"><span class="latexlogo">L<span class="latexlogosup">a</span>T<span class="latexlogosub">e</span>X</span></span>s standard command <span class="texttt">\fbox</span> and also <span class="texttt">\frame</span> (inside a <span class="beamer-name"><span class="textsc">beamer</span></span> frame, the <span class="texttt">\frame</span> command changes its meaning to the normal <span class="latexlogofont"><span class="latexlogo">L<span class="latexlogosup">a</span>T<span class="latexlogosub">e</span>X</span></span> <span class="texttt">\frame</span> command). More frame types are offered by the package <span class="texttt">fancybox</span>, which defines the following commands: <span class="texttt">\shadowbox</span>, <span class="texttt">\doublebox</span>, <span class="texttt">\ovalbox</span>, and <span class="texttt">\Ovalbox</span>. Please consult
+the <span class="latexlogofont"><span class="latexlogo">L<span class="latexlogosup">a</span>T<span class="latexlogosub">e</span>X</span></span> Companion for details on how to use these commands.
+</p>
+<p>
+The <span class="beamer-name"><span class="textsc">beamer</span></span> class also defines two environments for creating colored boxes.
+</p>
+<div class="environment">
+
+<div class="begin-environment">
+<div class="translatormanualentryheadline">
+<p>
+\begin{<span class="declare">beamercolorbox</span>}<span class="opt"><span class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>options</i><span class="angle">&rangle;</span></span><span class="oarg-right-bracket">]</span></span>{<span class="meta"><span class="angle">&langle;</span><i>beamer color</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+</div>
+<div class="translatormanualentryheadline">
+
+
+<p>
+<span class="meta"><span class="angle">&langle;</span><i>environment contents</i><span class="angle">&rangle;</span></span>
+</p>
+</div>
+<div class="end-environment">
+<div class="translatormanualentryheadline">
+
+
+<p>
+\end{<span class="declare">beamercolorbox</span>}
+</p>
+</div>
+</div>
+<p>
+This environment can be used to conveniently typeset some text using some <span class="beamer-name"><span class="textsc">beamer</span></span>-color. Basically, the following two command blocks do the same:
+</p>
+<pre class="verbatim">
+\begin{beamercolorbox}{beamer color}
+  Text
+\end{beamercolorbox}
+
+{
+    \usebeamercolor{beamer color}
+    \colorbox{bg}{
+      \color{fg}
+      Text
+    }
+}
+</pre>
+<p>
+In other words, the environment installs the <span class="meta"><span class="angle">&langle;</span><i>beamer color</i><span class="angle">&rangle;</span></span> and uses the background for the background of the box and the foreground for the text inside
+the box. However, in reality, numerous <span class="meta"><span class="angle">&langle;</span><i>options</i><span class="angle">&rangle;</span></span> can be given to specify in much greater detail how the box is rendered.
+</p>
+<p>
+If the background color of <span class="meta"><span class="angle">&langle;</span><i>beamer color</i><span class="angle">&rangle;</span></span> is empty, no background is drawn behind the text, that is, the background is &ldquo;transparent.&rdquo;
+</p>
+<p>
+This command is used extensively by the default inner and outer themes for typesetting the headlines and footlines. It is not really intended to be used in normal frames (for example, it is not available inside <span class="texttt">article</span> mode). You should
+prefer using structuring elements like blocks or theorems that automatically insert colored boxes as needed.
+</p>
+<p>
+<i>Example: </i>The following example could be used to typeset a headline with two lines, the first showing the document title, the second showing the author&rsquo;s name:
+</p>
+<pre class="verbatim">
+\begin{beamercolorbox}[ht=2.5ex,dp=1ex,center]{title in head/foot}
+  \usebeamerfont{title in head/foot}
+  \insertshorttitle
+\end{beamercolorbox}%
+\begin{beamercolorbox}[ht=2.5ex,dp=1ex,center]{author in head/foot}
+  \usebeamerfont{author in head/foot}
+  \insertshortauthor
+\end{beamercolorbox}
+</pre>
+<p>
+<i>Example: </i>Typesetting a postit:
+</p>
+<pre class="verbatim">
+\setbeamercolor{postit}{fg=black,bg=yellow}
+\begin{beamercolorbox}[sep=1em,wd=5cm]{postit}
+  Place me somewhere!
+\end{beamercolorbox}
+</pre>
+<p>
+The following <span class="meta"><span class="angle">&langle;</span><i>options</i><span class="angle">&rangle;</span></span> can be given:
+</p>
+
+
+<p>
+&bull; <span class="declare"><span class="texttt">wd=</span>{<span class="meta"><span class="angle">&langle;</span><i>width</i><span class="angle">&rangle;</span></span>}</span> sets the width of the box. This command has two effects: First, <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span>&rsquo;s <span class="texttt">\hsize</span> is set to <span class="meta"><span class="angle">&langle;</span><i>width</i><span class="angle">&rangle;</span></span>. Second, after the box has been typeset, its width is set to <span class="meta"><span class="angle">&langle;</span><i>width</i><span class="angle">&rangle;</span></span> (no matter what it actually turned out to be).
+Since setting the <span class="texttt">\hsize</span> does not automatically change some of <span class="latexlogofont"><span class="latexlogo">L<span class="latexlogosup">a</span>T<span class="latexlogosub">e</span>X</span></span>&rsquo;s linewidth
+dimensions, you should consider using a minipage inside this environment if you fool around with the width.
+</p>
+<p>
+If the width is larger than the normal text width, as specified by the value of <span class="texttt">\textwidth</span>, the width of the resulting box is reset to the width <span class="texttt">\textwidth</span>, but intelligent negative skips are inserted at the left
+and right end of the box. The net effect of this is that you can use a width larger than the text width for a box and can insert the resulting box directly into normal text without getting annoying warnings and having the box positioned sensibly.
+</p>
+
+
+<p>
+&bull; <span class="declare"><span class="texttt">dp=</span>{<span class="meta"><span class="angle">&langle;</span><i>depth</i><span class="angle">&rangle;</span></span>}</span> sets the depth of the box, overriding the real depth of the box. The box is
+first typeset normally, then the depth is changed afterwards. This option is useful for creating boxes that have guaranteed size.
+</p>
+<p>
+If the option is not given, the box has its &ldquo;natural&rdquo; depth, which results from the typesetting. For example, a box containing only the letter &ldquo;a&rdquo; will have a different depth from a box containing only the letter &ldquo;g.&rdquo;
+</p>
+
+
+<p>
+&bull; <span class="declare"><span class="texttt">ht=</span><span class="meta"><span class="angle">&langle;</span><i>height</i><span class="angle">&rangle;</span></span></span> sets the height of the box, overriding the real height. Note that the &ldquo;height&rdquo;
+does not include the depth (see, for example, the <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span>-book for details). If you want a one-line box that always has the same size, setting the height to 2.25ex
+and the depth to 1ex is usually a good option.
+</p>
+
+
+<p>
+&bull; <span class="declare"><span class="texttt">left</span></span> causes the text inside the box to be typeset left-aligned and with a (radically) ragged right border. This is the default. To get a better ragged right border, use the <span class="texttt">rightskip</span> option. Note that this will override any <span class="texttt">leftskip</span> or <span class="texttt">rightskip</span> setting.
+</p>
+
+
+<p>
+&bull; <span class="declare"><span class="texttt">right</span></span> causes the text to be right-aligned with a (radically) ragged left border. Note that this will override any <span class="texttt">leftskip</span> or <span class="texttt">rightskip</span>
+setting.
+</p>
+
+
+<p>
+&bull; <span class="declare"><span class="texttt">center</span></span> centers the text inside the box. Note that this will override any <span class="texttt">leftskip</span> or <span class="texttt">rightskip</span> setting.
+</p>
+
+
+<p>
+&bull; <span class="declare"><span class="texttt">leftskip=</span><span class="meta"><span class="angle">&langle;</span><i>left skip</i><span class="angle">&rangle;</span></span></span> installs the <span class="meta"><span class="angle">&langle;</span><i>left skip</i><span class="angle">&rangle;</span></span> inside the box as the left skip. <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span>&rsquo;s left skip is a glue that
+is inserted at the left end of every line. See the <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span>-book for details. Note that this will override any <span class="texttt">left</span>, <span class="texttt">center</span> or <span class="texttt">right</span> setting.
+</p>
+
+
+<p>
+&bull; <span class="declare"><span class="texttt">rightskip=</span><span class="meta"><span class="angle">&langle;</span><i>right skip</i><span class="angle">&rangle;</span></span></span> install the <span class="meta"><span class="angle">&langle;</span><i>right skip</i><span class="angle">&rangle;</span></span>. To get a good ragged right border, try, say, <span class="texttt">\rightskip=0pt plus 4em</span>. Note that this will override any <span class="texttt">left</span>, <span class="texttt">center</span> or <span class="texttt">right</span> setting.
+</p>
+
+
+<p>
+&bull; <span class="declare"><span class="texttt">sep=</span><span class="meta"><span class="angle">&langle;</span><i>dimension</i><span class="angle">&rangle;</span></span></span> sets the size of extra space around the text. This space is added
+&ldquo;inside the box,&rdquo; which means that if you specify a <span class="texttt">sep</span> of 1cm and insert the box normally into the vertical list, then the left border of the box will be aligned with the left border of the slide text, while the left border of the text inside the
+box will be 1cm to the right of this left border. Likewise, the text inside the box will stop 1cm before the right border of the normal text.
+</p>
+
+
+<p>
+&bull; <span class="declare"><span class="texttt">colsep=</span><span class="meta"><span class="angle">&langle;</span><i>dimension</i><span class="angle">&rangle;</span></span></span> sets the extra &ldquo;color separation space&rdquo; around the text. This space
+behaves the same way as the space added by <span class="texttt">sep</span>, only this space is only inserted if the box has a colored background, that is, if the background of the <span class="meta"><span class="angle">&langle;</span><i>beamer color</i><span class="angle">&rangle;</span></span> is not empty. This command can be used together with <span class="texttt">sep</span>, the effects accumulate.
+</p>
+
+
+<p>
+&bull; <span class="declare"><span class="texttt">colsep*=</span><span class="meta"><span class="angle">&langle;</span><i>dimension</i><span class="angle">&rangle;</span></span></span> sets an extra color separation space around the text that is
+<em>horizontally outside the box</em>. This means that if the box has a background, this background will protrude by <span class="meta"><span class="angle">&langle;</span><i>dimension</i><span class="angle">&rangle;</span></span> to the left and right of
+the text, but this protruding background will not be taken into consideration by <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> for typesetting purposes.
+</p>
+<p>
+A typical example usage of this option arises when you insert a box with a colored background in the middle of normal text. In this case, if the background color is set, you would like a background to be drawn behind the text <em>and</em> you would like a certain extra
+space around this text (the background should not stop immediately at the borders of the text, this looks silly) <em>and</em> you would like the normal text always to be at the same horizontal position, independently of whether a background is present or not. In this
+case, using <span class="texttt">colsep*=4pt</span> is a good option.
+</p>
+
+
+<p>
+&bull; <span class="declare"><span class="texttt">shadow</span></span><span class="opt"><span class="texttt">=</span><span class="meta"><span class="angle">&langle;</span><i>true or false</i><span class="angle">&rangle;</span></span></span>
+draws a shadow behind the box. Currently, this option only has an effect if used together with the <span class="texttt">rounded</span> option, but that may change.
+</p>
+
+
+<p>
+&bull; <span class="declare"><span class="texttt">rounded</span></span><span class="opt"><span class="texttt">=</span><span class="meta"><span class="angle">&langle;</span><i>true or false</i><span class="angle">&rangle;</span></span></span>
+causes the borders of the box to be rounded off if there is a background installed. This command internally calls <span class="texttt">beamerboxesrounded</span>. In this case, <span class="texttt">colsep*</span> option will have no effect.
+</p>
+
+
+<p>
+&bull; <span class="declare"><span class="texttt">ignorebg</span></span> causes the background color of the <span class="meta"><span class="angle">&langle;</span><i>beamer color</i><span class="angle">&rangle;</span></span> to be ignored, that is, to be
+treated as if it were set to &ldquo;transparent&rdquo; or &ldquo;empty.&rdquo;
+</p>
+
+
+<p>
+&bull; <span class="declare"><span class="texttt">vmode</span></span> causes <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> to be in vertical mode when the box starts. Normally, <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> will be in horizontal mode at the start of the box (a <span class="texttt">\leavevmode</span> is inserted automatically at the beginning of the box unless
+this option is given). Only <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span>perts need this option, so, if you use it, you will probably know what you are doing anyway.
+</p>
+
+
+
+
+</div>
+<div class="environment">
+
+<div class="begin-environment">
+<div class="translatormanualentryheadline">
+<p>
+\begin{<span class="declare">beamerboxesrounded</span>}<span class="opt"><span class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>options</i><span class="angle">&rangle;</span></span><span class="oarg-right-bracket">]</span></span>{<span class="meta"><span class="angle">&langle;</span><i>head</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+</div>
+<div class="translatormanualentryheadline">
+
+
+<p>
+<span class="meta"><span class="angle">&langle;</span><i>environment contents</i><span class="angle">&rangle;</span></span>
+</p>
+</div>
+<div class="end-environment">
+<div class="translatormanualentryheadline">
+
+
+<p>
+\end{<span class="declare">beamerboxesrounded</span>}
+</p>
+</div>
+</div>
+<p>
+The text inside the environment is framed by a rectangular area with rounded corners. For the large rectangular area, the <span class="beamer-name"><span class="textsc">beamer</span></span>-color specified with the <span class="texttt">lower</span> option is
+used. Its background is used for the background, its foreground for the foreground. If the <span class="meta"><span class="angle">&langle;</span><i>head</i><span class="angle">&rangle;</span></span> is not empty, <span class="meta"><span class="angle">&langle;</span><i>head</i><span class="angle">&rangle;</span></span> is drawn in the upper part of the box using the <span class="beamer-name"><span class="textsc">beamer</span></span>-color specified with the <span class="texttt">upper</span> option for the fore- and background. The following options can be given:
+</p>
+
+
+<p>
+&bull; <span class="declare"><span class="texttt">lower=</span><span class="meta"><span class="angle">&langle;</span><i>beamer color</i><span class="angle">&rangle;</span></span></span> sets the <span class="beamer-name"><span class="textsc">beamer</span></span>-color to be used for the lower (main) part of the box. Its background is used for the background, its foreground for the foreground of the main part of the box. If either is empty, the current background or foreground is used. The
+box will never be transparent.
+</p>
+
+
+<p>
+&bull; <span class="declare"><span class="texttt">upper=</span><span class="meta"><span class="angle">&langle;</span><i>beamer color</i><span class="angle">&rangle;</span></span></span> sets the <span class="beamer-name"><span class="textsc">beamer</span></span>-color used for the upper (head) part of the box. It is only used if the <span class="meta"><span class="angle">&langle;</span><i>head</i><span class="angle">&rangle;</span></span> is not empty.
+</p>
+
+
+<p>
+&bull; <span class="declare"><span class="texttt">width=</span><span class="meta"><span class="angle">&langle;</span><i>dimension</i><span class="angle">&rangle;</span></span></span> causes the width of the text inside the box to be the specified <span class="meta"><span class="angle">&langle;</span><i>dimension</i><span class="angle">&rangle;</span></span>. By default, the <span class="texttt">\textwidth</span> is used. Note that the box will protrude 4pt to the left and right.
+</p>
+
+
+<p>
+&bull; <span class="declare"><span class="texttt">shadow=</span><span class="meta"><span class="angle">&langle;</span><i>true or false</i><span class="angle">&rangle;</span></span></span>. If set to <span class="texttt">true</span>, a shadow will be
+drawn.
+</p>
+
+
+<p>
+If no <span class="meta"><span class="angle">&langle;</span><i>head</i><span class="angle">&rangle;</span></span> is given, the head part is completely suppressed.
+</p>
+<p>
+<i>Example: </i>
+</p>
+<pre class="verbatim">
+\begin{beamerboxesrounded}[upper=block head,lower=block body,shadow=true]{Theorem}
+  $A = B$.
+\end{beamerboxesrounded}
+</pre>
+<p>
+This environment is not available in <span class="texttt">article</span> mode.
+</p>
+
+
+</div>
+<!--
+...... subsection Figures and Tables ......
+-->
+<h5 id="autosec-364"><span><span class="sectionnumber" id="sec-12.6">12.6</span> Figures and Tables</span><a class="anchor-link" href="#sec-12.6">&para;</a></h5>
+<a id="beameruserguide-autopage-364"></a>
+<p>
+You can use the standard <span class="latexlogofont"><span class="latexlogo">L<span class="latexlogosup">a</span>T<span class="latexlogosub">e</span>X</span></span> environments <span class="texttt">figure</span> and <span class="texttt">table</span> much the same way you would normally use them. However, any placement specification will be ignored. Figures and tables are immediately inserted where the environments start. If there are too many of them to fit on the frame, you must
+manually split them among additional frames or use the <span class="texttt">allowframebreaks</span> option.
+</p>
+<p>
+<i>Example: </i>
+</p>
+<pre class="verbatim">
+\begin{frame}
+  \begin{figure}
+    \pgfuseimage{myfigure}
+    \caption{This caption is placed below the figure.}
+  \end{figure}
+
+  \begin{figure}
+    \caption{This caption is placed above the figure.}
+    \pgfuseimage{myotherfigure}
+  \end{figure}
+\end{frame}
+</pre>
+<div class="element">
+
+
+<p>
+<span class="element-headline"><b>Beamer-Template/-Color/-Font</b> <span class="element-declare"><span class="declare">caption</span></span></span>
+</p>
+<p>
+This template is used to render the caption.
+</p>
+<p>
+The following template options are predefined:
+</p>
+
+
+<p>
+&bull; <span class="itemoption"><kbd>[<span class="declare">default</span>]</kbd></span> typesets the caption name (a word like &ldquo;Figure&rdquo; or &ldquo;Abbildung&rdquo; or &ldquo;Table,&rdquo; depending on whether a table or figure is typeset and depending on the currently installed
+language) before the caption text. No number is printed, since these make little sense in a normal presentation.
+</p>
+
+
+<p>
+&bull; <span class="itemoption"><kbd>[<span class="declare">numbered</span>]</kbd></span> adds the figure or table number to the caption. Use this option only if your audience has a printed handout or printed lecture notes that follow the same numbering.
+</p>
+
+
+<p>
+&bull; <span class="itemoption"><kbd>[<span class="declare">caption name own line</span>]</kbd></span> As the name suggests, this options puts the caption name (like &ldquo;Figure&rdquo;) on its own line.
+</p>
+
+
+<p>
+Inside the template, you can use the following inserts:
+</p>
+
+
+<p>
+&bull; <kbd><span class="declare">\insertcaption</span></kbd> Inserts the text of the current caption.
+</p>
+
+
+<p>
+&bull; <kbd><span class="declare">\insertcaptionname</span></kbd> Inserts the name of the current caption. This word is either &ldquo;Table&rdquo; or &ldquo;Figure&rdquo; or, if the <span class="texttt">babel</span> package is used, some translation thereof.
+</p>
+
+
+<p>
+&bull; <kbd><span class="declare">\insertcaptionnumber</span></kbd> Inserts the number of the current figure or table.
+</p>
+
+
+
+
+</div>
+<div class="element">
+
+
+<p>
+<span class="element-headline"><b>Beamer-Color/-Font</b> <span class="element-declare"><span class="declare">caption name</span></span></span>
+</p>
+<p>
+These <span class="beamer-name"><span class="textsc">beamer</span></span>-color and -font are used to typeset the caption name (a word like &ldquo;Figure&rdquo;). The <span class="texttt">caption</span> template must directly &ldquo;use&rdquo; them, they are not installed
+automatically by the <span class="texttt">\insertcaptionname</span> command.
+</p>
+
+
+</div>
+<div class="element">
+
+
+<p>
+<span class="element-headline"><b>Beamer-Template</b> <span class="element-declare"><span class="declare">caption label separator</span></span></span>
+</p>
+<p>
+This template is inserted between caption name and caption text.
+</p>
+<p>
+The following template options are predefined:
+</p>
+
+
+<p>
+&bull; <span class="itemoption"><kbd>[<span class="declare">default</span>]</kbd></span> Typesets the colon followed by the space.
+</p>
+
+
+<p>
+&bull; <span class="itemoption"><kbd>[<span class="declare">none</span>]</kbd></span> Typesets no separator.
+</p>
+
+
+<p>
+&bull; <span class="itemoption"><kbd>[<span class="declare">colon</span>]</kbd></span> Alias for the default.
+</p>
+
+
+<p>
+&bull; <span class="itemoption"><kbd>[<span class="declare">period</span>]</kbd></span> Typesets the period followed by the space.
+</p>
+
+
+<p>
+&bull; <span class="itemoption"><kbd>[<span class="declare">space</span>]</kbd></span> Typesets the space.
+</p>
+
+
+<p>
+&bull; <span class="itemoption"><kbd>[<span class="declare">quad</span>]</kbd></span> Typesets the <span class="texttt">\quad</span> followed by the space.
+</p>
+
+
+<p>
+&bull; <span class="itemoption"><kbd>[<span class="declare">endash</span>]</kbd></span> Typesets the en-dash surrounded by spaces (<span class="texttt"> -- </span>).
+</p>
+
+
+
+
+</div>
+<!--
+...... subsection Splitting a Frame into Multiple Columns ......
+-->
+<h5 id="autosec-366"><span><span class="sectionnumber" id="sec-12.7">12.7</span> Splitting a Frame into Multiple Columns</span><a class="anchor-link" href="#sec-12.7">&para;</a></h5>
+<a id="beameruserguide-autopage-366"></a>
+<p>
+The <span class="beamer-name"><span class="textsc">beamer</span></span> class offers several commands and environments for splitting (perhaps only part of) a frame into multiple columns. These commands have nothing to do with <span class="latexlogofont"><span class="latexlogo">L<span class="latexlogosup">a</span>T<span class="latexlogosub">e</span>X</span></span>&rsquo;s commands for creating columns. Columns are especially useful for placing a graphic next to a
+description/explanation.
+</p>
+<p>
+The main environment for creating columns is called <span class="texttt">columns</span>. Inside this environment, you can either place several <span class="texttt">column</span> environments, each of which creates a new column, or use the <span class="texttt">\column</span> command to create new columns.
+</p>
+<div class="environment">
+
+<div class="begin-environment">
+<div class="translatormanualentryheadline">
+<p>
+\begin{<span class="declare">columns</span>}<span class="opt">&lt;<span class="meta"><span class="angle">&langle;</span><i>overlay specification</i><span class="angle">&rangle;</span></span>&gt;</span><span class="opt"><span class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>options</i><span class="angle">&rangle;</span></span><span class="oarg-right-bracket">]</span></span>
+</p>
+</div>
+</div>
+<div class="translatormanualentryheadline">
+
+
+<p>
+<span class="meta"><span class="angle">&langle;</span><i>environment contents</i><span class="angle">&rangle;</span></span>
+</p>
+</div>
+<div class="end-environment">
+<div class="translatormanualentryheadline">
+
+
+<p>
+\end{<span class="declare">columns</span>}
+</p>
+</div>
+</div>
+<p>
+A multi-column area. If <span class="meta"><span class="angle">&langle;</span><i>overlay specification</i><span class="angle">&rangle;</span></span> is present, the environment will only be shown on the specified slides. Inside the environment you should
+place only <span class="texttt">column</span> environments or <span class="texttt">\column</span> commands (see below). The following <span class="meta"><span class="angle">&langle;</span><i>options</i><span class="angle">&rangle;</span></span>
+may be given:
+</p>
+
+
+<p>
+&bull; <span class="declare"><span class="texttt">b</span></span> will cause the bottom lines of the columns to be vertically aligned.
+</p>
+
+
+<p>
+&bull; <span class="declare"><span class="texttt">c</span></span> will cause the columns to be centered vertically relative to each other. Default, unless the global option <span class="texttt">t</span> is used.
+</p>
+
+
+<p>
+&bull; <span class="declare"><span class="texttt">onlytextwidth</span></span> is the same as <span class="texttt">totalwidth=\textwidth</span>. This option can also be set for the whole document with the <span class="texttt">onlytextwidth</span> class
+option:
+</p>
+<div class="classoption">
+
+
+<p>
+<span class="classoption-heading">\documentclass[<span class="declare">onlytextwidth</span>]{beamer}</span>
+</p>
+<p>
+</p>
+
+
+</div>
+
+
+<p>
+&bull; <span class="declare"><span class="texttt">t</span></span> will cause the first lines of the columns to be aligned. Default if global option <span class="texttt">t</span> is used.
+</p>
+
+
+<p>
+&bull; <span class="declare"><span class="texttt">T</span></span> is similar to the <span class="texttt">t</span> option, but <span class="texttt">T</span> aligns the tops of the first lines while <span class="texttt">t</span> aligns the so-called baselines of the
+first lines. If strange things seem to happen in conjunction with the <span class="texttt">t</span> option (for example if a graphic suddenly &ldquo;drops down&rdquo; with the <span class="texttt">t</span> option instead of &ldquo;going up&rdquo;), try using this option instead.
+</p>
+
+
+<p>
+&bull; <span class="declare"><span class="texttt">totalwidth=</span><span class="meta"><span class="angle">&langle;</span><i>width</i><span class="angle">&rangle;</span></span></span> will cause the columns to occupy not the whole page width, but
+only <span class="meta"><span class="angle">&langle;</span><i>width</i><span class="angle">&rangle;</span></span>, all told. Note that this means that any margins are ignored.
+</p>
+
+
+<p>
+<i>Example: </i>
+</p>
+<pre class="verbatim">
+\begin{columns}[t]
+  \begin{column}{5cm}
+    Two\\lines.
+  \end{column}
+  \begin{column}{5cm}
+    One line (but aligned).
+  \end{column}
+\end{columns}
+</pre>
+<p>
+<i>Example: </i>
+</p>
+<pre class="verbatim">
+\begin{columns}[t]
+  \column{5cm}
+    Two\\lines.
+
+  \column[T]{5cm}
+    \includegraphics[height=3cm]{mygraphic.jpg}
+\end{columns}
+</pre>
+<p>
+This environment is ignored in <span class="texttt">article</span> mode.
+</p>
+
+
+</div>
+<p>
+To create a column, you can either use the <span class="texttt">column</span> environment or the <span class="texttt">\column</span> command.
+</p>
+<div class="environment">
+
+<div class="begin-environment">
+<div class="translatormanualentryheadline">
+<p>
+\begin{<span class="declare">column</span>}<span class="opt">&lt;<span class="meta"><span class="angle">&langle;</span><i>overlay specification</i><span class="angle">&rangle;</span></span>&gt;</span><span class="opt"><span class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>placement</i><span class="angle">&rangle;</span></span><span class="oarg-right-bracket">]</span></span>{<span class="meta"><span class="angle">&langle;</span><i>column width</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+</div>
+<div class="translatormanualentryheadline">
+
+
+<p>
+<span class="meta"><span class="angle">&langle;</span><i>environment contents</i><span class="angle">&rangle;</span></span>
+</p>
+</div>
+<div class="end-environment">
+<div class="translatormanualentryheadline">
+
+
+<p>
+\end{<span class="declare">column</span>}
+</p>
+</div>
+</div>
+<p>
+Creates a single column of width <span class="meta"><span class="angle">&langle;</span><i>column width</i><span class="angle">&rangle;</span></span>. If <span class="meta"><span class="angle">&langle;</span><i>overlay specification</i><span class="angle">&rangle;</span></span> is present, the column will only be shown on the specified slides. The vertical placement of the enclosing <span class="texttt">columns</span> environment can be overruled by specifying a specific <span class="meta"><span class="angle">&langle;</span><i>placement</i><span class="angle">&rangle;</span></span> (<span class="texttt">t</span> and <span class="texttt">T</span> for the two top modes, <span class="texttt">c</span> for centered, and <span class="texttt">b</span> for bottom).
+</p>
+<p>
+<i>Example: </i>The following code has the same effect as the above examples:
+</p>
+<pre class="verbatim">
+\begin{columns}
+  \begin{column}[t]{5cm}
+    Two\\lines.
+  \end{column}
+  \begin{column}[t]{5cm}
+    One line (but aligned).
+  \end{column}
+\end{columns}
+</pre>
+<p>
+This command is ignored in <span class="texttt">article</span> mode.
+</p>
+
+
+</div>
+<div class="command">
+
+
+<p>
+</p>
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\column</kbd></span><span class="opt">&lt;<span class="meta"><span class="angle">&langle;</span><i>overlay specification</i><span class="angle">&rangle;</span></span>&gt;</span><span class="opt"><span class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>placement</i><span class="angle">&rangle;</span></span><span class="oarg-right-bracket">]</span></span>{<span class="meta"><span class="angle">&langle;</span><i>column width</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+Starts a single column. The parameters and options are the same as for the <span class="texttt">column</span> environment. The column automatically ends with the next occurrence of <span class="texttt">\column</span> or of a <span class="texttt">column</span> environment or of the end of the current <span class="texttt">columns</span> environment.
+</p>
+<p>
+<i>Example: </i>
+</p>
+<pre class="verbatim">
+\begin{columns}
+  \column[t]{5cm}
+    Two\\lines.
+  \column[t]{5cm}
+    One line (but aligned).
+\end{columns}
+</pre>
+<p>
+This command is ignored in <span class="texttt">article</span> mode.
+</p>
+
+
+</div>
+<!--
+...... subsection Positioning Text and Graphics Absolutely ......
+-->
+<h5 id="autosec-371"><span><span class="sectionnumber" id="sec-12.8">12.8</span> Positioning Text and Graphics Absolutely</span><a class="anchor-link" href="#sec-12.8">&para;</a></h5>
+<a id="beameruserguide-autopage-371"></a>
+<p>
+Normally, <span class="beamer-name"><span class="textsc">beamer</span></span> uses <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span>&rsquo;s normal typesetting mechanism to position text and
+graphics on the page. In certain situation you may instead wish a certain text or graphic to appear at a page position that is specified <em>absolutely</em>. This means that the position is specified relative to the upper left corner of the slide.
+</p>
+<p>
+The package <span class="texttt">textpos</span> provides several commands for positioning text absolutely and it works together with <span class="beamer-name"><span class="textsc">beamer</span></span>. When using this package, you will typically have to
+specify the options <span class="texttt">overlay</span> and perhaps <span class="texttt">absolute</span>. For details on how to use the package, please see its documentation.
+</p>
+<p>
+Another package to conveniently position elements at specific positions on the frame is Ti<em>k</em>Z. Besides the possibility to manually chose coordinates, this also allows to position elements in respect to the page:
+</p>
+<p>
+<i>Example: </i>
+</p>
+<pre class="verbatim">
+\usepackage{tikz}
+
+\begin{frame}
+  \tikz[remember picture, overlay] \node at (3.1415,1) {I'm here};
+
+  \tikz[remember picture, overlay] \node at (current page.center) {I'm the centre of the frame!};
+\end{frame}
+</pre>
+<!--
+...... subsection Verbatim and Fragile Text ......
+-->
+<h5 id="autosec-373"><span><span class="sectionnumber" id="sec-12.9">12.9</span> Verbatim and Fragile Text</span><a class="anchor-link" href="#sec-12.9">&para;</a></h5>
+<a id="beameruserguide-autopage-373"></a>
+<p>
+If you wish to use a <span class="texttt">{verbatim}</span> environment in a frame, you have to add the option <span class="texttt">[fragile]</span> to the <span class="texttt">{frame}</span> environment. The <span class="texttt">\end{frame}</span>
+must be alone on a single line (except for any leading whitespace). Using this option will cause the frame contents to be written to an external file and then read back. See the description of the <span class="texttt">{frame}</span> environment for more details.
+</p>
+<p>
+You must also use the <span class="texttt">[fragile]</span> option for frames that include any &ldquo;fragile&rdquo; text, which is any text that is not &ldquo;interpreted the way text is usually interpreted by <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span>.&rdquo; For example, if you use a package that (locally) redefined the meaning of, say, the character <span class="texttt">&amp;</span>, you must use this option.
+</p>
+<p>
+Inside <span class="texttt">{verbatim}</span> environments you obviously cannot use commands like <span class="texttt">\alert&lt;2&gt;</span> to highlight part of code since the text is written in, well, verbatim. There are several good packages like <span class="texttt">alltt</span> or <span class="texttt">listings</span> that allow you to circumvent this problem. For simple cases, the following environment can be used, which is defined by <span class="beamer-name"><span class="textsc">beamer</span></span>:
+</p>
+<div class="environment">
+
+<div class="begin-environment">
+<div class="translatormanualentryheadline">
+<p>
+\begin{<span class="declare">semiverbatim</span>}
+</p>
+</div>
+</div>
+<div class="translatormanualentryheadline">
+
+
+<p>
+<span class="meta"><span class="angle">&langle;</span><i>environment contents</i><span class="angle">&rangle;</span></span>
+</p>
+</div>
+<div class="end-environment">
+<div class="translatormanualentryheadline">
+
+
+<p>
+\end{<span class="declare">semiverbatim</span>}
+</p>
+</div>
+</div>
+<p>
+The text inside this environment is typeset like verbatim text. However, the characters <span class="texttt">\</span>, <span class="texttt">{</span>, and <span class="texttt">}</span> retain their meaning. Thus, you can say things like
+</p>
+<pre class="verbatim">
+\alert&lt;1-&gt;{std::cout &lt;&lt; "AT&amp;T likes 100% performance";}
+</pre>
+<p>
+To typeset the three characters <span class="texttt">\</span>, <span class="texttt">{</span>, and <span class="texttt">}</span> you can use the commands <span class="texttt">\\</span> (which is redefined inside this environment&mdash;you do not need it
+anyway), <span class="texttt">\{</span>, and <span class="texttt">\}</span>. Thus in order to get typeset &ldquo;<span class="texttt">\alert&lt;1&gt;{X}</span>&rdquo; you can write <span class="texttt">\\alert&lt;1&gt;\{X\}</span>.
+</p>
+
+
+</div>
+<!--
+...... subsection Abstract ......
+-->
+<h5 id="autosec-375"><span><span class="sectionnumber" id="sec-12.10">12.10</span> Abstract</span><a class="anchor-link" href="#sec-12.10">&para;</a></h5>
+<a id="beameruserguide-autopage-375"></a>
+<p>
+The <span class="texttt">{abstract}</span> environment is overlay specification-aware in <span class="beamer-name"><span class="textsc">beamer</span></span>:
+</p>
+<div class="environment">
+
+<div class="begin-environment">
+<div class="translatormanualentryheadline">
+<p>
+\begin{<span class="declare">abstract</span>}<span class="opt">&lt;<span class="meta"><span class="angle">&langle;</span><i>action specification</i><span class="angle">&rangle;</span></span>&gt;</span>
+</p>
+</div>
+</div>
+<div class="translatormanualentryheadline">
+
+
+<p>
+<span class="meta"><span class="angle">&langle;</span><i>environment contents</i><span class="angle">&rangle;</span></span>
+</p>
+</div>
+<div class="end-environment">
+<div class="translatormanualentryheadline">
+
+
+<p>
+\end{<span class="declare">abstract</span>}
+</p>
+</div>
+</div>
+<p>
+You can use this environment to typeset an abstract.
+</p>
+<div class="element">
+
+
+<p>
+<span class="element-headline"><b>Beamer-Color/-Font</b> <span class="element-declare"><span class="declare">abstract</span></span></span>
+</p>
+<p>
+These <span class="beamer-name"><span class="textsc">beamer</span></span>-color and -font are used to typeset the abstract. If a background color is set, this background color is used as background for the whole abstract by default.
+</p>
+
+
+</div>
+<div class="element">
+
+
+<p>
+<span class="element-headline"><b>Beamer-Template/-Color/-Font</b> <span class="element-declare"><span class="declare">abstract title</span></span></span>
+</p>
+<p>
+Color parents: <kbd>titlelike</kbd>
+</p>
+<p>
+This template is used for the title. By default, this inserts the word <span class="texttt">\abstractname</span>, centered. The background color is ignored.
+</p>
+
+
+</div>
+<div class="element">
+
+
+<p>
+<span class="element-headline"><b>Beamer-Template</b> <span class="element-declare"><span class="declare">abstract begin</span></span></span>
+</p>
+<p>
+This template is inserted at the very beginning of the abstract, before the abstract title and the <span class="meta"><span class="angle">&langle;</span><i>environment contents</i><span class="angle">&rangle;</span></span> is inserted.
+</p>
+
+
+</div>
+<div class="element">
+
+
+<p>
+<span class="element-headline"><b>Beamer-Template</b> <span class="element-declare"><span class="declare">abstract end</span></span></span>
+</p>
+<p>
+This template is inserted at the end of the abstract, after the <span class="meta"><span class="angle">&langle;</span><i>environment contents</i><span class="angle">&rangle;</span></span>.
+</p>
+
+
+</div>
+
+
+</div>
+<!--
+...... subsection Verse, Quotations, Quotes ......
+-->
+<h5 id="autosec-376"><span><span class="sectionnumber" id="sec-12.11">12.11</span> Verse, Quotations, Quotes</span><a class="anchor-link" href="#sec-12.11">&para;</a></h5>
+<a id="beameruserguide-autopage-376"></a>
+<p>
+<span class="latexlogofont"><span class="latexlogo">L<span class="latexlogosup">a</span>T<span class="latexlogosub">e</span>X</span></span> defines three environments for typesetting quotations and verses: <span class="texttt">verse</span>, <span class="texttt">quotation</span>, and <span class="texttt">quote</span>. These environments are also available in the <span class="beamer-name"><span class="textsc">beamer</span></span> class, where they are overlay specification-aware. If an overlay
+specification is given, the verse or quotation is shown only on the specified slides and is covered otherwise. The difference between a <span class="texttt">quotation</span> and a <span class="texttt">quote</span> is that the first has paragraph indentation, whereas
+the second hasn&rsquo;t.
+</p>
+<p>
+You can change the font and color used for these by changing the <span class="beamer-name"><span class="textsc">beamer</span></span>-colors and -fonts listed below. Unlike the standard <span class="latexlogofont"><span class="latexlogo">L<span class="latexlogosup">a</span>T<span class="latexlogosub">e</span>X</span></span> environments, the default font theme typesets a verse in an italic serif font, quotations and quotes are typeset using an italic font (whether serif or sans-serif depends on the
+standard document font).
+</p>
+<div class="environment">
+
+<div class="begin-environment">
+<div class="translatormanualentryheadline">
+<p>
+\begin{<span class="declare">verse</span>}<span class="opt">&lt;<span class="meta"><span class="angle">&langle;</span><i>action specification</i><span class="angle">&rangle;</span></span>&gt;</span>
+</p>
+</div>
+</div>
+<div class="translatormanualentryheadline">
+
+
+<p>
+<span class="meta"><span class="angle">&langle;</span><i>environment contents</i><span class="angle">&rangle;</span></span>
+</p>
+</div>
+<div class="end-environment">
+<div class="translatormanualentryheadline">
+
+
+<p>
+\end{<span class="declare">verse</span>}
+</p>
+</div>
+</div>
+<p>
+You can use this environment to typeset a verse.
+</p>
+<div class="element">
+
+
+<p>
+<span class="element-headline"><b>Beamer-Color/-Font</b> <span class="element-declare"><span class="declare">verse</span></span></span>
+</p>
+<p>
+These <span class="beamer-name"><span class="textsc">beamer</span></span>-color and -font are used to typeset the verse. If a background color is set, this background color is used as background for the whole abstract. The default font is italic serif.
+</p>
+
+
+</div>
+<div class="element">
+
+
+<p>
+<span class="element-headline"><b>Beamer-Template</b> <span class="element-declare"><span class="declare">verse begin</span></span></span>
+</p>
+<p>
+This template is inserted at the beginning of the verse.
+</p>
+
+
+</div>
+<div class="element">
+
+
+<p>
+<span class="element-headline"><b>Beamer-Template</b> <span class="element-declare"><span class="declare">verse end</span></span></span>
+</p>
+<p>
+This template is inserted at the end of the verse.
+</p>
+
+
+</div>
+
+
+</div>
+<div class="environment">
+
+<div class="begin-environment">
+<div class="translatormanualentryheadline">
+<p>
+\begin{<span class="declare">quotation</span>}<span class="opt">&lt;<span class="meta"><span class="angle">&langle;</span><i>action specification</i><span class="angle">&rangle;</span></span>&gt;</span>
+</p>
+</div>
+</div>
+<div class="translatormanualentryheadline">
+
+
+<p>
+<span class="meta"><span class="angle">&langle;</span><i>environment contents</i><span class="angle">&rangle;</span></span>
+</p>
+</div>
+<div class="end-environment">
+<div class="translatormanualentryheadline">
+
+
+<p>
+\end{<span class="declare">quotation</span>}
+</p>
+</div>
+</div>
+<p>
+Use this environment to typeset multi-paragraph quotations. Think again, before presenting multi-paragraph quotations.
+</p>
+<div class="element">
+
+
+<p>
+<span class="element-headline"><b>Beamer-Color/-Font</b> <span class="element-declare"><span class="declare">quotation</span></span></span>
+</p>
+<p>
+These <span class="beamer-name"><span class="textsc">beamer</span></span>-color and -font are used to typeset the quotation.
+</p>
+
+
+</div>
+<div class="element">
+
+
+<p>
+<span class="element-headline"><b>Beamer-Template</b> <span class="element-declare"><span class="declare">quotation begin</span></span></span>
+</p>
+<p>
+This template is inserted at the beginning of the quotation.
+</p>
+
+
+</div>
+<div class="element">
+
+
+<p>
+<span class="element-headline"><b>Beamer-Template</b> <span class="element-declare"><span class="declare">quotation end</span></span></span>
+</p>
+<p>
+This template is inserted at the end of the quotation.
+</p>
+
+
+</div>
+
+
+</div>
+<div class="environment">
+
+<div class="begin-environment">
+<div class="translatormanualentryheadline">
+<p>
+\begin{<span class="declare">quote</span>}<span class="opt">&lt;<span class="meta"><span class="angle">&langle;</span><i>action specification</i><span class="angle">&rangle;</span></span>&gt;</span>
+</p>
+</div>
+</div>
+<div class="translatormanualentryheadline">
+
+
+<p>
+<span class="meta"><span class="angle">&langle;</span><i>environment contents</i><span class="angle">&rangle;</span></span>
+</p>
+</div>
+<div class="end-environment">
+<div class="translatormanualentryheadline">
+
+
+<p>
+\end{<span class="declare">quote</span>}
+</p>
+</div>
+</div>
+<p>
+Use this environment to typeset a single-paragraph quotation.
+</p>
+<div class="element">
+
+
+<p>
+<span class="element-headline"><b>Beamer-Color/-Font</b> <span class="element-declare"><span class="declare">quote</span></span></span>
+</p>
+<p>
+These <span class="beamer-name"><span class="textsc">beamer</span></span>-color and -font are used to typeset the quote.
+</p>
+
+
+</div>
+<div class="element">
+
+
+<p>
+<span class="element-headline"><b>Beamer-Template</b> <span class="element-declare"><span class="declare">quote begin</span></span></span>
+</p>
+<p>
+This template is inserted at the beginning of the quote.
+</p>
+
+
+</div>
+<div class="element">
+
+
+<p>
+<span class="element-headline"><b>Beamer-Template</b> <span class="element-declare"><span class="declare">quote end</span></span></span>
+</p>
+<p>
+This template is inserted at the end of the quote.
+</p>
+
+
+</div>
+
+
+</div>
+<!--
+...... subsection Footnotes ......
+-->
+<h5 id="autosec-377"><span><span class="sectionnumber" id="sec-12.12">12.12</span> Footnotes</span><a class="anchor-link" href="#sec-12.12">&para;</a></h5>
+<a id="beameruserguide-autopage-377"></a>
+<p>
+First a word of warning: Using footnotes is usually not a good idea. They disrupt the flow of reading.
+</p>
+<p>
+You can use the usual <span class="texttt">\footnote</span> command. It has been augmented to take an additional option, for placing footnotes at the frame bottom instead of at the bottom of the current minipage.
+</p>
+<div class="command">
+
+
+<p>
+</p>
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\footnote</kbd></span><span class="opt">&lt;<span class="meta"><span class="angle">&langle;</span><i>overlay specification</i><span class="angle">&rangle;</span></span>&gt;</span><span class="opt"><span class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>options</i><span class="angle">&rangle;</span></span><span class="oarg-right-bracket">]</span></span>{<span class="meta"><span class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+Inserts a footnote into the current frame. Footnotes will always be shown at the bottom of the current frame; they will never be &ldquo;moved&rdquo; to other frames. As usual, one can give a number as <span class="meta"><span class="angle">&langle;</span><i>options</i><span class="angle">&rangle;</span></span>, which will cause the footnote to use that number. The <span class="beamer-name"><span class="textsc">beamer</span></span> class adds one additional option:
+</p>
+
+
+<p>
+&bull; <span class="declare"><span class="texttt">frame</span></span> causes the footnote to be shown at the bottom of the frame. This is normally the default behavior anyway, but in minipages and certain blocks it makes a difference. In a minipage, the footnote is
+usually shown as part of the minipage rather than as part of the frame.
+</p>
+
+
+<p>
+If an <span class="meta"><span class="angle">&langle;</span><i>overlay specification</i><span class="angle">&rangle;</span></span> is given, this causes the footnote <span class="meta"><span class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span></span> to be shown only on the specified slides. The footnote symbol in the text is shown on all slides.
+</p>
+<p>
+<i>Example: </i><span class="texttt">\footnote{On a fast machine.}</span>
+</p>
+<p>
+<i>Example: </i><span class="texttt">\footnote[frame,2]{Not proved.}</span>
+</p>
+<p>
+<i>Example: </i><span class="texttt">\footnote&lt;.-&gt;{Der Spiegel, 4/04, S.~90.}</span>
+</p>
+<p>
+In <span class="texttt">article</span> mode, footnotes are typeset as usual. The <span class="texttt">frame</span> option has no effect, which means in a minipage the footnote is shown as part of it.
+</p>
+<div class="element">
+
+
+<p>
+<span class="element-headline"><b>Beamer-Template/-Color/-Font</b> <span class="element-declare"><span class="declare">footnote</span></span></span>
+</p>
+<p>
+This template will be used to render the footnote. Inside this template, the following two inserts can be used:
+</p>
+
+
+<p>
+&bull; <kbd><span class="declare">\insertfootnotetext</span></kbd> Inserts the current footnote text.
+</p>
+
+
+<p>
+&bull; <kbd><span class="declare">\insertfootnotemark</span></kbd> Inserts the current footnote mark (like a raised number). This mark is computed automatically.
+</p>
+
+
+
+
+</div>
+<div class="element">
+
+
+<p>
+<span class="element-headline"><b>Beamer-Color/-Font</b> <span class="element-declare"><span class="declare">footnote mark</span></span></span>
+</p>
+<p>
+This <span class="beamer-name"><span class="textsc">beamer</span></span>-color/-font is used when rendering the footnote mark, both in the text and at the beginning of the footnote itself.
+</p>
+
+
+</div>
+
+
+</div>
+</p></section>
+</main>
+<footer><div class="footer-left"><a href="Licenses-Copyright.html">License</a> &middot; <a href="https://ctan.org/pkg/beamer">CTAN</a> &middot; <a href="http://mirrors.ctan.org/macros/latex/contrib/beamer/doc/beameruserguide.pdf">Official PDF version</a> &middot; <a href="https://github.com/SwitWu/beamer-html-manual/issues">Feedback and issues</a> &middot; <a href="https://github.com/SwitWu/beamer-html-manual">Repository</a></div><div class="footer-right"><em>HTML version last updated: 2023-10-07</em></div></footer></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script><script>
+      docsearch({
+        apiKey: '196e8c10ec187c9ae525dd5226fb9378',
+        indexName: 'beamer',
+        appId: 'JS6V5VZSDB',
+        container: '#search',
+        searchParameters: {
+          filters: "tags:beamer",
+        },
+    });
+    </script></body>
+</html>

@@ -1,0 +1,475 @@
+%%
+%% This is file `lwarp-hyperref.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% lwarp.dtx  (with options: `hyperref')
+%% This is a generated file.
+%% Copyright 2016-2022 Brian Dunn
+%% 
+%% This work may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%   http://www.latex-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of LaTeX
+%% version 2005/12/01 or later.
+
+
+
+\PackageInfo{lwarp}{%
+Using the lwarp HTML version of package `hyperref',\MessageBreak
+and discarding options except backref, pagebackref.\MessageBreak
+(Not using \protect\ProvidesPackage, so that other packages\MessageBreak
+do not attempt to patch lwarp's version of `hyperref'.)\MessageBreak}
+\SetupKeyvalOptions{family=LWR@hyperref,prefix=LWR@hyperref@}
+
+\newcommand{\hypersetup}[1]{\setkeys{LWR@hyperref}{#1}}
+
+\define@key{LWR@hyperref}{a4paper}[]{}
+\define@key{LWR@hyperref}{a5paper}[]{}
+\define@key{LWR@hyperref}{b5paper}[]{}
+\define@key{LWR@hyperref}{letterpaper}[]{}
+\define@key{LWR@hyperref}{legalpaper}[]{}
+\define@key{LWR@hyperref}{executivepaper}[]{}
+\define@key{LWR@hyperref}{implicit}[]{}
+\define@key{LWR@hyperref}{draft}[]{}
+\define@key{LWR@hyperref}{final}[]{}
+\define@key{LWR@hyperref}{setpagesize}[]{}
+\define@key{LWR@hyperref}{debug}[]{}
+\define@key{LWR@hyperref}{linktocpage}[]{}
+\define@key{LWR@hyperref}{linktoc}[]{}
+\define@key{LWR@hyperref}{extension}[]{}
+\define@key{LWR@hyperref}{verbose}[]{}
+\define@key{LWR@hyperref}{typexml}[]{}
+\define@key{LWR@hyperref}{raiselinks}[]{}
+\define@key{LWR@hyperref}{breaklinks}[]{}
+\define@key{LWR@hyperref}{localanchorname}[]{}
+\define@key{LWR@hyperref}{pageanchor}[]{}
+\define@key{LWR@hyperref}{plainpages}[]{}
+\define@key{LWR@hyperref}{naturalnames}[]{}
+\define@key{LWR@hyperref}{hypertexnames}[]{}
+\define@key{LWR@hyperref}{nesting}[]{}
+\define@key{LWR@hyperref}{destlabel}[]{}
+\define@key{LWR@hyperref}{unicode}[]{}
+\define@key{LWR@hyperref}{pdfencoding}[]{}
+\define@key{LWR@hyperref}{psdextra}[]{}
+\define@key{LWR@hyperref}{pdfversion}[]{}
+\define@key{LWR@hyperref}{dvipdfmx-outline-open}[]{}
+\define@key{LWR@hyperref}{driverfallback}[]{}
+\define@key{LWR@hyperref}{customdriver}[]{}
+\define@key{LWR@hyperref}{hyperfigures}[]{}
+\define@key{LWR@hyperref}{hyperfootnotes}[]{}
+\define@key{LWR@hyperref}{hyperindex}[]{}
+\define@key{LWR@hyperref}{encap}[]{}
+\define@key{LWR@hyperref}{colorlinks}[]{}
+\define@key{LWR@hyperref}{ocgcolorlinks}[]{}
+\define@key{LWR@hyperref}{frenchlinks}[]{}
+\define@key{LWR@hyperref}{bookmarks}[]{}
+\define@key{LWR@hyperref}{bookmarksopen}[]{}
+\define@key{LWR@hyperref}{bookmarksdepth}[]{}
+\define@key{LWR@hyperref}{bookmarksopenlevel}[]{}
+\define@key{LWR@hyperref}{bookmarkstype}[]{}
+\define@key{LWR@hyperref}{bookmarksnumbered}[]{}
+\define@key{LWR@hyperref}{CJKbookmarks}[]{}
+\define@key{LWR@hyperref}{link}[]{}
+\define@key{LWR@hyperref}{anchor}[]{}
+\define@key{LWR@hyperref}{cite}[]{}
+\define@key{LWR@hyperref}{file}[]{}
+\define@key{LWR@hyperref}{url}[]{}
+\define@key{LWR@hyperref}{menu}[]{}
+\define@key{LWR@hyperref}{run}[]{}
+\define@key{LWR@hyperref}{linkbordercolor}[]{}
+\define@key{LWR@hyperref}{anchorbordercolor}[]{}
+\define@key{LWR@hyperref}{citebordercolor}[]{}
+\define@key{LWR@hyperref}{filebordercolor}[]{}
+\define@key{LWR@hyperref}{urlbordercolor}[]{}
+\define@key{LWR@hyperref}{menubordercolor}[]{}
+\define@key{LWR@hyperref}{runbordercolor}[]{}
+\define@key{LWR@hyperref}{pagecolor}[]{}
+\define@key{LWR@hyperref}{baseurl}[]{}
+\define@key{LWR@hyperref}{linkfileprefix}[]{}
+\define@key{LWR@hyperref}{pdfpagetransition}[]{}
+\define@key{LWR@hyperref}{pdfpageduration}[]{}
+\define@key{LWR@hyperref}{pdfpagehidden}[]{}
+\define@key{LWR@hyperref}{pagebordercolor}[]{}
+\define@key{LWR@hyperref}{allbordercolors}[]{}
+\define@key{LWR@hyperref}{pdfhighlight}[]{}
+\define@key{LWR@hyperref}{pdfborder}[]{}
+\define@key{LWR@hyperref}{pdfborderstyle}[]{}
+\define@key{LWR@hyperref}{pdfprintpagerange}[]{}
+\define@key{LWR@hyperref}{pdfusetitle}[]{}
+\define@key{LWR@hyperref}{pdftitle}[]{}
+\define@key{LWR@hyperref}{pdfauthor}[]{}
+\define@key{LWR@hyperref}{pdfproducer}[]{}
+\define@key{LWR@hyperref}{pdfcreator}[]{}
+\define@key{LWR@hyperref}{addtopdfcreator}[]{}
+\define@key{LWR@hyperref}{pdfcreationdate}[]{}
+\define@key{LWR@hyperref}{pdfmoddate}[]{}
+\define@key{LWR@hyperref}{pdfsubject}[]{}
+\define@key{LWR@hyperref}{pdfkeywords}[]{}
+\define@key{LWR@hyperref}{pdftrapped}[]{}
+\define@key{LWR@hyperref}{pdfinfo}[]{}
+\define@key{LWR@hyperref}{pdfview}[]{}
+\define@key{LWR@hyperref}{pdflinkmargin}[]{}
+\define@key{LWR@hyperref}{pdfstartpage}[]{}
+\define@key{LWR@hyperref}{pdfstartview}[]{}
+\define@key{LWR@hyperref}{pdfremotestartview}[]{}
+\define@key{LWR@hyperref}{pdfpagescrop}[]{}
+\define@key{LWR@hyperref}{pdftoolbar}[]{}
+\define@key{LWR@hyperref}{pdfmenubar}[]{}
+\define@key{LWR@hyperref}{pdfwindowui}[]{}
+\define@key{LWR@hyperref}{pdffitwindow}[]{}
+\define@key{LWR@hyperref}{pdfcenterwindow}[]{}
+\define@key{LWR@hyperref}{pdfdisplaydoctitle}[]{}
+\define@key{LWR@hyperref}{pdfa}[]{}
+\define@key{LWR@hyperref}{pdfnewwindow}[]{}
+\define@key{LWR@hyperref}{pdflang}[]{}
+\define@key{LWR@hyperref}{pdfpagelabels}[]{}
+\define@key{LWR@hyperref}{pdfescapeform}[]{}
+\define@key{LWR@hyperref}{english}[]{}
+\define@key{LWR@hyperref}{UKenglish}[]{}
+\define@key{LWR@hyperref}{british}[]{}
+\define@key{LWR@hyperref}{USenglish}[]{}
+\define@key{LWR@hyperref}{american}[]{}
+\define@key{LWR@hyperref}{german}[]{}
+\define@key{LWR@hyperref}{austrian}[]{}
+\define@key{LWR@hyperref}{ngerman}[]{}
+\define@key{LWR@hyperref}{naustrian}[]{}
+\define@key{LWR@hyperref}{russian}[]{}
+\define@key{LWR@hyperref}{brazil}[]{}
+\define@key{LWR@hyperref}{brazilian}[]{}
+\define@key{LWR@hyperref}{portuguese}[]{}
+\define@key{LWR@hyperref}{spanish}[]{}
+\define@key{LWR@hyperref}{catalan}[]{}
+\define@key{LWR@hyperref}{afrikaans}[]{}
+\define@key{LWR@hyperref}{french}[]{}
+\define@key{LWR@hyperref}{frenchb}[]{}
+\define@key{LWR@hyperref}{francais}[]{}
+\define@key{LWR@hyperref}{acadian}[]{}
+\define@key{LWR@hyperref}{canadien}[]{}
+\define@key{LWR@hyperref}{italian}[]{}
+\define@key{LWR@hyperref}{magyar}[]{}
+\define@key{LWR@hyperref}{hungarian}[]{}
+\define@key{LWR@hyperref}{greek}[]{}
+\define@key{LWR@hyperref}{dutch}[]{}
+\define@key{LWR@hyperref}{tex4ht}[]{}
+\define@key{LWR@hyperref}{pdftex}[]{}
+\define@key{LWR@hyperref}{luatex}[]{}
+\define@key{LWR@hyperref}{nativepdf}[]{}
+\define@key{LWR@hyperref}{dvipdfm}[]{}
+\define@key{LWR@hyperref}{dvipdfmx}[]{}
+\define@key{LWR@hyperref}{xetex}[]{}
+\define@key{LWR@hyperref}{pdfmark}[]{}
+\define@key{LWR@hyperref}{dvips}[]{}
+\define@key{LWR@hyperref}{hypertex}[]{}
+\define@key{LWR@hyperref}{vtex}[]{}
+\define@key{LWR@hyperref}{vtexpdfmark}[]{}
+\define@key{LWR@hyperref}{dviwindo}[]{}
+\define@key{LWR@hyperref}{dvipsone}[]{}
+\define@key{LWR@hyperref}{textures}[]{}
+\define@key{LWR@hyperref}{latex2html}[]{}
+\define@key{LWR@hyperref}{ps2pdf}[]{}
+\define@key{LWR@hyperref}{vietnamese}[]{}
+\define@key{LWR@hyperref}{vietnam}[]{}
+\define@key{LWR@hyperref}{arabic}[]{}
+\define@key{LWR@hyperref}{hidelinks}[]{}
+\define@key{LWR@hyperref}{draft}[]{}
+\define@key{LWR@hyperref}{nolinks}[]{}
+\define@key{LWR@hyperref}{final}[]{}
+\define@key{LWR@hyperref}{pdfa}[]{}
+\define@key{LWR@hyperref}{pdfversion}[]{}
+\define@key{LWR@hyperref}{typexml}[]{}
+\define@key{LWR@hyperref}{tex4ht}[]{}
+\define@key{LWR@hyperref}{pdftex}[]{}
+\define@key{LWR@hyperref}{nativepdf}[]{}
+\define@key{LWR@hyperref}{dvipdfm}[]{}
+\define@key{LWR@hyperref}{dvipdfmx}[]{}
+\define@key{LWR@hyperref}{dvipdfmx-outline-open}[]{}
+\define@key{LWR@hyperref}{pdfmark}[]{}
+\define@key{LWR@hyperref}{dvips}[]{}
+\define@key{LWR@hyperref}{hypertex}[]{}
+\define@key{LWR@hyperref}{vtex}[]{}
+\define@key{LWR@hyperref}{vtexpdfmark}[]{}
+\define@key{LWR@hyperref}{dviwindo}[]{}
+\define@key{LWR@hyperref}{dvipsone}[]{}
+\define@key{LWR@hyperref}{textures}[]{}
+\define@key{LWR@hyperref}{latex2html}[]{}
+\define@key{LWR@hyperref}{ps2pdf}[]{}
+\define@key{LWR@hyperref}{xetex}[]{}
+\define@key{LWR@hyperref}{driverfallback}[]{}
+\define@key{LWR@hyperref}{customdriver}[]{}
+\define@key{LWR@hyperref}{pdfversion}[]{}
+\define@key{LWR@hyperref}{bookmarks}[]{}
+\define@key{LWR@hyperref}{ocgcolorlinks}[]{}
+\define@key{LWR@hyperref}{colorlinks}[]{}
+\define@key{LWR@hyperref}{frenchlinks}[]{}
+\define@key{LWR@hyperref}{backref}[]{}
+\define@key{LWR@hyperref}{pagebackref}[]{}
+\define@key{LWR@hyperref}{destlabel}[]{}
+\define@key{LWR@hyperref}{pdfpagescrop}[]{}
+\define@key{LWR@hyperref}{pdfpagemode}[]{}
+\define@key{LWR@hyperref}{pdfnonfullscreenpagemode}[]{}
+\define@key{LWR@hyperref}{pdfdirection}[]{}
+\define@key{LWR@hyperref}{pdfviewarea}[]{}
+\define@key{LWR@hyperref}{pdfviewclip}[]{}
+\define@key{LWR@hyperref}{pdfprintarea}[]{}
+\define@key{LWR@hyperref}{pdfprintclip}[]{}
+\define@key{LWR@hyperref}{pdfprintscaling}[]{}
+\define@key{LWR@hyperref}{pdfduplex}[]{}
+\define@key{LWR@hyperref}{pdfpicktraybypdfsize}[]{}
+\define@key{LWR@hyperref}{pdfprintpagerange}[]{}
+\define@key{LWR@hyperref}{pdfnumcopies}[]{}
+\define@key{LWR@hyperref}{pdfstartview}[]{}
+\define@key{LWR@hyperref}{pdfstartpage}[]{}
+\define@key{LWR@hyperref}{pdftoolbar}[]{}
+\define@key{LWR@hyperref}{pdfmenubar}[]{}
+\define@key{LWR@hyperref}{pdfwindowui}[]{}
+\define@key{LWR@hyperref}{pdffitwindow}[]{}
+\define@key{LWR@hyperref}{pdfcenterwindow}[]{}
+\define@key{LWR@hyperref}{pdfdisplaydoctitle}[]{}
+\define@key{LWR@hyperref}{pdfpagelayout}[]{}
+\define@key{LWR@hyperref}{pdflang}[]{}
+\define@key{LWR@hyperref}{baseurl}[]{}
+\define@key{LWR@hyperref}{pdfusetitle}[]{}
+\define@key{LWR@hyperref}{pdfpagelabels}[]{}
+\define@key{LWR@hyperref}{hyperfootnotes}[]{}
+\define@key{LWR@hyperref}{hyperfigures}[]{}
+\define@key{LWR@hyperref}{hyperindex}[]{}
+\define@key{LWR@hyperref}{encap}[]{}
+\define@key{LWR@hyperref}{linkcolor}[]{}
+\define@key{LWR@hyperref}{anchorcolor}[]{}
+\define@key{LWR@hyperref}{citecolor}[]{}
+\define@key{LWR@hyperref}{filecolor}[]{}
+\define@key{LWR@hyperref}{urlcolor}[]{}
+\define@key{LWR@hyperref}{menucolor}[]{}
+\define@key{LWR@hyperref}{runcolor}[]{}
+\define@key{LWR@hyperref}{allcolors}[]{}
+
+\DeclareStringOption[false]{backref}[section]
+
+\DeclareBoolOption{pagebackref}
+
+\DeclareDefaultOption{}
+
+\ProcessKeyvalOptions*\relax
+\ifdefstring{\LWR@hyperref@backref}{section}
+    {\RequirePackage{backref}}
+    {}
+
+\ifdefstring{\LWR@hyperref@backref}{slide}
+    {\RequirePackage{backref}}
+    {}
+
+\ifdefstring{\LWR@hyperref@backref}{page}
+    {\RequirePackage{backref}}
+    {}
+
+\ifLWR@hyperref@pagebackref
+    \RequirePackage{backref}
+\fi
+\LetLtxMacro\href\LWR@href
+\LetLtxMacro\nolinkurl\LWR@nolinkurl
+\LetLtxMacro\url\LWR@url
+\LetLtxMacro\phantomsection\LWR@phantomsection
+
+\newcommand*{\hyperbaseurl}[1]{}
+
+\newcommand*{\HyperDestNameFilter}[1]{#1}
+\newcommand*{\HyperDestLabelReplace}[1]{#1}
+\newcommand*{\HyperDestRename}[2]{}
+
+\newcommand*{\hyperget}[2]{}
+
+\NewDocumentCommand{\LWR@hyperimageb}{m +m}{%
+    \LWR@ensuredoingapar%
+    \def\LWR@templink{#1}%
+    \@onelevel@sanitize\LWR@templink%
+    \LWR@htmltag{%
+        img src=\textquotedbl\LWR@templink\textquotedbl\ %
+        alt=\textquotedbl#2\textquotedbl\ %
+        class=\textquotedbl{}hyperimage\textquotedbl%
+    }%
+    \LWR@ensuredoingapar%
+    \endgroup%
+}
+
+\newrobustcmd*{\hyperimage}{%
+    \begingroup%
+    \LWR@linkcatcodes%
+    \LWR@hyperimageb%
+}
+
+\NewDocumentCommand{\LWR@hyperdefb}{m m +m}{%
+    \LWR@ensuredoingapar%
+    \LWR@label@createtag{#1.#2}%
+    #3%
+    \endgroup%
+}
+
+\newcommand*{\hyperdef}{%
+    \begingroup%
+    \LWR@linkcatcodes%
+    \LWR@hyperdefb%
+}
+
+\newcommand{\LWR@hyperreffinish}[1]{%
+    \begingroup%
+    \RenewDocumentCommand{\ref}{s m}{\LWR@print@ref{##2}}%
+    #1%
+    \endgroup%
+    \LWR@htmltag{/a}%
+}
+
+\newcommand*{\LWR@hyperrefbb}[3]{%
+    \LWR@htmltag{%
+        a href=\textquotedbl%
+            \detokenize\expandafter{#1}\LWR@hashmark%
+            \detokenize\expandafter{#2}.\detokenize\expandafter{#3}%
+        \textquotedbl%
+        \LWR@addlinktitle%
+    }%
+    \endgroup%
+    \LWR@hyperreffinish%
+}
+
+\newrobustcmd*{\LWR@hyperrefb}{%
+    \begingroup%
+    \LWR@linkcatcodes%
+    \LWR@hyperrefbb%
+}
+
+\NewDocumentCommand{\LWR@hyperrefcb}{O{label}}{%
+    \LWR@startref{#1}%
+    \endgroup%
+    \LWR@hyperreffinish%
+}
+
+\newcommand*{\LWR@hyperrefc}{%
+    \begingroup%
+    \LWR@linkcatcodes%
+    \LWR@hyperrefcb%
+}
+
+\DeclareRobustCommand*{\hyperref}{%
+    \LWR@ensuredoingapar%
+    \@ifnextchar[\LWR@hyperrefc\LWR@hyperrefb%
+}
+
+\NewDocumentCommand{\LWR@hypertargetb}{m +m}{%
+    \label{LWR-ht-#1}%
+    #2%
+    \endgroup%
+}
+
+\newcommand*{\hypertarget}{%
+    \LWR@ensuredoingapar%
+    \begingroup%
+    \LWR@linkcatcodes%
+    \LWR@hypertargetb%
+}
+
+\DeclareDocumentCommand{\LWR@hyperlinkb}{m}{%
+    \ifbool{LWR@insidemathcomment}%
+        {\endgroup}%
+        {\LWR@hyperrefcb[LWR-ht-#1]}%
+}
+
+\DeclareDocumentCommand{\hyperlink}{}{%
+    \LWR@ensuredoingapar%
+    \begingroup%
+    \LWR@linkcatcodes%
+    \LWR@hyperlinkb%
+}
+
+\newcommand{\LWR@nullify@hyperrefb}[2][]{}
+
+\newcommand*{\LWR@nullify@hyperref}{%
+    \@ifnextchar[\LWR@nullify@hyperrefb\@fourthoffour%
+}
+\appto\LWR@restoreorigformatting{%
+    \LetLtxMacro\hyperdef\@thirdofthree
+    \LetLtxMacro\hyperlink\@secondoftwo%
+    \LetLtxMacro\hyperref\LWR@nullify@hyperref%
+}
+
+\NewDocumentCommand{\autoref}{s m}{%
+    \IfBooleanTF{#1}{\ref{#2}}{\cref{#2}}%
+}
+\NewDocumentCommand{\autopageref}{s m}{%
+    \IfBooleanTF{#1}{\cpageref{#2}}{\cref{#2}}%
+}
+
+\def\equationautorefname{Equation}%
+\def\footnoteautorefname{footnote}%
+\def\itemautorefname{item}%
+\def\figureautorefname{Figure}%
+\def\tableautorefname{Table}%
+\def\partautorefname{Part}%
+\def\appendixautorefname{Appendix}%
+\def\chapterautorefname{chapter}%
+\def\sectionautorefname{section}%
+\def\subsectionautorefname{subsection}%
+\def\subsubsectionautorefname{subsubsection}%
+\def\paragraphautorefname{paragraph}%
+\def\subparagraphautorefname{subparagraph}%
+\def\FancyVerbLineautorefname{line}%
+\def\theoremautorefname{Theorem}%
+\def\pageautorefname{page}%
+
+\newcommand{\pdfstringdef}[2]{}
+
+\newcommand{\pdfbookmark}[3][]{}
+
+\newcommand{\currentpdfbookmark}[2]{}
+
+\newcommand{\subpdfbookmark}[2]{}
+
+\newcommand{\belowpdfbookmark}[2]{}
+
+\let\texorpdfstring\relax
+\newcommand{\texorpdfstring}[2]{#1}
+
+\newcommand{\pdfstringdefDisableCommands}[1]{}
+
+\def\hypercalcbp#1{%
+    \strip@pt\dimexpr 0.99626401\dimexpr(#1)\relax\relax
+}%
+
+\newcommand{\Acrobatmenu}[2]{}
+
+\DeclareRobustCommand{\TextField}[2][]{}
+
+\DeclareRobustCommand{\CheckBox}[2][]{}
+
+\DeclareRobustCommand{\ChoiceMenu}[3][]{}
+
+\DeclareRobustCommand{\PushButton}[2][]{}
+
+\DeclareRobustCommand{\Submit}[2][]{}
+
+\DeclareRobustCommand{\Reset}[2][]{}
+
+\DeclareRobustCommand{\Gauge}[2][]{}
+
+\newcommand*{\LayoutTextField}[2]{}
+
+\newcommand*{\LayoutChoiceField}[2]{}
+
+\newcommand*{\LayoutCheckField}[2]{}
+
+\newcommand*{\MakeRadioField}[2]{}
+
+\newcommand*{\MakeCheckField}[2]{}
+
+\newcommand*{\MakeTextField}[2]{}
+
+\newcommand*{\MakeChoiceField}[2]{}
+
+\newcommand{\MakeFieldButton}[1]{}
+
+
+\endinput
+%%
+%% End of file `lwarp-hyperref.sty'.

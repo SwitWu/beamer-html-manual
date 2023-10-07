@@ -1,0 +1,766 @@
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8" />
+<meta name="generator" content="LaTeX Lwarp package" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The beamer class- <a href=https://github.com/josephwright/beamer target=-blank >https://github.com/josephwright/beamer</a>- User Guide for version 3.70. — Taking Advantage of Multiple Screens</title>
+<link rel="stylesheet" type="text/css" href="style.css" />
+
+<script>
+// Lwarp MathJax emulation code
+//
+// Based on code by Davide P. Cervone.
+// Equation numbering: https://github.com/mathjax/MathJax/issues/2427
+// Starred and ifnextchar macros: https://github.com/mathjax/MathJax/issues/2428
+// \left, \right delimiters: https://github.com/mathjax/MathJax/issues/2535
+//
+// Modified by Brian Dunn to adjust equation numbering and add subequations.
+//
+// LaTeX can use \seteqnumber{subequations?}{section}{number} before each equation.
+// subequations? is 0 usually, 1 if inside subequations.
+// section is a string printed as-is, or empty.
+// number is auto-incremented by MathJax between equations.
+//
+MathJax = {
+  subequations: "0",
+  section: "",
+  loader: {
+    load: ['[tex]/tagformat', '[tex]/textmacros'],
+  },
+  startup: {
+    ready() {
+      // These would be replaced by import commands if you wanted to make
+      // a proper extension.
+      const Configuration = MathJax._.input.tex.Configuration.Configuration;
+      const CommandMap = MathJax._.input.tex.SymbolMap.CommandMap;
+      const Macro = MathJax._.input.tex.Symbol.Macro;
+      const TexError = MathJax._.input.tex.TexError.default;
+      const ParseUtil = MathJax._.input.tex.ParseUtil.default;
+      const expandable = MathJax._.util.Options.expandable;
+
+        // Insert the replacement string into the TeX string, and check
+        // that there haven't been too many maxro substitutions (prevents
+        // infinite loops).
+        const useArgument = (parser, text) => {
+          parser.string = ParseUtil.addArgs(parser, text, parser.string.slice(parser.i));
+          parser.i = 0;
+          if (++parser.macroCount > parser.configuration.options.maxMacros) {
+            throw new TexError('MaxMacroSub1',
+            'MathJax maximum macro substitution count exceeded; ' +
+            'is there a recursive macro call?');
+          }
+        }
+
+        // Create the command map for:
+        //     \ifstar, \ifnextchar, \ifblank, \ifstrequal, \gsub, \seteqnumber
+        new CommandMap('Lwarp-macros', {
+          ifstar: 'IfstarFunction',
+          ifnextchar: 'IfnextcharFunction',
+          ifblank: 'IfblankFunction',
+          ifstrequal: 'IfstrequalFunction',
+          gsubstitute: 'GsubstituteFunction',
+          seteqnumber: 'SeteqnumberFunction'
+        }, {
+          // This function implements an ifstar macro.
+          IfstarFunction(parser, name) {
+             const resultstar = parser.GetArgument(name);
+             const resultnostar = parser.GetArgument(name);
+             const star = parser.GetStar();                 // true if there is a *
+             useArgument(parser, star ? resultstar : resultnostar);
+          },
+
+          // This function implements an ifnextchar macro.
+          IfnextcharFunction(parser, name) {
+            let whichchar = parser.GetArgument(name);
+            if (whichchar.match(/^(?:0x[0-9A-F]+|[0-9]+)$/i)) {
+              // $ syntax highlighting
+              whichchar = String.fromCodePoint(parseInt(whichchar));
+            }
+            const resultnextchar = parser.GetArgument(name);
+            const resultnotnextchar = parser.GetArgument(name);
+            const gotchar = (parser.GetNext() === whichchar);
+            useArgument(parser, gotchar ? resultnextchar : resultnotnextchar);
+          },
+
+          // This function implements an ifblank macro.
+          IfblankFunction(parser, name) {
+            const blankarg = parser.GetArgument(name);
+            const resultblank = parser.GetArgument(name);
+            const resultnotblank = parser.GetArgument(name);
+            const isblank = (blankarg.trim() == "");
+            useArgument(parser, isblank ? resultblank : resultnotblank);
+          },
+
+          // This function implements an ifstrequal macro.
+          IfstrequalFunction(parser, name) {
+            const strequalfirst = parser.GetArgument(name);
+            const strequalsecond = parser.GetArgument(name);
+            const resultequal = parser.GetArgument(name);
+            const resultnotequal = parser.GetArgument(name);
+            const isequal = (strequalfirst == strequalsecond);
+            useArgument(parser, isequal ? resultequal : resultnotequal);
+          },
+
+          // This function implements a gsub macro.
+          GsubstituteFunction(parser, name) {
+            const gsubfirst = parser.GetArgument(name);
+            const gsubsecond = parser.GetArgument(name);
+            const gsubthird = parser.GetArgument(name);
+            let gsubresult=gsubfirst.replace(gsubsecond, gsubthird);
+            useArgument(parser, gsubresult);
+          },
+
+          // This function modifies the equation numbers.
+          SeteqnumberFunction(parser, name) {
+              // Get the macro parameters
+              const star = parser.GetStar();                  // true if there is a *
+              const optBrackets = parser.GetBrackets(name);   // contents of optional brackets
+              const newsubequations = parser.GetArgument(name); // the subequations argument
+              const neweqsection = parser.GetArgument(name); // the eq section argument
+              const neweqnumber = parser.GetArgument(name);   // the eq number argument
+              MathJax.config.subequations=newsubequations ;   // a string with boolean meaning
+              MathJax.config.section=neweqsection ;           // a string with numeric meaning
+              parser.tags.counter = parser.tags.allCounter = neweqnumber ;
+          }
+
+        });
+
+        // Create the Lwarp-macros package
+        Configuration.create('Lwarp-macros', {
+          handler: {macro: ['Lwarp-macros']}
+        });
+
+        MathJax.startup.defaultReady();
+
+        // For forward references:
+        MathJax.startup.input[0].preFilters.add(({math}) => {
+          if (math.inputData.recompile){
+              MathJax.config.subequations = math.inputData.recompile.subequations;
+              MathJax.config.section = math.inputData.recompile.section;
+          }
+        });
+        MathJax.startup.input[0].postFilters.add(({math}) => {
+          if (math.inputData.recompile){
+              math.inputData.recompile.subequations = MathJax.config.subequations;
+              math.inputData.recompile.section = MathJax.config.section;
+          }
+        });
+
+          // For \left, \right with unicode-math:
+          const {DelimiterMap} = MathJax._.input.tex.SymbolMap;
+          const {Symbol} = MathJax._.input.tex.Symbol;
+          const {MapHandler} = MathJax._.input.tex.MapHandler;
+          const delimiter = MapHandler.getMap('delimiter');
+          delimiter.add('\\lBrack', new Symbol('\\lBrack', '\u27E6'));
+          delimiter.add('\\rBrack', new Symbol('\\rBrack', '\u27E7'));
+          delimiter.add('\\lAngle', new Symbol('\\lAngle', '\u27EA'));
+          delimiter.add('\\rAngle', new Symbol('\\rAngle', '\u27EB'));
+          delimiter.add('\\lbrbrak', new Symbol('\\lbrbrak', '\u2772'));
+          delimiter.add('\\rbrbrak', new Symbol('\\rbrbrak', '\u2773'));
+          delimiter.add('\\lbag', new Symbol('\\lbag', '\u27C5'));
+          delimiter.add('\\rbag', new Symbol('\\rbag', '\u27C6'));
+          delimiter.add('\\llparenthesis', new Symbol('\\llparenthesis', '\u2987'));
+          delimiter.add('\\rrparenthesis', new Symbol('\\rrparenthesis', '\u2988'));
+          delimiter.add('\\llangle', new Symbol('\\llangle', '\u2989'));
+          delimiter.add('\\rrangle', new Symbol('\\rrangle', '\u298A'));
+          delimiter.add('\\Lbrbrak', new Symbol('\\Lbrbrak', '\u27EC'));
+          delimiter.add('\\Rbrbrak', new Symbol('\\Rbrbrak', '\u27ED'));
+          delimiter.add('\\lBrace', new Symbol('\\lBrace', '\u2983'));
+          delimiter.add('\\rBrace', new Symbol('\\rBrace', '\u2984'));
+          delimiter.add('\\lParen', new Symbol('\\lParen', '\u2985'));
+          delimiter.add('\\rParen', new Symbol('\\rParen', '\u2986'));
+          delimiter.add('\\lbrackubar', new Symbol('\\lbrackubar', '\u298B'));
+          delimiter.add('\\rbrackubar', new Symbol('\\rbrackubar', '\u298C'));
+          delimiter.add('\\lbrackultick', new Symbol('\\lbrackultick', '\u298D'));
+          delimiter.add('\\rbracklrtick', new Symbol('\\rbracklrtick', '\u298E'));
+          delimiter.add('\\lbracklltick', new Symbol('\\lbracklltick', '\u298F'));
+          delimiter.add('\\rbrackurtick', new Symbol('\\rbrackurtick', '\u2990'));
+          delimiter.add('\\langledot', new Symbol('\\langledot', '\u2991'));
+          delimiter.add('\\rangledot', new Symbol('\\rangledot', '\u2992'));
+          delimiter.add('\\lparenless', new Symbol('\\lparenless', '\u2993'));
+          delimiter.add('\\rparengtr', new Symbol('\\rparengtr', '\u2994'));
+          delimiter.add('\\Lparengtr', new Symbol('\\Lparengtr', '\u2995'));
+          delimiter.add('\\Rparenless', new Symbol('\\Rparenless', '\u2996'));
+          delimiter.add('\\lblkbrbrak', new Symbol('\\lblkbrbrak', '\u2997'));
+          delimiter.add('\\rblkbrbrak', new Symbol('\\rblkbrbrak', '\u2998'));
+          delimiter.add('\\lvzigzag', new Symbol('\\lvzigzag', '\u29D8'));
+          delimiter.add('\\rvzigzag', new Symbol('\\rvzigzag', '\u29D9'));
+          delimiter.add('\\Lvzigzag', new Symbol('\\Lvzigzag', '\u29DA'));
+          delimiter.add('\\Rvzigzag', new Symbol('\\Rvzigzag', '\u29DB'));
+          delimiter.add('\\lcurvyangle', new Symbol('\\lcurvyangle', '\u29FC'));
+          delimiter.add('\\rcurvyangle', new Symbol('\\rcurvyangle', '\u29FD'));
+          delimiter.add('\\Vvert', new Symbol('\\Vvert', '\u2980'));
+    }     // ready
+  },      // startup
+
+  tex: {
+    packages: {'[+]': ['tagformat', 'Lwarp-macros', 'textmacros']},
+    tags: "ams",
+         tagformat: {
+             number: function (n) {
+                 if(MathJax.config.subequations==0)
+                     return(MathJax.config.section + n);
+                 else
+                     return(MathJax.config.section + String.fromCharCode(96+n));
+             },
+         },
+  }
+}
+</script>
+
+<script
+    id="MathJax-script"
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"
+></script>
+
+</head>
+<body>
+
+
+<a id="beameruserguide-autopage-545"></a>
+<nav class="topnavigation"><a href="home.html" class="linkhome" >
+Home</a></nav>
+
+
+<div class="bodyandsidetoc">
+<div class="sidetoccontainer">
+
+
+<nav class="sidetoc">
+
+
+<div class="sidetoctitle">
+
+<p>
+<span class="sidetocthetitle">The <span class="beamer-name"><span class="textsc">beamer</span></span> <i>class</i><br />
+<a href="https://github.com/josephwright/beamer" target="_blank" >https://github.com/josephwright/beamer</a><br />
+User Guide for version 3.70.</span>
+</p>
+
+<p>
+Contents
+</p>
+</div>
+
+
+<div class="sidetoccontents">
+
+<p>
+<a href="home.html" class="linkhome" >
+Home</a>
+</p>
+
+<p>
+<a href="Introduction.html#autosec-7" class="tocsection" >
+<span class="sectionnumber">1</span>&#x2003;Introduction</a>
+</p>
+
+
+<p>
+<a href="Getting-Started.html#autosec-21" class="tocpart" >
+<span class="sectionnumber">I</span>&#x2003;Getting Started</a>
+</p>
+
+
+<p>
+<a href="Installation.html#autosec-24" class="tocsection" >
+<span class="sectionnumber">2</span>&#x2003;Installation</a>
+</p>
+
+
+<p>
+<a href="Tutorial-Euclid-Presentation.html#autosec-42" class="tocsection" >
+<span class="sectionnumber">3</span>&#x2003;Tutorial: Euclid’s Presentation</a>
+</p>
+
+
+<p>
+<a href="Workflow-For-Creating-Beamer-Presentation.html#autosec-93" class="tocsection" >
+<span class="sectionnumber">4</span>&#x2003;Workflow For Creating a Beamer Presentation</a>
+</p>
+
+
+<p>
+<a href="Guidelines-Creating-Presentations.html#autosec-116" class="tocsection" >
+<span class="sectionnumber">5</span>&#x2003;Guidelines for Creating Presentations</a>
+</p>
+
+
+<p>
+<a href="Solution-Templates.html#autosec-141" class="tocsection" >
+<span class="sectionnumber">6</span>&#x2003;Solution Templates</a>
+</p>
+
+
+<p>
+<a href="Licenses-Copyright.html#autosec-144" class="tocsection" >
+<span class="sectionnumber">7</span>&#x2003;Licenses and Copyright</a>
+</p>
+
+
+<p>
+<a href="Building-Presentation.html#autosec-185" class="tocpart" >
+<span class="sectionnumber">II</span>&#x2003;Building a Presentation</a>
+</p>
+
+
+<p>
+<a href="Creating-Frames.html#autosec-188" class="tocsection" >
+<span class="sectionnumber">8</span>&#x2003;Creating Frames</a>
+</p>
+
+
+<p>
+<a href="Creating-Overlays.html#autosec-234" class="tocsection" >
+<span class="sectionnumber">9</span>&#x2003;Creating Overlays</a>
+</p>
+
+
+<p>
+<a href="Structuring-Presentation-The-Static-Global-Structure.html#autosec-295" class="tocsection" >
+<span class="sectionnumber">10</span>&#x2003;Structuring a Presentation: The Static Global Structure</a>
+</p>
+
+
+<p>
+<a href="Structuring-Presentation-The-Interactive-Global-Structure.html#autosec-322" class="tocsection" >
+<span class="sectionnumber">11</span>&#x2003;Structuring a Presentation: The Interactive Global Structure</a>
+</p>
+
+
+<p>
+<a href="Structuring-Presentation-The-Local-Structure.html#autosec-336" class="tocsection" >
+<span class="sectionnumber">12</span>&#x2003;Structuring a Presentation: The Local Structure</a>
+</p>
+
+
+<p>
+<a href="Graphics.html#autosec-380" class="tocsection" >
+<span class="sectionnumber">13</span>&#x2003;Graphics</a>
+</p>
+
+
+<p>
+<a href="Animations-Sounds-Slide-Transitions.html#autosec-390" class="tocsection" >
+<span class="sectionnumber">14</span>&#x2003;Animations, Sounds, and Slide Transitions</a>
+</p>
+
+
+<p>
+<a href="Changing-Way-Things-Look.html#autosec-410" class="tocpart" >
+<span class="sectionnumber">III</span>&#x2003;Changing the Way Things Look</a>
+</p>
+
+
+<p>
+<a href="Themes.html#autosec-413" class="tocsection" >
+<span class="sectionnumber">15</span>&#x2003;Themes</a>
+</p>
+
+
+<p>
+<a href="Inner-Themes-Outer-Themes-Templates.html#autosec-428" class="tocsection" >
+<span class="sectionnumber">16</span>&#x2003;Inner Themes, Outer Themes, and Templates</a>
+</p>
+
+
+<p>
+<a href="Colors.html#autosec-452" class="tocsection" >
+<span class="sectionnumber">17</span>&#x2003;Colors</a>
+</p>
+
+
+<p>
+<a href="Fonts.html#autosec-481" class="tocsection" >
+<span class="sectionnumber">18</span>&#x2003;Fonts</a>
+</p>
+
+
+<p>
+<a href="Creating-Supporting-Material.html#autosec-497" class="tocpart" >
+<span class="sectionnumber">IV</span>&#x2003;Creating Supporting Material</a>
+</p>
+
+
+<p>
+<a href="Adding-Notes-Yourself.html#autosec-500" class="tocsection" >
+<span class="sectionnumber">19</span>&#x2003;Adding Notes for Yourself</a>
+</p>
+
+
+<p>
+<a href="Creating-Transparencies.html#autosec-512" class="tocsection" >
+<span class="sectionnumber">20</span>&#x2003;Creating Transparencies</a>
+</p>
+
+
+<p>
+<a href="Creating-Handouts-Lecture-Notes.html#autosec-521" class="tocsection" >
+<span class="sectionnumber">21</span>&#x2003;Creating Handouts and Lecture Notes</a>
+</p>
+
+
+<p>
+<a href="Taking-Advantage-Multiple-Screens.html#autosec-546" class="tocsection" >
+<span class="sectionnumber">22</span>&#x2003;Taking Advantage of Multiple Screens</a>
+</p>
+
+
+<p>
+<a href="Howtos.html#autosec-554" class="tocpart" >
+<span class="sectionnumber">V</span>&#x2003;Howtos</a>
+</p>
+
+
+<p>
+<a href="How-To-Uncover-Things-Piecewise.html#autosec-557" class="tocsection" >
+<span class="sectionnumber">23</span>&#x2003;How To Uncover Things Piecewise</a>
+</p>
+
+
+<p>
+<a href="How-To-Import-Presentations-Based-on-Other-Packages-Classes.html#autosec-580" class="tocsection" >
+<span class="sectionnumber">24</span>&#x2003;How To Import Presentations Based on Other Packages and Classes</a>
+</p>
+
+
+</div>
+
+</nav>
+
+</div>
+
+
+<main class="bodycontainer">
+
+
+<section class="textbody">
+
+<h1>The <span class="beamer-name"><span class="textsc">beamer</span></span> <i>class</i><br />
+<a href="https://github.com/josephwright/beamer" target="_blank" >https://github.com/josephwright/beamer</a><br />
+User Guide for version 3.70.</h1>
+
+<!--MathJax customizations:-->
+
+
+<div class="hidden">
+
+\(\newcommand{\footnotename}{footnote}\)
+
+\(\def \LWRfootnote {1}\)
+
+\(\newcommand {\footnote }[2][\LWRfootnote ]{{}^{\mathrm {#1}}}\)
+
+\(\newcommand {\footnotemark }[1][\LWRfootnote ]{{}^{\mathrm {#1}}}\)
+
+\(\let \LWRorighspace \hspace \)
+
+\(\renewcommand {\hspace }{\ifstar \LWRorighspace \LWRorighspace }\)
+
+\(\newcommand {\mathnormal }[1]{{#1}}\)
+
+\(\newcommand \ensuremath [1]{#1}\)
+
+\(\newcommand {\LWRframebox }[2][]{\fbox {#2}} \newcommand {\framebox }[1][]{\LWRframebox } \)
+
+\(\newcommand {\setlength }[2]{}\)
+
+\(\newcommand {\addtolength }[2]{}\)
+
+\(\newcommand {\setcounter }[2]{}\)
+
+\(\newcommand {\addtocounter }[2]{}\)
+
+\(\newcommand {\arabic }[1]{}\)
+
+\(\newcommand {\number }[1]{}\)
+
+\(\newcommand {\noalign }[1]{\text {#1}\notag \\}\)
+
+\(\newcommand {\cline }[1]{}\)
+
+\(\newcommand {\directlua }[1]{\text {(directlua)}}\)
+
+\(\newcommand {\luatexdirectlua }[1]{\text {(directlua)}}\)
+
+\(\newcommand {\protect }{}\)
+
+\(\def \LWRabsorbnumber #1 {}\)
+
+\(\def \LWRabsorbquotenumber &quot;#1 {}\)
+
+\(\newcommand {\LWRabsorboption }[1][]{}\)
+
+\(\newcommand {\LWRabsorbtwooptions }[1][]{\LWRabsorboption }\)
+
+\(\def \mathchar {\ifnextchar &quot;\LWRabsorbquotenumber \LWRabsorbnumber }\)
+
+\(\def \mathcode #1={\mathchar }\)
+
+\(\let \delcode \mathcode \)
+
+\(\let \delimiter \mathchar \)
+
+\(\def \oe {\unicode {x0153}}\)
+
+\(\def \OE {\unicode {x0152}}\)
+
+\(\def \ae {\unicode {x00E6}}\)
+
+\(\def \AE {\unicode {x00C6}}\)
+
+\(\def \aa {\unicode {x00E5}}\)
+
+\(\def \AA {\unicode {x00C5}}\)
+
+\(\def \o {\unicode {x00F8}}\)
+
+\(\def \O {\unicode {x00D8}}\)
+
+\(\def \l {\unicode {x0142}}\)
+
+\(\def \L {\unicode {x0141}}\)
+
+\(\def \ss {\unicode {x00DF}}\)
+
+\(\def \SS {\unicode {x1E9E}}\)
+
+\(\def \dag {\unicode {x2020}}\)
+
+\(\def \ddag {\unicode {x2021}}\)
+
+\(\def \P {\unicode {x00B6}}\)
+
+\(\def \copyright {\unicode {x00A9}}\)
+
+\(\def \pounds {\unicode {x00A3}}\)
+
+\(\let \LWRref \ref \)
+
+\(\renewcommand {\ref }{\ifstar \LWRref \LWRref }\)
+
+\( \newcommand {\multicolumn }[3]{#3}\)
+
+\(\require {textcomp}\)
+
+\(\newcommand {\intertext }[1]{\text {#1}\notag \\}\)
+
+\(\let \Hat \hat \)
+
+\(\let \Check \check \)
+
+\(\let \Tilde \tilde \)
+
+\(\let \Acute \acute \)
+
+\(\let \Grave \grave \)
+
+\(\let \Dot \dot \)
+
+\(\let \Ddot \ddot \)
+
+\(\let \Breve \breve \)
+
+\(\let \Bar \bar \)
+
+\(\let \Vec \vec \)
+
+</div>
+
+<p>
+<!--
+...... section Taking Advantage of Multiple Screens ......
+-->
+<h4 id="autosec-546"><span class="sectionnumber">22&#x2003;</span>Taking Advantage of Multiple Screens</h4>
+<a id="beameruserguide-autopage-546"></a>
+<a id="beameruserguide-autofile-26"></a> <a id="section-twoscreens"></a>
+
+<p>
+This section describes options provided by <span class="beamer-name"><span class="textsc">beamer</span></span> for taking advantage of computers that have more than one video output and can display different outputs on them. For such systems, one video
+output can be attached to a projector and the main presentation is shown there. The second video output is attached to a small extra monitor (or is just shown on the display of the computer) and shows, for example, special notes for you. Alternatively, the two outputs
+might be attached to two different projectors. One can then show the main presentation on the first projection and, say, the table of contents on the second. Or the second projection might show a version translated into a different language. Or the second projection might
+always show the “previous” slide. Or &#x2026;—we are sure you can think of further useful things.
+</p>
+
+<p>
+The basic idea behind <span class="beamer-name"><span class="textsc">beamer</span></span>’s support of two video outputs is the following: Using special options you can ask <span class="beamer-name"><span class="textsc">beamer</span></span> to create a
+<span class="pgf-name"><span class="textsc">pdf</span></span>-file in which the “pages” are unusually wide or high. By default, their height will still be 128mm, but their width will be 192mm (twice the usual default 96mm). These “superwide” pages will show the
+slides of the main presentation on the left and auxiliary material on the right (this can be switched using appropriate options, though hyperlinks will only work if the presentation is on the left and the second screen on the right).
+</p>
+
+<p>
+For the presentation you attach two screens to the system. The windowing system believes that the screen is twice as wide as it actually is. Everything the windowing system puts on the left half of this big virtual screen is redirected to the first video output, everything on
+the right half is redirected to the second video output.
+</p>
+
+<p>
+When the presentation program displays the specially prepared superwide <span class="beamer-name"><span class="textsc">beamer</span></span>-presentation, exactly the left half of the screen will be filled with the main presentation, the right part is filled with the
+auxiliary material—voila&#x0300;. Not all presentation programs support this special feature. For example, the Acrobat Reader 6.0.2 will only use one screen in fullscreen mode on MacOS&nbsp;X. On the other hand, a program named PDF Presenter supports showing
+dual-screen presentations. Generally, you will have to find out for yourself whether your display program and system support showing superwide presentations stretching over two screens.
+</p>
+
+<p>
+<span class="beamer-name"><span class="textsc">beamer</span></span> uses the package <span class="texttt">pgfpages</span> to typeset two-screen presentations. One can choose from several appropriate options for showing something special on the second
+screen. These options are discussed in the following sections.
+</p>
+
+<p>
+One of the things these options do is to setup a certain <span class="texttt">pgfpages</span>-layout that is appropriate for two-screen presentations. However, you can still change the <span class="texttt">pgfpages</span>-layout arbitrarily, afterwards. For
+example, you might wish to enlarge the virtual pages. For details, see the documentation of <span class="texttt">pgfpages</span>.
+</p>
+<!--
+...... subsection Showing Notes on the Second Screen ......
+-->
+<h5 id="autosec-547"><span class="sectionnumber">22.1&#x2003;</span>Showing Notes on the Second Screen</h5>
+<a id="beameruserguide-autopage-547"></a>
+
+
+<p>
+The first way to use a second screen is to show the presentation on the main screen and to show your notes on the second screen. The option <span class="texttt">show notes on second screen</span> can be used for this. It is described on page&nbsp;(page for
+section <a href="Adding-Notes-Yourself.html#command-notesonsecondscreen">19.3</a>).
+</p>
+<!--
+...... subsection Showing Second Mode Material on the Second Screen ......
+-->
+<h5 id="autosec-548"><span class="sectionnumber">22.2&#x2003;</span>Showing Second Mode Material on the Second Screen</h5>
+<a id="beameruserguide-autopage-548"></a>
+
+
+<p>
+The second way to use the second screen is to show “a different version” of the presentation on the second screen. This different version might be a translation or it might just always be the current table of contents.
+</p>
+
+<p>
+To specify what is shown on the second screen, you can use a special <span class="beamer-name"><span class="textsc">beamer</span></span>-mode called <span class="texttt">second</span>. This mode behaves similar to modes like <span
+class="texttt">handout</span> or <span class="texttt">beamer</span>, but its effect depends on the exact options used:
+</p>
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+\setbeameroption{<span class="declare">second mode text on second screen</span><span class="opt"><span class="texttt">=</span><span class="meta"><span class="angle">&langle;</span><i>location</i><span
+class="angle">&rangle;</span></span></span>}
+</p>
+<p>
+This option causes the second screen to show the second mode material. The <span class="meta"><span class="angle">&langle;</span><i>location</i><span class="angle">&rangle;</span></span> of the second screen can be <span class="texttt">left</span>,
+<span class="texttt">right</span>, <span class="texttt">bottom</span>, or <span class="texttt">top</span>.
+</p>
+<p>
+In detail, the following happens: When a new frame needs to be typeset, <span class="beamer-name"><span class="textsc">beamer</span></span> checks whether the special option <span class="texttt">typeset second</span> is given. If not, the frame is typeset
+normally and the slides are put on the main presentation screen (more precisely, on the logical <span class="texttt">pgfpages</span>-page number zero). The second screen (logical page number one) shows whatever it showed before the frame was typeset.
+</p>
+<p>
+If the special frame option <span class="texttt">typeset second</span> is given, after each slide of the frame the frame contents is typeset once more, but this time for the mode <span class="texttt">second</span>. This results in another slide, which is put on the
+second screen (on logical page number one). Then the whole page is shipped out.
+</p>
+<p>
+The <span class="texttt">second</span> mode behaves more like the <span class="texttt">beamer</span> mode than other modes: Any overlay specification for <span class="texttt">beamer</span> will also apply to <span class="texttt">second</span> mode,
+unless an explicit <span class="texttt">second</span> mode specification is also given. In particular, <span class="texttt">\only<1-2>{Text}</span> will be shown on slides 1 and 2 in <span class="texttt">second</span> mode, but only on the first slide in <span
+class="texttt">handout</span> mode or <span class="texttt">trans</span> mode.
+</p>
+<p>
+<i>Example: </i>
+</p>
+<pre class="verbatim">
+\documentclass{beamer}
+\setbeameroption{second mode text on second screen}
+\begin{document}
+\begin{frame}[typeset second]
+  This text is shown on the left and on the right.
+  \only<second>{This text is only shown on the right.}
+  \only<second:0>{This text is only shown on the left.}
+\end{frame}
+\begin{frame}
+  This text is shown on the left. The right shows the same as for the
+  previous frame.
+\end{frame}
+\begin{frame}[typeset second]
+  \alt<second>{The \string\alt command is useful for second
+    mode. Let's show the table of contents, here: \tableofcontents}
+  {Here comes some normal text for the first slide.}
+\end{frame}
+\end{document}
+</pre>
+<p>
+<i>Example: </i>The following example shows how translations can be added in a comfortable way.
+</p>
+<pre class="verbatim">
+\documentclass{beamer}
+\setbeameroption{second mode text on second screen}
+\DeclareRobustCommand\translation[1]{\mytranslation#1\relax}
+\long\def\mytranslation#1|#2\relax{\alt<second>{#2}{#1}}
+\title{\translation{Preparing Presentations|Vortr\"age vorbereiten}}
+\author{Till Tantau}
+\begin{document}
+\begin{frame}[typeset second]
+  \titlepage
+\end{frame}
+\begin{frame}[typeset second]
+  \frametitle{\translation{This is the frame title.|Dies ist der Titel des Rahmens.}}
+  \begin{itemize}
+  \item<1-> \translation{First|Erstens}.
+  \item<2-> \translation{Second|Zweitens}.
+  \item<3-> \translation{Third|Drittens}.
+  \end{itemize}
+  \translation{Do not use line-by-line uncovering.|Man sollte Text nicht
+  Zeile f\"ur Zeile aufdecken.}
+\end{frame}
+\end{document}
+</pre>
+</li>
+</ul>
+
+<p>
+In the last of the above example, it is a bit bothersome that the option <span class="texttt">typeset second</span> has to be added to each frame. The following option globally sets this option:
+</p>
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+\setbeameroption{<span class="declare">always typeset second mode</span><span class="opt"><span class="texttt">=</span><span class="meta"><span class="angle">&langle;</span><i>true or false</i><span
+class="angle">&rangle;</span></span></span>}
+</p>
+<p>
+When this option is set to true, every following frame will have the option <span class="texttt">typeset second</span> set to true.
+</p>
+</li>
+</ul>
+<!--
+...... subsection Showing the Previous Slide on the Second Screen ......
+-->
+<h5 id="autosec-551"><span class="sectionnumber">22.3&#x2003;</span>Showing the Previous Slide on the Second Screen</h5>
+<a id="beameruserguide-autopage-551"></a>
+
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+\setbeameroption{<span class="declare">previous slide on second screen</span><span class="opt"><span class="texttt">=</span><span class="meta"><span class="angle">&langle;</span><i>location</i><span
+class="angle">&rangle;</span></span></span>}
+</p>
+<p>
+This option causes the second screen to show the previous slide that was typeset, unless this is overruled by a frame with the <span class="texttt">[typeset second]</span> option set. The idea is that if you have two projectors you can always present “the last two”
+slides simultaneously and talk about them.
+</p>
+<p>
+Using this option will switch off the updating of external files like the table of contents.
+</p>
+</li>
+</ul>
+</section>
+
+</main>
+
+</div>
+
+
+<nav class="botnavigation"><a href="home.html" class="linkhome" >
+Home</a></nav>
+
+</body>
+</html>

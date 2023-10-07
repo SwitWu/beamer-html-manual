@@ -458,9 +458,9 @@ This section explains how to define new commands that are overlay specification-
 \beamer\ extends the syntax of \LaTeX's standard command |\newcommand|:
 
 \begin{command}{\newcommand\declare{|<>|}\marg{command name}\oarg{argument number}\oarg{default optional value}\marg{text}}
-  Declares the new command named \meta{command name}. The \meta{text} should contain the body of this command and it may contain occurrences of parameters like |#|\meta{number}. Here \meta{number} may be between 1 and $\mbox{\meta{argument number}}+1$. The additionally allowed argument is the overlay specification.
+  Declares the new command named \meta{command name}. The \meta{text} should contain the body of this command and it may contain occurrences of parameters like |#|\meta{number}. Here \meta{number} may be between 1 and \meta{argument number} $+1$. The additionally allowed argument is the overlay specification.
 
-  When \meta{command name} is used, it will scan as many as \meta{argument number} arguments. While scanning them, it will look for an overlay specification, which may be given between any two arguments, before the first argument, or after the last argument. If it finds an overlay specification like |<3>|, it will call \meta{text} with arguments 1 to \meta{argument number} set to the normal arguments and the argument number $\mbox{\meta{argument number}}+1$ set to |<3>| (including the pointed brackets). If no overlay specification is found, the extra argument is empty.
+  When \meta{command name} is used, it will scan as many as \meta{argument number} arguments. While scanning them, it will look for an overlay specification, which may be given between any two arguments, before the first argument, or after the last argument. If it finds an overlay specification like |<3>|, it will call \meta{text} with arguments 1 to \meta{argument number} set to the normal arguments and the argument number \meta{argument number} $+1$ set to |<3>| (including the pointed brackets). If no overlay specification is found, the extra argument is empty.
 
   If the \meta{default optional value} is provided, the first argument of \meta{command name} is optional. If no optional argument is specified in square brackets, the \meta{default optional value} is used.
 
@@ -584,24 +584,24 @@ In certain cases you may wish to have different overlay specifications to apply 
 The vertical bar separates the two different specifications |3| and |handout:2|. By writing a mode name before a colon, you specify that the following specification only applies to that mode. If no mode is given, as in |3|, the mode |beamer| is automatically added. For this reason, if you write |\only<3>{Text}| and you are in |handout| mode, the text will be shown on all slides since there is no restriction specified for handouts and since the |3| is the same as |beamer:3|.
 
 It is also possible to give an overlay specification that contains only a mode name (or several, separated by vertical bars):
-\begin{verbatim}
+\begin{Verbatim}
 \only<article>{This text is shown only in article mode.}
-\end{verbatim}
+\end{Verbatim}
 
 An overlay specification that does not contain any slide numbers is called a (pure) \emph{mode specification}. If a mode specification is given, all modes that are not mentioned are automatically suppressed. Thus |<beamer:1->| means ``on all slides in |beamer| mode and also on all slides in all other modes, since nothing special is specified for them,'' whereas |<beamer>| means ``on all slides in |beamer| mode and not on any other slide.''
 
 Mode specifications can also be used outside frames as in the following examples:
-\begin{verbatim}
+\begin{Verbatim}
 \section<presentation>{This section exists only in the presentation modes}
 \section<article>{This section exists only in the article mode}
-\end{verbatim}
+\end{Verbatim}
 
 Presentation modes include |beamer|, |trans| and |handout|.
 
 You can also mix pure mode specifications and overlay specifications, although this can get confusing:
-\begin{verbatim}
+\begin{Verbatim}
 \only<article| beamer:1>{Riddle}
-\end{verbatim}
+\end{Verbatim}
 
 This will cause the text |Riddle| to be inserted in |article| mode and on the first slide of a frame in |beamer| mode, but not at all in |handout| or |trans| mode. (Try to find out how \verb/<beamer| beamer:1>/ differs from |<beamer>| and from |<beamer:1>|.)
 
@@ -638,9 +638,9 @@ You can easily add your own actions: An action specification like \meta{action}|
 \end{verbatim}
 
 You can then write
-\begin{verbatim}
+\begin{Verbatim}
 \item<beamer:check@2> Text.
-\end{verbatim}
+\end{Verbatim}
 
 This will change the itemization symbol before |Text.| to |X| on slide~2 in |beamer| mode. The definition of |checkenv| used the fact that |\only| also accepts an overlay specification given after its argument.
 

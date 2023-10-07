@@ -104,7 +104,7 @@ There is one remaining problem: While the |article| version can easily \TeX\ the
 
 The following example shows a simple usage of the |article| mode:
 
-\begin{verbatim}
+\begin{Verbatim}
 \documentclass[a4paper]{article}
 \usepackage{beamerarticle}
 %%\documentclass[ignorenonframetext,red]{beamer}
@@ -157,7 +157,7 @@ With some more text.
   \end{itemize}
 \end{frame}
 \end{document}
-\end{verbatim}
+\end{Verbatim}
 
 There is one command whose behavior is a bit special in |article| mode: The line break command |\\|. Inside frames, this command has no effect in |article| mode, except if an overlay specification is present. Then it has the normal effect dictated by the specification. The reason for this behavior is that you will typically inserts lots of |\\| commands in a presentation in order to get control over all line breaks. These line breaks are mostly superfluous in |article| mode. If you really want a line break to apply in all versions, say |\\<all>|. Note that the command |\\| is often redefined by certain environments, so it may not always be overlay-specification-aware. In such a case you have to write something like |\only<presentation>{\\}|.
 

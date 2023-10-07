@@ -1,0 +1,2693 @@
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8" />
+<meta name="generator" content="LaTeX Lwarp package" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The beamer class- <a href=https://github.com/josephwright/beamer target=-blank >https://github.com/josephwright/beamer</a>- User Guide for version 3.70. — Colors</title>
+<link rel="stylesheet" type="text/css" href="style.css" />
+
+<script>
+// Lwarp MathJax emulation code
+//
+// Based on code by Davide P. Cervone.
+// Equation numbering: https://github.com/mathjax/MathJax/issues/2427
+// Starred and ifnextchar macros: https://github.com/mathjax/MathJax/issues/2428
+// \left, \right delimiters: https://github.com/mathjax/MathJax/issues/2535
+//
+// Modified by Brian Dunn to adjust equation numbering and add subequations.
+//
+// LaTeX can use \seteqnumber{subequations?}{section}{number} before each equation.
+// subequations? is 0 usually, 1 if inside subequations.
+// section is a string printed as-is, or empty.
+// number is auto-incremented by MathJax between equations.
+//
+MathJax = {
+  subequations: "0",
+  section: "",
+  loader: {
+    load: ['[tex]/tagformat', '[tex]/textmacros'],
+  },
+  startup: {
+    ready() {
+      // These would be replaced by import commands if you wanted to make
+      // a proper extension.
+      const Configuration = MathJax._.input.tex.Configuration.Configuration;
+      const CommandMap = MathJax._.input.tex.SymbolMap.CommandMap;
+      const Macro = MathJax._.input.tex.Symbol.Macro;
+      const TexError = MathJax._.input.tex.TexError.default;
+      const ParseUtil = MathJax._.input.tex.ParseUtil.default;
+      const expandable = MathJax._.util.Options.expandable;
+
+        // Insert the replacement string into the TeX string, and check
+        // that there haven't been too many maxro substitutions (prevents
+        // infinite loops).
+        const useArgument = (parser, text) => {
+          parser.string = ParseUtil.addArgs(parser, text, parser.string.slice(parser.i));
+          parser.i = 0;
+          if (++parser.macroCount > parser.configuration.options.maxMacros) {
+            throw new TexError('MaxMacroSub1',
+            'MathJax maximum macro substitution count exceeded; ' +
+            'is there a recursive macro call?');
+          }
+        }
+
+        // Create the command map for:
+        //     \ifstar, \ifnextchar, \ifblank, \ifstrequal, \gsub, \seteqnumber
+        new CommandMap('Lwarp-macros', {
+          ifstar: 'IfstarFunction',
+          ifnextchar: 'IfnextcharFunction',
+          ifblank: 'IfblankFunction',
+          ifstrequal: 'IfstrequalFunction',
+          gsubstitute: 'GsubstituteFunction',
+          seteqnumber: 'SeteqnumberFunction'
+        }, {
+          // This function implements an ifstar macro.
+          IfstarFunction(parser, name) {
+             const resultstar = parser.GetArgument(name);
+             const resultnostar = parser.GetArgument(name);
+             const star = parser.GetStar();                 // true if there is a *
+             useArgument(parser, star ? resultstar : resultnostar);
+          },
+
+          // This function implements an ifnextchar macro.
+          IfnextcharFunction(parser, name) {
+            let whichchar = parser.GetArgument(name);
+            if (whichchar.match(/^(?:0x[0-9A-F]+|[0-9]+)$/i)) {
+              // $ syntax highlighting
+              whichchar = String.fromCodePoint(parseInt(whichchar));
+            }
+            const resultnextchar = parser.GetArgument(name);
+            const resultnotnextchar = parser.GetArgument(name);
+            const gotchar = (parser.GetNext() === whichchar);
+            useArgument(parser, gotchar ? resultnextchar : resultnotnextchar);
+          },
+
+          // This function implements an ifblank macro.
+          IfblankFunction(parser, name) {
+            const blankarg = parser.GetArgument(name);
+            const resultblank = parser.GetArgument(name);
+            const resultnotblank = parser.GetArgument(name);
+            const isblank = (blankarg.trim() == "");
+            useArgument(parser, isblank ? resultblank : resultnotblank);
+          },
+
+          // This function implements an ifstrequal macro.
+          IfstrequalFunction(parser, name) {
+            const strequalfirst = parser.GetArgument(name);
+            const strequalsecond = parser.GetArgument(name);
+            const resultequal = parser.GetArgument(name);
+            const resultnotequal = parser.GetArgument(name);
+            const isequal = (strequalfirst == strequalsecond);
+            useArgument(parser, isequal ? resultequal : resultnotequal);
+          },
+
+          // This function implements a gsub macro.
+          GsubstituteFunction(parser, name) {
+            const gsubfirst = parser.GetArgument(name);
+            const gsubsecond = parser.GetArgument(name);
+            const gsubthird = parser.GetArgument(name);
+            let gsubresult=gsubfirst.replace(gsubsecond, gsubthird);
+            useArgument(parser, gsubresult);
+          },
+
+          // This function modifies the equation numbers.
+          SeteqnumberFunction(parser, name) {
+              // Get the macro parameters
+              const star = parser.GetStar();                  // true if there is a *
+              const optBrackets = parser.GetBrackets(name);   // contents of optional brackets
+              const newsubequations = parser.GetArgument(name); // the subequations argument
+              const neweqsection = parser.GetArgument(name); // the eq section argument
+              const neweqnumber = parser.GetArgument(name);   // the eq number argument
+              MathJax.config.subequations=newsubequations ;   // a string with boolean meaning
+              MathJax.config.section=neweqsection ;           // a string with numeric meaning
+              parser.tags.counter = parser.tags.allCounter = neweqnumber ;
+          }
+
+        });
+
+        // Create the Lwarp-macros package
+        Configuration.create('Lwarp-macros', {
+          handler: {macro: ['Lwarp-macros']}
+        });
+
+        MathJax.startup.defaultReady();
+
+        // For forward references:
+        MathJax.startup.input[0].preFilters.add(({math}) => {
+          if (math.inputData.recompile){
+              MathJax.config.subequations = math.inputData.recompile.subequations;
+              MathJax.config.section = math.inputData.recompile.section;
+          }
+        });
+        MathJax.startup.input[0].postFilters.add(({math}) => {
+          if (math.inputData.recompile){
+              math.inputData.recompile.subequations = MathJax.config.subequations;
+              math.inputData.recompile.section = MathJax.config.section;
+          }
+        });
+
+          // For \left, \right with unicode-math:
+          const {DelimiterMap} = MathJax._.input.tex.SymbolMap;
+          const {Symbol} = MathJax._.input.tex.Symbol;
+          const {MapHandler} = MathJax._.input.tex.MapHandler;
+          const delimiter = MapHandler.getMap('delimiter');
+          delimiter.add('\\lBrack', new Symbol('\\lBrack', '\u27E6'));
+          delimiter.add('\\rBrack', new Symbol('\\rBrack', '\u27E7'));
+          delimiter.add('\\lAngle', new Symbol('\\lAngle', '\u27EA'));
+          delimiter.add('\\rAngle', new Symbol('\\rAngle', '\u27EB'));
+          delimiter.add('\\lbrbrak', new Symbol('\\lbrbrak', '\u2772'));
+          delimiter.add('\\rbrbrak', new Symbol('\\rbrbrak', '\u2773'));
+          delimiter.add('\\lbag', new Symbol('\\lbag', '\u27C5'));
+          delimiter.add('\\rbag', new Symbol('\\rbag', '\u27C6'));
+          delimiter.add('\\llparenthesis', new Symbol('\\llparenthesis', '\u2987'));
+          delimiter.add('\\rrparenthesis', new Symbol('\\rrparenthesis', '\u2988'));
+          delimiter.add('\\llangle', new Symbol('\\llangle', '\u2989'));
+          delimiter.add('\\rrangle', new Symbol('\\rrangle', '\u298A'));
+          delimiter.add('\\Lbrbrak', new Symbol('\\Lbrbrak', '\u27EC'));
+          delimiter.add('\\Rbrbrak', new Symbol('\\Rbrbrak', '\u27ED'));
+          delimiter.add('\\lBrace', new Symbol('\\lBrace', '\u2983'));
+          delimiter.add('\\rBrace', new Symbol('\\rBrace', '\u2984'));
+          delimiter.add('\\lParen', new Symbol('\\lParen', '\u2985'));
+          delimiter.add('\\rParen', new Symbol('\\rParen', '\u2986'));
+          delimiter.add('\\lbrackubar', new Symbol('\\lbrackubar', '\u298B'));
+          delimiter.add('\\rbrackubar', new Symbol('\\rbrackubar', '\u298C'));
+          delimiter.add('\\lbrackultick', new Symbol('\\lbrackultick', '\u298D'));
+          delimiter.add('\\rbracklrtick', new Symbol('\\rbracklrtick', '\u298E'));
+          delimiter.add('\\lbracklltick', new Symbol('\\lbracklltick', '\u298F'));
+          delimiter.add('\\rbrackurtick', new Symbol('\\rbrackurtick', '\u2990'));
+          delimiter.add('\\langledot', new Symbol('\\langledot', '\u2991'));
+          delimiter.add('\\rangledot', new Symbol('\\rangledot', '\u2992'));
+          delimiter.add('\\lparenless', new Symbol('\\lparenless', '\u2993'));
+          delimiter.add('\\rparengtr', new Symbol('\\rparengtr', '\u2994'));
+          delimiter.add('\\Lparengtr', new Symbol('\\Lparengtr', '\u2995'));
+          delimiter.add('\\Rparenless', new Symbol('\\Rparenless', '\u2996'));
+          delimiter.add('\\lblkbrbrak', new Symbol('\\lblkbrbrak', '\u2997'));
+          delimiter.add('\\rblkbrbrak', new Symbol('\\rblkbrbrak', '\u2998'));
+          delimiter.add('\\lvzigzag', new Symbol('\\lvzigzag', '\u29D8'));
+          delimiter.add('\\rvzigzag', new Symbol('\\rvzigzag', '\u29D9'));
+          delimiter.add('\\Lvzigzag', new Symbol('\\Lvzigzag', '\u29DA'));
+          delimiter.add('\\Rvzigzag', new Symbol('\\Rvzigzag', '\u29DB'));
+          delimiter.add('\\lcurvyangle', new Symbol('\\lcurvyangle', '\u29FC'));
+          delimiter.add('\\rcurvyangle', new Symbol('\\rcurvyangle', '\u29FD'));
+          delimiter.add('\\Vvert', new Symbol('\\Vvert', '\u2980'));
+    }     // ready
+  },      // startup
+
+  tex: {
+    packages: {'[+]': ['tagformat', 'Lwarp-macros', 'textmacros']},
+    tags: "ams",
+         tagformat: {
+             number: function (n) {
+                 if(MathJax.config.subequations==0)
+                     return(MathJax.config.section + n);
+                 else
+                     return(MathJax.config.section + String.fromCharCode(96+n));
+             },
+         },
+  }
+}
+</script>
+
+<script
+    id="MathJax-script"
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"
+></script>
+
+</head>
+<body>
+
+
+<a id="beameruserguide-autopage-451"></a>
+<nav class="topnavigation"><a href="home.html" class="linkhome" >
+Home</a></nav>
+
+
+<div class="bodyandsidetoc">
+<div class="sidetoccontainer">
+
+
+<nav class="sidetoc">
+
+
+<div class="sidetoctitle">
+
+<p>
+<span class="sidetocthetitle">The <span class="beamer-name"><span class="textsc">beamer</span></span> <i>class</i><br />
+<a href="https://github.com/josephwright/beamer" target="_blank" >https://github.com/josephwright/beamer</a><br />
+User Guide for version 3.70.</span>
+</p>
+
+<p>
+Contents
+</p>
+</div>
+
+
+<div class="sidetoccontents">
+
+<p>
+<a href="home.html" class="linkhome" >
+Home</a>
+</p>
+
+<p>
+<a href="Introduction.html#autosec-7" class="tocsection" >
+<span class="sectionnumber">1</span>&#x2003;Introduction</a>
+</p>
+
+
+<p>
+<a href="Getting-Started.html#autosec-21" class="tocpart" >
+<span class="sectionnumber">I</span>&#x2003;Getting Started</a>
+</p>
+
+
+<p>
+<a href="Installation.html#autosec-24" class="tocsection" >
+<span class="sectionnumber">2</span>&#x2003;Installation</a>
+</p>
+
+
+<p>
+<a href="Tutorial-Euclid-Presentation.html#autosec-42" class="tocsection" >
+<span class="sectionnumber">3</span>&#x2003;Tutorial: Euclid’s Presentation</a>
+</p>
+
+
+<p>
+<a href="Workflow-For-Creating-Beamer-Presentation.html#autosec-93" class="tocsection" >
+<span class="sectionnumber">4</span>&#x2003;Workflow For Creating a Beamer Presentation</a>
+</p>
+
+
+<p>
+<a href="Guidelines-Creating-Presentations.html#autosec-116" class="tocsection" >
+<span class="sectionnumber">5</span>&#x2003;Guidelines for Creating Presentations</a>
+</p>
+
+
+<p>
+<a href="Solution-Templates.html#autosec-141" class="tocsection" >
+<span class="sectionnumber">6</span>&#x2003;Solution Templates</a>
+</p>
+
+
+<p>
+<a href="Licenses-Copyright.html#autosec-144" class="tocsection" >
+<span class="sectionnumber">7</span>&#x2003;Licenses and Copyright</a>
+</p>
+
+
+<p>
+<a href="Building-Presentation.html#autosec-185" class="tocpart" >
+<span class="sectionnumber">II</span>&#x2003;Building a Presentation</a>
+</p>
+
+
+<p>
+<a href="Creating-Frames.html#autosec-188" class="tocsection" >
+<span class="sectionnumber">8</span>&#x2003;Creating Frames</a>
+</p>
+
+
+<p>
+<a href="Creating-Overlays.html#autosec-234" class="tocsection" >
+<span class="sectionnumber">9</span>&#x2003;Creating Overlays</a>
+</p>
+
+
+<p>
+<a href="Structuring-Presentation-The-Static-Global-Structure.html#autosec-295" class="tocsection" >
+<span class="sectionnumber">10</span>&#x2003;Structuring a Presentation: The Static Global Structure</a>
+</p>
+
+
+<p>
+<a href="Structuring-Presentation-The-Interactive-Global-Structure.html#autosec-322" class="tocsection" >
+<span class="sectionnumber">11</span>&#x2003;Structuring a Presentation: The Interactive Global Structure</a>
+</p>
+
+
+<p>
+<a href="Structuring-Presentation-The-Local-Structure.html#autosec-336" class="tocsection" >
+<span class="sectionnumber">12</span>&#x2003;Structuring a Presentation: The Local Structure</a>
+</p>
+
+
+<p>
+<a href="Graphics.html#autosec-380" class="tocsection" >
+<span class="sectionnumber">13</span>&#x2003;Graphics</a>
+</p>
+
+
+<p>
+<a href="Animations-Sounds-Slide-Transitions.html#autosec-390" class="tocsection" >
+<span class="sectionnumber">14</span>&#x2003;Animations, Sounds, and Slide Transitions</a>
+</p>
+
+
+<p>
+<a href="Changing-Way-Things-Look.html#autosec-410" class="tocpart" >
+<span class="sectionnumber">III</span>&#x2003;Changing the Way Things Look</a>
+</p>
+
+
+<p>
+<a href="Themes.html#autosec-413" class="tocsection" >
+<span class="sectionnumber">15</span>&#x2003;Themes</a>
+</p>
+
+
+<p>
+<a href="Inner-Themes-Outer-Themes-Templates.html#autosec-428" class="tocsection" >
+<span class="sectionnumber">16</span>&#x2003;Inner Themes, Outer Themes, and Templates</a>
+</p>
+
+
+<p>
+<a href="Colors.html#autosec-452" class="tocsection" >
+<span class="sectionnumber">17</span>&#x2003;Colors</a>
+</p>
+
+
+<p>
+<a href="Fonts.html#autosec-481" class="tocsection" >
+<span class="sectionnumber">18</span>&#x2003;Fonts</a>
+</p>
+
+
+<p>
+<a href="Creating-Supporting-Material.html#autosec-497" class="tocpart" >
+<span class="sectionnumber">IV</span>&#x2003;Creating Supporting Material</a>
+</p>
+
+
+<p>
+<a href="Adding-Notes-Yourself.html#autosec-500" class="tocsection" >
+<span class="sectionnumber">19</span>&#x2003;Adding Notes for Yourself</a>
+</p>
+
+
+<p>
+<a href="Creating-Transparencies.html#autosec-512" class="tocsection" >
+<span class="sectionnumber">20</span>&#x2003;Creating Transparencies</a>
+</p>
+
+
+<p>
+<a href="Creating-Handouts-Lecture-Notes.html#autosec-521" class="tocsection" >
+<span class="sectionnumber">21</span>&#x2003;Creating Handouts and Lecture Notes</a>
+</p>
+
+
+<p>
+<a href="Taking-Advantage-Multiple-Screens.html#autosec-546" class="tocsection" >
+<span class="sectionnumber">22</span>&#x2003;Taking Advantage of Multiple Screens</a>
+</p>
+
+
+<p>
+<a href="Howtos.html#autosec-554" class="tocpart" >
+<span class="sectionnumber">V</span>&#x2003;Howtos</a>
+</p>
+
+
+<p>
+<a href="How-To-Uncover-Things-Piecewise.html#autosec-557" class="tocsection" >
+<span class="sectionnumber">23</span>&#x2003;How To Uncover Things Piecewise</a>
+</p>
+
+
+<p>
+<a href="How-To-Import-Presentations-Based-on-Other-Packages-Classes.html#autosec-580" class="tocsection" >
+<span class="sectionnumber">24</span>&#x2003;How To Import Presentations Based on Other Packages and Classes</a>
+</p>
+
+
+</div>
+
+</nav>
+
+</div>
+
+
+<main class="bodycontainer">
+
+
+<section class="textbody">
+
+<h1>The <span class="beamer-name"><span class="textsc">beamer</span></span> <i>class</i><br />
+<a href="https://github.com/josephwright/beamer" target="_blank" >https://github.com/josephwright/beamer</a><br />
+User Guide for version 3.70.</h1>
+
+<!--MathJax customizations:-->
+
+
+<div class="hidden">
+
+\(\newcommand{\footnotename}{footnote}\)
+
+\(\def \LWRfootnote {1}\)
+
+\(\newcommand {\footnote }[2][\LWRfootnote ]{{}^{\mathrm {#1}}}\)
+
+\(\newcommand {\footnotemark }[1][\LWRfootnote ]{{}^{\mathrm {#1}}}\)
+
+\(\let \LWRorighspace \hspace \)
+
+\(\renewcommand {\hspace }{\ifstar \LWRorighspace \LWRorighspace }\)
+
+\(\newcommand {\mathnormal }[1]{{#1}}\)
+
+\(\newcommand \ensuremath [1]{#1}\)
+
+\(\newcommand {\LWRframebox }[2][]{\fbox {#2}} \newcommand {\framebox }[1][]{\LWRframebox } \)
+
+\(\newcommand {\setlength }[2]{}\)
+
+\(\newcommand {\addtolength }[2]{}\)
+
+\(\newcommand {\setcounter }[2]{}\)
+
+\(\newcommand {\addtocounter }[2]{}\)
+
+\(\newcommand {\arabic }[1]{}\)
+
+\(\newcommand {\number }[1]{}\)
+
+\(\newcommand {\noalign }[1]{\text {#1}\notag \\}\)
+
+\(\newcommand {\cline }[1]{}\)
+
+\(\newcommand {\directlua }[1]{\text {(directlua)}}\)
+
+\(\newcommand {\luatexdirectlua }[1]{\text {(directlua)}}\)
+
+\(\newcommand {\protect }{}\)
+
+\(\def \LWRabsorbnumber #1 {}\)
+
+\(\def \LWRabsorbquotenumber &quot;#1 {}\)
+
+\(\newcommand {\LWRabsorboption }[1][]{}\)
+
+\(\newcommand {\LWRabsorbtwooptions }[1][]{\LWRabsorboption }\)
+
+\(\def \mathchar {\ifnextchar &quot;\LWRabsorbquotenumber \LWRabsorbnumber }\)
+
+\(\def \mathcode #1={\mathchar }\)
+
+\(\let \delcode \mathcode \)
+
+\(\let \delimiter \mathchar \)
+
+\(\def \oe {\unicode {x0153}}\)
+
+\(\def \OE {\unicode {x0152}}\)
+
+\(\def \ae {\unicode {x00E6}}\)
+
+\(\def \AE {\unicode {x00C6}}\)
+
+\(\def \aa {\unicode {x00E5}}\)
+
+\(\def \AA {\unicode {x00C5}}\)
+
+\(\def \o {\unicode {x00F8}}\)
+
+\(\def \O {\unicode {x00D8}}\)
+
+\(\def \l {\unicode {x0142}}\)
+
+\(\def \L {\unicode {x0141}}\)
+
+\(\def \ss {\unicode {x00DF}}\)
+
+\(\def \SS {\unicode {x1E9E}}\)
+
+\(\def \dag {\unicode {x2020}}\)
+
+\(\def \ddag {\unicode {x2021}}\)
+
+\(\def \P {\unicode {x00B6}}\)
+
+\(\def \copyright {\unicode {x00A9}}\)
+
+\(\def \pounds {\unicode {x00A3}}\)
+
+\(\let \LWRref \ref \)
+
+\(\renewcommand {\ref }{\ifstar \LWRref \LWRref }\)
+
+\( \newcommand {\multicolumn }[3]{#3}\)
+
+\(\require {textcomp}\)
+
+\(\newcommand {\intertext }[1]{\text {#1}\notag \\}\)
+
+\(\let \Hat \hat \)
+
+\(\let \Check \check \)
+
+\(\let \Tilde \tilde \)
+
+\(\let \Acute \acute \)
+
+\(\let \Grave \grave \)
+
+\(\let \Dot \dot \)
+
+\(\let \Ddot \ddot \)
+
+\(\let \Breve \breve \)
+
+\(\let \Bar \bar \)
+
+\(\let \Vec \vec \)
+
+</div>
+
+<p>
+<!--
+...... section Colors ......
+-->
+<h4 id="autosec-452"><span class="sectionnumber">17&#x2003;</span>Colors</h4>
+<a id="beameruserguide-autopage-452"></a>
+<a id="beameruserguide-autofile-20"></a>
+
+<a id="section-colors"></a>
+
+<p>
+<span class="beamer-name"><span class="textsc">beamer</span></span>’s color management allows you to specify the color of every element (like, say, the color of the section entries in a table of contents or, say, the color of the subsection entries in a mini table of
+contents in a sidebar). While the system is quite powerful, it is not trivial to use. To simplify the usage of the color system, you should consider using a predefined color theme, which takes care of everything for you.
+</p>
+
+<p>
+In the following, color themes are explained first. The rest of the section consists of explanations of how the color management works internally. You will need to read these sections only if you wish to write your own color themes; or if you are quite happy with the
+predefined themes but you absolutely insist that displayed mathematical text simply has to be typeset in a lovely pink.
+</p>
+<!--
+...... subsection Color Themes ......
+-->
+<h5 id="autosec-453"><span class="sectionnumber">17.1&#x2003;</span>Color Themes</h5>
+<a id="beameruserguide-autopage-453"></a>
+
+
+<p>
+In order to also show the effect of the different color themes on the sidebar, in the following examples the color themes are used together with the outer theme <span class="texttt">sidebar</span>.
+</p>
+<!--
+...... subsubsection Default and Special-Purpose Color Themes ......
+-->
+<h6 id="autosec-454"><span class="sectionnumber">17.1.1&#x2003;</span>Default and Special-Purpose Color Themes</h6>
+<a id="beameruserguide-autopage-454"></a>
+
+
+
+<div class="colortheme">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+<span class="extracttheme">\usecolortheme{<span class="declare">default</span>}</span>
+</p>
+<p>
+<i>Example: </i>
+</p>
+<p>
+
+</p>
+
+<div class="themeexample-image">
+<p>
+
+<a href="beamerthemeexample/beamerugcolorthemedefault-page1.svg" target="_blank" ><img
+    src="beamerthemeexample/beamerugcolorthemedefault-page1.svg"
+    style="
+    width:228pt;
+    "
+    class="inlineimage"
+    alt="(image)"
+></a>&#x2003;&#x2003;
+<a href="beamerthemeexample/beamerugcolorthemedefault-page2.svg" target="_blank" ><img
+    src="beamerthemeexample/beamerugcolorthemedefault-page2.svg"
+    style="
+    width:228pt;
+    "
+    class="inlineimage"
+    alt="(image)"
+></a>
+</p>
+</div>
+<p>
+The <span class="texttt">default</span> color theme is very sober. It installs little special colors and even less backgrounds. The default color theme sets up the default parent relations between the different <span class="beamer-name"><span
+class="textsc">beamer</span></span>-colors.
+</p>
+<p>
+The main colors set in the <span class="texttt">default</span> color theme are the following:
+</p>
+<ul style="list-style-type:none">
+
+<li>
+<p>
+• <span class="texttt">normal text</span> is black on white.
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+• <span class="texttt">alerted text</span> is red.
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+• <span class="texttt">example text</span> is a dark green (green with 50% black).
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+• <span class="texttt">structure</span> is set to a light version of MidnightBlue (more precisely, 20% red, 20% green, and 70% blue).
+</p>
+</li>
+</ul>
+<p>
+Use this theme for a no-nonsense presentation. Since this theme is loaded by default, you cannot “reload” it after having loaded another color theme.
+</p>
+</li>
+</ul>
+
+</div>
+
+
+<div class="colortheme">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+<span class="extracttheme">\usecolortheme<span class="opt"><span class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>options</i><span class="angle">&rangle;</span></span><span
+class="oarg-right-bracket">]</span></span>{<span class="declare">structure</span>}</span>
+</p>
+<p>
+<i>Example: </i>
+</p>
+<p>
+
+</p>
+
+<div class="themeexample-image">
+<p>
+
+<a href="beamerthemeexample/beamerugcolorthemestructure-page1.svg" target="_blank" ><img
+    src="beamerthemeexample/beamerugcolorthemestructure-page1.svg"
+    style="
+    width:228pt;
+    "
+    class="inlineimage"
+    alt="(image)"
+></a>&#x2003;&#x2003;
+<a href="beamerthemeexample/beamerugcolorthemestructure-page2.svg" target="_blank" ><img
+    src="beamerthemeexample/beamerugcolorthemestructure-page2.svg"
+    style="
+    width:228pt;
+    "
+    class="inlineimage"
+    alt="(image)"
+></a>
+</p>
+</div>
+<p>
+The example was created using <span class="texttt">\usecolortheme[named=SeaGreen]{structure}</span>.
+</p>
+<p>
+This theme offers a convenient way of changing the color used for structural elements. More precisely, it just changes the foreground of the <span class="beamer-name"><span class="textsc">beamer</span></span>-color <span class="texttt">structure</span>. You
+can also achieve this by directly invoking the function <span class="texttt">\setbeamercolor</span>, but this color theme makes things a bit easier.
+</p>
+<p>
+The theme offers several <span class="meta"><span class="angle">&langle;</span><i>options</i><span class="angle">&rangle;</span></span>, which can be used to specify the color to be used for structural elements:
+</p>
+<ul style="list-style-type:none">
+
+<li>
+<p>
+• <span class="declare"><span class="texttt">rgb=</span>{<span class="meta"><span class="angle">&langle;</span><i>rgb tuple</i><span class="angle">&rangle;</span></span>}</span> sets the <span class="texttt">structure</span> foreground to the
+specified red-green-blue tuple. The numbers are given as decimals between 0 and 1. For example, <span class="texttt">rgb={0.5,0,0}</span> yields a dark red.
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+• <span class="declare"><span class="texttt">RGB=</span>{<span class="meta"><span class="angle">&langle;</span><i>rgb tuple</i><span class="angle">&rangle;</span></span>}</span> does the same as <span class="texttt">rgb</span>, except that the
+numbers range between 0 and 255. For example, <span class="texttt">RGB={128,0,0}</span> yields a dark red.
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+• <span class="declare"><span class="texttt">cmyk=</span>{<span class="meta"><span class="angle">&langle;</span><i>cmyk tuple</i><span class="angle">&rangle;</span></span>}</span> sets the <span class="texttt">structure</span> foreground to
+the specified cyan-magenta-yellow-black tuple. The numbers are given as decimals between 0 and 1. For example, <span class="texttt">cmyk={0,1,1,0.5}</span> yields a dark red.
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+• <span class="declare"><span class="texttt">cmy=</span>{<span class="meta"><span class="angle">&langle;</span><i>cmy tuple</i><span class="angle">&rangle;</span></span>}</span> is similar to <span class="texttt">cmyk</span>, except that the
+black component is not specified.
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+• <span class="declare"><span class="texttt">hsb=</span>{<span class="meta"><span class="angle">&langle;</span><i>hsb tuple</i><span class="angle">&rangle;</span></span>}</span> sets the <span class="texttt">structure</span> foreground to the
+specified hue-saturation-brightness tuple. The numbers are given as decimals between 0 and 1. For example, <span class="texttt">hsb={0,1,.5}</span> yields a dark red.
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+• <span class="declare"><span class="texttt">named=</span>{<span class="meta"><span class="angle">&langle;</span><i>color name</i><span class="angle">&rangle;</span></span>}</span> sets the <span class="texttt">structure</span> foreground to
+a named color. This color must previously have been defined using the <span class="texttt">\DefineNamedColor</span> command. Adding the class option <span class="texttt">xcolor=dvipsnames</span> or <span class="texttt">xcolor=svgnames</span> will
+install a long list of standard <span class="texttt">dvips</span> or SVG color names (respectively). See the file <span class="texttt">dvipsnam.def</span> for the list.
+</p>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+
+
+<div class="colortheme">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+<span class="extracttheme">\usecolortheme{<span class="declare">sidebartab</span>}</span>
+</p>
+<p>
+<i>Example: </i>
+</p>
+<p>
+
+</p>
+
+<div class="themeexample-image">
+<p>
+
+<a href="beamerthemeexample/beamerugcolorthemesidebartab-page1.svg" target="_blank" ><img
+    src="beamerthemeexample/beamerugcolorthemesidebartab-page1.svg"
+    style="
+    width:228pt;
+    "
+    class="inlineimage"
+    alt="(image)"
+></a>&#x2003;&#x2003;
+<a href="beamerthemeexample/beamerugcolorthemesidebartab-page2.svg" target="_blank" ><img
+    src="beamerthemeexample/beamerugcolorthemesidebartab-page2.svg"
+    style="
+    width:228pt;
+    "
+    class="inlineimage"
+    alt="(image)"
+></a>
+</p>
+</div>
+<p>
+This theme changes the colors in a sidebar such that the current entry in a table of contents shown there gets highlighted by showing a different background behind it.
+</p>
+</li>
+</ul>
+
+</div>
+<!--
+...... subsubsection Complete Color Themes ......
+-->
+<h6 id="autosec-455"><span class="sectionnumber">17.1.2&#x2003;</span>Complete Color Themes</h6>
+<a id="beameruserguide-autopage-455"></a>
+
+
+<p>
+A “complete” color theme is a color theme that completely specifies all colors for all parts of a frame. It installs specific colors and does not derive the colors from, say, the <span class="texttt">structure</span> <span class="beamer-name"><span
+class="textsc">beamer</span></span>-color. Complete color themes happen to have names of flying animals.
+</p>
+
+
+<div class="colortheme">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+<span class="extracttheme">\usecolortheme{<span class="declare">albatross</span>}</span>
+</p>
+<p>
+<i>Example: </i>
+</p>
+<p>
+
+</p>
+
+<div class="themeexample-image">
+<p>
+
+<a href="beamerthemeexample/beamerugcolorthemealbatross-page1.svg" target="_blank" ><img
+     src="beamerthemeexample/beamerugcolorthemealbatross-page1.svg"
+     style="
+     width:228pt;
+     "
+     class="inlineimage"
+     alt="(image)"
+></a>&#x2003;&#x2003;
+<a href="beamerthemeexample/beamerugcolorthemealbatross-page2.svg" target="_blank" ><img
+     src="beamerthemeexample/beamerugcolorthemealbatross-page2.svg"
+     style="
+     width:228pt;
+     "
+     class="inlineimage"
+     alt="(image)"
+></a>
+</p>
+</div>
+<p>
+The color theme is a “dark” or “inverted” theme using yellow on blue as the main colors. The color theme also installs a slightly darker background color for blocks, which is necessary for presentation themes that use shadows, but which (in Till’s opinion) is undesirable for
+all other presentation themes. By using the <span class="texttt">lily</span> color theme together with this theme, the backgrounds for blocks can be removed.
+</p>
+<p>
+When using a light-on-dark theme like this one, be aware that there are certain disadvantages:
+</p>
+<ul style="list-style-type:none">
+
+<li>
+<p>
+• If the room in which the talk is given has been “darkened,” using such a theme makes it more difficult for the audience to take or read notes.
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+• Since the room becomes darker, the pupil becomes larger, thus making it harder for the eye to focus. This <em>can</em> make text harder to read.
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+• Printing such slides is difficult at best.
+</p>
+</li>
+</ul>
+<p>
+On the other hand, a light-on-dark presentation often appears to be more “stylish” than a plain black-on-white one.
+</p>
+<p>
+The following <span class="meta"><span class="angle">&langle;</span><i>options</i><span class="angle">&rangle;</span></span> may be given:
+</p>
+<ul style="list-style-type:none">
+
+<li>
+<p>
+• <span class="declare"><span class="texttt">overlystylish</span></span> installs a background canvas that is, in Till’s opinion, way too stylish. But then, it is not his intention to press his taste on other people. When using this option, it is probably a very good
+idea to also use the <span class="texttt">lily</span> color theme.
+</p>
+</li>
+</ul>
+<p>
+<i>Example: </i>The <span class="texttt">overlystylish</span> option together with the <span class="texttt">lily</span> color theme:
+</p>
+<p>
+
+</p>
+
+<div class="themeexample-image">
+<p>
+
+<a href="beamerthemeexample/beamerugcolorthemealbatrossstylish-page1.svg" target="_blank" ><img
+    src="beamerthemeexample/beamerugcolorthemealbatrossstylish-page1.svg"
+    style="
+    width:228pt;
+    "
+    class="inlineimage"
+    alt="(image)"
+></a>&#x2003;&#x2003;
+<a href="beamerthemeexample/beamerugcolorthemealbatrossstylish-page2.svg" target="_blank" ><img
+    src="beamerthemeexample/beamerugcolorthemealbatrossstylish-page2.svg"
+    style="
+    width:228pt;
+    "
+    class="inlineimage"
+    alt="(image)"
+></a>
+</p>
+</div>
+</li>
+</ul>
+
+</div>
+
+
+<div class="colortheme">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+<span class="extracttheme">\usecolortheme{<span class="declare">beetle</span>}</span>
+</p>
+<p>
+<i>Example: </i>
+</p>
+<p>
+
+</p>
+
+<div class="themeexample-image">
+<p>
+
+<a href="beamerthemeexample/beamerugcolorthemebeetle-page1.svg" target="_blank" ><img
+    src="beamerthemeexample/beamerugcolorthemebeetle-page1.svg"
+    style="
+    width:228pt;
+    "
+    class="inlineimage"
+    alt="(image)"
+></a>&#x2003;&#x2003;
+<a href="beamerthemeexample/beamerugcolorthemebeetle-page2.svg" target="_blank" ><img
+    src="beamerthemeexample/beamerugcolorthemebeetle-page2.svg"
+    style="
+    width:228pt;
+    "
+    class="inlineimage"
+    alt="(image)"
+></a>
+</p>
+</div>
+<p>
+The main “theme behind this theme” is to use white and black text on gray background. The white text is used for special emphasis, the black text for normal text. The “outer stuff” like the headline and the footline use, however, a bluish color. To change this color,
+change the background of <span class="texttt">palette primary</span>.
+</p>
+<p>
+Great care must be taken with this theme since both the white/gray and the black/gray contrasts are much lower than with other themes. Make sure that the contrast is high enough for the actual presentation.
+</p>
+<p>
+You can change the “grayish” background by changing the background of <span class="texttt">normal text</span>.
+</p>
+</li>
+</ul>
+
+</div>
+
+
+<div class="colortheme">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+<span class="extracttheme">\usecolortheme{<span class="declare">crane</span>}</span>
+</p>
+<p>
+<i>Example: </i>
+</p>
+<p>
+
+</p>
+
+<div class="themeexample-image">
+<p>
+
+<a href="beamerthemeexample/beamerugcolorthemecrane-page1.svg" target="_blank" ><img
+    src="beamerthemeexample/beamerugcolorthemecrane-page1.svg"
+    style="
+    width:228pt;
+    "
+    class="inlineimage"
+    alt="(image)"
+></a>&#x2003;&#x2003;
+<a href="beamerthemeexample/beamerugcolorthemecrane-page2.svg" target="_blank" ><img
+    src="beamerthemeexample/beamerugcolorthemecrane-page2.svg"
+    style="
+    width:228pt;
+    "
+    class="inlineimage"
+    alt="(image)"
+></a>
+</p>
+</div>
+<p>
+This theme uses the colors of Lufthansa, whose logo is a crane. It is <em>not</em> an official theme by that company, however.
+</p>
+</li>
+</ul>
+
+</div>
+
+
+<div class="colortheme">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+<span class="extracttheme">\usecolortheme{<span class="declare">dove</span>}</span>
+</p>
+<p>
+<i>Example: </i>
+</p>
+<p>
+
+</p>
+
+<div class="themeexample-image">
+<p>
+
+<a href="beamerthemeexample/beamerugcolorthemedove-page1.svg" target="_blank" ><img
+    src="beamerthemeexample/beamerugcolorthemedove-page1.svg"
+    style="
+    width:228pt;
+    "
+    class="inlineimage"
+    alt="(image)"
+></a>&#x2003;&#x2003;
+<a href="beamerthemeexample/beamerugcolorthemedove-page2.svg" target="_blank" ><img
+    src="beamerthemeexample/beamerugcolorthemedove-page2.svg"
+    style="
+    width:228pt;
+    "
+    class="inlineimage"
+    alt="(image)"
+></a>
+</p>
+</div>
+<p>
+This theme is nearly a black and white theme and useful for creating presentations that are easy to print on a black-and-white printer. The theme uses grayscale in certain unavoidable cases, but never color. It also changes the font of alerted text to boldface.
+</p>
+<p>
+When using this theme, you should consider using the class option <span class="texttt">gray</span>, which ensures that all colors are converted to grayscale. Also consider using the <span class="texttt">structurebold</span> font theme.
+</p>
+</li>
+</ul>
+
+</div>
+
+
+<div class="colortheme">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+<span class="extracttheme">\usecolortheme{<span class="declare">fly</span>}</span>
+</p>
+<p>
+<i>Example: </i>
+</p>
+<p>
+
+</p>
+
+<div class="themeexample-image">
+<p>
+
+<a href="beamerthemeexample/beamerugcolorthemefly-page1.svg" target="_blank" ><img
+    src="beamerthemeexample/beamerugcolorthemefly-page1.svg"
+    style="
+    width:228pt;
+    "
+    class="inlineimage"
+    alt="(image)"
+></a>&#x2003;&#x2003;
+<a href="beamerthemeexample/beamerugcolorthemefly-page2.svg" target="_blank" ><img
+    src="beamerthemeexample/beamerugcolorthemefly-page2.svg"
+    style="
+    width:228pt;
+    "
+    class="inlineimage"
+    alt="(image)"
+></a>
+</p>
+</div>
+<p>
+This theme is the “consequent” version of <span class="texttt">beetle</span> and uses white/black/gray throughout. It does not go particularly well with themes that use shadows.
+</p>
+</li>
+</ul>
+
+</div>
+
+
+<div class="colortheme">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+<span class="extracttheme">\usecolortheme{<span class="declare">monarca</span>}</span>
+</p>
+<p>
+<i>Example: </i>
+</p>
+<p>
+
+</p>
+
+<div class="themeexample-image">
+<p>
+
+<a href="beamerthemeexample/beamerugcolorthememonarca-page1.svg" target="_blank" ><img
+    src="beamerthemeexample/beamerugcolorthememonarca-page1.svg"
+    style="
+    width:228pt;
+    "
+    class="inlineimage"
+    alt="(image)"
+></a>&#x2003;&#x2003;
+<a href="beamerthemeexample/beamerugcolorthememonarca-page2.svg" target="_blank" ><img
+    src="beamerthemeexample/beamerugcolorthememonarca-page2.svg"
+    style="
+    width:228pt;
+    "
+    class="inlineimage"
+    alt="(image)"
+></a>
+</p>
+</div>
+<p>
+The theme is based on the colors of the Monarch butterfly.
+</p>
+<p>
+<i>Theme author: </i>Max Dohse.
+</p>
+</li>
+</ul>
+
+</div>
+
+
+<div class="colortheme">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+<span class="extracttheme">\usecolortheme{<span class="declare">seagull</span>}</span>
+</p>
+<p>
+<i>Example: </i>
+</p>
+<p>
+
+</p>
+
+<div class="themeexample-image">
+<p>
+
+<a href="beamerthemeexample/beamerugcolorthemeseagull-page1.svg" target="_blank" ><img
+    src="beamerthemeexample/beamerugcolorthemeseagull-page1.svg"
+    style="
+    width:228pt;
+    "
+    class="inlineimage"
+    alt="(image)"
+></a>&#x2003;&#x2003;
+<a href="beamerthemeexample/beamerugcolorthemeseagull-page2.svg" target="_blank" ><img
+    src="beamerthemeexample/beamerugcolorthemeseagull-page2.svg"
+    style="
+    width:228pt;
+    "
+    class="inlineimage"
+    alt="(image)"
+></a>
+</p>
+</div>
+<p>
+Like the <span class="texttt">dove</span> color theme, this theme is useful for printing on a black-and-white printer. However, it uses different shades of gray extensively, which may or may not look good on a transparency.
+</p>
+</li>
+</ul>
+
+</div>
+
+
+<div class="colortheme">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+<span class="extracttheme">\usecolortheme{<span class="declare">wolverine</span>}</span>
+</p>
+<p>
+<i>Example: </i>
+</p>
+<p>
+
+</p>
+
+<div class="themeexample-image">
+<p>
+
+<a href="beamerthemeexample/beamerugcolorthemewolverine-page1.svg" target="_blank" ><img
+    src="beamerthemeexample/beamerugcolorthemewolverine-page1.svg"
+    style="
+    width:228pt;
+    "
+    class="inlineimage"
+    alt="(image)"
+></a>&#x2003;&#x2003;
+<a href="beamerthemeexample/beamerugcolorthemewolverine-page2.svg" target="_blank" ><img
+    src="beamerthemeexample/beamerugcolorthemewolverine-page2.svg"
+    style="
+    width:228pt;
+    "
+    class="inlineimage"
+    alt="(image)"
+></a>
+</p>
+</div>
+<p>
+The theme is based on the colors of the University of Michigan’s mascot, a wolverine.
+</p>
+<p>
+<i>Theme author: </i>Madhusudan Singh.
+</p>
+</li>
+</ul>
+
+</div>
+
+
+<div class="colortheme">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+<span class="extracttheme">\usecolortheme{<span class="declare">beaver</span>}</span>
+</p>
+<p>
+<i>Example: </i>
+</p>
+<p>
+
+</p>
+
+<div class="themeexample-image">
+<p>
+
+<a href="beamerthemeexample/beamerugcolorthemebeaver-page1.svg" target="_blank" ><img
+    src="beamerthemeexample/beamerugcolorthemebeaver-page1.svg"
+    style="
+    width:228pt;
+    "
+    class="inlineimage"
+    alt="(image)"
+></a>&#x2003;&#x2003;
+<a href="beamerthemeexample/beamerugcolorthemebeaver-page2.svg" target="_blank" ><img
+    src="beamerthemeexample/beamerugcolorthemebeaver-page2.svg"
+    style="
+    width:228pt;
+    "
+    class="inlineimage"
+    alt="(image)"
+></a>
+</p>
+</div>
+<p>
+The theme is based on the colors of MIT’s mascot, a beaver.
+</p>
+<p>
+<i>Theme author: </i>Madhusudan Singh.
+</p>
+</li>
+</ul>
+
+</div>
+
+
+<div class="colortheme">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+<span class="extracttheme">\usecolortheme{<span class="declare">spruce</span>}</span>
+</p>
+<p>
+<i>Example: </i>
+</p>
+<p>
+
+</p>
+
+<div class="themeexample-image">
+<p>
+
+<a href="beamerthemeexample/beamerugcolorthemespruce-page1.svg" target="_blank" ><img
+    src="beamerthemeexample/beamerugcolorthemespruce-page1.svg"
+    style="
+    width:228pt;
+    "
+    class="inlineimage"
+    alt="(image)"
+></a>&#x2003;&#x2003;
+<a href="beamerthemeexample/beamerugcolorthemespruce-page2.svg" target="_blank" ><img
+    src="beamerthemeexample/beamerugcolorthemespruce-page2.svg"
+    style="
+    width:228pt;
+    "
+    class="inlineimage"
+    alt="(image)"
+></a>
+</p>
+</div>
+<p>
+The theme is based on the colors of Michigan State University.
+</p>
+<p>
+<i>Theme author: </i>Alan Munn.
+</p>
+</li>
+</ul>
+
+</div>
+<!--
+...... subsubsection Inner Color Themes ......
+-->
+<h6 id="autosec-456"><span class="sectionnumber">17.1.3&#x2003;</span>Inner Color Themes</h6>
+<a id="beameruserguide-autopage-456"></a>
+
+
+<p>
+Inner color themes only specify the colors of elements used in inner themes. Most noticeably, they specify the colors used for blocks. They can be used together with other (color) themes. If they are used to change the inner colors installed by a presentation theme or
+another color theme, they should obviously be specified <em>after</em> the other theme has been loaded. Inner color themes happen to have flower names.
+</p>
+
+
+<div class="colortheme">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+<span class="extracttheme">\usecolortheme{<span class="declare">lily</span>}</span>
+</p>
+<p>
+<i>Example: </i>
+</p>
+<p>
+
+</p>
+
+<div class="themeexample-image">
+<p>
+
+<a href="beamerthemeexample/beamerugcolorthemelily-page1.svg" target="_blank" ><img
+    src="beamerthemeexample/beamerugcolorthemelily-page1.svg"
+    style="
+    width:228pt;
+    "
+    class="inlineimage"
+    alt="(image)"
+></a>&#x2003;&#x2003;
+<a href="beamerthemeexample/beamerugcolorthemelily-page2.svg" target="_blank" ><img
+    src="beamerthemeexample/beamerugcolorthemelily-page2.svg"
+    style="
+    width:228pt;
+    "
+    class="inlineimage"
+    alt="(image)"
+></a>
+</p>
+</div>
+<p>
+This theme is mainly used to <em>uninstall</em> any block colors setup by another theme, restoring the colors used in the <span class="texttt">default</span> theme. In particular, using this theme will remove all background colors for blocks.
+</p>
+</li>
+</ul>
+
+</div>
+
+
+<div class="colortheme">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+<span class="extracttheme">\usecolortheme{<span class="declare">orchid</span>}</span>
+</p>
+<p>
+<i>Example: </i>
+</p>
+<p>
+
+</p>
+
+<div class="themeexample-image">
+<p>
+
+<a href="beamerthemeexample/beamerugcolorthemeorchid-page1.svg" target="_blank" ><img
+     src="beamerthemeexample/beamerugcolorthemeorchid-page1.svg"
+     style="
+     width:228pt;
+     "
+     class="inlineimage"
+     alt="(image)"
+></a>&#x2003;&#x2003;
+<a href="beamerthemeexample/beamerugcolorthemeorchid-page2.svg" target="_blank" ><img
+     src="beamerthemeexample/beamerugcolorthemeorchid-page2.svg"
+     style="
+     width:228pt;
+     "
+     class="inlineimage"
+     alt="(image)"
+></a>
+</p>
+</div>
+<p>
+This theme installs white-on-dark block titles. The background of the title of a normal block is set to the foreground of the structure color, the foreground is set to white. The background of alerted blocks are set to red and of example blocks to green. The body of blocks
+get a nearly transparent background.
+</p>
+</li>
+</ul>
+
+</div>
+
+
+<div class="colortheme">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+<span class="extracttheme">\usecolortheme{<span class="declare">rose</span>}</span>
+</p>
+<p>
+<i>Example: </i>
+</p>
+<p>
+
+</p>
+
+<div class="themeexample-image">
+<p>
+
+<a href="beamerthemeexample/beamerugcolorthemerose-page1.svg" target="_blank" ><img
+    src="beamerthemeexample/beamerugcolorthemerose-page1.svg"
+    style="
+    width:228pt;
+    "
+    class="inlineimage"
+    alt="(image)"
+></a>&#x2003;&#x2003;
+<a href="beamerthemeexample/beamerugcolorthemerose-page2.svg" target="_blank" ><img
+    src="beamerthemeexample/beamerugcolorthemerose-page2.svg"
+    style="
+    width:228pt;
+    "
+    class="inlineimage"
+    alt="(image)"
+></a>
+</p>
+</div>
+<p>
+This theme installs nearly transparent backgrounds for both block titles and block bodies. This theme is much less “aggressive” than the <span class="texttt">orchid</span> theme. The background colors are derived from the foreground of the structure <span
+class="beamer-name"><span class="textsc">beamer</span></span>-color.
+</p>
+</li>
+</ul>
+
+</div>
+<!--
+...... subsubsection Outer Color Themes ......
+-->
+<h6 id="autosec-457"><span class="sectionnumber">17.1.4&#x2003;</span>Outer Color Themes</h6>
+<a id="beameruserguide-autopage-457"></a>
+
+
+<p>
+An outer color theme changes the palette colors, on which the colors used in the headline, footline, and sidebar are based by default. Outer color themes normally do not change the color of inner elements, except possibly for <span class="texttt">titlelike</span>.
+They happen to be sea-animal names.
+</p>
+
+
+<div class="colortheme">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+<span class="extracttheme">\usecolortheme{<span class="declare">whale</span>}</span>
+</p>
+<p>
+<i>Example: </i>
+</p>
+<p>
+
+</p>
+
+<div class="themeexample-image">
+<p>
+
+<a href="beamerthemeexample/beamerugcolorthemewhale-page1.svg" target="_blank" ><img
+     src="beamerthemeexample/beamerugcolorthemewhale-page1.svg"
+     style="
+     width:228pt;
+     "
+     class="inlineimage"
+     alt="(image)"
+></a>&#x2003;&#x2003;
+<a href="beamerthemeexample/beamerugcolorthemewhale-page2.svg" target="_blank" ><img
+     src="beamerthemeexample/beamerugcolorthemewhale-page2.svg"
+     style="
+     width:228pt;
+     "
+     class="inlineimage"
+     alt="(image)"
+></a>
+</p>
+</div>
+<p>
+Installs a white-on-dark palette for the headline, footline, and sidebar. The backgrounds used there are set to shades between the structure <span class="beamer-name"><span class="textsc">beamer</span></span>-color and black. The foreground is set to white.
+</p>
+<p>
+While this color theme can appear to be aggressive, you should note that a dark bar at the border of a frame will have a somewhat different appearance during a presentation than it has on paper: During a presentation the projection on the wall is usually surrounded by
+blackness. Thus, a dark bar will not create a contrast as opposed to the way it does on paper. Indeed, using this theme will cause the main part of the frame to be more at the focus of attention.
+</p>
+<p>
+The counterpart to the theme with respect to blocks is the <span class="texttt">orchid</span> theme. However, pairing it with the <span class="texttt">rose</span> color theme is also interesting.
+</p>
+</li>
+</ul>
+
+</div>
+
+
+<div class="colortheme">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+<span class="extracttheme">\usecolortheme{<span class="declare">seahorse</span>}</span>
+</p>
+<p>
+<i>Example: </i>
+</p>
+<p>
+
+</p>
+
+<div class="themeexample-image">
+<p>
+
+<a href="beamerthemeexample/beamerugcolorthemeseahorse-page1.svg" target="_blank" ><img
+     src="beamerthemeexample/beamerugcolorthemeseahorse-page1.svg"
+     style="
+     width:228pt;
+     "
+     class="inlineimage"
+     alt="(image)"
+></a>&#x2003;&#x2003;
+<a href="beamerthemeexample/beamerugcolorthemeseahorse-page2.svg" target="_blank" ><img
+     src="beamerthemeexample/beamerugcolorthemeseahorse-page2.svg"
+     style="
+     width:228pt;
+     "
+     class="inlineimage"
+     alt="(image)"
+></a>
+</p>
+</div>
+<p>
+Installs a near-transparent backgrounds for the headline, footline, and sidebar. Using this theme will cause navigational elements to be much less “dominant” than when using the <span class="texttt">whale</span> theme (see the discussion on contrast there, though).
+</p>
+<p>
+It goes well with the <span class="texttt">rose</span> or the <span class="texttt">lily</span> color theme. Pairing it with the <span class="texttt">orchid</span> overemphasizes blocks (in Till’s opinion).
+</p>
+</li>
+</ul>
+
+</div>
+
+
+<div class="colortheme">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+<span class="extracttheme">\usecolortheme{<span class="declare">dolphin</span>}</span>
+</p>
+<p>
+<i>Example: </i>
+</p>
+<p>
+
+</p>
+
+<div class="themeexample-image">
+<p>
+
+<a href="beamerthemeexample/beamerugcolorthemedolphin-page1.svg" target="_blank" ><img
+    src="beamerthemeexample/beamerugcolorthemedolphin-page1.svg"
+    style="
+    width:228pt;
+    "
+    class="inlineimage"
+    alt="(image)"
+></a>&#x2003;&#x2003;
+<a href="beamerthemeexample/beamerugcolorthemedolphin-page2.svg" target="_blank" ><img
+    src="beamerthemeexample/beamerugcolorthemedolphin-page2.svg"
+    style="
+    width:228pt;
+    "
+    class="inlineimage"
+    alt="(image)"
+></a>
+</p>
+</div>
+<p>
+A color theme somewhere in the middle between the whale and the seahorse. It was graciously donated by Manuel Carro. Like the seahorse, it goes well with the <span class="texttt">rose</span> and the <span class="texttt">lily</span> color theme.
+</p>
+</li>
+</ul>
+
+</div>
+<!--
+...... subsection Changing the Colors Used for Different Elements of a Presentation ......
+-->
+<h5 id="autosec-458"><span class="sectionnumber">17.2&#x2003;</span>Changing the Colors Used for Different Elements of a Presentation</h5>
+<a id="beameruserguide-autopage-458"></a>
+
+
+<p>
+This section explains how <span class="beamer-name"><span class="textsc">beamer</span></span>’s color management works.
+</p>
+<!--
+...... subsubsection Overview of Beamer’s Color Management ......
+-->
+<h6 id="autosec-459"><span class="sectionnumber">17.2.1&#x2003;</span>Overview of Beamer’s Color Management</h6>
+<a id="beameruserguide-autopage-459"></a>
+
+
+<p>
+In <span class="beamer-name"><span class="textsc">beamer</span></span>’s philosophy, every element of a presentation can have a different color. Unfortunately, it turned out that simply assigning a single color to every element of a presentation is not such a good
+idea. First of all, we sometimes want colors of elements to change during a presentation, like the color of the item indicators when they become alerted or inside an example block. Second, some elements naturally have two colors, namely a foreground and a background,
+but not always. Third, sometimes elements somehow should not have any special color but should simply “run along” with the color of their surrounding. Finally, giving a special color to every element makes it very hard to globally change colors (like changing all the
+different kind-of-blue things into kind-of-red things) and it makes later extensions even harder.
+</p>
+
+<p>
+For all these reasons, the color of an element in <span class="beamer-name"><span class="textsc">beamer</span></span> is a structured object, which we call a <em><span class="textsl"><span class="beamer-name"><span
+class="textsc">beamer</span></span></span>-color</em>. Every <span class="beamer-name"><span class="textsc">beamer</span></span>-color has two parts: a foreground and a background. Either of these may be “empty,” which means that whatever foreground
+or background was active before should remain active when the color is used.
+</p>
+
+<p>
+<span class="beamer-name"><span class="textsc">beamer</span></span>-colors can <em>inherit</em> from other <span class="beamer-name"><span class="textsc">beamer</span></span>-colors and the default themes make extensive use of this feature. For
+example, there is a <span class="beamer-name"><span class="textsc">beamer</span></span>-color called <span class="texttt">structure</span> and all sorts of elements inherit from this color. Thus, if someone changes <span class="texttt">structure</span>,
+the color of all these elements automatically change accordingly. When a color inherits from another color, it can nevertheless still override only the foreground or the background.
+</p>
+
+<p>
+It is also possible to “inherit” from another <span class="beamer-name"><span class="textsc">beamer</span></span>-color in a more sophisticated way, which is more like <em>using</em> the other <span class="beamer-name"><span
+class="textsc">beamer</span></span>-color in an indirect way. You can specify that, say, the background of the title should be a 90% of the background of normal text and 10% of the foreground of <span class="texttt">structure</span>.
+</p>
+
+<p>
+Inheritance and using of other <span class="beamer-name"><span class="textsc">beamer</span></span>-colors is done dynamically. This means that if one of the parent <span class="beamer-name"><span class="textsc">beamer</span></span>-colors changes
+during the presentation, the derived colors automatically also change.
+</p>
+
+<p>
+The default color theme, which is always loaded, installs numerous <span class="beamer-name"><span class="textsc">beamer</span></span>-colors and inheritance relations between them. These colors are explained throughout this guide. The color used for, say,
+frametitles is discussed in the section on frametitles, and so on.
+</p>
+<!--
+...... subsubsection Using Beamer’s Colors ......
+-->
+<h6 id="autosec-460"><span class="sectionnumber">17.2.2&#x2003;</span>Using Beamer’s Colors</h6>
+<a id="beameruserguide-autopage-460"></a>
+
+
+<p>
+A <span class="beamer-name"><span class="textsc">beamer</span></span>-color is not a normal color as defined by the <span class="texttt">color</span> and <span class="texttt">xcolor</span> packages and, accordingly, cannot be used directly as in
+commands like <span class="texttt">\color</span> or <span class="texttt">\colorlet</span>. Instead, in order to use a <span class="beamer-name"><span class="textsc">beamer</span></span>-color, you should first call the command <span
+class="texttt">\usebeamercolor</span>, which is explained below. This command will setup two (normal) colors called <span class="texttt">fg</span> (for foreground) and <span class="texttt">bg</span> (for, well, guess what). You can then say <span
+class="texttt">\color{fg}</span> to install the foreground color and <span class="texttt">\color{bg}</span> to install the background color. You can also use the colors <span class="texttt">fg</span> and <span class="texttt">bg</span> in any context in
+which you normally use a color like, say, <span class="texttt">red</span>. If a <span class="beamer-name"><span class="textsc">beamer</span></span>-color does not have a foreground or a background, the colors <span class="texttt">fg</span> or <span
+class="texttt">bg</span> (or both) remain unchanged.
+</p>
+
+<p>
+Inside templates, this command will typically have already been called for you with the option <span class="texttt">[fg]</span>.
+</p>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\usebeamercolor</kbd></span><span class="opt"><span class="texttt">*</span></span><span class="opt"><span class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>fg or
+bg</i><span class="angle">&rangle;</span></span><span class="oarg-right-bracket">]</span></span>{<span class="meta"><span class="angle">&langle;</span><i>beamer-color name</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+This command (possibly) changes the two colors <span class="texttt">fg</span> and <span class="texttt">bg</span> to the foreground and background color of the <span class="meta"><span class="angle">&langle;</span><i>beamer-color name</i><span
+class="angle">&rangle;</span></span>. If the <span class="beamer-name"><span class="textsc">beamer</span></span>-color does not specify a foreground, <span class="texttt">fg</span> is left unchanged; if does not specify a background, <span
+class="texttt">bg</span> is left unchanged.
+</p>
+<p>
+You will often wish to directly use the color <span class="texttt">fg</span> or <span class="texttt">bg</span> after using this command. For this common situation, the optional argument <span class="meta"><span class="angle">&langle;</span><i>fg or
+bg</i><span class="angle">&rangle;</span></span> is useful, which may be either <span class="texttt">fg</span> or <span class="texttt">bg</span>. Giving this option will cause the foreground <span class="texttt">fg</span> or the background <span
+class="texttt">bg</span> to be immediately installed after they have been setup. Thus, the following command
+</p>
+<pre class="verbatim">
+\usebeamercolor[fg]{normal text}
+</pre>
+<p>
+is a shortcut for
+</p>
+<pre class="verbatim">
+\usebeamercolor{normal text}
+\color{fg}
+</pre>
+<p>
+If you use the starred version of this command, the <span class="beamer-name"><span class="textsc">beamer</span></span>-color <span class="texttt">normal text</span> is used before the command is invoked. This ensures that, barring evil trickery, the colors
+<span class="texttt">fg</span> and <span class="texttt">bg</span> will be setup independently of whatever colors happened to be in use when the command is invoked.
+</p>
+<p>
+This command has special side-effects. First, the (normal) color <span class="texttt">parent.bg</span> is set to the value of <span class="texttt">bg</span> prior to this call. Thus you can access the color that was in use prior to the call of this command via the
+color <span class="texttt">parent.bg</span>.
+</p>
+<p>
+Second, the special color <span class="meta"><span class="angle">&langle;</span><i>beamer-color name</i><span class="angle">&rangle;</span></span><span class="texttt">.fg</span> is <em>globally</em> set to the same value as <span
+class="texttt">fg</span> and <span class="meta"><span class="angle">&langle;</span><i>beamer-color name</i><span class="angle">&rangle;</span></span><span class="texttt">.bg</span> is globally set to the value of <span class="texttt">bg</span>.
+This allows you to access the foreground or background of a certain <span class="meta"><span class="angle">&langle;</span><i>beamer-color name</i><span class="angle">&rangle;</span></span> after another <span class="beamer-name"><span
+class="textsc">beamer</span></span>-color has been used. However, referring to these special global colors should be kept to the unavoidable minimum and should be done as locally as possible since a change of the <span class="beamer-name"><span
+class="textsc">beamer</span></span>-color will not reflect in a change of the colors <span class="meta"><span class="angle">&langle;</span><i>beamer-color name</i><span class="angle">&rangle;</span></span><span class="texttt">.fg</span> and <span
+class="meta"><span class="angle">&langle;</span><i>beamer-color name</i><span class="angle">&rangle;</span></span><span class="texttt">.bg</span> until the next invocation of <span class="texttt">\usebeamercolor</span>. Also, if the <span
+class="meta"><span class="angle">&langle;</span><i>beamer-color name</i><span class="angle">&rangle;</span></span> does not specify a foreground or a background color, then the values of the special colors are whatever happened to be the foreground or
+background at the time of the last invocation of <span class="texttt">\usebeamercolor</span>.
+</p>
+<p>
+So, try not to get into the habit of writing <span class="texttt">\color{structure.fg}</span> all the time, at least not without a <span class="texttt">\usebeamercolor{structure}</span> close by.
+</p>
+<p>
+<i>Example: </i>
+</p>
+<pre class="verbatim">
+ This text is {\usebeamercolor[fg]{alerted text} alerted}. The
+ following box uses the fore- and background of frametitles:
+ {
+   \usebeamercolor[fg]{frametitle}
+   \colorbox{bg}{Frame Title}
+ }
+</pre>
+<p>
+This command has no effect in <span class="texttt">article</span> mode.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\ifbeamercolorempty</kbd></span><span class="opt"><span class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>fg or bg</i><span class="angle">&rangle;</span></span><span
+class="oarg-right-bracket">]</span></span>{<span class="meta"><span class="angle">&langle;</span><i>beamer-color name</i><span class="angle">&rangle;</span></span>}{<span class="meta"><span class="angle">&langle;</span><i>if
+undefined</i><span class="angle">&rangle;</span></span>}{<span class="meta"><span class="angle">&langle;</span><i>if defined</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+This command can be used to check whether the foreground or background of some <span class="meta"><span class="angle">&langle;</span><i>beamer-color name</i><span class="angle">&rangle;</span></span> is non-empty. If the foreground or background of
+<span class="meta"><span class="angle">&langle;</span><i>beamer-color name</i><span class="angle">&rangle;</span></span> is defined, <span class="meta"><span class="angle">&langle;</span><i>if defined</i><span
+class="angle">&rangle;</span></span> will be executed, otherwise the <span class="meta"><span class="angle">&langle;</span><i>if undefined</i><span class="angle">&rangle;</span></span> code.
+</p>
+<p>
+<i>Example: </i>
+</p>
+<pre class="verbatim">
+\ifbeamercolorempty[bg]{frametitle}
+{ % ``Transparent background''
+  \usebeamercolor[fg]{frametitle}
+  \insertframetitle
+}
+{ % Opaque background
+  \usebeamercolor[fg]{frametitle}
+  \colorbox{bg}{\insertframetitle}
+}
+</pre>
+</li>
+</ul>
+</div>
+<!--
+...... subsubsection Setting Beamer’s Colors ......
+-->
+<h6 id="autosec-465"><span class="sectionnumber">17.2.3&#x2003;</span>Setting Beamer’s Colors</h6>
+<a id="beameruserguide-autopage-465"></a>
+
+
+<p>
+To set or to change a <span class="beamer-name"><span class="textsc">beamer</span></span>-color, you can use the command <span class="texttt">\setbeamercolor</span>.
+</p>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\setbeamercolor</kbd></span><span class="opt"><span class="texttt">*</span></span>{<span class="meta"><span class="angle">&langle;</span><i>beamer-color name</i><span class="angle">&rangle;</span></span>}{<span
+class="meta"><span class="angle">&langle;</span><i>options</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+Sets or changes a <span class="beamer-name"><span class="textsc">beamer</span></span>-color. The <span class="meta"><span class="angle">&langle;</span><i>beamer-color name</i><span class="angle">&rangle;</span></span> should be a reasonably
+simple text (do not try too much trickery and avoid punctuation symbols), but it may contain spaces. Thus, <span class="texttt">normal text</span> is a valid <span class="meta"><span class="angle">&langle;</span><i>beamer-color name</i><span
+class="angle">&rangle;</span></span> and so is <span class="texttt">My Color Number 2</span>.
+</p>
+<p>
+In the most simple case, you just specify a foreground by giving the <span class="texttt">fg=</span> option and, possibly, also a background using the <span class="texttt">bg=</span> option.
+</p>
+<p>
+<i>Example: </i><span class="texttt">\setbeamercolor{normal text}{fg=black,bg=mylightgrey}</span>
+</p>
+<p>
+<i>Example: </i><span class="texttt">\setbeamercolor{alerted text}{fg=red!80!black}</span>
+</p>
+<p>
+The effect of this command is accumulative, thus the following two commands
+</p>
+<pre class="verbatim">
+\setbeamercolor{section in toc}{fg=blue}
+\setbeamercolor{section in toc}{bg=white}
+</pre>
+<p>
+have the same effect as
+</p>
+<pre class="verbatim">
+\setbeamercolor{section in toc}{fg=blue,bg=white}
+</pre>
+<p>
+Naturally, a second call with the same kind of <span class="meta"><span class="angle">&langle;</span><i>option</i><span class="angle">&rangle;</span></span> set to a different value overrides a previous call.
+</p>
+<p>
+The starred version first resets everything, thereby “switching off” the accumulative effect. Use this starred version to completely reset the definition of some <span class="beamer-name"><span class="textsc">beamer</span></span>-color.
+</p>
+<p>
+The following <span class="meta"><span class="angle">&langle;</span><i>options</i><span class="angle">&rangle;</span></span> may be given:
+</p>
+<ul style="list-style-type:none">
+
+<li>
+<p>
+• <span class="declare"><span class="texttt">fg=</span><span class="meta"><span class="angle">&langle;</span><i>color</i><span class="angle">&rangle;</span></span></span> sets the foreground color of <span class="meta"><span
+class="angle">&langle;</span><i>beamer-color name</i><span class="angle">&rangle;</span></span> to the given (normal) <span class="meta"><span class="angle">&langle;</span><i>color</i><span class="angle">&rangle;</span></span>. The <span
+class="meta"><span class="angle">&langle;</span><i>color</i><span class="angle">&rangle;</span></span> may also be a color expression like <span class="texttt">red!50!black</span>, see the manual of the <span class="textsc">xcolor</span> package. If
+<span class="meta"><span class="angle">&langle;</span><i>color</i><span class="angle">&rangle;</span></span> is empty, the <span class="meta"><span class="angle">&langle;</span><i>beamer-color name</i><span
+class="angle">&rangle;</span></span> “has no special foreground” and when the color is used, the foreground currently in force should not be changed.
+</p>
+<p>
+Specifying a foreground this way will override any inherited foreground color.
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+• <span class="declare"><span class="texttt">bg=</span><span class="meta"><span class="angle">&langle;</span><i>color</i><span class="angle">&rangle;</span></span></span> does the same as the <span class="texttt">fg</span> option, but for the
+background.
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+• <span class="declare"><span class="texttt">parent=</span><span class="meta"><span class="angle">&langle;</span><i>parent beamer-color(s)</i><span class="angle">&rangle;</span></span></span> specifies that <span class="meta"><span
+class="angle">&langle;</span><i>beamer-color name</i><span class="angle">&rangle;</span></span> should inherit from the specified <span class="meta"><span class="angle">&langle;</span><i>parent beamer-color(s)</i><span
+class="angle">&rangle;</span></span>. Any foreground and/or background color set by the parents will also be used when <span class="meta"><span class="angle">&langle;</span><i>beamer-color name</i><span class="angle">&rangle;</span></span> is used.
+If multiple parents specify a foreground, the last one “wins”; and likewise for the backgrounds.
+</p>
+<p>
+<i>Example: </i>
+</p>
+<pre class="verbatim">
+\setbeamercolor{father}{fg=red}
+\setbeamercolor{mother}{bg=green}
+\setbeamercolor{child}{parent={father,mother}}
+\begin{beamercolorbox}{child}
+  Terrible red on green text.
+\end{beamercolorbox}
+
+\setbeamercolor{father}{fg=blue}
+\begin{beamercolorbox}{child}
+  Now terrible blue on green text, since parent was changed.
+\end{beamercolorbox}
+</pre>
+<p>
+Note that a change of the foreground or background of a parent changes the corresponding foreground or background of the child (unless it is overruled).
+</p>
+<p>
+A <span class="beamer-name"><span class="textsc">beamer</span></span>-color can not only have parents, but also grandparents and so on.
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+• <span class="declare"><span class="texttt">use=</span><span class="meta"><span class="angle">&langle;</span><i>another beamer-color</i><span class="angle">&rangle;</span></span></span> is used to make sure that another <span
+class="beamer-name"><span class="textsc">beamer</span></span>-color is setup correctly before the foreground or background color specification are evaluated.
+</p>
+<p>
+Suppose you wish the foreground of items to be a mixture of 50% of the foreground of structural elements and 50% of the normal foreground color. You could try
+</p>
+<pre class="verbatim">
+\setbeamercolor{item}{fg=structure.fg!50!normal text.fg}
+</pre>
+<p>
+However, this will not necessarily give the desired result: If the <span class="beamer-name"><span class="textsc">beamer</span></span>-color <span class="texttt">structure</span> changes, the (normal) color <span class="texttt">structure.fg</span> is not
+immediately updated. In order to ensure that the normal color <span class="texttt">structure.fg</span> is correct, use the following:
+</p>
+<pre class="verbatim">
+\setbeamercolor{item}{use={structure,normal text},fg=structure.fg!50!normal text.fg}
+</pre>
+<p>
+This will guarantee that the colors <span class="texttt">structure.fg</span> and <span class="texttt">normal text.fg</span> are setup correctly when the foreground of <span class="texttt">item</span> is computed.
+</p>
+<p>
+To show the difference, consider the following example:
+</p>
+<pre class="verbatim">
+\setbeamercolor{grandfather}{fg=red}
+\setbeamercolor{grandmother}{bg=white}
+\setbeamercolor{father}{parent={grandfather,grandmother}}
+\setbeamercolor{mother}{fg=black}
+{
+  \usebeamercolor{father}\usebeamercolor{mother}
+  %% Defines father.fg and mother.fg globally
+}
+\setbeamercolor{my color A}{fg=father.fg!50!mother.fg}
+\setbeamercolor{my color B}{use={father,mother},fg=father.fg!50!mother.fg}
+
+{\usebeamercolor[fg]{my color A} dark red text}
+{\usebeamercolor[fg]{my color B} also dark red text}
+
+\setbeamercolor{grandfather}{fg=green}
+
+{\usebeamercolor[fg]{my color A} still dark red text}
+{\usebeamercolor[fg]{my color B} now dark green text}
+</pre>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<!--
+...... subsection The Color of Mathematical Text ......
+-->
+<h5 id="autosec-472"><span class="sectionnumber">17.3&#x2003;</span>The Color of Mathematical Text</h5>
+<a id="beameruserguide-autopage-472"></a>
+
+
+<p>
+By default, mathematical text does not have any special color—it just inherits the “surrounding” color. Some people prefer mathematical text to have some special color. Though we do not recommend this (we believe mathematical text should <em>not</em> stand out
+amid the normal text), <span class="beamer-name"><span class="textsc">beamer</span></span> makes it (reasonably) easy to change the color of mathematical text. Simply change the following colors:
+</p>
+
+
+<div class="element">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+<span class="element-headline"><b>Beamer-Color</b> <span class="element-declare"><span class="declare">math text</span></span></span>
+</p>
+<p>
+This color is the parent of <span class="texttt">math text inlined</span> and <span class="texttt">math text displayed</span>. It is empty by default. See those colors for details.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="element">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+<span class="element-headline"><b>Beamer-Color</b> <span class="element-declare"><span class="declare">math text inlined</span></span></span>
+</p>
+<p>
+Color parents: <kbd>math text</kbd>
+</p>
+<p>
+If the foreground of this color is set, inlined mathematical text is typeset using this color. This is done via some <span class="texttt">\everymath</span> hackery and may not work in all cases. If not, you’ll have to try to find a way around the problem. The background
+is currently ignored.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="element">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+<span class="element-headline"><b>Beamer-Color</b> <span class="element-declare"><span class="declare">math text displayed</span></span></span>
+</p>
+<p>
+Color parents: <kbd>math text</kbd>
+</p>
+<p>
+Like <span class="texttt">math text inlined</span>, only for so-called “displayed” mathematical text. This is mathematical text between <span class="texttt">\[</span> and <span class="texttt">\]</span> or between <span class="texttt">$$</span> and
+<span class="texttt">$$</span> or inside environments like <span class="texttt">equation</span> or <span class="texttt">align</span>. The setup of this color is somewhat fragile, use at your own risk. The background is currently ignored.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="element">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+<span class="element-headline"><b>Beamer-Color</b> <span class="element-declare"><span class="declare">normal text in math text</span></span></span>
+</p>
+<p>
+If the foreground of this color is set, normal text inside mathematical text (which is introduced using the <span class="texttt">\text</span> command) will be typeset using this color. The background is currently ignored.
+</p>
+</li>
+</ul>
+</div>
+<!--
+...... subsection The Color Palettes ......
+-->
+<h5 id="autosec-473"><span class="sectionnumber">17.4&#x2003;</span>The Color Palettes</h5>
+<a id="beameruserguide-autopage-473"></a>
+
+
+<p>
+When one designs a color theme, one faces the following problem: Suppose we want the colors in the headline to gradually change from black to, say, blue. Whatever is at the very top of the headline should be black, what comes right below it should be dark blue, and at
+the bottom of the headline things should just be blue. Unfortunately, different outer themes will put different things at the top. One theme might put the author at the top, another theme might put the document title there. This makes it impossible to directly assign one
+of the three colors “black”, “dark blue,” and “blue” to the different elements that are typically rendered in the headline. No matter how we assign them, things will look wrong for certain outer themes.
+</p>
+
+<p>
+To circumvent this problem, <span class="beamer-name"><span class="textsc">beamer</span></span> uses a layer of <em>palette colors</em>. Color themes typically only change these palette colors. For example, a color theme might make the <span
+class="beamer-name"><span class="textsc">beamer</span></span>-color <span class="texttt">palette primary</span> blue, make <span class="texttt">palette secondary</span> a dark blue, and make <span class="texttt">palette tertiary</span> black.
+Outer themes can now setup things such that whatever they show at the top of the headline inherits from <span class="texttt">palette primary</span>, what comes below inherits from <span class="texttt">palette secondary</span>, and whatever is at the
+bottom inherits from <span class="texttt">palette tertiary</span>. This way, color themes can change the way even complicated outer themes look and they can do so consistently.
+</p>
+
+<p>
+Note that the user can still change the color of every element individually, simply by overriding the color(s) of the elements in the headline. In a sense, the palette colors are just a “suggestion” how things should be colored by an outer theme.
+</p>
+
+<p>
+In detail, the following palette colors are used by outer themes.
+</p>
+
+
+<div class="element">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+<span class="element-headline"><b>Beamer-Color</b> <span class="element-declare"><span class="declare">palette primary</span></span></span>
+</p>
+<p>
+Outer themes (should) base the color of navigational elements and, possibly, also of other elements, on the four palette colors. The “primary” palette should be used for the most important navigational elements, which are usually the ones that change most often and
+hence require the most attention by the audience. The “secondary” and “tertiary” are less important, the “quaternary” one is the least important.
+</p>
+<p>
+By default, the palette colors do not have a background and the foreground ranges from <span class="texttt">structure.fg</span> to <span class="texttt">black</span>.
+</p>
+<p>
+For the sidebar, there is an extra set of palette colors, see <span class="texttt">palette sidebar primary</span>.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="element">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+<span class="element-headline"><b>Beamer-Color</b> <span class="element-declare"><span class="declare">palette secondary</span></span></span>
+</p>
+<p>
+See <span class="texttt">palette primary</span>.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="element">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+<span class="element-headline"><b>Beamer-Color</b> <span class="element-declare"><span class="declare">palette tertiary</span></span></span>
+</p>
+<p>
+See <span class="texttt">palette primary</span>.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="element">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+<span class="element-headline"><b>Beamer-Color</b> <span class="element-declare"><span class="declare">palette quaternary</span></span></span>
+</p>
+<p>
+See <span class="texttt">palette primary</span>.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="element">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+<span class="element-headline"><b>Beamer-Color</b> <span class="element-declare"><span class="declare">palette sidebar primary</span></span></span>
+</p>
+<p>
+Similar to <span class="texttt">palette primary</span>, only outer themes (should) base the colors of elements in the sidebar on the four sidebar palette colors.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="element">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+<span class="element-headline"><b>Beamer-Color</b> <span class="element-declare"><span class="declare">palette sidebar secondary</span></span></span>
+</p>
+<p>
+See <span class="texttt">palette sidebar primary</span>.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="element">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+<span class="element-headline"><b>Beamer-Color</b> <span class="element-declare"><span class="declare">palette sidebar tertiary</span></span></span>
+</p>
+<p>
+See <span class="texttt">palette sidebar primary</span>.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="element">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+<span class="element-headline"><b>Beamer-Color</b> <span class="element-declare"><span class="declare">palette sidebar quaternary</span></span></span>
+</p>
+<p>
+See <span class="texttt">palette sidebar primary</span>.
+</p>
+</li>
+</ul>
+</div>
+<!--
+...... subsection Miscellaneous Colors ......
+-->
+<h5 id="autosec-474"><span class="sectionnumber">17.5&#x2003;</span>Miscellaneous Colors</h5>
+<a id="beameruserguide-autopage-474"></a>
+
+
+<p>
+In this section some “basic” colors are listed that do not “belong” to any special commands.
+</p>
+
+
+<div class="element">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+<span class="element-headline"><b>Beamer-Color/-Font</b> <span class="element-declare"><span class="declare">normal text</span></span></span>
+</p>
+<p>
+The color is used for normal text. At the beginning of the document the foreground color is installed as <span class="texttt">\normalcolor</span>. The background of this color is used by the default background canvas for the background of the presentation, see
+Section&nbsp;<a href="Creating-Frames.html#section-canvas">8.2.7</a>. The background is also the default value of the normal color <span class="texttt">bg</span>.
+</p>
+<p>
+Since the color is the “root” of all other <span class="beamer-name"><span class="textsc">beamer</span></span>-colors, both a foreground and a background must be installed. In particular, to get a transparent background canvas, make the background of the <span
+class="beamer-name"><span class="textsc">beamer</span></span>-color <span class="texttt">background canvas</span> empty, not the background of this color.
+</p>
+<p>
+The <span class="beamer-name"><span class="textsc">beamer</span></span>-font currently is not used. In particular, redefining this font will not have any effect. This is likely to change in the future.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="element">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+<span class="element-headline"><b>Beamer-Color/-Font</b> <span class="element-declare"><span class="declare">example text</span></span></span>
+</p>
+<p>
+The color/font is used when text is typeset inside an <span class="texttt">example</span> block.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="element">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+<span class="element-headline"><b>Beamer-Color/-Font</b> <span class="element-declare"><span class="declare">titlelike</span></span></span>
+</p>
+<p>
+This color/font is a more specialized form of the <span class="texttt">structure</span> color/font. It is the base for all elements that are “like titles.” This includes the frame title and subtitle as well as the document title and subtitle.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="element">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+<span class="element-headline"><b>Beamer-Color</b> <span class="element-declare"><span class="declare">separation line</span></span></span>
+</p>
+<p>
+The foreground of this color is used for separating lines. If the foreground is empty, no separation line is drawn.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="element">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+<span class="element-headline"><b>Beamer-Color</b> <span class="element-declare"><span class="declare">upper separation line head</span></span></span>
+</p>
+<p>
+Color parents: <kbd>separation line</kbd>
+</p>
+<p>
+Special case for the uppermost separation line in a headline.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="element">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+<span class="element-headline"><b>Beamer-Color</b> <span class="element-declare"><span class="declare">middle separation line head</span></span></span>
+</p>
+<p>
+Color parents: <kbd>separation line</kbd>
+</p>
+<p>
+Special case for the middle separation line in a headline.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="element">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+<span class="element-headline"><b>Beamer-Color</b> <span class="element-declare"><span class="declare">lower separation line head</span></span></span>
+</p>
+<p>
+Color parents: <kbd>separation line</kbd>
+</p>
+<p>
+Special case for the lower separation line in a headline.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="element">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+<span class="element-headline"><b>Beamer-Color</b> <span class="element-declare"><span class="declare">upper separation line foot</span></span></span>
+</p>
+<p>
+Color parents: <kbd>separation line</kbd>
+</p>
+<p>
+Special case for the uppermost separation line in a footline.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="element">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+<span class="element-headline"><b>Beamer-Color</b> <span class="element-declare"><span class="declare">middle separation line foot</span></span></span>
+</p>
+<p>
+Color parents: <kbd>separation line</kbd>
+</p>
+<p>
+Special case for the middle separation line in a footline.
+</p>
+</li>
+</ul>
+</div>
+
+
+<div class="element">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+<span class="element-headline"><b>Beamer-Color</b> <span class="element-declare"><span class="declare">lower separation line foot</span></span></span>
+</p>
+<p>
+Color parents: <kbd>separation line</kbd>
+</p>
+<p>
+Special case for the lower separation line in a footline.
+</p>
+</li>
+</ul>
+</div>
+<!--
+...... subsection Transparency Effects ......
+-->
+<h5 id="autosec-475"><span class="sectionnumber">17.6&#x2003;</span>Transparency Effects</h5>
+<a id="beameruserguide-autopage-475"></a>
+
+
+<a id="section-transparent"></a>
+
+<p>
+By default, <em>covered</em> items are not shown during a presentation. Thus if you write <span class="texttt">\uncover<2>{Text.}</span>, the text is not shown on any but the second slide. On the other slides, the text is not simply printed using the background
+color – it is not shown at all. This effect is most useful if your background does not have a uniform color.
+</p>
+
+<p>
+Sometimes however, you might prefer that covered items are not completely covered. Rather, you would like them to be shown already in a very dim or shaded way. This allows your audience to get a feeling for what is yet to come, without getting distracted by it. Also,
+you might wish text that is covered “once more” still to be visible to some degree.
+</p>
+
+<p>
+Ideally, there would be an option to make covered text “transparent.” This would mean that when covered text is shown, it would instead be mixed with the background behind it. Unfortunately, <span class="texttt">pgf</span> does not support real transparency yet.
+Instead, transparency is created by mixing the color of the object you want to show with the current background color (the color <span class="texttt">bg</span>, which has hopefully been setup such that it is the average color of the background on which the object
+should be placed). To install this effect, you can use:
+</p>
+<pre class="verbatim">
+\setbeamercovered{transparent}
+
+</pre>
+
+<p>
+This command allows you to specify in a quite general way how a covered item should be rendered. You can even specify different ways of rendering the item depending on how long it will take before this item is shown or for how long it has already been covered once
+more. The transparency effect will automatically apply to all colors, <em>except</em> for the colors in images. For images there is a workaround, see the documentation of the <span class="pgf-name"><span class="textsc">pgf</span></span> package.
+</p>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\setbeamercovered</kbd></span>{<span class="meta"><span class="angle">&langle;</span><i>options</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+This command offers several different options, the most important of which is <span class="texttt">transparent</span>. All options are internally mapped to the two options <span class="texttt">still covered</span> and <span
+class="texttt">again covered</span>.
+</p>
+<p>
+In detail, the following <span class="meta"><span class="angle">&langle;</span><i>options</i><span class="angle">&rangle;</span></span> may be given:
+</p>
+<ul style="list-style-type:none">
+
+<li>
+<p>
+• <span class="declare"><span class="texttt">invisible</span></span> is the default and causes covered text to “completely disappear”.
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+• <span class="declare"><span class="texttt">transparent</span></span><span class="opt"><span class="texttt">=</span><span class="meta"><span class="angle">&langle;</span><i>opaqueness</i><span class="angle">&rangle;</span></span></span>
+causes covered text to be typeset in a “transparent” way. By default, this means that 85% of the background color is mixed into all colors or that the <span class="meta"><span class="angle">&langle;</span><i>opaqueness</i><span
+class="angle">&rangle;</span></span> of the text is 15%. You can specify a different <span class="meta"><span class="angle">&langle;</span><i>percentage</i><span class="angle">&rangle;</span></span>, where <span class="texttt">0</span> means
+“totally transparent” and <span class="texttt">100</span> means “totally opaque.”
+</p>
+<p>
+Unfortunately, this value is kind of “specific” to every projector. What looks good on your screen need not look good during a presentation.
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+• <span class="declare"><span class="texttt">dynamic</span></span> Makes all covered text quite transparent, but in a dynamic way. The longer it will take till the text is uncovered, the stronger the transparency.
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+• <span class="declare"><span class="texttt">highly dynamic</span></span> Has the same effect as <span class="texttt">dynamic</span>, but the effect is stronger.
+</p>
+
+
+</li>
+<li>
+
+
+<p>
+• <span class="declare"><span class="texttt">still covered=</span><span class="meta"><span class="angle">&langle;</span><i>not yet list</i><span class="angle">&rangle;</span></span></span> specifies how to render covered items that have not yet
+been uncovered. The <span class="meta"><span class="angle">&langle;</span><i>not yet list</i><span class="angle">&rangle;</span></span> should be a list of <span class="texttt">\opaqueness</span> commands, see the description of that command, below.
+</p>
+<p>
+<i>Example: </i>
+</p>
+<pre class="verbatim">
+\setbeamercovered{%
+  still covered={\opaqueness<1>{15}\opaqueness<2>{10}\opaqueness<3>{5}\opaqueness<4->{2}},
+  again covered={\opaqueness<1->{15}}}
+</pre>
+</li>
+<li>
+
+
+<p>
+• <span class="declare"><span class="texttt">again covered=</span><span class="meta"><span class="angle">&langle;</span><i>once more list</i><span class="angle">&rangle;</span></span></span> specifies how to render covered items that have once
+more been covered, that is, that had been shown before but are now covered again.
+</p>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\opaqueness</kbd></span><<span class="meta"><span class="angle">&langle;</span><i>overlay specification</i><span class="angle">&rangle;</span></span>>{<span class="meta"><span
+class="angle">&langle;</span><i>percentage of opaqueness</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+The <span class="meta"><span class="angle">&langle;</span><i>overlay specification</i><span class="angle">&rangle;</span></span> specifies on which slides covered text should have which <span class="meta"><span
+class="angle">&langle;</span><i>percentage of opaqueness</i><span class="angle">&rangle;</span></span>. Unlike other overlay specifications, this <span class="meta"><span class="angle">&langle;</span><i>overlay specification</i><span
+class="angle">&rangle;</span></span> is a “relative” overlay specification. For example, the specification “3” here means “things that will be uncovered three slides ahead,” respectively “things that have once more been covered for three slides.” More precisely, if an
+item is uncovered for more than one slide and then covered once more, only the “first moment of uncovering” is used for the calculation of how long the item has been covered once more.
+</p>
+<p>
+An opaqueness of 100 is fully opaque and 0 is fully transparent. Currently, since real transparency is not yet implemented, this command causes all colors to get a mixing of <span class="meta"><span class="angle">&langle;</span><i>percentage of
+opaqueness</i><span class="angle">&rangle;</span></span> of the current <span class="texttt">bg</span>. At some future point this command might result in real transparency.
+</p>
+<p>
+The alternate <span class="pgf-name"><span class="textsc">pgf</span></span> extension used inside an opaque area is <span class="meta"><span class="angle">&langle;</span><i>percentage of opaqueness</i><span
+class="angle">&rangle;</span></span><span class="texttt">opaque</span>. In case of nested calls, only the innermost opaqueness specification is used.
+</p>
+<p>
+<i>Example: </i>
+</p>
+<pre class="verbatim">
+\setbeamercovered{still covered={\opaqueness<1->{15}},again covered={\opaqueness<1->{15}}}
+\pgfdeclareimage{book}{book}
+\pgfdeclareimage{book.!15opaque}{filenameforbooknearlytransparent}
+</pre>
+<p>
+Makes everything that is uncovered in two slides only 15 percent opaque.
+</p>
+</li>
+</ul>
+</div>
+</section>
+
+</main>
+
+</div>
+
+
+<nav class="botnavigation"><a href="home.html" class="linkhome" >
+Home</a></nav>
+
+</body>
+</html>

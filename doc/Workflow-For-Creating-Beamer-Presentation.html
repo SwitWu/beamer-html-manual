@@ -1,0 +1,954 @@
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8" />
+<meta name="generator" content="LaTeX Lwarp package" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The beamer class- <a href=https://github.com/josephwright/beamer target=-blank >https://github.com/josephwright/beamer</a>- User Guide for version 3.70. — Workflow For Creating a Beamer Presentation</title>
+<link rel="stylesheet" type="text/css" href="style.css" />
+
+<script>
+// Lwarp MathJax emulation code
+//
+// Based on code by Davide P. Cervone.
+// Equation numbering: https://github.com/mathjax/MathJax/issues/2427
+// Starred and ifnextchar macros: https://github.com/mathjax/MathJax/issues/2428
+// \left, \right delimiters: https://github.com/mathjax/MathJax/issues/2535
+//
+// Modified by Brian Dunn to adjust equation numbering and add subequations.
+//
+// LaTeX can use \seteqnumber{subequations?}{section}{number} before each equation.
+// subequations? is 0 usually, 1 if inside subequations.
+// section is a string printed as-is, or empty.
+// number is auto-incremented by MathJax between equations.
+//
+MathJax = {
+  subequations: "0",
+  section: "",
+  loader: {
+    load: ['[tex]/tagformat', '[tex]/textmacros'],
+  },
+  startup: {
+    ready() {
+      // These would be replaced by import commands if you wanted to make
+      // a proper extension.
+      const Configuration = MathJax._.input.tex.Configuration.Configuration;
+      const CommandMap = MathJax._.input.tex.SymbolMap.CommandMap;
+      const Macro = MathJax._.input.tex.Symbol.Macro;
+      const TexError = MathJax._.input.tex.TexError.default;
+      const ParseUtil = MathJax._.input.tex.ParseUtil.default;
+      const expandable = MathJax._.util.Options.expandable;
+
+        // Insert the replacement string into the TeX string, and check
+        // that there haven't been too many maxro substitutions (prevents
+        // infinite loops).
+        const useArgument = (parser, text) => {
+          parser.string = ParseUtil.addArgs(parser, text, parser.string.slice(parser.i));
+          parser.i = 0;
+          if (++parser.macroCount > parser.configuration.options.maxMacros) {
+            throw new TexError('MaxMacroSub1',
+            'MathJax maximum macro substitution count exceeded; ' +
+            'is there a recursive macro call?');
+          }
+        }
+
+        // Create the command map for:
+        //     \ifstar, \ifnextchar, \ifblank, \ifstrequal, \gsub, \seteqnumber
+        new CommandMap('Lwarp-macros', {
+          ifstar: 'IfstarFunction',
+          ifnextchar: 'IfnextcharFunction',
+          ifblank: 'IfblankFunction',
+          ifstrequal: 'IfstrequalFunction',
+          gsubstitute: 'GsubstituteFunction',
+          seteqnumber: 'SeteqnumberFunction'
+        }, {
+          // This function implements an ifstar macro.
+          IfstarFunction(parser, name) {
+             const resultstar = parser.GetArgument(name);
+             const resultnostar = parser.GetArgument(name);
+             const star = parser.GetStar();                 // true if there is a *
+             useArgument(parser, star ? resultstar : resultnostar);
+          },
+
+          // This function implements an ifnextchar macro.
+          IfnextcharFunction(parser, name) {
+            let whichchar = parser.GetArgument(name);
+            if (whichchar.match(/^(?:0x[0-9A-F]+|[0-9]+)$/i)) {
+              // $ syntax highlighting
+              whichchar = String.fromCodePoint(parseInt(whichchar));
+            }
+            const resultnextchar = parser.GetArgument(name);
+            const resultnotnextchar = parser.GetArgument(name);
+            const gotchar = (parser.GetNext() === whichchar);
+            useArgument(parser, gotchar ? resultnextchar : resultnotnextchar);
+          },
+
+          // This function implements an ifblank macro.
+          IfblankFunction(parser, name) {
+            const blankarg = parser.GetArgument(name);
+            const resultblank = parser.GetArgument(name);
+            const resultnotblank = parser.GetArgument(name);
+            const isblank = (blankarg.trim() == "");
+            useArgument(parser, isblank ? resultblank : resultnotblank);
+          },
+
+          // This function implements an ifstrequal macro.
+          IfstrequalFunction(parser, name) {
+            const strequalfirst = parser.GetArgument(name);
+            const strequalsecond = parser.GetArgument(name);
+            const resultequal = parser.GetArgument(name);
+            const resultnotequal = parser.GetArgument(name);
+            const isequal = (strequalfirst == strequalsecond);
+            useArgument(parser, isequal ? resultequal : resultnotequal);
+          },
+
+          // This function implements a gsub macro.
+          GsubstituteFunction(parser, name) {
+            const gsubfirst = parser.GetArgument(name);
+            const gsubsecond = parser.GetArgument(name);
+            const gsubthird = parser.GetArgument(name);
+            let gsubresult=gsubfirst.replace(gsubsecond, gsubthird);
+            useArgument(parser, gsubresult);
+          },
+
+          // This function modifies the equation numbers.
+          SeteqnumberFunction(parser, name) {
+              // Get the macro parameters
+              const star = parser.GetStar();                  // true if there is a *
+              const optBrackets = parser.GetBrackets(name);   // contents of optional brackets
+              const newsubequations = parser.GetArgument(name); // the subequations argument
+              const neweqsection = parser.GetArgument(name); // the eq section argument
+              const neweqnumber = parser.GetArgument(name);   // the eq number argument
+              MathJax.config.subequations=newsubequations ;   // a string with boolean meaning
+              MathJax.config.section=neweqsection ;           // a string with numeric meaning
+              parser.tags.counter = parser.tags.allCounter = neweqnumber ;
+          }
+
+        });
+
+        // Create the Lwarp-macros package
+        Configuration.create('Lwarp-macros', {
+          handler: {macro: ['Lwarp-macros']}
+        });
+
+        MathJax.startup.defaultReady();
+
+        // For forward references:
+        MathJax.startup.input[0].preFilters.add(({math}) => {
+          if (math.inputData.recompile){
+              MathJax.config.subequations = math.inputData.recompile.subequations;
+              MathJax.config.section = math.inputData.recompile.section;
+          }
+        });
+        MathJax.startup.input[0].postFilters.add(({math}) => {
+          if (math.inputData.recompile){
+              math.inputData.recompile.subequations = MathJax.config.subequations;
+              math.inputData.recompile.section = MathJax.config.section;
+          }
+        });
+
+          // For \left, \right with unicode-math:
+          const {DelimiterMap} = MathJax._.input.tex.SymbolMap;
+          const {Symbol} = MathJax._.input.tex.Symbol;
+          const {MapHandler} = MathJax._.input.tex.MapHandler;
+          const delimiter = MapHandler.getMap('delimiter');
+          delimiter.add('\\lBrack', new Symbol('\\lBrack', '\u27E6'));
+          delimiter.add('\\rBrack', new Symbol('\\rBrack', '\u27E7'));
+          delimiter.add('\\lAngle', new Symbol('\\lAngle', '\u27EA'));
+          delimiter.add('\\rAngle', new Symbol('\\rAngle', '\u27EB'));
+          delimiter.add('\\lbrbrak', new Symbol('\\lbrbrak', '\u2772'));
+          delimiter.add('\\rbrbrak', new Symbol('\\rbrbrak', '\u2773'));
+          delimiter.add('\\lbag', new Symbol('\\lbag', '\u27C5'));
+          delimiter.add('\\rbag', new Symbol('\\rbag', '\u27C6'));
+          delimiter.add('\\llparenthesis', new Symbol('\\llparenthesis', '\u2987'));
+          delimiter.add('\\rrparenthesis', new Symbol('\\rrparenthesis', '\u2988'));
+          delimiter.add('\\llangle', new Symbol('\\llangle', '\u2989'));
+          delimiter.add('\\rrangle', new Symbol('\\rrangle', '\u298A'));
+          delimiter.add('\\Lbrbrak', new Symbol('\\Lbrbrak', '\u27EC'));
+          delimiter.add('\\Rbrbrak', new Symbol('\\Rbrbrak', '\u27ED'));
+          delimiter.add('\\lBrace', new Symbol('\\lBrace', '\u2983'));
+          delimiter.add('\\rBrace', new Symbol('\\rBrace', '\u2984'));
+          delimiter.add('\\lParen', new Symbol('\\lParen', '\u2985'));
+          delimiter.add('\\rParen', new Symbol('\\rParen', '\u2986'));
+          delimiter.add('\\lbrackubar', new Symbol('\\lbrackubar', '\u298B'));
+          delimiter.add('\\rbrackubar', new Symbol('\\rbrackubar', '\u298C'));
+          delimiter.add('\\lbrackultick', new Symbol('\\lbrackultick', '\u298D'));
+          delimiter.add('\\rbracklrtick', new Symbol('\\rbracklrtick', '\u298E'));
+          delimiter.add('\\lbracklltick', new Symbol('\\lbracklltick', '\u298F'));
+          delimiter.add('\\rbrackurtick', new Symbol('\\rbrackurtick', '\u2990'));
+          delimiter.add('\\langledot', new Symbol('\\langledot', '\u2991'));
+          delimiter.add('\\rangledot', new Symbol('\\rangledot', '\u2992'));
+          delimiter.add('\\lparenless', new Symbol('\\lparenless', '\u2993'));
+          delimiter.add('\\rparengtr', new Symbol('\\rparengtr', '\u2994'));
+          delimiter.add('\\Lparengtr', new Symbol('\\Lparengtr', '\u2995'));
+          delimiter.add('\\Rparenless', new Symbol('\\Rparenless', '\u2996'));
+          delimiter.add('\\lblkbrbrak', new Symbol('\\lblkbrbrak', '\u2997'));
+          delimiter.add('\\rblkbrbrak', new Symbol('\\rblkbrbrak', '\u2998'));
+          delimiter.add('\\lvzigzag', new Symbol('\\lvzigzag', '\u29D8'));
+          delimiter.add('\\rvzigzag', new Symbol('\\rvzigzag', '\u29D9'));
+          delimiter.add('\\Lvzigzag', new Symbol('\\Lvzigzag', '\u29DA'));
+          delimiter.add('\\Rvzigzag', new Symbol('\\Rvzigzag', '\u29DB'));
+          delimiter.add('\\lcurvyangle', new Symbol('\\lcurvyangle', '\u29FC'));
+          delimiter.add('\\rcurvyangle', new Symbol('\\rcurvyangle', '\u29FD'));
+          delimiter.add('\\Vvert', new Symbol('\\Vvert', '\u2980'));
+    }     // ready
+  },      // startup
+
+  tex: {
+    packages: {'[+]': ['tagformat', 'Lwarp-macros', 'textmacros']},
+    tags: "ams",
+         tagformat: {
+             number: function (n) {
+                 if(MathJax.config.subequations==0)
+                     return(MathJax.config.section + n);
+                 else
+                     return(MathJax.config.section + String.fromCharCode(96+n));
+             },
+         },
+  }
+}
+</script>
+
+<script
+    id="MathJax-script"
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"
+></script>
+
+</head>
+<body>
+
+
+<a id="beameruserguide-autopage-92"></a>
+<nav class="topnavigation"><a href="home.html" class="linkhome" >
+Home</a></nav>
+
+
+<div class="bodyandsidetoc">
+<div class="sidetoccontainer">
+
+
+<nav class="sidetoc">
+
+
+<div class="sidetoctitle">
+
+<p>
+<span class="sidetocthetitle">The <span class="beamer-name"><span class="textsc">beamer</span></span> <i>class</i><br />
+<a href="https://github.com/josephwright/beamer" target="_blank" >https://github.com/josephwright/beamer</a><br />
+User Guide for version 3.70.</span>
+</p>
+
+<p>
+Contents
+</p>
+</div>
+
+
+<div class="sidetoccontents">
+
+<p>
+<a href="home.html" class="linkhome" >
+Home</a>
+</p>
+
+<p>
+<a href="Introduction.html#autosec-7" class="tocsection" >
+<span class="sectionnumber">1</span>&#x2003;Introduction</a>
+</p>
+
+
+<p>
+<a href="Getting-Started.html#autosec-21" class="tocpart" >
+<span class="sectionnumber">I</span>&#x2003;Getting Started</a>
+</p>
+
+
+<p>
+<a href="Installation.html#autosec-24" class="tocsection" >
+<span class="sectionnumber">2</span>&#x2003;Installation</a>
+</p>
+
+
+<p>
+<a href="Tutorial-Euclid-Presentation.html#autosec-42" class="tocsection" >
+<span class="sectionnumber">3</span>&#x2003;Tutorial: Euclid’s Presentation</a>
+</p>
+
+
+<p>
+<a href="Workflow-For-Creating-Beamer-Presentation.html#autosec-93" class="tocsection" >
+<span class="sectionnumber">4</span>&#x2003;Workflow For Creating a Beamer Presentation</a>
+</p>
+
+
+<p>
+<a href="Guidelines-Creating-Presentations.html#autosec-116" class="tocsection" >
+<span class="sectionnumber">5</span>&#x2003;Guidelines for Creating Presentations</a>
+</p>
+
+
+<p>
+<a href="Solution-Templates.html#autosec-141" class="tocsection" >
+<span class="sectionnumber">6</span>&#x2003;Solution Templates</a>
+</p>
+
+
+<p>
+<a href="Licenses-Copyright.html#autosec-144" class="tocsection" >
+<span class="sectionnumber">7</span>&#x2003;Licenses and Copyright</a>
+</p>
+
+
+<p>
+<a href="Building-Presentation.html#autosec-185" class="tocpart" >
+<span class="sectionnumber">II</span>&#x2003;Building a Presentation</a>
+</p>
+
+
+<p>
+<a href="Creating-Frames.html#autosec-188" class="tocsection" >
+<span class="sectionnumber">8</span>&#x2003;Creating Frames</a>
+</p>
+
+
+<p>
+<a href="Creating-Overlays.html#autosec-234" class="tocsection" >
+<span class="sectionnumber">9</span>&#x2003;Creating Overlays</a>
+</p>
+
+
+<p>
+<a href="Structuring-Presentation-The-Static-Global-Structure.html#autosec-295" class="tocsection" >
+<span class="sectionnumber">10</span>&#x2003;Structuring a Presentation: The Static Global Structure</a>
+</p>
+
+
+<p>
+<a href="Structuring-Presentation-The-Interactive-Global-Structure.html#autosec-322" class="tocsection" >
+<span class="sectionnumber">11</span>&#x2003;Structuring a Presentation: The Interactive Global Structure</a>
+</p>
+
+
+<p>
+<a href="Structuring-Presentation-The-Local-Structure.html#autosec-336" class="tocsection" >
+<span class="sectionnumber">12</span>&#x2003;Structuring a Presentation: The Local Structure</a>
+</p>
+
+
+<p>
+<a href="Graphics.html#autosec-380" class="tocsection" >
+<span class="sectionnumber">13</span>&#x2003;Graphics</a>
+</p>
+
+
+<p>
+<a href="Animations-Sounds-Slide-Transitions.html#autosec-390" class="tocsection" >
+<span class="sectionnumber">14</span>&#x2003;Animations, Sounds, and Slide Transitions</a>
+</p>
+
+
+<p>
+<a href="Changing-Way-Things-Look.html#autosec-410" class="tocpart" >
+<span class="sectionnumber">III</span>&#x2003;Changing the Way Things Look</a>
+</p>
+
+
+<p>
+<a href="Themes.html#autosec-413" class="tocsection" >
+<span class="sectionnumber">15</span>&#x2003;Themes</a>
+</p>
+
+
+<p>
+<a href="Inner-Themes-Outer-Themes-Templates.html#autosec-428" class="tocsection" >
+<span class="sectionnumber">16</span>&#x2003;Inner Themes, Outer Themes, and Templates</a>
+</p>
+
+
+<p>
+<a href="Colors.html#autosec-452" class="tocsection" >
+<span class="sectionnumber">17</span>&#x2003;Colors</a>
+</p>
+
+
+<p>
+<a href="Fonts.html#autosec-481" class="tocsection" >
+<span class="sectionnumber">18</span>&#x2003;Fonts</a>
+</p>
+
+
+<p>
+<a href="Creating-Supporting-Material.html#autosec-497" class="tocpart" >
+<span class="sectionnumber">IV</span>&#x2003;Creating Supporting Material</a>
+</p>
+
+
+<p>
+<a href="Adding-Notes-Yourself.html#autosec-500" class="tocsection" >
+<span class="sectionnumber">19</span>&#x2003;Adding Notes for Yourself</a>
+</p>
+
+
+<p>
+<a href="Creating-Transparencies.html#autosec-512" class="tocsection" >
+<span class="sectionnumber">20</span>&#x2003;Creating Transparencies</a>
+</p>
+
+
+<p>
+<a href="Creating-Handouts-Lecture-Notes.html#autosec-521" class="tocsection" >
+<span class="sectionnumber">21</span>&#x2003;Creating Handouts and Lecture Notes</a>
+</p>
+
+
+<p>
+<a href="Taking-Advantage-Multiple-Screens.html#autosec-546" class="tocsection" >
+<span class="sectionnumber">22</span>&#x2003;Taking Advantage of Multiple Screens</a>
+</p>
+
+
+<p>
+<a href="Howtos.html#autosec-554" class="tocpart" >
+<span class="sectionnumber">V</span>&#x2003;Howtos</a>
+</p>
+
+
+<p>
+<a href="How-To-Uncover-Things-Piecewise.html#autosec-557" class="tocsection" >
+<span class="sectionnumber">23</span>&#x2003;How To Uncover Things Piecewise</a>
+</p>
+
+
+<p>
+<a href="How-To-Import-Presentations-Based-on-Other-Packages-Classes.html#autosec-580" class="tocsection" >
+<span class="sectionnumber">24</span>&#x2003;How To Import Presentations Based on Other Packages and Classes</a>
+</p>
+
+
+</div>
+
+</nav>
+
+</div>
+
+
+<main class="bodycontainer">
+
+
+<section class="textbody">
+
+<h1>The <span class="beamer-name"><span class="textsc">beamer</span></span> <i>class</i><br />
+<a href="https://github.com/josephwright/beamer" target="_blank" >https://github.com/josephwright/beamer</a><br />
+User Guide for version 3.70.</h1>
+
+<!--MathJax customizations:-->
+
+
+<div class="hidden">
+
+\(\newcommand{\footnotename}{footnote}\)
+
+\(\def \LWRfootnote {1}\)
+
+\(\newcommand {\footnote }[2][\LWRfootnote ]{{}^{\mathrm {#1}}}\)
+
+\(\newcommand {\footnotemark }[1][\LWRfootnote ]{{}^{\mathrm {#1}}}\)
+
+\(\let \LWRorighspace \hspace \)
+
+\(\renewcommand {\hspace }{\ifstar \LWRorighspace \LWRorighspace }\)
+
+\(\newcommand {\mathnormal }[1]{{#1}}\)
+
+\(\newcommand \ensuremath [1]{#1}\)
+
+\(\newcommand {\LWRframebox }[2][]{\fbox {#2}} \newcommand {\framebox }[1][]{\LWRframebox } \)
+
+\(\newcommand {\setlength }[2]{}\)
+
+\(\newcommand {\addtolength }[2]{}\)
+
+\(\newcommand {\setcounter }[2]{}\)
+
+\(\newcommand {\addtocounter }[2]{}\)
+
+\(\newcommand {\arabic }[1]{}\)
+
+\(\newcommand {\number }[1]{}\)
+
+\(\newcommand {\noalign }[1]{\text {#1}\notag \\}\)
+
+\(\newcommand {\cline }[1]{}\)
+
+\(\newcommand {\directlua }[1]{\text {(directlua)}}\)
+
+\(\newcommand {\luatexdirectlua }[1]{\text {(directlua)}}\)
+
+\(\newcommand {\protect }{}\)
+
+\(\def \LWRabsorbnumber #1 {}\)
+
+\(\def \LWRabsorbquotenumber &quot;#1 {}\)
+
+\(\newcommand {\LWRabsorboption }[1][]{}\)
+
+\(\newcommand {\LWRabsorbtwooptions }[1][]{\LWRabsorboption }\)
+
+\(\def \mathchar {\ifnextchar &quot;\LWRabsorbquotenumber \LWRabsorbnumber }\)
+
+\(\def \mathcode #1={\mathchar }\)
+
+\(\let \delcode \mathcode \)
+
+\(\let \delimiter \mathchar \)
+
+\(\def \oe {\unicode {x0153}}\)
+
+\(\def \OE {\unicode {x0152}}\)
+
+\(\def \ae {\unicode {x00E6}}\)
+
+\(\def \AE {\unicode {x00C6}}\)
+
+\(\def \aa {\unicode {x00E5}}\)
+
+\(\def \AA {\unicode {x00C5}}\)
+
+\(\def \o {\unicode {x00F8}}\)
+
+\(\def \O {\unicode {x00D8}}\)
+
+\(\def \l {\unicode {x0142}}\)
+
+\(\def \L {\unicode {x0141}}\)
+
+\(\def \ss {\unicode {x00DF}}\)
+
+\(\def \SS {\unicode {x1E9E}}\)
+
+\(\def \dag {\unicode {x2020}}\)
+
+\(\def \ddag {\unicode {x2021}}\)
+
+\(\def \P {\unicode {x00B6}}\)
+
+\(\def \copyright {\unicode {x00A9}}\)
+
+\(\def \pounds {\unicode {x00A3}}\)
+
+\(\let \LWRref \ref \)
+
+\(\renewcommand {\ref }{\ifstar \LWRref \LWRref }\)
+
+\( \newcommand {\multicolumn }[3]{#3}\)
+
+\(\require {textcomp}\)
+
+\(\newcommand {\intertext }[1]{\text {#1}\notag \\}\)
+
+\(\let \Hat \hat \)
+
+\(\let \Check \check \)
+
+\(\let \Tilde \tilde \)
+
+\(\let \Acute \acute \)
+
+\(\let \Grave \grave \)
+
+\(\let \Dot \dot \)
+
+\(\let \Ddot \ddot \)
+
+\(\let \Breve \breve \)
+
+\(\let \Bar \bar \)
+
+\(\let \Vec \vec \)
+
+</div>
+
+<p>
+<!--
+...... section Workflow For Creating a Beamer Presentation ......
+-->
+<h4 id="autosec-93"><span class="sectionnumber">4&#x2003;</span>Workflow For Creating a Beamer Presentation</h4>
+<a id="beameruserguide-autopage-93"></a>
+<a id="beameruserguide-autofile-5"></a> <a id="section-workflow"></a>
+
+<p>
+This section presents a possible workflow for creating a <span class="beamer-name"><span class="textsc">beamer</span></span> presentation and possibly a handout to go along with it. Technical questions are addressed, like which programs to call with which
+parameters.
+</p>
+<!--
+...... subsection Step One: Setup the Files ......
+-->
+<h5 id="autosec-94"><span class="sectionnumber">4.1&#x2003;</span>Step One: Setup the Files</h5>
+<a id="beameruserguide-autopage-94"></a>
+
+
+<p>
+It is advisable that you create a folder for each presentation. Even though your presentation will usually reside in a single file, <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> produces so many extra
+files that things can easily get very confusing otherwise. The folder’s name should ideally start with the date of your talk in ISO format (like 2003-12-25 for a Christmas talk), followed by some reminder text of what the talk is all about. Putting the date at the front in this
+format causes your presentation folders to be listed nicely when you have several of them residing in one directory. If you use an extra directory for each presentation, you can call your main file <span class="texttt">main.tex</span>.
+</p>
+
+<p>
+To create an initial <span class="texttt">main.tex</span> file for your talk, copy an existing file from the <span class="texttt">beamer/doc/solutions</span> directory and adapt it to your needs. A list of possible <span class="beamer-name"><span
+class="textsc">beamer</span></span> solutions that contain templates for presentation <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span>-files can be found below.
+</p>
+
+<p>
+If you wish your talk to reside in the same file as some different, non-presentation article version of your text, it is advisable to setup a more elaborate file scheme. See Section&nbsp;<a
+href="Creating-Handouts-Lecture-Notes.html#section-article-version-workflow">21.2.2</a> for details.
+</p>
+<!--
+...... subsection Step Two: Structure Your Presentation ......
+-->
+<h5 id="autosec-95"><span class="sectionnumber">4.2&#x2003;</span>Step Two: Structure Your Presentation</h5>
+<a id="beameruserguide-autopage-95"></a>
+
+
+<p>
+The next step is to fill the presentation file with <span class="texttt">\section</span> and <span class="texttt">\subsection</span> to create a preliminary outline. You’ll find some hints on how to create a good outline in Section&nbsp;<a
+href="Guidelines-Creating-Presentations.html#section-structure-guidelines">5.1</a>.
+</p>
+
+<p>
+Put <span class="texttt">\section</span> and <span class="texttt">\subsection</span> commands into the (more or less empty) main file. Do not create any frames until you have a first working version of a possible table of contents. The file might look like this:
+</p>
+<pre class="verbatim">
+\documentclass{beamer}
+%% This is the file main.tex
+
+\usetheme{Berlin}
+
+\title{Example Presentation Created with the Beamer Package}
+\author{Till Tantau}
+\date{\today}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+
+
+\section*{Outline}
+\begin{frame}
+  \tableofcontents
+\end{frame}
+
+\section{Introduction}
+\subsection{Overview of the Beamer Class}
+\subsection{Overview of Similar Classes}
+
+\section{Usage}
+\subsection{...}
+\subsection{...}
+
+\section{Examples}
+\subsection{...}
+\subsection{...}
+
+\begin{frame}
+\end{frame} % to enforce entries in the table of contents
+
+\end{document}
+
+</pre>
+
+<p>
+The empty frame at the end (which should be deleted later) ensures that the sections and subsections are actually part of the table of contents. This frame is necessary since a <span class="texttt">\section</span> or <span class="texttt">\subsection</span>
+command following the last page of a document has no effect.
+</p>
+<!--
+...... subsection Step Three: Creating a PDF or PostScript File ......
+-->
+<h5 id="autosec-97"><span class="sectionnumber">4.3&#x2003;</span>Step Three: Creating a PDF or PostScript File</h5>
+<a id="beameruserguide-autopage-97"></a>
+
+
+<p>
+Once a first version of the structure is finished, you should try to create a first PDF or PostScript file of your (still empty) talk to ensure that everything is working properly. This file will only contain the title page and the table of contents.
+</p>
+<!--
+...... subsubsection Creating PDF ......
+-->
+<h6 id="autosec-98"><span class="sectionnumber">4.3.1&#x2003;</span>Creating PDF</h6>
+<a id="beameruserguide-autopage-98"></a>
+
+
+<p>
+To create a <span class="texttt">PDF</span> version of this file, run the program <span class="texttt">pdflatex</span> on <span class="texttt">main.tex</span> at least twice. You need to run it twice, so that <span class="latexlogofont"><span
+class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> can create the table of contents. (It may even be necessary to run it more often since all sorts of auxiliary files are created.) In the following example, the greater-than-sign is the prompt.
+</p>
+<pre class="verbatim">
+> pdflatex main.tex
+    ... lots of output ...
+> pdflatex main.tex
+    ... lots of output ...
+
+</pre>
+
+<p>
+Alternatively, you can use <span class="texttt">lualatex</span> or <span class="texttt">xelatex</span> instead of <span class="texttt">pdflatex</span> in above commands.
+</p>
+
+<p>
+You can next use a program like the Acrobat Reader, <span class="texttt">xpdf</span>, <span class="texttt">evince</span> or <span class="texttt">okular</span> to view the resulting presentation.
+</p>
+<pre class="verbatim">
+> acroread main.pdf
+
+</pre>
+<!--
+...... subsubsection Creating PostScript ......
+-->
+<h6 id="autosec-101"><span class="sectionnumber">4.3.2&#x2003;</span>Creating PostScript</h6>
+<a id="beameruserguide-autopage-101"></a>
+
+
+<a id="section-postscript"></a>
+
+<p>
+To create a PostScript version, you should first ascertain that the <span class="textsc">hyperref</span> package (which is automatically loaded by the <span class="beamer-name"><span class="textsc">beamer</span></span> class) uses the option <span
+class="texttt">dvips</span> or some compatible option, see the documentation of the <span class="textsc">hyperref</span> package for details. Whether this is the case depends on the contents of your local <span class="texttt">hyperref.cfg</span> file. You
+can enforce the usage of this option by passing <span class="texttt">dvips</span> or a compatible option to the <span class="beamer-name"><span class="textsc">beamer</span></span> class (write <span
+class="texttt">\documentclass[dvips]{beamer}</span>), which will pass this option on to the <span class="textsc">hyperref</span> package.
+</p>
+
+<p>
+You can then run <span class="texttt">latex</span> twice, followed by <span class="texttt">dvips</span>.
+</p>
+<pre class="verbatim">
+> latex main.tex
+    ... lots of output ...
+> latex main.tex
+    ... lots of output ...
+> dvips -P pdf main.dvi
+
+</pre>
+
+<p>
+The option (<span class="texttt">-P pdf</span>) tells <span class="texttt">dvips</span> to use Type&nbsp;1 outline fonts instead of the usual Type&nbsp;3 bitmap fonts. You may wish to omit this option if there is a problem with it.
+</p>
+
+<p>
+You can convert a PostScript file to a pdf file using
+</p>
+<pre class="verbatim">
+> ps2pdf main.ps main.pdf
+
+</pre>
+<!--
+...... subsubsection Ways of Improving Compilation Speed ......
+-->
+<h6 id="autosec-104"><span class="sectionnumber">4.3.3&#x2003;</span>Ways of Improving Compilation Speed</h6>
+<a id="beameruserguide-autopage-104"></a>
+
+
+<a id="section-speedup"></a>
+
+<p>
+While working on your presentation, it may sometimes be useful to <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> your <span class="texttt">.tex</span> file quickly and have the presentation
+contain only the most important information. This is especially true if you have a slow machine. In this case, you can do several things to speed up the compilation. First, you can use the <span class="texttt">draft</span> class option.
+</p>
+
+
+<div class="classoption">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+<span class="classoption-heading">\documentclass[<span class="declare">draft</span>]{beamer}</span>
+</p>
+<p>
+Causes the headlines, footlines, and sidebars to be replaced by gray rectangles (their sizes are still computed, though). Many other packages, including <span class="texttt">pgf</span> and <span class="texttt">hyperref</span>, also “speed up” when this option is
+given.
+</p>
+</li>
+</ul>
+</div>
+
+<p>
+Second, you can use the following command:
+</p>
+
+
+<div class="command">
+
+<ul style="list-style-type:none">
+
+<li>
+<p>
+
+</p>
+
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\includeonlyframes</kbd></span>{<span class="meta"><span class="angle">&langle;</span><i>frame label list</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+This command behaves a little bit like the <span class="texttt">\includeonly</span> command: Only the frames mentioned in the list are included. All other frames are suppressed. Nevertheless, the section and subsection commands are still executed, so that you still
+have the correct navigation bars. By labeling the current frame as, say, <span class="texttt">current</span> and then saying <span class="texttt">\includeonlyframes{current}</span>, you can work on a single frame quickly.
+</p>
+<p>
+The <span class="meta"><span class="angle">&langle;</span><i>frame label list</i><span class="angle">&rangle;</span></span> is a comma-separated list (without spaces) of the names of frames that have been labeled. To label a frame, you must pass the option
+<span class="texttt">label=</span><span class="meta"><span class="angle">&langle;</span><i>name</i><span class="angle">&rangle;</span></span> to the <span class="texttt">\frame</span> command or <span class="texttt">frame</span>
+environment.
+</p>
+<p>
+<i>Example: </i>
+</p>
+<pre class="verbatim">
+\includeonlyframes{example1,example3}
+
+\begin{frame}[label=example1]
+This frame will be included.
+\end{frame}
+
+\begin{frame}[label=example2]
+This frame will not be included.
+\end{frame}
+
+\begin{frame}
+This frame will not be included.
+\end{frame}
+
+\againframe{example1} % Will be included
+</pre>
+</li>
+</ul>
+</div>
+<!--
+...... subsection Step Four: Create Frames ......
+-->
+<h5 id="autosec-106"><span class="sectionnumber">4.4&#x2003;</span>Step Four: Create Frames</h5>
+<a id="beameruserguide-autopage-106"></a>
+
+
+<p>
+Once the table of contents looks satisfactory, start creating frames for your presentation by adding <span class="texttt">frame</span> environments. You’ll find guidelines on what to put on a frame in Section&nbsp;<a
+href="Guidelines-Creating-Presentations.html#section-frame-guidelines">5.1.3</a>.
+</p>
+<!--
+...... subsection Step Five: Test Your Presentation ......
+-->
+<h5 id="autosec-107"><span class="sectionnumber">4.5&#x2003;</span>Step Five: Test Your Presentation</h5>
+<a id="beameruserguide-autopage-107"></a>
+
+
+<p>
+<em>Always</em> test your presentation. For this, you should vocalize or subvocalize your talk in a quiet environment. Typically, this will show that your talk is too long. You should then remove parts of the presentation, such that it fits into the allotted time slot. Do
+<em>not</em> attempt to talk faster in order to squeeze the talk into the given amount of time. You are almost sure to lose your audience this way.
+</p>
+
+<p>
+Do not try to create the “perfect” presentation immediately. Rather, test and retest the talk and modify it as needed.
+</p>
+<!--
+...... subsection Step Six: Create a Handout ......
+-->
+<h5 id="autosec-108"><span class="sectionnumber">4.6&#x2003;</span>Step Six: Create a Handout</h5>
+<a id="beameruserguide-autopage-108"></a>
+<!--
+...... subsubsection Creating the Handout ......
+-->
+<h6 id="autosec-109"><span class="sectionnumber">4.6.1&#x2003;</span>Creating the Handout</h6>
+<a id="beameruserguide-autopage-109"></a>
+
+
+<p>
+Once your talk is fixed, you can create a handout, if this seems appropriate. For this, you can use the class option <span class="texttt">handout</span> as explained in Section&nbsp;<a href="Creating-Handouts-Lecture-Notes.html#handout">21.1</a>. Typically, you
+might wish to put several handout slides on one page, see below on how to do this easily.
+</p>
+
+<p>
+You may also wish to create an article version of your talk. An “article version” of your presentation is a normal <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> text typeset using, for example, the
+document class <span class="texttt">article</span> or perhaps <span class="texttt">llncs</span> or a similar document class. The <span class="beamer-name"><span class="textsc">beamer</span></span> class offers facilities to have this version coexist with
+your presentation version in one file and to share code. Also, you can include slides of your presentation as figures in your article version. Details on how to setup the article version can be found in Section&nbsp;<a
+href="Creating-Handouts-Lecture-Notes.html#section-article">21.2</a>.
+</p>
+<!--
+...... subsubsection Printing the Handout ......
+-->
+<h6 id="autosec-110"><span class="sectionnumber">4.6.2&#x2003;</span>Printing the Handout</h6>
+<a id="beameruserguide-autopage-110"></a>
+
+
+<a id="section-printing-version"></a>
+
+<p>
+The easiest way to print a presentation is to user the Acrobat Reader with the option “expand small pages to paper size” form the printer dialog enabled. This is necessary, because slides are by default only 128mm by 96mm large.
+</p>
+
+<p>
+For the PostScript version and for printing multiple slides on a single page this simple approach does not work. In such cases you can use the <span class="texttt">pgfpages</span> package, which works directly with <span class="texttt">pdflatex</span>, <span
+class="texttt">lualatex</span>, <span class="texttt">xelatex</span> and <span class="texttt">latex</span> plus <span class="texttt">dvips</span>. Note however <em>that this package destroys hyperlinks</em>. This is due to fundamental flaws in the <span
+class="pgf-name"><span class="textsc">pdf</span></span>-specification and it is not likely to change.
+</p>
+
+<p>
+The <span class="texttt">pgfpages</span> can do all sorts of tricks with pages. The most important one for printing <span class="beamer-name"><span class="textsc">beamer</span></span> slides is the following command:
+</p>
+<pre class="verbatim">
+\usepackage{pgfpages}
+\pgfpagesuselayout{resize to}[a4paper,border shrink=5mm,landscape]
+
+</pre>
+
+<p>
+This says “Resize all pages to landscape A4 pages, no matter what their original size was, but shrink the pages by 5mm, so that there is a bit of a border around everything.” Naturally, instead of <span class="texttt">a4paper</span> you can also use <span
+class="texttt">letterpaper</span> or any of the other standard paper sizes. For further options and details see the documentation of <span class="texttt">pgfpages</span>.
+</p>
+
+<p>
+The second thing you might wish to do is to put several slides on a single page. This can be done as follows:
+</p>
+<pre class="verbatim">
+\usepackage{pgfpages}
+\pgfpagesuselayout{2 on 1}[a4paper,border shrink=5mm]
+
+</pre>
+
+<p>
+This says “Put two pages on one page and then resize everything so that it fits on A4 paper.” Note that this time we do not need landscape as the resulting page is, after all, not in landscape mode.
+</p>
+
+<p>
+Instead of <span class="texttt">2 on 1</span> you can also use <span class="texttt">4 on 1</span>, but then with <span class="texttt">landscape</span> once more, and also <span class="texttt">8 on 1</span> and even <span
+class="texttt">16 on 1</span> to get a grand (though unreadable) overview.
+</p>
+
+<p>
+If you put several slides on one page and if these slides normally have a white background, it may be useful to write the following in your preamble:
+</p>
+<div
+    class="fancyvrb"
+    style=""
+>
+<pre class="verbatim">
+\mode&lt;handout&gt;{\setbeamercolor{background canvas}{bg=black!5}}
+</pre>
+</div>
+
+<p>
+This will cause the slides of the handout version to have a very light gray background. This makes it easy to discern the slides’ border if several slides are put on one page.
+</p>
+</section>
+
+</main>
+
+</div>
+
+
+<nav class="botnavigation"><a href="home.html" class="linkhome" >
+Home</a></nav>
+
+</body>
+</html>

@@ -55,13 +55,13 @@ This causes the frame to be suppressed in the transparencies version. Also, you 
 It is also possible to give only an alternate overlay specification. For example, |\alert<trans:0>{...}| causes the text to be always highlighted during the presentation, but never on the transparencies version. Likewise, |\frame<trans:0>{...}| causes the frame to be suppressed for the handout.
 
 Finally, note that it is possible to give more than one alternate overlay specification and in any order. For example, the following specification states that the text should be inserted on the first three slides in the presentation, in the first two slides of the transparency version, and not at all in the handout.
-\begin{verbatim}
+\begin{Verbatim}
   \only<trans:1-2| 1-3| handout:0>{Text}
-\end{verbatim}
+\end{Verbatim}
 
 If you wish to give the same specification in all versions, you can do so by specifying |all:| as the version. For example,
-\begin{verbatim}
+\begin{Verbatim}
 \frame<all:1-2>{blah...}
-\end{verbatim}
+\end{Verbatim}
 
 ensures that the frame has two slides in all versions.

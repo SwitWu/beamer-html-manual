@@ -1,0 +1,1282 @@
+
+<!DOCTYPE html>
+
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta content="LaTeX Lwarp package" name="generator">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Themes - Beamer Manual</title>
+<link href="style.css?v=20231007" rel="stylesheet" type="text/css">
+
+
+<link href="https://cdn.jsdelivr.net/npm/@docsearch/css@3" rel="stylesheet"></head>
+<body>
+<a id="beameruserguide-autopage-412"></a>
+
+<div class="bodyandsidetoc grid-container"><header><div id="hamburger-button">☰</div><strong><a href="home.html">Beamer Manual</a></strong><div id="search"></div></header><div class="sidetoccontainer" id="local-toc-container"><nav class="sidetoc"><div class="sidetoctitle"><p>On this page</p></div><div class="sidetoccontents"><p><a class="tocsubsection" href="#sec-15.1">Five Flavors of Themes</a></p><p><a class="tocsubsection" href="#sec-15.2">Presentation Themes without Navigation Bars</a></p><p><a class="tocsubsection" href="#sec-15.3">Presentation Themes with a Tree-Like Navigation Bar</a></p><p><a class="tocsubsection" href="#sec-15.4">Presentation Themes with a Table of Contents Sidebar</a></p><p><a class="tocsubsection" href="#sec-15.5">Presentation Themes with a Mini Frame Navigation</a></p><p><a class="tocsubsection" href="#sec-15.6">Presentation Themes with Section and Subsection Tables</a></p><p><a class="tocsubsection" href="#sec-15.7">Presentation Themes Included For Compatibility</a></p></div></nav></div>
+<div class="sidetoccontainer" id="chapter-toc-container">
+<nav class="sidetoc">
+<div class="sidetoctitle">
+<p>
+<span class="sidetocthetitle">The <span class="beamer-name"><span class="textsc">beamer</span></span> <i>class</i><br>
+<a href="https://github.com/josephwright/beamer" target="_blank">https://github.com/josephwright/beamer</a><br>
+User Guide for version 3.70.</span>
+</p>
+<p>
+Contents
+</p>
+</div>
+<div class="sidetoccontents">
+
+<p>
+<a class="tocsection" href="Introduction.html">Introduction</a>
+</p>
+<p>
+<a class="tocpart" href="Getting-Started.html">Getting Started</a>
+</p>
+
+
+
+
+
+
+<p>
+<a class="tocpart" href="Building-Presentation.html">Building a Presentation</a>
+</p>
+
+
+
+
+
+
+
+<p class="current-part">
+<a class="tocpart" href="Changing-Way-Things-Look.html">Changing the Way Things Look</a>
+</p>
+<p class="current current-part">
+<a class="tocsection" href="Themes.html">Themes</a>
+</p>
+<p class="current-part">
+<a class="tocsection" href="Inner-Themes-Outer-Themes-Templates.html">Inner Themes, Outer Themes, and Templates</a>
+</p>
+<p class="current-part">
+<a class="tocsection" href="Colors.html">Colors</a>
+</p>
+<p class="current-part">
+<a class="tocsection" href="Fonts.html">Fonts</a>
+</p>
+<p>
+<a class="tocpart" href="Creating-Supporting-Material.html">Creating Supporting Material</a>
+</p>
+
+
+
+
+<p>
+<a class="tocpart" href="Howtos.html">Howtos</a>
+</p>
+
+
+</div>
+</nav>
+</div>
+<main class="bodycontainer">
+<section class="textbody">
+<h2 class="inserted">Changing the Way Things Look</h2>
+<!--MathJax customizations:-->
+
+<p>
+<!--
+...... section Themes ......
+-->
+<h4 id="autosec-413"><span class="sectionnumber" id="sec-15">15</span> Themes</h4>
+<a id="beameruserguide-autopage-413"></a>
+<a id="beameruserguide-autofile-18"></a>
+<!--
+...... subsection Five Flavors of Themes ......
+-->
+<h5 id="autosec-414"><span><span class="sectionnumber" id="sec-15.1">15.1</span> Five Flavors of Themes</span><a class="anchor-link" href="#sec-15.1">&para;</a></h5>
+<a id="beameruserguide-autopage-414"></a>
+<p>
+<em>Themes</em> make it easy to change the appearance of a presentation. The <span class="beamer-name"><span class="textsc">beamer</span></span> class uses five different kinds of themes:
+</p>
+<dl>
+<dt>Presentation Themes</dt>
+<dd>
+<p>
+Conceptually, a presentation theme dictates for every single detail of a presentation what it looks like. Thus, choosing a particular presentation theme will setup for, say, the numbers in enumeration what color they have, what color their background has, what font is used
+to render them, whether a circle or ball or rectangle or whatever is drawn behind them, and so forth. Thus, when you choose a presentation theme, your presentation will look the way someone (the creator of the theme) thought that a presentation should look like.
+Presentation themes typically only choose a particular color theme, font theme, inner theme, and outer theme that go well together.
+</p>
+</dd>
+<dt>Color Themes</dt>
+<dd>
+<p>
+A color theme only dictates which colors are used in a presentation. If you have chosen a particular presentation theme and then choose a color theme, only the colors of your presentation will change. A color theme can specify colors in a very detailed way: For example, a
+color theme can specifically change the colors used to render, say, the border of a button, the background of a button, and the text on a button.
+</p>
+</dd>
+<dt>Font Themes</dt>
+<dd>
+<p>
+A font theme dictates which fonts or font attributes are used in a presentation. As for colors, the font of all text elements used in a presentation can be specified independently.
+</p>
+</dd>
+<dt>Inner Themes</dt>
+<dd>
+<p>
+An inner theme specifies how certain elements of a presentation are typeset. This includes all elements that are at the &ldquo;inside&rdquo; of the frame, that is, that are not part of the headline, footline, or sidebars. This includes all enumerations, itemize environments, block
+environments, theorem environments, or the table of contents. For example, an inner theme might specify that in an enumeration the number should be typeset without a dot and that a small circle should be shown behind it. The inner theme would <em>not</em> specify
+what color should be used for the number or the circle (this is the job of the color theme) nor which font should be used (this is the job of the font theme).
+</p>
+</dd>
+<dt>Outer Themes</dt>
+<dd>
+<p>
+An outer theme specifies what the &ldquo;outside&rdquo; or &ldquo;border&rdquo; of the presentation slides should look like. It specifies whether there are head- and footlines, what is shown in them, whether there is a sidebar, where the logo goes, where the navigation symbols and bars go, and so
+on. It also specifies where the frametitle is put and how it is typeset.
+</p>
+</dd>
+</dl>
+<p>
+The different themes reside in the five subdirectories <span class="texttt">theme</span>, <span class="texttt">color</span>, <span class="texttt">font</span>, <span class="texttt">inner</span>, and <span class="texttt">outer</span> of the directory
+<span class="texttt">beamer/themes</span>. Internally, a theme is stored as a normal style file. However, to use a theme, the following special commands should be used:
+</p>
+<div class="command">
+
+
+<p>
+</p>
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\usetheme</kbd></span><span class="opt"><span class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>options</i><span class="angle">&rangle;</span></span><span class="oarg-right-bracket">]</span></span>{<span class="meta"><span class="angle">&langle;</span><i>name list</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+Installs the presentation theme named <span class="meta"><span class="angle">&langle;</span><i>name</i><span class="angle">&rangle;</span></span>. Currently, the effect of this command is the same as saying <span class="texttt">\usepackage</span> for
+the style file named <span class="texttt">beamertheme</span><span class="meta"><span class="angle">&langle;</span><i>name</i><span class="angle">&rangle;</span></span><span class="texttt">.sty</span> for each <span class="meta"><span class="angle">&langle;</span><i>name</i><span class="angle">&rangle;</span></span> in the <span class="meta"><span class="angle">&langle;</span><i>name list</i><span class="angle">&rangle;</span></span>.
+</p>
+
+
+</div>
+<div class="command">
+
+
+<p>
+</p>
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\usecolortheme</kbd></span><span class="opt"><span class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>options</i><span class="angle">&rangle;</span></span><span class="oarg-right-bracket">]</span></span>{<span class="meta"><span class="angle">&langle;</span><i>name list</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+Same as <span class="texttt">\usetheme</span>, only for color themes. Color style files are named <span class="texttt">beamercolortheme</span><span class="meta"><span class="angle">&langle;</span><i>name</i><span class="angle">&rangle;</span></span><span class="texttt">.sty</span>.
+</p>
+
+
+</div>
+<div class="command">
+
+
+<p>
+</p>
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\usefonttheme</kbd></span><span class="opt"><span class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>options</i><span class="angle">&rangle;</span></span><span class="oarg-right-bracket">]</span></span>{<span class="meta"><span class="angle">&langle;</span><i>name</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+Same as <span class="texttt">\usetheme</span>, only for font themes. Font style files are named <span class="texttt">beamerfonttheme</span><span class="meta"><span class="angle">&langle;</span><i>name</i><span class="angle">&rangle;</span></span><span class="texttt">.sty</span>.
+</p>
+
+
+</div>
+<div class="command">
+
+
+<p>
+</p>
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\useinnertheme</kbd></span><span class="opt"><span class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>options</i><span class="angle">&rangle;</span></span><span class="oarg-right-bracket">]</span></span>{<span class="meta"><span class="angle">&langle;</span><i>name</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+Same as <span class="texttt">\usetheme</span>, only for inner themes. Inner style files are named <span class="texttt">beamerinnertheme</span><span class="meta"><span class="angle">&langle;</span><i>name</i><span class="angle">&rangle;</span></span><span class="texttt">.sty</span>.
+</p>
+
+
+</div>
+<div class="command">
+
+
+<p>
+</p>
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\useoutertheme</kbd></span><span class="opt"><span class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>options</i><span class="angle">&rangle;</span></span><span class="oarg-right-bracket">]</span></span>{<span class="meta"><span class="angle">&langle;</span><i>name</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+Same as <span class="texttt">\usetheme</span>, only for outer themes. Outer style files are named <span class="texttt">beameroutertheme</span><span class="meta"><span class="angle">&langle;</span><i>name</i><span class="angle">&rangle;</span></span><span class="texttt">.sty</span>.
+</p>
+
+
+</div>
+<p>
+If you do not use any of these commands, a sober <em>default</em> theme is used for all of them. In the following, the presentation themes that come with the <span class="beamer-name"><span class="textsc">beamer</span></span> class are described. The element,
+layout, color, and font themes are presented in the following sections.
+</p>
+<!--
+...... subsection Presentation Themes without Navigation Bars ......
+-->
+<h5 id="autosec-415"><span><span class="sectionnumber" id="sec-15.2">15.2</span> Presentation Themes without Navigation Bars</span><a class="anchor-link" href="#sec-15.2">&para;</a></h5>
+<a id="beameruserguide-autopage-415"></a>
+<p>
+A presentation theme dictates for every single detail of a presentation what it looks like. Normally, having chosen a particular presentation theme, you do not need to specify anything else having to do with the appearance of your presentation&mdash;the creator of the theme
+should have taken care of that for you. However, you still <em>can</em> change things afterward either by using a different color, font, element, or even layout theme; or by changing specific colors, fonts, or templates directly.
+</p>
+<p>
+When Till started naming the presentation themes, he soon ran out of ideas on how to call them. Instead of giving them more and more cumbersome names, he decided to switch to a different naming convention: Except for two special cases, all presentation themes are
+named after cities. These cities happen to be cities in which or near which there was a conference or workshop that he attended or that a co-author of his attended.
+</p>
+<p>
+All themes listed without author mentioned were developed by Till. If a theme has not been developed by us (that is, if someone else is to blame), this is indicated with the theme. We have sometimes slightly changed or &ldquo;corrected&rdquo; submitted themes, but we still list the
+original authors.
+</p>
+<div class="theme">
+
+
+<p>
+<span class="extracttheme">\usetheme{<span class="declare">default</span>}</span>
+</p>
+<p>
+<i>Example: </i>
+</p>
+<p>
+</p>
+<div class="themeexample-image">
+<p>
+<object data="beamerthemeexample/beamerugthemedefault-page1.svg" type="image/svg+xml"></object>&emsp;&emsp;
+<object data="beamerthemeexample/beamerugthemedefault-page2.svg" type="image/svg+xml"></object>
+</p>
+</div>
+<p>
+As the name suggests, this theme is installed by default. It is a sober no-nonsense theme that makes minimal use of color or font variations. This theme is useful for all kinds of talks, except for very long talks.
+</p>
+
+
+</div>
+<div class="theme">
+
+
+<p>
+<span class="extracttheme">\usetheme<span class="opt"><span class="texttt">[headheight=</span><span class="meta"><span class="angle">&langle;</span><i>head height</i><span class="angle">&rangle;</span></span><span class="texttt">,footheight=</span><span class="meta"><span class="angle">&langle;</span><i>foot height</i><span class="angle">&rangle;</span></span><span class="texttt">]</span></span>{<span class="declare">boxes</span>}</span>
+</p>
+<p>
+<i>Example: </i>
+</p>
+<p>
+</p>
+<div class="themeexample-image">
+<p>
+<object data="beamerthemeexample/beamerugthemeboxes-page1.svg" type="image/svg+xml"></object>&emsp;&emsp;
+<object data="beamerthemeexample/beamerugthemeboxes-page2.svg" type="image/svg+xml"></object>
+</p>
+</div>
+<p>
+For this theme, you can specify an arbitrary number of templates for the boxes in the headline and in the footline. You can add a template for another box by using the following commands.
+</p>
+<div class="command">
+
+
+<p>
+</p>
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\addheadbox</kbd></span>{<span class="meta"><span class="angle">&langle;</span><i>beamer color</i><span class="angle">&rangle;</span></span>}{<span class="meta"><span class="angle">&langle;</span><i>box
+template</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+Each time this command is invoked, a new box is added to the head line, with the first added box being shown on the left. All boxes will have the same size.
+</p>
+<p>
+The <span class="meta"><span class="angle">&langle;</span><i>beamer color</i><span class="angle">&rangle;</span></span> will be used to setup the foreground and background colors of the box.
+</p>
+<p>
+<i>Example: </i>
+</p>
+<pre class="verbatim">
+\addheadbox{section in head/foot}{\tiny\quad 1. Box}
+\addheadbox{structure}{\tiny\quad 2. Box}
+</pre>
+<p>
+A similar effect as the above commands can be achieved by directly installing a head template that contains two <span class="texttt">beamercolorbox</span>es:
+</p>
+<pre class="verbatim">
+\setbeamertemplate{headline}
+{\leavevmode
+\begin{beamercolorbox}[width=.5\paperwidth]{section in head/foot}
+  \tiny\quad 1. Box
+\end{beamercolorbox}%
+\begin{beamercolorbox}[width=.5\paperwidth]{structure}
+  \tiny\quad 2. Box
+\end{beamercolorbox}
+}
+</pre>
+<p>
+While being more complicated, the above commands offer more flexibility.
+</p>
+
+
+</div>
+<div class="command">
+
+
+<p>
+</p>
+<div class="command-headline">
+<p>
+<span class="declare"><kbd>\addfootbox</kbd></span>{<span class="meta"><span class="angle">&langle;</span><i>beamer color</i><span class="angle">&rangle;</span></span>}{<span class="meta"><span class="angle">&langle;</span><i>box
+template</i><span class="angle">&rangle;</span></span>}
+</p>
+</div>
+<p>
+<i>Example: </i>
+</p>
+<pre class="verbatim">
+\addfootbox{section in head/foot}{\tiny\quad 1. Box}
+\addfootbox{structure}{\tiny\quad 2. Box}
+</pre>
+
+
+</div>
+
+
+</div>
+<div class="theme">
+
+
+<p>
+<span class="extracttheme">\usetheme<span class="opt"><span class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>options</i><span class="angle">&rangle;</span></span><span class="oarg-right-bracket">]</span></span>{<span class="declare">Bergen</span>}</span>
+</p>
+<p>
+<i>Example: </i>
+</p>
+<p>
+</p>
+<div class="themeexample-image">
+<p>
+<object data="beamerthemeexample/beamerugthemeBergen-page1.svg" type="image/svg+xml"></object>&emsp;&emsp;
+<object data="beamerthemeexample/beamerugthemeBergen-page2.svg" type="image/svg+xml"></object>
+</p>
+</div>
+<p>
+A theme based on the <span class="texttt">inmargin</span> inner theme and the <span class="texttt">rectangles</span> inner theme. Using this theme is not quite trivial since getting the spacing right can be trickier than with most other themes. Also, this theme
+goes badly with columns. You may wish to consult the remarks on the <span class="texttt">inmargin</span> inner theme.
+</p>
+<p>
+Bergen is a town in Norway. It hosted <span class="textsc">iwpec</span> 2004.
+</p>
+
+
+</div>
+<div class="theme">
+
+
+<p>
+<span class="extracttheme">\usetheme<span class="opt"><span class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>options</i><span class="angle">&rangle;</span></span><span class="oarg-right-bracket">]</span></span>{<span class="declare">Boadilla</span>}</span>
+</p>
+<p>
+<i>Example: </i>
+</p>
+<p>
+</p>
+<div class="themeexample-image">
+<p>
+<object data="beamerthemeexample/beamerugthemeBoadilla-page1.svg" type="image/svg+xml"></object>&emsp;&emsp;
+<object data="beamerthemeexample/beamerugthemeBoadilla-page2.svg" type="image/svg+xml"></object>
+</p>
+</div>
+<p>
+A theme giving much information in little space. The following <span class="meta"><span class="angle">&langle;</span><i>options</i><span class="angle">&rangle;</span></span> may be given:
+</p>
+
+
+<p>
+&bull; <span class="declare"><span class="texttt">secheader</span></span> causes a headline to be inserted showing the current section and subsection. By default, this headline is not shown.
+</p>
+
+
+<p>
+<i>Theme author: </i>Manuel Carro. Boadilla is a village in the vicinity of Madrid, hosting the University&rsquo;s Computer Science department.
+</p>
+
+
+</div>
+<div class="theme">
+
+
+<p>
+<span class="extracttheme">\usetheme<span class="opt"><span class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>options</i><span class="angle">&rangle;</span></span><span class="oarg-right-bracket">]</span></span>{<span class="declare">Madrid</span>}</span>
+</p>
+<p>
+<i>Example: </i>
+</p>
+<p>
+</p>
+<div class="themeexample-image">
+<p>
+<object data="beamerthemeexample/beamerugthemeMadrid-page1.svg" type="image/svg+xml"></object>&emsp;&emsp;
+<object data="beamerthemeexample/beamerugthemeMadrid-page2.svg" type="image/svg+xml"></object>
+</p>
+</div>
+<p>
+Like the <span class="texttt">Boadilla</span> theme, except that stronger colors are used and that the itemize icons are not modified. The same <span class="meta"><span class="angle">&langle;</span><i>options</i><span class="angle">&rangle;</span></span> as for the <span class="texttt">Boadilla</span> theme may be given.
+</p>
+<p>
+<i>Theme author: </i>Manuel Carro. Madrid is the capital of Spain.
+</p>
+
+
+</div>
+<div class="theme">
+
+
+<p>
+<span class="extracttheme">\usetheme{<span class="declare">AnnArbor</span>}</span>
+</p>
+<p>
+<i>Example: </i>
+</p>
+<p>
+</p>
+<div class="themeexample-image">
+<p>
+<object data="beamerthemeexample/beamerugthemeAnnArbor-page1.svg" type="image/svg+xml"></object>&emsp;&emsp;
+<object data="beamerthemeexample/beamerugthemeAnnArbor-page2.svg" type="image/svg+xml"></object>
+</p>
+</div>
+<p>
+Like <span class="texttt">Boadilla</span>, but using the colors of the University of Michigan.
+</p>
+<p>
+<i>Theme author: </i>Madhusudan Singh. The University of Michigan is located at Ann Arbor.
+</p>
+
+
+</div>
+<div class="theme">
+
+
+<p>
+<span class="extracttheme">\usetheme{<span class="declare">CambridgeUS</span>}</span>
+</p>
+<p>
+<i>Example: </i>
+</p>
+<p>
+</p>
+<div class="themeexample-image">
+<p>
+<object data="beamerthemeexample/beamerugthemeCambridgeUS-page1.svg" type="image/svg+xml"></object>&emsp;&emsp;
+<object data="beamerthemeexample/beamerugthemeCambridgeUS-page2.svg" type="image/svg+xml"></object>
+</p>
+</div>
+<p>
+Like <span class="texttt">Boadilla</span>, but using the colors of MIT.
+</p>
+<p>
+<i>Theme author: </i>Madhusudan Singh.
+</p>
+
+
+</div>
+<div class="theme">
+
+
+<p>
+<span class="extracttheme">\usetheme{<span class="declare">EastLansing</span>}</span>
+</p>
+<p>
+<i>Example: </i>
+</p>
+<p>
+</p>
+<div class="themeexample-image">
+<p>
+<object data="beamerthemeexample/beamerugthemeEastLansing-page1.svg" type="image/svg+xml"></object>&emsp;&emsp;
+<object data="beamerthemeexample/beamerugthemeEastLansing-page2.svg" type="image/svg+xml"></object>
+</p>
+</div>
+<p>
+Like <span class="texttt">Boadilla</span>, but using the colors of Michigan State University.
+</p>
+<p>
+<i>Theme author: </i>Alan Munn. Michigan State University is located in East Lansing.
+</p>
+
+
+</div>
+<div class="theme">
+
+
+<p>
+<span class="extracttheme">\usetheme{<span class="declare">Pittsburgh</span>}</span>
+</p>
+<p>
+<i>Example: </i>
+</p>
+<p>
+</p>
+<div class="themeexample-image">
+<p>
+<object data="beamerthemeexample/beamerugthemePittsburgh-page1.svg" type="image/svg+xml"></object>&emsp;&emsp;
+<object data="beamerthemeexample/beamerugthemePittsburgh-page2.svg" type="image/svg+xml"></object>
+</p>
+</div>
+<p>
+A sober theme. The right-flushed frame titles creates an interesting &ldquo;tension&rdquo; inside each frame.
+</p>
+<p>
+Pittsburgh is a town in the eastern USA. It hosted the second <span class="textsc">recomb</span> workshop of <span class="textsc">snp</span>s and haplotypes, 2004.
+</p>
+
+
+</div>
+<div class="theme">
+
+
+<p>
+<span class="extracttheme">\usetheme<span class="opt"><span class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>options</i><span class="angle">&rangle;</span></span><span class="oarg-right-bracket">]</span></span>{<span class="declare">Rochester</span>}</span>
+</p>
+<p>
+<i>Example: </i>
+</p>
+<p>
+</p>
+<div class="themeexample-image">
+<p>
+<object data="beamerthemeexample/beamerugthemeRochester-page1.svg" type="image/svg+xml"></object>&emsp;&emsp;
+<object data="beamerthemeexample/beamerugthemeRochester-page2.svg" type="image/svg+xml"></object>
+</p>
+</div>
+<p>
+A dominant theme without any navigational elements. It can be made less dominant by using a different color theme.
+</p>
+<p>
+The following <span class="meta"><span class="angle">&langle;</span><i>options</i><span class="angle">&rangle;</span></span> may be given:
+</p>
+
+
+<p>
+&bull; <span class="declare"><span class="texttt">height=</span><span class="meta"><span class="angle">&langle;</span><i>dimension</i><span class="angle">&rangle;</span></span></span> sets the height of the frame title bar.
+</p>
+
+
+<p>
+Rochester is a town in upstate New York, USA. Till visited Rochester in 2001.
+</p>
+
+
+</div>
+<!--
+...... subsection Presentation Themes with a Tree-Like Navigation Bar ......
+-->
+<h5 id="autosec-419"><span><span class="sectionnumber" id="sec-15.3">15.3</span> Presentation Themes with a Tree-Like Navigation Bar</span><a class="anchor-link" href="#sec-15.3">&para;</a></h5>
+<a id="beameruserguide-autopage-419"></a>
+<div class="theme">
+
+
+<p>
+<span class="extracttheme">\usetheme{<span class="declare">Antibes</span>}</span>
+</p>
+<p>
+<i>Example: </i>
+</p>
+<p>
+</p>
+<div class="themeexample-image">
+<p>
+<object data="beamerthemeexample/beamerugthemeAntibes-page1.svg" type="image/svg+xml"></object>&emsp;&emsp;
+<object data="beamerthemeexample/beamerugthemeAntibes-page2.svg" type="image/svg+xml"></object>
+</p>
+</div>
+<p>
+A dominant theme with a tree-like navigation at the top. The rectangular elements mirror the rectangular navigation at the top. The theme can be made less dominant by using a different color theme.
+</p>
+<p>
+Antibes is a town in the south of France. It hosted <span class="textsc">stacs</span> 2002.
+</p>
+
+
+</div>
+<div class="theme">
+
+
+<p>
+<span class="extracttheme">\usetheme{<span class="declare">JuanLesPins</span>}</span>
+</p>
+<p>
+<i>Example: </i>
+</p>
+<p>
+</p>
+<div class="themeexample-image">
+<p>
+<object data="beamerthemeexample/beamerugthemeJuanLesPins-page1.svg" type="image/svg+xml"></object>&emsp;&emsp;
+<object data="beamerthemeexample/beamerugthemeJuanLesPins-page2.svg" type="image/svg+xml"></object>
+</p>
+</div>
+<p>
+A variation on the <span class="texttt">Antibes</span> theme that has a much &ldquo;smoother&rdquo; appearance. It can be made less dominant by choosing a different color theme.
+</p>
+<p>
+Juan&ndash;Les&ndash;Pins is a cozy village near Antibes. It hosted <span class="textsc">stacs</span> 2002.
+</p>
+
+
+</div>
+<div class="theme">
+
+
+<p>
+<span class="extracttheme">\usetheme{<span class="declare">Montpellier</span>}</span>
+</p>
+<p>
+<i>Example: </i>
+</p>
+<p>
+</p>
+<div class="themeexample-image">
+<p>
+<object data="beamerthemeexample/beamerugthemeMontpellier-page1.svg" type="image/svg+xml"></object>&emsp;&emsp;
+<object data="beamerthemeexample/beamerugthemeMontpellier-page2.svg" type="image/svg+xml"></object>
+</p>
+</div>
+<p>
+A sober theme giving basic navigational hints. The headline can be made more dominant by using a different color theme.
+</p>
+<p>
+Montpellier is in the south of France. It hosted <span class="textsc">stacs</span> 2004.
+</p>
+
+
+</div>
+<!--
+...... subsection Presentation Themes with a Table of Contents Sidebar ......
+-->
+<h5 id="autosec-420"><span><span class="sectionnumber" id="sec-15.4">15.4</span> Presentation Themes with a Table of Contents Sidebar</span><a class="anchor-link" href="#sec-15.4">&para;</a></h5>
+<a id="beameruserguide-autopage-420"></a>
+<div class="theme">
+
+
+<p>
+<span class="extracttheme">\usetheme<span class="opt"><span class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>options</i><span class="angle">&rangle;</span></span><span class="oarg-right-bracket">]</span></span>{<span class="declare">Berkeley</span>}</span>
+</p>
+<p>
+<i>Example: </i>
+</p>
+<p>
+</p>
+<div class="themeexample-image">
+<p>
+<object data="beamerthemeexample/beamerugthemeBerkeley-page1.svg" type="image/svg+xml"></object>&emsp;&emsp;
+<object data="beamerthemeexample/beamerugthemeBerkeley-page2.svg" type="image/svg+xml"></object>
+</p>
+</div>
+<p>
+A dominant theme. If the navigation bar is on the left, it dominates since it is seen first. The height of the frame title is fixed to two and a half lines, thus you should be careful with overly long titles. A logo will be put in the corner area. Rectangular areas dominate the
+layout. The theme can be made less dominant by using a different color theme.
+</p>
+<p>
+By default, the current entry of the table of contents in the sidebar will be highlighted by using a more vibrant color. A good alternative is to highlight the current entry by using a different color for the background of the current point. The color theme <span class="texttt">sidebartab</span> installs the appropriate colors, so you just have to say
+</p>
+<pre class="verbatim">
+\usecolortheme{sidebartab}
+</pre>
+<p>
+This color theme works with all themes that show a table of contents in the sidebar.
+</p>
+<p>
+This theme is useful for long talks like lectures that require a table of contents to be visible all the time.
+</p>
+<p>
+The following <span class="meta"><span class="angle">&langle;</span><i>options</i><span class="angle">&rangle;</span></span> may be given:
+</p>
+
+
+<p>
+&bull; <span class="declare"><span class="texttt">hideallsubsections</span></span> causes only sections to be shown in the sidebar. This is useful, if you need to save space.
+</p>
+
+
+<p>
+&bull; <span class="declare"><span class="texttt">hideothersubsections</span></span> causes only the subsections of the current section to be shown. This is useful, if you need to save space.
+</p>
+
+
+<p>
+&bull; <span class="declare"><span class="texttt">left</span></span> puts the sidebar on the left (default).
+</p>
+
+
+<p>
+&bull; <span class="declare"><span class="texttt">right</span></span> puts the sidebar on the right.
+</p>
+
+
+<p>
+&bull; <span class="declare"><span class="texttt">width=</span><span class="meta"><span class="angle">&langle;</span><i>dimension</i><span class="angle">&rangle;</span></span></span> sets the width of the sidebar. If set to zero, no sidebar is created.
+</p>
+
+
+<p>
+Berkeley is on the western coast of the USA, near San Francisco. Till visited Berkeley for a year in 2004.
+</p>
+
+
+</div>
+<div class="theme">
+
+
+<p>
+<span class="extracttheme">\usetheme<span class="opt"><span class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>options</i><span class="angle">&rangle;</span></span><span class="oarg-right-bracket">]</span></span>{<span class="declare">PaloAlto</span>}</span>
+</p>
+<p>
+<i>Example: </i>
+</p>
+<p>
+</p>
+<div class="themeexample-image">
+<p>
+<object data="beamerthemeexample/beamerugthemePaloAlto-page1.svg" type="image/svg+xml"></object>&emsp;&emsp;
+<object data="beamerthemeexample/beamerugthemePaloAlto-page2.svg" type="image/svg+xml"></object>
+</p>
+</div>
+<p>
+A variation on the <span class="texttt">Berkeley</span> theme with less dominance of rectangular areas. The same <span class="meta"><span class="angle">&langle;</span><i>options</i><span class="angle">&rangle;</span></span> as for the <span class="texttt">Berkeley</span> theme can be given.
+</p>
+<p>
+Palo Alto is also near San Francisco. It hosted the Bay Area Theory Workshop 2004.
+</p>
+
+
+</div>
+<div class="theme">
+
+
+<p>
+<span class="extracttheme">\usetheme<span class="opt"><span class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>options</i><span class="angle">&rangle;</span></span><span class="oarg-right-bracket">]</span></span>{<span class="declare">Goettingen</span>}</span>
+</p>
+<p>
+<i>Example: </i>
+</p>
+<p>
+</p>
+<div class="themeexample-image">
+<p>
+<object data="beamerthemeexample/beamerugthemeGoettingen-page1.svg" type="image/svg+xml"></object>&emsp;&emsp;
+<object data="beamerthemeexample/beamerugthemeGoettingen-page2.svg" type="image/svg+xml"></object>
+</p>
+</div>
+<p>
+A relatively sober theme useful for a longer talk that demands a sidebar with a full table of contents. The same <span class="meta"><span class="angle">&langle;</span><i>options</i><span class="angle">&rangle;</span></span> as for the <span class="texttt">Berkeley</span> theme can be given.
+</p>
+<p>
+Göttingen is a town in Germany. It hosted the 42nd Theorietag.
+</p>
+
+
+</div>
+<div class="theme">
+
+
+<p>
+<span class="extracttheme">\usetheme<span class="opt"><span class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>options</i><span class="angle">&rangle;</span></span><span class="oarg-right-bracket">]</span></span>{<span class="declare">Marburg</span>}</span>
+</p>
+<p>
+<i>Example: </i>
+</p>
+<p>
+</p>
+<div class="themeexample-image">
+<p>
+<object data="beamerthemeexample/beamerugthemeMarburg-page1.svg" type="image/svg+xml"></object>&emsp;&emsp;
+<object data="beamerthemeexample/beamerugthemeMarburg-page2.svg" type="image/svg+xml"></object>
+</p>
+</div>
+<p>
+A very dominant variation of the <span class="texttt">Goettingen</span> theme. The same <span class="meta"><span class="angle">&langle;</span><i>options</i><span class="angle">&rangle;</span></span> may be given.
+</p>
+<p>
+Marburg is a town in Germany. It hosted the 46th Theorietag.
+</p>
+
+
+</div>
+<div class="theme">
+
+
+<p>
+<span class="extracttheme">\usetheme<span class="opt"><span class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>options</i><span class="angle">&rangle;</span></span><span class="oarg-right-bracket">]</span></span>{<span class="declare">Hannover</span>}</span>
+</p>
+<p>
+<i>Example: </i>
+</p>
+<p>
+</p>
+<div class="themeexample-image">
+<p>
+<object data="beamerthemeexample/beamerugthemeHannover-page1.svg" type="image/svg+xml"></object>&emsp;&emsp;
+<object data="beamerthemeexample/beamerugthemeHannover-page2.svg" type="image/svg+xml"></object>
+</p>
+</div>
+<p>
+In this theme, the sidebar on the left is balanced by right-flushed frame titles.
+</p>
+<p>
+The following <span class="meta"><span class="angle">&langle;</span><i>options</i><span class="angle">&rangle;</span></span> may be given:
+</p>
+
+
+<p>
+&bull; <span class="declare"><span class="texttt">hideallsubsections</span></span> causes only sections to be shown in the sidebar. This is useful, if you need to save space.
+</p>
+
+
+<p>
+&bull; <span class="declare"><span class="texttt">hideothersubsections</span></span> causes only the subsections of the current section to be shown. This is useful, if you need to save space.
+</p>
+
+
+<p>
+&bull; <span class="declare"><span class="texttt">width=</span><span class="meta"><span class="angle">&langle;</span><i>dimension</i><span class="angle">&rangle;</span></span></span> sets the width of the sidebar.
+</p>
+
+
+<p>
+Hannover is a town in Germany. It hosted the 48th Theorietag.
+</p>
+
+
+</div>
+<!--
+...... subsection Presentation Themes with a Mini Frame Navigation ......
+-->
+<h5 id="autosec-422"><span><span class="sectionnumber" id="sec-15.5">15.5</span> Presentation Themes with a Mini Frame Navigation</span><a class="anchor-link" href="#sec-15.5">&para;</a></h5>
+<a id="beameruserguide-autopage-422"></a>
+<div class="theme">
+
+
+<p>
+<span class="extracttheme">\usetheme<span class="opt"><span class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>options</i><span class="angle">&rangle;</span></span><span class="oarg-right-bracket">]</span></span>{<span class="declare">Berlin</span>}</span>
+</p>
+<p>
+<i>Example: </i>
+</p>
+<p>
+</p>
+<div class="themeexample-image">
+<p>
+<object data="beamerthemeexample/beamerugthemeBerlin-page1.svg" type="image/svg+xml"></object>&emsp;&emsp;
+<object data="beamerthemeexample/beamerugthemeBerlin-page2.svg" type="image/svg+xml"></object>
+</p>
+</div>
+<p>
+A dominant theme with strong colors and dominating rectangular areas. The head- and footlines give lots of information and leave little space for the actual slide contents. This theme is useful for conferences where the audience is not likely to know the title of the talk or
+who is presenting it. The theme can be made less dominant by using a different color theme.
+</p>
+<p>
+The following <span class="meta"><span class="angle">&langle;</span><i>options</i><span class="angle">&rangle;</span></span> may be given:
+</p>
+
+
+<p>
+&bull; <span class="declare"><span class="texttt">compress</span></span> causes the mini frames in the headline to use only a single line. This is useful for saving space.
+</p>
+
+
+<p>
+Berlin is the capital of Germany.
+</p>
+
+
+</div>
+<div class="theme">
+
+
+<p>
+<span class="extracttheme">\usetheme<span class="opt"><span class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>options</i><span class="angle">&rangle;</span></span><span class="oarg-right-bracket">]</span></span>{<span class="declare">Ilmenau</span>}</span>
+</p>
+<p>
+<i>Example: </i>
+</p>
+<p>
+</p>
+<div class="themeexample-image">
+<p>
+<object data="beamerthemeexample/beamerugthemeIlmenau-page1.svg" type="image/svg+xml"></object>&emsp;&emsp;
+<object data="beamerthemeexample/beamerugthemeIlmenau-page2.svg" type="image/svg+xml"></object>
+</p>
+</div>
+<p>
+A variation on the <span class="texttt">Berlin</span> theme. The same <span class="meta"><span class="angle">&langle;</span><i>options</i><span class="angle">&rangle;</span></span> may be given.
+</p>
+<p>
+Ilmenau is a town in Germany. It hosted the 40th Theorietag.
+</p>
+
+
+</div>
+<div class="theme">
+
+
+<p>
+<span class="extracttheme">\usetheme{<span class="declare">Dresden</span>}</span>
+</p>
+<p>
+<i>Example: </i>
+</p>
+<p>
+</p>
+<div class="themeexample-image">
+<p>
+<object data="beamerthemeexample/beamerugthemeDresden-page1.svg" type="image/svg+xml"></object>&emsp;&emsp;
+<object data="beamerthemeexample/beamerugthemeDresden-page2.svg" type="image/svg+xml"></object>
+</p>
+</div>
+<p>
+A variation on the <span class="texttt">Berlin</span> theme with a strong separation into navigational stuff at the top/bottom and a sober main text. The same <span class="meta"><span class="angle">&langle;</span><i>options</i><span class="angle">&rangle;</span></span> may be given.
+</p>
+<p>
+Dresden is a town in Germany. It hosted STACS 2001.
+</p>
+
+
+</div>
+<div class="theme">
+
+
+<p>
+<span class="extracttheme">\usetheme{<span class="declare">Darmstadt</span>}</span>
+</p>
+<p>
+<i>Example: </i>
+</p>
+<p>
+</p>
+<div class="themeexample-image">
+<p>
+<object data="beamerthemeexample/beamerugthemeDarmstadt-page1.svg" type="image/svg+xml"></object>&emsp;&emsp;
+<object data="beamerthemeexample/beamerugthemeDarmstadt-page2.svg" type="image/svg+xml"></object>
+</p>
+</div>
+<p>
+A theme with a strong separation into a navigational upper part and an informational main part. By using a different color theme, this separation can be lessened.
+</p>
+<p>
+Darmstadt is a town in Germany.
+</p>
+
+
+</div>
+<div class="theme">
+
+
+<p>
+<span class="extracttheme">\usetheme{<span class="declare">Frankfurt</span>}</span>
+</p>
+<p>
+<i>Example: </i>
+</p>
+<p>
+</p>
+<div class="themeexample-image">
+<p>
+<object data="beamerthemeexample/beamerugthemeFrankfurt-page1.svg" type="image/svg+xml"></object>&emsp;&emsp;
+<object data="beamerthemeexample/beamerugthemeFrankfurt-page2.svg" type="image/svg+xml"></object>
+</p>
+</div>
+<p>
+A variation on the <span class="texttt">Darmstadt</span> theme that is slightly less cluttered by leaving out the subsection information.
+</p>
+<p>
+Frankfurt is a town in Germany.
+</p>
+
+
+</div>
+<div class="theme">
+
+
+<p>
+<span class="extracttheme">\usetheme{<span class="declare">Singapore</span>}</span>
+</p>
+<p>
+<i>Example: </i>
+</p>
+<p>
+</p>
+<div class="themeexample-image">
+<p>
+<object data="beamerthemeexample/beamerugthemeSingapore-page1.svg" type="image/svg+xml"></object>&emsp;&emsp;
+<object data="beamerthemeexample/beamerugthemeSingapore-page2.svg" type="image/svg+xml"></object>
+</p>
+</div>
+<p>
+A not-too-sober theme with navigation that does not dominate.
+</p>
+<p>
+Singapore is located in south-eastern Asia. It hosted <span class="textsc">cocoon</span> 2002.
+</p>
+
+
+</div>
+<div class="theme">
+
+
+<p>
+<span class="extracttheme">\usetheme{<span class="declare">Szeged</span>}</span>
+</p>
+<p>
+<i>Example: </i>
+</p>
+<p>
+</p>
+<div class="themeexample-image">
+<p>
+<object data="beamerthemeexample/beamerugthemeSzeged-page1.svg" type="image/svg+xml"></object>&emsp;&emsp;
+<object data="beamerthemeexample/beamerugthemeSzeged-page2.svg" type="image/svg+xml"></object>
+</p>
+</div>
+<p>
+A sober theme with a strong dominance of horizontal lines.
+</p>
+<p>
+Szeged is on the south border of Hungary. It hosted <span class="textsc">dlt</span> 2003.
+</p>
+
+
+</div>
+<!--
+...... subsection Presentation Themes with Section and Subsection Tables ......
+-->
+<h5 id="autosec-423"><span><span class="sectionnumber" id="sec-15.6">15.6</span> Presentation Themes with Section and Subsection Tables</span><a class="anchor-link" href="#sec-15.6">&para;</a></h5>
+<a id="beameruserguide-autopage-423"></a>
+<div class="theme">
+
+
+<p>
+<span class="extracttheme">\usetheme{<span class="declare">Copenhagen</span>}</span>
+</p>
+<p>
+<i>Example: </i>
+</p>
+<p>
+</p>
+<div class="themeexample-image">
+<p>
+<object data="beamerthemeexample/beamerugthemeCopenhagen-page1.svg" type="image/svg+xml"></object>&emsp;&emsp;
+<object data="beamerthemeexample/beamerugthemeCopenhagen-page2.svg" type="image/svg+xml"></object>
+</p>
+</div>
+<p>
+A not-quite-too-dominant theme. This theme gives compressed information about the current section and subsection at the top and about the title and the author at the bottom. No shadows are used, giving the presentation a &ldquo;flat&rdquo; look. The theme can be made less
+dominant by using a different color theme.
+</p>
+<p>
+Copenhagen is the capital of Denmark. It is connected to Malmö by the &Oslash;resund bridge.
+</p>
+
+
+</div>
+<div class="theme">
+
+
+<p>
+<span class="extracttheme">\usetheme{<span class="declare">Luebeck</span>}</span>
+</p>
+<p>
+<i>Example: </i>
+</p>
+<p>
+</p>
+<div class="themeexample-image">
+<p>
+<object data="beamerthemeexample/beamerugthemeLuebeck-page1.svg" type="image/svg+xml"></object>&emsp;&emsp;
+<object data="beamerthemeexample/beamerugthemeLuebeck-page2.svg" type="image/svg+xml"></object>
+</p>
+</div>
+<p>
+A variation on the <span class="texttt">Copenhagen</span> theme.
+</p>
+<p>
+Lübeck is a town in northern Germany. It hosted the 41st Theorietag.
+</p>
+
+
+</div>
+<div class="theme">
+
+
+<p>
+<span class="extracttheme">\usetheme{<span class="declare">Malmoe</span>}</span>
+</p>
+<p>
+<i>Example: </i>
+</p>
+<p>
+</p>
+<div class="themeexample-image">
+<p>
+<object data="beamerthemeexample/beamerugthemeMalmoe-page1.svg" type="image/svg+xml"></object>&emsp;&emsp;
+<object data="beamerthemeexample/beamerugthemeMalmoe-page2.svg" type="image/svg+xml"></object>
+</p>
+</div>
+<p>
+A more sober variation of the <span class="texttt">Copenhagen</span> theme.
+</p>
+<p>
+Malmö is a town in southern Sweden. It hosted <span class="textsc">fct</span> 2001.
+</p>
+
+
+</div>
+<div class="theme">
+
+
+<p>
+<span class="extracttheme">\usetheme{<span class="declare">Warsaw</span>}</span>
+</p>
+<p>
+<i>Example: </i>
+</p>
+<p>
+</p>
+<div class="themeexample-image">
+<p>
+<object data="beamerthemeexample/beamerugthemeWarsaw-page1.svg" type="image/svg+xml"></object>&emsp;&emsp;
+<object data="beamerthemeexample/beamerugthemeWarsaw-page2.svg" type="image/svg+xml"></object>
+</p>
+</div>
+<p>
+A dominant variation of the <span class="texttt">Copenhagen</span> theme.
+</p>
+<p>
+Warsaw is the capital of Poland. It hosted <span class="textsc">mfcs</span> 2002.
+</p>
+
+
+</div>
+<!--
+...... subsection Presentation Themes Included For Compatibility ......
+-->
+<h5 id="autosec-424"><span><span class="sectionnumber" id="sec-15.7">15.7</span> Presentation Themes Included For Compatibility</span><a class="anchor-link" href="#sec-15.7">&para;</a></h5>
+<a id="beameruserguide-autopage-424"></a>
+<p>
+Earlier versions of <span class="beamer-name"><span class="textsc">beamer</span></span> included some further themes. These themes are still available for compatibility, though they are now implemented differently (they also mainly install appropriate color, font,
+inner, and outer themes). However, they may or may not honor color themes and they will not be supported in the future. The following list shows which of the new themes should be used instead of the old themes. (When switching, you may want to use the font theme
+<span class="texttt">structurebold</span> with the option <span class="texttt">onlysmall</span>.)
+</p>
+<table>
+<tr style="display:none"><th>.</th></tr>
+<tr>
+<td class="tdl">Old theme</td>
+<td class="tdp">
+<p>
+Replacement options
+</p>
+</td>
+</tr>
+<tr class="hline">
+<td class="tdl">none</td>
+<td class="tdp">
+<p>
+Use <span class="texttt">compatibility</span>.
+</p>
+</td>
+</tr>
+<tr>
+<td class="tdl"><span class="texttt">bars</span></td>
+<td class="tdp">
+<p>
+Try <span class="texttt">Dresden</span> instead.
+</p>
+</td>
+</tr>
+<tr>
+<td class="tdl"><span class="texttt">classic</span></td>
+<td class="tdp">
+<p>
+Try <span class="texttt">Singapore</span> instead.
+</p>
+</td>
+</tr>
+<tr>
+<td class="tdl"><span class="texttt">lined</span></td>
+<td class="tdp">
+<p>
+Try <span class="texttt">Szeged</span> instead.
+</p>
+</td>
+</tr>
+<tr>
+<td class="tdl"><span class="texttt">plain</span></td>
+<td class="tdp">
+<p>
+Try none or <span class="texttt">Pittsburgh</span> instead.
+</p>
+</td>
+</tr>
+<tr>
+<td class="tdl"><span class="texttt">sidebar</span></td>
+<td class="tdp">
+<p>
+Try <span class="texttt">Goettingen</span> for the light version and <span class="texttt">Marburg</span> for the dark version.
+</p>
+</td>
+</tr>
+<tr>
+<td class="tdl"><span class="texttt">shadow</span></td>
+<td class="tdp">
+<p>
+Try <span class="texttt">Warsaw</span> instead.
+</p>
+</td>
+</tr>
+<tr>
+<td class="tdl"><span class="texttt">split</span></td>
+<td class="tdp">
+<p>
+Try <span class="texttt">Malmoe</span> instead.
+</p>
+</td>
+</tr>
+<tr>
+<td class="tdl"><span class="texttt">tree</span></td>
+<td class="tdp">
+<p>
+Try <span class="texttt">Montpellier</span> and, for the bars version, <span class="texttt">Antibes</span> or <span class="texttt">JuansLesPins</span>.
+</p>
+</td>
+</tr>
+</table>
+</p></section>
+</main>
+<footer><div class="footer-left"><a href="Licenses-Copyright.html">License</a> &middot; <a href="https://ctan.org/pkg/beamer">CTAN</a> &middot; <a href="http://mirrors.ctan.org/macros/latex/contrib/beamer/doc/beameruserguide.pdf">Official PDF version</a> &middot; <a href="https://github.com/SwitWu/beamer-html-manual/issues">Feedback and issues</a> &middot; <a href="https://github.com/SwitWu/beamer-html-manual">Repository</a></div><div class="footer-right"><em>HTML version last updated: 2023-10-07</em></div></footer></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script><script>
+      docsearch({
+        apiKey: '196e8c10ec187c9ae525dd5226fb9378',
+        indexName: 'beamer',
+        appId: 'JS6V5VZSDB',
+        container: '#search',
+        searchParameters: {
+          filters: "tags:beamer",
+        },
+    });
+    </script></body>
+</html>
