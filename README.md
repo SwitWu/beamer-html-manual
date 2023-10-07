@@ -6,12 +6,12 @@ This is a [HTML version](https://www.beamer.plus) of the Beamer documentation.
 It is produced using the incredibly powerful [`lwarp`](https://ctan.org/pkg/lwarp) package written by [Brian Dunn](https://bdtechconcepts.com)
 and many Python modules, especially the BeautifulSoup module.
 
-[<img src="demo.png" alt="screenshot of beamer.plus" width="60%">](https://www.beamer.plus)
+[<img src="demo.png" alt="screenshot of beamer.plus" width="100%">](https://www.beamer.plus)
 
 
 ## Feedback
 
-For feedback, bug reports, and feature requests, please open an issue in [beamer.plus issues](https://github.com/SwitWu/beamer-html-manual/issues).
+For feedback, bug reports, and feature requests, please open an issue in [beamer-html-manual issues](https://github.com/SwitWu/beamer-html-manual/issues).
 
 ## Acknowledgements
 
