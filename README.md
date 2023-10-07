@@ -1,23 +1,31 @@
-# Beamer - A LaTeX class for producing presentations
+# HTML version of the Beamer documentation 
 
-## Overview
+## Introduction
 
-The `beamer` class is focused on producing (on-screen) presentations, along
-with support material such as handouts and speaker notes. Content is created
-in a `frame` environment, each of which can be divided up into a number of
-slides (actual output pages). A simple 'action' notation is used to specify
-which material appears on each slide within a frame. The class supports a
-range of environments to enable complex slide relationships to be constructed.
+This is a [HTML version](https://www.beamer.plus) of the Beamer documentation.
+It is produced using the incredibly powerful [`lwarp`](https://ctan.org/pkg/lwarp) package written by [Brian Dunn](https://bdtechconcepts.com)
+and many Python modules, especially the BeautifulSoup module.
 
-The appearance of slides is controlled by a template system. Many of the
-elements of slides can be adjusted by setting simple key-based values in
-the preamble. More complex changes can be implemented by altering specific,
-targeted definitions without needing to rewrite entire blocks of code. This
-allows a variety of visual appearances to be selected for the same content
-source.
+[<img src="demo.png" alt="screenshot of beamer.plus" width="60%">](https://www.beamer.plus)
 
-## License
 
-The `beamer` class is made available under the LaTeX Project Public License
-(LPPL) and the GNU Public License (GPL). See the information in
-[LICENSE](LICENSE.md) for information on licensing.
+## Feedback
+
+For feedback, bug reports, and feature requests, please open an issue in [beamer.plus issues](https://github.com/SwitWu/beamer-html-manual/issues).
+
+## Acknowledgements
+
++ [`lwarp` package](https://ctan.org/pkg/lwarp)
++ [pgf-tikz-html-manual](https://github.com/DominikPeters/pgf-tikz-html-manual)
++ [BeautifulSoup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/) and many other Python modules
++ pdftocairo tool
++ [Inter font family](https://rsms.me/inter/)
++ [JetBrains Mono font family](https://www.jetbrains.com/lp/mono/)
++ Algolia's [DocSearch](https://docsearch.algolia.com/docs/legacy/run-your-own)
+
+## Sponsor
+
+If you find this project helpful, please consider to make a donation to help the author have a better
+maintainance of this project.
+
+<img src="sponsor.JPG" alt="sponsor QR code" width="50%" text-align="center">
