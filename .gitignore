@@ -8,3 +8,8 @@ icon.png
 doc/.latexmkrc
 .latexmkrc
 # doc/postprocess-analysis.py
+*_html_inc.tex
+.prettierrc
+doc/**/*.html
+cpcss.py
+home.py
