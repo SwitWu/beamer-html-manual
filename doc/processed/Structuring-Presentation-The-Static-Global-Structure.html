@@ -2344,25 +2344,27 @@ sectionstyle=show/shaded,subsectionstyle=show/show/shaded
             bibliographic entries.
           </p>
           <div class="environment">
-            <div class="begin-environment">
+            <div class="environment-headline">
+              <div class="begin-environment">
+                <p>
+                  \begin{<span class="declare">thebibliography</span>}{<span
+                    class="meta"
+                    ><span class="angle">&langle;</span><i>longest label text</i
+                    ><span class="angle">&rangle;</span></span
+                  >}
+                </p>
+              </div>
+
               <p>
-                \begin{<span class="declare">thebibliography</span>}{<span
-                  class="meta"
-                  ><span class="angle">&langle;</span><i>longest label text</i
+                <span class="meta"
+                  ><span class="angle">&langle;</span><i>environment contents</i
                   ><span class="angle">&rangle;</span></span
-                >}
+                >
               </p>
-            </div>
 
-            <p>
-              <span class="meta"
-                ><span class="angle">&langle;</span><i>environment contents</i
-                ><span class="angle">&rangle;</span></span
-              >
-            </p>
-
-            <div class="end-environment">
-              <p>\end{<span class="declare">thebibliography</span>}</p>
+              <div class="end-environment">
+                <p>\end{<span class="declare">thebibliography</span>}</p>
+              </div>
             </div>
             <p>
               Inserts a bibliography into the current frame. The
