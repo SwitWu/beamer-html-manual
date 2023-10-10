@@ -577,11 +577,8 @@ body.home-page nav.toc > p > a {
 
 div.command > :not(div.command-headline),
 div.element > :not(div.element-headline),
-div.environment > p,
-div.environment > div.element,
-div.environment > div.fancyvrb,
+div.environment > :not(div.environment-headline),
 div.solution > p,
-div.environment > pre.verbatim,
 div.package > pre.verbatim,
 div.package > p:nth-child(n+2),
 div.package > div.classoption,
@@ -590,7 +587,11 @@ div.class > p:nth-child(n+2) {
   margin-left: 3em;
 }
 
-div.environment p {
+div.environment-headline > p {
+  margin-left: 2em;
+}
+
+div.environment-headline p {
   margin-top: 0;
   margin-bottom: 0;
 }
