@@ -8,7 +8,7 @@
     <title>
       Structuring a Presentation: The Static Global Structure - Beamer Manual
     </title>
-    <link href="style.css?v=20231010" rel="stylesheet" type="text/css" />
+    <link href="style.css?v=20231011" rel="stylesheet" type="text/css" />
     <link
       href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
       rel="stylesheet"
@@ -229,128 +229,140 @@
                 <span class="texttt">\titlepage</span> command is used.
               </p>
               <p>The following template options are predefined:</p>
-
-              <p>
-                &bull;
-                <span class="itemoption"
-                  ><kbd>[<span class="declare">default</span>]</kbd
-                  ><span class="opt"
-                    ><span class="oarg-left-bracket">[</span
-                    ><span class="meta"
+              <ul style="list-style-type: none">
+                <li>
+                  <p>
+                    &bull;
+                    <span class="itemoption"
+                      ><kbd>[<span class="declare">default</span>]</kbd
+                      ><span class="opt"
+                        ><span class="oarg-left-bracket">[</span
+                        ><span class="meta"
+                          ><span class="angle">&langle;</span><i>alignment</i
+                          ><span class="angle">&rangle;</span></span
+                        ><span class="oarg-right-bracket">]</span></span
+                      ></span
+                    >
+                    The title page is typeset showing the title, followed by the
+                    author, their affiliation, the date, and a titlegraphic. If
+                    any of these are missing, they are not shown. Except for the
+                    titlegraphic, if the
+                    <span class="beamer-name"
+                      ><span class="textsc">beamer</span></span
+                    >-color <span class="texttt">title</span>,
+                    <span class="texttt">author</span>,
+                    <span class="texttt">institute</span>, or
+                    <span class="texttt">date</span> is defined, respectively,
+                    it is used as textcolor for these entries. If a background
+                    color is defined for them, a colored bar in the
+                    corresponding color is drawn behind them, spanning the text
+                    width. The corresponding
+                    <span class="beamer-name"
+                      ><span class="textsc">beamer</span></span
+                    >-fonts are used for these entries. The following templates
+                    are used by the title page:
+                  </p>
+                  <div class="element">
+                    <div class="element-headline">
+                      <p>
+                        <b>Beamer-Template/-Color/-Font</b>
+                        <span class="declare">title</span>
+                      </p>
+                    </div>
+                  </div>
+                  <div class="element">
+                    <div class="element-headline">
+                      <p>
+                        <b>Beamer-Template/-Color/-Font</b>
+                        <span class="declare">author</span>
+                      </p>
+                    </div>
+                  </div>
+                  <div class="element">
+                    <div class="element-headline">
+                      <p>
+                        <b>Beamer-Template/-Color/-Font</b>
+                        <span class="declare">institute</span>
+                      </p>
+                    </div>
+                  </div>
+                  <div class="element">
+                    <div class="element-headline">
+                      <p>
+                        <b>Beamer-Template/-Color/-Font</b>
+                        <span class="declare">date</span>
+                      </p>
+                    </div>
+                  </div>
+                  <div class="element">
+                    <div class="element-headline">
+                      <p>
+                        <b>Beamer-Template</b>
+                        <span class="declare">titlegraphic</span>
+                      </p>
+                    </div>
+                  </div>
+                  <p>
+                    The
+                    <span class="meta"
                       ><span class="angle">&langle;</span><i>alignment</i
                       ><span class="angle">&rangle;</span></span
-                    ><span class="oarg-right-bracket">]</span></span
-                  ></span
-                >
-                The title page is typeset showing the title, followed by the
-                author, their affiliation, the date, and a titlegraphic. If any
-                of these are missing, they are not shown. Except for the
-                titlegraphic, if the
-                <span class="beamer-name"
-                  ><span class="textsc">beamer</span></span
-                >-color <span class="texttt">title</span>,
-                <span class="texttt">author</span>,
-                <span class="texttt">institute</span>, or
-                <span class="texttt">date</span> is defined, respectively, it is
-                used as textcolor for these entries. If a background color is
-                defined for them, a colored bar in the corresponding color is
-                drawn behind them, spanning the text width. The corresponding
-                <span class="beamer-name"
-                  ><span class="textsc">beamer</span></span
-                >-fonts are used for these entries. The following templates are
-                used by the title page:
-              </p>
-              <div class="element">
-                <div class="element-headline">
-                  <p>
-                    <b>Beamer-Template/-Color/-Font</b>
-                    <span class="declare">title</span>
+                    >
+                    option is passed on the
+                    <span class="texttt">beamercolorbox</span> and can be used,
+                    for example, to flush the title page to the left by
+                    specifying <span class="texttt">left</span> here.
                   </p>
-                </div>
-              </div>
-              <div class="element">
-                <div class="element-headline">
-                  <p>
-                    <b>Beamer-Template/-Color/-Font</b>
-                    <span class="declare">author</span>
-                  </p>
-                </div>
-              </div>
-              <div class="element">
-                <div class="element-headline">
-                  <p>
-                    <b>Beamer-Template/-Color/-Font</b>
-                    <span class="declare">institute</span>
-                  </p>
-                </div>
-              </div>
-              <div class="element">
-                <div class="element-headline">
-                  <p>
-                    <b>Beamer-Template/-Color/-Font</b>
-                    <span class="declare">date</span>
-                  </p>
-                </div>
-              </div>
-              <div class="element">
-                <div class="element-headline">
-                  <p>
-                    <b>Beamer-Template</b>
-                    <span class="declare">titlegraphic</span>
-                  </p>
-                </div>
-              </div>
-              <p>
-                The
-                <span class="meta"
-                  ><span class="angle">&langle;</span><i>alignment</i
-                  ><span class="angle">&rangle;</span></span
-                >
-                option is passed on the
-                <span class="texttt">beamercolorbox</span> and can be used, for
-                example, to flush the title page to the left by specifying
-                <span class="texttt">left</span> here.
-              </p>
-
+                </li>
+              </ul>
               <p>The following commands are useful for this template:</p>
-
-              <p>
-                &bull;
-                <kbd><span class="declare">\insertauthor</span></kbd> inserts a
-                version of the author&rsquo;s name that is useful for the title
-                page.
-              </p>
-
-              <p>
-                &bull;
-                <kbd><span class="declare">\insertdate</span></kbd> inserts the
-                date.
-              </p>
-
-              <p>
-                &bull;
-                <kbd><span class="declare">\insertinstitute</span></kbd> inserts
-                the institute.
-              </p>
-
-              <p>
-                &bull;
-                <kbd><span class="declare">\inserttitle</span></kbd> inserts a
-                version of the document title that is useful for the title page.
-              </p>
-
-              <p>
-                &bull;
-                <kbd><span class="declare">\insertsubtitle</span></kbd> inserts
-                a version of the document title that is useful for the title
-                page.
-              </p>
-
-              <p>
-                &bull;
-                <kbd><span class="declare">\inserttitlegraphic</span></kbd>
-                inserts the title graphic into a template.
-              </p>
+              <ul style="list-style-type: none">
+                <li>
+                  <p>
+                    &bull;
+                    <kbd><span class="declare">\insertauthor</span></kbd>
+                    inserts a version of the author&rsquo;s name that is useful
+                    for the title page.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    &bull;
+                    <kbd><span class="declare">\insertdate</span></kbd> inserts
+                    the date.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    &bull;
+                    <kbd><span class="declare">\insertinstitute</span></kbd>
+                    inserts the institute.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    &bull;
+                    <kbd><span class="declare">\inserttitle</span></kbd> inserts
+                    a version of the document title that is useful for the title
+                    page.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    &bull;
+                    <kbd><span class="declare">\insertsubtitle</span></kbd>
+                    inserts a version of the document title that is useful for
+                    the title page.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    &bull;
+                    <kbd><span class="declare">\inserttitlegraphic</span></kbd>
+                    inserts the title graphic into a template.
+                  </p>
+                </li>
+              </ul>
             </div>
           </div>
           <p>
@@ -791,20 +803,26 @@
                 <span class="texttt">table of contents</span>.
               </p>
               <p>The following commands are useful for this template:</p>
-
-              <p>
-                &bull;
-                <kbd><span class="declare">\inserttocsection</span></kbd>
-                inserts the table of contents version of the current section
-                name.
-              </p>
-
-              <p>
-                &bull;
-                <kbd><span class="declare">\inserttocsectionnumber</span></kbd>
-                inserts the number of the current section (in the table of
-                contents).
-              </p>
+              <ul style="list-style-type: none">
+                <li>
+                  <p>
+                    &bull;
+                    <kbd><span class="declare">\inserttocsection</span></kbd>
+                    inserts the table of contents version of the current section
+                    name.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    &bull;
+                    <kbd
+                      ><span class="declare">\inserttocsectionnumber</span></kbd
+                    >
+                    inserts the number of the current section (in the table of
+                    contents).
+                  </p>
+                </li>
+              </ul>
             </div>
             <div class="element">
               <div class="element-headline">
@@ -908,22 +926,28 @@
                 <span class="texttt">section in toc</span> template, the
                 following commands are available for this template:
               </p>
-
-              <p>
-                &bull;
-                <kbd><span class="declare">\inserttocsubsection</span></kbd>
-                inserts the table of contents version of the current subsection
-                name.
-              </p>
-
-              <p>
-                &bull;
-                <kbd
-                  ><span class="declare">\inserttocsubsectionnumber</span></kbd
-                >
-                inserts the number of the current subsection (in the table of
-                contents).
-              </p>
+              <ul style="list-style-type: none">
+                <li>
+                  <p>
+                    &bull;
+                    <kbd><span class="declare">\inserttocsubsection</span></kbd>
+                    inserts the table of contents version of the current
+                    subsection name.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    &bull;
+                    <kbd
+                      ><span class="declare"
+                        >\inserttocsubsectionnumber</span
+                      ></kbd
+                    >
+                    inserts the number of the current subsection (in the table
+                    of contents).
+                  </p>
+                </li>
+              </ul>
             </div>
             <div class="element">
               <div class="element-headline">
@@ -1052,24 +1076,30 @@
                 <span class="texttt">subsection in toc</span> template, the
                 following commands are available for this template:
               </p>
-
-              <p>
-                &bull;
-                <kbd><span class="declare">\inserttocsubsubsection</span></kbd>
-                inserts the table of contents version of the current
-                subsubsection name.
-              </p>
-
-              <p>
-                &bull;
-                <kbd
-                  ><span class="declare"
-                    >\inserttocsubsubsectionnumber</span
-                  ></kbd
-                >
-                inserts the number of the current subsubsection (in the table of
-                contents).
-              </p>
+              <ul style="list-style-type: none">
+                <li>
+                  <p>
+                    &bull;
+                    <kbd
+                      ><span class="declare">\inserttocsubsubsection</span></kbd
+                    >
+                    inserts the table of contents version of the current
+                    subsubsection name.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    &bull;
+                    <kbd
+                      ><span class="declare"
+                        >\inserttocsubsubsectionnumber</span
+                      ></kbd
+                    >
+                    inserts the number of the current subsubsection (in the
+                    table of contents).
+                  </p>
+                </li>
+              </ul>
             </div>
             <div class="element">
               <div class="element-headline">
@@ -1269,64 +1299,70 @@
                 <span class="texttt">\sectionpage</span> command is used.
               </p>
               <p>The following template options are predefined:</p>
-
-              <p>
-                &bull;
-                <span class="itemoption"
-                  ><kbd>[<span class="declare">default</span>]</kbd
-                  ><span class="opt"
-                    ><span class="oarg-left-bracket">[</span
-                    ><span class="meta"
+              <ul style="list-style-type: none">
+                <li>
+                  <p>
+                    &bull;
+                    <span class="itemoption"
+                      ><kbd>[<span class="declare">default</span>]</kbd
+                      ><span class="opt"
+                        ><span class="oarg-left-bracket">[</span
+                        ><span class="meta"
+                          ><span class="angle">&langle;</span><i>alignment</i
+                          ><span class="angle">&rangle;</span></span
+                        ><span class="oarg-right-bracket">]</span></span
+                      ></span
+                    >
+                    The section page is typeset showing the current section
+                    number and, below, the current section title. The templates
+                  </p>
+                  <div class="element">
+                    <div class="element-headline">
+                      <p>
+                        <b>Beamer-Color/-Font</b>
+                        <span class="declare">section name</span>
+                      </p>
+                    </div>
+                  </div>
+                  <p>and</p>
+                  <div class="element">
+                    <div class="element-headline">
+                      <p>
+                        <b>Beamer-Color/-Font</b>
+                        <span class="declare">section title</span>
+                      </p>
+                    </div>
+                  </div>
+                  <p>
+                    are used, including the background color of
+                    <span class="texttt">section title</span>. As for the
+                    <span class="texttt">title page</span> template, the
+                    <span class="meta"
                       ><span class="angle">&langle;</span><i>alignment</i
                       ><span class="angle">&rangle;</span></span
-                    ><span class="oarg-right-bracket">]</span></span
-                  ></span
-                >
-                The section page is typeset showing the current section number
-                and, below, the current section title. The templates
-              </p>
-              <div class="element">
-                <div class="element-headline">
-                  <p>
-                    <b>Beamer-Color/-Font</b>
-                    <span class="declare">section name</span>
+                    >
+                    option is passed on the
+                    <span class="texttt">beamercolorbox</span>.
                   </p>
-                </div>
-              </div>
-              <p>and</p>
-              <div class="element">
-                <div class="element-headline">
-                  <p>
-                    <b>Beamer-Color/-Font</b>
-                    <span class="declare">section title</span>
-                  </p>
-                </div>
-              </div>
-              <p>
-                are used, including the background color of
-                <span class="texttt">section title</span>. As for the
-                <span class="texttt">title page</span> template, the
-                <span class="meta"
-                  ><span class="angle">&langle;</span><i>alignment</i
-                  ><span class="angle">&rangle;</span></span
-                >
-                option is passed on the
-                <span class="texttt">beamercolorbox</span>.
-              </p>
-
+                </li>
+              </ul>
               <p>The following commands are useful for this template:</p>
-
-              <p>
-                &bull;
-                <kbd><span class="declare">\insertsection</span></kbd> inserts
-                the title of the current section.
-              </p>
-
-              <p>
-                &bull;
-                <kbd><span class="declare">\insertsectionnumber</span></kbd>
-                inserts the current section number.
-              </p>
+              <ul style="list-style-type: none">
+                <li>
+                  <p>
+                    &bull;
+                    <kbd><span class="declare">\insertsection</span></kbd>
+                    inserts the title of the current section.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    &bull;
+                    <kbd><span class="declare">\insertsectionnumber</span></kbd>
+                    inserts the current section number.
+                  </p>
+                </li>
+              </ul>
             </div>
           </div>
           <div class="command">
@@ -1347,63 +1383,71 @@
                 </p>
               </div>
               <p>The following template options are predefined:</p>
-
-              <p>
-                &bull;
-                <span class="itemoption"
-                  ><kbd>[<span class="declare">default</span>]</kbd
-                  ><span class="opt"
-                    ><span class="oarg-left-bracket">[</span
-                    ><span class="meta"
+              <ul style="list-style-type: none">
+                <li>
+                  <p>
+                    &bull;
+                    <span class="itemoption"
+                      ><kbd>[<span class="declare">default</span>]</kbd
+                      ><span class="opt"
+                        ><span class="oarg-left-bracket">[</span
+                        ><span class="meta"
+                          ><span class="angle">&langle;</span><i>alignment</i
+                          ><span class="angle">&rangle;</span></span
+                        ><span class="oarg-right-bracket">]</span></span
+                      ></span
+                    >
+                  </p>
+                  <p>The templates</p>
+                  <div class="element">
+                    <div class="element-headline">
+                      <p>
+                        <b>Beamer-Color/-Font</b>
+                        <span class="declare">subsection name</span>
+                      </p>
+                    </div>
+                  </div>
+                  <p>and</p>
+                  <div class="element">
+                    <div class="element-headline">
+                      <p>
+                        <b>Beamer-Color/-Font</b>
+                        <span class="declare">subsection title</span>
+                      </p>
+                    </div>
+                  </div>
+                  <p>
+                    are used, including the background color of
+                    <span class="texttt">subsection title</span>. As for the
+                    <span class="texttt">title page</span> template, the
+                    <span class="meta"
                       ><span class="angle">&langle;</span><i>alignment</i
                       ><span class="angle">&rangle;</span></span
-                    ><span class="oarg-right-bracket">]</span></span
-                  ></span
-                >
-              </p>
-              <p>The templates</p>
-              <div class="element">
-                <div class="element-headline">
-                  <p>
-                    <b>Beamer-Color/-Font</b>
-                    <span class="declare">subsection name</span>
+                    >
+                    option is passed on the
+                    <span class="texttt">beamercolorbox</span>.
                   </p>
-                </div>
-              </div>
-              <p>and</p>
-              <div class="element">
-                <div class="element-headline">
-                  <p>
-                    <b>Beamer-Color/-Font</b>
-                    <span class="declare">subsection title</span>
-                  </p>
-                </div>
-              </div>
-              <p>
-                are used, including the background color of
-                <span class="texttt">subsection title</span>. As for the
-                <span class="texttt">title page</span> template, the
-                <span class="meta"
-                  ><span class="angle">&langle;</span><i>alignment</i
-                  ><span class="angle">&rangle;</span></span
-                >
-                option is passed on the
-                <span class="texttt">beamercolorbox</span>.
-              </p>
-
+                </li>
+              </ul>
               <p>The following commands are useful for this template:</p>
-
-              <p>
-                &bull;
-                <kbd><span class="declare">\insertsubsection</span></kbd>
-                inserts the title of the current subsection.
-              </p>
-
-              <p>
-                &bull;
-                <kbd><span class="declare">\insertsubsectionnumber</span></kbd>
-                inserts the current subsection number.
-              </p>
+              <ul style="list-style-type: none">
+                <li>
+                  <p>
+                    &bull;
+                    <kbd><span class="declare">\insertsubsection</span></kbd>
+                    inserts the title of the current subsection.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    &bull;
+                    <kbd
+                      ><span class="declare">\insertsubsectionnumber</span></kbd
+                    >
+                    inserts the current subsection number.
+                  </p>
+                </li>
+              </ul>
             </div>
           </div>
           <!--
@@ -1548,72 +1592,81 @@
                 <span class="texttt">\partpage</span> command is used.
               </p>
               <p>The following template options are predefined:</p>
-
-              <p>
-                &bull;
-                <span class="itemoption"
-                  ><kbd>[<span class="declare">default</span>]</kbd
-                  ><span class="opt"
-                    ><span class="oarg-left-bracket">[</span
-                    ><span class="meta"
+              <ul style="list-style-type: none">
+                <li>
+                  <p>
+                    &bull;
+                    <span class="itemoption"
+                      ><kbd>[<span class="declare">default</span>]</kbd
+                      ><span class="opt"
+                        ><span class="oarg-left-bracket">[</span
+                        ><span class="meta"
+                          ><span class="angle">&langle;</span><i>alignment</i
+                          ><span class="angle">&rangle;</span></span
+                        ><span class="oarg-right-bracket">]</span></span
+                      ></span
+                    >
+                    The part page is typeset showing the current part number
+                    and, below, the current part title. The templates
+                  </p>
+                  <div class="element">
+                    <div class="element-headline">
+                      <p>
+                        <b>Beamer-Color/-Font</b>
+                        <span class="declare">part name</span>
+                      </p>
+                    </div>
+                  </div>
+                  <p>and</p>
+                  <div class="element">
+                    <div class="element-headline">
+                      <p>
+                        <b>Beamer-Color/-Font</b>
+                        <span class="declare">part title</span>
+                      </p>
+                    </div>
+                  </div>
+                  <p>
+                    are used, including the background color of
+                    <span class="texttt">part title</span>. As for the
+                    <span class="texttt">title page</span> template, the
+                    <span class="meta"
                       ><span class="angle">&langle;</span><i>alignment</i
                       ><span class="angle">&rangle;</span></span
-                    ><span class="oarg-right-bracket">]</span></span
-                  ></span
-                >
-                The part page is typeset showing the current part number and,
-                below, the current part title. The templates
-              </p>
-              <div class="element">
-                <div class="element-headline">
-                  <p>
-                    <b>Beamer-Color/-Font</b>
-                    <span class="declare">part name</span>
+                    >
+                    option is passed on the
+                    <span class="texttt">beamercolorbox</span>.
                   </p>
-                </div>
-              </div>
-              <p>and</p>
-              <div class="element">
-                <div class="element-headline">
-                  <p>
-                    <b>Beamer-Color/-Font</b>
-                    <span class="declare">part title</span>
-                  </p>
-                </div>
-              </div>
-              <p>
-                are used, including the background color of
-                <span class="texttt">part title</span>. As for the
-                <span class="texttt">title page</span> template, the
-                <span class="meta"
-                  ><span class="angle">&langle;</span><i>alignment</i
-                  ><span class="angle">&rangle;</span></span
-                >
-                option is passed on the
-                <span class="texttt">beamercolorbox</span>.
-              </p>
-
+                </li>
+              </ul>
               <p>The following commands are useful for this template:</p>
-
-              <p>
-                &bull;
-                <kbd><span class="declare">\insertpart</span></kbd> inserts the
-                current part name.
-              </p>
-
-              <p>
-                &bull;
-                <kbd><span class="declare">\insertpartnumber</span></kbd>
-                inserts the current part number as an Arabic number into a
-                template.
-              </p>
-
-              <p>
-                &bull;
-                <kbd><span class="declare">\insertromanpartnumber</span></kbd>
-                inserts the current part number as a Roman number into a
-                template.
-              </p>
+              <ul style="list-style-type: none">
+                <li>
+                  <p>
+                    &bull;
+                    <kbd><span class="declare">\insertpart</span></kbd> inserts
+                    the current part name.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    &bull;
+                    <kbd><span class="declare">\insertpartnumber</span></kbd>
+                    inserts the current part number as an Arabic number into a
+                    template.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    &bull;
+                    <kbd
+                      ><span class="declare">\insertromanpartnumber</span></kbd
+                    >
+                    inserts the current part number as a Roman number into a
+                    template.
+                  </p>
+                </li>
+              </ul>
             </div>
           </div>
           <div class="command">
@@ -1866,272 +1919,292 @@
 </pre
             >
             <p>The following options can be given:</p>
-
-            <p>
-              &bull;
-              <span class="declare"
-                ><span class="texttt">currentsection</span></span
-              >
-              causes all sections but the current to be shown in a
-              semi-transparent way. Also, all subsections but those in the
-              current section are shown in the semi-transparent way. This
-              command is a shorthand for specifying the following options:
-            </p>
-            <pre class="verbatim">
+            <ul style="list-style-type: none">
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">currentsection</span></span
+                  >
+                  causes all sections but the current to be shown in a
+                  semi-transparent way. Also, all subsections but those in the
+                  current section are shown in the semi-transparent way. This
+                  command is a shorthand for specifying the following options:
+                </p>
+                <pre class="verbatim">
 sectionstyle=show/shaded,subsectionstyle=show/show/shaded
 </pre
-            >
-
-            <p>
-              &bull;
-              <span class="declare"
-                ><span class="texttt">currentsubsection</span></span
-              >
-              causes all subsections but the current subsection in the current
-              section to be shown in a semi-transparent way. This command is a
-              shorthand for specifying the option
-              <span class="texttt">subsectionstyle=show/shaded</span>.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"
-                ><span class="texttt">firstsection=</span
-                ><span class="meta"
-                  ><span class="angle">&langle;</span><i>section number</i
-                  ><span class="angle">&rangle;</span></span
-                ></span
-              >
-              specifies which section should be numbered as
-              section&nbsp;&ldquo;1.&rdquo; This is useful if you have a first
-              section (like an overview section) that should not receive a
-              number. Section numbers are not shown by default. To show them,
-              you must install a different table of contents templates.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"
-                ><span class="texttt">hideallsubsections</span></span
-              >
-              causes all subsections to be hidden. This command is a shorthand
-              for specifying the option
-              <span class="texttt">subsectionstyle=hide</span>.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"
-                ><span class="texttt">hideothersubsections</span></span
-              >
-              causes the subsections of sections other than the current one to
-              be hidden. This command is a shorthand for specifying the option
-              <span class="texttt">subsectionstyle=show/show/hide</span>.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"
-                ><span class="texttt">lastsection=</span
-                ><span class="meta"
-                  ><span class="angle">&langle;</span><i>section number</i
-                  ><span class="angle">&rangle;</span></span
-                ></span
-              >
-              similar to <span class="texttt">firstsection</span>, this option
-              specifies which section should be the last numbered section. This
-              is useful if you have unnumbered sections at the end, like a
-              summary or outlook. Section numbers are not shown by default. To
-              show them, you must install a different table of contents
-              templates.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"
-                ><span class="texttt">part=</span
-                ><span class="meta"
-                  ><span class="angle">&langle;</span><i>part number</i
-                  ><span class="angle">&rangle;</span></span
-                ></span
-              >
-              causes the table of contents of part
-              <span class="meta"
-                ><span class="angle">&langle;</span><i>part number</i
-                ><span class="angle">&rangle;</span></span
-              >
-              to be shown, instead of the table of contents of the current part
-              (which is the default). This option can be combined with the other
-              options, although combining it with the
-              <span class="texttt">current</span> option obviously makes no
-              sense.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"
-                ><span class="texttt">pausesections</span></span
-              >
-              causes a <span class="texttt">\pause</span> command to be issued
-              before each section. This is useful if you wish to show the table
-              of contents in an incremental way.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"
-                ><span class="texttt">pausesubsections</span></span
-              >
-              causes a <span class="texttt">\pause</span> command to be issued
-              before each subsection.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"
-                ><span class="texttt">sections=</span>{<span class="meta"
-                  ><span class="angle">&langle;</span
-                  ><i>overlay specification</i
-                  ><span class="angle">&rangle;</span></span
-                >}</span
-              >
-              causes only the sections mentioned in the
-              <span class="meta"
-                ><span class="angle">&langle;</span><i>overlay specification</i
-                ><span class="angle">&rangle;</span></span
-              >
-              to be shown. For example,
-              <span class="texttt">sections={&lt;2-4| handout:0&gt;}</span>
-              causes only the second, third, and fourth section to be shown in
-              the normal version, nothing to be shown in the handout version,
-              and everything to be shown in all other versions. For convenience,
-              if you omit the pointed brackets, the specification is assumed to
-              apply to all versions. Thus
-              <span class="texttt">sections={2-4}</span> causes sections two,
-              three, and four to be shown in all versions.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"
-                ><span class="texttt">sectionstyle=</span
-                ><span class="meta"
-                  ><span class="angle">&langle;</span
-                  ><i>style for current section</i
-                  ><span class="angle">&rangle;</span></span
-                ><span class="texttt">/</span
-                ><span class="meta"
-                  ><span class="angle">&langle;</span
-                  ><i>style for other sections</i
-                  ><span class="angle">&rangle;</span></span
-                ></span
-              >
-              specifies how sections should be displayed. Allowed
-              <span class="meta"
-                ><span class="angle">&langle;</span><i>styles</i
-                ><span class="angle">&rangle;</span></span
-              >
-              are <span class="texttt">show</span>,
-              <span class="texttt">shaded</span>, and
-              <span class="texttt">hide</span>. The first will show the section
-              title normally, the second will show it in a semi-transparent way,
-              and the third will completely suppress it. You can also omit the
-              second style, in which case the first is used for all sections
-              (this is not really useful).
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"
-                ><span class="texttt">subsectionstyle=</span
-                ><span class="meta"
-                  ><span class="angle">&langle;</span
-                  ><i>style for current subsection</i
-                  ><span class="angle">&rangle;</span></span
-                ><span class="texttt">/</span
-                ><span class="meta"
-                  ><span class="angle">&langle;</span
-                  ><i>style for other subsections in current section</i
-                  ><span class="angle">&rangle;</span></span
-                ><span class="texttt">/</span><br />
-                <span class="meta"
-                  ><span class="angle">&langle;</span
-                  ><i>style for subsections in other sections</i
-                  ><span class="angle">&rangle;</span></span
-                ></span
-              >
-              specifies how subsections should be displayed. The same styles as
-              for the <span class="texttt">sectionstyle</span> option may be
-              given. You can omit the last style, in which case the second also
-              applies to the last, and you can omit the last two, in which case
-              the first applies to all.
-            </p>
-            <p>
-              <i>Example: </i
-              ><span class="texttt">subsectionstyle=shaded</span> causes all
-              subsections to be shaded.
-            </p>
-            <p>
-              <i>Example: </i
-              ><span class="texttt">subsectionstyle=hide</span> causes all
-              subsections to be hidden.
-            </p>
-            <p>
-              <i>Example: </i
-              ><span class="texttt">subsectionstyle=show/shaded</span> causes
-              all subsections but the current subsection in the current section
-              to be shown in a semi-transparent way.
-            </p>
-            <p>
-              <i>Example: </i
-              ><span class="texttt">subsectionstyle=show/show/hide</span> causes
-              all subsections outside the current section to be suppressed.
-            </p>
-            <p>
-              <i>Example: </i
-              ><span class="texttt">subsectionstyle=show/shaded/hide</span>
-              causes all subsections outside the current section to be
-              suppressed and only the current subsection in the current section
-              to be highlighted.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"
-                ><span class="texttt">subsubsectionstyle=</span
-                ><span class="meta"
-                  ><span class="angle">&langle;</span
-                  ><i>style for current subsubsection</i
-                  ><span class="angle">&rangle;</span></span
-                ><span class="texttt">/</span
-                ><span class="meta"
-                  ><span class="angle">&langle;</span
-                  ><i>style for other subsubsections in current subsection</i
-                  ><span class="angle">&rangle;</span></span
-                ><span class="texttt">/</span><br />
-                <span class="meta"
-                  ><span class="angle">&langle;</span
-                  ><i
-                    >style for subsubsections in other subsections in current
-                    section</i
-                  ><span class="angle">&rangle;</span></span
-                ><span class="texttt">/</span
-                ><span class="meta"
-                  ><span class="angle">&langle;</span
-                  ><i
-                    >style for subsubsections in other subsections in other
-                    sections</i
-                  ><span class="angle">&rangle;</span></span
-                ></span
-              >
-              specifies how subsubsections should be displayed. The same styles
-              as for the <span class="texttt">sectionstyle</span> option may be
-              given. You can omit styles from the end of the list, in which case
-              the last given style will also be applied to the omitted styles.
-              This option operates in an analogous manner to
-              <span class="texttt">subsectionstyle</span>.
-            </p>
-
+                >
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">currentsubsection</span></span
+                  >
+                  causes all subsections but the current subsection in the
+                  current section to be shown in a semi-transparent way. This
+                  command is a shorthand for specifying the option
+                  <span class="texttt">subsectionstyle=show/shaded</span>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">firstsection=</span
+                    ><span class="meta"
+                      ><span class="angle">&langle;</span><i>section number</i
+                      ><span class="angle">&rangle;</span></span
+                    ></span
+                  >
+                  specifies which section should be numbered as
+                  section&nbsp;&ldquo;1.&rdquo; This is useful if you have a
+                  first section (like an overview section) that should not
+                  receive a number. Section numbers are not shown by default. To
+                  show them, you must install a different table of contents
+                  templates.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">hideallsubsections</span></span
+                  >
+                  causes all subsections to be hidden. This command is a
+                  shorthand for specifying the option
+                  <span class="texttt">subsectionstyle=hide</span>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">hideothersubsections</span></span
+                  >
+                  causes the subsections of sections other than the current one
+                  to be hidden. This command is a shorthand for specifying the
+                  option
+                  <span class="texttt">subsectionstyle=show/show/hide</span>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">lastsection=</span
+                    ><span class="meta"
+                      ><span class="angle">&langle;</span><i>section number</i
+                      ><span class="angle">&rangle;</span></span
+                    ></span
+                  >
+                  similar to <span class="texttt">firstsection</span>, this
+                  option specifies which section should be the last numbered
+                  section. This is useful if you have unnumbered sections at the
+                  end, like a summary or outlook. Section numbers are not shown
+                  by default. To show them, you must install a different table
+                  of contents templates.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">part=</span
+                    ><span class="meta"
+                      ><span class="angle">&langle;</span><i>part number</i
+                      ><span class="angle">&rangle;</span></span
+                    ></span
+                  >
+                  causes the table of contents of part
+                  <span class="meta"
+                    ><span class="angle">&langle;</span><i>part number</i
+                    ><span class="angle">&rangle;</span></span
+                  >
+                  to be shown, instead of the table of contents of the current
+                  part (which is the default). This option can be combined with
+                  the other options, although combining it with the
+                  <span class="texttt">current</span> option obviously makes no
+                  sense.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">pausesections</span></span
+                  >
+                  causes a <span class="texttt">\pause</span> command to be
+                  issued before each section. This is useful if you wish to show
+                  the table of contents in an incremental way.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">pausesubsections</span></span
+                  >
+                  causes a <span class="texttt">\pause</span> command to be
+                  issued before each subsection.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">sections=</span>{<span class="meta"
+                      ><span class="angle">&langle;</span
+                      ><i>overlay specification</i
+                      ><span class="angle">&rangle;</span></span
+                    >}</span
+                  >
+                  causes only the sections mentioned in the
+                  <span class="meta"
+                    ><span class="angle">&langle;</span
+                    ><i>overlay specification</i
+                    ><span class="angle">&rangle;</span></span
+                  >
+                  to be shown. For example,
+                  <span class="texttt">sections={&lt;2-4| handout:0&gt;}</span>
+                  causes only the second, third, and fourth section to be shown
+                  in the normal version, nothing to be shown in the handout
+                  version, and everything to be shown in all other versions. For
+                  convenience, if you omit the pointed brackets, the
+                  specification is assumed to apply to all versions. Thus
+                  <span class="texttt">sections={2-4}</span> causes sections
+                  two, three, and four to be shown in all versions.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">sectionstyle=</span
+                    ><span class="meta"
+                      ><span class="angle">&langle;</span
+                      ><i>style for current section</i
+                      ><span class="angle">&rangle;</span></span
+                    ><span class="texttt">/</span
+                    ><span class="meta"
+                      ><span class="angle">&langle;</span
+                      ><i>style for other sections</i
+                      ><span class="angle">&rangle;</span></span
+                    ></span
+                  >
+                  specifies how sections should be displayed. Allowed
+                  <span class="meta"
+                    ><span class="angle">&langle;</span><i>styles</i
+                    ><span class="angle">&rangle;</span></span
+                  >
+                  are <span class="texttt">show</span>,
+                  <span class="texttt">shaded</span>, and
+                  <span class="texttt">hide</span>. The first will show the
+                  section title normally, the second will show it in a
+                  semi-transparent way, and the third will completely suppress
+                  it. You can also omit the second style, in which case the
+                  first is used for all sections (this is not really useful).
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">subsectionstyle=</span
+                    ><span class="meta"
+                      ><span class="angle">&langle;</span
+                      ><i>style for current subsection</i
+                      ><span class="angle">&rangle;</span></span
+                    ><span class="texttt">/</span
+                    ><span class="meta"
+                      ><span class="angle">&langle;</span
+                      ><i>style for other subsections in current section</i
+                      ><span class="angle">&rangle;</span></span
+                    ><span class="texttt">/</span><br />
+                    <span class="meta"
+                      ><span class="angle">&langle;</span
+                      ><i>style for subsections in other sections</i
+                      ><span class="angle">&rangle;</span></span
+                    ></span
+                  >
+                  specifies how subsections should be displayed. The same styles
+                  as for the <span class="texttt">sectionstyle</span> option may
+                  be given. You can omit the last style, in which case the
+                  second also applies to the last, and you can omit the last
+                  two, in which case the first applies to all.
+                </p>
+                <p>
+                  <i>Example: </i
+                  ><span class="texttt">subsectionstyle=shaded</span> causes all
+                  subsections to be shaded.
+                </p>
+                <p>
+                  <i>Example: </i
+                  ><span class="texttt">subsectionstyle=hide</span> causes all
+                  subsections to be hidden.
+                </p>
+                <p>
+                  <i>Example: </i
+                  ><span class="texttt">subsectionstyle=show/shaded</span>
+                  causes all subsections but the current subsection in the
+                  current section to be shown in a semi-transparent way.
+                </p>
+                <p>
+                  <i>Example: </i
+                  ><span class="texttt">subsectionstyle=show/show/hide</span>
+                  causes all subsections outside the current section to be
+                  suppressed.
+                </p>
+                <p>
+                  <i>Example: </i
+                  ><span class="texttt">subsectionstyle=show/shaded/hide</span>
+                  causes all subsections outside the current section to be
+                  suppressed and only the current subsection in the current
+                  section to be highlighted.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">subsubsectionstyle=</span
+                    ><span class="meta"
+                      ><span class="angle">&langle;</span
+                      ><i>style for current subsubsection</i
+                      ><span class="angle">&rangle;</span></span
+                    ><span class="texttt">/</span
+                    ><span class="meta"
+                      ><span class="angle">&langle;</span
+                      ><i
+                        >style for other subsubsections in current subsection</i
+                      ><span class="angle">&rangle;</span></span
+                    ><span class="texttt">/</span><br />
+                    <span class="meta"
+                      ><span class="angle">&langle;</span
+                      ><i
+                        >style for subsubsections in other subsections in
+                        current section</i
+                      ><span class="angle">&rangle;</span></span
+                    ><span class="texttt">/</span
+                    ><span class="meta"
+                      ><span class="angle">&langle;</span
+                      ><i
+                        >style for subsubsections in other subsections in other
+                        sections</i
+                      ><span class="angle">&rangle;</span></span
+                    ></span
+                  >
+                  specifies how subsubsections should be displayed. The same
+                  styles as for the
+                  <span class="texttt">sectionstyle</span> option may be given.
+                  You can omit styles from the end of the list, in which case
+                  the last given style will also be applied to the omitted
+                  styles. This option operates in an analogous manner to
+                  <span class="texttt">subsectionstyle</span>.
+                </p>
+              </li>
+            </ul>
             <p>
               The last examples are useful if you do not wish to show too many
               details when presenting the talk outline.
@@ -2157,90 +2230,101 @@ sectionstyle=show/shaded,subsectionstyle=show/show/shaded
                 children (with the same arguments).
               </p>
               <p>The following template options are predefined:</p>
-
-              <p>
-                &bull;
-                <span class="itemoption"
-                  ><kbd>[<span class="declare">default</span>]</kbd></span
-                >
-                In the default setting, the sections and subsections are typeset
-                using the fonts and colors
-                <span class="texttt">section in toc</span> and
-                <span class="texttt">subsection in toc</span>, though the
-                background colors are ignored. The subsections are indented.
-              </p>
-
-              <p>
-                &bull;
-                <span class="itemoption"
-                  ><kbd
-                    >[<span class="declare">sections numbered</span>]</kbd
-                  ></span
-                >
-                Similar to the default setting, but the section numbers are also
-                shown. The subsections are not numbered.
-              </p>
-
-              <p>
-                &bull;
-                <span class="itemoption"
-                  ><kbd
-                    >[<span class="declare">subsections numbered</span>]</kbd
-                  ></span
-                >
-                This time, the subsections are numbered, but not the sections.
-                Nevertheless, since the subsections are &ldquo;fully
-                numbered&rdquo; as in &ldquo;1.2&rdquo; or &ldquo;3.2,&rdquo; if
-                every section has at least one subsection, the section numbered
-                will not really be missed.
-              </p>
-
-              <p>
-                &bull;
-                <span class="itemoption"
-                  ><kbd>[<span class="declare">circle</span>]</kbd></span
-                >
-                Draws little circles before the sections. Inside the circles the
-                section number is shown. The
-                <span class="beamer-name"
-                  ><span class="textsc">beamer</span></span
-                >-font and color
-                <span class="texttt">section number projected</span> is used for
-                typesetting the circles, that is, the circle gets the background
-                color and the text inside the circle the foreground color.
-              </p>
-
-              <p>
-                &bull;
-                <span class="itemoption"
-                  ><kbd>[<span class="declare">square</span>]</kbd></span
-                >
-                Similar to the <span class="texttt">circle</span> option, except
-                that small squares are used instead of circles. Small,
-                unnumbered squares are shown in front of the subsections.
-              </p>
-
-              <p>
-                &bull;
-                <span class="itemoption"
-                  ><kbd>[<span class="declare">ball</span>]</kbd></span
-                >
-                Like <span class="texttt">square</span>, the only difference
-                being the balls are used instead of squares.
-              </p>
-
-              <p>
-                &bull;
-                <span class="itemoption"
-                  ><kbd
-                    >[<span class="declare">ball unnumbered</span>]</kbd
-                  ></span
-                >
-                Similar to <span class="texttt">ball</span>, except that no
-                numbering is used. This option makes the table of contents look
-                more like an <span class="texttt">itemize</span>.
-              </p>
-
+              <ul style="list-style-type: none">
+                <li>
+                  <p>
+                    &bull;
+                    <span class="itemoption"
+                      ><kbd>[<span class="declare">default</span>]</kbd></span
+                    >
+                    In the default setting, the sections and subsections are
+                    typeset using the fonts and colors
+                    <span class="texttt">section in toc</span> and
+                    <span class="texttt">subsection in toc</span>, though the
+                    background colors are ignored. The subsections are indented.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    &bull;
+                    <span class="itemoption"
+                      ><kbd
+                        >[<span class="declare">sections numbered</span>]</kbd
+                      ></span
+                    >
+                    Similar to the default setting, but the section numbers are
+                    also shown. The subsections are not numbered.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    &bull;
+                    <span class="itemoption"
+                      ><kbd
+                        >[<span class="declare">subsections numbered</span
+                        >]</kbd
+                      ></span
+                    >
+                    This time, the subsections are numbered, but not the
+                    sections. Nevertheless, since the subsections are
+                    &ldquo;fully numbered&rdquo; as in &ldquo;1.2&rdquo; or
+                    &ldquo;3.2,&rdquo; if every section has at least one
+                    subsection, the section numbered will not really be missed.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    &bull;
+                    <span class="itemoption"
+                      ><kbd>[<span class="declare">circle</span>]</kbd></span
+                    >
+                    Draws little circles before the sections. Inside the circles
+                    the section number is shown. The
+                    <span class="beamer-name"
+                      ><span class="textsc">beamer</span></span
+                    >-font and color
+                    <span class="texttt">section number projected</span> is used
+                    for typesetting the circles, that is, the circle gets the
+                    background color and the text inside the circle the
+                    foreground color.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    &bull;
+                    <span class="itemoption"
+                      ><kbd>[<span class="declare">square</span>]</kbd></span
+                    >
+                    Similar to the <span class="texttt">circle</span> option,
+                    except that small squares are used instead of circles.
+                    Small, unnumbered squares are shown in front of the
+                    subsections.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    &bull;
+                    <span class="itemoption"
+                      ><kbd>[<span class="declare">ball</span>]</kbd></span
+                    >
+                    Like <span class="texttt">square</span>, the only difference
+                    being the balls are used instead of squares.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    &bull;
+                    <span class="itemoption"
+                      ><kbd
+                        >[<span class="declare">ball unnumbered</span>]</kbd
+                      ></span
+                    >
+                    Similar to <span class="texttt">ball</span>, except that no
+                    numbering is used. This option makes the table of contents
+                    look more like an <span class="texttt">itemize</span>.
+                  </p>
+                </li>
+              </ul>
               <p>
                 If none of the above options suits you, you have to change the
                 templates <span class="texttt">section in toc</span> and
@@ -2265,36 +2349,40 @@ sectionstyle=show/shaded,subsectionstyle=show/show/shaded
                 <span class="texttt">\tableofcontents[currentsubsection]</span>.
               </p>
               <p>The following template options are predefined:</p>
-
-              <p>
-                &bull;
-                <span class="itemoption"
-                  ><kbd>[<span class="declare">default</span>]</kbd
-                  ><span class="opt"
-                    ><span class="oarg-left-bracket">[</span
-                    ><span class="meta"
+              <ul style="list-style-type: none">
+                <li>
+                  <p>
+                    &bull;
+                    <span class="itemoption"
+                      ><kbd>[<span class="declare">default</span>]</kbd
+                      ><span class="opt"
+                        ><span class="oarg-left-bracket">[</span
+                        ><span class="meta"
+                          ><span class="angle">&langle;</span><i>opaqueness</i
+                          ><span class="angle">&rangle;</span></span
+                        ><span class="oarg-right-bracket">]</span></span
+                      ></span
+                    >
+                    In the default setting, the templates
+                    <span class="texttt">section in toc shaded</span> and
+                    <span class="texttt">subsection in toc shaded</span> just
+                    show whatever the nonshaded versions of these templates
+                    show, but only
+                    <span class="meta"
                       ><span class="angle">&langle;</span><i>opaqueness</i
                       ><span class="angle">&rangle;</span></span
-                    ><span class="oarg-right-bracket">]</span></span
-                  ></span
-                >
-                In the default setting, the templates
-                <span class="texttt">section in toc shaded</span> and
-                <span class="texttt">subsection in toc shaded</span> just show
-                whatever the nonshaded versions of these templates show, but
-                only
-                <span class="meta"
-                  ><span class="angle">&langle;</span><i>opaqueness</i
-                  ><span class="angle">&rangle;</span></span
-                >% opaque. The default is 20%.
-              </p>
-              <p>
-                <i>Example: </i
-                ><span class="texttt"
-                  >\setbeamertemplate{section in toc shaded}[default][50]</span
-                >
-                makes dimmed entries 50% transparent.
-              </p>
+                    >% opaque. The default is 20%.
+                  </p>
+                  <p>
+                    <i>Example: </i
+                    ><span class="texttt"
+                      >\setbeamertemplate{section in toc
+                      shaded}[default][50]</span
+                    >
+                    makes dimmed entries 50% transparent.
+                  </p>
+                </li>
+              </ul>
             </div>
           </div>
           <!--
@@ -2597,69 +2685,79 @@ sectionstyle=show/shaded,subsectionstyle=show/show/shaded
                 talk.
               </p>
               <p>The following template options are predefined:</p>
-
-              <p>
-                &bull;
-                <span class="itemoption"
-                  ><kbd>[<span class="declare">default</span>]</kbd></span
-                >
-                Draws a cute little article icon as the reference. Use this for
-                journal articles, parts of books (like conference proceedings),
-                or technical reports.
-              </p>
-
-              <p>
-                &bull;
-                <span class="itemoption"
-                  ><kbd>[<span class="declare">article</span>]</kbd></span
-                >
-                Alias for the default.
-              </p>
-
-              <p>
-                &bull;
-                <span class="itemoption"
-                  ><kbd>[<span class="declare">book</span>]</kbd></span
-                >
-                Draws a cute little book icon as the reference. Use this for,
-                well, books.
-              </p>
-
-              <p>
-                &bull;
-                <span class="itemoption"
-                  ><kbd>[<span class="declare">online</span>]</kbd></span
-                >
-                Draws a cute little globe icon as the reference. Use this for
-                websites and the like.
-              </p>
-
-              <p>
-                &bull;
-                <span class="itemoption"
-                  ><kbd>[<span class="declare">triangle</span>]</kbd></span
-                >
-                Draws a triangle as the reference. This is more in keeping with
-                the standard itemize items.
-              </p>
-
-              <p>
-                &bull;
-                <span class="itemoption"
-                  ><kbd>[<span class="declare">text</span>]</kbd></span
-                >
-                Uses the reference text (like &ldquo;[Dijkstra, 1982]&rdquo;) as
-                the reference text. Be sure you know what you are doing if you
-                use this.
-              </p>
-
+              <ul style="list-style-type: none">
+                <li>
+                  <p>
+                    &bull;
+                    <span class="itemoption"
+                      ><kbd>[<span class="declare">default</span>]</kbd></span
+                    >
+                    Draws a cute little article icon as the reference. Use this
+                    for journal articles, parts of books (like conference
+                    proceedings), or technical reports.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    &bull;
+                    <span class="itemoption"
+                      ><kbd>[<span class="declare">article</span>]</kbd></span
+                    >
+                    Alias for the default.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    &bull;
+                    <span class="itemoption"
+                      ><kbd>[<span class="declare">book</span>]</kbd></span
+                    >
+                    Draws a cute little book icon as the reference. Use this
+                    for, well, books.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    &bull;
+                    <span class="itemoption"
+                      ><kbd>[<span class="declare">online</span>]</kbd></span
+                    >
+                    Draws a cute little globe icon as the reference. Use this
+                    for websites and the like.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    &bull;
+                    <span class="itemoption"
+                      ><kbd>[<span class="declare">triangle</span>]</kbd></span
+                    >
+                    Draws a triangle as the reference. This is more in keeping
+                    with the standard itemize items.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    &bull;
+                    <span class="itemoption"
+                      ><kbd>[<span class="declare">text</span>]</kbd></span
+                    >
+                    Uses the reference text (like &ldquo;[Dijkstra,
+                    1982]&rdquo;) as the reference text. Be sure you know what
+                    you are doing if you use this.
+                  </p>
+                </li>
+              </ul>
               <p>The following insert is useful for the template:</p>
-
-              <p>
-                &bull;
-                <kbd><span class="declare">\insertbiblabel</span></kbd> inserts
-                the current citation label.
-              </p>
+              <ul style="list-style-type: none">
+                <li>
+                  <p>
+                    &bull;
+                    <kbd><span class="declare">\insertbiblabel</span></kbd>
+                    inserts the current citation label.
+                  </p>
+                </li>
+              </ul>
             </div>
           </div>
           <!--
@@ -2760,21 +2858,18 @@ sectionstyle=show/shaded,subsectionstyle=show/show/shaded
           <a href="https://github.com/SwitWu/beamer-html-manual">Repository</a>
         </div>
         <div class="footer-right">
-          <em>HTML version last updated: 2023-10-10</em>
+          <em>HTML version last updated: 2023-10-11</em>
         </div>
       </footer>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
-    <script>
+    <script type="text/javascript">
       docsearch({
         apiKey: "09762da49fe4ba391f7a3618c73720d8",
         indexName: "beamerplusio",
         appId: "WNNAN5R8GM",
         container: "#search",
-        searchParameters: {
-          filters: "tags:beamer",
-        },
       });
     </script>
   </body>

@@ -6,7 +6,7 @@
     <meta content="LaTeX Lwarp package" name="generator" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Fonts - Beamer Manual</title>
-    <link href="style.css?v=20231010" rel="stylesheet" type="text/css" />
+    <link href="style.css?v=20231011" rel="stylesheet" type="text/css" />
     <link
       href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
       rel="stylesheet"
@@ -1191,233 +1191,251 @@
               >
               may be given:
             </p>
-
-            <p>
-              &bull;
-              <span class="declare"
-                ><span class="texttt">size=</span
-                ><span class="meta"
-                  ><span class="angle">&langle;</span><i>size command</i
-                  ><span class="angle">&rangle;</span></span
-                ></span
-              >
-              sets the size attribute of the
-              <span class="beamer-name"
-                ><span class="textsc">beamer</span></span
-              >
-              font. The
-              <span class="meta"
-                ><span class="angle">&langle;</span><i>size command</i
-                ><span class="angle">&rangle;</span></span
-              >
-              should be a normal
-              <span class="latexlogofont"
-                ><span class="latexlogo"
-                  >L<span class="latexlogosup">a</span>T<span
-                    class="latexlogosub"
-                    >e</span
-                  >X</span
-                ></span
-              >-command used for setting the font size or it should be empty.
-              Useful commands include <span class="texttt">\tiny</span>,
-              <span class="texttt">\scriptsize</span>,
-              <span class="texttt">\footnotesize</span>,
-              <span class="texttt">\small</span>,
-              <span class="texttt">\normalsize</span>,
-              <span class="texttt">\large</span>,
-              <span class="texttt">\Large</span>,
-              <span class="texttt">\huge</span>, and
-              <span class="texttt">\Huge</span>.
-              <span class="beamer-name"
-                ><span class="textsc">beamer</span></span
-              >
-              also introduces the two font sizes
-              <span class="texttt">\Tiny</span> and
-              <span class="texttt">\TINY</span> for <em>really</em> small text.
-              But you should know <em>exactly</em> what you are doing if you use
-              them. You have been warned.
-            </p>
-            <p>
-              Note that there is a difference between specifying an empty
-              command and specifying <span class="texttt">\normalsize</span>:
-              Making the size attribute &ldquo;empty&rdquo; means that the font
-              size should not be changed when this font is used, while
-              specifying <span class="texttt">\normalsize</span> means that the
-              size should be set to the normal size whenever this font is used.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"
-                ><span class="texttt">size*=</span>{<span class="meta"
-                  ><span class="angle">&langle;</span><i>size in pt</i
-                  ><span class="angle">&rangle;</span></span
-                >}{<span class="meta"
-                  ><span class="angle">&langle;</span><i>baselineskip</i
-                  ><span class="angle">&rangle;</span></span
-                >}</span
-              >
-              sets the size attribute of the font to the given
-              <span class="meta"
-                ><span class="angle">&langle;</span><i>size in pt</i
-                ><span class="angle">&rangle;</span></span
-              >
-              and the baseline skip to the given value. Note that, depending on
-              what kind of font you use, not all font sizes may be available.
-              Also, certain font sizes are much less desirable than other ones;
-              the standard commands take care of choosing appropriate sizes for
-              you. Do not use this option unless you have a good reason. This
-              command has the same effect as
-              <span class="texttt">size={\fontsize</span>{<span class="meta"
-                ><span class="angle">&langle;</span><i>size in pt</i
-                ><span class="angle">&rangle;</span></span
-              >}{<span class="meta"
-                ><span class="angle">&langle;</span><i>baselineskip</i
-                ><span class="angle">&rangle;</span></span
-              >}<span class="texttt">}</span>.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"
-                ><span class="texttt">shape=</span
-                ><span class="meta"
-                  ><span class="angle">&langle;</span><i>shape command</i
-                  ><span class="angle">&rangle;</span></span
-                ></span
-              >
-              sets the shape attribute of the font. The command should be a
-              command like <span class="texttt">\itshape</span>,
-              <span class="texttt">\slshape</span>,
-              <span class="texttt">\scshape</span>, or
-              <span class="texttt">\upshape</span>.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"
-                ><span class="texttt">shape*=</span>{<span class="meta"
-                  ><span class="angle">&langle;</span
-                  ><i>shape attribute abbreviation</i
-                  ><span class="angle">&rangle;</span></span
-                >}</span
-              >
-              sets the shape attribute of the font using the
-              <span class="latexlogofont"
-                ><span class="latexlogo"
-                  >L<span class="latexlogosup">a</span>T<span
-                    class="latexlogosub"
-                    >e</span
-                  >X</span
-                ></span
-              >&rsquo;s abbreviations for attributes. This command has the same
-              effect as <span class="texttt">shape={\fontshape</span>{<span
-                class="meta"
-                ><span class="angle">&langle;</span
-                ><i>shape attributes abbreviation</i
-                ><span class="angle">&rangle;</span></span
-              >}<span class="texttt">}</span>.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"
-                ><span class="texttt">series=</span
-                ><span class="meta"
-                  ><span class="angle">&langle;</span><i>series command</i
-                  ><span class="angle">&rangle;</span></span
-                ></span
-              >
-              sets the &ldquo;series&rdquo; attribute of the font. The command
-              should be a command like <span class="texttt">\bfseries</span>.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"
-                ><span class="texttt">series*=</span>{<span class="meta"
-                  ><span class="angle">&langle;</span
-                  ><i>series attribute abbreviation</i
-                  ><span class="angle">&rangle;</span></span
-                >}</span
-              >
-              has the same effect as
-              <span class="texttt">series={\fontseries</span>{<span class="meta"
-                ><span class="angle">&langle;</span
-                ><i>series attributes abbreviation</i
-                ><span class="angle">&rangle;</span></span
-              >}<span class="texttt">}</span>.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"
-                ><span class="texttt">family=</span
-                ><span class="meta"
-                  ><span class="angle">&langle;</span><i>family command</i
-                  ><span class="angle">&rangle;</span></span
-                ></span
-              >
-              sets the font family attribute. The command should be a
-              <span class="latexlogofont"
-                ><span class="latexlogo"
-                  >L<span class="latexlogosup">a</span>T<span
-                    class="latexlogosub"
-                    >e</span
-                  >X</span
-                ></span
-              >-font command like <span class="texttt">\rmfamily</span> or
-              <span class="texttt">\sffamily</span>.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"
-                ><span class="texttt">family*=</span>{<span class="meta"
-                  ><span class="angle">&langle;</span><i>family name</i
-                  ><span class="angle">&rangle;</span></span
-                >}</span
-              >
-              sets the font family attribute to the given
-              <span class="meta"
-                ><span class="angle">&langle;</span><i>family name</i
-                ><span class="angle">&rangle;</span></span
-              >. The command has the same effect as
-              <span class="texttt">family={\fontfamily</span>{<span class="meta"
-                ><span class="angle">&langle;</span><i>family name</i
-                ><span class="angle">&rangle;</span></span
-              >}<span class="texttt">}</span>. The
-              <span class="meta"
-                ><span class="angle">&langle;</span><i>family name</i
-                ><span class="angle">&rangle;</span></span
-              >
-              is, normally, a somewhat cryptic abbreviation of a font family
-              name that installed somewhere on the system. For example, the
-              <span class="meta"
-                ><span class="angle">&langle;</span><i>family name</i
-                ><span class="angle">&rangle;</span></span
-              >
-              for Times happens to be <span class="texttt">ptm</span>. No one
-              can remember these names, so it&rsquo;s perfectly normal if you
-              have to look them up laboriously.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"
-                ><span class="texttt">parent=</span>{<span class="meta"
-                  ><span class="angle">&langle;</span><i>parent list</i
-                  ><span class="angle">&rangle;</span></span
-                >}</span
-              >
-              specifies a list of parent fonts. When the
-              <span class="beamer-name"><span class="textsc">beamer</span></span
-              >-font is used, the parents are used first. Thus, any font
-              attributes set by one of the parents is inherited by the
-              <span class="beamer-name"><span class="textsc">beamer</span></span
-              >-font, except if this attribute is overwritten by the font.
-            </p>
-
+            <ul style="list-style-type: none">
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">size=</span
+                    ><span class="meta"
+                      ><span class="angle">&langle;</span><i>size command</i
+                      ><span class="angle">&rangle;</span></span
+                    ></span
+                  >
+                  sets the size attribute of the
+                  <span class="beamer-name"
+                    ><span class="textsc">beamer</span></span
+                  >
+                  font. The
+                  <span class="meta"
+                    ><span class="angle">&langle;</span><i>size command</i
+                    ><span class="angle">&rangle;</span></span
+                  >
+                  should be a normal
+                  <span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >L<span class="latexlogosup">a</span>T<span
+                        class="latexlogosub"
+                        >e</span
+                      >X</span
+                    ></span
+                  >-command used for setting the font size or it should be
+                  empty. Useful commands include
+                  <span class="texttt">\tiny</span>,
+                  <span class="texttt">\scriptsize</span>,
+                  <span class="texttt">\footnotesize</span>,
+                  <span class="texttt">\small</span>,
+                  <span class="texttt">\normalsize</span>,
+                  <span class="texttt">\large</span>,
+                  <span class="texttt">\Large</span>,
+                  <span class="texttt">\huge</span>, and
+                  <span class="texttt">\Huge</span>.
+                  <span class="beamer-name"
+                    ><span class="textsc">beamer</span></span
+                  >
+                  also introduces the two font sizes
+                  <span class="texttt">\Tiny</span> and
+                  <span class="texttt">\TINY</span> for <em>really</em> small
+                  text. But you should know <em>exactly</em> what you are doing
+                  if you use them. You have been warned.
+                </p>
+                <p>
+                  Note that there is a difference between specifying an empty
+                  command and specifying
+                  <span class="texttt">\normalsize</span>: Making the size
+                  attribute &ldquo;empty&rdquo; means that the font size should
+                  not be changed when this font is used, while specifying
+                  <span class="texttt">\normalsize</span> means that the size
+                  should be set to the normal size whenever this font is used.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">size*=</span>{<span class="meta"
+                      ><span class="angle">&langle;</span><i>size in pt</i
+                      ><span class="angle">&rangle;</span></span
+                    >}{<span class="meta"
+                      ><span class="angle">&langle;</span><i>baselineskip</i
+                      ><span class="angle">&rangle;</span></span
+                    >}</span
+                  >
+                  sets the size attribute of the font to the given
+                  <span class="meta"
+                    ><span class="angle">&langle;</span><i>size in pt</i
+                    ><span class="angle">&rangle;</span></span
+                  >
+                  and the baseline skip to the given value. Note that, depending
+                  on what kind of font you use, not all font sizes may be
+                  available. Also, certain font sizes are much less desirable
+                  than other ones; the standard commands take care of choosing
+                  appropriate sizes for you. Do not use this option unless you
+                  have a good reason. This command has the same effect as
+                  <span class="texttt">size={\fontsize</span>{<span class="meta"
+                    ><span class="angle">&langle;</span><i>size in pt</i
+                    ><span class="angle">&rangle;</span></span
+                  >}{<span class="meta"
+                    ><span class="angle">&langle;</span><i>baselineskip</i
+                    ><span class="angle">&rangle;</span></span
+                  >}<span class="texttt">}</span>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">shape=</span
+                    ><span class="meta"
+                      ><span class="angle">&langle;</span><i>shape command</i
+                      ><span class="angle">&rangle;</span></span
+                    ></span
+                  >
+                  sets the shape attribute of the font. The command should be a
+                  command like <span class="texttt">\itshape</span>,
+                  <span class="texttt">\slshape</span>,
+                  <span class="texttt">\scshape</span>, or
+                  <span class="texttt">\upshape</span>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">shape*=</span>{<span class="meta"
+                      ><span class="angle">&langle;</span
+                      ><i>shape attribute abbreviation</i
+                      ><span class="angle">&rangle;</span></span
+                    >}</span
+                  >
+                  sets the shape attribute of the font using the
+                  <span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >L<span class="latexlogosup">a</span>T<span
+                        class="latexlogosub"
+                        >e</span
+                      >X</span
+                    ></span
+                  >&rsquo;s abbreviations for attributes. This command has the
+                  same effect as
+                  <span class="texttt">shape={\fontshape</span>{<span
+                    class="meta"
+                    ><span class="angle">&langle;</span
+                    ><i>shape attributes abbreviation</i
+                    ><span class="angle">&rangle;</span></span
+                  >}<span class="texttt">}</span>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">series=</span
+                    ><span class="meta"
+                      ><span class="angle">&langle;</span><i>series command</i
+                      ><span class="angle">&rangle;</span></span
+                    ></span
+                  >
+                  sets the &ldquo;series&rdquo; attribute of the font. The
+                  command should be a command like
+                  <span class="texttt">\bfseries</span>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">series*=</span>{<span class="meta"
+                      ><span class="angle">&langle;</span
+                      ><i>series attribute abbreviation</i
+                      ><span class="angle">&rangle;</span></span
+                    >}</span
+                  >
+                  has the same effect as
+                  <span class="texttt">series={\fontseries</span>{<span
+                    class="meta"
+                    ><span class="angle">&langle;</span
+                    ><i>series attributes abbreviation</i
+                    ><span class="angle">&rangle;</span></span
+                  >}<span class="texttt">}</span>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">family=</span
+                    ><span class="meta"
+                      ><span class="angle">&langle;</span><i>family command</i
+                      ><span class="angle">&rangle;</span></span
+                    ></span
+                  >
+                  sets the font family attribute. The command should be a
+                  <span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >L<span class="latexlogosup">a</span>T<span
+                        class="latexlogosub"
+                        >e</span
+                      >X</span
+                    ></span
+                  >-font command like <span class="texttt">\rmfamily</span> or
+                  <span class="texttt">\sffamily</span>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">family*=</span>{<span class="meta"
+                      ><span class="angle">&langle;</span><i>family name</i
+                      ><span class="angle">&rangle;</span></span
+                    >}</span
+                  >
+                  sets the font family attribute to the given
+                  <span class="meta"
+                    ><span class="angle">&langle;</span><i>family name</i
+                    ><span class="angle">&rangle;</span></span
+                  >. The command has the same effect as
+                  <span class="texttt">family={\fontfamily</span>{<span
+                    class="meta"
+                    ><span class="angle">&langle;</span><i>family name</i
+                    ><span class="angle">&rangle;</span></span
+                  >}<span class="texttt">}</span>. The
+                  <span class="meta"
+                    ><span class="angle">&langle;</span><i>family name</i
+                    ><span class="angle">&rangle;</span></span
+                  >
+                  is, normally, a somewhat cryptic abbreviation of a font family
+                  name that installed somewhere on the system. For example, the
+                  <span class="meta"
+                    ><span class="angle">&langle;</span><i>family name</i
+                    ><span class="angle">&rangle;</span></span
+                  >
+                  for Times happens to be <span class="texttt">ptm</span>. No
+                  one can remember these names, so it&rsquo;s perfectly normal
+                  if you have to look them up laboriously.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">parent=</span>{<span class="meta"
+                      ><span class="angle">&langle;</span><i>parent list</i
+                      ><span class="angle">&rangle;</span></span
+                    >}</span
+                  >
+                  specifies a list of parent fonts. When the
+                  <span class="beamer-name"
+                    ><span class="textsc">beamer</span></span
+                  >-font is used, the parents are used first. Thus, any font
+                  attributes set by one of the parents is inherited by the
+                  <span class="beamer-name"
+                    ><span class="textsc">beamer</span></span
+                  >-font, except if this attribute is overwritten by the font.
+                </p>
+              </li>
+            </ul>
             <p>
               <i>Example: </i>
             </p>
@@ -1459,21 +1477,18 @@ This text is small and bold.
           <a href="https://github.com/SwitWu/beamer-html-manual">Repository</a>
         </div>
         <div class="footer-right">
-          <em>HTML version last updated: 2023-10-10</em>
+          <em>HTML version last updated: 2023-10-11</em>
         </div>
       </footer>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
-    <script>
+    <script type="text/javascript">
       docsearch({
         apiKey: "09762da49fe4ba391f7a3618c73720d8",
         indexName: "beamerplusio",
         appId: "WNNAN5R8GM",
         container: "#search",
-        searchParameters: {
-          filters: "tags:beamer",
-        },
       });
     </script>
   </body>

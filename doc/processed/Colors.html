@@ -6,7 +6,7 @@
     <meta content="LaTeX Lwarp package" name="generator" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Colors - Beamer Manual</title>
-    <link href="style.css?v=20231010" rel="stylesheet" type="text/css" />
+    <link href="style.css?v=20231011" rel="stylesheet" type="text/css" />
     <link
       href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
       rel="stylesheet"
@@ -1638,95 +1638,99 @@
               >
               may be given:
             </p>
-
-            <p>
-              &bull;
-              <span class="declare"
-                ><span class="texttt">fg=</span
-                ><span class="meta"
-                  ><span class="angle">&langle;</span><i>color</i
-                  ><span class="angle">&rangle;</span></span
-                ></span
-              >
-              sets the foreground color of
-              <span class="meta"
-                ><span class="angle">&langle;</span><i>beamer-color name</i
-                ><span class="angle">&rangle;</span></span
-              >
-              to the given (normal)
-              <span class="meta"
-                ><span class="angle">&langle;</span><i>color</i
-                ><span class="angle">&rangle;</span></span
-              >. The
-              <span class="meta"
-                ><span class="angle">&langle;</span><i>color</i
-                ><span class="angle">&rangle;</span></span
-              >
-              may also be a color expression like
-              <span class="texttt">red!50!black</span>, see the manual of the
-              <span class="textsc">xcolor</span> package. If
-              <span class="meta"
-                ><span class="angle">&langle;</span><i>color</i
-                ><span class="angle">&rangle;</span></span
-              >
-              is empty, the
-              <span class="meta"
-                ><span class="angle">&langle;</span><i>beamer-color name</i
-                ><span class="angle">&rangle;</span></span
-              >
-              &ldquo;has no special foreground&rdquo; and when the color is
-              used, the foreground currently in force should not be changed.
-            </p>
-            <p>
-              Specifying a foreground this way will override any inherited
-              foreground color.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"
-                ><span class="texttt">bg=</span
-                ><span class="meta"
-                  ><span class="angle">&langle;</span><i>color</i
-                  ><span class="angle">&rangle;</span></span
-                ></span
-              >
-              does the same as the <span class="texttt">fg</span> option, but
-              for the background.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"
-                ><span class="texttt">parent=</span
-                ><span class="meta"
-                  ><span class="angle">&langle;</span
-                  ><i>parent beamer-color(s)</i
-                  ><span class="angle">&rangle;</span></span
-                ></span
-              >
-              specifies that
-              <span class="meta"
-                ><span class="angle">&langle;</span><i>beamer-color name</i
-                ><span class="angle">&rangle;</span></span
-              >
-              should inherit from the specified
-              <span class="meta"
-                ><span class="angle">&langle;</span><i>parent beamer-color(s)</i
-                ><span class="angle">&rangle;</span></span
-              >. Any foreground and/or background color set by the parents will
-              also be used when
-              <span class="meta"
-                ><span class="angle">&langle;</span><i>beamer-color name</i
-                ><span class="angle">&rangle;</span></span
-              >
-              is used. If multiple parents specify a foreground, the last one
-              &ldquo;wins&rdquo;; and likewise for the backgrounds.
-            </p>
-            <p>
-              <i>Example: </i>
-            </p>
-            <pre class="verbatim">
+            <ul style="list-style-type: none">
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">fg=</span
+                    ><span class="meta"
+                      ><span class="angle">&langle;</span><i>color</i
+                      ><span class="angle">&rangle;</span></span
+                    ></span
+                  >
+                  sets the foreground color of
+                  <span class="meta"
+                    ><span class="angle">&langle;</span><i>beamer-color name</i
+                    ><span class="angle">&rangle;</span></span
+                  >
+                  to the given (normal)
+                  <span class="meta"
+                    ><span class="angle">&langle;</span><i>color</i
+                    ><span class="angle">&rangle;</span></span
+                  >. The
+                  <span class="meta"
+                    ><span class="angle">&langle;</span><i>color</i
+                    ><span class="angle">&rangle;</span></span
+                  >
+                  may also be a color expression like
+                  <span class="texttt">red!50!black</span>, see the manual of
+                  the <span class="textsc">xcolor</span> package. If
+                  <span class="meta"
+                    ><span class="angle">&langle;</span><i>color</i
+                    ><span class="angle">&rangle;</span></span
+                  >
+                  is empty, the
+                  <span class="meta"
+                    ><span class="angle">&langle;</span><i>beamer-color name</i
+                    ><span class="angle">&rangle;</span></span
+                  >
+                  &ldquo;has no special foreground&rdquo; and when the color is
+                  used, the foreground currently in force should not be changed.
+                </p>
+                <p>
+                  Specifying a foreground this way will override any inherited
+                  foreground color.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">bg=</span
+                    ><span class="meta"
+                      ><span class="angle">&langle;</span><i>color</i
+                      ><span class="angle">&rangle;</span></span
+                    ></span
+                  >
+                  does the same as the <span class="texttt">fg</span> option,
+                  but for the background.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">parent=</span
+                    ><span class="meta"
+                      ><span class="angle">&langle;</span
+                      ><i>parent beamer-color(s)</i
+                      ><span class="angle">&rangle;</span></span
+                    ></span
+                  >
+                  specifies that
+                  <span class="meta"
+                    ><span class="angle">&langle;</span><i>beamer-color name</i
+                    ><span class="angle">&rangle;</span></span
+                  >
+                  should inherit from the specified
+                  <span class="meta"
+                    ><span class="angle">&langle;</span
+                    ><i>parent beamer-color(s)</i
+                    ><span class="angle">&rangle;</span></span
+                  >. Any foreground and/or background color set by the parents
+                  will also be used when
+                  <span class="meta"
+                    ><span class="angle">&langle;</span><i>beamer-color name</i
+                    ><span class="angle">&rangle;</span></span
+                  >
+                  is used. If multiple parents specify a foreground, the last
+                  one &ldquo;wins&rdquo;; and likewise for the backgrounds.
+                </p>
+                <p>
+                  <i>Example: </i>
+                </p>
+                <pre class="verbatim">
 \setbeamercolor{father}{fg=red}
 \setbeamercolor{mother}{bg=green}
 \setbeamercolor{child}{parent={father,mother}}
@@ -1739,64 +1743,70 @@
   Now terrible blue on green text, since parent was changed.
 \end{beamercolorbox}
 </pre
-            >
-            <p>
-              Note that a change of the foreground or background of a parent
-              changes the corresponding foreground or background of the child
-              (unless it is overruled).
-            </p>
-            <p>
-              A
-              <span class="beamer-name"><span class="textsc">beamer</span></span
-              >-color can not only have parents, but also grandparents and so
-              on.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"
-                ><span class="texttt">use=</span
-                ><span class="meta"
-                  ><span class="angle">&langle;</span><i>another beamer-color</i
-                  ><span class="angle">&rangle;</span></span
-                ></span
-              >
-              is used to make sure that another
-              <span class="beamer-name"><span class="textsc">beamer</span></span
-              >-color is setup correctly before the foreground or background
-              color specification are evaluated.
-            </p>
-            <p>
-              Suppose you wish the foreground of items to be a mixture of 50% of
-              the foreground of structural elements and 50% of the normal
-              foreground color. You could try
-            </p>
-            <pre class="verbatim">
+                >
+                <p>
+                  Note that a change of the foreground or background of a parent
+                  changes the corresponding foreground or background of the
+                  child (unless it is overruled).
+                </p>
+                <p>
+                  A
+                  <span class="beamer-name"
+                    ><span class="textsc">beamer</span></span
+                  >-color can not only have parents, but also grandparents and
+                  so on.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">use=</span
+                    ><span class="meta"
+                      ><span class="angle">&langle;</span
+                      ><i>another beamer-color</i
+                      ><span class="angle">&rangle;</span></span
+                    ></span
+                  >
+                  is used to make sure that another
+                  <span class="beamer-name"
+                    ><span class="textsc">beamer</span></span
+                  >-color is setup correctly before the foreground or background
+                  color specification are evaluated.
+                </p>
+                <p>
+                  Suppose you wish the foreground of items to be a mixture of
+                  50% of the foreground of structural elements and 50% of the
+                  normal foreground color. You could try
+                </p>
+                <pre class="verbatim">
 \setbeamercolor{item}{fg=structure.fg!50!normal text.fg}
 </pre
-            >
-            <p>
-              However, this will not necessarily give the desired result: If the
-              <span class="beamer-name"><span class="textsc">beamer</span></span
-              >-color <span class="texttt">structure</span> changes, the
-              (normal) color <span class="texttt">structure.fg</span> is not
-              immediately updated. In order to ensure that the normal color
-              <span class="texttt">structure.fg</span> is correct, use the
-              following:
-            </p>
-            <pre class="verbatim">
+                >
+                <p>
+                  However, this will not necessarily give the desired result: If
+                  the
+                  <span class="beamer-name"
+                    ><span class="textsc">beamer</span></span
+                  >-color <span class="texttt">structure</span> changes, the
+                  (normal) color <span class="texttt">structure.fg</span> is not
+                  immediately updated. In order to ensure that the normal color
+                  <span class="texttt">structure.fg</span> is correct, use the
+                  following:
+                </p>
+                <pre class="verbatim">
 \setbeamercolor{item}{use={structure,normal text},fg=structure.fg!50!normal text.fg}
 </pre
-            >
-            <p>
-              This will guarantee that the colors
-              <span class="texttt">structure.fg</span> and
-              <span class="texttt">normal text.fg</span> are setup correctly
-              when the foreground of <span class="texttt">item</span> is
-              computed.
-            </p>
-            <p>To show the difference, consider the following example:</p>
-            <pre class="verbatim">
+                >
+                <p>
+                  This will guarantee that the colors
+                  <span class="texttt">structure.fg</span> and
+                  <span class="texttt">normal text.fg</span> are setup correctly
+                  when the foreground of <span class="texttt">item</span> is
+                  computed.
+                </p>
+                <p>To show the difference, consider the following example:</p>
+                <pre class="verbatim">
 \setbeamercolor{grandfather}{fg=red}
 \setbeamercolor{grandmother}{bg=white}
 \setbeamercolor{father}{parent={grandfather,grandmother}}
@@ -1816,7 +1826,9 @@
 {\usebeamercolor[fg]{my color A} still dark red text}
 {\usebeamercolor[fg]{my color B} now dark green text}
 </pre
-            >
+                >
+              </li>
+            </ul>
           </div>
           <!--
 ...... subsection The Color of Mathematical Text ......
@@ -2273,107 +2285,119 @@
               >
               may be given:
             </p>
-
-            <p>
-              &bull;
-              <span class="declare"><span class="texttt">invisible</span></span>
-              is the default and causes covered text to &ldquo;completely
-              disappear&rdquo;.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"
-                ><span class="texttt">transparent</span></span
-              ><span class="opt"
-                ><span class="texttt">=</span
-                ><span class="meta"
-                  ><span class="angle">&langle;</span><i>opaqueness</i
-                  ><span class="angle">&rangle;</span></span
-                ></span
-              >
-              causes covered text to be typeset in a &ldquo;transparent&rdquo;
-              way. By default, this means that 85% of the background color is
-              mixed into all colors or that the
-              <span class="meta"
-                ><span class="angle">&langle;</span><i>opaqueness</i
-                ><span class="angle">&rangle;</span></span
-              >
-              of the text is 15%. You can specify a different
-              <span class="meta"
-                ><span class="angle">&langle;</span><i>percentage</i
-                ><span class="angle">&rangle;</span></span
-              >, where <span class="texttt">0</span> means &ldquo;totally
-              transparent&rdquo; and <span class="texttt">100</span> means
-              &ldquo;totally opaque.&rdquo;
-            </p>
-            <p>
-              Unfortunately, this value is kind of &ldquo;specific&rdquo; to
-              every projector. What looks good on your screen need not look good
-              during a presentation.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"><span class="texttt">dynamic</span></span>
-              Makes all covered text quite transparent, but in a dynamic way.
-              The longer it will take till the text is uncovered, the stronger
-              the transparency.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"
-                ><span class="texttt">highly dynamic</span></span
-              >
-              Has the same effect as <span class="texttt">dynamic</span>, but
-              the effect is stronger.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"
-                ><span class="texttt">still covered=</span
-                ><span class="meta"
-                  ><span class="angle">&langle;</span><i>not yet list</i
-                  ><span class="angle">&rangle;</span></span
-                ></span
-              >
-              specifies how to render covered items that have not yet been
-              uncovered. The
-              <span class="meta"
-                ><span class="angle">&langle;</span><i>not yet list</i
-                ><span class="angle">&rangle;</span></span
-              >
-              should be a list of
-              <span class="texttt">\opaqueness</span> commands, see the
-              description of that command, below.
-            </p>
-            <p>
-              <i>Example: </i>
-            </p>
-            <div class="fancyvrb" style>
-              <pre class="verbatim">
+            <ul style="list-style-type: none">
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">invisible</span></span
+                  >
+                  is the default and causes covered text to &ldquo;completely
+                  disappear&rdquo;.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">transparent</span></span
+                  ><span class="opt"
+                    ><span class="texttt">=</span
+                    ><span class="meta"
+                      ><span class="angle">&langle;</span><i>opaqueness</i
+                      ><span class="angle">&rangle;</span></span
+                    ></span
+                  >
+                  causes covered text to be typeset in a
+                  &ldquo;transparent&rdquo; way. By default, this means that 85%
+                  of the background color is mixed into all colors or that the
+                  <span class="meta"
+                    ><span class="angle">&langle;</span><i>opaqueness</i
+                    ><span class="angle">&rangle;</span></span
+                  >
+                  of the text is 15%. You can specify a different
+                  <span class="meta"
+                    ><span class="angle">&langle;</span><i>percentage</i
+                    ><span class="angle">&rangle;</span></span
+                  >, where <span class="texttt">0</span> means &ldquo;totally
+                  transparent&rdquo; and <span class="texttt">100</span> means
+                  &ldquo;totally opaque.&rdquo;
+                </p>
+                <p>
+                  Unfortunately, this value is kind of &ldquo;specific&rdquo; to
+                  every projector. What looks good on your screen need not look
+                  good during a presentation.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">dynamic</span></span
+                  >
+                  Makes all covered text quite transparent, but in a dynamic
+                  way. The longer it will take till the text is uncovered, the
+                  stronger the transparency.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">highly dynamic</span></span
+                  >
+                  Has the same effect as <span class="texttt">dynamic</span>,
+                  but the effect is stronger.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">still covered=</span
+                    ><span class="meta"
+                      ><span class="angle">&langle;</span><i>not yet list</i
+                      ><span class="angle">&rangle;</span></span
+                    ></span
+                  >
+                  specifies how to render covered items that have not yet been
+                  uncovered. The
+                  <span class="meta"
+                    ><span class="angle">&langle;</span><i>not yet list</i
+                    ><span class="angle">&rangle;</span></span
+                  >
+                  should be a list of
+                  <span class="texttt">\opaqueness</span> commands, see the
+                  description of that command, below.
+                </p>
+                <p>
+                  <i>Example: </i>
+                </p>
+                <div class="fancyvrb" style>
+                  <pre class="verbatim">
 \setbeamercovered{%
  still covered={\opaqueness&lt;1&gt;{15}\opaqueness&lt;2&gt;{10}\opaqueness&lt;3&gt;{5}\opaqueness&lt;4-&gt;{2}},
  again covered={\opaqueness&lt;1-&gt;{15}}}
 </pre
-              >
-            </div>
-
-            <p>
-              &bull;
-              <span class="declare"
-                ><span class="texttt">again covered=</span
-                ><span class="meta"
-                  ><span class="angle">&langle;</span><i>once more list</i
-                  ><span class="angle">&rangle;</span></span
-                ></span
-              >
-              specifies how to render covered items that have once more been
-              covered, that is, that had been shown before but are now covered
-              again.
-            </p>
+                  >
+                </div>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">again covered=</span
+                    ><span class="meta"
+                      ><span class="angle">&langle;</span><i>once more list</i
+                      ><span class="angle">&rangle;</span></span
+                    ></span
+                  >
+                  specifies how to render covered items that have once more been
+                  covered, that is, that had been shown before but are now
+                  covered again.
+                </p>
+              </li>
+            </ul>
           </div>
           <div class="command">
             <div class="command-headline">
@@ -2472,21 +2496,18 @@
           <a href="https://github.com/SwitWu/beamer-html-manual">Repository</a>
         </div>
         <div class="footer-right">
-          <em>HTML version last updated: 2023-10-10</em>
+          <em>HTML version last updated: 2023-10-11</em>
         </div>
       </footer>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
-    <script>
+    <script type="text/javascript">
       docsearch({
         apiKey: "09762da49fe4ba391f7a3618c73720d8",
         indexName: "beamerplusio",
         appId: "WNNAN5R8GM",
         container: "#search",
-        searchParameters: {
-          filters: "tags:beamer",
-        },
       });
     </script>
   </body>

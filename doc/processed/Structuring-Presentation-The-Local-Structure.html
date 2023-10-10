@@ -8,7 +8,7 @@
     <title>
       Structuring a Presentation: The Local Structure - Beamer Manual
     </title>
-    <link href="style.css?v=20231010" rel="stylesheet" type="text/css" />
+    <link href="style.css?v=20231011" rel="stylesheet" type="text/css" />
     <link
       href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
       rel="stylesheet"
@@ -379,54 +379,61 @@
                 children (with the same arguments).
               </p>
               <p>The following template options are predefined:</p>
-
-              <p>
-                &bull;
-                <span class="itemoption"
-                  ><kbd>[<span class="declare">default</span>]</kbd></span
-                >
-                The default item marker is a small triangle colored with the
-                foreground of the
-                <span class="beamer-name"
-                  ><span class="textsc">beamer</span></span
-                >-color <span class="texttt">itemize item</span> (or, for
-                subitems, <span class="texttt">itemize subitem</span> etc.).
-                Note that these colors will automatically change under certain
-                circumstances such as inside an example block or inside an
-                <span class="texttt">alertenv</span> environment.
-              </p>
-
-              <p>
-                &bull;
-                <span class="itemoption"
-                  ><kbd>[<span class="declare">triangle</span>]</kbd></span
-                >
-                Alias for the default.
-              </p>
-
-              <p>
-                &bull;
-                <span class="itemoption"
-                  ><kbd>[<span class="declare">circle</span>]</kbd></span
-                >
-                Uses little circles (or dots) as item markers.
-              </p>
-
-              <p>
-                &bull;
-                <span class="itemoption"
-                  ><kbd>[<span class="declare">square</span>]</kbd></span
-                >
-                Uses little squares as item markers.
-              </p>
-
-              <p>
-                &bull;
-                <span class="itemoption"
-                  ><kbd>[<span class="declare">ball</span>]</kbd></span
-                >
-                Uses little balls as item markers.
-              </p>
+              <ul style="list-style-type: none">
+                <li>
+                  <p>
+                    &bull;
+                    <span class="itemoption"
+                      ><kbd>[<span class="declare">default</span>]</kbd></span
+                    >
+                    The default item marker is a small triangle colored with the
+                    foreground of the
+                    <span class="beamer-name"
+                      ><span class="textsc">beamer</span></span
+                    >-color <span class="texttt">itemize item</span> (or, for
+                    subitems, <span class="texttt">itemize subitem</span> etc.).
+                    Note that these colors will automatically change under
+                    certain circumstances such as inside an example block or
+                    inside an <span class="texttt">alertenv</span> environment.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    &bull;
+                    <span class="itemoption"
+                      ><kbd>[<span class="declare">triangle</span>]</kbd></span
+                    >
+                    Alias for the default.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    &bull;
+                    <span class="itemoption"
+                      ><kbd>[<span class="declare">circle</span>]</kbd></span
+                    >
+                    Uses little circles (or dots) as item markers.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    &bull;
+                    <span class="itemoption"
+                      ><kbd>[<span class="declare">square</span>]</kbd></span
+                    >
+                    Uses little squares as item markers.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    &bull;
+                    <span class="itemoption"
+                      ><kbd>[<span class="declare">ball</span>]</kbd></span
+                    >
+                    Uses little balls as item markers.
+                  </p>
+                </li>
+              </ul>
             </div>
             <div class="element">
               <div class="element-headline">
@@ -655,43 +662,49 @@
                 typeset.
               </p>
               <p>The following template options are predefined:</p>
-
-              <p>
-                &bull;
-                <span class="itemoption"
-                  ><kbd>[<span class="declare">default</span>]</kbd></span
-                >
-                The default enumeration marker uses the scheme 1., 2., 3. for
-                the first level, 1.1, 1.2, 1.3 for the second level and 1.1.1,
-                1.1.2, 1.1.3 for the third level.
-              </p>
-
-              <p>
-                &bull;
-                <span class="itemoption"
-                  ><kbd>[<span class="declare">circle</span>]</kbd></span
-                >
-                Places the numbers inside little circles. The colors are taken
-                from <span class="texttt">item projected</span> or
-                <span class="texttt">subitem projected</span> or
-                <span class="texttt">subsubitem projected</span>.
-              </p>
-
-              <p>
-                &bull;
-                <span class="itemoption"
-                  ><kbd>[<span class="declare">square</span>]</kbd></span
-                >
-                Places the numbers on little squares.
-              </p>
-
-              <p>
-                &bull;
-                <span class="itemoption"
-                  ><kbd>[<span class="declare">ball</span>]</kbd></span
-                >
-                &ldquo;Projects&rdquo; the numbers onto little balls.
-              </p>
+              <ul style="list-style-type: none">
+                <li>
+                  <p>
+                    &bull;
+                    <span class="itemoption"
+                      ><kbd>[<span class="declare">default</span>]</kbd></span
+                    >
+                    The default enumeration marker uses the scheme 1., 2., 3.
+                    for the first level, 1.1, 1.2, 1.3 for the second level and
+                    1.1.1, 1.1.2, 1.1.3 for the third level.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    &bull;
+                    <span class="itemoption"
+                      ><kbd>[<span class="declare">circle</span>]</kbd></span
+                    >
+                    Places the numbers inside little circles. The colors are
+                    taken from <span class="texttt">item projected</span> or
+                    <span class="texttt">subitem projected</span> or
+                    <span class="texttt">subsubitem projected</span>.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    &bull;
+                    <span class="itemoption"
+                      ><kbd>[<span class="declare">square</span>]</kbd></span
+                    >
+                    Places the numbers on little squares.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    &bull;
+                    <span class="itemoption"
+                      ><kbd>[<span class="declare">ball</span>]</kbd></span
+                    >
+                    &ldquo;Projects&rdquo; the numbers onto little balls.
+                  </p>
+                </li>
+              </ul>
             </div>
             <div class="element">
               <div class="element-headline">
@@ -715,14 +728,17 @@
                 installed.
               </p>
               <p>The following command is useful for this template:</p>
-
-              <p>
-                &bull;
-                <kbd><span class="declare">\insertenumlabel</span></kbd> inserts
-                the current number of the top-level enumeration (as an Arabic
-                number). This insert is also available in the next two
-                templates.
-              </p>
+              <ul style="list-style-type: none">
+                <li>
+                  <p>
+                    &bull;
+                    <kbd><span class="declare">\insertenumlabel</span></kbd>
+                    inserts the current number of the top-level enumeration (as
+                    an Arabic number). This insert is also available in the next
+                    two templates.
+                  </p>
+                </li>
+              </ul>
             </div>
             <div class="element">
               <div class="element-headline">
@@ -735,14 +751,16 @@
                 Like <span class="texttt">enumerate item</span>, only for
                 second-level items.
               </p>
-
-              <p>
-                &bull;
-                <kbd><span class="declare">\insertsubenumlabel</span></kbd>
-                inserts the current number of the second-level enumeration (as
-                an Arabic number).
-              </p>
-
+              <ul style="list-style-type: none">
+                <li>
+                  <p>
+                    &bull;
+                    <kbd><span class="declare">\insertsubenumlabel</span></kbd>
+                    inserts the current number of the second-level enumeration
+                    (as an Arabic number).
+                  </p>
+                </li>
+              </ul>
               <p>
                 <i>Example: </i>
               </p>
@@ -762,13 +780,18 @@
                 Like <span class="texttt">enumerate item</span>, only for
                 third-level items.
               </p>
-
-              <p>
-                &bull;
-                <kbd><span class="declare">\insertsubsubenumlabel</span></kbd>
-                inserts the current number of the second-level enumeration (as
-                an Arabic number).
-              </p>
+              <ul style="list-style-type: none">
+                <li>
+                  <p>
+                    &bull;
+                    <kbd
+                      ><span class="declare">\insertsubsubenumlabel</span></kbd
+                    >
+                    inserts the current number of the second-level enumeration
+                    (as an Arabic number).
+                  </p>
+                </li>
+              </ul>
             </div>
             <div class="element">
               <div class="element-headline">
@@ -781,21 +804,24 @@
                 This template is used to typeset the number that arises from a
                 mini template.
               </p>
-
-              <p>
-                &bull;
-                <kbd><span class="declare">\insertenumlabel</span></kbd> inserts
-                the current number rendered by this mini template. For example,
-                if the
-                <span class="meta"
-                  ><span class="angle">&langle;</span><i>mini template</i
-                  ><span class="angle">&rangle;</span></span
-                >
-                is <span class="texttt">(i)</span> and this command is used in
-                the fourth item,
-                <span class="texttt">\insertenumlabel</span> would yield
-                <span class="texttt">(iv)</span>.
-              </p>
+              <ul style="list-style-type: none">
+                <li>
+                  <p>
+                    &bull;
+                    <kbd><span class="declare">\insertenumlabel</span></kbd>
+                    inserts the current number rendered by this mini template.
+                    For example, if the
+                    <span class="meta"
+                      ><span class="angle">&langle;</span><i>mini template</i
+                      ><span class="angle">&rangle;</span></span
+                    >
+                    is <span class="texttt">(i)</span> and this command is used
+                    in the fourth item,
+                    <span class="texttt">\insertenumlabel</span> would yield
+                    <span class="texttt">(iv)</span>.
+                  </p>
+                </li>
+              </ul>
             </div>
           </div>
           <p>
@@ -968,23 +994,30 @@
                 <span class="texttt">description item</span> are installed.
               </p>
               <p>The following template options are predefined:</p>
-
-              <p>
-                &bull;
-                <span class="itemoption"
-                  ><kbd>[<span class="declare">default</span>]</kbd></span
-                >
-                By default, the description item text is just inserted without
-                any modification.
-              </p>
-
+              <ul style="list-style-type: none">
+                <li>
+                  <p>
+                    &bull;
+                    <span class="itemoption"
+                      ><kbd>[<span class="declare">default</span>]</kbd></span
+                    >
+                    By default, the description item text is just inserted
+                    without any modification.
+                  </p>
+                </li>
+              </ul>
               <p>The main insert that is useful inside this template is:</p>
-
-              <p>
-                &bull;
-                <kbd><span class="declare">\insertdescriptionitem</span></kbd>
-                inserts the text of the current description item.
-              </p>
+              <ul style="list-style-type: none">
+                <li>
+                  <p>
+                    &bull;
+                    <kbd
+                      ><span class="declare">\insertdescriptionitem</span></kbd
+                    >
+                    inserts the text of the current description item.
+                  </p>
+                </li>
+              </ul>
             </div>
             <div class="element">
               <div class="element-headline">
@@ -1286,14 +1319,17 @@
                 <span class="texttt">structureenv</span> environment.
               </p>
               <p>The following template options are predefined:</p>
-
-              <p>
-                &bull;
-                <span class="itemoption"
-                  ><kbd>[<span class="declare">default</span>]</kbd></span
-                >
-              </p>
-              <p>The text is typeset in boldface.</p>
+              <ul style="list-style-type: none">
+                <li>
+                  <p>
+                    &bull;
+                    <span class="itemoption"
+                      ><kbd>[<span class="declare">default</span>]</kbd></span
+                    >
+                  </p>
+                  <p>The text is typeset in boldface.</p>
+                </li>
+              </ul>
             </div>
             <div class="element">
               <div class="element-headline">
@@ -1405,22 +1441,25 @@
                 <span class="texttt">alertenv</span> environment.
               </p>
               <p>The following template options are predefined:</p>
-
-              <p>
-                &bull;
-                <span class="itemoption"
-                  ><kbd>[<span class="declare">default</span>]</kbd></span
-                >
-              </p>
-              <p>
-                This changes the color
-                <span class="texttt">local structure</span> to
-                <span class="texttt">alerted text</span>. This causes things
-                like buttons or items to be colored in the same color as the
-                alerted text, which is often visually pleasing. See also the
-                <span class="texttt">\structure</span> command.
-              </p>
-              <p>The text is emphasized.</p>
+              <ul style="list-style-type: none">
+                <li>
+                  <p>
+                    &bull;
+                    <span class="itemoption"
+                      ><kbd>[<span class="declare">default</span>]</kbd></span
+                    >
+                  </p>
+                  <p>
+                    This changes the color
+                    <span class="texttt">local structure</span> to
+                    <span class="texttt">alerted text</span>. This causes things
+                    like buttons or items to be colored in the same color as the
+                    alerted text, which is often visually pleasing. See also the
+                    <span class="texttt">\structure</span> command.
+                  </p>
+                  <p>The text is emphasized.</p>
+                </li>
+              </ul>
             </div>
             <div class="element">
               <div class="element-headline">
@@ -1476,39 +1515,45 @@
               >
             </p>
             <p>The following template options are predefined:</p>
-
-            <p>
-              &bull;
-              <span class="itemoption"
-                ><kbd>[<span class="declare">default</span>]</kbd></span
-              >
-              The default setting typesets the block title on its own line. If a
-              background is specified either for the
-              <span class="texttt">block title</span> or for the
-              <span class="texttt">block body</span>, this background color is
-              used as background of the title or body, respectively. For alerted
-              and example blocks, the corresponding
-              <span class="beamer-name"><span class="textsc">beamer</span></span
-              >-colors and -fonts are used, instead.
-            </p>
-
-            <p>
-              &bull;
-              <span class="itemoption"
-                ><kbd>[<span class="declare">rounded</span>]</kbd
-                ><span class="opt"
-                  ><span class="oarg-left-bracket">[</span
-                  ><span class="meta"
-                    ><span class="angle">&langle;</span><i>shadow=true</i
-                    ><span class="angle">&rangle;</span></span
-                  ><span class="oarg-right-bracket">]</span></span
-                ></span
-              >
-              Makes the blocks &ldquo;rounded.&rdquo; This means that the
-              corners of the backgrounds of the blocks are &ldquo;rounded
-              off.&rdquo; If the <span class="texttt">shadow=true</span>
-              option is given, a &ldquo;shadow&rdquo; is drawn behind the block.
-            </p>
+            <ul style="list-style-type: none">
+              <li>
+                <p>
+                  &bull;
+                  <span class="itemoption"
+                    ><kbd>[<span class="declare">default</span>]</kbd></span
+                  >
+                  The default setting typesets the block title on its own line.
+                  If a background is specified either for the
+                  <span class="texttt">block title</span> or for the
+                  <span class="texttt">block body</span>, this background color
+                  is used as background of the title or body, respectively. For
+                  alerted and example blocks, the corresponding
+                  <span class="beamer-name"
+                    ><span class="textsc">beamer</span></span
+                  >-colors and -fonts are used, instead.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="itemoption"
+                    ><kbd>[<span class="declare">rounded</span>]</kbd
+                    ><span class="opt"
+                      ><span class="oarg-left-bracket">[</span
+                      ><span class="meta"
+                        ><span class="angle">&langle;</span><i>shadow=true</i
+                        ><span class="angle">&rangle;</span></span
+                      ><span class="oarg-right-bracket">]</span></span
+                    ></span
+                  >
+                  Makes the blocks &ldquo;rounded.&rdquo; This means that the
+                  corners of the backgrounds of the blocks are &ldquo;rounded
+                  off.&rdquo; If the <span class="texttt">shadow=true</span>
+                  option is given, a &ldquo;shadow&rdquo; is drawn behind the
+                  block.
+                </p>
+              </li>
+            </ul>
           </div>
           <div class="environment">
             <div class="environment-headline">
@@ -1594,18 +1639,20 @@
                 >. Inside this template, the block title can be accessed via the
                 following insert:
               </p>
-
-              <p>
-                &bull;
-                <kbd><span class="declare">\insertblocktitle</span></kbd>
-                Inserts the
-                <span class="meta"
-                  ><span class="angle">&langle;</span><i>block title</i
-                  ><span class="angle">&rangle;</span></span
-                >
-                into the template.
-              </p>
-
+              <ul style="list-style-type: none">
+                <li>
+                  <p>
+                    &bull;
+                    <kbd><span class="declare">\insertblocktitle</span></kbd>
+                    Inserts the
+                    <span class="meta"
+                      ><span class="angle">&langle;</span><i>block title</i
+                      ><span class="angle">&rangle;</span></span
+                    >
+                    into the template.
+                  </p>
+                </li>
+              </ul>
               <p>
                 When the template starts, no special color or font is installed
                 (for somewhat complicated reasons). Thus, this template should
@@ -2427,48 +2474,55 @@
               >
             </p>
             <p>The following template options are predefined:</p>
-
-            <p>
-              &bull;
-              <span class="itemoption"
-                ><kbd>[<span class="declare">default</span>]</kbd></span
-              >
-              By default, theorems are typeset as follows: The font
-              specification for the body is honored, the font specification for
-              the head is ignored. No theorem number is printed.
-            </p>
-
-            <p>
-              &bull;
-              <span class="itemoption"
-                ><kbd>[<span class="declare">normal font</span>]</kbd></span
-              >
-              Like the default, except all font specifications for the body are
-              ignored. Thus, the fonts are used that are normally used for
-              blocks.
-            </p>
-
-            <p>
-              &bull;
-              <span class="itemoption"
-                ><kbd>[<span class="declare">numbered</span>]</kbd></span
-              >
-              This option is like the default, except that the theorem number is
-              printed for environments that are numbered.
-            </p>
-
-            <p>
-              &bull;
-              <span class="itemoption"
-                ><kbd>[<span class="declare">ams style</span>]</kbd></span
-              >
-              This causes theorems to be put in a
-              <span class="texttt">block</span> or
-              <span class="texttt">exampleblock</span>, but to be otherwise
-              typeset as is normally done in <span class="texttt">amsthm</span>.
-              Thus the head font and body font depend on the setting for the
-              theorem to be typeset and theorems are numbered.
-            </p>
+            <ul style="list-style-type: none">
+              <li>
+                <p>
+                  &bull;
+                  <span class="itemoption"
+                    ><kbd>[<span class="declare">default</span>]</kbd></span
+                  >
+                  By default, theorems are typeset as follows: The font
+                  specification for the body is honored, the font specification
+                  for the head is ignored. No theorem number is printed.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="itemoption"
+                    ><kbd>[<span class="declare">normal font</span>]</kbd></span
+                  >
+                  Like the default, except all font specifications for the body
+                  are ignored. Thus, the fonts are used that are normally used
+                  for blocks.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="itemoption"
+                    ><kbd>[<span class="declare">numbered</span>]</kbd></span
+                  >
+                  This option is like the default, except that the theorem
+                  number is printed for environments that are numbered.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="itemoption"
+                    ><kbd>[<span class="declare">ams style</span>]</kbd></span
+                  >
+                  This causes theorems to be put in a
+                  <span class="texttt">block</span> or
+                  <span class="texttt">exampleblock</span>, but to be otherwise
+                  typeset as is normally done in
+                  <span class="texttt">amsthm</span>. Thus the head font and
+                  body font depend on the setting for the theorem to be typeset
+                  and theorems are numbered.
+                </p>
+              </li>
+            </ul>
           </div>
           <div class="element">
             <div class="element-headline">
@@ -2538,54 +2592,65 @@
 </pre
             >
             <p>The following inserts are available inside this template:</p>
-
-            <p>
-              &bull;
-              <kbd><span class="declare">\inserttheoremblockenv</span></kbd>
-              This will normally expand to <span class="texttt">block</span>,
-              but if a theorem that has theorem style
-              <span class="texttt">example</span> is typeset, it will expand to
-              <span class="texttt">exampleblock</span>. Thus you can use this
-              insert to decide which environment should be used when typesetting
-              the theorem.
-            </p>
-
-            <p>
-              &bull;
-              <kbd><span class="declare">\inserttheoremheadfont</span></kbd>
-              This will expand to a font changing command that switches to the
-              font to be used in the head of the theorem. By not inserting it,
-              you can ignore the head font.
-            </p>
-
-            <p>
-              &bull;
-              <kbd><span class="declare">\inserttheoremname</span></kbd> This
-              will expand to the name of the environment to be typeset (like
-              &ldquo;Theorem&rdquo; or &ldquo;Corollary&rdquo;).
-            </p>
-
-            <p>
-              &bull;
-              <kbd><span class="declare">\inserttheoremnumber</span></kbd> This
-              will expand to the number of the current theorem preceded by a
-              space or to nothing, if the current theorem does not have a
-              number.
-            </p>
-
-            <p>
-              &bull;
-              <kbd><span class="declare">\inserttheoremaddition</span></kbd>
-              This will expand to the optional argument given to the environment
-              or will be empty, if there was no optional argument.
-            </p>
-
-            <p>
-              &bull;
-              <kbd><span class="declare">\inserttheorempunctuation</span></kbd>
-              This will expand to the punctuation character for the current
-              environment. This is usually a period.
-            </p>
+            <ul style="list-style-type: none">
+              <li>
+                <p>
+                  &bull;
+                  <kbd><span class="declare">\inserttheoremblockenv</span></kbd>
+                  This will normally expand to
+                  <span class="texttt">block</span>, but if a theorem that has
+                  theorem style <span class="texttt">example</span> is typeset,
+                  it will expand to <span class="texttt">exampleblock</span>.
+                  Thus you can use this insert to decide which environment
+                  should be used when typesetting the theorem.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <kbd><span class="declare">\inserttheoremheadfont</span></kbd>
+                  This will expand to a font changing command that switches to
+                  the font to be used in the head of the theorem. By not
+                  inserting it, you can ignore the head font.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <kbd><span class="declare">\inserttheoremname</span></kbd>
+                  This will expand to the name of the environment to be typeset
+                  (like &ldquo;Theorem&rdquo; or &ldquo;Corollary&rdquo;).
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <kbd><span class="declare">\inserttheoremnumber</span></kbd>
+                  This will expand to the number of the current theorem preceded
+                  by a space or to nothing, if the current theorem does not have
+                  a number.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <kbd><span class="declare">\inserttheoremaddition</span></kbd>
+                  This will expand to the optional argument given to the
+                  environment or will be empty, if there was no optional
+                  argument.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <kbd
+                    ><span class="declare">\inserttheorempunctuation</span></kbd
+                  >
+                  This will expand to the punctuation character for the current
+                  environment. This is usually a period.
+                </p>
+              </li>
+            </ul>
           </div>
           <div class="element">
             <div class="element-headline">
@@ -2607,12 +2672,16 @@
               behaves like a normal
               <span class="texttt">block begin</span> template by default.
             </p>
-
-            <p>
-              &bull;
-              <kbd><span class="declare">\insertproofname</span></kbd> This will
-              expand to the proof name, followed by a period most of the time.
-            </p>
+            <ul style="list-style-type: none">
+              <li>
+                <p>
+                  &bull;
+                  <kbd><span class="declare">\insertproofname</span></kbd> This
+                  will expand to the proof name, followed by a period most of
+                  the time.
+                </p>
+              </li>
+            </ul>
           </div>
           <div class="element">
             <div class="element-headline">
@@ -2790,323 +2859,352 @@
               >
               can be given:
             </p>
-
-            <p>
-              &bull;
-              <span class="declare"
-                ><span class="texttt">wd=</span>{<span class="meta"
-                  ><span class="angle">&langle;</span><i>width</i
-                  ><span class="angle">&rangle;</span></span
-                >}</span
-              >
-              sets the width of the box. This command has two effects: First,
-              <span class="latexlogofont"
-                ><span class="latexlogo"
-                  >T<span class="latexlogosub">e</span>X</span
-                ></span
-              >&rsquo;s <span class="texttt">\hsize</span> is set to
-              <span class="meta"
-                ><span class="angle">&langle;</span><i>width</i
-                ><span class="angle">&rangle;</span></span
-              >. Second, after the box has been typeset, its width is set to
-              <span class="meta"
-                ><span class="angle">&langle;</span><i>width</i
-                ><span class="angle">&rangle;</span></span
-              >
-              (no matter what it actually turned out to be). Since setting the
-              <span class="texttt">\hsize</span> does not automatically change
-              some of
-              <span class="latexlogofont"
-                ><span class="latexlogo"
-                  >L<span class="latexlogosup">a</span>T<span
-                    class="latexlogosub"
-                    >e</span
-                  >X</span
-                ></span
-              >&rsquo;s linewidth dimensions, you should consider using a
-              minipage inside this environment if you fool around with the
-              width.
-            </p>
-            <p>
-              If the width is larger than the normal text width, as specified by
-              the value of <span class="texttt">\textwidth</span>, the width of
-              the resulting box is reset to the width
-              <span class="texttt">\textwidth</span>, but intelligent negative
-              skips are inserted at the left and right end of the box. The net
-              effect of this is that you can use a width larger than the text
-              width for a box and can insert the resulting box directly into
-              normal text without getting annoying warnings and having the box
-              positioned sensibly.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"
-                ><span class="texttt">dp=</span>{<span class="meta"
-                  ><span class="angle">&langle;</span><i>depth</i
-                  ><span class="angle">&rangle;</span></span
-                >}</span
-              >
-              sets the depth of the box, overriding the real depth of the box.
-              The box is first typeset normally, then the depth is changed
-              afterwards. This option is useful for creating boxes that have
-              guaranteed size.
-            </p>
-            <p>
-              If the option is not given, the box has its &ldquo;natural&rdquo;
-              depth, which results from the typesetting. For example, a box
-              containing only the letter &ldquo;a&rdquo; will have a different
-              depth from a box containing only the letter &ldquo;g.&rdquo;
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"
-                ><span class="texttt">ht=</span
-                ><span class="meta"
-                  ><span class="angle">&langle;</span><i>height</i
-                  ><span class="angle">&rangle;</span></span
-                ></span
-              >
-              sets the height of the box, overriding the real height. Note that
-              the &ldquo;height&rdquo; does not include the depth (see, for
-              example, the
-              <span class="latexlogofont"
-                ><span class="latexlogo"
-                  >T<span class="latexlogosub">e</span>X</span
-                ></span
-              >-book for details). If you want a one-line box that always has
-              the same size, setting the height to 2.25ex and the depth to 1ex
-              is usually a good option.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"><span class="texttt">left</span></span>
-              causes the text inside the box to be typeset left-aligned and with
-              a (radically) ragged right border. This is the default. To get a
-              better ragged right border, use the
-              <span class="texttt">rightskip</span> option. Note that this will
-              override any <span class="texttt">leftskip</span> or
-              <span class="texttt">rightskip</span> setting.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"><span class="texttt">right</span></span>
-              causes the text to be right-aligned with a (radically) ragged left
-              border. Note that this will override any
-              <span class="texttt">leftskip</span> or
-              <span class="texttt">rightskip</span>
-              setting.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"><span class="texttt">center</span></span>
-              centers the text inside the box. Note that this will override any
-              <span class="texttt">leftskip</span> or
-              <span class="texttt">rightskip</span> setting.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"
-                ><span class="texttt">leftskip=</span
-                ><span class="meta"
-                  ><span class="angle">&langle;</span><i>left skip</i
-                  ><span class="angle">&rangle;</span></span
-                ></span
-              >
-              installs the
-              <span class="meta"
-                ><span class="angle">&langle;</span><i>left skip</i
-                ><span class="angle">&rangle;</span></span
-              >
-              inside the box as the left skip.
-              <span class="latexlogofont"
-                ><span class="latexlogo"
-                  >T<span class="latexlogosub">e</span>X</span
-                ></span
-              >&rsquo;s left skip is a glue that is inserted at the left end of
-              every line. See the
-              <span class="latexlogofont"
-                ><span class="latexlogo"
-                  >T<span class="latexlogosub">e</span>X</span
-                ></span
-              >-book for details. Note that this will override any
-              <span class="texttt">left</span>,
-              <span class="texttt">center</span> or
-              <span class="texttt">right</span> setting.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"
-                ><span class="texttt">rightskip=</span
-                ><span class="meta"
-                  ><span class="angle">&langle;</span><i>right skip</i
-                  ><span class="angle">&rangle;</span></span
-                ></span
-              >
-              install the
-              <span class="meta"
-                ><span class="angle">&langle;</span><i>right skip</i
-                ><span class="angle">&rangle;</span></span
-              >. To get a good ragged right border, try, say,
-              <span class="texttt">\rightskip=0pt plus 4em</span>. Note that
-              this will override any <span class="texttt">left</span>,
-              <span class="texttt">center</span> or
-              <span class="texttt">right</span> setting.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"
-                ><span class="texttt">sep=</span
-                ><span class="meta"
-                  ><span class="angle">&langle;</span><i>dimension</i
-                  ><span class="angle">&rangle;</span></span
-                ></span
-              >
-              sets the size of extra space around the text. This space is added
-              &ldquo;inside the box,&rdquo; which means that if you specify a
-              <span class="texttt">sep</span> of 1cm and insert the box normally
-              into the vertical list, then the left border of the box will be
-              aligned with the left border of the slide text, while the left
-              border of the text inside the box will be 1cm to the right of this
-              left border. Likewise, the text inside the box will stop 1cm
-              before the right border of the normal text.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"
-                ><span class="texttt">colsep=</span
-                ><span class="meta"
-                  ><span class="angle">&langle;</span><i>dimension</i
-                  ><span class="angle">&rangle;</span></span
-                ></span
-              >
-              sets the extra &ldquo;color separation space&rdquo; around the
-              text. This space behaves the same way as the space added by
-              <span class="texttt">sep</span>, only this space is only inserted
-              if the box has a colored background, that is, if the background of
-              the
-              <span class="meta"
-                ><span class="angle">&langle;</span><i>beamer color</i
-                ><span class="angle">&rangle;</span></span
-              >
-              is not empty. This command can be used together with
-              <span class="texttt">sep</span>, the effects accumulate.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"
-                ><span class="texttt">colsep*=</span
-                ><span class="meta"
-                  ><span class="angle">&langle;</span><i>dimension</i
-                  ><span class="angle">&rangle;</span></span
-                ></span
-              >
-              sets an extra color separation space around the text that is
-              <em>horizontally outside the box</em>. This means that if the box
-              has a background, this background will protrude by
-              <span class="meta"
-                ><span class="angle">&langle;</span><i>dimension</i
-                ><span class="angle">&rangle;</span></span
-              >
-              to the left and right of the text, but this protruding background
-              will not be taken into consideration by
-              <span class="latexlogofont"
-                ><span class="latexlogo"
-                  >T<span class="latexlogosub">e</span>X</span
-                ></span
-              >
-              for typesetting purposes.
-            </p>
-            <p>
-              A typical example usage of this option arises when you insert a
-              box with a colored background in the middle of normal text. In
-              this case, if the background color is set, you would like a
-              background to be drawn behind the text <em>and</em> you would like
-              a certain extra space around this text (the background should not
-              stop immediately at the borders of the text, this looks silly)
-              <em>and</em> you would like the normal text always to be at the
-              same horizontal position, independently of whether a background is
-              present or not. In this case, using
-              <span class="texttt">colsep*=4pt</span> is a good option.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"><span class="texttt">shadow</span></span
-              ><span class="opt"
-                ><span class="texttt">=</span
-                ><span class="meta"
-                  ><span class="angle">&langle;</span><i>true or false</i
-                  ><span class="angle">&rangle;</span></span
-                ></span
-              >
-              draws a shadow behind the box. Currently, this option only has an
-              effect if used together with the
-              <span class="texttt">rounded</span> option, but that may change.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"><span class="texttt">rounded</span></span
-              ><span class="opt"
-                ><span class="texttt">=</span
-                ><span class="meta"
-                  ><span class="angle">&langle;</span><i>true or false</i
-                  ><span class="angle">&rangle;</span></span
-                ></span
-              >
-              causes the borders of the box to be rounded off if there is a
-              background installed. This command internally calls
-              <span class="texttt">beamerboxesrounded</span>. In this case,
-              <span class="texttt">colsep*</span> option will have no effect.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"><span class="texttt">ignorebg</span></span>
-              causes the background color of the
-              <span class="meta"
-                ><span class="angle">&langle;</span><i>beamer color</i
-                ><span class="angle">&rangle;</span></span
-              >
-              to be ignored, that is, to be treated as if it were set to
-              &ldquo;transparent&rdquo; or &ldquo;empty.&rdquo;
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"><span class="texttt">vmode</span></span>
-              causes
-              <span class="latexlogofont"
-                ><span class="latexlogo"
-                  >T<span class="latexlogosub">e</span>X</span
-                ></span
-              >
-              to be in vertical mode when the box starts. Normally,
-              <span class="latexlogofont"
-                ><span class="latexlogo"
-                  >T<span class="latexlogosub">e</span>X</span
-                ></span
-              >
-              will be in horizontal mode at the start of the box (a
-              <span class="texttt">\leavevmode</span> is inserted automatically
-              at the beginning of the box unless this option is given). Only
-              <span class="latexlogofont"
-                ><span class="latexlogo"
-                  >T<span class="latexlogosub">e</span>X</span
-                ></span
-              >perts need this option, so, if you use it, you will probably know
-              what you are doing anyway.
-            </p>
+            <ul style="list-style-type: none">
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">wd=</span>{<span class="meta"
+                      ><span class="angle">&langle;</span><i>width</i
+                      ><span class="angle">&rangle;</span></span
+                    >}</span
+                  >
+                  sets the width of the box. This command has two effects:
+                  First,
+                  <span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >T<span class="latexlogosub">e</span>X</span
+                    ></span
+                  >&rsquo;s <span class="texttt">\hsize</span> is set to
+                  <span class="meta"
+                    ><span class="angle">&langle;</span><i>width</i
+                    ><span class="angle">&rangle;</span></span
+                  >. Second, after the box has been typeset, its width is set to
+                  <span class="meta"
+                    ><span class="angle">&langle;</span><i>width</i
+                    ><span class="angle">&rangle;</span></span
+                  >
+                  (no matter what it actually turned out to be). Since setting
+                  the <span class="texttt">\hsize</span> does not automatically
+                  change some of
+                  <span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >L<span class="latexlogosup">a</span>T<span
+                        class="latexlogosub"
+                        >e</span
+                      >X</span
+                    ></span
+                  >&rsquo;s linewidth dimensions, you should consider using a
+                  minipage inside this environment if you fool around with the
+                  width.
+                </p>
+                <p>
+                  If the width is larger than the normal text width, as
+                  specified by the value of
+                  <span class="texttt">\textwidth</span>, the width of the
+                  resulting box is reset to the width
+                  <span class="texttt">\textwidth</span>, but intelligent
+                  negative skips are inserted at the left and right end of the
+                  box. The net effect of this is that you can use a width larger
+                  than the text width for a box and can insert the resulting box
+                  directly into normal text without getting annoying warnings
+                  and having the box positioned sensibly.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">dp=</span>{<span class="meta"
+                      ><span class="angle">&langle;</span><i>depth</i
+                      ><span class="angle">&rangle;</span></span
+                    >}</span
+                  >
+                  sets the depth of the box, overriding the real depth of the
+                  box. The box is first typeset normally, then the depth is
+                  changed afterwards. This option is useful for creating boxes
+                  that have guaranteed size.
+                </p>
+                <p>
+                  If the option is not given, the box has its
+                  &ldquo;natural&rdquo; depth, which results from the
+                  typesetting. For example, a box containing only the letter
+                  &ldquo;a&rdquo; will have a different depth from a box
+                  containing only the letter &ldquo;g.&rdquo;
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">ht=</span
+                    ><span class="meta"
+                      ><span class="angle">&langle;</span><i>height</i
+                      ><span class="angle">&rangle;</span></span
+                    ></span
+                  >
+                  sets the height of the box, overriding the real height. Note
+                  that the &ldquo;height&rdquo; does not include the depth (see,
+                  for example, the
+                  <span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >T<span class="latexlogosub">e</span>X</span
+                    ></span
+                  >-book for details). If you want a one-line box that always
+                  has the same size, setting the height to 2.25ex and the depth
+                  to 1ex is usually a good option.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"><span class="texttt">left</span></span>
+                  causes the text inside the box to be typeset left-aligned and
+                  with a (radically) ragged right border. This is the default.
+                  To get a better ragged right border, use the
+                  <span class="texttt">rightskip</span> option. Note that this
+                  will override any <span class="texttt">leftskip</span> or
+                  <span class="texttt">rightskip</span> setting.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"><span class="texttt">right</span></span>
+                  causes the text to be right-aligned with a (radically) ragged
+                  left border. Note that this will override any
+                  <span class="texttt">leftskip</span> or
+                  <span class="texttt">rightskip</span>
+                  setting.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">center</span></span
+                  >
+                  centers the text inside the box. Note that this will override
+                  any <span class="texttt">leftskip</span> or
+                  <span class="texttt">rightskip</span> setting.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">leftskip=</span
+                    ><span class="meta"
+                      ><span class="angle">&langle;</span><i>left skip</i
+                      ><span class="angle">&rangle;</span></span
+                    ></span
+                  >
+                  installs the
+                  <span class="meta"
+                    ><span class="angle">&langle;</span><i>left skip</i
+                    ><span class="angle">&rangle;</span></span
+                  >
+                  inside the box as the left skip.
+                  <span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >T<span class="latexlogosub">e</span>X</span
+                    ></span
+                  >&rsquo;s left skip is a glue that is inserted at the left end
+                  of every line. See the
+                  <span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >T<span class="latexlogosub">e</span>X</span
+                    ></span
+                  >-book for details. Note that this will override any
+                  <span class="texttt">left</span>,
+                  <span class="texttt">center</span> or
+                  <span class="texttt">right</span> setting.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">rightskip=</span
+                    ><span class="meta"
+                      ><span class="angle">&langle;</span><i>right skip</i
+                      ><span class="angle">&rangle;</span></span
+                    ></span
+                  >
+                  install the
+                  <span class="meta"
+                    ><span class="angle">&langle;</span><i>right skip</i
+                    ><span class="angle">&rangle;</span></span
+                  >. To get a good ragged right border, try, say,
+                  <span class="texttt">\rightskip=0pt plus 4em</span>. Note that
+                  this will override any <span class="texttt">left</span>,
+                  <span class="texttt">center</span> or
+                  <span class="texttt">right</span> setting.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">sep=</span
+                    ><span class="meta"
+                      ><span class="angle">&langle;</span><i>dimension</i
+                      ><span class="angle">&rangle;</span></span
+                    ></span
+                  >
+                  sets the size of extra space around the text. This space is
+                  added &ldquo;inside the box,&rdquo; which means that if you
+                  specify a <span class="texttt">sep</span> of 1cm and insert
+                  the box normally into the vertical list, then the left border
+                  of the box will be aligned with the left border of the slide
+                  text, while the left border of the text inside the box will be
+                  1cm to the right of this left border. Likewise, the text
+                  inside the box will stop 1cm before the right border of the
+                  normal text.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">colsep=</span
+                    ><span class="meta"
+                      ><span class="angle">&langle;</span><i>dimension</i
+                      ><span class="angle">&rangle;</span></span
+                    ></span
+                  >
+                  sets the extra &ldquo;color separation space&rdquo; around the
+                  text. This space behaves the same way as the space added by
+                  <span class="texttt">sep</span>, only this space is only
+                  inserted if the box has a colored background, that is, if the
+                  background of the
+                  <span class="meta"
+                    ><span class="angle">&langle;</span><i>beamer color</i
+                    ><span class="angle">&rangle;</span></span
+                  >
+                  is not empty. This command can be used together with
+                  <span class="texttt">sep</span>, the effects accumulate.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">colsep*=</span
+                    ><span class="meta"
+                      ><span class="angle">&langle;</span><i>dimension</i
+                      ><span class="angle">&rangle;</span></span
+                    ></span
+                  >
+                  sets an extra color separation space around the text that is
+                  <em>horizontally outside the box</em>. This means that if the
+                  box has a background, this background will protrude by
+                  <span class="meta"
+                    ><span class="angle">&langle;</span><i>dimension</i
+                    ><span class="angle">&rangle;</span></span
+                  >
+                  to the left and right of the text, but this protruding
+                  background will not be taken into consideration by
+                  <span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >T<span class="latexlogosub">e</span>X</span
+                    ></span
+                  >
+                  for typesetting purposes.
+                </p>
+                <p>
+                  A typical example usage of this option arises when you insert
+                  a box with a colored background in the middle of normal text.
+                  In this case, if the background color is set, you would like a
+                  background to be drawn behind the text <em>and</em> you would
+                  like a certain extra space around this text (the background
+                  should not stop immediately at the borders of the text, this
+                  looks silly) <em>and</em> you would like the normal text
+                  always to be at the same horizontal position, independently of
+                  whether a background is present or not. In this case, using
+                  <span class="texttt">colsep*=4pt</span> is a good option.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"><span class="texttt">shadow</span></span
+                  ><span class="opt"
+                    ><span class="texttt">=</span
+                    ><span class="meta"
+                      ><span class="angle">&langle;</span><i>true or false</i
+                      ><span class="angle">&rangle;</span></span
+                    ></span
+                  >
+                  draws a shadow behind the box. Currently, this option only has
+                  an effect if used together with the
+                  <span class="texttt">rounded</span> option, but that may
+                  change.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">rounded</span></span
+                  ><span class="opt"
+                    ><span class="texttt">=</span
+                    ><span class="meta"
+                      ><span class="angle">&langle;</span><i>true or false</i
+                      ><span class="angle">&rangle;</span></span
+                    ></span
+                  >
+                  causes the borders of the box to be rounded off if there is a
+                  background installed. This command internally calls
+                  <span class="texttt">beamerboxesrounded</span>. In this case,
+                  <span class="texttt">colsep*</span> option will have no
+                  effect.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">ignorebg</span></span
+                  >
+                  causes the background color of the
+                  <span class="meta"
+                    ><span class="angle">&langle;</span><i>beamer color</i
+                    ><span class="angle">&rangle;</span></span
+                  >
+                  to be ignored, that is, to be treated as if it were set to
+                  &ldquo;transparent&rdquo; or &ldquo;empty.&rdquo;
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"><span class="texttt">vmode</span></span>
+                  causes
+                  <span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >T<span class="latexlogosub">e</span>X</span
+                    ></span
+                  >
+                  to be in vertical mode when the box starts. Normally,
+                  <span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >T<span class="latexlogosub">e</span>X</span
+                    ></span
+                  >
+                  will be in horizontal mode at the start of the box (a
+                  <span class="texttt">\leavevmode</span> is inserted
+                  automatically at the beginning of the box unless this option
+                  is given). Only
+                  <span class="latexlogofont"
+                    ><span class="latexlogo"
+                      >T<span class="latexlogosub">e</span>X</span
+                    ></span
+                  >perts need this option, so, if you use it, you will probably
+                  know what you are doing anyway.
+                </p>
+              </li>
+            </ul>
           </div>
           <div class="environment">
             <div class="environment-headline">
@@ -3160,74 +3258,83 @@
               <span class="texttt">upper</span> option for the fore- and
               background. The following options can be given:
             </p>
-
-            <p>
-              &bull;
-              <span class="declare"
-                ><span class="texttt">lower=</span
-                ><span class="meta"
-                  ><span class="angle">&langle;</span><i>beamer color</i
-                  ><span class="angle">&rangle;</span></span
-                ></span
-              >
-              sets the
-              <span class="beamer-name"><span class="textsc">beamer</span></span
-              >-color to be used for the lower (main) part of the box. Its
-              background is used for the background, its foreground for the
-              foreground of the main part of the box. If either is empty, the
-              current background or foreground is used. The box will never be
-              transparent.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"
-                ><span class="texttt">upper=</span
-                ><span class="meta"
-                  ><span class="angle">&langle;</span><i>beamer color</i
-                  ><span class="angle">&rangle;</span></span
-                ></span
-              >
-              sets the
-              <span class="beamer-name"><span class="textsc">beamer</span></span
-              >-color used for the upper (head) part of the box. It is only used
-              if the
-              <span class="meta"
-                ><span class="angle">&langle;</span><i>head</i
-                ><span class="angle">&rangle;</span></span
-              >
-              is not empty.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"
-                ><span class="texttt">width=</span
-                ><span class="meta"
-                  ><span class="angle">&langle;</span><i>dimension</i
-                  ><span class="angle">&rangle;</span></span
-                ></span
-              >
-              causes the width of the text inside the box to be the specified
-              <span class="meta"
-                ><span class="angle">&langle;</span><i>dimension</i
-                ><span class="angle">&rangle;</span></span
-              >. By default, the <span class="texttt">\textwidth</span> is used.
-              Note that the box will protrude 4pt to the left and right.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"
-                ><span class="texttt">shadow=</span
-                ><span class="meta"
-                  ><span class="angle">&langle;</span><i>true or false</i
-                  ><span class="angle">&rangle;</span></span
-                ></span
-              >. If set to <span class="texttt">true</span>, a shadow will be
-              drawn.
-            </p>
-
+            <ul style="list-style-type: none">
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">lower=</span
+                    ><span class="meta"
+                      ><span class="angle">&langle;</span><i>beamer color</i
+                      ><span class="angle">&rangle;</span></span
+                    ></span
+                  >
+                  sets the
+                  <span class="beamer-name"
+                    ><span class="textsc">beamer</span></span
+                  >-color to be used for the lower (main) part of the box. Its
+                  background is used for the background, its foreground for the
+                  foreground of the main part of the box. If either is empty,
+                  the current background or foreground is used. The box will
+                  never be transparent.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">upper=</span
+                    ><span class="meta"
+                      ><span class="angle">&langle;</span><i>beamer color</i
+                      ><span class="angle">&rangle;</span></span
+                    ></span
+                  >
+                  sets the
+                  <span class="beamer-name"
+                    ><span class="textsc">beamer</span></span
+                  >-color used for the upper (head) part of the box. It is only
+                  used if the
+                  <span class="meta"
+                    ><span class="angle">&langle;</span><i>head</i
+                    ><span class="angle">&rangle;</span></span
+                  >
+                  is not empty.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">width=</span
+                    ><span class="meta"
+                      ><span class="angle">&langle;</span><i>dimension</i
+                      ><span class="angle">&rangle;</span></span
+                    ></span
+                  >
+                  causes the width of the text inside the box to be the
+                  specified
+                  <span class="meta"
+                    ><span class="angle">&langle;</span><i>dimension</i
+                    ><span class="angle">&rangle;</span></span
+                  >. By default, the <span class="texttt">\textwidth</span> is
+                  used. Note that the box will protrude 4pt to the left and
+                  right.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">shadow=</span
+                    ><span class="meta"
+                      ><span class="angle">&langle;</span><i>true or false</i
+                      ><span class="angle">&rangle;</span></span
+                    ></span
+                  >. If set to <span class="texttt">true</span>, a shadow will
+                  be drawn.
+                </p>
+              </li>
+            </ul>
             <p>
               If no
               <span class="meta"
@@ -3303,63 +3410,72 @@
             </div>
             <p>This template is used to render the caption.</p>
             <p>The following template options are predefined:</p>
-
-            <p>
-              &bull;
-              <span class="itemoption"
-                ><kbd>[<span class="declare">default</span>]</kbd></span
-              >
-              typesets the caption name (a word like &ldquo;Figure&rdquo; or
-              &ldquo;Abbildung&rdquo; or &ldquo;Table,&rdquo; depending on
-              whether a table or figure is typeset and depending on the
-              currently installed language) before the caption text. No number
-              is printed, since these make little sense in a normal
-              presentation.
-            </p>
-
-            <p>
-              &bull;
-              <span class="itemoption"
-                ><kbd>[<span class="declare">numbered</span>]</kbd></span
-              >
-              adds the figure or table number to the caption. Use this option
-              only if your audience has a printed handout or printed lecture
-              notes that follow the same numbering.
-            </p>
-
-            <p>
-              &bull;
-              <span class="itemoption"
-                ><kbd
-                  >[<span class="declare">caption name own line</span>]</kbd
-                ></span
-              >
-              As the name suggests, this options puts the caption name (like
-              &ldquo;Figure&rdquo;) on its own line.
-            </p>
-
+            <ul style="list-style-type: none">
+              <li>
+                <p>
+                  &bull;
+                  <span class="itemoption"
+                    ><kbd>[<span class="declare">default</span>]</kbd></span
+                  >
+                  typesets the caption name (a word like &ldquo;Figure&rdquo; or
+                  &ldquo;Abbildung&rdquo; or &ldquo;Table,&rdquo; depending on
+                  whether a table or figure is typeset and depending on the
+                  currently installed language) before the caption text. No
+                  number is printed, since these make little sense in a normal
+                  presentation.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="itemoption"
+                    ><kbd>[<span class="declare">numbered</span>]</kbd></span
+                  >
+                  adds the figure or table number to the caption. Use this
+                  option only if your audience has a printed handout or printed
+                  lecture notes that follow the same numbering.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="itemoption"
+                    ><kbd
+                      >[<span class="declare">caption name own line</span>]</kbd
+                    ></span
+                  >
+                  As the name suggests, this options puts the caption name (like
+                  &ldquo;Figure&rdquo;) on its own line.
+                </p>
+              </li>
+            </ul>
             <p>Inside the template, you can use the following inserts:</p>
-
-            <p>
-              &bull;
-              <kbd><span class="declare">\insertcaption</span></kbd> Inserts the
-              text of the current caption.
-            </p>
-
-            <p>
-              &bull;
-              <kbd><span class="declare">\insertcaptionname</span></kbd> Inserts
-              the name of the current caption. This word is either
-              &ldquo;Table&rdquo; or &ldquo;Figure&rdquo; or, if the
-              <span class="texttt">babel</span> package is used, some
-              translation thereof.
-            </p>
-
-            <p>
-              &bull;
-              <kbd><span class="declare">\insertcaptionnumber</span></kbd>
-              Inserts the number of the current figure or table.
-            </p>
+            <ul style="list-style-type: none">
+              <li>
+                <p>
+                  &bull;
+                  <kbd><span class="declare">\insertcaption</span></kbd> Inserts
+                  the text of the current caption.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <kbd><span class="declare">\insertcaptionname</span></kbd>
+                  Inserts the name of the current caption. This word is either
+                  &ldquo;Table&rdquo; or &ldquo;Figure&rdquo; or, if the
+                  <span class="texttt">babel</span> package is used, some
+                  translation thereof.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <kbd><span class="declare">\insertcaptionnumber</span></kbd>
+                  Inserts the number of the current figure or table.
+                </p>
+              </li>
+            </ul>
           </div>
           <div class="element">
             <div class="element-headline">
@@ -3389,65 +3505,76 @@
               This template is inserted between caption name and caption text.
             </p>
             <p>The following template options are predefined:</p>
-
-            <p>
-              &bull;
-              <span class="itemoption"
-                ><kbd>[<span class="declare">default</span>]</kbd></span
-              >
-              Typesets the colon followed by the space.
-            </p>
-
-            <p>
-              &bull;
-              <span class="itemoption"
-                ><kbd>[<span class="declare">none</span>]</kbd></span
-              >
-              Typesets no separator.
-            </p>
-
-            <p>
-              &bull;
-              <span class="itemoption"
-                ><kbd>[<span class="declare">colon</span>]</kbd></span
-              >
-              Alias for the default.
-            </p>
-
-            <p>
-              &bull;
-              <span class="itemoption"
-                ><kbd>[<span class="declare">period</span>]</kbd></span
-              >
-              Typesets the period followed by the space.
-            </p>
-
-            <p>
-              &bull;
-              <span class="itemoption"
-                ><kbd>[<span class="declare">space</span>]</kbd></span
-              >
-              Typesets the space.
-            </p>
-
-            <p>
-              &bull;
-              <span class="itemoption"
-                ><kbd>[<span class="declare">quad</span>]</kbd></span
-              >
-              Typesets the <span class="texttt">\quad</span> followed by the
-              space.
-            </p>
-
-            <p>
-              &bull;
-              <span class="itemoption"
-                ><kbd>[<span class="declare">endash</span>]</kbd></span
-              >
-              Typesets the en-dash surrounded by spaces (<span class="texttt">
-                -- </span
-              >).
-            </p>
+            <ul style="list-style-type: none">
+              <li>
+                <p>
+                  &bull;
+                  <span class="itemoption"
+                    ><kbd>[<span class="declare">default</span>]</kbd></span
+                  >
+                  Typesets the colon followed by the space.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="itemoption"
+                    ><kbd>[<span class="declare">none</span>]</kbd></span
+                  >
+                  Typesets no separator.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="itemoption"
+                    ><kbd>[<span class="declare">colon</span>]</kbd></span
+                  >
+                  Alias for the default.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="itemoption"
+                    ><kbd>[<span class="declare">period</span>]</kbd></span
+                  >
+                  Typesets the period followed by the space.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="itemoption"
+                    ><kbd>[<span class="declare">space</span>]</kbd></span
+                  >
+                  Typesets the space.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="itemoption"
+                    ><kbd>[<span class="declare">quad</span>]</kbd></span
+                  >
+                  Typesets the <span class="texttt">\quad</span> followed by the
+                  space.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="itemoption"
+                    ><kbd>[<span class="declare">endash</span>]</kbd></span
+                  >
+                  Typesets the en-dash surrounded by spaces (<span
+                    class="texttt"
+                  >
+                    -- </span
+                  >).
+                </p>
+              </li>
+            </ul>
           </div>
           <!--
 ...... subsection Splitting a Frame into Multiple Columns ......
@@ -3530,76 +3657,92 @@
               >
               may be given:
             </p>
-
-            <p>
-              &bull;
-              <span class="declare"><span class="texttt">b</span></span> will
-              cause the bottom lines of the columns to be vertically aligned.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"><span class="texttt">c</span></span> will
-              cause the columns to be centered vertically relative to each
-              other. Default, unless the global option
-              <span class="texttt">t</span> is used.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"
-                ><span class="texttt">onlytextwidth</span></span
-              >
-              is the same as <span class="texttt">totalwidth=\textwidth</span>.
-              This option can also be set for the whole document with the
-              <span class="texttt">onlytextwidth</span> class option:
-            </p>
-            <div class="classoption">
-              <p>
-                <span class="classoption-heading"
-                  >\documentclass[<span class="declare">onlytextwidth</span
-                  >]{beamer}</span
-                >
-              </p>
-            </div>
-
-            <p>
-              &bull;
-              <span class="declare"><span class="texttt">t</span></span> will
-              cause the first lines of the columns to be aligned. Default if
-              global option <span class="texttt">t</span> is used.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"><span class="texttt">T</span></span> is
-              similar to the <span class="texttt">t</span> option, but
-              <span class="texttt">T</span> aligns the tops of the first lines
-              while <span class="texttt">t</span> aligns the so-called baselines
-              of the first lines. If strange things seem to happen in
-              conjunction with the <span class="texttt">t</span> option (for
-              example if a graphic suddenly &ldquo;drops down&rdquo; with the
-              <span class="texttt">t</span> option instead of &ldquo;going
-              up&rdquo;), try using this option instead.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"
-                ><span class="texttt">totalwidth=</span
-                ><span class="meta"
-                  ><span class="angle">&langle;</span><i>width</i
-                  ><span class="angle">&rangle;</span></span
-                ></span
-              >
-              will cause the columns to occupy not the whole page width, but
-              only
-              <span class="meta"
-                ><span class="angle">&langle;</span><i>width</i
-                ><span class="angle">&rangle;</span></span
-              >, all told. Note that this means that any margins are ignored.
-            </p>
-
+            <ul style="list-style-type: none">
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"><span class="texttt">b</span></span>
+                  will cause the bottom lines of the columns to be vertically
+                  aligned.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"><span class="texttt">c</span></span>
+                  will cause the columns to be centered vertically relative to
+                  each other. Default, unless the global option
+                  <span class="texttt">t</span> is used.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">onlytextwidth</span></span
+                  >
+                  is the same as
+                  <span class="texttt">totalwidth=\textwidth</span>. This option
+                  can also be set for the whole document with the
+                  <span class="texttt">onlytextwidth</span> class option:
+                </p>
+                <div class="classoption">
+                  <ul style="list-style-type: none">
+                    <li>
+                      <p>
+                        <span class="classoption-heading"
+                          >\documentclass[<span class="declare"
+                            >onlytextwidth</span
+                          >]{beamer}</span
+                        >
+                      </p>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"><span class="texttt">t</span></span>
+                  will cause the first lines of the columns to be aligned.
+                  Default if global option <span class="texttt">t</span> is
+                  used.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"><span class="texttt">T</span></span> is
+                  similar to the <span class="texttt">t</span> option, but
+                  <span class="texttt">T</span> aligns the tops of the first
+                  lines while <span class="texttt">t</span> aligns the so-called
+                  baselines of the first lines. If strange things seem to happen
+                  in conjunction with the <span class="texttt">t</span> option
+                  (for example if a graphic suddenly &ldquo;drops down&rdquo;
+                  with the <span class="texttt">t</span> option instead of
+                  &ldquo;going up&rdquo;), try using this option instead.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">totalwidth=</span
+                    ><span class="meta"
+                      ><span class="angle">&langle;</span><i>width</i
+                      ><span class="angle">&rangle;</span></span
+                    ></span
+                  >
+                  will cause the columns to occupy not the whole page width, but
+                  only
+                  <span class="meta"
+                    ><span class="angle">&langle;</span><i>width</i
+                    ><span class="angle">&rangle;</span></span
+                  >, all told. Note that this means that any margins are
+                  ignored.
+                </p>
+              </li>
+            </ul>
             <p>
               <i>Example: </i>
             </p>
@@ -4289,17 +4432,19 @@
               >
               class adds one additional option:
             </p>
-
-            <p>
-              &bull;
-              <span class="declare"><span class="texttt">frame</span></span>
-              causes the footnote to be shown at the bottom of the frame. This
-              is normally the default behavior anyway, but in minipages and
-              certain blocks it makes a difference. In a minipage, the footnote
-              is usually shown as part of the minipage rather than as part of
-              the frame.
-            </p>
-
+            <ul style="list-style-type: none">
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"><span class="texttt">frame</span></span>
+                  causes the footnote to be shown at the bottom of the frame.
+                  This is normally the default behavior anyway, but in minipages
+                  and certain blocks it makes a difference. In a minipage, the
+                  footnote is usually shown as part of the minipage rather than
+                  as part of the frame.
+                </p>
+              </li>
+            </ul>
             <p>
               If an
               <span class="meta"
@@ -4345,19 +4490,23 @@
                 This template will be used to render the footnote. Inside this
                 template, the following two inserts can be used:
               </p>
-
-              <p>
-                &bull;
-                <kbd><span class="declare">\insertfootnotetext</span></kbd>
-                Inserts the current footnote text.
-              </p>
-
-              <p>
-                &bull;
-                <kbd><span class="declare">\insertfootnotemark</span></kbd>
-                Inserts the current footnote mark (like a raised number). This
-                mark is computed automatically.
-              </p>
+              <ul style="list-style-type: none">
+                <li>
+                  <p>
+                    &bull;
+                    <kbd><span class="declare">\insertfootnotetext</span></kbd>
+                    Inserts the current footnote text.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    &bull;
+                    <kbd><span class="declare">\insertfootnotemark</span></kbd>
+                    Inserts the current footnote mark (like a raised number).
+                    This mark is computed automatically.
+                  </p>
+                </li>
+              </ul>
             </div>
             <div class="element">
               <div class="element-headline">
@@ -4393,21 +4542,18 @@
           <a href="https://github.com/SwitWu/beamer-html-manual">Repository</a>
         </div>
         <div class="footer-right">
-          <em>HTML version last updated: 2023-10-10</em>
+          <em>HTML version last updated: 2023-10-11</em>
         </div>
       </footer>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
-    <script>
+    <script type="text/javascript">
       docsearch({
         apiKey: "09762da49fe4ba391f7a3618c73720d8",
         indexName: "beamerplusio",
         appId: "WNNAN5R8GM",
         container: "#search",
-        searchParameters: {
-          filters: "tags:beamer",
-        },
       });
     </script>
   </body>

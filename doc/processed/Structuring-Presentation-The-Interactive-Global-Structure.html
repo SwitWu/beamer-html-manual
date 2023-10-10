@@ -9,7 +9,7 @@
       Structuring a Presentation: The Interactive Global Structure - Beamer
       Manual
     </title>
-    <link href="style.css?v=20231010" rel="stylesheet" type="text/css" />
+    <link href="style.css?v=20231011" rel="stylesheet" type="text/css" />
     <link
       href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
       rel="stylesheet"
@@ -344,61 +344,71 @@
                 <span class="texttt">\beamerbutton</span>.
               </p>
               <p>The following template options are predefined:</p>
-
-              <p>
-                &bull;
-                <span class="itemoption"
-                  ><kbd>[<span class="declare">default</span>]</kbd></span
-                >
-                Typesets the button with rounded corners. The fore- and
-                background of the
-                <span class="beamer-name"
-                  ><span class="textsc">beamer</span></span
-                >-color <span class="texttt">button</span> are used and also the
-                <span class="beamer-name"
-                  ><span class="textsc">beamer</span></span
-                >-font <span class="texttt">button</span>. The border of the
-                button gets the foreground of the
-                <span class="beamer-name"
-                  ><span class="textsc">beamer</span></span
-                >-color <span class="texttt">button border</span>.
-              </p>
-
+              <ul style="list-style-type: none">
+                <li>
+                  <p>
+                    &bull;
+                    <span class="itemoption"
+                      ><kbd>[<span class="declare">default</span>]</kbd></span
+                    >
+                    Typesets the button with rounded corners. The fore- and
+                    background of the
+                    <span class="beamer-name"
+                      ><span class="textsc">beamer</span></span
+                    >-color <span class="texttt">button</span> are used and also
+                    the
+                    <span class="beamer-name"
+                      ><span class="textsc">beamer</span></span
+                    >-font <span class="texttt">button</span>. The border of the
+                    button gets the foreground of the
+                    <span class="beamer-name"
+                      ><span class="textsc">beamer</span></span
+                    >-color <span class="texttt">button border</span>.
+                  </p>
+                </li>
+              </ul>
               <p>The following inserts are useful for this element:</p>
-
-              <p>
-                &bull;
-                <kbd><span class="declare">\insertbuttontext</span></kbd>
-                inserts the text of the current button. Inside
-                &ldquo;Goto-Buttons&rdquo; (see below) this text is prefixed by
-                the insert <span class="texttt">\insertgotosymbol</span> and
-                similarly for skip and return buttons.
-              </p>
-
-              <p>
-                &bull;
-                <kbd><span class="declare">\insertgotosymbol</span></kbd> This
-                text is inserted at the beginning of goto buttons. Redefine this
-                command to change the symbol.
-              </p>
-              <p>
-                <i>Example: </i
-                ><span class="texttt"
-                  >\renewcommand{\insertgotosymbol}{\somearrowcommand}</span
-                >
-              </p>
-
-              <p>
-                &bull;
-                <kbd><span class="declare">\insertskipsymbol</span></kbd> This
-                text is inserted at the beginning of skip buttons.
-              </p>
-
-              <p>
-                &bull;
-                <kbd><span class="declare">\insertreturnsymbol</span></kbd> This
-                text is inserted at the beginning of return buttons.
-              </p>
+              <ul style="list-style-type: none">
+                <li>
+                  <p>
+                    &bull;
+                    <kbd><span class="declare">\insertbuttontext</span></kbd>
+                    inserts the text of the current button. Inside
+                    &ldquo;Goto-Buttons&rdquo; (see below) this text is prefixed
+                    by the insert
+                    <span class="texttt">\insertgotosymbol</span> and similarly
+                    for skip and return buttons.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    &bull;
+                    <kbd><span class="declare">\insertgotosymbol</span></kbd>
+                    This text is inserted at the beginning of goto buttons.
+                    Redefine this command to change the symbol.
+                  </p>
+                  <p>
+                    <i>Example: </i
+                    ><span class="texttt"
+                      >\renewcommand{\insertgotosymbol}{\somearrowcommand}</span
+                    >
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    &bull;
+                    <kbd><span class="declare">\insertskipsymbol</span></kbd>
+                    This text is inserted at the beginning of skip buttons.
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    &bull;
+                    <kbd><span class="declare">\insertreturnsymbol</span></kbd>
+                    This text is inserted at the beginning of return buttons.
+                  </p>
+                </li>
+              </ul>
             </div>
             <div class="element">
               <div class="element-headline">
@@ -1101,54 +1111,56 @@
                 ><span class="angle">&rangle;</span></span
               >:
             </p>
-
-            <p>
-              &bull;
-              <span class="declare"><span class="texttt">border</span></span
-              ><span class="opt"
-                ><span class="texttt">=</span
-                ><span class="meta"
-                  ><span class="angle">&langle;</span><i>width in pixels</i
-                  ><span class="angle">&rangle;</span></span
-                ></span
-              >
-              will draw a border around the specified button area. The default
-              width is 1 pixel. The color of this button is the
-              <span class="texttt">linkbordercolor</span> of
-              <span class="texttt">hyperref</span>.
-              <span class="beamer-name"
-                ><span class="textsc">beamer</span></span
-              >
-              sets this color to a 50% gray by default.<br />
-              To change this, you can use the command
-              <span class="texttt">\hypersetup{linkbordercolor={</span
-              ><span class="meta"
-                ><span class="angle">&langle;</span><i>red</i
-                ><span class="angle">&rangle;</span></span
-              ><span class="texttt"> </span
-              ><span class="meta"
-                ><span class="angle">&langle;</span><i>green</i
-                ><span class="angle">&rangle;</span></span
-              ><span class="texttt"> </span
-              ><span class="meta"
-                ><span class="angle">&langle;</span><i>blue</i
-                ><span class="angle">&rangle;</span></span
-              ><span class="texttt">}}</span>, where
-              <span class="meta"
-                ><span class="angle">&langle;</span><i>red</i
-                ><span class="angle">&rangle;</span></span
-              >,
-              <span class="meta"
-                ><span class="angle">&langle;</span><i>green</i
-                ><span class="angle">&rangle;</span></span
-              >, and
-              <span class="meta"
-                ><span class="angle">&langle;</span><i>blue</i
-                ><span class="angle">&rangle;</span></span
-              >
-              are values between 0 and 1.
-            </p>
-
+            <ul style="list-style-type: none">
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"><span class="texttt">border</span></span
+                  ><span class="opt"
+                    ><span class="texttt">=</span
+                    ><span class="meta"
+                      ><span class="angle">&langle;</span><i>width in pixels</i
+                      ><span class="angle">&rangle;</span></span
+                    ></span
+                  >
+                  will draw a border around the specified button area. The
+                  default width is 1 pixel. The color of this button is the
+                  <span class="texttt">linkbordercolor</span> of
+                  <span class="texttt">hyperref</span>.
+                  <span class="beamer-name"
+                    ><span class="textsc">beamer</span></span
+                  >
+                  sets this color to a 50% gray by default.<br />
+                  To change this, you can use the command
+                  <span class="texttt">\hypersetup{linkbordercolor={</span
+                  ><span class="meta"
+                    ><span class="angle">&langle;</span><i>red</i
+                    ><span class="angle">&rangle;</span></span
+                  ><span class="texttt"> </span
+                  ><span class="meta"
+                    ><span class="angle">&langle;</span><i>green</i
+                    ><span class="angle">&rangle;</span></span
+                  ><span class="texttt"> </span
+                  ><span class="meta"
+                    ><span class="angle">&langle;</span><i>blue</i
+                    ><span class="angle">&rangle;</span></span
+                  ><span class="texttt">}}</span>, where
+                  <span class="meta"
+                    ><span class="angle">&langle;</span><i>red</i
+                    ><span class="angle">&rangle;</span></span
+                  >,
+                  <span class="meta"
+                    ><span class="angle">&langle;</span><i>green</i
+                    ><span class="angle">&rangle;</span></span
+                  >, and
+                  <span class="meta"
+                    ><span class="angle">&langle;</span><i>blue</i
+                    ><span class="angle">&rangle;</span></span
+                  >
+                  are values between 0 and 1.
+                </p>
+              </li>
+            </ul>
             <p>
               When you press the button created in this way, the viewer
               application will hyperjump to the first of the frames specified by
@@ -1261,21 +1273,18 @@
           <a href="https://github.com/SwitWu/beamer-html-manual">Repository</a>
         </div>
         <div class="footer-right">
-          <em>HTML version last updated: 2023-10-10</em>
+          <em>HTML version last updated: 2023-10-11</em>
         </div>
       </footer>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
-    <script>
+    <script type="text/javascript">
       docsearch({
         apiKey: "09762da49fe4ba391f7a3618c73720d8",
         indexName: "beamerplusio",
         appId: "WNNAN5R8GM",
         container: "#search",
-        searchParameters: {
-          filters: "tags:beamer",
-        },
       });
     </script>
   </body>

@@ -6,7 +6,7 @@
     <meta content="LaTeX Lwarp package" name="generator" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Creating Handouts and Lecture Notes - Beamer Manual</title>
-    <link href="style.css?v=20231010" rel="stylesheet" type="text/css" />
+    <link href="style.css?v=20231011" rel="stylesheet" type="text/css" />
     <link
       href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
       rel="stylesheet"
@@ -325,92 +325,107 @@
               >
               may be given:
             </p>
-
-            <p>
-              &bull;
-              <span class="declare"
-                ><span class="texttt">activeospeccharacters</span></span
-              >
-              will leave the character code of the pointed brackets as specified
-              by other packages. Normally,
-              <span class="beamer-name"
-                ><span class="textsc">beamer</span></span
-              >
-              will turn off the special behavior of the two characters
-              <span class="texttt">&lt;</span> and
-              <span class="texttt">&gt;</span>. Using this option, you can
-              reinstall the original behavior at the price of possible problems
-              when using overlay specifications in the
-              <span class="texttt">article</span> mode.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"><span class="texttt">noamssymb</span></span>
-              will suppress the automatic loading of the
-              <span class="texttt">amssymb</span> package. Normally,
-              <span class="beamer-name"
-                ><span class="textsc">beamer</span></span
-              >
-              will load this package since many themes use AMS symbols. This
-              option allows you to opt-out from this behavior in article mode,
-              thus preventing clashes with some classes and font packages that
-              conflict with <span class="texttt">amssymb</span>. Note that, if
-              you use this option, you will have to care for yourself that
-              <span class="texttt">amssymb</span> or an alternative package is
-              loaded if you use respective symbols.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"><span class="texttt">noamsthm</span></span>
-              will suppress the loading of the
-              <span class="texttt">amsthm</span> package. No theorems will be
-              defined.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"
-                ><span class="texttt">nokeywords</span></span
-              >
-              will suppress the creation of a
-              <span class="texttt">\keywords</span> command.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"
-                ><span class="texttt">notheorems</span></span
-              >
-              will suppress the definition of standard environments like
-              <span class="texttt">theorem</span>, but
-              <span class="texttt">amsthm</span> is still loaded and the
-              <span class="texttt">\newtheorem</span> command still makes the
-              defined environments overlay-specification-aware. Using this
-              option allows you to define the standard environments in whatever
-              way you like while retaining the power of the extensions to
-              <span class="texttt">amsthm</span>.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"
-                ><span class="texttt">envcountsect</span></span
-              >
-              causes theorem, definitions and the like to be numbered with each
-              section. Thus instead of Theorem&nbsp;1 you get Theorem&nbsp;1.1.
-              We recommend using this option.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"><span class="texttt">noxcolor</span></span>
-              will suppress the loading of the
-              <span class="texttt">xcolor</span> package. No colors will be
-              defined.
-            </p>
-
+            <ul style="list-style-type: none">
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">activeospeccharacters</span></span
+                  >
+                  will leave the character code of the pointed brackets as
+                  specified by other packages. Normally,
+                  <span class="beamer-name"
+                    ><span class="textsc">beamer</span></span
+                  >
+                  will turn off the special behavior of the two characters
+                  <span class="texttt">&lt;</span> and
+                  <span class="texttt">&gt;</span>. Using this option, you can
+                  reinstall the original behavior at the price of possible
+                  problems when using overlay specifications in the
+                  <span class="texttt">article</span> mode.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">noamssymb</span></span
+                  >
+                  will suppress the automatic loading of the
+                  <span class="texttt">amssymb</span> package. Normally,
+                  <span class="beamer-name"
+                    ><span class="textsc">beamer</span></span
+                  >
+                  will load this package since many themes use AMS symbols. This
+                  option allows you to opt-out from this behavior in article
+                  mode, thus preventing clashes with some classes and font
+                  packages that conflict with
+                  <span class="texttt">amssymb</span>. Note that, if you use
+                  this option, you will have to care for yourself that
+                  <span class="texttt">amssymb</span> or an alternative package
+                  is loaded if you use respective symbols.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">noamsthm</span></span
+                  >
+                  will suppress the loading of the
+                  <span class="texttt">amsthm</span> package. No theorems will
+                  be defined.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">nokeywords</span></span
+                  >
+                  will suppress the creation of a
+                  <span class="texttt">\keywords</span> command.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">notheorems</span></span
+                  >
+                  will suppress the definition of standard environments like
+                  <span class="texttt">theorem</span>, but
+                  <span class="texttt">amsthm</span> is still loaded and the
+                  <span class="texttt">\newtheorem</span> command still makes
+                  the defined environments overlay-specification-aware. Using
+                  this option allows you to define the standard environments in
+                  whatever way you like while retaining the power of the
+                  extensions to <span class="texttt">amsthm</span>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">envcountsect</span></span
+                  >
+                  causes theorem, definitions and the like to be numbered with
+                  each section. Thus instead of Theorem&nbsp;1 you get
+                  Theorem&nbsp;1.1. We recommend using this option.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">noxcolor</span></span
+                  >
+                  will suppress the loading of the
+                  <span class="texttt">xcolor</span> package. No colors will be
+                  defined.
+                </p>
+              </li>
+            </ul>
             <p>
               <i>Example: </i>
             </p>
@@ -1088,29 +1103,34 @@ beamer second handout trans
               less convenient than the first, but there are different reasons
               why you might need to use it:
             </p>
-
-            <p>
-              &bull; The line-wise gobbling is much faster than the gobble of
-              the third flavor, explained below.
-            </p>
-
-            <p>
-              &bull; The first flavor reads its argument completely. This means,
-              it cannot contain any verbatim text that contains unbalanced
-              braces.
-            </p>
-
-            <p>
-              &bull; The first flavor cannot cope with arguments that contain
-              <span class="texttt">\include</span>.
-            </p>
-
-            <p>
-              &bull; If the text mainly belongs to one mode with only small
-              amounts of text from another mode inserted, this second flavor is
-              nice to use.
-            </p>
-
+            <ul style="list-style-type: none">
+              <li>
+                <p>
+                  &bull; The line-wise gobbling is much faster than the gobble
+                  of the third flavor, explained below.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull; The first flavor reads its argument completely. This
+                  means, it cannot contain any verbatim text that contains
+                  unbalanced braces.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull; The first flavor cannot cope with arguments that
+                  contain <span class="texttt">\include</span>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull; If the text mainly belongs to one mode with only small
+                  amounts of text from another mode inserted, this second flavor
+                  is nice to use.
+                </p>
+              </li>
+            </ul>
             <p>
               <em>Note:</em> When searching line-wise for a
               <span class="texttt">\mode</span> command to shake it out of its
@@ -1327,21 +1347,18 @@ Extra text in article version.
           <a href="https://github.com/SwitWu/beamer-html-manual">Repository</a>
         </div>
         <div class="footer-right">
-          <em>HTML version last updated: 2023-10-10</em>
+          <em>HTML version last updated: 2023-10-11</em>
         </div>
       </footer>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
-    <script>
+    <script type="text/javascript">
       docsearch({
         apiKey: "09762da49fe4ba391f7a3618c73720d8",
         indexName: "beamerplusio",
         appId: "WNNAN5R8GM",
         container: "#search",
-        searchParameters: {
-          filters: "tags:beamer",
-        },
       });
     </script>
   </body>

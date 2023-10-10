@@ -6,7 +6,7 @@
     <meta content="LaTeX Lwarp package" name="generator" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Installation - Beamer Manual</title>
-    <link href="style.css?v=20231010" rel="stylesheet" type="text/css" />
+    <link href="style.css?v=20231011" rel="stylesheet" type="text/css" />
     <link
       href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
       rel="stylesheet"
@@ -707,31 +707,36 @@ beamer/doc/solutions/generic-talks
               class option:
             </p>
             <div class="classoption">
-              <p>
-                <span class="classoption-heading"
-                  >\documentclass[<span class="declare"
-                    >color=<span class="meta"
+              <ul style="list-style-type: none">
+                <li>
+                  <p>
+                    <span class="classoption-heading"
+                      >\documentclass[<span class="declare"
+                        >color=<span class="meta"
+                          ><span class="angle">&langle;</span
+                          ><i>list of options</i
+                          ><span class="angle">&rangle;</span></span
+                        ></span
+                      >]{beamer}</span
+                    >
+                  </p>
+                  <p>
+                    Causes the
+                    <span class="meta"
                       ><span class="angle">&langle;</span><i>list of options</i
                       ><span class="angle">&rangle;</span></span
-                    ></span
-                  >]{beamer}</span
-                >
-              </p>
-              <p>
-                Causes the
-                <span class="meta"
-                  ><span class="angle">&langle;</span><i>list of options</i
-                  ><span class="angle">&rangle;</span></span
-                >
-                to be passed on to the
-                <span class="texttt">color</span> package. If the
-                <span class="meta"
-                  ><span class="angle">&langle;</span><i>list of options</i
-                  ><span class="angle">&rangle;</span></span
-                >
-                contains more than one option you must enclose it in curly
-                brackets.
-              </p>
+                    >
+                    to be passed on to the
+                    <span class="texttt">color</span> package. If the
+                    <span class="meta"
+                      ><span class="angle">&langle;</span><i>list of options</i
+                      ><span class="angle">&rangle;</span></span
+                    >
+                    contains more than one option you must enclose it in curly
+                    brackets.
+                  </p>
+                </li>
+              </ul>
             </div>
             <p>
               The <span class="texttt">color</span> package is not loaded
@@ -932,31 +937,36 @@ beamer/doc/solutions/generic-talks
               can use the following class option:
             </p>
             <div class="classoption">
-              <p>
-                <span class="classoption-heading"
-                  >\documentclass[<span class="declare"
-                    >hyperref=<span class="meta"
+              <ul style="list-style-type: none">
+                <li>
+                  <p>
+                    <span class="classoption-heading"
+                      >\documentclass[<span class="declare"
+                        >hyperref=<span class="meta"
+                          ><span class="angle">&langle;</span
+                          ><i>list of options</i
+                          ><span class="angle">&rangle;</span></span
+                        ></span
+                      >]{beamer}</span
+                    >
+                  </p>
+                  <p>
+                    Causes the
+                    <span class="meta"
                       ><span class="angle">&langle;</span><i>list of options</i
                       ><span class="angle">&rangle;</span></span
-                    ></span
-                  >]{beamer}</span
-                >
-              </p>
-              <p>
-                Causes the
-                <span class="meta"
-                  ><span class="angle">&langle;</span><i>list of options</i
-                  ><span class="angle">&rangle;</span></span
-                >
-                to be passed on to the
-                <span class="texttt">hyperref</span> package.
-              </p>
-              <p>
-                <i>Example: </i
-                ><span class="texttt"
-                  >\documentclass[hyperref={bookmarks=false}]{beamer}</span
-                >
-              </p>
+                    >
+                    to be passed on to the
+                    <span class="texttt">hyperref</span> package.
+                  </p>
+                  <p>
+                    <i>Example: </i
+                    ><span class="texttt"
+                      >\documentclass[hyperref={bookmarks=false}]{beamer}</span
+                    >
+                  </p>
+                </li>
+              </ul>
             </div>
             <p>
               Alternatively, you can also use the
@@ -987,40 +997,49 @@ beamer/doc/solutions/generic-talks
               following class options:
             </p>
             <div class="classoption">
-              <p>
-                <span class="classoption-heading"
-                  >\documentclass[<span class="declare">ucs</span
-                  >]{beamer}</span
-                >
-              </p>
-              <p>
-                Loads the package <span class="texttt">ucs</span> and passes the
-                correct Unicode options to <span class="texttt">hyperref</span>.
-                Also, it preloads the Unicode code pages zero and one.
-              </p>
+              <ul style="list-style-type: none">
+                <li>
+                  <p>
+                    <span class="classoption-heading"
+                      >\documentclass[<span class="declare">ucs</span
+                      >]{beamer}</span
+                    >
+                  </p>
+                  <p>
+                    Loads the package <span class="texttt">ucs</span> and passes
+                    the correct Unicode options to
+                    <span class="texttt">hyperref</span>. Also, it preloads the
+                    Unicode code pages zero and one.
+                  </p>
+                </li>
+              </ul>
             </div>
             <div class="classoption">
-              <p>
-                <span class="classoption-heading"
-                  >\documentclass[<span class="declare">utf8x</span
-                  >]{beamer}</span
-                >
-              </p>
-              <p>
-                Same as the option <span class="texttt">ucs</span>, but also
-                sets the input encoding to <span class="texttt">utf8x</span>.
-                You could also use the option
-                <span class="texttt">ucs</span> and say
-                <span class="texttt">\usepackage[utf8x]{inputenc}</span> in the
-                preamble. This also automatically loads
-                <span class="texttt">ucs</span> package in most
-                <span class="latexlogofont"
-                  ><span class="latexlogo"
-                    >T<span class="latexlogosub">e</span>X</span
-                  ></span
-                >
-                systems.
-              </p>
+              <ul style="list-style-type: none">
+                <li>
+                  <p>
+                    <span class="classoption-heading"
+                      >\documentclass[<span class="declare">utf8x</span
+                      >]{beamer}</span
+                    >
+                  </p>
+                  <p>
+                    Same as the option <span class="texttt">ucs</span>, but also
+                    sets the input encoding to
+                    <span class="texttt">utf8x</span>. You could also use the
+                    option <span class="texttt">ucs</span> and say
+                    <span class="texttt">\usepackage[utf8x]{inputenc}</span> in
+                    the preamble. This also automatically loads
+                    <span class="texttt">ucs</span> package in most
+                    <span class="latexlogofont"
+                      ><span class="latexlogo"
+                        >T<span class="latexlogosub">e</span>X</span
+                      ></span
+                    >
+                    systems.
+                  </p>
+                </li>
+              </ul>
             </div>
             <p>
               If you use a Unicode character outside the first two code pages
@@ -1038,20 +1057,24 @@ beamer/doc/solutions/generic-talks
               character divided by 256.
             </p>
             <div class="classoption">
-              <p>
-                <span class="classoption-heading"
-                  >\documentclass[<span class="declare">utf8</span
-                  >]{beamer}</span
-                >
-              </p>
-              <p>
-                This option sets the input encoding to
-                <span class="texttt">utf8</span>. It&rsquo;s designed to be used
-                <em>without</em> <span class="texttt">ucs</span>. It&rsquo;s the
-                same as saying
-                <span class="texttt">\usepackage[utf8]{inputenc}</span> in the
-                preamble.
-              </p>
+              <ul style="list-style-type: none">
+                <li>
+                  <p>
+                    <span class="classoption-heading"
+                      >\documentclass[<span class="declare">utf8</span
+                      >]{beamer}</span
+                    >
+                  </p>
+                  <p>
+                    This option sets the input encoding to
+                    <span class="texttt">utf8</span>. It&rsquo;s designed to be
+                    used <em>without</em> <span class="texttt">ucs</span>.
+                    It&rsquo;s the same as saying
+                    <span class="texttt">\usepackage[utf8]{inputenc}</span> in
+                    the preamble.
+                  </p>
+                </li>
+              </ul>
             </div>
             <p>
               Note that <em>none</em> of these options apply to
@@ -1345,25 +1368,30 @@ beamer/doc/solutions/generic-talks
               as to <span class="texttt">color</span>.
             </p>
             <div class="classoption">
-              <p>
-                <span class="classoption-heading"
-                  >\documentclass[<span class="declare"
-                    >xcolor=<span class="meta"
+              <ul style="list-style-type: none">
+                <li>
+                  <p>
+                    <span class="classoption-heading"
+                      >\documentclass[<span class="declare"
+                        >xcolor=<span class="meta"
+                          ><span class="angle">&langle;</span
+                          ><i>list of options</i
+                          ><span class="angle">&rangle;</span></span
+                        ></span
+                      >]{beamer}</span
+                    >
+                  </p>
+                  <p>
+                    Causes the
+                    <span class="meta"
                       ><span class="angle">&langle;</span><i>list of options</i
                       ><span class="angle">&rangle;</span></span
-                    ></span
-                  >]{beamer}</span
-                >
-              </p>
-              <p>
-                Causes the
-                <span class="meta"
-                  ><span class="angle">&langle;</span><i>list of options</i
-                  ><span class="angle">&rangle;</span></span
-                >
-                to be passed on to the
-                <span class="texttt">xcolor</span> package.
-              </p>
+                    >
+                    to be passed on to the
+                    <span class="texttt">xcolor</span> package.
+                  </p>
+                </li>
+              </ul>
             </div>
             <p>
               When using
@@ -1401,21 +1429,18 @@ beamer/doc/solutions/generic-talks
           <a href="https://github.com/SwitWu/beamer-html-manual">Repository</a>
         </div>
         <div class="footer-right">
-          <em>HTML version last updated: 2023-10-10</em>
+          <em>HTML version last updated: 2023-10-11</em>
         </div>
       </footer>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
-    <script>
+    <script type="text/javascript">
       docsearch({
         apiKey: "09762da49fe4ba391f7a3618c73720d8",
         indexName: "beamerplusio",
         appId: "WNNAN5R8GM",
         container: "#search",
-        searchParameters: {
-          filters: "tags:beamer",
-        },
       });
     </script>
   </body>

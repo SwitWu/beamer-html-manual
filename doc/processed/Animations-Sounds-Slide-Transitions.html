@@ -6,7 +6,7 @@
     <meta content="LaTeX Lwarp package" name="generator" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Animations, Sounds, and Slide Transitions - Beamer Manual</title>
-    <link href="style.css?v=20231010" rel="stylesheet" type="text/css" />
+    <link href="style.css?v=20231011" rel="stylesheet" type="text/css" />
     <link
       href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
       rel="stylesheet"
@@ -410,239 +410,266 @@
               >
               may be given:
             </p>
-
-            <p>
-              &bull;
-              <span class="declare"><span class="texttt">autostart</span></span
-              >. Causes the movie to start playing immediately when the page is
-              shown. At most one movie can be started in this way. The viewer
-              application will typically be able to show at most one movie at
-              the same time anyway. When the page is no longer shown, the movie
-              immediately stops. This can be a problem if you use the
-              <span class="texttt">\movie</span> command to include a sound that
-              should be played on after the page has been closed. In this case,
-              the <span class="texttt">\sound</span> command must be used.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"
-                ><span class="texttt">borderwidth=</span></span
-              ><span class="meta"
-                ><span class="angle">&langle;</span
-                ><i
-                  ><span class="latexlogofont"
-                    ><span class="latexlogo"
-                      >T<span class="latexlogosub">e</span>X</span
-                    ></span
+            <ul style="list-style-type: none">
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">autostart</span></span
+                  >. Causes the movie to start playing immediately when the page
+                  is shown. At most one movie can be started in this way. The
+                  viewer application will typically be able to show at most one
+                  movie at the same time anyway. When the page is no longer
+                  shown, the movie immediately stops. This can be a problem if
+                  you use the <span class="texttt">\movie</span> command to
+                  include a sound that should be played on after the page has
+                  been closed. In this case, the
+                  <span class="texttt">\sound</span> command must be used.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">borderwidth=</span></span
+                  ><span class="meta"
+                    ><span class="angle">&langle;</span
+                    ><i
+                      ><span class="latexlogofont"
+                        ><span class="latexlogo"
+                          >T<span class="latexlogosub">e</span>X</span
+                        ></span
+                      >
+                      dimension</i
+                    ><span class="angle">&rangle;</span></span
+                  >. Causes a border of thickness
+                  <span class="meta"
+                    ><span class="angle">&langle;</span
+                    ><i
+                      ><span class="latexlogofont"
+                        ><span class="latexlogo"
+                          >T<span class="latexlogosub">e</span>X</span
+                        ></span
+                      >
+                      dimension</i
+                    ><span class="angle">&rangle;</span></span
                   >
-                  dimension</i
-                ><span class="angle">&rangle;</span></span
-              >. Causes a border of thickness
-              <span class="meta"
-                ><span class="angle">&langle;</span
-                ><i
-                  ><span class="latexlogofont"
-                    ><span class="latexlogo"
-                      >T<span class="latexlogosub">e</span>X</span
-                    ></span
+                  to be drawn around the movie. Some versions of the Acrobat
+                  Reader seem to have a bug and do not display this border if is
+                  smaller than 0.5bp (about 0.51pt).
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"><span class="texttt">depth=</span></span
+                  ><span class="meta"
+                    ><span class="angle">&langle;</span
+                    ><i
+                      ><span class="latexlogofont"
+                        ><span class="latexlogo"
+                          >T<span class="latexlogosub">e</span>X</span
+                        ></span
+                      >
+                      dimension</i
+                    ><span class="angle">&rangle;</span></span
+                  >. Overrides the depth of the
+                  <span class="meta"
+                    ><span class="angle">&langle;</span><i>poster text</i
+                    ><span class="angle">&rangle;</span></span
                   >
-                  dimension</i
-                ><span class="angle">&rangle;</span></span
-              >
-              to be drawn around the movie. Some versions of the Acrobat Reader
-              seem to have a bug and do not display this border if is smaller
-              than 0.5bp (about 0.51pt).
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"><span class="texttt">depth=</span></span
-              ><span class="meta"
-                ><span class="angle">&langle;</span
-                ><i
-                  ><span class="latexlogofont"
-                    ><span class="latexlogo"
-                      >T<span class="latexlogosub">e</span>X</span
-                    ></span
+                  box and sets it to the given dimension.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">duration=</span></span
+                  ><span class="meta"
+                    ><span class="angle">&langle;</span><i>time</i
+                    ><span class="angle">&rangle;</span></span
+                  ><span class="texttt">s</span>. Specifies in seconds how long
+                  the movie should be shown. The
+                  <span class="meta"
+                    ><span class="angle">&langle;</span><i>time</i
+                    ><span class="angle">&rangle;</span></span
                   >
-                  dimension</i
-                ><span class="angle">&rangle;</span></span
-              >. Overrides the depth of the
-              <span class="meta"
-                ><span class="angle">&langle;</span><i>poster text</i
-                ><span class="angle">&rangle;</span></span
-              >
-              box and sets it to the given dimension.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"><span class="texttt">duration=</span></span
-              ><span class="meta"
-                ><span class="angle">&langle;</span><i>time</i
-                ><span class="angle">&rangle;</span></span
-              ><span class="texttt">s</span>. Specifies in seconds how long the
-              movie should be shown. The
-              <span class="meta"
-                ><span class="angle">&langle;</span><i>time</i
-                ><span class="angle">&rangle;</span></span
-              >
-              may be a fractional value and must be followed by the letter
-              <span class="texttt">s</span>. For example,
-              <span class="texttt">duration=1.5s</span> will show the movie for
-              one and a half seconds. In conjunction with the
-              <span class="texttt">start</span> option, you can &ldquo;cut
-              out&rdquo; a part of a movie for display.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"
-                ><span class="texttt">externalviewer</span></span
-              >. As explained above, this causes an external application to be
-              launched for displaying the movie in a separate window. Most
-              options, like <span class="texttt">duration</span> or
-              <span class="texttt">loop</span>, have no effect since they are
-              not passed along to the viewer application.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"><span class="texttt">height=</span></span
-              ><span class="meta"
-                ><span class="angle">&langle;</span
-                ><i
-                  ><span class="latexlogofont"
-                    ><span class="latexlogo"
-                      >T<span class="latexlogosub">e</span>X</span
-                    ></span
+                  may be a fractional value and must be followed by the letter
+                  <span class="texttt">s</span>. For example,
+                  <span class="texttt">duration=1.5s</span> will show the movie
+                  for one and a half seconds. In conjunction with the
+                  <span class="texttt">start</span> option, you can &ldquo;cut
+                  out&rdquo; a part of a movie for display.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">externalviewer</span></span
+                  >. As explained above, this causes an external application to
+                  be launched for displaying the movie in a separate window.
+                  Most options, like <span class="texttt">duration</span> or
+                  <span class="texttt">loop</span>, have no effect since they
+                  are not passed along to the viewer application.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">height=</span></span
+                  ><span class="meta"
+                    ><span class="angle">&langle;</span
+                    ><i
+                      ><span class="latexlogofont"
+                        ><span class="latexlogo"
+                          >T<span class="latexlogosub">e</span>X</span
+                        ></span
+                      >
+                      dimension</i
+                    ><span class="angle">&rangle;</span></span
+                  >. Overrides the height of the
+                  <span class="meta"
+                    ><span class="angle">&langle;</span><i>poster text</i
+                    ><span class="angle">&rangle;</span></span
                   >
-                  dimension</i
-                ><span class="angle">&rangle;</span></span
-              >. Overrides the height of the
-              <span class="meta"
-                ><span class="angle">&langle;</span><i>poster text</i
-                ><span class="angle">&rangle;</span></span
-              >
-              box and sets it to the given dimension.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"><span class="texttt">label=</span></span
-              ><span class="meta"
-                ><span class="angle">&langle;</span><i>movie label</i
-                ><span class="angle">&rangle;</span></span
-              >. Assigns a label to the movie such that it can later be
-              referenced by the command
-              <span class="texttt">\hyperlinkmovie</span>, which can be used to
-              stop the movie or to show a different part of it. The
-              <span class="meta"
-                ><span class="angle">&langle;</span><i>movie label</i
-                ><span class="angle">&rangle;</span></span
-              >
-              is not a normal label. It should not be too fancy, since it is
-              inserted literally into the
-              <span class="pgf-name"><span class="textsc">pdf</span></span>
-              code. In particular, it should not contain closing parentheses.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"><span class="texttt">loop</span></span
-              >. Causes the movie to start again when the end has been reached.
-              Normally, the movie just stops at the end.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"><span class="texttt">once</span></span
-              >. Causes the movie to just stop at the end. This is the default.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"><span class="texttt">open</span></span
-              >. Causes the player to stay open when the movie has finished.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"><span class="texttt">palindrome</span></span
-              >. Causes the movie to start playing backwards when the end has
-              been reached, and to start playing forward once more when the
-              beginning is reached, and so on.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"><span class="texttt">poster</span></span
-              >. Asks the viewer application to show the first image of the
-              movie when the movie is not playing. Normally, nothing is shown
-              when the movie is not playing (and thus the box containing the
-              <span class="meta"
-                ><span class="angle">&langle;</span><i>poster text</i
-                ><span class="angle">&rangle;</span></span
-              >
-              is shown). For a movie that does not have any images (but sound)
-              or for movies with an uninformative first image this option is not
-              so useful.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"><span class="texttt">repeat</span></span> is
-              the same as <span class="texttt">loop</span>.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"
-                ><span class="texttt">showcontrols=</span></span
-              ><span class="meta"
-                ><span class="angle">&langle;</span><i>true or false</i
-                ><span class="angle">&rangle;</span></span
-              >. Causes a control bar to be displayed below the movie while it
-              is playing. Instead of
-              <span class="texttt">showcontrols=true</span> you can also just
-              say <span class="texttt">showcontrols</span>. By default, no
-              control bar is shown.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"><span class="texttt">start=</span></span
-              ><span class="meta"
-                ><span class="angle">&langle;</span><i>time</i
-                ><span class="angle">&rangle;</span></span
-              ><span class="texttt">s</span>. Causes the first
-              <span class="meta"
-                ><span class="angle">&langle;</span><i>time</i
-                ><span class="angle">&rangle;</span></span
-              >
-              seconds of the movie to be skipped. For example,
-              <span class="texttt">start=10s,duration=5s</span> will show
-              seconds 10 to 15 of the movie, when you play the movie.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"><span class="texttt">width=</span></span
-              ><span class="meta"
-                ><span class="angle">&langle;</span
-                ><i
-                  ><span class="latexlogofont"
-                    ><span class="latexlogo"
-                      >T<span class="latexlogosub">e</span>X</span
-                    ></span
-                  >dimension</i
-                ><span class="angle">&rangle;</span></span
-              >
-              works like the <span class="texttt">height</span> option, only for
-              the width of the poster box.
-            </p>
-
+                  box and sets it to the given dimension.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"><span class="texttt">label=</span></span
+                  ><span class="meta"
+                    ><span class="angle">&langle;</span><i>movie label</i
+                    ><span class="angle">&rangle;</span></span
+                  >. Assigns a label to the movie such that it can later be
+                  referenced by the command
+                  <span class="texttt">\hyperlinkmovie</span>, which can be used
+                  to stop the movie or to show a different part of it. The
+                  <span class="meta"
+                    ><span class="angle">&langle;</span><i>movie label</i
+                    ><span class="angle">&rangle;</span></span
+                  >
+                  is not a normal label. It should not be too fancy, since it is
+                  inserted literally into the
+                  <span class="pgf-name"><span class="textsc">pdf</span></span>
+                  code. In particular, it should not contain closing
+                  parentheses.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"><span class="texttt">loop</span></span
+                  >. Causes the movie to start again when the end has been
+                  reached. Normally, the movie just stops at the end.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"><span class="texttt">once</span></span
+                  >. Causes the movie to just stop at the end. This is the
+                  default.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"><span class="texttt">open</span></span
+                  >. Causes the player to stay open when the movie has finished.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">palindrome</span></span
+                  >. Causes the movie to start playing backwards when the end
+                  has been reached, and to start playing forward once more when
+                  the beginning is reached, and so on.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"><span class="texttt">poster</span></span
+                  >. Asks the viewer application to show the first image of the
+                  movie when the movie is not playing. Normally, nothing is
+                  shown when the movie is not playing (and thus the box
+                  containing the
+                  <span class="meta"
+                    ><span class="angle">&langle;</span><i>poster text</i
+                    ><span class="angle">&rangle;</span></span
+                  >
+                  is shown). For a movie that does not have any images (but
+                  sound) or for movies with an uninformative first image this
+                  option is not so useful.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">repeat</span></span
+                  >
+                  is the same as <span class="texttt">loop</span>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">showcontrols=</span></span
+                  ><span class="meta"
+                    ><span class="angle">&langle;</span><i>true or false</i
+                    ><span class="angle">&rangle;</span></span
+                  >. Causes a control bar to be displayed below the movie while
+                  it is playing. Instead of
+                  <span class="texttt">showcontrols=true</span> you can also
+                  just say <span class="texttt">showcontrols</span>. By default,
+                  no control bar is shown.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"><span class="texttt">start=</span></span
+                  ><span class="meta"
+                    ><span class="angle">&langle;</span><i>time</i
+                    ><span class="angle">&rangle;</span></span
+                  ><span class="texttt">s</span>. Causes the first
+                  <span class="meta"
+                    ><span class="angle">&langle;</span><i>time</i
+                    ><span class="angle">&rangle;</span></span
+                  >
+                  seconds of the movie to be skipped. For example,
+                  <span class="texttt">start=10s,duration=5s</span> will show
+                  seconds 10 to 15 of the movie, when you play the movie.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"><span class="texttt">width=</span></span
+                  ><span class="meta"
+                    ><span class="angle">&langle;</span
+                    ><i
+                      ><span class="latexlogofont"
+                        ><span class="latexlogo"
+                          >T<span class="latexlogosub">e</span>X</span
+                        ></span
+                      >dimension</i
+                    ><span class="angle">&rangle;</span></span
+                  >
+                  works like the <span class="texttt">height</span> option, only
+                  for the width of the poster box.
+                </p>
+              </li>
+            </ul>
             <p>
               <i>Example: </i>The following example creates a &ldquo;background
               sound&rdquo; for the slide.
@@ -719,91 +746,108 @@
               is given for the link than for the movie itself, the option for
               the link takes precedence:
             </p>
-
-            <p>
-              &bull;
-              <span class="declare"><span class="texttt">duration=</span></span
-              ><span class="meta"
-                ><span class="angle">&langle;</span><i>time</i
-                ><span class="angle">&rangle;</span></span
-              ><span class="texttt">s</span>. As for
-              <span class="texttt">\movie</span>, this causes the movie to be
-              played only for the given number of seconds.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"><span class="texttt">loop</span></span> and
-              <span class="declare"><span class="texttt">repeat</span></span
-              >. As for <span class="texttt">\movie</span>, this causes the
-              movie to loop.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"><span class="texttt">once</span></span
-              >. As for <span class="texttt">\movie</span>, this causes the
-              movie to played only once.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"><span class="texttt">palindrome</span></span
-              >. As for <span class="texttt">\movie</span>, this causes the
-              movie to be played forth and back.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"><span class="texttt">pause</span></span
-              >. Causes the playback of the movie to be paused, if the movie was
-              currently playing. If not, nothing happens.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"><span class="texttt">play</span></span
-              >. Causes the movie to be played from whatever start position is
-              specified. If the movie is already playing, it will be stopped and
-              restarted at the starting position. This is the default.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"><span class="texttt">resume</span></span
-              >. Resumes playback of the movie, if it has previously been
-              paused. If has not been paused, but not started or is already
-              playing, nothing happens.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"
-                ><span class="texttt">showcontrols=</span></span
-              ><span class="meta"
-                ><span class="angle">&langle;</span><i>true or false</i
-                ><span class="angle">&rangle;</span></span
-              >. As for <span class="texttt">\movie</span>, this causes a
-              control bar to be shown or not shown during playback.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"><span class="texttt">start=</span></span
-              ><span class="meta"
-                ><span class="angle">&langle;</span><i>time</i
-                ><span class="angle">&rangle;</span></span
-              ><span class="texttt">s</span>. As for
-              <span class="texttt">\movie</span>, this causes the given number
-              of seconds to be skipped at the beginning of the movie if
-              <span class="texttt">play</span> is used to start the movie.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"><span class="texttt">stop</span></span
-              >. Causes the playback of the movie to be stopped.
-            </p>
+            <ul style="list-style-type: none">
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">duration=</span></span
+                  ><span class="meta"
+                    ><span class="angle">&langle;</span><i>time</i
+                    ><span class="angle">&rangle;</span></span
+                  ><span class="texttt">s</span>. As for
+                  <span class="texttt">\movie</span>, this causes the movie to
+                  be played only for the given number of seconds.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"><span class="texttt">loop</span></span>
+                  and
+                  <span class="declare"><span class="texttt">repeat</span></span
+                  >. As for <span class="texttt">\movie</span>, this causes the
+                  movie to loop.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"><span class="texttt">once</span></span
+                  >. As for <span class="texttt">\movie</span>, this causes the
+                  movie to played only once.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">palindrome</span></span
+                  >. As for <span class="texttt">\movie</span>, this causes the
+                  movie to be played forth and back.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"><span class="texttt">pause</span></span
+                  >. Causes the playback of the movie to be paused, if the movie
+                  was currently playing. If not, nothing happens.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"><span class="texttt">play</span></span
+                  >. Causes the movie to be played from whatever start position
+                  is specified. If the movie is already playing, it will be
+                  stopped and restarted at the starting position. This is the
+                  default.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"><span class="texttt">resume</span></span
+                  >. Resumes playback of the movie, if it has previously been
+                  paused. If has not been paused, but not started or is already
+                  playing, nothing happens.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">showcontrols=</span></span
+                  ><span class="meta"
+                    ><span class="angle">&langle;</span><i>true or false</i
+                    ><span class="angle">&rangle;</span></span
+                  >. As for <span class="texttt">\movie</span>, this causes a
+                  control bar to be shown or not shown during playback.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"><span class="texttt">start=</span></span
+                  ><span class="meta"
+                    ><span class="angle">&langle;</span><i>time</i
+                    ><span class="angle">&rangle;</span></span
+                  ><span class="texttt">s</span>. As for
+                  <span class="texttt">\movie</span>, this causes the given
+                  number of seconds to be skipped at the beginning of the movie
+                  if <span class="texttt">play</span> is used to start the
+                  movie.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"><span class="texttt">stop</span></span
+                  >. Causes the playback of the movie to be stopped.
+                </p>
+              </li>
+            </ul>
           </div>
           <!--
 ...... subsubsection Animations Created by Showing Slides in Rapid Succession ......
@@ -1214,121 +1258,129 @@
               may be given (these are the same as for the original command from
               the ppower4 package):
             </p>
-
-            <p>
-              &bull;
-              <span class="declare"
-                ><span class="texttt">pause=</span
-                ><span class="meta"
-                  ><span class="angle">&langle;</span><i>command</i
-                  ><span class="angle">&rangle;</span></span
-                ></span
-              >
-              replaces the default pausing command
-              <span class="texttt">\pause</span> by
-              <span class="meta"
-                ><span class="angle">&langle;</span><i>command</i
-                ><span class="angle">&rangle;</span></span
-              >. If a
-              <span class="meta"
-                ><span class="angle">&langle;</span
-                ><i>default overlay specification</i
-                ><span class="angle">&rangle;</span></span
-              >
-              is given, the default pausing command is empty; otherwise it is
-              <span class="texttt">\pause</span>. Note that commands like
-              <span class="texttt">\pauselevel</span> are not available in
-              <span class="texttt">\beamer</span>.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"
-                ><span class="texttt">graphics=</span
-                ><span class="meta"
-                  ><span class="angle">&langle;</span><i>options</i
-                  ><span class="angle">&rangle;</span></span
-                ></span
-              >
-              passes the
-              <span class="meta"
-                ><span class="angle">&langle;</span><i>options</i
-                ><span class="angle">&rangle;</span></span
-              >
-              to the <span class="texttt">\includegraphics</span> command.
-            </p>
-            <p>
-              <i>Example: </i
-              ><span class="texttt"
-                >\multiinclude[graphics={height=5cm}]{gra}</span
-              >
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"
-                ><span class="texttt">format=</span
-                ><span class="meta"
-                  ><span class="angle">&langle;</span><i>extension</i
-                  ><span class="angle">&rangle;</span></span
-                ></span
-              >
-              will cause the file names for which we search change from
-              <span class="meta"
-                ><span class="angle">&langle;</span><i>base file name</i
-                ><span class="angle">&rangle;</span></span
-              ><span class="texttt">.</span
-              ><span class="meta"
-                ><span class="angle">&langle;</span><i>number</i
-                ><span class="angle">&rangle;</span></span
-              >
-              to
-              <span class="meta"
-                ><span class="angle">&langle;</span><i>base file name</i
-                ><span class="angle">&rangle;</span></span
-              ><span class="texttt">-</span
-              ><span class="meta"
-                ><span class="angle">&langle;</span><i>number</i
-                ><span class="angle">&rangle;</span></span
-              ><span class="texttt">.</span
-              ><span class="meta"
-                ><span class="angle">&langle;</span><i>extension</i
-                ><span class="angle">&rangle;</span></span
-              >. Note the change from the dot to a hyphen. This option allows
-              you to include, say, <span class="texttt">.jpg</span> files.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"
-                ><span class="texttt">start=</span
-                ><span class="meta"
-                  ><span class="angle">&langle;</span><i>number</i
-                  ><span class="angle">&rangle;</span></span
-                ></span
-              >
-              specifies the start
-              <span class="meta"
-                ><span class="angle">&langle;</span><i>number</i
-                ><span class="angle">&rangle;</span></span
-              >. The default is zero.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"
-                ><span class="texttt">end=</span
-                ><span class="meta"
-                  ><span class="angle">&langle;</span><i>number</i
-                  ><span class="angle">&rangle;</span></span
-                ></span
-              >
-              specifies the end
-              <span class="meta"
-                ><span class="angle">&langle;</span><i>number</i
-                ><span class="angle">&rangle;</span></span
-              >. The default is infinity.
-            </p>
+            <ul style="list-style-type: none">
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">pause=</span
+                    ><span class="meta"
+                      ><span class="angle">&langle;</span><i>command</i
+                      ><span class="angle">&rangle;</span></span
+                    ></span
+                  >
+                  replaces the default pausing command
+                  <span class="texttt">\pause</span> by
+                  <span class="meta"
+                    ><span class="angle">&langle;</span><i>command</i
+                    ><span class="angle">&rangle;</span></span
+                  >. If a
+                  <span class="meta"
+                    ><span class="angle">&langle;</span
+                    ><i>default overlay specification</i
+                    ><span class="angle">&rangle;</span></span
+                  >
+                  is given, the default pausing command is empty; otherwise it
+                  is <span class="texttt">\pause</span>. Note that commands like
+                  <span class="texttt">\pauselevel</span> are not available in
+                  <span class="texttt">\beamer</span>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">graphics=</span
+                    ><span class="meta"
+                      ><span class="angle">&langle;</span><i>options</i
+                      ><span class="angle">&rangle;</span></span
+                    ></span
+                  >
+                  passes the
+                  <span class="meta"
+                    ><span class="angle">&langle;</span><i>options</i
+                    ><span class="angle">&rangle;</span></span
+                  >
+                  to the <span class="texttt">\includegraphics</span> command.
+                </p>
+                <p>
+                  <i>Example: </i
+                  ><span class="texttt"
+                    >\multiinclude[graphics={height=5cm}]{gra}</span
+                  >
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">format=</span
+                    ><span class="meta"
+                      ><span class="angle">&langle;</span><i>extension</i
+                      ><span class="angle">&rangle;</span></span
+                    ></span
+                  >
+                  will cause the file names for which we search change from
+                  <span class="meta"
+                    ><span class="angle">&langle;</span><i>base file name</i
+                    ><span class="angle">&rangle;</span></span
+                  ><span class="texttt">.</span
+                  ><span class="meta"
+                    ><span class="angle">&langle;</span><i>number</i
+                    ><span class="angle">&rangle;</span></span
+                  >
+                  to
+                  <span class="meta"
+                    ><span class="angle">&langle;</span><i>base file name</i
+                    ><span class="angle">&rangle;</span></span
+                  ><span class="texttt">-</span
+                  ><span class="meta"
+                    ><span class="angle">&langle;</span><i>number</i
+                    ><span class="angle">&rangle;</span></span
+                  ><span class="texttt">.</span
+                  ><span class="meta"
+                    ><span class="angle">&langle;</span><i>extension</i
+                    ><span class="angle">&rangle;</span></span
+                  >. Note the change from the dot to a hyphen. This option
+                  allows you to include, say,
+                  <span class="texttt">.jpg</span> files.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">start=</span
+                    ><span class="meta"
+                      ><span class="angle">&langle;</span><i>number</i
+                      ><span class="angle">&rangle;</span></span
+                    ></span
+                  >
+                  specifies the start
+                  <span class="meta"
+                    ><span class="angle">&langle;</span><i>number</i
+                    ><span class="angle">&rangle;</span></span
+                  >. The default is zero.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">end=</span
+                    ><span class="meta"
+                      ><span class="angle">&langle;</span><i>number</i
+                      ><span class="angle">&rangle;</span></span
+                    ></span
+                  >
+                  specifies the end
+                  <span class="meta"
+                    ><span class="angle">&langle;</span><i>number</i
+                    ><span class="angle">&rangle;</span></span
+                  >. The default is infinity.
+                </p>
+              </li>
+            </ul>
           </div>
           <p>
             Note that, if you do not use the
@@ -1558,185 +1610,210 @@
               >
               may be given:
             </p>
-
-            <p>
-              &bull;
-              <span class="declare"><span class="texttt">autostart</span></span
-              >. Causes the sound to start playing immediately when the page is
-              shown.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"><span class="texttt">automute</span></span
-              >. Causes all sounds to be muted when the current page is left.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"
-                ><span class="texttt">bitspersample=</span></span
-              ><span class="meta"
-                ><span class="angle">&langle;</span><i>8 or 16</i
-                ><span class="angle">&rangle;</span></span
-              >. Specifies the number of bits per sample in the sound file. If
-              this number is 16, this option need not be specified.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"><span class="texttt">channels=</span></span
-              ><span class="meta"
-                ><span class="angle">&langle;</span><i>1 or 2</i
-                ><span class="angle">&rangle;</span></span
-              >. Specifies whether the sound is mono or stereo. If the sound is
-              mono, this option need not be specified.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"><span class="texttt">depth=</span></span
-              ><span class="meta"
-                ><span class="angle">&langle;</span
-                ><i
-                  ><span class="latexlogofont"
-                    ><span class="latexlogo"
-                      >T<span class="latexlogosub">e</span>X</span
-                    ></span
+            <ul style="list-style-type: none">
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">autostart</span></span
+                  >. Causes the sound to start playing immediately when the page
+                  is shown.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">automute</span></span
+                  >. Causes all sounds to be muted when the current page is
+                  left.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">bitspersample=</span></span
+                  ><span class="meta"
+                    ><span class="angle">&langle;</span><i>8 or 16</i
+                    ><span class="angle">&rangle;</span></span
+                  >. Specifies the number of bits per sample in the sound file.
+                  If this number is 16, this option need not be specified.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">channels=</span></span
+                  ><span class="meta"
+                    ><span class="angle">&langle;</span><i>1 or 2</i
+                    ><span class="angle">&rangle;</span></span
+                  >. Specifies whether the sound is mono or stereo. If the sound
+                  is mono, this option need not be specified.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"><span class="texttt">depth=</span></span
+                  ><span class="meta"
+                    ><span class="angle">&langle;</span
+                    ><i
+                      ><span class="latexlogofont"
+                        ><span class="latexlogo"
+                          >T<span class="latexlogosub">e</span>X</span
+                        ></span
+                      >
+                      dimension</i
+                    ><span class="angle">&rangle;</span></span
+                  >. Overrides the depth of the
+                  <span class="meta"
+                    ><span class="angle">&langle;</span><i>sound poster text</i
+                    ><span class="angle">&rangle;</span></span
                   >
-                  dimension</i
-                ><span class="angle">&rangle;</span></span
-              >. Overrides the depth of the
-              <span class="meta"
-                ><span class="angle">&langle;</span><i>sound poster text</i
-                ><span class="angle">&rangle;</span></span
-              >
-              box and sets it to the given dimension.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"><span class="texttt">encoding=</span></span
-              ><span class="meta"
-                ><span class="angle">&langle;</span><i>method</i
-                ><span class="angle">&rangle;</span></span
-              >. Specifies the encoding method, which may be
-              <span class="texttt">Raw</span>,
-              <span class="texttt">Signed</span>,
-              <span class="texttt">muLaw</span>, or
-              <span class="texttt">ALaw</span>. If the method is
-              <span class="texttt">muLaw</span>, this option need not be
-              specified.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"
-                ><span class="texttt">externalviewer</span></span
-              >
-              causes an external application to be launched for playing the
-              sound. Most options, like <span class="texttt">loop</span>, have
-              no effect since they are not passed along to the external
-              application.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"><span class="texttt">height=</span></span
-              ><span class="meta"
-                ><span class="angle">&langle;</span
-                ><i
-                  ><span class="latexlogofont"
-                    ><span class="latexlogo"
-                      >T<span class="latexlogosub">e</span>X</span
-                    ></span
+                  box and sets it to the given dimension.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">encoding=</span></span
+                  ><span class="meta"
+                    ><span class="angle">&langle;</span><i>method</i
+                    ><span class="angle">&rangle;</span></span
+                  >. Specifies the encoding method, which may be
+                  <span class="texttt">Raw</span>,
+                  <span class="texttt">Signed</span>,
+                  <span class="texttt">muLaw</span>, or
+                  <span class="texttt">ALaw</span>. If the method is
+                  <span class="texttt">muLaw</span>, this option need not be
+                  specified.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">externalviewer</span></span
                   >
-                  dimension</i
-                ><span class="angle">&rangle;</span></span
-              >. Overrides the height of the
-              <span class="meta"
-                ><span class="angle">&langle;</span><i>sound poster text</i
-                ><span class="angle">&rangle;</span></span
-              >
-              box and sets it to the given dimension.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"
-                ><span class="texttt">inlinesound</span></span
-              >
-              causes the sound data to be stored directly in the
-              <span class="pgf-name"><span class="textsc">pdf</span></span
-              >-file.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"><span class="texttt">label=</span></span
-              ><span class="meta"
-                ><span class="angle">&langle;</span><i>sound label</i
-                ><span class="angle">&rangle;</span></span
-              >. Assigns a label to the sound such that it can later be
-              referenced by the command
-              <span class="texttt">\hyperlinksound</span>, which can be used to
-              start a sound. The
-              <span class="meta"
-                ><span class="angle">&langle;</span><i>sound label</i
-                ><span class="angle">&rangle;</span></span
-              >
-              is not a normal label.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"><span class="texttt">loop</span></span> or
-              <span class="declare"><span class="texttt">repeat</span></span
-              >. Causes the sound to start again when the end has been reached.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"><span class="texttt">mixsound=</span></span
-              ><span class="meta"
-                ><span class="angle">&langle;</span><i>true or false</i
-                ><span class="angle">&rangle;</span></span
-              >. If set to <span class="texttt">true</span>, the sound is played
-              in addition to any sound that is already playing. If set to
-              <span class="texttt">false</span> all other sounds (though not
-              sound from movies) are stopped before the sound is played. The
-              default is <span class="texttt">false</span>.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"
-                ><span class="texttt">samplingrate=</span></span
-              ><span class="meta"
-                ><span class="angle">&langle;</span><i>number</i
-                ><span class="angle">&rangle;</span></span
-              >. Specifies the number of samples per second in the sound file.
-              If this number is 44100, this option need not be specified.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"><span class="texttt">width=</span></span
-              ><span class="meta"
-                ><span class="angle">&langle;</span
-                ><i
-                  ><span class="latexlogofont"
-                    ><span class="latexlogo"
-                      >T<span class="latexlogosub">e</span>X</span
-                    ></span
+                  causes an external application to be launched for playing the
+                  sound. Most options, like <span class="texttt">loop</span>,
+                  have no effect since they are not passed along to the external
+                  application.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">height=</span></span
+                  ><span class="meta"
+                    ><span class="angle">&langle;</span
+                    ><i
+                      ><span class="latexlogofont"
+                        ><span class="latexlogo"
+                          >T<span class="latexlogosub">e</span>X</span
+                        ></span
+                      >
+                      dimension</i
+                    ><span class="angle">&rangle;</span></span
+                  >. Overrides the height of the
+                  <span class="meta"
+                    ><span class="angle">&langle;</span><i>sound poster text</i
+                    ><span class="angle">&rangle;</span></span
                   >
-                  dimension</i
-                ><span class="angle">&rangle;</span></span
-              >
-              works like the <span class="texttt">height</span> option, only for
-              the width of the poster box.
-            </p>
-
+                  box and sets it to the given dimension.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">inlinesound</span></span
+                  >
+                  causes the sound data to be stored directly in the
+                  <span class="pgf-name"><span class="textsc">pdf</span></span
+                  >-file.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"><span class="texttt">label=</span></span
+                  ><span class="meta"
+                    ><span class="angle">&langle;</span><i>sound label</i
+                    ><span class="angle">&rangle;</span></span
+                  >. Assigns a label to the sound such that it can later be
+                  referenced by the command
+                  <span class="texttt">\hyperlinksound</span>, which can be used
+                  to start a sound. The
+                  <span class="meta"
+                    ><span class="angle">&langle;</span><i>sound label</i
+                    ><span class="angle">&rangle;</span></span
+                  >
+                  is not a normal label.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"><span class="texttt">loop</span></span>
+                  or
+                  <span class="declare"><span class="texttt">repeat</span></span
+                  >. Causes the sound to start again when the end has been
+                  reached.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">mixsound=</span></span
+                  ><span class="meta"
+                    ><span class="angle">&langle;</span><i>true or false</i
+                    ><span class="angle">&rangle;</span></span
+                  >. If set to <span class="texttt">true</span>, the sound is
+                  played in addition to any sound that is already playing. If
+                  set to <span class="texttt">false</span> all other sounds
+                  (though not sound from movies) are stopped before the sound is
+                  played. The default is <span class="texttt">false</span>.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">samplingrate=</span></span
+                  ><span class="meta"
+                    ><span class="angle">&langle;</span><i>number</i
+                    ><span class="angle">&rangle;</span></span
+                  >. Specifies the number of samples per second in the sound
+                  file. If this number is 44100, this option need not be
+                  specified.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"><span class="texttt">width=</span></span
+                  ><span class="meta"
+                    ><span class="angle">&langle;</span
+                    ><i
+                      ><span class="latexlogofont"
+                        ><span class="latexlogo"
+                          >T<span class="latexlogosub">e</span>X</span
+                        ></span
+                      >
+                      dimension</i
+                    ><span class="angle">&rangle;</span></span
+                  >
+                  works like the <span class="texttt">height</span> option, only
+                  for the width of the poster box.
+                </p>
+              </li>
+            </ul>
             <p>
               <i>Example: </i>The following example creates a &ldquo;background
               sound&rdquo; for the slide, assuming that
@@ -1806,26 +1883,33 @@
               >
               may be given:
             </p>
-
-            <p>
-              &bull;
-              <span class="declare"><span class="texttt">loop</span></span> or
-              <span class="declare"><span class="texttt">repeat</span></span
-              >. Causes the sound to start again when the end has been reached.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"><span class="texttt">mixsound=</span></span
-              ><span class="meta"
-                ><span class="angle">&langle;</span><i>true or false</i
-                ><span class="angle">&rangle;</span></span
-              >. If set to <span class="texttt">true</span>, the sound is played
-              in addition to any sound that is already playing. If set to
-              <span class="texttt">false</span> all other sounds (though not
-              sound from movies) are stopped before the sound is played. The
-              default is <span class="texttt">false</span>.
-            </p>
+            <ul style="list-style-type: none">
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"><span class="texttt">loop</span></span>
+                  or
+                  <span class="declare"><span class="texttt">repeat</span></span
+                  >. Causes the sound to start again when the end has been
+                  reached.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">mixsound=</span></span
+                  ><span class="meta"
+                    ><span class="angle">&langle;</span><i>true or false</i
+                    ><span class="angle">&rangle;</span></span
+                  >. If set to <span class="texttt">true</span>, the sound is
+                  played in addition to any sound that is already playing. If
+                  set to <span class="texttt">false</span> all other sounds
+                  (though not sound from movies) are stopped before the sound is
+                  played. The default is <span class="texttt">false</span>.
+                </p>
+              </li>
+            </ul>
           </div>
           <p>
             Since there is no direct way of stopping the playback of a sound,
@@ -2428,21 +2512,18 @@
           <a href="https://github.com/SwitWu/beamer-html-manual">Repository</a>
         </div>
         <div class="footer-right">
-          <em>HTML version last updated: 2023-10-10</em>
+          <em>HTML version last updated: 2023-10-11</em>
         </div>
       </footer>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
-    <script>
+    <script type="text/javascript">
       docsearch({
         apiKey: "09762da49fe4ba391f7a3618c73720d8",
         indexName: "beamerplusio",
         appId: "WNNAN5R8GM",
         container: "#search",
-        searchParameters: {
-          filters: "tags:beamer",
-        },
       });
     </script>
   </body>

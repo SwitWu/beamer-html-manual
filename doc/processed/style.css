@@ -601,6 +601,26 @@ div.element {
   margin-bottom: 1ex;
 }
 
+
+/* lists */
+
+ul {
+  padding-left: 0;
+  margin: 1ex 1em 1ex 0;
+}
+
+ul ul {
+  padding-left: 0;
+}
+
+ul > li {
+  margin-left: 1em;
+  margin-top: 1ex;
+  margin-bottom: 1ex;
+}
+
+
+
 /* Home page */
 
 .manual-title-block {

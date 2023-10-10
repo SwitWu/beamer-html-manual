@@ -38,8 +38,9 @@ def specific_div_class_names(name):
 
 def remove_unnecessary_lists(soup):
     for div in soup.find_all('div', class_ = specific_div_class_names):
-        while div.ul != None:
-            div.ul.unwrap()
+        div.ul.unwrap()
+        div.li.unwrap()
+    for div in soup.find_all('div', class_ = "environment-headline"):
         while div.li != None:
             div.li.unwrap()
 
@@ -436,16 +437,13 @@ def add_header(soup):
 
     script = soup.new_tag('script', src="https://cdn.jsdelivr.net/npm/@docsearch/js@3")
     soup.body.append(script)
-    script = soup.new_tag('script')
+    script = soup.new_tag('script', type="text/javascript")
     script.append("""
       docsearch({
         apiKey: '09762da49fe4ba391f7a3618c73720d8',
         indexName: 'beamerplusio',
         appId: 'WNNAN5R8GM',
-        container: '#search',
-        searchParameters: {
-          filters: "tags:beamer",
-        },
+        container: '#search'
     });
     """)
     soup.body.append(script)

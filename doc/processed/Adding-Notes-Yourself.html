@@ -6,7 +6,7 @@
     <meta content="LaTeX Lwarp package" name="generator" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Adding Notes for Yourself - Beamer Manual</title>
-    <link href="style.css?v=20231010" rel="stylesheet" type="text/css" />
+    <link href="style.css?v=20231011" rel="stylesheet" type="text/css" />
     <link
       href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
       rel="stylesheet"
@@ -267,14 +267,16 @@
               >
               may be given:
             </p>
-
-            <p>
-              &bull;
-              <span class="declare"><span class="texttt">item</span></span>
-              causes the note to be put as an item in a list that is shown at
-              the end of the note page.
-            </p>
-
+            <ul style="list-style-type: none">
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"><span class="texttt">item</span></span>
+                  causes the note to be put as an item in a list that is shown
+                  at the end of the note page.
+                </p>
+              </li>
+            </ul>
             <p>
               <i>Example: </i
               ><span class="texttt"
@@ -320,22 +322,29 @@
               >
               may be given:
             </p>
-
-            <p>
-              &bull;
-              <span class="declare"><span class="texttt">itemize</span></span>
-              will enclose the whole note page in an
-              <span class="texttt">itemize</span> environment. This is just a
-              convenience.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"><span class="texttt">enumerate</span></span>
-              will enclose the whole note page in an
-              <span class="texttt">enumerate</span> environment.
-            </p>
-
+            <ul style="list-style-type: none">
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">itemize</span></span
+                  >
+                  will enclose the whole note page in an
+                  <span class="texttt">itemize</span> environment. This is just
+                  a convenience.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">enumerate</span></span
+                  >
+                  will enclose the whole note page in an
+                  <span class="texttt">enumerate</span> environment.
+                </p>
+              </li>
+            </ul>
             <p>
               <i>Example: </i>
             </p>
@@ -375,90 +384,102 @@ some text
               The default is <span class="texttt">\small</span>.
             </p>
             <p>The following template options are predefined:</p>
-
-            <p>
-              &bull;
-              <span class="itemoption"
-                ><kbd>[<span class="declare">default</span>]</kbd></span
-              >
-              The default template shows the last slide in the upper right
-              corner and some &ldquo;hints&rdquo; that should help you match a
-              note page to the slide that is currently shown.
-            </p>
-
-            <p>
-              &bull;
-              <span class="itemoption"
-                ><kbd>[<span class="declare">compress</span>]</kbd></span
-              >
-              The option produces an output that is similar to the default, only
-              more fits onto each note page at the price of legibility.
-            </p>
-
-            <p>
-              &bull;
-              <span class="itemoption"
-                ><kbd>[<span class="declare">plain</span>]</kbd></span
-              >
-              Just inserts the note text, no fancy hints.
-            </p>
-
-            <p>
-              &bull;
-              <span class="itemoption"
-                ><kbd>[<span class="declare">lined</span>]</kbd
-                ><span class="opt"
-                  ><span class="oarg-left-bracket">[</span
-                  ><span class="meta"
+            <ul style="list-style-type: none">
+              <li>
+                <p>
+                  &bull;
+                  <span class="itemoption"
+                    ><kbd>[<span class="declare">default</span>]</kbd></span
+                  >
+                  The default template shows the last slide in the upper right
+                  corner and some &ldquo;hints&rdquo; that should help you match
+                  a note page to the slide that is currently shown.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="itemoption"
+                    ><kbd>[<span class="declare">compress</span>]</kbd></span
+                  >
+                  The option produces an output that is similar to the default,
+                  only more fits onto each note page at the price of legibility.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="itemoption"
+                    ><kbd>[<span class="declare">plain</span>]</kbd></span
+                  >
+                  Just inserts the note text, no fancy hints.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="itemoption"
+                    ><kbd>[<span class="declare">lined</span>]</kbd
+                    ><span class="opt"
+                      ><span class="oarg-left-bracket">[</span
+                      ><span class="meta"
+                        ><span class="angle">&langle;</span><i>number</i
+                        ><span class="angle">&rangle;</span></span
+                      ><span class="oarg-right-bracket">]</span></span
+                    ></span
+                  >
+                  Instead of printing the note text, this option fills the note
+                  page with lines on which the audience can write their own
+                  notes on.
+                  <span class="meta"
                     ><span class="angle">&langle;</span><i>number</i
                     ><span class="angle">&rangle;</span></span
-                  ><span class="oarg-right-bracket">]</span></span
-                ></span
-              >
-              Instead of printing the note text, this option fills the note page
-              with lines on which the audience can write their own notes on.
-              <span class="meta"
-                ><span class="angle">&langle;</span><i>number</i
-                ><span class="angle">&rangle;</span></span
-              >
-              specifies how many lines will be shown, the default is 6 lines.
-              For a more sophisticated interface, the
-              <a
-                href="https://www.ctan.org/pkg/handoutwithnotes"
-                target="_blank"
-                ><span class="texttt">handoutwithnotes</span></a
-              >
-              package can be used.
-            </p>
-
+                  >
+                  specifies how many lines will be shown, the default is 6
+                  lines. For a more sophisticated interface, the
+                  <a
+                    href="https://www.ctan.org/pkg/handoutwithnotes"
+                    target="_blank"
+                    ><span class="texttt">handoutwithnotes</span></a
+                  >
+                  package can be used.
+                </p>
+              </li>
+            </ul>
             <p>The following two inserts are useful for note pages:</p>
-
-            <p>
-              &bull; <kbd><span class="declare">\insertnote</span></kbd> Inserts
-              the text of the current note into the template.
-            </p>
-
-            <p>
-              &bull;
-              <kbd><span class="declare">\insertslideintonotes</span></kbd
-              >{<span class="meta"
-                ><span class="angle">&langle;</span><i>magnification</i
-                ><span class="angle">&rangle;</span></span
-              >} Inserts a &ldquo;mini picture&rdquo; of the last slide into the
-              current note. The slide will be scaled by the given magnification.
-            </p>
-            <p>
-              <em>Note:</em> The backgrounds, headlines, footlines and sidebars
-              will not appear in the slide.
-            </p>
-            <p>
-              <i>Example: </i
-              ><span class="texttt">\insertslideintonotes{0.25}</span>
-            </p>
-            <p>
-              This will give a mini slide whose width and height are one fourth
-              of the usual size.
-            </p>
+            <ul style="list-style-type: none">
+              <li>
+                <p>
+                  &bull;
+                  <kbd><span class="declare">\insertnote</span></kbd> Inserts
+                  the text of the current note into the template.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <kbd><span class="declare">\insertslideintonotes</span></kbd
+                  >{<span class="meta"
+                    ><span class="angle">&langle;</span><i>magnification</i
+                    ><span class="angle">&rangle;</span></span
+                  >} Inserts a &ldquo;mini picture&rdquo; of the last slide into
+                  the current note. The slide will be scaled by the given
+                  magnification.
+                </p>
+                <p>
+                  <em>Note:</em> The backgrounds, headlines, footlines and
+                  sidebars will not appear in the slide.
+                </p>
+                <p>
+                  <i>Example: </i
+                  ><span class="texttt">\insertslideintonotes{0.25}</span>
+                </p>
+                <p>
+                  This will give a mini slide whose width and height are one
+                  fourth of the usual size.
+                </p>
+              </li>
+            </ul>
           </div>
           <!--
 ...... subsection Specifying Contents for Multiple Notes ......
@@ -760,21 +781,18 @@ some text
           <a href="https://github.com/SwitWu/beamer-html-manual">Repository</a>
         </div>
         <div class="footer-right">
-          <em>HTML version last updated: 2023-10-10</em>
+          <em>HTML version last updated: 2023-10-11</em>
         </div>
       </footer>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
-    <script>
+    <script type="text/javascript">
       docsearch({
         apiKey: "09762da49fe4ba391f7a3618c73720d8",
         indexName: "beamerplusio",
         appId: "WNNAN5R8GM",
         container: "#search",
-        searchParameters: {
-          filters: "tags:beamer",
-        },
       });
     </script>
   </body>

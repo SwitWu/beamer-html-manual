@@ -9,7 +9,7 @@
       How To Import Presentations Based on Other Packages and Classes - Beamer
       Manual
     </title>
-    <link href="style.css?v=20231010" rel="stylesheet" type="text/css" />
+    <link href="style.css?v=20231011" rel="stylesheet" type="text/css" />
     <link
       href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
       rel="stylesheet"
@@ -362,19 +362,22 @@
               <span class="texttt">beamer</span>, so just delete them.
             </p>
             <p>This package takes the following options:</p>
-
-            <p>
-              &bull;
-              <span class="declare"
-                ><span class="texttt">framesassubsections</span></span
-              >
-              causes each frame to create its own subsection with the frame
-              title as subsection name. This behavior mimics
-              <span class="textsc">ha</span>-<span class="textsc">prosper</span
-              >&rsquo;s behavior. In a long talk this will create way too many
-              subsections.
-            </p>
-
+            <ul style="list-style-type: none">
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">framesassubsections</span></span
+                  >
+                  causes each frame to create its own subsection with the frame
+                  title as subsection name. This behavior mimics
+                  <span class="textsc">ha</span>-<span class="textsc"
+                    >prosper</span
+                  >&rsquo;s behavior. In a long talk this will create way too
+                  many subsections.
+                </p>
+              </li>
+            </ul>
             <p>
               The <span class="texttt">framesassubsections</span> option has no
               effect in <span class="texttt">article</span> mode.
@@ -573,69 +576,76 @@ My notes for these slides.
               >
               may be given:
             </p>
-
-            <p>
-              &bull;
-              <span class="declare"
-                ><span class="texttt">trans=</span
-                ><span class="meta"
-                  ><span class="angle">&langle;</span><i>prosper transition</i
-                  ><span class="angle">&rangle;</span></span
-                ></span
-              >
-              installs the specified
-              <span class="meta"
-                ><span class="angle">&langle;</span><i>prosper transition</i
-                ><span class="angle">&rangle;</span></span
-              >
-              as the transition effect when showing the slide.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"
-                ><span class="meta"
-                  ><span class="angle">&langle;</span><i>prosper transition</i
-                  ><span class="angle">&rangle;</span></span
-                ></span
-              >
-              has the same effect as <span class="texttt">trans=</span
-              ><span class="meta"
-                ><span class="angle">&langle;</span><i>prosper transition</i
-                ><span class="angle">&rangle;</span></span
-              >.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"
-                ><span class="texttt">toc=</span
-                ><span class="meta"
-                  ><span class="angle">&langle;</span><i>entry</i
-                  ><span class="angle">&rangle;</span></span
-                ></span
-              >
-              overrides the subsection table of contents entry created by this
-              slide by
-              <span class="meta"
-                ><span class="angle">&langle;</span><i>entry</i
-                ><span class="angle">&rangle;</span></span
-              >. Note that a subsection entry is created for a slide only if the
-              <span class="texttt">framesassubsections</span> options is
-              specified.
-            </p>
-
-            <p>
-              &bull;
-              <span class="declare"
-                ><span class="texttt">template</span>=<span class="meta"
-                  ><span class="angle">&langle;</span><i>text</i
-                  ><span class="angle">&rangle;</span></span
-                ></span
-              >
-              is ignored.
-            </p>
-
+            <ul style="list-style-type: none">
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">trans=</span
+                    ><span class="meta"
+                      ><span class="angle">&langle;</span
+                      ><i>prosper transition</i
+                      ><span class="angle">&rangle;</span></span
+                    ></span
+                  >
+                  installs the specified
+                  <span class="meta"
+                    ><span class="angle">&langle;</span><i>prosper transition</i
+                    ><span class="angle">&rangle;</span></span
+                  >
+                  as the transition effect when showing the slide.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="meta"
+                      ><span class="angle">&langle;</span
+                      ><i>prosper transition</i
+                      ><span class="angle">&rangle;</span></span
+                    ></span
+                  >
+                  has the same effect as <span class="texttt">trans=</span
+                  ><span class="meta"
+                    ><span class="angle">&langle;</span><i>prosper transition</i
+                    ><span class="angle">&rangle;</span></span
+                  >.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">toc=</span
+                    ><span class="meta"
+                      ><span class="angle">&langle;</span><i>entry</i
+                      ><span class="angle">&rangle;</span></span
+                    ></span
+                  >
+                  overrides the subsection table of contents entry created by
+                  this slide by
+                  <span class="meta"
+                    ><span class="angle">&langle;</span><i>entry</i
+                    ><span class="angle">&rangle;</span></span
+                  >. Note that a subsection entry is created for a slide only if
+                  the <span class="texttt">framesassubsections</span> options is
+                  specified.
+                </p>
+              </li>
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">template</span>=<span class="meta"
+                      ><span class="angle">&langle;</span><i>text</i
+                      ><span class="angle">&rangle;</span></span
+                    ></span
+                  >
+                  is ignored.
+                </p>
+              </li>
+            </ul>
             <p><i>Example: </i>The following two texts have the same effect:</p>
             <pre class="verbatim">
 \begin{slide}[trans=Glitter,toc=short]{A Title}
@@ -1561,33 +1571,38 @@ My notes for these slides.
               <span class="texttt">beamer</span>, so just delete them.
             </p>
             <p>This package takes the following options:</p>
-
-            <p>
-              &bull;
-              <span class="declare"
-                ><span class="texttt">accumulated</span></span
-              >
-              causes overlays to be accumulated. The original behavior of the
-              <span class="textsc">seminar</span> package is that in each
-              overlay only the really &ldquo;new&rdquo; part of the overlay is
-              shown. This makes sense, if you really print out the overlays on
-              transparencies and then really stack overlays on top of each
-              other. For a presentation with a video projector, you rather want
-              to present an &ldquo;accumulated&rdquo; version of the overlays.
-              This is what this option does: When the new material of the
-              <span class="lateximagesource" id="lateximage-beameruserguide-16"
-                ><!--
+            <ul style="list-style-type: none">
+              <li>
+                <p>
+                  &bull;
+                  <span class="declare"
+                    ><span class="texttt">accumulated</span></span
+                  >
+                  causes overlays to be accumulated. The original behavior of
+                  the <span class="textsc">seminar</span> package is that in
+                  each overlay only the really &ldquo;new&rdquo; part of the
+                  overlay is shown. This makes sense, if you really print out
+                  the overlays on transparencies and then really stack overlays
+                  on top of each other. For a presentation with a video
+                  projector, you rather want to present an
+                  &ldquo;accumulated&rdquo; version of the overlays. This is
+                  what this option does: When the new material of the
+                  <span
+                    class="lateximagesource"
+                    id="lateximage-beameruserguide-16"
+                    ><!--
 𝑖
 --><img
-                  alt="\( i \)"
-                  class="lateximage"
-                  role="math"
-                  src="beameruserguide-images/D50F79E2E66556E5AE928DD6FF809A89.svg"
-                  style="height: 0.77591em" /></span
-              >-th overlay is shown, the material of all previous overlays is
-              also shown.
-            </p>
-
+                      alt="\( i \)"
+                      class="lateximage"
+                      role="math"
+                      src="beameruserguide-images/D50F79E2E66556E5AE928DD6FF809A89.svg"
+                      style="height: 0.77591em" /></span
+                  >-th overlay is shown, the material of all previous overlays
+                  is also shown.
+                </p>
+              </li>
+            </ul>
             <p>
               <i>Example: </i>The following example is an extract of
               <span class="texttt">beamerexample-seminar.tex</span>:
@@ -2688,21 +2703,18 @@ This is on the second frame.
           <a href="https://github.com/SwitWu/beamer-html-manual">Repository</a>
         </div>
         <div class="footer-right">
-          <em>HTML version last updated: 2023-10-10</em>
+          <em>HTML version last updated: 2023-10-11</em>
         </div>
       </footer>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
-    <script>
+    <script type="text/javascript">
       docsearch({
         apiKey: "09762da49fe4ba391f7a3618c73720d8",
         indexName: "beamerplusio",
         appId: "WNNAN5R8GM",
         container: "#search",
-        searchParameters: {
-          filters: "tags:beamer",
-        },
       });
     </script>
   </body>
