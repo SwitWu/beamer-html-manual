@@ -522,11 +522,11 @@ This command allows you to specify in a quite general way how a covered item sho
   \item
     \declare{|still covered=|\meta{not yet list}} specifies how to render covered items that have not yet been uncovered. The \meta{not yet list} should be a list of |\opaqueness| commands, see the description of that command, below.
     \example
-\begin{verbatim}
+\begin{Verbatim}
 \setbeamercovered{%
   still covered={\opaqueness<1>{15}\opaqueness<2>{10}\opaqueness<3>{5}\opaqueness<4->{2}},
   again covered={\opaqueness<1->{15}}}
-\end{verbatim}
+\end{Verbatim}
 
   \item
     \declare{|again covered=|\meta{once more list}} specifies how to render covered items that have once more been covered, that is, that had been shown before but are now covered again.
@@ -540,11 +540,11 @@ This command allows you to specify in a quite general way how a covered item sho
 
   The alternate \pgfname\ extension used inside an opaque area is \meta{percentage of opaqueness}|opaque|. In case of nested calls, only the innermost opaqueness specification is used.
   \example
-\begin{verbatim}
+\begin{Verbatim}
 \setbeamercovered{still covered={\opaqueness<1->{15}},again covered={\opaqueness<1->{15}}}
 \pgfdeclareimage{book}{book}
 \pgfdeclareimage{book.!15opaque}{filenameforbooknearlytransparent}
-\end{verbatim}
+\end{Verbatim}
 
   Makes everything that is uncovered in two slides only 15 percent opaque.
 \end{command}

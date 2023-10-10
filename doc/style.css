@@ -60,7 +60,12 @@
   --mono-font-family: 'JetBrains Mono';
   --header-height: 40px;
   font-variant-ligatures: none;
+  box-sizing: border-box;
   /* font-size: 1.5vw; */
+}
+
+* {
+  box-sizing: inherit;
 }
 
 @media screen and (min-width: 640px) {
@@ -89,7 +94,9 @@ span.classoption-heading,
 span.extractclass,
 div.begin-environment,
 div.end-environment,
-div.beameroption-headline {
+div.beameroption-headline,
+div.command-headline,
+div.element span.declare {
   font-family: var(--mono-font-family);
 }
 
@@ -130,14 +137,15 @@ span.paragraph {
 
 /* div */
 
-div.command-headline {
-  font-family: var(--mono-font-family);
+div.fancyvrb {
+  max-width: 100%;
 }
 
 pre.verbatim {
   overflow-x: auto;
   background-color: #d4dce6;
   padding: 1ex;
+  max-width: 100%;
 }
 
 
@@ -310,6 +318,7 @@ main.bodycontainer {
   grid-area: content;
   float: none;
   width: 100%;
+  min-width: 0;
   max-width: 100vw;
   padding-bottom: 40px;
 }
@@ -565,12 +574,15 @@ body.home-page nav.toc > p > a {
 /*   padding-left: 3em; */
 /* } */
 
-div.command > p,
+
+div.command > :not(div.command-headline),
+div.element > :not(div.element-headline),
 div.environment > p,
+div.environment > div.element,
+div.environment > div.fancyvrb,
 div.solution > p,
 div.environment > pre.verbatim,
 div.package > pre.verbatim,
-div.command > pre.verbatim,
 div.package > p:nth-child(n+2),
 div.package > div.classoption,
 div.classoption > p:nth-child(n+2),
@@ -581,6 +593,11 @@ div.class > p:nth-child(n+2) {
 div.environment p {
   margin-top: 0;
   margin-bottom: 0;
+}
+
+div.element {
+  margin-top: 1ex;
+  margin-bottom: 1ex;
 }
 
 /* Home page */

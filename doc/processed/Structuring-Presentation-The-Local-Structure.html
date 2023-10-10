@@ -230,22 +230,24 @@
             <span class="texttt">\item&lt;1&gt;[Cat]</span> or come last as in
             <span class="texttt">\item[Cat]&lt;1&gt;</span>.
           </p>
-          <pre class="verbatim">
+          <div class="fancyvrb" style>
+            <pre class="verbatim">
 \begin{frame}
-  There are three important points:
-  \begin{enumerate}
-  \item&lt;1-&gt; A first one,
-  \item&lt;2-&gt; a second one with a bunch of subpoints,
-    \begin{itemize}
-    \item first subpoint. (Only shown from second slide on!).
-    \item&lt;3-&gt; second subpoint added on third slide.
-    \item&lt;4-&gt; third subpoint added on fourth slide.
-    \end{itemize}
-  \item&lt;5-&gt; and a third one.
-  \end{enumerate}
+ There are three important points:
+ \begin{enumerate}
+ \item&lt;1-&gt; A first one,
+ \item&lt;2-&gt; a second one with a bunch of subpoints,
+   \begin{itemize}
+   \item first subpoint. (Only shown from second slide on!).
+   \item&lt;3-&gt; second subpoint added on third slide.
+   \item&lt;4-&gt; third subpoint added on fourth slide.
+   \end{itemize}
+ \item&lt;5-&gt; and a third one.
+ \end{enumerate}
 \end{frame}
 </pre
-          >
+            >
+          </div>
           <div class="environment">
             <div class="begin-environment">
               <p>
@@ -318,7 +320,8 @@
             <p>
               <i>Example: </i>
             </p>
-            <pre class="verbatim">
+            <div class="fancyvrb" style>
+              <pre class="verbatim">
 \begin{itemize}[&lt;+-&gt;]
 \item This is shown from the first slide on.
 \item This is shown from the second slide on.
@@ -327,39 +330,42 @@
 \item This is shown from the fourth slide on.
 \end{itemize}
 </pre
-            >
+              >
+            </div>
             <p>
               <i>Example: </i>
             </p>
-            <pre class="verbatim">
+            <div class="fancyvrb" style>
+              <pre class="verbatim">
 \begin{itemize}[&lt;+-| alert@+&gt;]
 \item This is shown from the first slide on and alerted on the first slide.
 \item This is shown from the second slide on and alerted on the second slide.
 \item This is shown from the third slide on and alerted on the third slide.
 \end{itemize}
 </pre
-            >
+              >
+            </div>
             <p>
               <i>Example: </i>
             </p>
-            <pre class="verbatim">
+            <div class="fancyvrb" style>
+              <pre class="verbatim">
 \newenvironment{mystepwiseitemize}{\begin{itemize}[&lt;+-| alert@+&gt;]}{\end{itemize}}
 </pre
-            >
+              >
+            </div>
             <p>
               The appearance of an <span class="texttt">itemize</span> list is
               governed by several templates. The first template concerns the way
               the little marker introducing each item is typeset:
             </p>
             <div class="element">
-              <p>
-                <span class="element-headline"
-                  ><b>Parent Beamer-Template</b>
-                  <span class="element-declare"
-                    ><span class="declare">itemize items</span></span
-                  ></span
-                >
-              </p>
+              <div class="element-headline">
+                <p>
+                  <b>Parent Beamer-Template</b>
+                  <span class="declare">itemize items</span>
+                </p>
+              </div>
               <p>
                 This template is a parent template, whose children are
                 <span class="texttt">itemize item</span>,
@@ -421,14 +427,12 @@
               </p>
             </div>
             <div class="element">
-              <p>
-                <span class="element-headline"
-                  ><b>Beamer-Template/-Color/-Font</b>
-                  <span class="element-declare"
-                    ><span class="declare">itemize item</span></span
-                  ></span
-                >
-              </p>
+              <div class="element-headline">
+                <p>
+                  <b>Beamer-Template/-Color/-Font</b>
+                  <span class="declare">itemize item</span>
+                </p>
+              </div>
               <p>Color/font parents: <kbd>item</kbd></p>
               <p>
                 This template (with <span class="texttt">item</span> instead of
@@ -460,14 +464,12 @@
               </p>
             </div>
             <div class="element">
-              <p>
-                <span class="element-headline"
-                  ><b>Beamer-Template/-Color/-Font</b>
-                  <span class="element-declare"
-                    ><span class="declare">itemize subitem</span></span
-                  ></span
-                >
-              </p>
+              <div class="element-headline">
+                <p>
+                  <b>Beamer-Template/-Color/-Font</b>
+                  <span class="declare">itemize subitem</span>
+                </p>
+              </div>
               <p>Color/font parents: <kbd>subitem</kbd></p>
               <p>
                 Like <span class="texttt">itemize item</span>, only for
@@ -476,14 +478,12 @@
               </p>
             </div>
             <div class="element">
-              <p>
-                <span class="element-headline"
-                  ><b>Beamer-Template/-Color/-Font</b>
-                  <span class="element-declare"
-                    ><span class="declare">itemize subsubitem</span></span
-                  ></span
-                >
-              </p>
+              <div class="element-headline">
+                <p>
+                  <b>Beamer-Template/-Color/-Font</b>
+                  <span class="declare">itemize subsubitem</span>
+                </p>
+              </div>
               <p>Color/font parents: <kbd>subsubitem</kbd></p>
               <p>
                 Like <span class="texttt">itemize item</span>, only for
@@ -605,7 +605,8 @@
             <p>
               <i>Example: </i>
             </p>
-            <pre class="verbatim">
+            <div class="fancyvrb" style>
+              <pre class="verbatim">
 \begin{enumerate}
 \item This is important.
 \item This is also important.
@@ -621,7 +622,8 @@
 \item Second Roman point, uncovered on second slide.
 \end{enumerate}
 </pre
-            >
+              >
+            </div>
             <p>
               To use the
               <span class="meta"
@@ -631,14 +633,12 @@
               <span class="texttt">enumerate</span>.
             </p>
             <div class="element">
-              <p>
-                <span class="element-headline"
-                  ><b>Parent Beamer-Template</b>
-                  <span class="element-declare"
-                    ><span class="declare">enumerate items</span></span
-                  ></span
-                >
-              </p>
+              <div class="element-headline">
+                <p>
+                  <b>Parent Beamer-Template</b>
+                  <span class="declare">enumerate items</span>
+                </p>
+              </div>
               <p>
                 Similar to <span class="texttt">itemize items</span>, this
                 template is a parent template, whose children are
@@ -689,14 +689,12 @@
               </p>
             </div>
             <div class="element">
-              <p>
-                <span class="element-headline"
-                  ><b>Beamer-Template/-Color/-Font</b>
-                  <span class="element-declare"
-                    ><span class="declare">enumerate item</span></span
-                  ></span
-                >
-              </p>
+              <div class="element-headline">
+                <p>
+                  <b>Beamer-Template/-Color/-Font</b>
+                  <span class="declare">enumerate item</span>
+                </p>
+              </div>
               <p>
                 This template governs how the number in front of a first-level
                 item is typeset. The level here refers to the level of
@@ -722,14 +720,12 @@
               </p>
             </div>
             <div class="element">
-              <p>
-                <span class="element-headline"
-                  ><b>Beamer-Template/-Color/-Font</b>
-                  <span class="element-declare"
-                    ><span class="declare">enumerate subitem</span></span
-                  ></span
-                >
-              </p>
+              <div class="element-headline">
+                <p>
+                  <b>Beamer-Template/-Color/-Font</b>
+                  <span class="declare">enumerate subitem</span>
+                </p>
+              </div>
               <p>
                 Like <span class="texttt">enumerate item</span>, only for
                 second-level items.
@@ -751,14 +747,12 @@
               >
             </div>
             <div class="element">
-              <p>
-                <span class="element-headline"
-                  ><b>Beamer-Template/-Color/-Font</b>
-                  <span class="element-declare"
-                    ><span class="declare">enumerate subsubitem</span></span
-                  ></span
-                >
-              </p>
+              <div class="element-headline">
+                <p>
+                  <b>Beamer-Template/-Color/-Font</b>
+                  <span class="declare">enumerate subsubitem</span>
+                </p>
+              </div>
               <p>
                 Like <span class="texttt">enumerate item</span>, only for
                 third-level items.
@@ -772,14 +766,12 @@
               </p>
             </div>
             <div class="element">
-              <p>
-                <span class="element-headline"
-                  ><b>Beamer-Template/-Color/-Font</b>
-                  <span class="element-declare"
-                    ><span class="declare">enumerate mini template</span></span
-                  ></span
-                >
-              </p>
+              <div class="element-headline">
+                <p>
+                  <b>Beamer-Template/-Color/-Font</b>
+                  <span class="declare">enumerate mini template</span>
+                </p>
+              </div>
               <p>
                 This template is used to typeset the number that arises from a
                 mini template.
@@ -807,16 +799,12 @@
             <span class="texttt">enumerate</span> is typeset.
           </p>
           <div class="element">
-            <p>
-              <span class="element-headline"
-                ><b>Beamer-Template</b>
-                <span class="element-declare"
-                  ><span class="declare"
-                    >itemize/enumerate body begin</span
-                  ></span
-                ></span
-              >
-            </p>
+            <div class="element-headline">
+              <p>
+                <b>Beamer-Template</b>
+                <span class="declare">itemize/enumerate body begin</span>
+              </p>
+            </div>
             <p>
               This template is inserted at the beginning of a first-level
               <span class="texttt">itemize</span> or
@@ -828,14 +816,12 @@
             </p>
           </div>
           <div class="element">
-            <p>
-              <span class="element-headline"
-                ><b>Beamer-Template</b>
-                <span class="element-declare"
-                  ><span class="declare">itemize/enumerate body end</span></span
-                ></span
-              >
-            </p>
+            <div class="element-headline">
+              <p>
+                <b>Beamer-Template</b>
+                <span class="declare">itemize/enumerate body end</span>
+              </p>
+            </div>
             <p>
               This template is inserted at the end of a first-level
               <span class="texttt">itemize</span> or
@@ -848,14 +834,11 @@
             second- and third-level itemize or enumerates.
           </p>
           <div class="element">
-            <p>
-              <span class="element-headline"
-                ><b>Parent Beamer-Template</b>
-                <span class="element-declare"
-                  ><span class="declare">items</span></span
-                ></span
-              >
-            </p>
+            <div class="element-headline">
+              <p>
+                <b>Parent Beamer-Template</b> <span class="declare">items</span>
+              </p>
+            </div>
             <p>
               This template is a parent template of
               <span class="texttt">itemize items</span> and
@@ -933,7 +916,8 @@
             <p>
               <i>Example: </i>
             </p>
-            <pre class="verbatim">
+            <div class="fancyvrb" style>
+              <pre class="verbatim">
 \begin{description}
 \item[Lion] King of the savanna.
 \item[Tiger] King of the jungle.
@@ -945,28 +929,29 @@
 \item&lt;3-&gt;[long label] Some text.
 \end{description}
 </pre
-            >
+              >
+            </div>
             <p>
               <i>Example: </i>The following has the same effect as the previous
               example:
             </p>
-            <pre class="verbatim">
+            <div class="fancyvrb" style>
+              <pre class="verbatim">
 \begin{description}[&lt;+-&gt;][longest label]
 \item[short] Some text.
 \item[longest label] Some text.
 \item[long label] Some text.
 \end{description}
 </pre
-            >
+              >
+            </div>
             <div class="element">
-              <p>
-                <span class="element-headline"
-                  ><b>Beamer-Template/-Color/-Font</b>
-                  <span class="element-declare"
-                    ><span class="declare">description item</span></span
-                  ></span
-                >
-              </p>
+              <div class="element-headline">
+                <p>
+                  <b>Beamer-Template/-Color/-Font</b>
+                  <span class="declare">description item</span>
+                </p>
+              </div>
               <p>
                 This template is used to typeset the description items. When
                 this template is called, the
@@ -995,14 +980,12 @@
               </p>
             </div>
             <div class="element">
-              <p>
-                <span class="element-headline"
-                  ><b>Beamer-Template</b>
-                  <span class="element-declare"
-                    ><span class="declare">description body begin</span></span
-                  ></span
-                >
-              </p>
+              <div class="element-headline">
+                <p>
+                  <b>Beamer-Template</b>
+                  <span class="declare">description body begin</span>
+                </p>
+              </div>
               <p>
                 This template is inserted at the beginning of a
                 <span class="texttt">description</span> environment.
@@ -1014,14 +997,12 @@
               </p>
             </div>
             <div class="element">
-              <p>
-                <span class="element-headline"
-                  ><b>Beamer-Template</b>
-                  <span class="element-declare"
-                    ><span class="declare">description body end</span></span
-                  ></span
-                >
-              </p>
+              <div class="element-headline">
+                <p>
+                  <b>Beamer-Template</b>
+                  <span class="declare">description body end</span>
+                </p>
+              </div>
               <p>
                 This template is inserted at the end of a
                 <span class="texttt">description</span> environment.
@@ -1036,14 +1017,9 @@
             >-color and fonts:
           </p>
           <div class="element">
-            <p>
-              <span class="element-headline"
-                ><b>Beamer-Color/-Font</b>
-                <span class="element-declare"
-                  ><span class="declare">item</span></span
-                ></span
-              >
-            </p>
+            <div class="element-headline">
+              <p><b>Beamer-Color/-Font</b> <span class="declare">item</span></p>
+            </div>
             <p>Color parents: <kbd>local structure</kbd></p>
             <p>Font parents: <kbd>structure</kbd></p>
             <p>
@@ -1056,14 +1032,12 @@
             </p>
           </div>
           <div class="element">
-            <p>
-              <span class="element-headline"
-                ><b>Beamer-Color/-Font</b>
-                <span class="element-declare"
-                  ><span class="declare">item projected</span></span
-                ></span
-              >
-            </p>
+            <div class="element-headline">
+              <p>
+                <b>Beamer-Color/-Font</b>
+                <span class="declare">item projected</span>
+              </p>
+            </div>
             <p>Color/font parents: <kbd>item</kbd></p>
             <p>
               This is a special &ldquo;version&rdquo; of the
@@ -1078,14 +1052,11 @@
             </p>
           </div>
           <div class="element">
-            <p>
-              <span class="element-headline"
-                ><b>Beamer-Color/-Font</b>
-                <span class="element-declare"
-                  ><span class="declare">subitem</span></span
-                ></span
-              >
-            </p>
+            <div class="element-headline">
+              <p>
+                <b>Beamer-Color/-Font</b> <span class="declare">subitem</span>
+              </p>
+            </div>
             <p>Color/font parents: <kbd>item</kbd></p>
             <p>
               Same as <span class="texttt">item</span> for subitems, that is,
@@ -1093,14 +1064,12 @@
             </p>
           </div>
           <div class="element">
-            <p>
-              <span class="element-headline"
-                ><b>Beamer-Color/-Font</b>
-                <span class="element-declare"
-                  ><span class="declare">subitem projected</span></span
-                ></span
-              >
-            </p>
+            <div class="element-headline">
+              <p>
+                <b>Beamer-Color/-Font</b>
+                <span class="declare">subitem projected</span>
+              </p>
+            </div>
             <p>Color/font parents: <kbd>item projected</kbd></p>
             <p>
               Same as <span class="texttt">item projected</span> for subitems,
@@ -1108,14 +1077,12 @@
             </p>
           </div>
           <div class="element">
-            <p>
-              <span class="element-headline"
-                ><b>Beamer-Color/-Font</b>
-                <span class="element-declare"
-                  ><span class="declare">subsubitem</span></span
-                ></span
-              >
-            </p>
+            <div class="element-headline">
+              <p>
+                <b>Beamer-Color/-Font</b>
+                <span class="declare">subsubitem</span>
+              </p>
+            </div>
             <p>Color/font parents: <kbd>subitem</kbd></p>
             <p>
               Same as <span class="texttt">subitem</span> for subsubitems, that
@@ -1123,14 +1090,12 @@
             </p>
           </div>
           <div class="element">
-            <p>
-              <span class="element-headline"
-                ><b>Beamer-Color/-Font</b>
-                <span class="element-declare"
-                  ><span class="declare">subsubitem projected</span></span
-                ></span
-              >
-            </p>
+            <div class="element-headline">
+              <p>
+                <b>Beamer-Color/-Font</b>
+                <span class="declare">subsubitem projected</span>
+              </p>
+            </div>
             <p>Color/font parents: <kbd>subitem projected</kbd></p>
             <p>
               Same as <span class="texttt">subitem projected</span> for
@@ -1194,14 +1159,12 @@
               modifying the templates.
             </p>
             <div class="element">
-              <p>
-                <span class="element-headline"
-                  ><b>Beamer-Color/-Font</b>
-                  <span class="element-declare"
-                    ><span class="declare">structure</span></span
-                  ></span
-                >
-              </p>
+              <div class="element-headline">
+                <p>
+                  <b>Beamer-Color/-Font</b>
+                  <span class="declare">structure</span>
+                </p>
+              </div>
               <p>
                 This color/font is used when structured text is typeset, but it
                 is also widely used as a base for many other colors including
@@ -1226,14 +1189,12 @@
               </p>
             </div>
             <div class="element">
-              <p>
-                <span class="element-headline"
-                  ><b>Beamer-Color</b>
-                  <span class="element-declare"
-                    ><span class="declare">local structure</span></span
-                  ></span
-                >
-              </p>
+              <div class="element-headline">
+                <p>
+                  <b>Beamer-Color</b>
+                  <span class="declare">local structure</span>
+                </p>
+              </div>
               <p>
                 This color should be used to typeset structural elements that
                 change their color according to the &ldquo;local
@@ -1259,14 +1220,11 @@
               </p>
             </div>
             <div class="element">
-              <p>
-                <span class="element-headline"
-                  ><b>Beamer-Font</b>
-                  <span class="element-declare"
-                    ><span class="declare">tiny structure</span></span
-                  ></span
-                >
-              </p>
+              <div class="element-headline">
+                <p>
+                  <b>Beamer-Font</b> <span class="declare">tiny structure</span>
+                </p>
+              </div>
               <p>
                 This special font is used for &ldquo;tiny&rdquo; structural
                 text. Basically, this font should be used whenever a structural
@@ -1308,14 +1266,12 @@
               <span class="texttt">\structure</span> command.
             </p>
             <div class="element">
-              <p>
-                <span class="element-headline"
-                  ><b>Beamer-Template</b>
-                  <span class="element-declare"
-                    ><span class="declare">structure begin</span></span
-                  ></span
-                >
-              </p>
+              <div class="element-headline">
+                <p>
+                  <b>Beamer-Template</b>
+                  <span class="declare">structure begin</span>
+                </p>
+              </div>
               <p>
                 This text is inserted at the beginning of a
                 <span class="texttt">structureenv</span> environment.
@@ -1331,14 +1287,12 @@
               <p>The text is typeset in boldface.</p>
             </div>
             <div class="element">
-              <p>
-                <span class="element-headline"
-                  ><b>Beamer-Template</b>
-                  <span class="element-declare"
-                    ><span class="declare">structure end</span></span
-                  ></span
-                >
-              </p>
+              <div class="element-headline">
+                <p>
+                  <b>Beamer-Template</b>
+                  <span class="declare">structure end</span>
+                </p>
+              </div>
               <p>
                 This text is inserted at the end of a
                 <span class="texttt">structureenv</span> environment.
@@ -1385,14 +1339,12 @@
               modifying the templates, see below.
             </p>
             <div class="element">
-              <p>
-                <span class="element-headline"
-                  ><b>Beamer-Color/-Font</b>
-                  <span class="element-declare"
-                    ><span class="declare">alerted text</span></span
-                  ></span
-                >
-              </p>
+              <div class="element-headline">
+                <p>
+                  <b>Beamer-Color/-Font</b>
+                  <span class="declare">alerted text</span>
+                </p>
+              </div>
               <p>
                 This color/font is used when alerted text is typeset. The
                 background is currently ignored. There is no template
@@ -1431,14 +1383,12 @@
               <span class="texttt">\alert</span> command.
             </p>
             <div class="element">
-              <p>
-                <span class="element-headline"
-                  ><b>Beamer-Template</b>
-                  <span class="element-declare"
-                    ><span class="declare">alerted text begin</span></span
-                  ></span
-                >
-              </p>
+              <div class="element-headline">
+                <p>
+                  <b>Beamer-Template</b>
+                  <span class="declare">alerted text begin</span>
+                </p>
+              </div>
               <p>
                 This text is inserted at the beginning of a an
                 <span class="texttt">alertenv</span> environment.
@@ -1462,14 +1412,12 @@
               <p>The text is emphasized.</p>
             </div>
             <div class="element">
-              <p>
-                <span class="element-headline"
-                  ><b>Beamer-Template</b>
-                  <span class="element-declare"
-                    ><span class="declare">alerted text end</span></span
-                  ></span
-                >
-              </p>
+              <div class="element-headline">
+                <p>
+                  <b>Beamer-Template</b>
+                  <span class="declare">alerted text end</span>
+                </p>
+              </div>
               <p>
                 This text is inserted at the end of an
                 <span class="texttt">alertenv</span> environment.
@@ -1496,14 +1444,12 @@
             blocks can easily be changed using the following template:
           </p>
           <div class="element">
-            <p>
-              <span class="element-headline"
-                ><b>Parent Beamer-Template</b>
-                <span class="element-declare"
-                  ><span class="declare">blocks</span></span
-                ></span
-              >
-            </p>
+            <div class="element-headline">
+              <p>
+                <b>Parent Beamer-Template</b>
+                <span class="declare">blocks</span>
+              </p>
+            </div>
             <p>
               Changing this parent template changes the templates of normal
               blocks, alerted blocks, and example blocks.
@@ -1611,22 +1557,22 @@
             <p>
               <i>Example: </i>
             </p>
-            <pre class="verbatim">
-  \begin{block}&lt;3-&gt;{Definition}
-    A \alert{set} consists of elements.
-  \end{block}
+            <div class="fancyvrb" style>
+              <pre class="verbatim">
+ \begin{block}&lt;3-&gt;{Definition}
+   A \alert{set} consists of elements.
+ \end{block}
 </pre
-            >
+              >
+            </div>
             <p>The block name is typeset in bold.</p>
             <div class="element">
-              <p>
-                <span class="element-headline"
-                  ><b>Beamer-Template</b>
-                  <span class="element-declare"
-                    ><span class="declare">block begin</span></span
-                  ></span
-                >
-              </p>
+              <div class="element-headline">
+                <p>
+                  <b>Beamer-Template</b>
+                  <span class="declare">block begin</span>
+                </p>
+              </div>
               <p>
                 This template is inserted at the beginning of a block before the
                 <span class="meta"
@@ -1655,25 +1601,20 @@
               </p>
             </div>
             <div class="element">
-              <p>
-                <span class="element-headline"
-                  ><b>Beamer-Template</b>
-                  <span class="element-declare"
-                    ><span class="declare">block end</span></span
-                  ></span
-                >
-              </p>
+              <div class="element-headline">
+                <p>
+                  <b>Beamer-Template</b> <span class="declare">block end</span>
+                </p>
+              </div>
               <p>This template is inserted at the end of a block.</p>
             </div>
             <div class="element">
-              <p>
-                <span class="element-headline"
-                  ><b>Beamer-Color/-Font</b>
-                  <span class="element-declare"
-                    ><span class="declare">block title</span></span
-                  ></span
-                >
-              </p>
+              <div class="element-headline">
+                <p>
+                  <b>Beamer-Color/-Font</b>
+                  <span class="declare">block title</span>
+                </p>
+              </div>
               <p>
                 This
                 <span class="beamer-name"
@@ -1690,14 +1631,12 @@
               </p>
             </div>
             <div class="element">
-              <p>
-                <span class="element-headline"
-                  ><b>Beamer-Color/-Font</b>
-                  <span class="element-declare"
-                    ><span class="declare">block body</span></span
-                  ></span
-                >
-              </p>
+              <div class="element-headline">
+                <p>
+                  <b>Beamer-Color/-Font</b>
+                  <span class="declare">block body</span>
+                </p>
+              </div>
               <p>
                 This
                 <span class="beamer-name"
@@ -1760,47 +1699,39 @@
             >
             <p>The block name is typeset in bold and is emphasized.</p>
             <div class="element">
-              <p>
-                <span class="element-headline"
-                  ><b>Beamer-Template</b>
-                  <span class="element-declare"
-                    ><span class="declare">block alerted begin</span></span
-                  ></span
-                >
-              </p>
+              <div class="element-headline">
+                <p>
+                  <b>Beamer-Template</b>
+                  <span class="declare">block alerted begin</span>
+                </p>
+              </div>
               <p>Same applies as for normal blocks.</p>
             </div>
             <div class="element">
-              <p>
-                <span class="element-headline"
-                  ><b>Beamer-Template</b>
-                  <span class="element-declare"
-                    ><span class="declare">block alerted end</span></span
-                  ></span
-                >
-              </p>
+              <div class="element-headline">
+                <p>
+                  <b>Beamer-Template</b>
+                  <span class="declare">block alerted end</span>
+                </p>
+              </div>
               <p>Same applies as for normal blocks.</p>
             </div>
             <div class="element">
-              <p>
-                <span class="element-headline"
-                  ><b>Beamer-Color/-Font</b>
-                  <span class="element-declare"
-                    ><span class="declare">block title alerted</span></span
-                  ></span
-                >
-              </p>
+              <div class="element-headline">
+                <p>
+                  <b>Beamer-Color/-Font</b>
+                  <span class="declare">block title alerted</span>
+                </p>
+              </div>
               <p>Same applies as for normal blocks.</p>
             </div>
             <div class="element">
-              <p>
-                <span class="element-headline"
-                  ><b>Beamer-Color/-Font</b>
-                  <span class="element-declare"
-                    ><span class="declare">block body alerted</span></span
-                  ></span
-                >
-              </p>
+              <div class="element-headline">
+                <p>
+                  <b>Beamer-Color/-Font</b>
+                  <span class="declare">block body alerted</span>
+                </p>
+              </div>
               <p>Same applies as for normal blocks.</p>
             </div>
           </div>
@@ -1845,54 +1776,49 @@
               <i>Example: </i>In the following example, the block is completely
               suppressed on the first slide (it does not even occupy any space).
             </p>
-            <pre class="verbatim">
-  \begin{exampleblock}{Example}<only@2->
-    The set $\{1,2,3,5\}$ has four elements.
-  \end{exampleblock}
-</only@2-></pre>
+            <div class="fancyvrb" style>
+              <pre class="verbatim">
+ \begin{exampleblock}{Example}&lt;only@2-&gt;
+   The set $\{1,2,3,5\}$ has four elements.
+ \end{exampleblock}
+</pre
+              >
+            </div>
             <p>The block name is typeset in italics.</p>
             <div class="element">
-              <p>
-                <span class="element-headline"
-                  ><b>Beamer-Template</b>
-                  <span class="element-declare"
-                    ><span class="declare">block example begin</span></span
-                  ></span
-                >
-              </p>
+              <div class="element-headline">
+                <p>
+                  <b>Beamer-Template</b>
+                  <span class="declare">block example begin</span>
+                </p>
+              </div>
               <p>Same applies as for normal blocks.</p>
             </div>
             <div class="element">
-              <p>
-                <span class="element-headline"
-                  ><b>Beamer-Template</b>
-                  <span class="element-declare"
-                    ><span class="declare">block example end</span></span
-                  ></span
-                >
-              </p>
+              <div class="element-headline">
+                <p>
+                  <b>Beamer-Template</b>
+                  <span class="declare">block example end</span>
+                </p>
+              </div>
               <p>Same applies as for normal blocks.</p>
             </div>
             <div class="element">
-              <p>
-                <span class="element-headline"
-                  ><b>Beamer-Color/-Font</b>
-                  <span class="element-declare"
-                    ><span class="declare">block title example</span></span
-                  ></span
-                >
-              </p>
+              <div class="element-headline">
+                <p>
+                  <b>Beamer-Color/-Font</b>
+                  <span class="declare">block title example</span>
+                </p>
+              </div>
               <p>Same applies as for normal blocks.</p>
             </div>
             <div class="element">
-              <p>
-                <span class="element-headline"
-                  ><b>Beamer-Color/-Font</b>
-                  <span class="element-declare"
-                    ><span class="declare">block body example</span></span
-                  ></span
-                >
-              </p>
+              <div class="element-headline">
+                <p>
+                  <b>Beamer-Color/-Font</b>
+                  <span class="declare">block body example</span>
+                </p>
+              </div>
               <p>Same applies as for normal blocks.</p>
             </div>
           </div>
@@ -1935,24 +1861,26 @@
             <span class="texttt">Beispiele</span>.
           </p>
           <p>Here is a typical example on how to use them:</p>
-          <pre class="verbatim">
+          <div class="fancyvrb" style>
+            <pre class="verbatim">
 \begin{frame}
-  \frametitle{A Theorem on Infinite Sets}
+ \frametitle{A Theorem on Infinite Sets}
 
-  \begin{theorem}&lt;1-&gt;
-    There exists an infinite set.
-  \end{theorem}
+ \begin{theorem}&lt;1-&gt;
+   There exists an infinite set.
+ \end{theorem}
 
-  \begin{proof}&lt;2-&gt;
-    This follows from the axiom of infinity.
-  \end{proof}
+ \begin{proof}&lt;2-&gt;
+   This follows from the axiom of infinity.
+ \end{proof}
 
-  \begin{example}&lt;3-&gt;[Natural Numbers]
-    The set of natural numbers is infinite.
-  \end{example}
+ \begin{example}&lt;3-&gt;[Natural Numbers]
+   The set of natural numbers is infinite.
+ \end{example}
 \end{frame}
 </pre
-          >
+            >
+          </div>
           <p>
             In the following, only the English versions are discussed. The
             German ones behave analogously.
@@ -2040,16 +1968,18 @@
             <p>
               <i>Example: </i>
             </p>
-            <pre class="verbatim">
+            <div class="fancyvrb" style>
+              <pre class="verbatim">
 \begin{theorem}[Kummer, 1992]
-  If $\#^_A^n$ is $n$-enumerable, then $A$ is recursive.
+ If $\#^_A^n$ is $n$-enumerable, then $A$ is recursive.
 \end{theorem}
 
 \begin{theorem}&lt;2-&gt;[Tantau, 2002]
-  If $\#_A^2$ is $2$-fa-enumerable, then $A$ is regular.
+ If $\#_A^2$ is $2$-fa-enumerable, then $A$ is regular.
 \end{theorem}
 </pre
-            >
+              >
+            </div>
           </div>
           <p>
             The environments
@@ -2259,21 +2189,21 @@
             <p>
               <i>Example: </i>
             </p>
-            <pre class="verbatim">
+            <div class="fancyvrb" style>
+              <pre class="verbatim">
 \begin{proof}&lt;2-&gt;[Sketch of proof]
-  Suppose ...
+ Suppose ...
 \end{proof}
 </pre
-            >
+              >
+            </div>
             <div class="element">
-              <p>
-                <span class="element-headline"
-                  ><b>Beamer-Template/-Color/-Font</b>
-                  <span class="element-declare"
-                    ><span class="declare">qed symbol</span></span
-                  ></span
-                >
-              </p>
+              <div class="element-headline">
+                <p>
+                  <b>Beamer-Template/-Color/-Font</b>
+                  <span class="declare">qed symbol</span>
+                </p>
+              </div>
               <p>The symbol is shown at the end of every proof.</p>
             </div>
           </div>
@@ -2451,14 +2381,12 @@
             </ul>
           </div>
           <div class="element">
-            <p>
-              <span class="element-headline"
-                ><b>Parent Beamer-Template</b>
-                <span class="element-declare"
-                  ><span class="declare">theorems</span></span
-                ></span
-              >
-            </p>
+            <div class="element-headline">
+              <p>
+                <b>Parent Beamer-Template</b>
+                <span class="declare">theorems</span>
+              </p>
+            </div>
             <p>
               This template is a parent of
               <span class="texttt">theorem begin</span> and
@@ -2516,14 +2444,12 @@
             </p>
           </div>
           <div class="element">
-            <p>
-              <span class="element-headline"
-                ><b>Beamer-Template</b>
-                <span class="element-declare"
-                  ><span class="declare">theorem begin</span></span
-                ></span
-              >
-            </p>
+            <div class="element-headline">
+              <p>
+                <b>Beamer-Template</b>
+                <span class="declare">theorem begin</span>
+              </p>
+            </div>
             <p>
               Whenever an environment declared using the command
               <span class="texttt">\newtheorem</span> is to be typeset, this
@@ -2635,25 +2561,19 @@
             </p>
           </div>
           <div class="element">
-            <p>
-              <span class="element-headline"
-                ><b>Beamer-Template</b>
-                <span class="element-declare"
-                  ><span class="declare">theorem end</span></span
-                ></span
-              >
-            </p>
+            <div class="element-headline">
+              <p>
+                <b>Beamer-Template</b> <span class="declare">theorem end</span>
+              </p>
+            </div>
             <p>Inserted at the end of a theorem.</p>
           </div>
           <div class="element">
-            <p>
-              <span class="element-headline"
-                ><b>Beamer-Template</b>
-                <span class="element-declare"
-                  ><span class="declare">proof begin</span></span
-                ></span
-              >
-            </p>
+            <div class="element-headline">
+              <p>
+                <b>Beamer-Template</b> <span class="declare">proof begin</span>
+              </p>
+            </div>
             <p>
               Inserted at the beginning of a
               <span class="texttt">proof</span> environment. This template
@@ -2668,14 +2588,11 @@
             </p>
           </div>
           <div class="element">
-            <p>
-              <span class="element-headline"
-                ><b>Beamer-Template</b>
-                <span class="element-declare"
-                  ><span class="declare">proof end</span></span
-                ></span
-              >
-            </p>
+            <div class="element-headline">
+              <p>
+                <b>Beamer-Template</b> <span class="declare">proof end</span>
+              </p>
+            </div>
             <p>
               Inserted at the end of a
               <span class="texttt">proof</span> environment.
@@ -3347,14 +3264,12 @@
 </pre
           >
           <div class="element">
-            <p>
-              <span class="element-headline"
-                ><b>Beamer-Template/-Color/-Font</b>
-                <span class="element-declare"
-                  ><span class="declare">caption</span></span
-                ></span
-              >
-            </p>
+            <div class="element-headline">
+              <p>
+                <b>Beamer-Template/-Color/-Font</b>
+                <span class="declare">caption</span>
+              </p>
+            </div>
             <p>This template is used to render the caption.</p>
             <p>The following template options are predefined:</p>
 
@@ -3416,14 +3331,12 @@
             </p>
           </div>
           <div class="element">
-            <p>
-              <span class="element-headline"
-                ><b>Beamer-Color/-Font</b>
-                <span class="element-declare"
-                  ><span class="declare">caption name</span></span
-                ></span
-              >
-            </p>
+            <div class="element-headline">
+              <p>
+                <b>Beamer-Color/-Font</b>
+                <span class="declare">caption name</span>
+              </p>
+            </div>
             <p>
               These
               <span class="beamer-name"><span class="textsc">beamer</span></span
@@ -3435,14 +3348,12 @@
             </p>
           </div>
           <div class="element">
-            <p>
-              <span class="element-headline"
-                ><b>Beamer-Template</b>
-                <span class="element-declare"
-                  ><span class="declare">caption label separator</span></span
-                ></span
-              >
-            </p>
+            <div class="element-headline">
+              <p>
+                <b>Beamer-Template</b>
+                <span class="declare">caption label separator</span>
+              </p>
+            </div>
             <p>
               This template is inserted between caption name and caption text.
             </p>
@@ -3935,10 +3846,12 @@
               <span class="texttt">}</span> retain their meaning. Thus, you can
               say things like
             </p>
-            <pre class="verbatim">
+            <div class="fancyvrb" style>
+              <pre class="verbatim">
 \alert&lt;1-&gt;{std::cout &lt;&lt; "AT&amp;T likes 100% performance";}
 </pre
-            >
+              >
+            </div>
             <p>
               To typeset the three characters <span class="texttt">\</span>,
               <span class="texttt">{</span>, and
@@ -3992,14 +3905,12 @@
             </div>
             <p>You can use this environment to typeset an abstract.</p>
             <div class="element">
-              <p>
-                <span class="element-headline"
-                  ><b>Beamer-Color/-Font</b>
-                  <span class="element-declare"
-                    ><span class="declare">abstract</span></span
-                  ></span
-                >
-              </p>
+              <div class="element-headline">
+                <p>
+                  <b>Beamer-Color/-Font</b>
+                  <span class="declare">abstract</span>
+                </p>
+              </div>
               <p>
                 These
                 <span class="beamer-name"
@@ -4010,14 +3921,12 @@
               </p>
             </div>
             <div class="element">
-              <p>
-                <span class="element-headline"
-                  ><b>Beamer-Template/-Color/-Font</b>
-                  <span class="element-declare"
-                    ><span class="declare">abstract title</span></span
-                  ></span
-                >
-              </p>
+              <div class="element-headline">
+                <p>
+                  <b>Beamer-Template/-Color/-Font</b>
+                  <span class="declare">abstract title</span>
+                </p>
+              </div>
               <p>Color parents: <kbd>titlelike</kbd></p>
               <p>
                 This template is used for the title. By default, this inserts
@@ -4026,14 +3935,12 @@
               </p>
             </div>
             <div class="element">
-              <p>
-                <span class="element-headline"
-                  ><b>Beamer-Template</b>
-                  <span class="element-declare"
-                    ><span class="declare">abstract begin</span></span
-                  ></span
-                >
-              </p>
+              <div class="element-headline">
+                <p>
+                  <b>Beamer-Template</b>
+                  <span class="declare">abstract begin</span>
+                </p>
+              </div>
               <p>
                 This template is inserted at the very beginning of the abstract,
                 before the abstract title and the
@@ -4045,14 +3952,12 @@
               </p>
             </div>
             <div class="element">
-              <p>
-                <span class="element-headline"
-                  ><b>Beamer-Template</b>
-                  <span class="element-declare"
-                    ><span class="declare">abstract end</span></span
-                  ></span
-                >
-              </p>
+              <div class="element-headline">
+                <p>
+                  <b>Beamer-Template</b>
+                  <span class="declare">abstract end</span>
+                </p>
+              </div>
               <p>
                 This template is inserted at the end of the abstract, after the
                 <span class="meta"
@@ -4133,14 +4038,11 @@
             </div>
             <p>You can use this environment to typeset a verse.</p>
             <div class="element">
-              <p>
-                <span class="element-headline"
-                  ><b>Beamer-Color/-Font</b>
-                  <span class="element-declare"
-                    ><span class="declare">verse</span></span
-                  ></span
-                >
-              </p>
+              <div class="element-headline">
+                <p>
+                  <b>Beamer-Color/-Font</b> <span class="declare">verse</span>
+                </p>
+              </div>
               <p>
                 These
                 <span class="beamer-name"
@@ -4151,25 +4053,20 @@
               </p>
             </div>
             <div class="element">
-              <p>
-                <span class="element-headline"
-                  ><b>Beamer-Template</b>
-                  <span class="element-declare"
-                    ><span class="declare">verse begin</span></span
-                  ></span
-                >
-              </p>
+              <div class="element-headline">
+                <p>
+                  <b>Beamer-Template</b>
+                  <span class="declare">verse begin</span>
+                </p>
+              </div>
               <p>This template is inserted at the beginning of the verse.</p>
             </div>
             <div class="element">
-              <p>
-                <span class="element-headline"
-                  ><b>Beamer-Template</b>
-                  <span class="element-declare"
-                    ><span class="declare">verse end</span></span
-                  ></span
-                >
-              </p>
+              <div class="element-headline">
+                <p>
+                  <b>Beamer-Template</b> <span class="declare">verse end</span>
+                </p>
+              </div>
               <p>This template is inserted at the end of the verse.</p>
             </div>
           </div>
@@ -4201,14 +4098,12 @@
               again, before presenting multi-paragraph quotations.
             </p>
             <div class="element">
-              <p>
-                <span class="element-headline"
-                  ><b>Beamer-Color/-Font</b>
-                  <span class="element-declare"
-                    ><span class="declare">quotation</span></span
-                  ></span
-                >
-              </p>
+              <div class="element-headline">
+                <p>
+                  <b>Beamer-Color/-Font</b>
+                  <span class="declare">quotation</span>
+                </p>
+              </div>
               <p>
                 These
                 <span class="beamer-name"
@@ -4217,27 +4112,23 @@
               </p>
             </div>
             <div class="element">
-              <p>
-                <span class="element-headline"
-                  ><b>Beamer-Template</b>
-                  <span class="element-declare"
-                    ><span class="declare">quotation begin</span></span
-                  ></span
-                >
-              </p>
+              <div class="element-headline">
+                <p>
+                  <b>Beamer-Template</b>
+                  <span class="declare">quotation begin</span>
+                </p>
+              </div>
               <p>
                 This template is inserted at the beginning of the quotation.
               </p>
             </div>
             <div class="element">
-              <p>
-                <span class="element-headline"
-                  ><b>Beamer-Template</b>
-                  <span class="element-declare"
-                    ><span class="declare">quotation end</span></span
-                  ></span
-                >
-              </p>
+              <div class="element-headline">
+                <p>
+                  <b>Beamer-Template</b>
+                  <span class="declare">quotation end</span>
+                </p>
+              </div>
               <p>This template is inserted at the end of the quotation.</p>
             </div>
           </div>
@@ -4266,14 +4157,11 @@
             </div>
             <p>Use this environment to typeset a single-paragraph quotation.</p>
             <div class="element">
-              <p>
-                <span class="element-headline"
-                  ><b>Beamer-Color/-Font</b>
-                  <span class="element-declare"
-                    ><span class="declare">quote</span></span
-                  ></span
-                >
-              </p>
+              <div class="element-headline">
+                <p>
+                  <b>Beamer-Color/-Font</b> <span class="declare">quote</span>
+                </p>
+              </div>
               <p>
                 These
                 <span class="beamer-name"
@@ -4282,25 +4170,20 @@
               </p>
             </div>
             <div class="element">
-              <p>
-                <span class="element-headline"
-                  ><b>Beamer-Template</b>
-                  <span class="element-declare"
-                    ><span class="declare">quote begin</span></span
-                  ></span
-                >
-              </p>
+              <div class="element-headline">
+                <p>
+                  <b>Beamer-Template</b>
+                  <span class="declare">quote begin</span>
+                </p>
+              </div>
               <p>This template is inserted at the beginning of the quote.</p>
             </div>
             <div class="element">
-              <p>
-                <span class="element-headline"
-                  ><b>Beamer-Template</b>
-                  <span class="element-declare"
-                    ><span class="declare">quote end</span></span
-                  ></span
-                >
-              </p>
+              <div class="element-headline">
+                <p>
+                  <b>Beamer-Template</b> <span class="declare">quote end</span>
+                </p>
+              </div>
               <p>This template is inserted at the end of the quote.</p>
             </div>
           </div>
@@ -4406,14 +4289,12 @@
               it.
             </p>
             <div class="element">
-              <p>
-                <span class="element-headline"
-                  ><b>Beamer-Template/-Color/-Font</b>
-                  <span class="element-declare"
-                    ><span class="declare">footnote</span></span
-                  ></span
-                >
-              </p>
+              <div class="element-headline">
+                <p>
+                  <b>Beamer-Template/-Color/-Font</b>
+                  <span class="declare">footnote</span>
+                </p>
+              </div>
               <p>
                 This template will be used to render the footnote. Inside this
                 template, the following two inserts can be used:
@@ -4433,14 +4314,12 @@
               </p>
             </div>
             <div class="element">
-              <p>
-                <span class="element-headline"
-                  ><b>Beamer-Color/-Font</b>
-                  <span class="element-declare"
-                    ><span class="declare">footnote mark</span></span
-                  ></span
-                >
-              </p>
+              <div class="element-headline">
+                <p>
+                  <b>Beamer-Color/-Font</b>
+                  <span class="declare">footnote mark</span>
+                </p>
+              </div>
               <p>
                 This
                 <span class="beamer-name"

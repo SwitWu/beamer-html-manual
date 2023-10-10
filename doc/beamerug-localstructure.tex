@@ -24,7 +24,7 @@
 There are three predefined environments for creating lists, namely |enumerate|, |itemize|, and |description|. The first two can be nested to depth three, but nesting them to this depth creates totally unreadable slides.
 
 The |\item| command is overlay specification-aware. If an overlay specification is provided, the item will only be shown on the specified slides, see the following example. If the |\item| command is to take an optional argument and an overlay specification, the overlay specification can either come first as in |\item<1>[Cat]| or come last as in |\item[Cat]<1>|.
-\begin{verbatim}
+\begin{Verbatim}
 \begin{frame}
   There are three important points:
   \begin{enumerate}
@@ -38,7 +38,7 @@ The |\item| command is overlay specification-aware. If an overlay specification 
   \item<5-> and a third one.
   \end{enumerate}
 \end{frame}
-\end{verbatim}
+\end{Verbatim}
 
 \begin{environment}{{itemize}\opt{|[<|\meta{default overlay specification}|>]|}}
   Used to display a list of items that do not have a special ordering. Inside the environment, use an |\item| command for each topic.
@@ -53,7 +53,7 @@ The |\item| command is overlay specification-aware. If an overlay specification 
 \end{verbatim}
 
   \example
-\begin{verbatim}
+\begin{Verbatim}
 \begin{itemize}[<+->]
 \item This is shown from the first slide on.
 \item This is shown from the second slide on.
@@ -61,21 +61,21 @@ The |\item| command is overlay specification-aware. If an overlay specification 
 \item<1-> This is shown from the first slide on.
 \item This is shown from the fourth slide on.
 \end{itemize}
-\end{verbatim}
+\end{Verbatim}
 
   \example
-\begin{verbatim}
+\begin{Verbatim}
 \begin{itemize}[<+-| alert@+>]
 \item This is shown from the first slide on and alerted on the first slide.
 \item This is shown from the second slide on and alerted on the second slide.
 \item This is shown from the third slide on and alerted on the third slide.
 \end{itemize}
-\end{verbatim}
+\end{Verbatim}
 
   \example
-\begin{verbatim}
+\begin{Verbatim}
 \newenvironment{mystepwiseitemize}{\begin{itemize}[<+-| alert@+>]}{\end{itemize}}
-\end{verbatim}
+\end{Verbatim}
 
   The appearance of an |itemize| list is governed by several templates. The first template concerns the way the little marker introducing each item is typeset:
   \begin{element}{itemize items}\semiyes\no\no
@@ -123,7 +123,7 @@ The |\item| command is overlay specification-aware. If an overlay specification 
   The syntax of the \meta{mini template} is the same as the syntax of mini templates in the |enumerate| package (you do not need to include the |enumerate| package, this is done automatically). Roughly spoken, the text of the \meta{mini template} is printed before each item, but any occurrence of a |1| in the mini template is replaced by the current item number, an occurrence of the letter |A| is replaced by the $i$-th letter of the alphabet (in uppercase) for the $i$-th item, and the letters |a|, |i|, and |I| are replaced by the corresponding lowercase letters, lowercase Roman letters, and uppercase Roman letters, respectively. So the mini template |(i)| would yield the items (i), (ii), (iii), (iv), and so on. The mini template |A.)| would yield the items A.), B.), C.), D.) and so on. For more details on the possible mini templates, see the documentation of the |enumerate| package. Note that there is also a template that governs the appearance of the mini template.
 
   \example
-\begin{verbatim}
+\begin{Verbatim}
 \begin{enumerate}
 \item This is important.
 \item This is also important.
@@ -138,7 +138,7 @@ The |\item| command is overlay specification-aware. If an overlay specification 
 \item First Roman point.
 \item Second Roman point, uncovered on second slide.
 \end{enumerate}
-\end{verbatim}
+\end{Verbatim}
 
   \articlenote
   To use the \meta{mini template}, you have to include the package |enumerate|.
@@ -225,7 +225,7 @@ There exist corresponding templates like |itemize/enumerate subbody begin| for s
 
   As for |enumerate|, the \meta{default overlay specification} is detected by an opening~|<|. The effect is the same as for |enumerate| and |itemize|.
   \example
-\begin{verbatim}
+\begin{Verbatim}
 \begin{description}
 \item[Lion] King of the savanna.
 \item[Tiger] King of the jungle.
@@ -236,17 +236,17 @@ There exist corresponding templates like |itemize/enumerate subbody begin| for s
 \item<2->[longest label] Some text.
 \item<3->[long label] Some text.
 \end{description}
-\end{verbatim}
+\end{Verbatim}
 
   \example
   The following has the same effect as the previous example:
-\begin{verbatim}
+\begin{Verbatim}
 \begin{description}[<+->][longest label]
 \item[short] Some text.
 \item[longest label] Some text.
 \item[long label] Some text.
 \end{description}
-\end{verbatim}
+\end{Verbatim}
 
   \begin{element}{description item}\yes\yes\yes
     This template is used to typeset the description items. When this template is called, the \beamer-font and -color |description item| are installed.
@@ -421,11 +421,11 @@ The \beamer\ class predefines an environment for typesetting a ``block'' of text
 \begin{environment}{{block}\sarg{action specification}\marg{block title}\sarg{action specification}}
   Only one \meta{action specification} may be given. Inserts a block, like a definition or a theorem, with the title \meta{block title}. If the \meta{action specification} is present, the given actions are taken on the specified slides, see Section~\ref{section-action-specifications}. In the example, the definition is shown only from slide 3 onward.
   \example
-\begin{verbatim}
+\begin{Verbatim}
   \begin{block}<3->{Definition}
     A \alert{set} consists of elements.
   \end{block}
-\end{verbatim}
+\end{Verbatim}
 
   \articlenote
   The block name is typeset in bold.
@@ -490,11 +490,11 @@ title}\sarg{action specification}}
 
   \example
   In the following example, the block is completely suppressed on the first slide (it does not even occupy any space).
-\begin{verbatim}
+\begin{Verbatim}
   \begin{exampleblock}{Example}<only@2->
     The set $\{1,2,3,5\}$ has four elements.
   \end{exampleblock}
-\end{verbatim}
+\end{Verbatim}
 
   \articlenote
   The block name is typeset in italics.
@@ -523,7 +523,7 @@ title}\sarg{action specification}}
 The \beamer\ class predefines several environments, like |theorem| or |definition| or |proof|, that you can use to typeset things like, well, theorems, definitions, or proofs. The complete list is the following:  |theorem|, |corollary|, |definition|, |definitions|, |fact|, |example|, and |examples|. The following German block environments are also predefined: |Problem|, |Loesung|, |Definition|, |Satz|, |Beweis|, |Folgerung|, |Lemma|, |Fakt|, |Beispiel|, and |Beispiele|.
 
 Here is a typical example on how to use them:
-\begin{verbatim}
+\begin{Verbatim}
 \begin{frame}
   \frametitle{A Theorem on Infinite Sets}
 
@@ -539,7 +539,7 @@ Here is a typical example on how to use them:
     The set of natural numbers is infinite.
   \end{example}
 \end{frame}
-\end{verbatim}
+\end{Verbatim}
 
 In the following, only the English versions are discussed. The German ones behave analogously.
 
@@ -555,7 +555,7 @@ In the following, only the English versions are discussed. The German ones behav
   By default, no theorem numbers are shown in the |presentation| modes.
 
   \example
-\begin{verbatim}
+\begin{Verbatim}
 \begin{theorem}[Kummer, 1992]
   If $\#^_A^n$ is $n$-enumerable, then $A$ is recursive.
 \end{theorem}
@@ -563,7 +563,7 @@ In the following, only the English versions are discussed. The German ones behav
 \begin{theorem}<2->[Tantau, 2002]
   If $\#_A^2$ is $2$-fa-enumerable, then $A$ is regular.
 \end{theorem}
-\end{verbatim}
+\end{Verbatim}
 
 \end{environment}
 
@@ -602,11 +602,11 @@ In |article| mode, theorems are automatically numbered. By specifying the class 
   If you use |babel| and a different language, the text ``Proof'' is replaced by whatever is appropriate in the selected language.
 
   \example
-\begin{verbatim}
+\begin{Verbatim}
 \begin{proof}<2->[Sketch of proof]
   Suppose ...
 \end{proof}
-\end{verbatim}
+\end{Verbatim}
 
   \begin{element}{qed symbol}\yes\yes\yes
     The symbol is shown at the end of every proof.
@@ -1060,9 +1060,9 @@ Inside |{verbatim}| environments you obviously cannot use commands like |\alert<
 
 \begin{environment}{{semiverbatim}}
   The text inside this environment is typeset like verbatim text. However, the characters |\|, |{|, and |}| retain their meaning. Thus, you can say things like
-\begin{verbatim}
+\begin{Verbatim}
 \alert<1->{std::cout << "AT&T likes 100% performance";}
-\end{verbatim}
+\end{Verbatim}
 
   To typeset the three characters |\|, |{|, and |}| you can use the commands |\\| (which is redefined inside this environment---you do not need it anyway), |\{|, and |\}|. Thus in order to get typeset ``|\alert<1>{X}|'' you can write |\\alert<1>\{X\}|.
 \end{environment}
