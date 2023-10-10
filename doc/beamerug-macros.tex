@@ -303,9 +303,11 @@
 }
 
 \def\extractenvironement#1#2\@@{%
+  \BlockClass{environment-headline}%
   \translatormanualentryheadline{\BlockClass{begin-environment}{\ttfamily\char`\\begin\char`\{\declare{#1}\char`\}}#2\endBlockClass}%
   \translatormanualentryheadline{{\ttfamily\ \ }\meta{environment contents}}%
   \translatormanualentryheadline{\BlockClass{end-environment}{\ttfamily\char`\\end\char`\{\declare{#1}\char`\}}\endBlockClass}%
+  \endBlockClass
   \index{#1@\protect\texttt{#1} environment}%
   \index{Environments!#1@\protect\texttt{#1}}}
 
