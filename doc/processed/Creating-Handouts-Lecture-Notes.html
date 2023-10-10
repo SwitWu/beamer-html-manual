@@ -1,226 +1,420 @@
-
-<!DOCTYPE html>
+<!doctype html>
 
 <html lang="en-US">
-<head>
-<meta charset="utf-8">
-<meta content="LaTeX Lwarp package" name="generator">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>Creating Handouts and Lecture Notes - Beamer Manual</title>
-<link href="style.css?v=20231007" rel="stylesheet" type="text/css">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="LaTeX Lwarp package" name="generator" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Creating Handouts and Lecture Notes - Beamer Manual</title>
+    <link href="style.css?v=20231010" rel="stylesheet" type="text/css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
+      rel="stylesheet"
+    />
+    <script src="beameruserguide.js"></script>
+    <link
+      href="beameruserguide-images/favicon.png"
+      rel="icon"
+      sizes="16x16"
+      type="image/png"
+    />
+  </head>
+  <body>
+    <a id="beameruserguide-autopage-545"></a>
 
+    <div class="bodyandsidetoc grid-container">
+      <header>
+        <div id="hamburger-button">☰</div>
+        <strong><a href="home.html">Beamer Manual</a></strong>
+        <div id="search"></div>
+      </header>
+      <div class="sidetoccontainer" id="local-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle"><p>On this page</p></div>
+          <div class="sidetoccontents">
+            <p>
+              <a class="tocsubsection" href="#sec-21.1"
+                >Creating Handouts Using the Handout Mode</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-21.2"
+                >Creating Handouts Using the Article Mode</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-21.2.1"
+                >Starting the Article Mode</a
+              >
+            </p>
+            <p><a class="tocsubsubsection" href="#sec-21.2.2">Workflow</a></p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-21.2.3"
+                >Including Slides from the Presentation Version in the Article
+                Version</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-21.3">Details on Modes</a>
+            </p>
+          </div>
+        </nav>
+      </div>
+      <div class="sidetoccontainer" id="chapter-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle">
+            <p>
+              <span class="sidetocthetitle"
+                >The
+                <span class="beamer-name"
+                  ><span class="textsc">beamer</span></span
+                >
+                <i>class</i><br />
+                <a href="https://github.com/josephwright/beamer" target="_blank"
+                  >https://github.com/josephwright/beamer</a
+                ><br />
+                User Guide for version 3.70.</span
+              >
+            </p>
+            <p>Contents</p>
+          </div>
+          <div class="sidetoccontents">
+            <p>
+              <a class="tocsection" href="Introduction.html">Introduction</a>
+            </p>
+            <p>
+              <a class="tocpart" href="Getting-Started.html">Getting Started</a>
+            </p>
 
-<link href="https://cdn.jsdelivr.net/npm/@docsearch/css@3" rel="stylesheet"></head>
-<body>
-<a id="beameruserguide-autopage-520"></a>
+            <p>
+              <a class="tocpart" href="Building-Presentation.html"
+                >Building a Presentation</a
+              >
+            </p>
 
-<div class="bodyandsidetoc grid-container"><header><div id="hamburger-button">☰</div><strong><a href="home.html">Beamer Manual</a></strong><div id="search"></div></header><div class="sidetoccontainer" id="local-toc-container"><nav class="sidetoc"><div class="sidetoctitle"><p>On this page</p></div><div class="sidetoccontents"><p><a class="tocsubsection" href="#sec-21.1">Creating Handouts Using the Handout Mode</a></p><p><a class="tocsubsection" href="#sec-21.2">Creating Handouts Using the Article Mode</a></p><p><a class="tocsubsubsection" href="#sec-21.2.1">Starting the Article Mode</a></p><p><a class="tocsubsubsection" href="#sec-21.2.2">Workflow</a></p><p><a class="tocsubsubsection" href="#sec-21.2.3">Including Slides from the Presentation Version in the Article Version</a></p><p><a class="tocsubsection" href="#sec-21.3">Details on Modes</a></p></div></nav></div>
-<div class="sidetoccontainer" id="chapter-toc-container">
-<nav class="sidetoc">
-<div class="sidetoctitle">
-<p>
-<span class="sidetocthetitle">The <span class="beamer-name"><span class="textsc">beamer</span></span> <i>class</i><br>
-<a href="https://github.com/josephwright/beamer" target="_blank">https://github.com/josephwright/beamer</a><br>
-User Guide for version 3.70.</span>
-</p>
-<p>
-Contents
-</p>
-</div>
-<div class="sidetoccontents">
+            <p>
+              <a class="tocpart" href="Changing-Way-Things-Look.html"
+                >Changing the Way Things Look</a
+              >
+            </p>
 
-<p>
-<a class="tocsection" href="Introduction.html">Introduction</a>
-</p>
-<p>
-<a class="tocpart" href="Getting-Started.html">Getting Started</a>
-</p>
-
-
-
-
-
-
-<p>
-<a class="tocpart" href="Building-Presentation.html">Building a Presentation</a>
-</p>
-
-
-
-
-
-
-
-<p>
-<a class="tocpart" href="Changing-Way-Things-Look.html">Changing the Way Things Look</a>
-</p>
-
-
-
-
-<p class="current-part">
-<a class="tocpart" href="Creating-Supporting-Material.html">Creating Supporting Material</a>
-</p>
-<p class="current-part">
-<a class="tocsection" href="Adding-Notes-Yourself.html">Adding Notes for Yourself</a>
-</p>
-<p class="current-part">
-<a class="tocsection" href="Creating-Transparencies.html">Creating Transparencies</a>
-</p>
-<p class="current current-part">
-<a class="tocsection" href="Creating-Handouts-Lecture-Notes.html">Creating Handouts and Lecture Notes</a>
-</p>
-<p class="current-part">
-<a class="tocsection" href="Taking-Advantage-Multiple-Screens.html">Taking Advantage of Multiple Screens</a>
-</p>
-<p>
-<a class="tocpart" href="Howtos.html">Howtos</a>
-</p>
-
-
-</div>
-</nav>
-</div>
-<main class="bodycontainer">
-<section class="textbody">
-<h2 class="inserted">Creating Supporting Material</h2>
-<!--MathJax customizations:-->
-
-<p>
-<!--
+            <p class="current-part">
+              <a class="tocpart" href="Creating-Supporting-Material.html"
+                >Creating Supporting Material</a
+              >
+            </p>
+            <p class="current-part">
+              <a class="tocsection" href="Adding-Notes-Yourself.html"
+                >Adding Notes for Yourself</a
+              >
+            </p>
+            <p class="current-part">
+              <a class="tocsection" href="Creating-Transparencies.html"
+                >Creating Transparencies</a
+              >
+            </p>
+            <p class="current current-part">
+              <a class="tocsection" href="Creating-Handouts-Lecture-Notes.html"
+                >Creating Handouts and Lecture Notes</a
+              >
+            </p>
+            <p class="current-part">
+              <a
+                class="tocsection"
+                href="Taking-Advantage-Multiple-Screens.html"
+                >Taking Advantage of Multiple Screens</a
+              >
+            </p>
+            <p>
+              <a class="tocpart" href="Howtos.html">Howtos</a>
+            </p>
+          </div>
+        </nav>
+      </div>
+      <main class="bodycontainer">
+        <section class="textbody">
+          <h2 class="inserted">Creating Supporting Material</h2>
+          <!--
 ...... section Creating Handouts and Lecture Notes ......
 -->
-<h4 id="autosec-521"><a id="section-modes"></a><span class="sectionnumber" id="sec-21">21</span> Creating Handouts and Lecture Notes</h4>
-<a id="beameruserguide-autopage-521"></a>
-<a id="beameruserguide-autofile-25"></a>
-<p>
-During a presentation it is very much desirable that the audience has a <em>handout</em> or even <em>lecture notes</em> available to it. A handout allows everyone in the audience to individually go back to things he or she has not understood.
-</p>
-<p>
-Always provide handouts <em>as early as possible</em>, preferably weeks before the talk. Do <em>not</em> retain the handout till the end of the talk.
-</p>
-<p>
-The <span class="beamer-name"><span class="textsc">beamer</span></span> package offers two different ways of creating special versions of your talk; they are discussed in the following. The first, easy, way is to create a handout version by adding the <span class="texttt">handout</span> option, which will cause the document to be typeset in <span class="texttt">handout</span> mode. It will &ldquo;look like&rdquo; a presentation, but it can be printed more easily (the overlays are &ldquo;flattened&rdquo;). The second, more complicated and
-more powerful way is to create an independent &ldquo;article&rdquo; version of your presentation. This version coexists in your main file.
-</p>
-<!--
+          <h4 id="autosec-546">
+            <a id="section-modes"></a
+            ><span class="sectionnumber" id="sec-21">21</span> Creating Handouts
+            and Lecture Notes
+          </h4>
+          <a id="beameruserguide-autopage-546"></a>
+          <a id="beameruserguide-autofile-25"></a>
+
+          <p>
+            During a presentation it is very much desirable that the audience
+            has a <em>handout</em> or even <em>lecture notes</em> available to
+            it. A handout allows everyone in the audience to individually go
+            back to things he or she has not understood.
+          </p>
+          <p>
+            Always provide handouts <em>as early as possible</em>, preferably
+            weeks before the talk. Do <em>not</em> retain the handout till the
+            end of the talk.
+          </p>
+          <p>
+            The
+            <span class="beamer-name"><span class="textsc">beamer</span></span>
+            package offers two different ways of creating special versions of
+            your talk; they are discussed in the following. The first, easy, way
+            is to create a handout version by adding the
+            <span class="texttt">handout</span> option, which will cause the
+            document to be typeset in <span class="texttt">handout</span> mode.
+            It will &ldquo;look like&rdquo; a presentation, but it can be
+            printed more easily (the overlays are &ldquo;flattened&rdquo;). The
+            second, more complicated and more powerful way is to create an
+            independent &ldquo;article&rdquo; version of your presentation. This
+            version coexists in your main file.
+          </p>
+          <!--
 ...... subsection Creating Handouts Using the Handout Mode ......
 -->
-<h5 id="autosec-522"><a id="handout"></a><span><span class="sectionnumber" id="sec-21.1">21.1</span> Creating Handouts Using the Handout Mode</span><a class="anchor-link" href="#sec-21.1">&para;</a></h5>
-<a id="beameruserguide-autopage-522"></a>
+          <h5 id="autosec-547">
+            <a id="handout"></a
+            ><span
+              ><span class="sectionnumber" id="sec-21.1">21.1</span> Creating
+              Handouts Using the Handout Mode</span
+            ><a class="anchor-link" href="#sec-21.1">&para;</a>
+          </h5>
+          <a id="beameruserguide-autopage-547"></a>
 
-<p>
-The easiest way of creating a handout for your audience (though not the most desirable one) is to use the <span class="texttt">handout</span> option. This option works exactly like the <span class="texttt">trans</span> option.
-</p>
-<div class="classoption">
-<ul style="list-style-type:none">
-<li>
-<p>
-<span class="classoption-heading">\documentclass[<span class="declare">handout</span>]{beamer}</span>
-</p>
-<p>
-Create a version that uses the <span class="texttt">handout</span> overlay specifications.
-</p>
-<p>
-You might wish to choose a different color and/or presentation theme for the handout.
-</p>
-</li>
-</ul>
-</div>
-<p>
-When printing a handout created this way, you will typically wish to print at least two and possibly four slides on each page. The easiest way of doing so is presumably to use <span class="texttt">pgfpages</span> as follows:
-</p>
-<pre class="verbatim">
+          <p>
+            The easiest way of creating a handout for your audience (though not
+            the most desirable one) is to use the
+            <span class="texttt">handout</span> option. This option works
+            exactly like the <span class="texttt">trans</span> option.
+          </p>
+          <div class="classoption">
+            <ul style="list-style-type: none">
+              <li>
+                <p>
+                  <span class="classoption-heading"
+                    >\documentclass[<span class="declare">handout</span
+                    >]{beamer}</span
+                  >
+                </p>
+                <p>
+                  Create a version that uses the
+                  <span class="texttt">handout</span> overlay specifications.
+                </p>
+                <p>
+                  You might wish to choose a different color and/or presentation
+                  theme for the handout.
+                </p>
+              </li>
+            </ul>
+          </div>
+          <p>
+            When printing a handout created this way, you will typically wish to
+            print at least two and possibly four slides on each page. The
+            easiest way of doing so is presumably to use
+            <span class="texttt">pgfpages</span> as follows:
+          </p>
+          <pre class="verbatim">
 \usepackage{pgfpages}
 \pgfpagesuselayout{2 on 1}[a4paper,border shrink=5mm]
-</pre>
-<p>
-Instead of <span class="texttt">2 on 1</span> you can use <span class="texttt">4 on 1</span> (but then you have to add <span class="texttt">landscape</span> to the list of options) and you can use, say, <span class="texttt">letterpaper</span> instead of
-<span class="texttt">a4paper</span>.
-</p>
-<!--
+</pre
+          >
+          <p>
+            Instead of <span class="texttt">2 on 1</span> you can use
+            <span class="texttt">4 on 1</span> (but then you have to add
+            <span class="texttt">landscape</span> to the list of options) and
+            you can use, say, <span class="texttt">letterpaper</span> instead of
+            <span class="texttt">a4paper</span>.
+          </p>
+          <!--
 ...... subsection Creating Handouts Using the Article Mode ......
 -->
-<h5 id="autosec-524"><a id="section-article"></a><span><span class="sectionnumber" id="sec-21.2">21.2</span> Creating Handouts Using the Article Mode</span><a class="anchor-link" href="#sec-21.2">&para;</a></h5>
-<a id="beameruserguide-autopage-524"></a>
+          <h5 id="autosec-549">
+            <a id="section-article"></a
+            ><span
+              ><span class="sectionnumber" id="sec-21.2">21.2</span> Creating
+              Handouts Using the Article Mode</span
+            ><a class="anchor-link" href="#sec-21.2">&para;</a>
+          </h5>
+          <a id="beameruserguide-autopage-549"></a>
 
-<p>
-In the following, the &ldquo;article version&rdquo; of your presentation refers to a normal <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> text typeset using, for example, the document class <span class="texttt">article</span> or perhaps <span class="texttt">llncs</span> or a similar document class. This version of the presentation will typically follow different typesetting rules and may even have a different structure. Nevertheless, you may wish to have
-this version coexist with your presentation in one file and you may wish to share some part of it (like a figure or a formula) with your presentation.
-</p>
-<p>
-In general, the article version of a talk is better suited as a handout than a handout created using the simple <span class="texttt">handout</span> mode since it is more economic and can include more in-depth information.
-</p>
-<!--
+          <p>
+            In the following, the &ldquo;article version&rdquo; of your
+            presentation refers to a normal
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >
+            text typeset using, for example, the document class
+            <span class="texttt">article</span> or perhaps
+            <span class="texttt">llncs</span> or a similar document class. This
+            version of the presentation will typically follow different
+            typesetting rules and may even have a different structure.
+            Nevertheless, you may wish to have this version coexist with your
+            presentation in one file and you may wish to share some part of it
+            (like a figure or a formula) with your presentation.
+          </p>
+          <p>
+            In general, the article version of a talk is better suited as a
+            handout than a handout created using the simple
+            <span class="texttt">handout</span> mode since it is more economic
+            and can include more in-depth information.
+          </p>
+          <!--
 ...... subsubsection Starting the Article Mode ......
 -->
-<h6 id="autosec-525"><span><span class="sectionnumber" id="sec-21.2.1">21.2.1</span> Starting the Article Mode</span><a class="anchor-link" href="#sec-21.2.1">&para;</a></h6>
-<a id="beameruserguide-autopage-525"></a>
-<p>
-The article mode of a presentation is created by specifying <span class="texttt">article</span> or <span class="texttt">book</span> or some other class as the document class instead of <span class="texttt">beamer</span> and by then loading the package <span class="texttt">beamerarticle</span>.
-</p>
-<p>
-The package <span class="texttt">beamerarticle</span> defines virtually all of <span class="beamer-name"><span class="textsc">beamer</span></span>&rsquo;s commands in a way that is sensible for the <span class="texttt">article</span> mode. Also, overlay
-specifications can be given to commands like <span class="texttt">\textbf</span> or <span class="texttt">\item</span> once <span class="texttt">beamerarticle</span> has been loaded. Note that, except for <span class="texttt">\item</span>, these overlay
-specifications also work: by writing <span class="texttt">\section<presentation>{Name}</presentation></span> you will suppress this section command in the article version. For the exact effects overlay specifications have in <span class="texttt">article</span> mode, please see
-the descriptions of the commands to which you wish to apply them.
-</p>
-<div class="package">
+          <h6 id="autosec-550">
+            <span
+              ><span class="sectionnumber" id="sec-21.2.1">21.2.1</span>
+              Starting the Article Mode</span
+            ><a class="anchor-link" href="#sec-21.2.1">&para;</a>
+          </h6>
+          <a id="beameruserguide-autopage-550"></a>
+          <p>
+            The article mode of a presentation is created by specifying
+            <span class="texttt">article</span> or
+            <span class="texttt">book</span> or some other class as the document
+            class instead of <span class="texttt">beamer</span> and by then
+            loading the package <span class="texttt">beamerarticle</span>.
+          </p>
+          <p>
+            The package <span class="texttt">beamerarticle</span> defines
+            virtually all of
+            <span class="beamer-name"><span class="textsc">beamer</span></span
+            >&rsquo;s commands in a way that is sensible for the
+            <span class="texttt">article</span> mode. Also, overlay
+            specifications can be given to commands like
+            <span class="texttt">\textbf</span> or
+            <span class="texttt">\item</span> once
+            <span class="texttt">beamerarticle</span> has been loaded. Note
+            that, except for <span class="texttt">\item</span>, these overlay
+            specifications also work: by writing
+            <span class="texttt"
+              >\section<presentation>{Name}</presentation></span
+            >
+            you will suppress this section command in the article version. For
+            the exact effects overlay specifications have in
+            <span class="texttt">article</span> mode, please see the
+            descriptions of the commands to which you wish to apply them.
+          </p>
+          <div class="package">
+            <p>
+              <span class="extracttheme"
+                >\usepackage<span class="opt"
+                  ><span class="texttt">[</span
+                  ><span class="meta"
+                    ><span class="angle">&langle;</span><i>options</i
+                    ><span class="angle">&rangle;</span></span
+                  ><span class="texttt">]</span></span
+                >{<span class="declare">beamerarticle</span>}</span
+              >
+            </p>
+            <p>
+              Makes most
+              <span class="beamer-name"
+                ><span class="textsc">beamer</span></span
+              >
+              commands available for another document class.
+            </p>
+            <p>
+              The following
+              <span class="meta"
+                ><span class="angle">&langle;</span><i>options</i
+                ><span class="angle">&rangle;</span></span
+              >
+              may be given:
+            </p>
 
+            <p>
+              &bull;
+              <span class="declare"
+                ><span class="texttt">activeospeccharacters</span></span
+              >
+              will leave the character code of the pointed brackets as specified
+              by other packages. Normally,
+              <span class="beamer-name"
+                ><span class="textsc">beamer</span></span
+              >
+              will turn off the special behavior of the two characters
+              <span class="texttt">&lt;</span> and
+              <span class="texttt">&gt;</span>. Using this option, you can
+              reinstall the original behavior at the price of possible problems
+              when using overlay specifications in the
+              <span class="texttt">article</span> mode.
+            </p>
 
-<p>
-<span class="extracttheme">\usepackage<span class="opt"><span class="texttt">[</span><span class="meta"><span class="angle">&langle;</span><i>options</i><span class="angle">&rangle;</span></span><span class="texttt">]</span></span>{<span class="declare">beamerarticle</span>}</span>
-</p>
-<p>
-Makes most <span class="beamer-name"><span class="textsc">beamer</span></span> commands available for another document class.
-</p>
-<p>
-The following <span class="meta"><span class="angle">&langle;</span><i>options</i><span class="angle">&rangle;</span></span> may be given:
-</p>
+            <p>
+              &bull;
+              <span class="declare"><span class="texttt">noamssymb</span></span>
+              will suppress the automatic loading of the
+              <span class="texttt">amssymb</span> package. Normally,
+              <span class="beamer-name"
+                ><span class="textsc">beamer</span></span
+              >
+              will load this package since many themes use AMS symbols. This
+              option allows you to opt-out from this behavior in article mode,
+              thus preventing clashes with some classes and font packages that
+              conflict with <span class="texttt">amssymb</span>. Note that, if
+              you use this option, you will have to care for yourself that
+              <span class="texttt">amssymb</span> or an alternative package is
+              loaded if you use respective symbols.
+            </p>
 
+            <p>
+              &bull;
+              <span class="declare"><span class="texttt">noamsthm</span></span>
+              will suppress the loading of the
+              <span class="texttt">amsthm</span> package. No theorems will be
+              defined.
+            </p>
 
-<p>
-&bull; <span class="declare"><span class="texttt">activeospeccharacters</span></span> will leave the character code of the pointed brackets as specified by other packages. Normally, <span class="beamer-name"><span class="textsc">beamer</span></span> will
-turn off the special behavior of the two characters <span class="texttt">&lt;</span> and <span class="texttt">&gt;</span>. Using this option, you can reinstall the original behavior at the price of possible problems when using overlay specifications in the <span class="texttt">article</span> mode.
-</p>
+            <p>
+              &bull;
+              <span class="declare"
+                ><span class="texttt">nokeywords</span></span
+              >
+              will suppress the creation of a
+              <span class="texttt">\keywords</span> command.
+            </p>
 
+            <p>
+              &bull;
+              <span class="declare"
+                ><span class="texttt">notheorems</span></span
+              >
+              will suppress the definition of standard environments like
+              <span class="texttt">theorem</span>, but
+              <span class="texttt">amsthm</span> is still loaded and the
+              <span class="texttt">\newtheorem</span> command still makes the
+              defined environments overlay-specification-aware. Using this
+              option allows you to define the standard environments in whatever
+              way you like while retaining the power of the extensions to
+              <span class="texttt">amsthm</span>.
+            </p>
 
-<p>
-&bull; <span class="declare"><span class="texttt">noamssymb</span></span> will suppress the automatic loading of the <span class="texttt">amssymb</span> package. Normally, <span class="beamer-name"><span class="textsc">beamer</span></span> will load
-this package since many themes use AMS symbols. This option allows you to opt-out from this behavior in article mode, thus preventing clashes with some classes and font packages that conflict with <span class="texttt">amssymb</span>. Note that, if you use this
-option, you will have to care for yourself that <span class="texttt">amssymb</span> or an alternative package is loaded if you use respective symbols.
-</p>
+            <p>
+              &bull;
+              <span class="declare"
+                ><span class="texttt">envcountsect</span></span
+              >
+              causes theorem, definitions and the like to be numbered with each
+              section. Thus instead of Theorem&nbsp;1 you get Theorem&nbsp;1.1.
+              We recommend using this option.
+            </p>
 
+            <p>
+              &bull;
+              <span class="declare"><span class="texttt">noxcolor</span></span>
+              will suppress the loading of the
+              <span class="texttt">xcolor</span> package. No colors will be
+              defined.
+            </p>
 
-<p>
-&bull; <span class="declare"><span class="texttt">noamsthm</span></span> will suppress the loading of the <span class="texttt">amsthm</span> package. No theorems will be defined.
-</p>
-
-
-<p>
-&bull; <span class="declare"><span class="texttt">nokeywords</span></span> will suppress the creation of a <span class="texttt">\keywords</span> command.
-</p>
-
-
-<p>
-&bull; <span class="declare"><span class="texttt">notheorems</span></span> will suppress the definition of standard environments like <span class="texttt">theorem</span>, but <span class="texttt">amsthm</span> is still loaded and the <span class="texttt">\newtheorem</span> command still makes the defined environments overlay-specification-aware. Using this option allows you to define the standard environments in whatever way you like while retaining the power of the extensions to <span class="texttt">amsthm</span>.
-</p>
-
-
-<p>
-&bull; <span class="declare"><span class="texttt">envcountsect</span></span> causes theorem, definitions and the like to be numbered with each section. Thus instead of Theorem&nbsp;1 you get Theorem&nbsp;1.1. We recommend using this option.
-</p>
-
-
-<p>
-&bull; <span class="declare"><span class="texttt">noxcolor</span></span> will suppress the loading of the <span class="texttt">xcolor</span> package. No colors will be defined.
-</p>
-
-
-<p>
-<i>Example: </i>
-</p>
-<pre class="verbatim">
+            <p>
+              <i>Example: </i>
+            </p>
+            <pre class="verbatim">
 \documentclass{article}
 \usepackage{beamerarticle}
 \begin{document}
@@ -232,36 +426,65 @@ option, you will have to care for yourself that <span class="texttt">amssymb</sp
   \end{itemize}
 \end{frame}
 \end{document}
-</pre>
-
-
-</div>
-<p>
-There is one remaining problem: While the <span class="texttt">article</span> version can easily <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> the whole file, even in the presence of commands
-like <span class="texttt">\frame&lt;2&gt;</span>, we do not want the special article text to be inserted into our original <span class="beamer-name"><span class="textsc">beamer</span></span> presentation. That means, we would like all text <em>between</em> frames
-to be suppressed. More precisely, we want all text except for commands like <span class="texttt">\section</span> and so on to be suppressed. This behavior can be enforced by specifying the option <span class="texttt">ignorenonframetext</span> in the
-presentation version.
-</p>
-<div class="classoption">
-<ul style="list-style-type:none">
-<li>
-<p>
-<span class="classoption-heading">\documentclass[<span class="declare">ignorenonframetext</span>]{beamer}</span>
-</p>
-<p>
-Cause <span class="texttt">beamer</span> to ignore (almost) all texts and commands outside frames in the <span class="texttt">presentation</span> mode. The option will insert a <span class="texttt">\mode*</span> at the beginning of your presentation.
-</p>
-<p>
-<em>Note:</em> When using <span class="texttt">\include</span> or <span class="texttt">\input</span> commands, conversions of modes must be controlled manually. See Section&nbsp;<a href="Creating-Handouts-Lecture-Notes.html#section-mode-details">21.3</a> for details.
-</p>
-</li>
-</ul>
-</div>
-<p>
-The following example shows a simple usage of the <span class="texttt">article</span> mode:
-</p>
-<div class="fancyvrb" style>
-<pre class="verbatim">
+</pre
+            >
+          </div>
+          <p>
+            There is one remaining problem: While the
+            <span class="texttt">article</span> version can easily
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >
+            the whole file, even in the presence of commands like
+            <span class="texttt">\frame&lt;2&gt;</span>, we do not want the
+            special article text to be inserted into our original
+            <span class="beamer-name"><span class="textsc">beamer</span></span>
+            presentation. That means, we would like all text
+            <em>between</em> frames to be suppressed. More precisely, we want
+            all text except for commands like
+            <span class="texttt">\section</span> and so on to be suppressed.
+            This behavior can be enforced by specifying the option
+            <span class="texttt">ignorenonframetext</span> in the presentation
+            version.
+          </p>
+          <div class="classoption">
+            <ul style="list-style-type: none">
+              <li>
+                <p>
+                  <span class="classoption-heading"
+                    >\documentclass[<span class="declare"
+                      >ignorenonframetext</span
+                    >]{beamer}</span
+                  >
+                </p>
+                <p>
+                  Cause <span class="texttt">beamer</span> to ignore (almost)
+                  all texts and commands outside frames in the
+                  <span class="texttt">presentation</span> mode. The option will
+                  insert a <span class="texttt">\mode*</span> at the beginning
+                  of your presentation.
+                </p>
+                <p>
+                  <em>Note:</em> When using
+                  <span class="texttt">\include</span> or
+                  <span class="texttt">\input</span> commands, conversions of
+                  modes must be controlled manually. See Section&nbsp;<a
+                    href="Creating-Handouts-Lecture-Notes.html#section-mode-details"
+                    >21.3</a
+                  >
+                  for details.
+                </p>
+              </li>
+            </ul>
+          </div>
+          <p>
+            The following example shows a simple usage of the
+            <span class="texttt">article</span> mode:
+          </p>
+          <div class="fancyvrb" style>
+            <pre class="verbatim">
 \documentclass[a4paper]{article}
 \usepackage{beamerarticle}
 %%\documentclass[ignorenonframetext,red]{beamer}
@@ -314,116 +537,225 @@ With some more text.
  \end{itemize}
 \end{frame}
 \end{document}
-</pre>
-</div>
-<p>
-There is one command whose behavior is a bit special in <span class="texttt">article</span> mode: The line break command <span class="texttt">\\</span>. Inside frames, this command has no effect in <span class="texttt">article</span> mode, except if an
-overlay specification is present. Then it has the normal effect dictated by the specification. The reason for this behavior is that you will typically inserts lots of <span class="texttt">\\</span> commands in a presentation in order to get control over all line breaks. These
-line breaks are mostly superfluous in <span class="texttt">article</span> mode. If you really want a line break to apply in all versions, say <span class="texttt">\\<all></all></span>. Note that the command <span class="texttt">\\</span> is often redefined by
-certain environments, so it may not always be overlay-specification-aware. In such a case you have to write something like <span class="texttt">\only<presentation>{\\}</presentation></span>.
-</p>
-<!--
+</pre
+            >
+          </div>
+          <p>
+            There is one command whose behavior is a bit special in
+            <span class="texttt">article</span> mode: The line break command
+            <span class="texttt">\\</span>. Inside frames, this command has no
+            effect in <span class="texttt">article</span> mode, except if an
+            overlay specification is present. Then it has the normal effect
+            dictated by the specification. The reason for this behavior is that
+            you will typically inserts lots of
+            <span class="texttt">\\</span> commands in a presentation in order
+            to get control over all line breaks. These line breaks are mostly
+            superfluous in <span class="texttt">article</span> mode. If you
+            really want a line break to apply in all versions, say
+            <span class="texttt">\\<all></all></span>. Note that the command
+            <span class="texttt">\\</span> is often redefined by certain
+            environments, so it may not always be overlay-specification-aware.
+            In such a case you have to write something like
+            <span class="texttt">\only<presentation>{\\}</presentation></span
+            >.
+          </p>
+          <!--
 ...... subsubsection Workflow ......
 -->
-<h6 id="autosec-528"><a id="section-article-version-workflow"></a><span><span class="sectionnumber" id="sec-21.2.2">21.2.2</span> Workflow</span><a class="anchor-link" href="#sec-21.2.2">&para;</a></h6>
-<a id="beameruserguide-autopage-528"></a>
+          <h6 id="autosec-553">
+            <a id="section-article-version-workflow"></a
+            ><span
+              ><span class="sectionnumber" id="sec-21.2.2">21.2.2</span>
+              Workflow</span
+            ><a class="anchor-link" href="#sec-21.2.2">&para;</a>
+          </h6>
+          <a id="beameruserguide-autopage-553"></a>
 
-<p>
-The following workflow steps are optional, but they can simplify the creation of the article version.
-</p>
-<ul style="list-style-type:none">
-<li>
-<p>
-&bull; In the main file <span class="texttt">main.tex</span>, delete the first line, which sets the document class.
-</p>
-</li>
-<li>
-<p>
-&bull; Create a file named, say, <span class="texttt">main.beamer.tex</span> with the following content:
-</p>
-<pre class="verbatim">
+          <p>
+            The following workflow steps are optional, but they can simplify the
+            creation of the article version.
+          </p>
+          <ul style="list-style-type: none">
+            <li>
+              <p>
+                &bull; In the main file <span class="texttt">main.tex</span>,
+                delete the first line, which sets the document class.
+              </p>
+            </li>
+            <li>
+              <p>
+                &bull; Create a file named, say,
+                <span class="texttt">main.beamer.tex</span> with the following
+                content:
+              </p>
+              <pre class="verbatim">
 \documentclass[ignorenonframetext]{beamer}
 \input{main.tex}
-</pre>
-</li>
-<li>
-<p>
-&bull; Create an extra file named, say, <span class="texttt">main.article.tex</span> with the following content:
-</p>
-<pre class="verbatim">
+</pre
+              >
+            </li>
+            <li>
+              <p>
+                &bull; Create an extra file named, say,
+                <span class="texttt">main.article.tex</span> with the following
+                content:
+              </p>
+              <pre class="verbatim">
 \documentclass{article}
 \usepackage{beamerarticle}
 \setjobnamebeamerversion{main.beamer}
 \input{main.tex}
-</pre>
-</li>
-<li>
-<p>
-&bull; You can now run <span class="texttt">pdflatex</span> or <span class="texttt">latex</span> on the two files <span class="texttt">main.beamer.tex</span> and <span class="texttt">main.article.tex</span>.
-</p>
-</li>
-</ul>
-<p>
-The command <span class="texttt">\setjobnamebeamerversion</span> tells the article version where to find the presentation version. This is necessary if you wish to include slides from the presentation version in an article as figures.
-</p>
-<div class="command">
-
-
-<p>
-</p>
-<div class="command-headline">
-<p>
-<span class="declare"><kbd>\setjobnamebeamerversion</kbd></span>{<span class="meta"><span class="angle">&langle;</span><i>filename without extension</i><span class="angle">&rangle;</span></span>}
-</p>
-</div>
-<p>
-Tells the <span class="beamer-name"><span class="textsc">beamer</span></span> class where to find the presentation version of the current file.
-</p>
-
-
-</div>
-<!--
+</pre
+              >
+            </li>
+            <li>
+              <p>
+                &bull; You can now run <span class="texttt">pdflatex</span> or
+                <span class="texttt">latex</span> on the two files
+                <span class="texttt">main.beamer.tex</span> and
+                <span class="texttt">main.article.tex</span>.
+              </p>
+            </li>
+          </ul>
+          <p>
+            The command
+            <span class="texttt">\setjobnamebeamerversion</span> tells the
+            article version where to find the presentation version. This is
+            necessary if you wish to include slides from the presentation
+            version in an article as figures.
+          </p>
+          <div class="command">
+            <div class="command-headline">
+              <p>
+                <span class="declare"><kbd>\setjobnamebeamerversion</kbd></span
+                >{<span class="meta"
+                  ><span class="angle">&langle;</span
+                  ><i>filename without extension</i
+                  ><span class="angle">&rangle;</span></span
+                >}
+              </p>
+            </div>
+            <p>
+              Tells the
+              <span class="beamer-name"
+                ><span class="textsc">beamer</span></span
+              >
+              class where to find the presentation version of the current file.
+            </p>
+          </div>
+          <!--
 ...... subsubsection Including Slides from the Presentation Version in the Article Version ......
 -->
-<h6 id="autosec-531"><span><span class="sectionnumber" id="sec-21.2.3">21.2.3</span> Including Slides from the Presentation Version in the Article Version</span><a class="anchor-link" href="#sec-21.2.3">&para;</a></h6>
-<a id="beameruserguide-autopage-531"></a>
-<p>
-If you use the package <span class="texttt">beamerarticle</span>, the <span class="texttt">\frame</span> command becomes available in <span class="texttt">article</span> mode. By adjusting the frame template, you can &ldquo;mimic&rdquo; the appearance of frames
-typeset by <span class="beamer-name"><span class="textsc">beamer</span></span> in your articles. However, sometimes you may wish to insert &ldquo;the real thing&rdquo; into the <span class="texttt">article</span> version, that is, a precise &ldquo;screenshot&rdquo; of a slide from
-the presentation. The commands introduced in the following help you do exactly this.
-</p>
-<p>
-In order to include a slide from your presentation in your article version, you must do two things: First, you must place a normal <span class="latexlogofont"><span class="latexlogo">L<span class="latexlogosup">a</span>T<span class="latexlogosub">e</span>X</span></span> label on the slide using the <span class="texttt">\label</span> command. Since this command is overlay-specification-aware, you can also select specific slides of a frame. Also, by adding the option <span class="texttt">label=</span><span class="meta"><span class="angle">&langle;</span><i>name</i><span class="angle">&rangle;</span></span> to a frame, a label <span class="meta"><span class="angle">&langle;</span><i>name</i><span class="angle">&rangle;</span></span><span class="texttt">&lt;</span><span class="meta"><span class="angle">&langle;</span><i>slide number</i><span class="angle">&rangle;</span></span><span class="texttt">&gt;</span> is automatically added to each
-slide of the frame.
-</p>
-<p>
-Once you have labeled a slide, you can use the following command in your article version to insert the slide into it:
-</p>
-<div class="command">
-
-
-<p>
-</p>
-<div class="command-headline">
-<p>
-<span class="declare"><kbd>\includeslide</kbd></span><span class="opt"><span class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>options</i><span class="angle">&rangle;</span></span><span class="oarg-right-bracket">]</span></span>{<span class="meta"><span class="angle">&langle;</span><i>label name</i><span class="angle">&rangle;</span></span>}
-</p>
-</div>
-<p>
-This command calls <span class="texttt">\pgfimage</span> with the given <span class="meta"><span class="angle">&langle;</span><i>options</i><span class="angle">&rangle;</span></span> for the file specified by
-</p>
-<blockquote>
-<p>
-<span class="texttt">\setjobnamebeamerversion</span><span class="meta"><span class="angle">&langle;</span><i>filename</i><span class="angle">&rangle;</span></span>
-</p>
-</blockquote>
-<p>
-Furthermore, the option <span class="texttt">page=</span><span class="meta"><span class="angle">&langle;</span><i>page of label name</i><span class="angle">&rangle;</span></span> is passed to <span class="texttt">\pgfimage</span>, where the <span class="meta"><span class="angle">&langle;</span><i>page of label name</i><span class="angle">&rangle;</span></span> is read internally from the file <span class="meta"><span class="angle">&langle;</span><i>filename</i><span class="angle">&rangle;</span></span><span class="texttt">.snm</span>.
-</p>
-<p>
-<i>Example: </i>
-</p>
-<pre class="verbatim">
+          <h6 id="autosec-556">
+            <span
+              ><span class="sectionnumber" id="sec-21.2.3">21.2.3</span>
+              Including Slides from the Presentation Version in the Article
+              Version</span
+            ><a class="anchor-link" href="#sec-21.2.3">&para;</a>
+          </h6>
+          <a id="beameruserguide-autopage-556"></a>
+          <p>
+            If you use the package <span class="texttt">beamerarticle</span>,
+            the <span class="texttt">\frame</span> command becomes available in
+            <span class="texttt">article</span> mode. By adjusting the frame
+            template, you can &ldquo;mimic&rdquo; the appearance of frames
+            typeset by
+            <span class="beamer-name"><span class="textsc">beamer</span></span>
+            in your articles. However, sometimes you may wish to insert
+            &ldquo;the real thing&rdquo; into the
+            <span class="texttt">article</span> version, that is, a precise
+            &ldquo;screenshot&rdquo; of a slide from the presentation. The
+            commands introduced in the following help you do exactly this.
+          </p>
+          <p>
+            In order to include a slide from your presentation in your article
+            version, you must do two things: First, you must place a normal
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >L<span class="latexlogosup">a</span>T<span class="latexlogosub"
+                  >e</span
+                >X</span
+              ></span
+            >
+            label on the slide using the
+            <span class="texttt">\label</span> command. Since this command is
+            overlay-specification-aware, you can also select specific slides of
+            a frame. Also, by adding the option
+            <span class="texttt">label=</span
+            ><span class="meta"
+              ><span class="angle">&langle;</span><i>name</i
+              ><span class="angle">&rangle;</span></span
+            >
+            to a frame, a label
+            <span class="meta"
+              ><span class="angle">&langle;</span><i>name</i
+              ><span class="angle">&rangle;</span></span
+            ><span class="texttt">&lt;</span
+            ><span class="meta"
+              ><span class="angle">&langle;</span><i>slide number</i
+              ><span class="angle">&rangle;</span></span
+            ><span class="texttt">&gt;</span> is automatically added to each
+            slide of the frame.
+          </p>
+          <p>
+            Once you have labeled a slide, you can use the following command in
+            your article version to insert the slide into it:
+          </p>
+          <div class="command">
+            <div class="command-headline">
+              <p>
+                <span class="declare"><kbd>\includeslide</kbd></span
+                ><span class="opt"
+                  ><span class="oarg-left-bracket">[</span
+                  ><span class="meta"
+                    ><span class="angle">&langle;</span><i>options</i
+                    ><span class="angle">&rangle;</span></span
+                  ><span class="oarg-right-bracket">]</span></span
+                >{<span class="meta"
+                  ><span class="angle">&langle;</span><i>label name</i
+                  ><span class="angle">&rangle;</span></span
+                >}
+              </p>
+            </div>
+            <p>
+              This command calls <span class="texttt">\pgfimage</span> with the
+              given
+              <span class="meta"
+                ><span class="angle">&langle;</span><i>options</i
+                ><span class="angle">&rangle;</span></span
+              >
+              for the file specified by
+            </p>
+            <blockquote>
+              <p>
+                <span class="texttt">\setjobnamebeamerversion</span
+                ><span class="meta"
+                  ><span class="angle">&langle;</span><i>filename</i
+                  ><span class="angle">&rangle;</span></span
+                >
+              </p>
+            </blockquote>
+            <p>
+              Furthermore, the option <span class="texttt">page=</span
+              ><span class="meta"
+                ><span class="angle">&langle;</span><i>page of label name</i
+                ><span class="angle">&rangle;</span></span
+              >
+              is passed to <span class="texttt">\pgfimage</span>, where the
+              <span class="meta"
+                ><span class="angle">&langle;</span><i>page of label name</i
+                ><span class="angle">&rangle;</span></span
+              >
+              is read internally from the file
+              <span class="meta"
+                ><span class="angle">&langle;</span><i>filename</i
+                ><span class="angle">&rangle;</span></span
+              ><span class="texttt">.snm</span>.
+            </p>
+            <p>
+              <i>Example: </i>
+            </p>
+            <pre class="verbatim">
 \article
   \begin{figure}
     \begin{center}
@@ -437,94 +769,162 @@ Furthermore, the option <span class="texttt">page=</span><span class="meta"><spa
     \end{center}
     \caption{The second slide (original size). Now the second item is also shown.}
   \end{figure}
-</pre>
-
-
-</div>
-<p>
-The exact effect of passing the option <span class="texttt">page=</span><span class="meta"><span class="angle">&langle;</span><i>page of label name</i><span class="angle">&rangle;</span></span> to the command <span class="texttt">\pgfimage</span>
-is explained in the documentation of <span class="texttt">pgf</span>. In essence, the following happens:
-</p>
-<ul style="list-style-type:none">
-<li>
-<p>
-&bull; For old versions of <span class="texttt">pdflatex</span> and for any version of <span class="texttt">latex</span> together with <span class="texttt">dvips</span>, the <span class="texttt">pgf</span> package will look for a file named
-</p>
-<blockquote>
-<p>
-<span class="meta"><span class="angle">&langle;</span><i>filename</i><span class="angle">&rangle;</span></span><span class="texttt">.page</span><span class="meta"><span class="angle">&langle;</span><i>page of label name</i><span class="angle">&rangle;</span></span><span class="texttt">.</span><span class="meta"><span class="angle">&langle;</span><i>extension</i><span class="angle">&rangle;</span></span>
-</p>
-</blockquote>
-<p>
-For each page of your <span class="texttt">.pdf</span> or <span class="texttt">.ps</span> file that is to be included in this way, you must create such a file by hand. For example, if the PostScript file of your presentation version is named <span class="texttt">main.beamer.ps</span> and you wish to include the slides with page numbers 2 and&nbsp;3, you must create (single page) files <span class="texttt">main.beamer.page2.ps</span> and <span class="texttt">main.beamer.page3.ps</span> &ldquo;by hand&rdquo;
-(or using some script). If these files cannot be found, <span class="texttt">pgf</span> will complain.
-</p>
-</li>
-<li>
-<p>
-&bull; For new versions of <span class="texttt">pdflatex</span>, <span class="texttt">pdflatex</span> also looks for the files according to the above naming scheme. However, if it fails to find them (because you have not produced them), it uses a special mechanism to
-directly extract the desired page from the presentation file <span class="texttt">main.beamer.pdf</span>.
-</p>
-</li>
-</ul>
-<!--
+</pre
+            >
+          </div>
+          <p>
+            The exact effect of passing the option
+            <span class="texttt">page=</span
+            ><span class="meta"
+              ><span class="angle">&langle;</span><i>page of label name</i
+              ><span class="angle">&rangle;</span></span
+            >
+            to the command <span class="texttt">\pgfimage</span> is explained in
+            the documentation of <span class="texttt">pgf</span>. In essence,
+            the following happens:
+          </p>
+          <ul style="list-style-type: none">
+            <li>
+              <p>
+                &bull; For old versions of
+                <span class="texttt">pdflatex</span> and for any version of
+                <span class="texttt">latex</span> together with
+                <span class="texttt">dvips</span>, the
+                <span class="texttt">pgf</span> package will look for a file
+                named
+              </p>
+              <blockquote>
+                <p>
+                  <span class="meta"
+                    ><span class="angle">&langle;</span><i>filename</i
+                    ><span class="angle">&rangle;</span></span
+                  ><span class="texttt">.page</span
+                  ><span class="meta"
+                    ><span class="angle">&langle;</span><i>page of label name</i
+                    ><span class="angle">&rangle;</span></span
+                  ><span class="texttt">.</span
+                  ><span class="meta"
+                    ><span class="angle">&langle;</span><i>extension</i
+                    ><span class="angle">&rangle;</span></span
+                  >
+                </p>
+              </blockquote>
+              <p>
+                For each page of your <span class="texttt">.pdf</span> or
+                <span class="texttt">.ps</span> file that is to be included in
+                this way, you must create such a file by hand. For example, if
+                the PostScript file of your presentation version is named
+                <span class="texttt">main.beamer.ps</span> and you wish to
+                include the slides with page numbers 2 and&nbsp;3, you must
+                create (single page) files
+                <span class="texttt">main.beamer.page2.ps</span> and
+                <span class="texttt">main.beamer.page3.ps</span> &ldquo;by
+                hand&rdquo; (or using some script). If these files cannot be
+                found, <span class="texttt">pgf</span> will complain.
+              </p>
+            </li>
+            <li>
+              <p>
+                &bull; For new versions of <span class="texttt">pdflatex</span>,
+                <span class="texttt">pdflatex</span> also looks for the files
+                according to the above naming scheme. However, if it fails to
+                find them (because you have not produced them), it uses a
+                special mechanism to directly extract the desired page from the
+                presentation file <span class="texttt">main.beamer.pdf</span>.
+              </p>
+            </li>
+          </ul>
+          <!--
 ...... subsection Details on Modes ......
 -->
-<h5 id="autosec-535"><a id="section-mode-details"></a><span><span class="sectionnumber" id="sec-21.3">21.3</span> Details on Modes</span><a class="anchor-link" href="#sec-21.3">&para;</a></h5>
-<a id="beameruserguide-autopage-535"></a>
+          <h5 id="autosec-560">
+            <a id="section-mode-details"></a
+            ><span
+              ><span class="sectionnumber" id="sec-21.3">21.3</span> Details on
+              Modes</span
+            ><a class="anchor-link" href="#sec-21.3">&para;</a>
+          </h5>
+          <a id="beameruserguide-autopage-560"></a>
 
-<p>
-This subsection describes how modes work exactly and how you can use the <span class="texttt">\mode</span> command to control what part of your text belongs to which mode.
-</p>
-<p>
-When <span class="beamer-name"><span class="textsc">beamer</span></span> typesets your text, it is always in one of the following five modes:
-</p>
-<ul style="list-style-type:none">
-<li>
-<p>
-&bull; <span class="declare"><span class="texttt">beamer</span></span> is the default mode.
-</p>
-</li>
-<li>
-<p>
-&bull; <span class="declare"><span class="texttt">second</span></span> is the mode used when a slide for an optional second screen is being typeset.
-</p>
-</li>
-<li>
-<p>
-&bull; <span class="declare"><span class="texttt">handout</span></span> is the mode for creating handouts.
-</p>
-</li>
-<li>
-<p>
-&bull; <span class="declare"><span class="texttt">trans</span></span> is the mode for creating transparencies.
-</p>
-</li>
-<li>
-<p>
-&bull; <span class="declare"><span class="texttt">article</span></span> is the mode when control has been transferred to another class, like <span class="texttt">article.cls</span>. Note that the mode is also <span class="texttt">article</span> if control is
-transferred to, say, <span class="texttt">book.cls</span>.
-</p>
-</li>
-</ul>
-<p>
-In addition to these modes, <span class="beamer-name"><span class="textsc">beamer</span></span> recognizes the following names for modes sets:
-</p>
-<ul style="list-style-type:none">
-<li>
-<p>
-&bull; <span class="declare"><span class="texttt">all</span></span> refers to all modes.
-</p>
-</li>
-<li>
-<p>
-&bull; <span class="declare"><span class="texttt">presentation</span></span> refers to the first four modes, that is, to all modes except for the <span class="texttt">article</span> mode.
-</p>
-</li>
-</ul>
-<div class="center">
-<p>
-<span class="lateximagesource" id="lateximage-beameruserguide-2"><!--
+          <p>
+            This subsection describes how modes work exactly and how you can use
+            the <span class="texttt">\mode</span> command to control what part
+            of your text belongs to which mode.
+          </p>
+          <p>
+            When
+            <span class="beamer-name"><span class="textsc">beamer</span></span>
+            typesets your text, it is always in one of the following five modes:
+          </p>
+          <ul style="list-style-type: none">
+            <li>
+              <p>
+                &bull;
+                <span class="declare"><span class="texttt">beamer</span></span>
+                is the default mode.
+              </p>
+            </li>
+            <li>
+              <p>
+                &bull;
+                <span class="declare"><span class="texttt">second</span></span>
+                is the mode used when a slide for an optional second screen is
+                being typeset.
+              </p>
+            </li>
+            <li>
+              <p>
+                &bull;
+                <span class="declare"><span class="texttt">handout</span></span>
+                is the mode for creating handouts.
+              </p>
+            </li>
+            <li>
+              <p>
+                &bull;
+                <span class="declare"><span class="texttt">trans</span></span>
+                is the mode for creating transparencies.
+              </p>
+            </li>
+            <li>
+              <p>
+                &bull;
+                <span class="declare"><span class="texttt">article</span></span>
+                is the mode when control has been transferred to another class,
+                like <span class="texttt">article.cls</span>. Note that the mode
+                is also <span class="texttt">article</span> if control is
+                transferred to, say, <span class="texttt">book.cls</span>.
+              </p>
+            </li>
+          </ul>
+          <p>
+            In addition to these modes,
+            <span class="beamer-name"><span class="textsc">beamer</span></span>
+            recognizes the following names for modes sets:
+          </p>
+          <ul style="list-style-type: none">
+            <li>
+              <p>
+                &bull;
+                <span class="declare"><span class="texttt">all</span></span>
+                refers to all modes.
+              </p>
+            </li>
+            <li>
+              <p>
+                &bull;
+                <span class="declare"
+                  ><span class="texttt">presentation</span></span
+                >
+                refers to the first four modes, that is, to all modes except for
+                the <span class="texttt">article</span> mode.
+              </p>
+            </li>
+          </ul>
+          <div class="center">
+            <p>
+              <span class="lateximagesource" id="lateximage-beameruserguide-15"
+                ><!--
                             all
 
 
@@ -534,37 +934,76 @@ In addition to these modes, <span class="beamer-name"><span class="textsc">beame
 
 
 beamer second handout trans
---><img alt="(-tikz-&nbsp;diagram)" class="lateximage" src="beameruserguide-images/image-2.svg" style></span>
-</p>
-</div>
-<p>
-Depending on the current mode, you may wish to have certain text inserted only in that mode. For example, you might wish a certain frame or a certain table to be left out of your article version. In some situations, you can use the <span class="texttt">\only</span>
-command for this purpose. However, the command <span class="texttt">\mode</span>, which is described in the following, is much more powerful than <span class="texttt">\only</span>.
-</p>
-<p>
-The command actually comes in three &ldquo;flavors,&rdquo; which only slightly differ in syntax. The first, and simplest, is the version that takes one argument. It behaves essentially the same way as <span class="texttt">\only</span>.
-</p>
-<div class="command">
-
-
-<p>
-</p>
-<div class="command-headline">
-<p>
-<span class="declare"><kbd>\mode</kbd></span><span class="opt">&lt;<span class="meta"><span class="angle">&langle;</span><i>mode specification</i><span class="angle">&rangle;</span></span>&gt;</span>{<span class="meta"><span class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span></span>}
-</p>
-</div>
-<p>
-Causes the <span class="meta"><span class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span></span> to be inserted only for the specified modes. Recall that a <span class="meta"><span class="angle">&langle;</span><i>mode
-specification</i><span class="angle">&rangle;</span></span> is just an overlay specification in which no slides are mentioned.
-</p>
-<p>
-The <span class="meta"><span class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span></span> should not do anything fancy that involves mode switches or including other files. In particular, you should not put an <span class="texttt">\include</span> command inside <span class="meta"><span class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span></span>. Use the argument-free form below, instead.
-</p>
-<p>
-<i>Example: </i>
-</p>
-<pre class="verbatim">
+--><img
+                  alt="(-tikz-&nbsp;diagram)"
+                  class="lateximage"
+                  src="beameruserguide-images/image-15.svg"
+                  style
+              /></span>
+            </p>
+          </div>
+          <p>
+            Depending on the current mode, you may wish to have certain text
+            inserted only in that mode. For example, you might wish a certain
+            frame or a certain table to be left out of your article version. In
+            some situations, you can use the
+            <span class="texttt">\only</span> command for this purpose. However,
+            the command <span class="texttt">\mode</span>, which is described in
+            the following, is much more powerful than
+            <span class="texttt">\only</span>.
+          </p>
+          <p>
+            The command actually comes in three &ldquo;flavors,&rdquo; which
+            only slightly differ in syntax. The first, and simplest, is the
+            version that takes one argument. It behaves essentially the same way
+            as <span class="texttt">\only</span>.
+          </p>
+          <div class="command">
+            <div class="command-headline">
+              <p>
+                <span class="declare"><kbd>\mode</kbd></span
+                ><span class="opt"
+                  >&lt;<span class="meta"
+                    ><span class="angle">&langle;</span><i>mode specification</i
+                    ><span class="angle">&rangle;</span></span
+                  >&gt;</span
+                >{<span class="meta"
+                  ><span class="angle">&langle;</span><i>text</i
+                  ><span class="angle">&rangle;</span></span
+                >}
+              </p>
+            </div>
+            <p>
+              Causes the
+              <span class="meta"
+                ><span class="angle">&langle;</span><i>text</i
+                ><span class="angle">&rangle;</span></span
+              >
+              to be inserted only for the specified modes. Recall that a
+              <span class="meta"
+                ><span class="angle">&langle;</span><i>mode specification</i
+                ><span class="angle">&rangle;</span></span
+              >
+              is just an overlay specification in which no slides are mentioned.
+            </p>
+            <p>
+              The
+              <span class="meta"
+                ><span class="angle">&langle;</span><i>text</i
+                ><span class="angle">&rangle;</span></span
+              >
+              should not do anything fancy that involves mode switches or
+              including other files. In particular, you should not put an
+              <span class="texttt">\include</span> command inside
+              <span class="meta"
+                ><span class="angle">&langle;</span><i>text</i
+                ><span class="angle">&rangle;</span></span
+              >. Use the argument-free form below, instead.
+            </p>
+            <p>
+              <i>Example: </i>
+            </p>
+            <pre class="verbatim">
 \mode<article>{Extra detail mentioned only in the article version.}
 
 \mode<beamer| trans>{
@@ -573,71 +1012,152 @@ The <span class="meta"><span class="angle">&langle;</span><i>text</i><span class
   \end{frame}
 }
 </beamer|></article></pre>
+          </div>
+          <p>
+            The second flavor of the <span class="texttt">\mode</span> command
+            takes no argument. &ldquo;No argument&rdquo; means that it is not
+            followed by an opening brace, but any other symbol.
+          </p>
+          <div class="command">
+            <div class="command-headline">
+              <p>
+                <span class="declare"><kbd>\mode</kbd></span
+                ><span class="opt"
+                  >&lt;<span class="meta"
+                    ><span class="angle">&langle;</span><i>mode specification</i
+                    ><span class="angle">&rangle;</span></span
+                  >&gt;</span
+                >
+              </p>
+            </div>
+            <p>
+              In the specified mode, this command actually has no effect. The
+              interesting part is the effect in the non-specified modes: In
+              these modes, the command causes
+              <span class="latexlogofont"
+                ><span class="latexlogo"
+                  >T<span class="latexlogosub">e</span>X</span
+                ></span
+              >
+              to enter a kind of &ldquo;gobbling&rdquo; state. It will now
+              ignore all following lines until the next line that has a sole
+              occurrence of one of the following commands:
+              <span class="texttt">\mode</span>,
+              <span class="texttt">\mode*</span>,
+              <span class="texttt">\begin{document}</span>,
+              <span class="texttt">\end{document}</span>. Even a comment on this
+              line will make
+              <span class="latexlogofont"
+                ><span class="latexlogo"
+                  >T<span class="latexlogosub">e</span>X</span
+                ></span
+              >
+              skip it. Note that the line with the special commands that make
+              <span class="latexlogofont"
+                ><span class="latexlogo"
+                  >T<span class="latexlogosub">e</span>X</span
+                ></span
+              >
+              stop gobbling may not directly follow the line where the gobbling
+              is started. Rather, there must either be one non-empty line before
+              the special command or at least two empty lines.
+            </p>
+            <p>
+              When
+              <span class="latexlogofont"
+                ><span class="latexlogo"
+                  >T<span class="latexlogosub">e</span>X</span
+                ></span
+              >
+              encounters a single <span class="texttt">\mode</span> command, it
+              will execute this command. If the command is
+              <span class="texttt">\mode</span> command of the first flavor,
+              <span class="latexlogofont"
+                ><span class="latexlogo"
+                  >T<span class="latexlogosub">e</span>X</span
+                ></span
+              >
+              will resume its &ldquo;gobbling&rdquo; state after having inserted
+              (or not inserted) the argument of the
+              <span class="texttt">\mode</span> command. If the
+              <span class="texttt">\mode</span> command is of the second flavor,
+              it takes over.
+            </p>
+            <p>
+              Using this second flavor of <span class="texttt">\mode</span> is
+              less convenient than the first, but there are different reasons
+              why you might need to use it:
+            </p>
 
+            <p>
+              &bull; The line-wise gobbling is much faster than the gobble of
+              the third flavor, explained below.
+            </p>
 
-</div>
-<p>
-The second flavor of the <span class="texttt">\mode</span> command takes no argument. &ldquo;No argument&rdquo; means that it is not followed by an opening brace, but any other symbol.
-</p>
-<div class="command">
+            <p>
+              &bull; The first flavor reads its argument completely. This means,
+              it cannot contain any verbatim text that contains unbalanced
+              braces.
+            </p>
 
+            <p>
+              &bull; The first flavor cannot cope with arguments that contain
+              <span class="texttt">\include</span>.
+            </p>
 
-<p>
-</p>
-<div class="command-headline">
-<p>
-<span class="declare"><kbd>\mode</kbd></span><span class="opt">&lt;<span class="meta"><span class="angle">&langle;</span><i>mode specification</i><span class="angle">&rangle;</span></span>&gt;</span>
-</p>
-</div>
-<p>
-In the specified mode, this command actually has no effect. The interesting part is the effect in the non-specified modes: In these modes, the command causes <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> to enter a kind of &ldquo;gobbling&rdquo; state. It will now ignore all following lines until the next line that has a sole occurrence of one of the following commands: <span class="texttt">\mode</span>, <span class="texttt">\mode*</span>, <span class="texttt">\begin{document}</span>, <span class="texttt">\end{document}</span>. Even a comment on this line will make <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> skip it. Note that the line with the special commands that make <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> stop gobbling may not directly
-follow the line where the gobbling is started. Rather, there must either be one non-empty line before the special command or at least two empty lines.
-</p>
-<p>
-When <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> encounters a single <span class="texttt">\mode</span> command, it will execute this command. If the command is <span class="texttt">\mode</span> command of the first flavor, <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> will resume its &ldquo;gobbling&rdquo; state after having inserted (or not inserted) the argument of the
-<span class="texttt">\mode</span> command. If the <span class="texttt">\mode</span> command is of the second flavor, it takes over.
-</p>
-<p>
-Using this second flavor of <span class="texttt">\mode</span> is less convenient than the first, but there are different reasons why you might need to use it:
-</p>
+            <p>
+              &bull; If the text mainly belongs to one mode with only small
+              amounts of text from another mode inserted, this second flavor is
+              nice to use.
+            </p>
 
-
-<p>
-&bull; The line-wise gobbling is much faster than the gobble of the third flavor, explained below.
-</p>
-
-
-<p>
-&bull; The first flavor reads its argument completely. This means, it cannot contain any verbatim text that contains unbalanced braces.
-</p>
-
-
-<p>
-&bull; The first flavor cannot cope with arguments that contain <span class="texttt">\include</span>.
-</p>
-
-
-<p>
-&bull; If the text mainly belongs to one mode with only small amounts of text from another mode inserted, this second flavor is nice to use.
-</p>
-
-
-<p>
-<em>Note:</em> When searching line-wise for a <span class="texttt">\mode</span> command to shake it out of its gobbling state, <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> will not recognize a
-<span class="texttt">\mode</span> command if a mode specification follows on the same line. Thus, such a specification must be given on the next line.
-</p>
-<p>
-<em>Note:</em> When a <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> file ends, <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> must not be in the gobbling state. Switch this state off using <span class="texttt">\mode</span> on one line and <span class="texttt"><all></all></span> on the next.
-</p>
-<p>
-<em>Note:</em> The behavior of <span class="texttt">\mode</span> command is different inside a frame: instead of line-wise gobbling, it puts every subsequent tokens inside a &ldquo;comment box&rdquo; until another <span class="texttt">\mode</span> command is
-encountered. Some commands may cause errors in this situation, including the assignment of global variables and <span class="texttt">\mode</span> of the first flavor, since they are not actually &ldquo;gobbled&rdquo;. Please use <span class="texttt">\mode</span> command
-<em>of any flavor</em> outside frames.
-</p>
-<p>
-<i>Example: </i>
-</p>
-<pre class="verbatim">
+            <p>
+              <em>Note:</em> When searching line-wise for a
+              <span class="texttt">\mode</span> command to shake it out of its
+              gobbling state,
+              <span class="latexlogofont"
+                ><span class="latexlogo"
+                  >T<span class="latexlogosub">e</span>X</span
+                ></span
+              >
+              will not recognize a <span class="texttt">\mode</span> command if
+              a mode specification follows on the same line. Thus, such a
+              specification must be given on the next line.
+            </p>
+            <p>
+              <em>Note:</em> When a
+              <span class="latexlogofont"
+                ><span class="latexlogo"
+                  >T<span class="latexlogosub">e</span>X</span
+                ></span
+              >
+              file ends,
+              <span class="latexlogofont"
+                ><span class="latexlogo"
+                  >T<span class="latexlogosub">e</span>X</span
+                ></span
+              >
+              must not be in the gobbling state. Switch this state off using
+              <span class="texttt">\mode</span> on one line and
+              <span class="texttt"><all></all></span> on the next.
+            </p>
+            <p>
+              <em>Note:</em> The behavior of
+              <span class="texttt">\mode</span> command is different inside a
+              frame: instead of line-wise gobbling, it puts every subsequent
+              tokens inside a &ldquo;comment box&rdquo; until another
+              <span class="texttt">\mode</span> command is encountered. Some
+              commands may cause errors in this situation, including the
+              assignment of global variables and
+              <span class="texttt">\mode</span> of the first flavor, since they
+              are not actually &ldquo;gobbled&rdquo;. Please use
+              <span class="texttt">\mode</span> command
+              <em>of any flavor</em> outside frames.
+            </p>
+            <p>
+              <i>Example: </i>
+            </p>
+            <pre class="verbatim">
 \mode<article>
 
 This text is typeset only in |article| mode.
@@ -657,45 +1177,86 @@ is not inserted in presentation mode
 
 This text is only inserted in presentation mode.
 </presentation></presentation></article></pre>
-
-
-</div>
-<p>
-The last flavor of the mode command behaves quite differently.
-</p>
-<div class="command">
-
-
-<p>
-</p>
-<div class="command-headline">
-<p>
-<span class="declare"><kbd>\mode</kbd></span><span class="declare"><span class="texttt">*</span></span>
-</p>
-</div>
-<p>
-The effect of this mode is to ignore all text outside frames in the <span class="texttt">presentation</span> modes. In <span class="texttt">article</span> mode it has no effect.
-</p>
-<p>
-This mode should only be entered outside of frames. Once entered, if the current mode is a <span class="texttt">presentation</span> mode, <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> will
-enter a gobbling state similar to the gobbling state of the second &ldquo;flavor&rdquo; of the <span class="texttt">\mode</span> command. The difference is that the text is now read token-wise, not line-wise. The text is gobbled token by token until one of the following tokens is
-found: <span class="texttt">\mode</span>, <span class="texttt">\frame</span>, <span class="texttt">\againframe</span>, <span class="texttt">\part</span>, <span class="texttt">\section</span>, <span class="texttt">\subsection</span>, <span class="texttt">\appendix</span>, <span class="texttt">\note</span>, <span class="texttt">\begin{frame}</span>, and <span class="texttt">\end{document}</span> (the last two are not really tokens, but they are recognized anyway).
-</p>
-<p>
-Once one of these commands is encountered, the gobbling stops and the command is executed. However, all of these commands restore the mode that was in effect when they started. Thus, once the command is finished, <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> returns to its gobbling.
-</p>
-<p>
-Normally, <span class="texttt">\mode*</span> is exactly what you want <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> to do outside of frames: ignore everything except for the above-mentioned
-commands outside frames in <span class="texttt">presentation</span> mode. However, there are cases in which you have to use the second flavor of the <span class="texttt">\mode</span> command instead: If you have verbatim text that contains one of the
-commands, if you have very long text outside frames, or if you wish some text outside a frame (like a definition) to be executed also in <span class="texttt">presentation</span> mode.
-</p>
-<p>
-The class option <span class="texttt">ignorenonframetext</span> will switch on <span class="texttt">\mode*</span> at the beginning of the document.
-</p>
-<p>
-<i>Example: </i>
-</p>
-<pre class="verbatim">
+          </div>
+          <p>The last flavor of the mode command behaves quite differently.</p>
+          <div class="command">
+            <div class="command-headline">
+              <p>
+                <span class="declare"><kbd>\mode</kbd></span
+                ><span class="declare"><span class="texttt">*</span></span>
+              </p>
+            </div>
+            <p>
+              The effect of this mode is to ignore all text outside frames in
+              the <span class="texttt">presentation</span> modes. In
+              <span class="texttt">article</span> mode it has no effect.
+            </p>
+            <p>
+              This mode should only be entered outside of frames. Once entered,
+              if the current mode is a
+              <span class="texttt">presentation</span> mode,
+              <span class="latexlogofont"
+                ><span class="latexlogo"
+                  >T<span class="latexlogosub">e</span>X</span
+                ></span
+              >
+              will enter a gobbling state similar to the gobbling state of the
+              second &ldquo;flavor&rdquo; of the
+              <span class="texttt">\mode</span> command. The difference is that
+              the text is now read token-wise, not line-wise. The text is
+              gobbled token by token until one of the following tokens is found:
+              <span class="texttt">\mode</span>,
+              <span class="texttt">\frame</span>,
+              <span class="texttt">\againframe</span>,
+              <span class="texttt">\part</span>,
+              <span class="texttt">\section</span>,
+              <span class="texttt">\subsection</span>,
+              <span class="texttt">\appendix</span>,
+              <span class="texttt">\note</span>,
+              <span class="texttt">\begin{frame}</span>, and
+              <span class="texttt">\end{document}</span> (the last two are not
+              really tokens, but they are recognized anyway).
+            </p>
+            <p>
+              Once one of these commands is encountered, the gobbling stops and
+              the command is executed. However, all of these commands restore
+              the mode that was in effect when they started. Thus, once the
+              command is finished,
+              <span class="latexlogofont"
+                ><span class="latexlogo"
+                  >T<span class="latexlogosub">e</span>X</span
+                ></span
+              >
+              returns to its gobbling.
+            </p>
+            <p>
+              Normally, <span class="texttt">\mode*</span> is exactly what you
+              want
+              <span class="latexlogofont"
+                ><span class="latexlogo"
+                  >T<span class="latexlogosub">e</span>X</span
+                ></span
+              >
+              to do outside of frames: ignore everything except for the
+              above-mentioned commands outside frames in
+              <span class="texttt">presentation</span> mode. However, there are
+              cases in which you have to use the second flavor of the
+              <span class="texttt">\mode</span> command instead: If you have
+              verbatim text that contains one of the commands, if you have very
+              long text outside frames, or if you wish some text outside a frame
+              (like a definition) to be executed also in
+              <span class="texttt">presentation</span> mode.
+            </p>
+            <p>
+              The class option
+              <span class="texttt">ignorenonframetext</span> will switch on
+              <span class="texttt">\mode*</span> at the beginning of the
+              document.
+            </p>
+            <p>
+              <i>Example: </i>
+            </p>
+            <pre class="verbatim">
 \begin{document}
 \mode*
 
@@ -715,10 +1276,12 @@ Back to article stuff again.
 { this frame is shown only in the presentation. }
 \end{document}
 </presentation></pre>
-<p>
-<i>Example: </i>The following example shows how you can include other files in a main file. The contents of a <span class="texttt">main.tex</span>:
-</p>
-<pre class="verbatim">
+            <p>
+              <i>Example: </i>The following example shows how you can include
+              other files in a main file. The contents of a
+              <span class="texttt">main.tex</span>:
+            </p>
+            <pre class="verbatim">
 \documentclass[ignorenonframetext]{beamer}
 \begin{document}
 This is star mode stuff.
@@ -732,10 +1295,11 @@ Let's include files:
 Back to star mode
 \end{document}
 </all></pre>
-<p>
-And <span class="texttt">a.tex</span> (and likewise <span class="texttt">b.tex</span>):
-</p>
-<pre class="verbatim">
+            <p>
+              And <span class="texttt">a.tex</span> (and likewise
+              <span class="texttt">b.tex</span>):
+            </p>
+            <pre class="verbatim">
 \mode*
 \section{First section}
 Extra text in article version.
@@ -744,22 +1308,41 @@ Extra text in article version.
 \end{frame}
 \mode<all>
 </all></pre>
+          </div>
+        </section>
+      </main>
+      <footer>
+        <div class="footer-left">
+          <a href="Licenses-Copyright.html">License</a> &middot;
+          <a href="https://ctan.org/pkg/beamer">CTAN</a> &middot;
+          <a
+            href="http://mirrors.ctan.org/macros/latex/contrib/beamer/doc/beameruserguide.pdf"
+            >Official PDF version</a
+          >
+          &middot;
+          <a href="https://github.com/SwitWu/beamer-html-manual/issues"
+            >Feedback and issues</a
+          >
+          &middot;
+          <a href="https://github.com/SwitWu/beamer-html-manual">Repository</a>
+        </div>
+        <div class="footer-right">
+          <em>HTML version last updated: 2023-10-10</em>
+        </div>
+      </footer>
+    </div>
 
-
-</div>
-</p></section>
-</main>
-<footer><div class="footer-left"><a href="Licenses-Copyright.html">License</a> &middot; <a href="https://ctan.org/pkg/beamer">CTAN</a> &middot; <a href="http://mirrors.ctan.org/macros/latex/contrib/beamer/doc/beameruserguide.pdf">Official PDF version</a> &middot; <a href="https://github.com/SwitWu/beamer-html-manual/issues">Feedback and issues</a> &middot; <a href="https://github.com/SwitWu/beamer-html-manual">Repository</a></div><div class="footer-right"><em>HTML version last updated: 2023-10-07</em></div></footer></div>
-
-<script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script><script>
+    <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
+    <script>
       docsearch({
-        apiKey: '196e8c10ec187c9ae525dd5226fb9378',
-        indexName: 'beamer',
-        appId: 'JS6V5VZSDB',
-        container: '#search',
+        apiKey: "09762da49fe4ba391f7a3618c73720d8",
+        indexName: "beamerplusio",
+        appId: "WNNAN5R8GM",
+        container: "#search",
         searchParameters: {
           filters: "tags:beamer",
         },
-    });
-    </script></body>
+      });
+    </script>
+  </body>
 </html>

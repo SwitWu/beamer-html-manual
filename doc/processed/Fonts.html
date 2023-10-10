@@ -1,661 +1,1427 @@
-
-<!DOCTYPE html>
+<!doctype html>
 
 <html lang="en-US">
-<head>
-<meta charset="utf-8">
-<meta content="LaTeX Lwarp package" name="generator">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>Fonts - Beamer Manual</title>
-<link href="style.css?v=20231007" rel="stylesheet" type="text/css">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="LaTeX Lwarp package" name="generator" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Fonts - Beamer Manual</title>
+    <link href="style.css?v=20231010" rel="stylesheet" type="text/css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
+      rel="stylesheet"
+    />
+    <script src="beameruserguide.js"></script>
+    <link
+      href="beameruserguide-images/favicon.png"
+      rel="icon"
+      sizes="16x16"
+      type="image/png"
+    />
+  </head>
+  <body>
+    <a id="beameruserguide-autopage-505"></a>
 
+    <div class="bodyandsidetoc grid-container">
+      <header>
+        <div id="hamburger-button">☰</div>
+        <strong><a href="home.html">Beamer Manual</a></strong>
+        <div id="search"></div>
+      </header>
+      <div class="sidetoccontainer" id="local-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle"><p>On this page</p></div>
+          <div class="sidetoccontents">
+            <p><a class="tocsubsection" href="#sec-18.1">Font Themes</a></p>
+            <p>
+              <a class="tocsubsection" href="#sec-18.2"
+                >Font Changes Made Without Using Font Themes</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-18.2.1"
+                >Choosing a Font Size for Normal Text</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-18.2.2"
+                >Choosing a Font Family</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-18.2.3"
+                >Choosing a Font Encodings</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-18.3"
+                >Changing the Fonts Used for Different Elements of a
+                Presentation</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-18.3.1"
+                >Overview of Beamer&rsquo;s Font Management</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-18.3.2"
+                >Using Beamer&rsquo;s Fonts</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-18.3.3"
+                >Setting Beamer&rsquo;s Fonts</a
+              >
+            </p>
+          </div>
+        </nav>
+      </div>
+      <div class="sidetoccontainer" id="chapter-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle">
+            <p>
+              <span class="sidetocthetitle"
+                >The
+                <span class="beamer-name"
+                  ><span class="textsc">beamer</span></span
+                >
+                <i>class</i><br />
+                <a href="https://github.com/josephwright/beamer" target="_blank"
+                  >https://github.com/josephwright/beamer</a
+                ><br />
+                User Guide for version 3.70.</span
+              >
+            </p>
+            <p>Contents</p>
+          </div>
+          <div class="sidetoccontents">
+            <p>
+              <a class="tocsection" href="Introduction.html">Introduction</a>
+            </p>
+            <p>
+              <a class="tocpart" href="Getting-Started.html">Getting Started</a>
+            </p>
 
-<link href="https://cdn.jsdelivr.net/npm/@docsearch/css@3" rel="stylesheet"></head>
-<body>
-<a id="beameruserguide-autopage-480"></a>
+            <p>
+              <a class="tocpart" href="Building-Presentation.html"
+                >Building a Presentation</a
+              >
+            </p>
 
-<div class="bodyandsidetoc grid-container"><header><div id="hamburger-button">☰</div><strong><a href="home.html">Beamer Manual</a></strong><div id="search"></div></header><div class="sidetoccontainer" id="local-toc-container"><nav class="sidetoc"><div class="sidetoctitle"><p>On this page</p></div><div class="sidetoccontents"><p><a class="tocsubsection" href="#sec-18.1">Font Themes</a></p><p><a class="tocsubsection" href="#sec-18.2">Font Changes Made Without Using Font Themes</a></p><p><a class="tocsubsubsection" href="#sec-18.2.1">Choosing a Font Size for Normal Text</a></p><p><a class="tocsubsubsection" href="#sec-18.2.2">Choosing a Font Family</a></p><p><a class="tocsubsubsection" href="#sec-18.2.3">Choosing a Font Encodings</a></p><p><a class="tocsubsection" href="#sec-18.3">Changing the Fonts Used for Different Elements of a Presentation</a></p><p><a class="tocsubsubsection" href="#sec-18.3.1">Overview of Beamer&rsquo;s Font Management</a></p><p><a class="tocsubsubsection" href="#sec-18.3.2">Using Beamer&rsquo;s Fonts</a></p><p><a class="tocsubsubsection" href="#sec-18.3.3">Setting Beamer&rsquo;s Fonts</a></p></div></nav></div>
-<div class="sidetoccontainer" id="chapter-toc-container">
-<nav class="sidetoc">
-<div class="sidetoctitle">
-<p>
-<span class="sidetocthetitle">The <span class="beamer-name"><span class="textsc">beamer</span></span> <i>class</i><br>
-<a href="https://github.com/josephwright/beamer" target="_blank">https://github.com/josephwright/beamer</a><br>
-User Guide for version 3.70.</span>
-</p>
-<p>
-Contents
-</p>
-</div>
-<div class="sidetoccontents">
+            <p class="current-part">
+              <a class="tocpart" href="Changing-Way-Things-Look.html"
+                >Changing the Way Things Look</a
+              >
+            </p>
+            <p class="current-part">
+              <a class="tocsection" href="Themes.html">Themes</a>
+            </p>
+            <p class="current-part">
+              <a
+                class="tocsection"
+                href="Inner-Themes-Outer-Themes-Templates.html"
+                >Inner Themes, Outer Themes, and Templates</a
+              >
+            </p>
+            <p class="current-part">
+              <a class="tocsection" href="Colors.html">Colors</a>
+            </p>
+            <p class="current current-part">
+              <a class="tocsection" href="Fonts.html">Fonts</a>
+            </p>
+            <p>
+              <a class="tocpart" href="Creating-Supporting-Material.html"
+                >Creating Supporting Material</a
+              >
+            </p>
 
-<p>
-<a class="tocsection" href="Introduction.html">Introduction</a>
-</p>
-<p>
-<a class="tocpart" href="Getting-Started.html">Getting Started</a>
-</p>
-
-
-
-
-
-
-<p>
-<a class="tocpart" href="Building-Presentation.html">Building a Presentation</a>
-</p>
-
-
-
-
-
-
-
-<p class="current-part">
-<a class="tocpart" href="Changing-Way-Things-Look.html">Changing the Way Things Look</a>
-</p>
-<p class="current-part">
-<a class="tocsection" href="Themes.html">Themes</a>
-</p>
-<p class="current-part">
-<a class="tocsection" href="Inner-Themes-Outer-Themes-Templates.html">Inner Themes, Outer Themes, and Templates</a>
-</p>
-<p class="current-part">
-<a class="tocsection" href="Colors.html">Colors</a>
-</p>
-<p class="current current-part">
-<a class="tocsection" href="Fonts.html">Fonts</a>
-</p>
-<p>
-<a class="tocpart" href="Creating-Supporting-Material.html">Creating Supporting Material</a>
-</p>
-
-
-
-
-<p>
-<a class="tocpart" href="Howtos.html">Howtos</a>
-</p>
-
-
-</div>
-</nav>
-</div>
-<main class="bodycontainer">
-<section class="textbody">
-<h2 class="inserted">Changing the Way Things Look</h2>
-<!--MathJax customizations:-->
-
-<p>
-<!--
+            <p>
+              <a class="tocpart" href="Howtos.html">Howtos</a>
+            </p>
+          </div>
+        </nav>
+      </div>
+      <main class="bodycontainer">
+        <section class="textbody">
+          <h2 class="inserted">Changing the Way Things Look</h2>
+          <!--
 ...... section Fonts ......
 -->
-<h4 id="autosec-481"><a id="section-fonts"></a><span class="sectionnumber" id="sec-18">18</span> Fonts</h4>
-<a id="beameruserguide-autopage-481"></a>
-<a id="beameruserguide-autofile-21"></a>
-<p>
-The first subsection introduces the predefined font themes that come with <span class="beamer-name"><span class="textsc">beamer</span></span> and which make it easy to change the fonts used in a presentation. The next subsection describes further special
-commands for changing some basic attributes of the fonts used in a presentation. The last subsection explains how you can get a much more fine-grained control over the fonts used for every individual element of a presentation.
-</p>
-<!--
+          <h4 id="autosec-506">
+            <a id="section-fonts"></a
+            ><span class="sectionnumber" id="sec-18">18</span> Fonts
+          </h4>
+          <a id="beameruserguide-autopage-506"></a>
+          <a id="beameruserguide-autofile-21"></a>
+
+          <p>
+            The first subsection introduces the predefined font themes that come
+            with
+            <span class="beamer-name"><span class="textsc">beamer</span></span>
+            and which make it easy to change the fonts used in a presentation.
+            The next subsection describes further special commands for changing
+            some basic attributes of the fonts used in a presentation. The last
+            subsection explains how you can get a much more fine-grained control
+            over the fonts used for every individual element of a presentation.
+          </p>
+          <!--
 ...... subsection Font Themes ......
 -->
-<h5 id="autosec-482"><span><span class="sectionnumber" id="sec-18.1">18.1</span> Font Themes</span><a class="anchor-link" href="#sec-18.1">&para;</a></h5>
-<a id="beameruserguide-autopage-482"></a>
-<p>
-<span class="beamer-name"><span class="textsc">beamer</span></span> comes with a set of font themes. When you use such a theme, certain fonts are changed as described below. You can use several font themes in concert. For historical reasons, you cannot change
-all aspects of the fonts used using font themes&mdash;in some cases special commands and options are needed, which are described in the next subsection.
-</p>
-<p>
-The following font themes only change certain font attributes, they do not choose special font families (although that would also be possible and themes doing just that might be added in the future). Currently, to change the font family, you need to load special packages
-as explained in the next subsection.
-</p>
-<div class="fonttheme">
-<ul style="list-style-type:none">
-<li>
-<p>
-<span class="extracttheme">\usefonttheme{<span class="declare">default</span>}</span>
-</p>
-<p>
-<i>Example: </i>
-</p>
-<p>
-</p>
-<div class="themeexample-image">
-<p>
-<object data="beamerthemeexample/beamerugfontthemedefault-page1.svg" type="image/svg+xml"></object>&emsp;&emsp;
-<object data="beamerthemeexample/beamerugfontthemedefault-page2.svg" type="image/svg+xml"></object>
-</p>
-</div>
-<p>
-The default font theme installs a sans serif font for all text of the presentation. The default theme installs different font sizes for things like titles or head- and footlines, but does not use boldface or italics for &ldquo;highlighting.&rdquo; To change some or all text to a serif font, use the
-<span class="texttt">serif</span> theme.
-</p>
-<p>
-<em>Note:</em> The command <span class="texttt">\mathrm</span> will always produce upright (not slanted), serif text and the command <span class="texttt">\mathsf</span> will always produce upright, sans-serif text. The command <span class="texttt">\mathbf</span> will produce upright, bold-face, sans-serif or serif text, depending on whether <span class="texttt">mathsans</span> or <span class="texttt">mathserif</span> is used.
-</p>
-<p>
-To produce an upright, sans-serif or serif text, depending on whether <span class="texttt">mathsans</span> or <span class="texttt">mathserif</span> is used, you can use for instance the command <span class="texttt">\operatorname</span> from the <span class="texttt">amsmath</span> package. Using this command instead of <span class="texttt">\mathrm</span> or <span class="texttt">\mathsf</span> directly will automatically adjust upright mathematical text if you switch from sans-serif to serif or back.
-</p>
-</li>
-</ul>
-</div>
-<ul style="list-style-type:none">
-<li>
-<p>
-<span class="extracttheme">\usefonttheme{<span class="declare">professionalfonts</span>}</span>
-</p>
-<p>
-This font theme does not really change any fonts. Rather, it <em>suppresses</em> certain internal replacements performed by <span class="beamer-name"><span class="textsc">beamer</span></span>. If you use &ldquo;professional fonts&rdquo; (fonts that you buy and that come
-with a complete set of every symbol in all modes), you do not want <span class="beamer-name"><span class="textsc">beamer</span></span> to meddle with the fonts you use. <span class="beamer-name"><span class="textsc">beamer</span></span> normally
-replaces certain character glyphs in mathematical text by more appropriate versions. For example, <span class="beamer-name"><span class="textsc">beamer</span></span> will normally replace glyphs such that the italic characters from the main font are used for
-variables in mathematical text. If your professional font package takes care of this already, <span class="beamer-name"><span class="textsc">beamer</span></span>&rsquo;s meddling should be switched off. Note that <span class="beamer-name"><span class="textsc">beamer</span></span>&rsquo;s substitution is automatically turned off if one of the following packages is loaded: <span class="texttt">arevmath</span>, <span class="texttt">hvmath</span>, <span class="texttt">kpfonts</span>, <span class="texttt">lmodern</span>, <span class="texttt">lucidabr</span>, <span class="texttt">lucimatx</span>, <span class="texttt">mathastext</span>, <span class="texttt">mathpmnt</span>, <span class="texttt">mathpple</span>, <span class="texttt">mathtime</span>, <span class="texttt">mtpro</span>, and <span class="texttt">mtpro2</span>. It is also turned off when <span class="texttt">unicode-math</span> is loaded for the use of Unicode math fonts. If your favorite professional font
-package is not among these, use the <span class="texttt">professionalfonts</span> theme (and open an issue in our github bug tracker, so that the package can be added).
-</p>
-</li>
-</ul>
-<div class="fonttheme">
-<ul style="list-style-type:none">
-<li>
-<p>
-<span class="extracttheme">\usefonttheme<span class="opt"><span class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>options</i><span class="angle">&rangle;</span></span><span class="oarg-right-bracket">]</span></span>{<span class="declare">serif</span>}</span>
-</p>
-<p>
-<i>Example: </i>
-</p>
-<p>
-</p>
-<div class="themeexample-image">
-<p>
-<object data="beamerthemeexample/beamerugfontthemeserif-page1.svg" type="image/svg+xml"></object>&emsp;&emsp;
-<object data="beamerthemeexample/beamerugfontthemeserif-page2.svg" type="image/svg+xml"></object>
-</p>
-</div>
-<p>
-This theme causes all text to be typeset using the default serif font (except if you specify certain <span class="meta"><span class="angle">&langle;</span><i>options</i><span class="angle">&rangle;</span></span>). You might wish to consult Section&nbsp;<a href="Guidelines-Creating-Presentations.html#section-guidelines-serif">5.6.2</a> on whether you should use serif fonts.
-</p>
-<p>
-The following <span class="meta"><span class="angle">&langle;</span><i>options</i><span class="angle">&rangle;</span></span> may be given:
-</p>
-<ul style="list-style-type:none">
-<li>
-<p>
-&bull; <span class="declare"><span class="texttt">stillsansserifmath</span></span> causes mathematical text still to be typeset using sans serif. This option only makes sense if you also use the <span class="texttt">stillsansseriftext</span> option since sans
-serif math inside serif text looks silly.
-</p>
-</li>
-<li>
-<p>
-&bull; <span class="declare"><span class="texttt">stillsansserifsmall</span></span> will cause &ldquo;small&rdquo; text to be still typeset using sans serif. This refers to the text in the headline, footline, and sidebars. Using this options is often advisable since small text is often
-easier to read in sans serif.
-</p>
-</li>
-<li>
-<p>
-&bull; <span class="declare"><span class="texttt">stillsansseriflarge</span></span> will cause &ldquo;large&rdquo; text like the presentation title or the frame title to be still typeset using sans serif. Sans serif titles with serif text are a popular combination in typography.
-</p>
-</li>
-<li>
-<p>
-&bull; <span class="declare"><span class="texttt">stillsansseriftext</span></span> will cause normal text (none of the above three) to be still typeset using sans serif. If you use this option, you should most likely also use the first two. However, by not using <span class="texttt">stillsansseriflarge</span>, you get a serif (possibly italic) title over a sans serif text. This can be an interesting visual effect. Naturally, &ldquo;interesting typographic effect&rdquo; can mean &ldquo;terrible typographic effect&rdquo; if you choose the wrong fonts combinations
-or sizes. You&rsquo;ll need some typographic experience to judge this correctly. If in doubt, try asking someone who should know.
-</p>
-</li>
-<li>
-<p>
-&bull; <span class="declare"><span class="texttt">onlymath</span></span> is a short-cut for selecting all of the above options except for the first. Thus, using this option causes only mathematical text to by typeset using a serif font. Recall that, by default,
-mathematical formulas are also typeset using sans-serif letters. In most cases, this is visually the most pleasing and easily readable way of typesetting mathematical formulas if the surrounding text is typeset using sans serif. However, in mathematical texts the font used to
-render, say, a variable is sometimes used to differentiate between different meanings of this variable. In such case, it may be necessary to typeset mathematical text using serif letters. Also, if you have a lot of mathematical text, the audience may be quicker to &ldquo;parse&rdquo; it if
-it is typeset the way people usually read mathematical text: in a serif font.
-</p>
-</li>
-</ul>
-</li>
-</ul>
-</div>
-<div class="fonttheme">
-<ul style="list-style-type:none">
-<li>
-<p>
-<span class="extracttheme">\usefonttheme<span class="opt"><span class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>options</i><span class="angle">&rangle;</span></span><span class="oarg-right-bracket">]</span></span>{<span class="declare">structurebold</span>}</span>
-</p>
-<p>
-<i>Example: </i>
-</p>
-<p>
-</p>
-<div class="themeexample-image">
-<p>
-<object data="beamerthemeexample/beamerugfontthemestructurebold-page1.svg" type="image/svg+xml"></object>&emsp;&emsp;
-<object data="beamerthemeexample/beamerugfontthemestructurebold-page2.svg" type="image/svg+xml"></object>
-</p>
-</div>
-<p>
-This font theme will cause titles and text in the headlines, footlines, and sidebars to be typeset in a bold font.
-</p>
-<p>
-The following <span class="meta"><span class="angle">&langle;</span><i>options</i><span class="angle">&rangle;</span></span> may be given:
-</p>
-<ul style="list-style-type:none">
-<li>
-<p>
-&bull; <span class="declare"><span class="texttt">onlysmall</span></span> will cause only &ldquo;small&rdquo; text to be typeset in bold. More precisely, only the text in the headline, footline, and sidebars is changed to be typeset in bold. Large titles are not affected.
-</p>
-</li>
-<li>
-<p>
-&bull; <span class="declare"><span class="texttt">onlylarge</span></span> will cause only &ldquo;large&rdquo; text to be typeset in bold. These are the main title, frame titles, and section entries in the table of contents.
-</p>
-</li>
-</ul>
-<p>
-As pointed out in Section&nbsp;<a href="Guidelines-Creating-Presentations.html#section-sizes">5.6.1</a>, you should use this theme (possibly with the <span class="texttt">onlysmall</span> option) if your font is not scaled down properly or for light-on-dark
-text.
-</p>
-<p>
-The normal themes do not install this theme by default, while the old compatibility themes do. Since you can reload the theme once it has been loaded, you cannot use this theme with the old compatibility themes to set also titles to a bold font.
-</p>
-</li>
-</ul>
-</div>
-<div class="fonttheme">
-<ul style="list-style-type:none">
-<li>
-<p>
-<span class="extracttheme">\usefonttheme<span class="opt"><span class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>options</i><span class="angle">&rangle;</span></span><span class="oarg-right-bracket">]</span></span>{<span class="declare">structureitalicserif</span>}</span>
-</p>
-<p>
-<i>Example: </i>
-</p>
-<p>
-</p>
-<div class="themeexample-image">
-<p>
-<object data="beamerthemeexample/beamerugfontthemestructureitalicserif-page1.svg" type="image/svg+xml"></object>&emsp;&emsp;
-<object data="beamerthemeexample/beamerugfontthemestructureitalicserif-page2.svg" type="image/svg+xml"></object>
-</p>
-</div>
-<p>
-This theme is similarly as the <span class="texttt">structurebold</span> font theme, but where <span class="texttt">structurebold</span> makes text bold, this theme typesets it in italics and in the standard serif font. The same <span class="meta"><span class="angle">&langle;</span><i>options</i><span class="angle">&rangle;</span></span> as for the <span class="texttt">structurebold</span> theme are supported. See Section&nbsp;<a href="Guidelines-Creating-Presentations.html#section-italics">5.6.3</a> for the pros and cons of using italics.
-</p>
-</li>
-</ul>
-</div>
-<div class="fonttheme">
-<ul style="list-style-type:none">
-<li>
-<p>
-<span class="extracttheme">\usefonttheme<span class="opt"><span class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>options</i><span class="angle">&rangle;</span></span><span class="oarg-right-bracket">]</span></span>{<span class="declare">structuresmallcapsserif</span>}</span>
-</p>
-<p>
-<i>Example: </i>
-</p>
-<p>
-</p>
-<div class="themeexample-image">
-<p>
-<object data="beamerthemeexample/beamerugfontthemestructuresmallcapsserif-page1.svg" type="image/svg+xml"></object>&emsp;&emsp;
-<object data="beamerthemeexample/beamerugfontthemestructuresmallcapsserif-page2.svg" type="image/svg+xml"></object>
-</p>
-</div>
-<p>
-Again, this theme does exactly the same as the <span class="texttt">structurebold</span> font theme, only this time text is set using small caps and a serif font. The same <span class="meta"><span class="angle">&langle;</span><i>options</i><span class="angle">&rangle;</span></span> as for the <span class="texttt">structurebold</span> theme are supported. See Section&nbsp;<a href="Guidelines-Creating-Presentations.html#section-smallcaps">5.6.3</a> for the pros and cons of using small caps.
-</p>
-</li>
-</ul>
-</div>
-<!--
+          <h5 id="autosec-507">
+            <span
+              ><span class="sectionnumber" id="sec-18.1">18.1</span> Font
+              Themes</span
+            ><a class="anchor-link" href="#sec-18.1">&para;</a>
+          </h5>
+          <a id="beameruserguide-autopage-507"></a>
+          <p>
+            <span class="beamer-name"><span class="textsc">beamer</span></span>
+            comes with a set of font themes. When you use such a theme, certain
+            fonts are changed as described below. You can use several font
+            themes in concert. For historical reasons, you cannot change all
+            aspects of the fonts used using font themes&mdash;in some cases
+            special commands and options are needed, which are described in the
+            next subsection.
+          </p>
+          <p>
+            The following font themes only change certain font attributes, they
+            do not choose special font families (although that would also be
+            possible and themes doing just that might be added in the future).
+            Currently, to change the font family, you need to load special
+            packages as explained in the next subsection.
+          </p>
+          <div class="fonttheme">
+            <ul style="list-style-type: none">
+              <li>
+                <p>
+                  <span class="extracttheme"
+                    >\usefonttheme{<span class="declare">default</span>}</span
+                  >
+                </p>
+                <p>
+                  <i>Example: </i>
+                </p>
+
+                <div class="themeexample-image">
+                  <p>
+                    <object
+                      data="beamerthemeexample/beamerugfontthemedefault-page1.svg"
+                      type="image/svg+xml"
+                    ></object
+                    >&emsp;&emsp;
+                    <object
+                      data="beamerthemeexample/beamerugfontthemedefault-page2.svg"
+                      type="image/svg+xml"
+                    ></object>
+                  </p>
+                </div>
+                <p>
+                  The default font theme installs a sans serif font for all text
+                  of the presentation. The default theme installs different font
+                  sizes for things like titles or head- and footlines, but does
+                  not use boldface or italics for &ldquo;highlighting.&rdquo; To
+                  change some or all text to a serif font, use the
+                  <span class="texttt">serif</span> theme.
+                </p>
+                <p>
+                  <em>Note:</em> The command
+                  <span class="texttt">\mathrm</span> will always produce
+                  upright (not slanted), serif text and the command
+                  <span class="texttt">\mathsf</span> will always produce
+                  upright, sans-serif text. The command
+                  <span class="texttt">\mathbf</span> will produce upright,
+                  bold-face, sans-serif or serif text, depending on whether
+                  <span class="texttt">mathsans</span> or
+                  <span class="texttt">mathserif</span> is used.
+                </p>
+                <p>
+                  To produce an upright, sans-serif or serif text, depending on
+                  whether <span class="texttt">mathsans</span> or
+                  <span class="texttt">mathserif</span> is used, you can use for
+                  instance the command
+                  <span class="texttt">\operatorname</span> from the
+                  <span class="texttt">amsmath</span> package. Using this
+                  command instead of <span class="texttt">\mathrm</span> or
+                  <span class="texttt">\mathsf</span> directly will
+                  automatically adjust upright mathematical text if you switch
+                  from sans-serif to serif or back.
+                </p>
+              </li>
+            </ul>
+          </div>
+          <ul style="list-style-type: none">
+            <li>
+              <p>
+                <span class="extracttheme"
+                  >\usefonttheme{<span class="declare">professionalfonts</span
+                  >}</span
+                >
+              </p>
+              <p>
+                This font theme does not really change any fonts. Rather, it
+                <em>suppresses</em> certain internal replacements performed by
+                <span class="beamer-name"
+                  ><span class="textsc">beamer</span></span
+                >. If you use &ldquo;professional fonts&rdquo; (fonts that you
+                buy and that come with a complete set of every symbol in all
+                modes), you do not want
+                <span class="beamer-name"
+                  ><span class="textsc">beamer</span></span
+                >
+                to meddle with the fonts you use.
+                <span class="beamer-name"
+                  ><span class="textsc">beamer</span></span
+                >
+                normally replaces certain character glyphs in mathematical text
+                by more appropriate versions. For example,
+                <span class="beamer-name"
+                  ><span class="textsc">beamer</span></span
+                >
+                will normally replace glyphs such that the italic characters
+                from the main font are used for variables in mathematical text.
+                If your professional font package takes care of this already,
+                <span class="beamer-name"
+                  ><span class="textsc">beamer</span></span
+                >&rsquo;s meddling should be switched off. Note that
+                <span class="beamer-name"
+                  ><span class="textsc">beamer</span></span
+                >&rsquo;s substitution is automatically turned off if one of the
+                following packages is loaded:
+                <span class="texttt">arevmath</span>,
+                <span class="texttt">hvmath</span>,
+                <span class="texttt">kpfonts</span>,
+                <span class="texttt">lmodern</span>,
+                <span class="texttt">lucidabr</span>,
+                <span class="texttt">lucimatx</span>,
+                <span class="texttt">mathastext</span>,
+                <span class="texttt">mathpmnt</span>,
+                <span class="texttt">mathpple</span>,
+                <span class="texttt">mathtime</span>,
+                <span class="texttt">mtpro</span>, and
+                <span class="texttt">mtpro2</span>. It is also turned off when
+                <span class="texttt">unicode-math</span> is loaded for the use
+                of Unicode math fonts. If your favorite professional font
+                package is not among these, use the
+                <span class="texttt">professionalfonts</span> theme (and open an
+                issue in our github bug tracker, so that the package can be
+                added).
+              </p>
+            </li>
+          </ul>
+          <div class="fonttheme">
+            <ul style="list-style-type: none">
+              <li>
+                <p>
+                  <span class="extracttheme"
+                    >\usefonttheme<span class="opt"
+                      ><span class="oarg-left-bracket">[</span
+                      ><span class="meta"
+                        ><span class="angle">&langle;</span><i>options</i
+                        ><span class="angle">&rangle;</span></span
+                      ><span class="oarg-right-bracket">]</span></span
+                    >{<span class="declare">serif</span>}</span
+                  >
+                </p>
+                <p>
+                  <i>Example: </i>
+                </p>
+
+                <div class="themeexample-image">
+                  <p>
+                    <object
+                      data="beamerthemeexample/beamerugfontthemeserif-page1.svg"
+                      type="image/svg+xml"
+                    ></object
+                    >&emsp;&emsp;
+                    <object
+                      data="beamerthemeexample/beamerugfontthemeserif-page2.svg"
+                      type="image/svg+xml"
+                    ></object>
+                  </p>
+                </div>
+                <p>
+                  This theme causes all text to be typeset using the default
+                  serif font (except if you specify certain
+                  <span class="meta"
+                    ><span class="angle">&langle;</span><i>options</i
+                    ><span class="angle">&rangle;</span></span
+                  >). You might wish to consult Section&nbsp;<a
+                    href="Guidelines-Creating-Presentations.html#section-guidelines-serif"
+                    >5.6.2</a
+                  >
+                  on whether you should use serif fonts.
+                </p>
+                <p>
+                  The following
+                  <span class="meta"
+                    ><span class="angle">&langle;</span><i>options</i
+                    ><span class="angle">&rangle;</span></span
+                  >
+                  may be given:
+                </p>
+                <ul style="list-style-type: none">
+                  <li>
+                    <p>
+                      &bull;
+                      <span class="declare"
+                        ><span class="texttt">stillsansserifmath</span></span
+                      >
+                      causes mathematical text still to be typeset using sans
+                      serif. This option only makes sense if you also use the
+                      <span class="texttt">stillsansseriftext</span> option
+                      since sans serif math inside serif text looks silly.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      &bull;
+                      <span class="declare"
+                        ><span class="texttt">stillsansserifsmall</span></span
+                      >
+                      will cause &ldquo;small&rdquo; text to be still typeset
+                      using sans serif. This refers to the text in the headline,
+                      footline, and sidebars. Using this options is often
+                      advisable since small text is often easier to read in sans
+                      serif.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      &bull;
+                      <span class="declare"
+                        ><span class="texttt">stillsansseriflarge</span></span
+                      >
+                      will cause &ldquo;large&rdquo; text like the presentation
+                      title or the frame title to be still typeset using sans
+                      serif. Sans serif titles with serif text are a popular
+                      combination in typography.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      &bull;
+                      <span class="declare"
+                        ><span class="texttt">stillsansseriftext</span></span
+                      >
+                      will cause normal text (none of the above three) to be
+                      still typeset using sans serif. If you use this option,
+                      you should most likely also use the first two. However, by
+                      not using <span class="texttt">stillsansseriflarge</span>,
+                      you get a serif (possibly italic) title over a sans serif
+                      text. This can be an interesting visual effect. Naturally,
+                      &ldquo;interesting typographic effect&rdquo; can mean
+                      &ldquo;terrible typographic effect&rdquo; if you choose
+                      the wrong fonts combinations or sizes. You&rsquo;ll need
+                      some typographic experience to judge this correctly. If in
+                      doubt, try asking someone who should know.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      &bull;
+                      <span class="declare"
+                        ><span class="texttt">onlymath</span></span
+                      >
+                      is a short-cut for selecting all of the above options
+                      except for the first. Thus, using this option causes only
+                      mathematical text to by typeset using a serif font. Recall
+                      that, by default, mathematical formulas are also typeset
+                      using sans-serif letters. In most cases, this is visually
+                      the most pleasing and easily readable way of typesetting
+                      mathematical formulas if the surrounding text is typeset
+                      using sans serif. However, in mathematical texts the font
+                      used to render, say, a variable is sometimes used to
+                      differentiate between different meanings of this variable.
+                      In such case, it may be necessary to typeset mathematical
+                      text using serif letters. Also, if you have a lot of
+                      mathematical text, the audience may be quicker to
+                      &ldquo;parse&rdquo; it if it is typeset the way people
+                      usually read mathematical text: in a serif font.
+                    </p>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <div class="fonttheme">
+            <ul style="list-style-type: none">
+              <li>
+                <p>
+                  <span class="extracttheme"
+                    >\usefonttheme<span class="opt"
+                      ><span class="oarg-left-bracket">[</span
+                      ><span class="meta"
+                        ><span class="angle">&langle;</span><i>options</i
+                        ><span class="angle">&rangle;</span></span
+                      ><span class="oarg-right-bracket">]</span></span
+                    >{<span class="declare">structurebold</span>}</span
+                  >
+                </p>
+                <p>
+                  <i>Example: </i>
+                </p>
+
+                <div class="themeexample-image">
+                  <p>
+                    <object
+                      data="beamerthemeexample/beamerugfontthemestructurebold-page1.svg"
+                      type="image/svg+xml"
+                    ></object
+                    >&emsp;&emsp;
+                    <object
+                      data="beamerthemeexample/beamerugfontthemestructurebold-page2.svg"
+                      type="image/svg+xml"
+                    ></object>
+                  </p>
+                </div>
+                <p>
+                  This font theme will cause titles and text in the headlines,
+                  footlines, and sidebars to be typeset in a bold font.
+                </p>
+                <p>
+                  The following
+                  <span class="meta"
+                    ><span class="angle">&langle;</span><i>options</i
+                    ><span class="angle">&rangle;</span></span
+                  >
+                  may be given:
+                </p>
+                <ul style="list-style-type: none">
+                  <li>
+                    <p>
+                      &bull;
+                      <span class="declare"
+                        ><span class="texttt">onlysmall</span></span
+                      >
+                      will cause only &ldquo;small&rdquo; text to be typeset in
+                      bold. More precisely, only the text in the headline,
+                      footline, and sidebars is changed to be typeset in bold.
+                      Large titles are not affected.
+                    </p>
+                  </li>
+                  <li>
+                    <p>
+                      &bull;
+                      <span class="declare"
+                        ><span class="texttt">onlylarge</span></span
+                      >
+                      will cause only &ldquo;large&rdquo; text to be typeset in
+                      bold. These are the main title, frame titles, and section
+                      entries in the table of contents.
+                    </p>
+                  </li>
+                </ul>
+                <p>
+                  As pointed out in Section&nbsp;<a
+                    href="Guidelines-Creating-Presentations.html#section-sizes"
+                    >5.6.1</a
+                  >, you should use this theme (possibly with the
+                  <span class="texttt">onlysmall</span> option) if your font is
+                  not scaled down properly or for light-on-dark text.
+                </p>
+                <p>
+                  The normal themes do not install this theme by default, while
+                  the old compatibility themes do. Since you can reload the
+                  theme once it has been loaded, you cannot use this theme with
+                  the old compatibility themes to set also titles to a bold
+                  font.
+                </p>
+              </li>
+            </ul>
+          </div>
+          <div class="fonttheme">
+            <ul style="list-style-type: none">
+              <li>
+                <p>
+                  <span class="extracttheme"
+                    >\usefonttheme<span class="opt"
+                      ><span class="oarg-left-bracket">[</span
+                      ><span class="meta"
+                        ><span class="angle">&langle;</span><i>options</i
+                        ><span class="angle">&rangle;</span></span
+                      ><span class="oarg-right-bracket">]</span></span
+                    >{<span class="declare">structureitalicserif</span>}</span
+                  >
+                </p>
+                <p>
+                  <i>Example: </i>
+                </p>
+
+                <div class="themeexample-image">
+                  <p>
+                    <object
+                      data="beamerthemeexample/beamerugfontthemestructureitalicserif-page1.svg"
+                      type="image/svg+xml"
+                    ></object
+                    >&emsp;&emsp;
+                    <object
+                      data="beamerthemeexample/beamerugfontthemestructureitalicserif-page2.svg"
+                      type="image/svg+xml"
+                    ></object>
+                  </p>
+                </div>
+                <p>
+                  This theme is similarly as the
+                  <span class="texttt">structurebold</span> font theme, but
+                  where <span class="texttt">structurebold</span> makes text
+                  bold, this theme typesets it in italics and in the standard
+                  serif font. The same
+                  <span class="meta"
+                    ><span class="angle">&langle;</span><i>options</i
+                    ><span class="angle">&rangle;</span></span
+                  >
+                  as for the <span class="texttt">structurebold</span> theme are
+                  supported. See Section&nbsp;<a
+                    href="Guidelines-Creating-Presentations.html#section-italics"
+                    >5.6.3</a
+                  >
+                  for the pros and cons of using italics.
+                </p>
+              </li>
+            </ul>
+          </div>
+          <div class="fonttheme">
+            <ul style="list-style-type: none">
+              <li>
+                <p>
+                  <span class="extracttheme"
+                    >\usefonttheme<span class="opt"
+                      ><span class="oarg-left-bracket">[</span
+                      ><span class="meta"
+                        ><span class="angle">&langle;</span><i>options</i
+                        ><span class="angle">&rangle;</span></span
+                      ><span class="oarg-right-bracket">]</span></span
+                    >{<span class="declare">structuresmallcapsserif</span
+                    >}</span
+                  >
+                </p>
+                <p>
+                  <i>Example: </i>
+                </p>
+
+                <div class="themeexample-image">
+                  <p>
+                    <object
+                      data="beamerthemeexample/beamerugfontthemestructuresmallcapsserif-page1.svg"
+                      type="image/svg+xml"
+                    ></object
+                    >&emsp;&emsp;
+                    <object
+                      data="beamerthemeexample/beamerugfontthemestructuresmallcapsserif-page2.svg"
+                      type="image/svg+xml"
+                    ></object>
+                  </p>
+                </div>
+                <p>
+                  Again, this theme does exactly the same as the
+                  <span class="texttt">structurebold</span> font theme, only
+                  this time text is set using small caps and a serif font. The
+                  same
+                  <span class="meta"
+                    ><span class="angle">&langle;</span><i>options</i
+                    ><span class="angle">&rangle;</span></span
+                  >
+                  as for the <span class="texttt">structurebold</span> theme are
+                  supported. See Section&nbsp;<a
+                    href="Guidelines-Creating-Presentations.html#section-smallcaps"
+                    >5.6.3</a
+                  >
+                  for the pros and cons of using small caps.
+                </p>
+              </li>
+            </ul>
+          </div>
+          <!--
 ...... subsection Font Changes Made Without Using Font Themes ......
 -->
-<h5 id="autosec-483"><span><span class="sectionnumber" id="sec-18.2">18.2</span> Font Changes Made Without Using Font Themes</span><a class="anchor-link" href="#sec-18.2">&para;</a></h5>
-<a id="beameruserguide-autopage-483"></a>
-<p>
-While most font decisions can be made using font themes, for historical reasons some changes can only be made using class options or by loading special packages. These options are explained in the following. Possibly, these options will be replaced by themes in the future.
-</p>
-<!--
+          <h5 id="autosec-508">
+            <span
+              ><span class="sectionnumber" id="sec-18.2">18.2</span> Font
+              Changes Made Without Using Font Themes</span
+            ><a class="anchor-link" href="#sec-18.2">&para;</a>
+          </h5>
+          <a id="beameruserguide-autopage-508"></a>
+          <p>
+            While most font decisions can be made using font themes, for
+            historical reasons some changes can only be made using class options
+            or by loading special packages. These options are explained in the
+            following. Possibly, these options will be replaced by themes in the
+            future.
+          </p>
+          <!--
 ...... subsubsection Choosing a Font Size for Normal Text ......
 -->
-<h6 id="autosec-484"><span><span class="sectionnumber" id="sec-18.2.1">18.2.1</span> Choosing a Font Size for Normal Text</span><a class="anchor-link" href="#sec-18.2.1">&para;</a></h6>
-<a id="beameruserguide-autopage-484"></a>
-<p>
-As pointed out in Section&nbsp;<a href="Guidelines-Creating-Presentations.html#section-sizes">5.6.1</a>, measuring the default font size in points is not really a good idea for presentations. Nevertheless, <span class="beamer-name"><span class="textsc">beamer</span></span> does just that, setting the default font size to 11pt as usual. This may seem ridiculously small, but the actual size of each frame size is by default just 128mm by 96mm and the viewer application enlarges the font. By specifying a
-default font size smaller than 11pt you can put more onto each slide, by specifying a larger font size you can fit on less.
-</p>
-<p>
-To specify the font size, you can use the following class options:
-</p>
-<div class="classoption">
-<ul style="list-style-type:none">
-<li>
-<p>
-<span class="classoption-heading">\documentclass[<span class="declare">8pt</span>]{beamer}</span>
-</p>
-<p>
-This is way too small. Requires that the package <span class="texttt">extsize</span> is installed.
-</p>
-</li>
-</ul>
-</div>
-<div class="classoption">
-<ul style="list-style-type:none">
-<li>
-<p>
-<span class="classoption-heading">\documentclass[<span class="declare">9pt</span>]{beamer}</span>
-</p>
-<p>
-This is also too small. Requires that the package <span class="texttt">extsize</span> is installed.
-</p>
-</li>
-</ul>
-</div>
-<div class="classoption">
-<ul style="list-style-type:none">
-<li>
-<p>
-<span class="classoption-heading">\documentclass[<span class="declare">10pt</span>]{beamer}</span>
-</p>
-<p>
-If you really need to fit more onto each frame, use this option. Works without <span class="texttt">extsize</span>.
-</p>
-</li>
-</ul>
-</div>
-<div class="classoption">
-<ul style="list-style-type:none">
-<li>
-<p>
-<span class="classoption-heading">\documentclass[<span class="declare">smaller</span>]{beamer}</span>
-</p>
-<p>
-Same as the <span class="texttt">10pt</span> option.
-</p>
-</li>
-</ul>
-</div>
-<div class="classoption">
-<ul style="list-style-type:none">
-<li>
-<p>
-<span class="classoption-heading">\documentclass[<span class="declare">11pt</span>]{beamer}</span>
-</p>
-<p>
-The default font size. You need not specify this option.
-</p>
-</li>
-</ul>
-</div>
-<div class="classoption">
-<ul style="list-style-type:none">
-<li>
-<p>
-<span class="classoption-heading">\documentclass[<span class="declare">12pt</span>]{beamer}</span>
-</p>
-<p>
-Makes all fonts a little bigger, which makes the text more readable. The downside is that less fits onto each frame.
-</p>
-</li>
-</ul>
-</div>
-<div class="classoption">
-<ul style="list-style-type:none">
-<li>
-<p>
-<span class="classoption-heading">\documentclass[<span class="declare">bigger</span>]{beamer}</span>
-</p>
-<p>
-Same as the <span class="texttt">12pt</span> option.
-</p>
-</li>
-</ul>
-</div>
-<div class="classoption">
-<ul style="list-style-type:none">
-<li>
-<p>
-<span class="classoption-heading">\documentclass[<span class="declare">14pt</span>]{beamer}</span>
-</p>
-<p>
-Makes all fonts somewhat bigger. Requires <span class="texttt">extsize</span> to be installed.
-</p>
-</li>
-</ul>
-</div>
-<div class="classoption">
-<ul style="list-style-type:none">
-<li>
-<p>
-<span class="classoption-heading">\documentclass[<span class="declare">17pt</span>]{beamer}</span>
-</p>
-<p>
-This is about the default size of PowerPoint and OpenOffice.org Impress. Requires <span class="texttt">extsize</span> to be installed.
-</p>
-</li>
-</ul>
-</div>
-<div class="classoption">
-<ul style="list-style-type:none">
-<li>
-<p>
-<span class="classoption-heading">\documentclass[<span class="declare">20pt</span>]{beamer}</span>
-</p>
-<p>
-This is really huge. Requires <span class="texttt">extsize</span> to be installed.
-</p>
-</li>
-</ul>
-</div>
-<!--
+          <h6 id="autosec-509">
+            <span
+              ><span class="sectionnumber" id="sec-18.2.1">18.2.1</span>
+              Choosing a Font Size for Normal Text</span
+            ><a class="anchor-link" href="#sec-18.2.1">&para;</a>
+          </h6>
+          <a id="beameruserguide-autopage-509"></a>
+          <p>
+            As pointed out in Section&nbsp;<a
+              href="Guidelines-Creating-Presentations.html#section-sizes"
+              >5.6.1</a
+            >, measuring the default font size in points is not really a good
+            idea for presentations. Nevertheless,
+            <span class="beamer-name"><span class="textsc">beamer</span></span>
+            does just that, setting the default font size to 11pt as usual. This
+            may seem ridiculously small, but the actual size of each frame size
+            is by default just 128mm by 96mm and the viewer application enlarges
+            the font. By specifying a default font size smaller than 11pt you
+            can put more onto each slide, by specifying a larger font size you
+            can fit on less.
+          </p>
+          <p>
+            To specify the font size, you can use the following class options:
+          </p>
+          <div class="classoption">
+            <ul style="list-style-type: none">
+              <li>
+                <p>
+                  <span class="classoption-heading"
+                    >\documentclass[<span class="declare">8pt</span
+                    >]{beamer}</span
+                  >
+                </p>
+                <p>
+                  This is way too small. Requires that the package
+                  <span class="texttt">extsize</span> is installed.
+                </p>
+              </li>
+            </ul>
+          </div>
+          <div class="classoption">
+            <ul style="list-style-type: none">
+              <li>
+                <p>
+                  <span class="classoption-heading"
+                    >\documentclass[<span class="declare">9pt</span
+                    >]{beamer}</span
+                  >
+                </p>
+                <p>
+                  This is also too small. Requires that the package
+                  <span class="texttt">extsize</span> is installed.
+                </p>
+              </li>
+            </ul>
+          </div>
+          <div class="classoption">
+            <ul style="list-style-type: none">
+              <li>
+                <p>
+                  <span class="classoption-heading"
+                    >\documentclass[<span class="declare">10pt</span
+                    >]{beamer}</span
+                  >
+                </p>
+                <p>
+                  If you really need to fit more onto each frame, use this
+                  option. Works without <span class="texttt">extsize</span>.
+                </p>
+              </li>
+            </ul>
+          </div>
+          <div class="classoption">
+            <ul style="list-style-type: none">
+              <li>
+                <p>
+                  <span class="classoption-heading"
+                    >\documentclass[<span class="declare">smaller</span
+                    >]{beamer}</span
+                  >
+                </p>
+                <p>Same as the <span class="texttt">10pt</span> option.</p>
+              </li>
+            </ul>
+          </div>
+          <div class="classoption">
+            <ul style="list-style-type: none">
+              <li>
+                <p>
+                  <span class="classoption-heading"
+                    >\documentclass[<span class="declare">11pt</span
+                    >]{beamer}</span
+                  >
+                </p>
+                <p>The default font size. You need not specify this option.</p>
+              </li>
+            </ul>
+          </div>
+          <div class="classoption">
+            <ul style="list-style-type: none">
+              <li>
+                <p>
+                  <span class="classoption-heading"
+                    >\documentclass[<span class="declare">12pt</span
+                    >]{beamer}</span
+                  >
+                </p>
+                <p>
+                  Makes all fonts a little bigger, which makes the text more
+                  readable. The downside is that less fits onto each frame.
+                </p>
+              </li>
+            </ul>
+          </div>
+          <div class="classoption">
+            <ul style="list-style-type: none">
+              <li>
+                <p>
+                  <span class="classoption-heading"
+                    >\documentclass[<span class="declare">bigger</span
+                    >]{beamer}</span
+                  >
+                </p>
+                <p>Same as the <span class="texttt">12pt</span> option.</p>
+              </li>
+            </ul>
+          </div>
+          <div class="classoption">
+            <ul style="list-style-type: none">
+              <li>
+                <p>
+                  <span class="classoption-heading"
+                    >\documentclass[<span class="declare">14pt</span
+                    >]{beamer}</span
+                  >
+                </p>
+                <p>
+                  Makes all fonts somewhat bigger. Requires
+                  <span class="texttt">extsize</span> to be installed.
+                </p>
+              </li>
+            </ul>
+          </div>
+          <div class="classoption">
+            <ul style="list-style-type: none">
+              <li>
+                <p>
+                  <span class="classoption-heading"
+                    >\documentclass[<span class="declare">17pt</span
+                    >]{beamer}</span
+                  >
+                </p>
+                <p>
+                  This is about the default size of PowerPoint and
+                  OpenOffice.org Impress. Requires
+                  <span class="texttt">extsize</span> to be installed.
+                </p>
+              </li>
+            </ul>
+          </div>
+          <div class="classoption">
+            <ul style="list-style-type: none">
+              <li>
+                <p>
+                  <span class="classoption-heading"
+                    >\documentclass[<span class="declare">20pt</span
+                    >]{beamer}</span
+                  >
+                </p>
+                <p>
+                  This is really huge. Requires
+                  <span class="texttt">extsize</span> to be installed.
+                </p>
+              </li>
+            </ul>
+          </div>
+          <!--
 ...... subsubsection Choosing a Font Family ......
 -->
-<h6 id="autosec-485"><a id="section-substition"></a><span><span class="sectionnumber" id="sec-18.2.2">18.2.2</span> Choosing a Font Family</span><a class="anchor-link" href="#sec-18.2.2">&para;</a></h6>
-<a id="beameruserguide-autopage-485"></a>
+          <h6 id="autosec-510">
+            <a id="section-substition"></a
+            ><span
+              ><span class="sectionnumber" id="sec-18.2.2">18.2.2</span>
+              Choosing a Font Family</span
+            ><a class="anchor-link" href="#sec-18.2.2">&para;</a>
+          </h6>
+          <a id="beameruserguide-autopage-510"></a>
 
-<p>
-By default, <span class="beamer-name"><span class="textsc">beamer</span></span> uses the Computer Modern fonts. To change this, you can use one of the prepared packages of <span class="latexlogofont"><span class="latexlogo">L<span class="latexlogosup">a</span>T<span class="latexlogosub">e</span>X</span></span>&rsquo;s font mechanism. For example, to change to Times/Helvetica, simply add
-</p>
-<pre class="verbatim">
+          <p>
+            By default,
+            <span class="beamer-name"><span class="textsc">beamer</span></span>
+            uses the Computer Modern fonts. To change this, you can use one of
+            the prepared packages of
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >L<span class="latexlogosup">a</span>T<span class="latexlogosub"
+                  >e</span
+                >X</span
+              ></span
+            >&rsquo;s font mechanism. For example, to change to Times/Helvetica,
+            simply add
+          </p>
+          <pre class="verbatim">
 \usepackage{mathptmx}
 \usepackage{helvet}
-</pre>
-<p>
-in your preamble. Note that if you do not use the <span class="texttt">serif</span> font theme, Helvetica (not Times) will be selected as the text font.
-</p>
-<p>
-There may be many other fonts available on your installation. Typically, at least some of the following packages should be available: <span class="texttt">arev</span>, <span class="texttt">avant</span>, <span class="texttt">bookman</span>, <span class="texttt">chancery</span>, <span class="texttt">charter</span>, <span class="texttt">euler</span>, <span class="texttt">helvet</span>, <span class="texttt">lmodern</span>, <span class="texttt">mathtime</span>, <span class="texttt">mathptm</span>, <span class="texttt">mathptmx</span>, <span class="texttt">newcent</span>, <span class="texttt">palatino</span>, <span class="texttt">pifont</span>, <span class="texttt">utopia</span>.
-</p>
-<!--
+</pre
+          >
+          <p>
+            in your preamble. Note that if you do not use the
+            <span class="texttt">serif</span> font theme, Helvetica (not Times)
+            will be selected as the text font.
+          </p>
+          <p>
+            There may be many other fonts available on your installation.
+            Typically, at least some of the following packages should be
+            available: <span class="texttt">arev</span>,
+            <span class="texttt">avant</span>,
+            <span class="texttt">bookman</span>,
+            <span class="texttt">chancery</span>,
+            <span class="texttt">charter</span>,
+            <span class="texttt">euler</span>,
+            <span class="texttt">helvet</span>,
+            <span class="texttt">lmodern</span>,
+            <span class="texttt">mathtime</span>,
+            <span class="texttt">mathptm</span>,
+            <span class="texttt">mathptmx</span>,
+            <span class="texttt">newcent</span>,
+            <span class="texttt">palatino</span>,
+            <span class="texttt">pifont</span>,
+            <span class="texttt">utopia</span>.
+          </p>
+          <!--
 ...... subsubsection Choosing a Font Encodings ......
 -->
-<h6 id="autosec-487"><a id="section-font-encoding"></a><span><span class="sectionnumber" id="sec-18.2.3">18.2.3</span> Choosing a Font Encodings</span><a class="anchor-link" href="#sec-18.2.3">&para;</a></h6>
-<a id="beameruserguide-autopage-487"></a>
+          <h6 id="autosec-512">
+            <a id="section-font-encoding"></a
+            ><span
+              ><span class="sectionnumber" id="sec-18.2.3">18.2.3</span>
+              Choosing a Font Encodings</span
+            ><a class="anchor-link" href="#sec-18.2.3">&para;</a>
+          </h6>
+          <a id="beameruserguide-autopage-512"></a>
 
-<p>
-The same font can come in different encodings, which are (very roughly spoken) the ways the characters of a text are mapped to glyphs (the actual shape of a particular character in a particular font at a particular size). In <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> two encodings are often used with Latin characters: the T1&nbsp;encoding and the OT1&nbsp;encoding (old T1&nbsp;encoding).
-</p>
-<p>
-Conceptually, the newer T1&nbsp;encoding is preferable over the old OT1&nbsp;encoding. For example, hyphenation of words containing umlauts (like the famous German word Fräulein) will work only if you use the T1&nbsp;encoding. Unfortunately, the EC
-fonts, that is, the T1-encoded Computer Modern fonts, are distributed on small installations just as MetaFont sources and only have bitmap renditions of each glyph. For this reason, using the T1-encoded EC fonts on such small installations will produce <span class="pgf-name"><span class="textsc">pdf</span></span> files that render poorly.
-</p>
-<p>
-<span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> Live (cross-platform; replaced older <kbd>teTeX</kbd> for <span class="textsc">unix</span>/Linux) and MiK<span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> (for Windows platforms) can be installed with different levels of completeness. Concerning the Computer Modern fonts, the following packages can be installed: <span class="texttt">cm-super</span> fonts, <span class="texttt">lmodern</span> (Latin Modern) fonts, and <span class="texttt">lgc</span> fonts, the latter containing the Latin, Greek, and Cyrillic alphabets. Concerning other fonts, the <span class="texttt">txfonts</span> and <span class="texttt">pxfonts</span> are two extended sets of the Times and the Palatino PostScript fonts, both packages containing extended sets of mathematical glyphs. Most other standard PostScript fonts are also available in
-T1&nbsp;encoding.
-</p>
-<p>
-Among the packages that make available the Computer Modern fonts in the T1&nbsp;encoding, the package <span class="texttt">lmodern</span> may be suggested. If you use <span class="texttt">lmodern</span>, several extra fonts become available (like a
-sans-serif boldface math) and extra symbols (like proper guillemots).
-</p>
-<p>
-To select the T1 encoding, use <span class="texttt">\usepackage[T1]{fontenc}</span>. Thus, if you have the LM&nbsp;fonts installed, you could write
-</p>
-<pre class="verbatim">
+          <p>
+            The same font can come in different encodings, which are (very
+            roughly spoken) the ways the characters of a text are mapped to
+            glyphs (the actual shape of a particular character in a particular
+            font at a particular size). In
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >
+            two encodings are often used with Latin characters: the
+            T1&nbsp;encoding and the OT1&nbsp;encoding (old T1&nbsp;encoding).
+          </p>
+          <p>
+            Conceptually, the newer T1&nbsp;encoding is preferable over the old
+            OT1&nbsp;encoding. For example, hyphenation of words containing
+            umlauts (like the famous German word Fräulein) will work only if you
+            use the T1&nbsp;encoding. Unfortunately, the EC fonts, that is, the
+            T1-encoded Computer Modern fonts, are distributed on small
+            installations just as MetaFont sources and only have bitmap
+            renditions of each glyph. For this reason, using the T1-encoded EC
+            fonts on such small installations will produce
+            <span class="pgf-name"><span class="textsc">pdf</span></span> files
+            that render poorly.
+          </p>
+          <p>
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >
+            Live (cross-platform; replaced older <kbd>teTeX</kbd> for
+            <span class="textsc">unix</span>/Linux) and MiK<span
+              class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >
+            (for Windows platforms) can be installed with different levels of
+            completeness. Concerning the Computer Modern fonts, the following
+            packages can be installed:
+            <span class="texttt">cm-super</span> fonts,
+            <span class="texttt">lmodern</span> (Latin Modern) fonts, and
+            <span class="texttt">lgc</span> fonts, the latter containing the
+            Latin, Greek, and Cyrillic alphabets. Concerning other fonts, the
+            <span class="texttt">txfonts</span> and
+            <span class="texttt">pxfonts</span> are two extended sets of the
+            Times and the Palatino PostScript fonts, both packages containing
+            extended sets of mathematical glyphs. Most other standard PostScript
+            fonts are also available in T1&nbsp;encoding.
+          </p>
+          <p>
+            Among the packages that make available the Computer Modern fonts in
+            the T1&nbsp;encoding, the package
+            <span class="texttt">lmodern</span> may be suggested. If you use
+            <span class="texttt">lmodern</span>, several extra fonts become
+            available (like a sans-serif boldface math) and extra symbols (like
+            proper guillemots).
+          </p>
+          <p>
+            To select the T1 encoding, use
+            <span class="texttt">\usepackage[T1]{fontenc}</span>. Thus, if you
+            have the LM&nbsp;fonts installed, you could write
+          </p>
+          <pre class="verbatim">
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
-</pre>
-<p>
-to get beautiful outline fonts and correct hyphenation. Note, however, that certain older versions of the LM&nbsp;bundle did not include correct glyphs for ligatures like &ldquo;fi,&rdquo; which may cause trouble. Double check that all ligatures are displayed correctly and, if not,
-update your installation.
-</p>
-<p>
-Everything mentioned above applies to <span class="texttt">pdflatex</span> and <span class="texttt">latex</span>+<span class="texttt">dvips</span>. Unlike those engines, <span class="texttt">xelatex</span> and <span class="texttt">lualatex</span> support OpenType fonts, and that means that you can use system fonts in your documents relatively easy. Details will eventually be documented in this manual. For now, you can take a look at the documentation for the <span class="texttt">fontspec</span> package which supports both engines. Also, note that when you use <span class="texttt">lualatex</span> or <span class="texttt">xelatex</span> with TU encoding, respectively, by default you get OpenType Latin Modern fonts.
-</p>
-<!--
+</pre
+          >
+          <p>
+            to get beautiful outline fonts and correct hyphenation. Note,
+            however, that certain older versions of the LM&nbsp;bundle did not
+            include correct glyphs for ligatures like &ldquo;fi,&rdquo; which
+            may cause trouble. Double check that all ligatures are displayed
+            correctly and, if not, update your installation.
+          </p>
+          <p>
+            Everything mentioned above applies to
+            <span class="texttt">pdflatex</span> and
+            <span class="texttt">latex</span>+<span class="texttt">dvips</span>.
+            Unlike those engines, <span class="texttt">xelatex</span> and
+            <span class="texttt">lualatex</span> support OpenType fonts, and
+            that means that you can use system fonts in your documents
+            relatively easy. Details will eventually be documented in this
+            manual. For now, you can take a look at the documentation for the
+            <span class="texttt">fontspec</span> package which supports both
+            engines. Also, note that when you use
+            <span class="texttt">lualatex</span> or
+            <span class="texttt">xelatex</span> with TU encoding, respectively,
+            by default you get OpenType Latin Modern fonts.
+          </p>
+          <!--
 ...... subsection Changing the Fonts Used for Different Elements of a Presentation ......
 -->
-<h5 id="autosec-489"><span><span class="sectionnumber" id="sec-18.3">18.3</span> Changing the Fonts Used for Different Elements of a Presentation</span><a class="anchor-link" href="#sec-18.3">&para;</a></h5>
-<a id="beameruserguide-autopage-489"></a>
-<p>
-This section explains how <span class="beamer-name"><span class="textsc">beamer</span></span>&rsquo;s font management works.
-</p>
-<!--
+          <h5 id="autosec-514">
+            <span
+              ><span class="sectionnumber" id="sec-18.3">18.3</span> Changing
+              the Fonts Used for Different Elements of a Presentation</span
+            ><a class="anchor-link" href="#sec-18.3">&para;</a>
+          </h5>
+          <a id="beameruserguide-autopage-514"></a>
+          <p>
+            This section explains how
+            <span class="beamer-name"><span class="textsc">beamer</span></span
+            >&rsquo;s font management works.
+          </p>
+          <!--
 ...... subsubsection Overview of Beamer’s Font Management ......
 -->
-<h6 id="autosec-490"><span><span class="sectionnumber" id="sec-18.3.1">18.3.1</span> Overview of Beamer&rsquo;s Font Management</span><a class="anchor-link" href="#sec-18.3.1">&para;</a></h6>
-<a id="beameruserguide-autopage-490"></a>
-<p>
-<span class="beamer-name"><span class="textsc">beamer</span></span>&rsquo;s font mechanism is somewhat similar to <span class="beamer-name"><span class="textsc">beamer</span></span>&rsquo;s color mechanism, but not quite the same. As for colors, every <span class="beamer-name"><span class="textsc">beamer</span></span> element, like the frame titles, the document title, the footnotes, and so on has a certain <span class="beamer-name"><span class="textsc">beamer</span></span>-font. As for colors, on the one
-hand you can specify the font of each element individually; on the other hand fonts also use inheritance, thereby making it easy to globally change the fonts used for, say, &ldquo;titlelike things&rdquo; or for &ldquo;itemizelike things.&rdquo;
-</p>
-<p>
-While a <span class="beamer-name"><span class="textsc">beamer</span></span>-color has a certain foreground and a certain background, either of which may be empty, a <span class="beamer-name"><span class="textsc">beamer</span></span>-font has a size, a
-shape, a series, and a family, each of which may be empty. The inheritance relation among <span class="beamer-name"><span class="textsc">beamer</span></span>-fonts is not necessarily the same as between <span class="beamer-name"><span class="textsc">beamer</span></span>-colors, though we have tried to match them whenever possible.
-</p>
-<p>
-Multiple inheritance plays a more important rule for fonts than it does for colors. A font might inherit the attributes of two different fonts. If one of them specifies that the font should be, say, boldface and the other specifies that the font should be, say, large, then the
-child font will be both large and bold.
-</p>
-<p>
-As for fonts, the description of the font used for an element is given after the description of the element.
-</p>
-<!--
+          <h6 id="autosec-515">
+            <span
+              ><span class="sectionnumber" id="sec-18.3.1">18.3.1</span>
+              Overview of Beamer&rsquo;s Font Management</span
+            ><a class="anchor-link" href="#sec-18.3.1">&para;</a>
+          </h6>
+          <a id="beameruserguide-autopage-515"></a>
+          <p>
+            <span class="beamer-name"><span class="textsc">beamer</span></span
+            >&rsquo;s font mechanism is somewhat similar to
+            <span class="beamer-name"><span class="textsc">beamer</span></span
+            >&rsquo;s color mechanism, but not quite the same. As for colors,
+            every
+            <span class="beamer-name"><span class="textsc">beamer</span></span>
+            element, like the frame titles, the document title, the footnotes,
+            and so on has a certain
+            <span class="beamer-name"><span class="textsc">beamer</span></span
+            >-font. As for colors, on the one hand you can specify the font of
+            each element individually; on the other hand fonts also use
+            inheritance, thereby making it easy to globally change the fonts
+            used for, say, &ldquo;titlelike things&rdquo; or for
+            &ldquo;itemizelike things.&rdquo;
+          </p>
+          <p>
+            While a
+            <span class="beamer-name"><span class="textsc">beamer</span></span
+            >-color has a certain foreground and a certain background, either of
+            which may be empty, a
+            <span class="beamer-name"><span class="textsc">beamer</span></span
+            >-font has a size, a shape, a series, and a family, each of which
+            may be empty. The inheritance relation among
+            <span class="beamer-name"><span class="textsc">beamer</span></span
+            >-fonts is not necessarily the same as between
+            <span class="beamer-name"><span class="textsc">beamer</span></span
+            >-colors, though we have tried to match them whenever possible.
+          </p>
+          <p>
+            Multiple inheritance plays a more important rule for fonts than it
+            does for colors. A font might inherit the attributes of two
+            different fonts. If one of them specifies that the font should be,
+            say, boldface and the other specifies that the font should be, say,
+            large, then the child font will be both large and bold.
+          </p>
+          <p>
+            As for fonts, the description of the font used for an element is
+            given after the description of the element.
+          </p>
+          <!--
 ...... subsubsection Using Beamer’s Fonts ......
 -->
-<h6 id="autosec-491"><span><span class="sectionnumber" id="sec-18.3.2">18.3.2</span> Using Beamer&rsquo;s Fonts</span><a class="anchor-link" href="#sec-18.3.2">&para;</a></h6>
-<a id="beameruserguide-autopage-491"></a>
-<p>
-To use a <span class="beamer-name"><span class="textsc">beamer</span></span>-font, you can use the command <span class="texttt">\usebeamerfont</span>. Inside the templates for elements, this command will (typically) have already been called for you, so
-you will only seldomly have to use this command.
-</p>
-<div class="command">
-
-
-<p>
-</p>
-<div class="command-headline">
-<p>
-<span class="declare"><kbd>\usebeamerfont</kbd></span><span class="opt"><span class="texttt">*</span></span>{<span class="meta"><span class="angle">&langle;</span><i>beamer-font name</i><span class="angle">&rangle;</span></span>}
-</p>
-</div>
-<p>
-This command changes the current font to the font specified by the <span class="meta"><span class="angle">&langle;</span><i>beamer-font name</i><span class="angle">&rangle;</span></span>. The <span class="meta"><span class="angle">&langle;</span><i>beamer-font name</i><span class="angle">&rangle;</span></span> can be a not-too-fancyful text and may contain spaces. Typical examples are <span class="texttt">frametitle</span> or <span class="texttt">section in toc</span> or <span class="texttt">My Font 1</span>. <span class="beamer-name"><span class="textsc">beamer</span></span>-fonts can have (and should) have the same name as <span class="beamer-name"><span class="textsc">beamer</span></span>-templates and <span class="beamer-name"><span class="textsc">beamer</span></span>-colors.
-</p>
-<p>
-<i>Example: </i><span class="texttt">\usebeamerfont{frametitle}</span> In the unstarred version of this command, the font is changed according to the attributes specified in the <span class="meta"><span class="angle">&langle;</span><i>beamer-font
-name</i><span class="angle">&rangle;</span></span>, but unspecified attributes remain unchanged. For example, if the font specifies that the font should be &ldquo;bold,&rdquo; but specifies nothing else, and if the current font is large, then <span class="texttt">\usebeamerfont</span> causes the current font to become large and bold.
-</p>
-<p>
-In the starred version of this command, the font is first reset before the font&rsquo;s attributes are applied. Thus, in the above example of a <span class="beamer-name"><span class="textsc">beamer</span></span>-font having only the attribute &ldquo;boldface&rdquo; set, saying <span class="texttt">\usebeamerfont*</span> will <em>always</em> cause the current font to become a normal-shape, bold, default-family font (the font size won&rsquo;t be reset).
-</p>
-
-
-</div>
-<!--
+          <h6 id="autosec-516">
+            <span
+              ><span class="sectionnumber" id="sec-18.3.2">18.3.2</span> Using
+              Beamer&rsquo;s Fonts</span
+            ><a class="anchor-link" href="#sec-18.3.2">&para;</a>
+          </h6>
+          <a id="beameruserguide-autopage-516"></a>
+          <p>
+            To use a
+            <span class="beamer-name"><span class="textsc">beamer</span></span
+            >-font, you can use the command
+            <span class="texttt">\usebeamerfont</span>. Inside the templates for
+            elements, this command will (typically) have already been called for
+            you, so you will only seldomly have to use this command.
+          </p>
+          <div class="command">
+            <div class="command-headline">
+              <p>
+                <span class="declare"><kbd>\usebeamerfont</kbd></span
+                ><span class="opt"><span class="texttt">*</span></span
+                >{<span class="meta"
+                  ><span class="angle">&langle;</span><i>beamer-font name</i
+                  ><span class="angle">&rangle;</span></span
+                >}
+              </p>
+            </div>
+            <p>
+              This command changes the current font to the font specified by the
+              <span class="meta"
+                ><span class="angle">&langle;</span><i>beamer-font name</i
+                ><span class="angle">&rangle;</span></span
+              >. The
+              <span class="meta"
+                ><span class="angle">&langle;</span><i>beamer-font name</i
+                ><span class="angle">&rangle;</span></span
+              >
+              can be a not-too-fancyful text and may contain spaces. Typical
+              examples are <span class="texttt">frametitle</span> or
+              <span class="texttt">section in toc</span> or
+              <span class="texttt">My Font 1</span>.
+              <span class="beamer-name"><span class="textsc">beamer</span></span
+              >-fonts can have (and should) have the same name as
+              <span class="beamer-name"><span class="textsc">beamer</span></span
+              >-templates and
+              <span class="beamer-name"><span class="textsc">beamer</span></span
+              >-colors.
+            </p>
+            <p>
+              <i>Example: </i
+              ><span class="texttt">\usebeamerfont{frametitle}</span> In the
+              unstarred version of this command, the font is changed according
+              to the attributes specified in the
+              <span class="meta"
+                ><span class="angle">&langle;</span><i>beamer-font name</i
+                ><span class="angle">&rangle;</span></span
+              >, but unspecified attributes remain unchanged. For example, if
+              the font specifies that the font should be &ldquo;bold,&rdquo; but
+              specifies nothing else, and if the current font is large, then
+              <span class="texttt">\usebeamerfont</span> causes the current font
+              to become large and bold.
+            </p>
+            <p>
+              In the starred version of this command, the font is first reset
+              before the font&rsquo;s attributes are applied. Thus, in the above
+              example of a
+              <span class="beamer-name"><span class="textsc">beamer</span></span
+              >-font having only the attribute &ldquo;boldface&rdquo; set,
+              saying <span class="texttt">\usebeamerfont*</span> will
+              <em>always</em> cause the current font to become a normal-shape,
+              bold, default-family font (the font size won&rsquo;t be reset).
+            </p>
+          </div>
+          <!--
 ...... subsubsection Setting Beamer’s Fonts ......
 -->
-<h6 id="autosec-492"><span><span class="sectionnumber" id="sec-18.3.3">18.3.3</span> Setting Beamer&rsquo;s Fonts</span><a class="anchor-link" href="#sec-18.3.3">&para;</a></h6>
-<a id="beameruserguide-autopage-492"></a>
-<p>
-As for <span class="beamer-name"><span class="textsc">beamer</span></span>-colors, there exists a central command for setting and changing <span class="beamer-name"><span class="textsc">beamer</span></span>-fonts.
-</p>
-<div class="command">
-
-
-<p>
-</p>
-<div class="command-headline">
-<p>
-<span class="declare"><kbd>\setbeamerfont</kbd></span><span class="opt"><span class="texttt">*</span></span>{<span class="meta"><span class="angle">&langle;</span><i>beamer-font name</i><span class="angle">&rangle;</span></span>}{<span class="meta"><span class="angle">&langle;</span><i>attributes</i><span class="angle">&rangle;</span></span>}
-</p>
-</div>
-<p>
-This command sets or resets certain attributes of the <span class="beamer-name"><span class="textsc">beamer</span></span>-font <span class="meta"><span class="angle">&langle;</span><i>beamer-font name</i><span class="angle">&rangle;</span></span>. In the unstarred version, this command just adds those attributes that have not been mentioned in a previous call and overwrites those that have been mentioned. Thus, the following two command blocks have the same effect:
-</p>
-<p>
-<i>Example: </i>
-</p>
-<pre class="verbatim">
+          <h6 id="autosec-517">
+            <span
+              ><span class="sectionnumber" id="sec-18.3.3">18.3.3</span> Setting
+              Beamer&rsquo;s Fonts</span
+            ><a class="anchor-link" href="#sec-18.3.3">&para;</a>
+          </h6>
+          <a id="beameruserguide-autopage-517"></a>
+          <p>
+            As for
+            <span class="beamer-name"><span class="textsc">beamer</span></span
+            >-colors, there exists a central command for setting and changing
+            <span class="beamer-name"><span class="textsc">beamer</span></span
+            >-fonts.
+          </p>
+          <div class="command">
+            <div class="command-headline">
+              <p>
+                <span class="declare"><kbd>\setbeamerfont</kbd></span
+                ><span class="opt"><span class="texttt">*</span></span
+                >{<span class="meta"
+                  ><span class="angle">&langle;</span><i>beamer-font name</i
+                  ><span class="angle">&rangle;</span></span
+                >}{<span class="meta"
+                  ><span class="angle">&langle;</span><i>attributes</i
+                  ><span class="angle">&rangle;</span></span
+                >}
+              </p>
+            </div>
+            <p>
+              This command sets or resets certain attributes of the
+              <span class="beamer-name"><span class="textsc">beamer</span></span
+              >-font
+              <span class="meta"
+                ><span class="angle">&langle;</span><i>beamer-font name</i
+                ><span class="angle">&rangle;</span></span
+              >. In the unstarred version, this command just adds those
+              attributes that have not been mentioned in a previous call and
+              overwrites those that have been mentioned. Thus, the following two
+              command blocks have the same effect:
+            </p>
+            <p>
+              <i>Example: </i>
+            </p>
+            <pre class="verbatim">
 \setbeamerfont{frametitle}{size=\large}
 \setbeamerfont{frametitle}{series=\bfseries}
 
 \setbeamerfont{frametitle}{size=\large,series=\bfseries}
-</pre>
-<p>
-In the starred version, the font attributes are first completely reset, that is, set to be empty.
-</p>
-<p>
-The following <span class="meta"><span class="angle">&langle;</span><i>attributes</i><span class="angle">&rangle;</span></span> may be given:
-</p>
+</pre
+            >
+            <p>
+              In the starred version, the font attributes are first completely
+              reset, that is, set to be empty.
+            </p>
+            <p>
+              The following
+              <span class="meta"
+                ><span class="angle">&langle;</span><i>attributes</i
+                ><span class="angle">&rangle;</span></span
+              >
+              may be given:
+            </p>
 
+            <p>
+              &bull;
+              <span class="declare"
+                ><span class="texttt">size=</span
+                ><span class="meta"
+                  ><span class="angle">&langle;</span><i>size command</i
+                  ><span class="angle">&rangle;</span></span
+                ></span
+              >
+              sets the size attribute of the
+              <span class="beamer-name"
+                ><span class="textsc">beamer</span></span
+              >
+              font. The
+              <span class="meta"
+                ><span class="angle">&langle;</span><i>size command</i
+                ><span class="angle">&rangle;</span></span
+              >
+              should be a normal
+              <span class="latexlogofont"
+                ><span class="latexlogo"
+                  >L<span class="latexlogosup">a</span>T<span
+                    class="latexlogosub"
+                    >e</span
+                  >X</span
+                ></span
+              >-command used for setting the font size or it should be empty.
+              Useful commands include <span class="texttt">\tiny</span>,
+              <span class="texttt">\scriptsize</span>,
+              <span class="texttt">\footnotesize</span>,
+              <span class="texttt">\small</span>,
+              <span class="texttt">\normalsize</span>,
+              <span class="texttt">\large</span>,
+              <span class="texttt">\Large</span>,
+              <span class="texttt">\huge</span>, and
+              <span class="texttt">\Huge</span>.
+              <span class="beamer-name"
+                ><span class="textsc">beamer</span></span
+              >
+              also introduces the two font sizes
+              <span class="texttt">\Tiny</span> and
+              <span class="texttt">\TINY</span> for <em>really</em> small text.
+              But you should know <em>exactly</em> what you are doing if you use
+              them. You have been warned.
+            </p>
+            <p>
+              Note that there is a difference between specifying an empty
+              command and specifying <span class="texttt">\normalsize</span>:
+              Making the size attribute &ldquo;empty&rdquo; means that the font
+              size should not be changed when this font is used, while
+              specifying <span class="texttt">\normalsize</span> means that the
+              size should be set to the normal size whenever this font is used.
+            </p>
 
-<p>
-&bull; <span class="declare"><span class="texttt">size=</span><span class="meta"><span class="angle">&langle;</span><i>size command</i><span class="angle">&rangle;</span></span></span> sets the size attribute of the <span class="beamer-name"><span class="textsc">beamer</span></span> font. The <span class="meta"><span class="angle">&langle;</span><i>size command</i><span class="angle">&rangle;</span></span> should be a normal <span class="latexlogofont"><span class="latexlogo">L<span class="latexlogosup">a</span>T<span class="latexlogosub">e</span>X</span></span>-command used for setting the font size or it should be empty. Useful commands include <span class="texttt">\tiny</span>, <span class="texttt">\scriptsize</span>,
-<span class="texttt">\footnotesize</span>, <span class="texttt">\small</span>, <span class="texttt">\normalsize</span>, <span class="texttt">\large</span>, <span class="texttt">\Large</span>, <span class="texttt">\huge</span>, and <span class="texttt">\Huge</span>. <span class="beamer-name"><span class="textsc">beamer</span></span> also introduces the two font sizes <span class="texttt">\Tiny</span> and <span class="texttt">\TINY</span> for <em>really</em> small text. But you
-should know <em>exactly</em> what you are doing if you use them. You have been warned.
-</p>
-<p>
-Note that there is a difference between specifying an empty command and specifying <span class="texttt">\normalsize</span>: Making the size attribute &ldquo;empty&rdquo; means that the font size should not be changed when this font is used, while specifying <span class="texttt">\normalsize</span> means that the size should be set to the normal size whenever this font is used.
-</p>
+            <p>
+              &bull;
+              <span class="declare"
+                ><span class="texttt">size*=</span>{<span class="meta"
+                  ><span class="angle">&langle;</span><i>size in pt</i
+                  ><span class="angle">&rangle;</span></span
+                >}{<span class="meta"
+                  ><span class="angle">&langle;</span><i>baselineskip</i
+                  ><span class="angle">&rangle;</span></span
+                >}</span
+              >
+              sets the size attribute of the font to the given
+              <span class="meta"
+                ><span class="angle">&langle;</span><i>size in pt</i
+                ><span class="angle">&rangle;</span></span
+              >
+              and the baseline skip to the given value. Note that, depending on
+              what kind of font you use, not all font sizes may be available.
+              Also, certain font sizes are much less desirable than other ones;
+              the standard commands take care of choosing appropriate sizes for
+              you. Do not use this option unless you have a good reason. This
+              command has the same effect as
+              <span class="texttt">size={\fontsize</span>{<span class="meta"
+                ><span class="angle">&langle;</span><i>size in pt</i
+                ><span class="angle">&rangle;</span></span
+              >}{<span class="meta"
+                ><span class="angle">&langle;</span><i>baselineskip</i
+                ><span class="angle">&rangle;</span></span
+              >}<span class="texttt">}</span>.
+            </p>
 
+            <p>
+              &bull;
+              <span class="declare"
+                ><span class="texttt">shape=</span
+                ><span class="meta"
+                  ><span class="angle">&langle;</span><i>shape command</i
+                  ><span class="angle">&rangle;</span></span
+                ></span
+              >
+              sets the shape attribute of the font. The command should be a
+              command like <span class="texttt">\itshape</span>,
+              <span class="texttt">\slshape</span>,
+              <span class="texttt">\scshape</span>, or
+              <span class="texttt">\upshape</span>.
+            </p>
 
-<p>
-&bull; <span class="declare"><span class="texttt">size*=</span>{<span class="meta"><span class="angle">&langle;</span><i>size in pt</i><span class="angle">&rangle;</span></span>}{<span class="meta"><span class="angle">&langle;</span><i>baselineskip</i><span class="angle">&rangle;</span></span>}</span> sets the size attribute of the font to the given <span class="meta"><span class="angle">&langle;</span><i>size in pt</i><span class="angle">&rangle;</span></span> and the baseline skip to the given value. Note that, depending on what kind of font you use, not all font sizes may be available. Also, certain font sizes are much less desirable than other ones; the standard commands take care of
-choosing appropriate sizes for you. Do not use this option unless you have a good reason. This command has the same effect as <span class="texttt">size={\fontsize</span>{<span class="meta"><span class="angle">&langle;</span><i>size in pt</i><span class="angle">&rangle;</span></span>}{<span class="meta"><span class="angle">&langle;</span><i>baselineskip</i><span class="angle">&rangle;</span></span>}<span class="texttt">}</span>.
-</p>
+            <p>
+              &bull;
+              <span class="declare"
+                ><span class="texttt">shape*=</span>{<span class="meta"
+                  ><span class="angle">&langle;</span
+                  ><i>shape attribute abbreviation</i
+                  ><span class="angle">&rangle;</span></span
+                >}</span
+              >
+              sets the shape attribute of the font using the
+              <span class="latexlogofont"
+                ><span class="latexlogo"
+                  >L<span class="latexlogosup">a</span>T<span
+                    class="latexlogosub"
+                    >e</span
+                  >X</span
+                ></span
+              >&rsquo;s abbreviations for attributes. This command has the same
+              effect as <span class="texttt">shape={\fontshape</span>{<span
+                class="meta"
+                ><span class="angle">&langle;</span
+                ><i>shape attributes abbreviation</i
+                ><span class="angle">&rangle;</span></span
+              >}<span class="texttt">}</span>.
+            </p>
 
+            <p>
+              &bull;
+              <span class="declare"
+                ><span class="texttt">series=</span
+                ><span class="meta"
+                  ><span class="angle">&langle;</span><i>series command</i
+                  ><span class="angle">&rangle;</span></span
+                ></span
+              >
+              sets the &ldquo;series&rdquo; attribute of the font. The command
+              should be a command like <span class="texttt">\bfseries</span>.
+            </p>
 
-<p>
-&bull; <span class="declare"><span class="texttt">shape=</span><span class="meta"><span class="angle">&langle;</span><i>shape command</i><span class="angle">&rangle;</span></span></span> sets the shape attribute of the font. The command should be a
-command like <span class="texttt">\itshape</span>, <span class="texttt">\slshape</span>, <span class="texttt">\scshape</span>, or <span class="texttt">\upshape</span>.
-</p>
+            <p>
+              &bull;
+              <span class="declare"
+                ><span class="texttt">series*=</span>{<span class="meta"
+                  ><span class="angle">&langle;</span
+                  ><i>series attribute abbreviation</i
+                  ><span class="angle">&rangle;</span></span
+                >}</span
+              >
+              has the same effect as
+              <span class="texttt">series={\fontseries</span>{<span class="meta"
+                ><span class="angle">&langle;</span
+                ><i>series attributes abbreviation</i
+                ><span class="angle">&rangle;</span></span
+              >}<span class="texttt">}</span>.
+            </p>
 
+            <p>
+              &bull;
+              <span class="declare"
+                ><span class="texttt">family=</span
+                ><span class="meta"
+                  ><span class="angle">&langle;</span><i>family command</i
+                  ><span class="angle">&rangle;</span></span
+                ></span
+              >
+              sets the font family attribute. The command should be a
+              <span class="latexlogofont"
+                ><span class="latexlogo"
+                  >L<span class="latexlogosup">a</span>T<span
+                    class="latexlogosub"
+                    >e</span
+                  >X</span
+                ></span
+              >-font command like <span class="texttt">\rmfamily</span> or
+              <span class="texttt">\sffamily</span>.
+            </p>
 
-<p>
-&bull; <span class="declare"><span class="texttt">shape*=</span>{<span class="meta"><span class="angle">&langle;</span><i>shape attribute abbreviation</i><span class="angle">&rangle;</span></span>}</span> sets the shape attribute of the font using the
-<span class="latexlogofont"><span class="latexlogo">L<span class="latexlogosup">a</span>T<span class="latexlogosub">e</span>X</span></span>&rsquo;s abbreviations for attributes. This command has the same effect as <span class="texttt">shape={\fontshape</span>{<span class="meta"><span class="angle">&langle;</span><i>shape attributes abbreviation</i><span class="angle">&rangle;</span></span>}<span class="texttt">}</span>.
-</p>
+            <p>
+              &bull;
+              <span class="declare"
+                ><span class="texttt">family*=</span>{<span class="meta"
+                  ><span class="angle">&langle;</span><i>family name</i
+                  ><span class="angle">&rangle;</span></span
+                >}</span
+              >
+              sets the font family attribute to the given
+              <span class="meta"
+                ><span class="angle">&langle;</span><i>family name</i
+                ><span class="angle">&rangle;</span></span
+              >. The command has the same effect as
+              <span class="texttt">family={\fontfamily</span>{<span class="meta"
+                ><span class="angle">&langle;</span><i>family name</i
+                ><span class="angle">&rangle;</span></span
+              >}<span class="texttt">}</span>. The
+              <span class="meta"
+                ><span class="angle">&langle;</span><i>family name</i
+                ><span class="angle">&rangle;</span></span
+              >
+              is, normally, a somewhat cryptic abbreviation of a font family
+              name that installed somewhere on the system. For example, the
+              <span class="meta"
+                ><span class="angle">&langle;</span><i>family name</i
+                ><span class="angle">&rangle;</span></span
+              >
+              for Times happens to be <span class="texttt">ptm</span>. No one
+              can remember these names, so it&rsquo;s perfectly normal if you
+              have to look them up laboriously.
+            </p>
 
+            <p>
+              &bull;
+              <span class="declare"
+                ><span class="texttt">parent=</span>{<span class="meta"
+                  ><span class="angle">&langle;</span><i>parent list</i
+                  ><span class="angle">&rangle;</span></span
+                >}</span
+              >
+              specifies a list of parent fonts. When the
+              <span class="beamer-name"><span class="textsc">beamer</span></span
+              >-font is used, the parents are used first. Thus, any font
+              attributes set by one of the parents is inherited by the
+              <span class="beamer-name"><span class="textsc">beamer</span></span
+              >-font, except if this attribute is overwritten by the font.
+            </p>
 
-<p>
-&bull; <span class="declare"><span class="texttt">series=</span><span class="meta"><span class="angle">&langle;</span><i>series command</i><span class="angle">&rangle;</span></span></span> sets the &ldquo;series&rdquo; attribute of the font. The command should
-be a command like <span class="texttt">\bfseries</span>.
-</p>
-
-
-<p>
-&bull; <span class="declare"><span class="texttt">series*=</span>{<span class="meta"><span class="angle">&langle;</span><i>series attribute abbreviation</i><span class="angle">&rangle;</span></span>}</span> has the same effect as <span class="texttt">series={\fontseries</span>{<span class="meta"><span class="angle">&langle;</span><i>series attributes abbreviation</i><span class="angle">&rangle;</span></span>}<span class="texttt">}</span>.
-</p>
-
-
-<p>
-&bull; <span class="declare"><span class="texttt">family=</span><span class="meta"><span class="angle">&langle;</span><i>family command</i><span class="angle">&rangle;</span></span></span> sets the font family attribute. The command should be a
-<span class="latexlogofont"><span class="latexlogo">L<span class="latexlogosup">a</span>T<span class="latexlogosub">e</span>X</span></span>-font command like <span class="texttt">\rmfamily</span> or <span class="texttt">\sffamily</span>.
-</p>
-
-
-<p>
-&bull; <span class="declare"><span class="texttt">family*=</span>{<span class="meta"><span class="angle">&langle;</span><i>family name</i><span class="angle">&rangle;</span></span>}</span> sets the font family attribute to the given <span class="meta"><span class="angle">&langle;</span><i>family name</i><span class="angle">&rangle;</span></span>. The command has the same effect as <span class="texttt">family={\fontfamily</span>{<span class="meta"><span class="angle">&langle;</span><i>family name</i><span class="angle">&rangle;</span></span>}<span class="texttt">}</span>. The <span class="meta"><span class="angle">&langle;</span><i>family name</i><span class="angle">&rangle;</span></span> is, normally, a somewhat cryptic abbreviation of a font family name that installed somewhere on the system. For example, the <span class="meta"><span class="angle">&langle;</span><i>family name</i><span class="angle">&rangle;</span></span> for Times happens to be <span class="texttt">ptm</span>. No one can remember these names, so it&rsquo;s perfectly normal if you have to look them up laboriously.
-</p>
-
-
-<p>
-&bull; <span class="declare"><span class="texttt">parent=</span>{<span class="meta"><span class="angle">&langle;</span><i>parent list</i><span class="angle">&rangle;</span></span>}</span> specifies a list of parent fonts. When the <span class="beamer-name"><span class="textsc">beamer</span></span>-font is used, the parents are used first. Thus, any font attributes set by one of the parents is inherited by the <span class="beamer-name"><span class="textsc">beamer</span></span>-font, except
-if this attribute is overwritten by the font.
-</p>
-
-
-<p>
-<i>Example: </i>
-</p>
-<pre class="verbatim">
+            <p>
+              <i>Example: </i>
+            </p>
+            <pre class="verbatim">
 \setbeamerfont{parent A}{size=\large}
 \setbeamerfont{parent B}{series=\bfseries}
 \setbeamerfont{child}{parent={parent A, parent B},size=\small}
@@ -672,23 +1438,43 @@ This text is still large and bold.
 This text is only bold, but not large.
 \usebeamerfont{child}
 This text is small and bold.
-</pre>
+</pre
+            >
+          </div>
+        </section>
+      </main>
+      <footer>
+        <div class="footer-left">
+          <a href="Licenses-Copyright.html">License</a> &middot;
+          <a href="https://ctan.org/pkg/beamer">CTAN</a> &middot;
+          <a
+            href="http://mirrors.ctan.org/macros/latex/contrib/beamer/doc/beameruserguide.pdf"
+            >Official PDF version</a
+          >
+          &middot;
+          <a href="https://github.com/SwitWu/beamer-html-manual/issues"
+            >Feedback and issues</a
+          >
+          &middot;
+          <a href="https://github.com/SwitWu/beamer-html-manual">Repository</a>
+        </div>
+        <div class="footer-right">
+          <em>HTML version last updated: 2023-10-10</em>
+        </div>
+      </footer>
+    </div>
 
-
-</div>
-</p></section>
-</main>
-<footer><div class="footer-left"><a href="Licenses-Copyright.html">License</a> &middot; <a href="https://ctan.org/pkg/beamer">CTAN</a> &middot; <a href="http://mirrors.ctan.org/macros/latex/contrib/beamer/doc/beameruserguide.pdf">Official PDF version</a> &middot; <a href="https://github.com/SwitWu/beamer-html-manual/issues">Feedback and issues</a> &middot; <a href="https://github.com/SwitWu/beamer-html-manual">Repository</a></div><div class="footer-right"><em>HTML version last updated: 2023-10-07</em></div></footer></div>
-
-<script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script><script>
+    <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
+    <script>
       docsearch({
-        apiKey: '196e8c10ec187c9ae525dd5226fb9378',
-        indexName: 'beamer',
-        appId: 'JS6V5VZSDB',
-        container: '#search',
+        apiKey: "09762da49fe4ba391f7a3618c73720d8",
+        indexName: "beamerplusio",
+        appId: "WNNAN5R8GM",
+        container: "#search",
         searchParameters: {
           filters: "tags:beamer",
         },
-    });
-    </script></body>
+      });
+    </script>
+  </body>
 </html>

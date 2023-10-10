@@ -88,7 +88,8 @@ span.extracttheme,
 span.classoption-heading,
 span.extractclass,
 div.begin-environment,
-div.end-environment {
+div.end-environment,
+div.beameroption-headline {
   font-family: var(--mono-font-family);
 }
 
@@ -122,6 +123,10 @@ span.meta {
   font-family: var(--base-font-family);
 }
 
+span.paragraph {
+  font-weight: 500;
+}
+
 
 /* div */
 
@@ -135,20 +140,12 @@ pre.verbatim {
   padding: 1ex;
 }
 
-div.themeexample-image object {
-  width: 45%;
-}
+
 
 div.hidden {
   display: none;
 }
 
-div.environment > div.translatormanualentryheadline {
-  margin-left: 2em;
-}
-div.environment div.translatormanualentryheadline p {
-  margin: 0;
-}
 
 /* tex and latex logo */
 
@@ -168,6 +165,16 @@ div.environment div.translatormanualentryheadline p {
   margin-right: -0.05em;
   bottom: -0.5ex;
   position: relative;
+}
+
+div.themeexample-image object {
+  width: 100%;
+}
+
+@media screen and (min-width: 640px) {
+  div.themeexample-image object {
+    width: 46%;
+  }
 }
 
 /* section heading */
@@ -310,7 +317,7 @@ main.bodycontainer {
 nav {
   position: sticky;
   top: var(--header-height);
-  height: calc(100vh - var(--header-height));
+  max-height: calc(100vh - var(--header-height));
   padding: 0;
   margin: 0;
   overflow-y: auto;
@@ -472,7 +479,6 @@ h6 {
 h5,
 h6 {
   display: flex;
-  
 }
 
 h5 > .anchor-link,
@@ -561,6 +567,7 @@ body.home-page nav.toc > p > a {
 
 div.command > p,
 div.environment > p,
+div.solution > p,
 div.environment > pre.verbatim,
 div.package > pre.verbatim,
 div.command > pre.verbatim,
@@ -569,6 +576,11 @@ div.package > div.classoption,
 div.classoption > p:nth-child(n+2),
 div.class > p:nth-child(n+2) {
   margin-left: 3em;
+}
+
+div.environment p {
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 /* Home page */

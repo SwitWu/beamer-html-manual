@@ -1,127 +1,195 @@
-
-<!DOCTYPE html>
+<!doctype html>
 
 <html lang="en-US">
-<head>
-<meta charset="utf-8">
-<meta content="LaTeX Lwarp package" name="generator">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>Building a Presentation - Beamer Manual</title>
-<link href="style.css?v=20231007" rel="stylesheet" type="text/css">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="LaTeX Lwarp package" name="generator" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Building a Presentation - Beamer Manual</title>
+    <link href="style.css?v=20231010" rel="stylesheet" type="text/css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
+      rel="stylesheet"
+    />
+    <script src="beameruserguide.js"></script>
+    <link
+      href="beameruserguide-images/favicon.png"
+      rel="icon"
+      sizes="16x16"
+      type="image/png"
+    />
+  </head>
+  <body>
+    <a id="beameruserguide-autopage-197"></a>
 
+    <div class="bodyandsidetoc grid-container">
+      <header>
+        <div id="hamburger-button">☰</div>
+        <strong><a href="home.html">Beamer Manual</a></strong>
+        <div id="search"></div>
+      </header>
+      <div class="sidetoccontainer" id="local-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle"><p>On this page</p></div>
+          <div class="sidetoccontents"></div>
+        </nav>
+      </div>
+      <div class="sidetoccontainer" id="chapter-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle">
+            <p>
+              <span class="sidetocthetitle"
+                >The
+                <span class="beamer-name"
+                  ><span class="textsc">beamer</span></span
+                >
+                <i>class</i><br />
+                <a href="https://github.com/josephwright/beamer" target="_blank"
+                  >https://github.com/josephwright/beamer</a
+                ><br />
+                User Guide for version 3.70.</span
+              >
+            </p>
+            <p>Contents</p>
+          </div>
+          <div class="sidetoccontents">
+            <p>
+              <a class="tocsection" href="Introduction.html">Introduction</a>
+            </p>
+            <p>
+              <a class="tocpart" href="Getting-Started.html">Getting Started</a>
+            </p>
 
-<link href="https://cdn.jsdelivr.net/npm/@docsearch/css@3" rel="stylesheet"></head>
-<body>
-<a id="beameruserguide-autopage-184"></a>
+            <p class="current current-part">
+              <a class="tocpart" href="Building-Presentation.html"
+                >Building a Presentation</a
+              >
+            </p>
+            <p class="current-part">
+              <a class="tocsection" href="Creating-Frames.html"
+                >Creating Frames</a
+              >
+            </p>
+            <p class="current-part">
+              <a class="tocsection" href="Creating-Overlays.html"
+                >Creating Overlays</a
+              >
+            </p>
+            <p class="current-part">
+              <a
+                class="tocsection"
+                href="Structuring-Presentation-The-Static-Global-Structure.html"
+                >Structuring a Presentation: The Static Global Structure</a
+              >
+            </p>
+            <p class="current-part">
+              <a
+                class="tocsection"
+                href="Structuring-Presentation-The-Interactive-Global-Structure.html"
+                >Structuring a Presentation: The Interactive Global Structure</a
+              >
+            </p>
+            <p class="current-part">
+              <a
+                class="tocsection"
+                href="Structuring-Presentation-The-Local-Structure.html"
+                >Structuring a Presentation: The Local Structure</a
+              >
+            </p>
+            <p class="current-part">
+              <a class="tocsection" href="Graphics.html">Graphics</a>
+            </p>
+            <p class="current-part">
+              <a
+                class="tocsection"
+                href="Animations-Sounds-Slide-Transitions.html"
+                >Animations, Sounds, and Slide Transitions</a
+              >
+            </p>
+            <p>
+              <a class="tocpart" href="Changing-Way-Things-Look.html"
+                >Changing the Way Things Look</a
+              >
+            </p>
 
-<div class="bodyandsidetoc grid-container"><header><div id="hamburger-button">☰</div><strong><a href="home.html">Beamer Manual</a></strong><div id="search"></div></header><div class="sidetoccontainer" id="local-toc-container"><nav class="sidetoc"><div class="sidetoctitle"><p>On this page</p></div><div class="sidetoccontents"></div></nav></div>
-<div class="sidetoccontainer" id="chapter-toc-container">
-<nav class="sidetoc">
-<div class="sidetoctitle">
-<p>
-<span class="sidetocthetitle">The <span class="beamer-name"><span class="textsc">beamer</span></span> <i>class</i><br>
-<a href="https://github.com/josephwright/beamer" target="_blank">https://github.com/josephwright/beamer</a><br>
-User Guide for version 3.70.</span>
-</p>
-<p>
-Contents
-</p>
-</div>
-<div class="sidetoccontents">
+            <p>
+              <a class="tocpart" href="Creating-Supporting-Material.html"
+                >Creating Supporting Material</a
+              >
+            </p>
 
-<p>
-<a class="tocsection" href="Introduction.html">Introduction</a>
-</p>
-<p>
-<a class="tocpart" href="Getting-Started.html">Getting Started</a>
-</p>
-
-
-
-
-
-
-<p class="current current-part">
-<a class="tocpart" href="Building-Presentation.html">Building a Presentation</a>
-</p>
-<p class="current-part">
-<a class="tocsection" href="Creating-Frames.html">Creating Frames</a>
-</p>
-<p class="current-part">
-<a class="tocsection" href="Creating-Overlays.html">Creating Overlays</a>
-</p>
-<p class="current-part">
-<a class="tocsection" href="Structuring-Presentation-The-Static-Global-Structure.html">Structuring a Presentation: The Static Global Structure</a>
-</p>
-<p class="current-part">
-<a class="tocsection" href="Structuring-Presentation-The-Interactive-Global-Structure.html">Structuring a Presentation: The Interactive Global Structure</a>
-</p>
-<p class="current-part">
-<a class="tocsection" href="Structuring-Presentation-The-Local-Structure.html">Structuring a Presentation: The Local Structure</a>
-</p>
-<p class="current-part">
-<a class="tocsection" href="Graphics.html">Graphics</a>
-</p>
-<p class="current-part">
-<a class="tocsection" href="Animations-Sounds-Slide-Transitions.html">Animations, Sounds, and Slide Transitions</a>
-</p>
-<p>
-<a class="tocpart" href="Changing-Way-Things-Look.html">Changing the Way Things Look</a>
-</p>
-
-
-
-
-<p>
-<a class="tocpart" href="Creating-Supporting-Material.html">Creating Supporting Material</a>
-</p>
-
-
-
-
-<p>
-<a class="tocpart" href="Howtos.html">Howtos</a>
-</p>
-
-
-</div>
-</nav>
-</div>
-<main class="bodycontainer">
-<section class="textbody">
-
-<!--MathJax customizations:-->
-
-<p>
-<!--
+            <p>
+              <a class="tocpart" href="Howtos.html">Howtos</a>
+            </p>
+          </div>
+        </nav>
+      </div>
+      <main class="bodycontainer">
+        <section class="textbody">
+          <!--
 ...... part Building a Presentation ......
 -->
-<h2 id="autosec-185">Part&nbsp;<span class="sectionnumber">II&emsp;</span>Building a Presentation</h2>
-<a id="beameruserguide-autopage-185"></a>
-<a id="beameruserguide-autofile-9"></a>
-<p>
-This part contains an explanation of all the commands that are used to create presentations. It starts with a section treating the commands and environments used to create <em>frames</em>, the basic building blocks of presentations. Next, the creation of overlays is
-explained.
-</p>
-<p>
-The following three sections concern commands and methods of <em>structuring</em> a presentation. In order, the <em>static global</em> structure, the <em>interactive global</em> structure, and the <em>local</em> structure are treated.
-</p>
-<p>
-Two further sections treat graphics and animations. Much of the material in these sections applies to other packages as well, not just to <span class="beamer-name"><span class="textsc">beamer</span></span>.
-</p>
-</p></section>
-</main>
-<footer><div class="footer-left"><a href="Licenses-Copyright.html">License</a> &middot; <a href="https://ctan.org/pkg/beamer">CTAN</a> &middot; <a href="http://mirrors.ctan.org/macros/latex/contrib/beamer/doc/beameruserguide.pdf">Official PDF version</a> &middot; <a href="https://github.com/SwitWu/beamer-html-manual/issues">Feedback and issues</a> &middot; <a href="https://github.com/SwitWu/beamer-html-manual">Repository</a></div><div class="footer-right"><em>HTML version last updated: 2023-10-07</em></div></footer></div>
+          <h2 id="autosec-198">
+            Part&nbsp;<span class="sectionnumber">II&emsp;</span>Building a
+            Presentation
+          </h2>
+          <a id="beameruserguide-autopage-198"></a>
+          <a id="beameruserguide-autofile-9"></a>
+          <p>
+            This part contains an explanation of all the commands that are used
+            to create presentations. It starts with a section treating the
+            commands and environments used to create <em>frames</em>, the basic
+            building blocks of presentations. Next, the creation of overlays is
+            explained.
+          </p>
+          <p>
+            The following three sections concern commands and methods of
+            <em>structuring</em> a presentation. In order, the
+            <em>static global</em> structure, the
+            <em>interactive global</em> structure, and the
+            <em>local</em> structure are treated.
+          </p>
+          <p>
+            Two further sections treat graphics and animations. Much of the
+            material in these sections applies to other packages as well, not
+            just to
+            <span class="beamer-name"><span class="textsc">beamer</span></span
+            >.
+          </p>
+        </section>
+      </main>
+      <footer>
+        <div class="footer-left">
+          <a href="Licenses-Copyright.html">License</a> &middot;
+          <a href="https://ctan.org/pkg/beamer">CTAN</a> &middot;
+          <a
+            href="http://mirrors.ctan.org/macros/latex/contrib/beamer/doc/beameruserguide.pdf"
+            >Official PDF version</a
+          >
+          &middot;
+          <a href="https://github.com/SwitWu/beamer-html-manual/issues"
+            >Feedback and issues</a
+          >
+          &middot;
+          <a href="https://github.com/SwitWu/beamer-html-manual">Repository</a>
+        </div>
+        <div class="footer-right">
+          <em>HTML version last updated: 2023-10-10</em>
+        </div>
+      </footer>
+    </div>
 
-<script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script><script>
+    <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
+    <script>
       docsearch({
-        apiKey: '196e8c10ec187c9ae525dd5226fb9378',
-        indexName: 'beamer',
-        appId: 'JS6V5VZSDB',
-        container: '#search',
+        apiKey: "09762da49fe4ba391f7a3618c73720d8",
+        indexName: "beamerplusio",
+        appId: "WNNAN5R8GM",
+        container: "#search",
         searchParameters: {
           filters: "tags:beamer",
         },
-    });
-    </script></body>
+      });
+    </script>
+  </body>
 </html>

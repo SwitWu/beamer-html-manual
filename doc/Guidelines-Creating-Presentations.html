@@ -7,219 +7,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>The beamer class- <a href=https://github.com/josephwright/beamer target=-blank >https://github.com/josephwright/beamer</a>- User Guide for version 3.70. — Guidelines for Creating Presentations</title>
 <link rel="stylesheet" type="text/css" href="style.css" />
-
-<script>
-// Lwarp MathJax emulation code
-//
-// Based on code by Davide P. Cervone.
-// Equation numbering: https://github.com/mathjax/MathJax/issues/2427
-// Starred and ifnextchar macros: https://github.com/mathjax/MathJax/issues/2428
-// \left, \right delimiters: https://github.com/mathjax/MathJax/issues/2535
-//
-// Modified by Brian Dunn to adjust equation numbering and add subequations.
-//
-// LaTeX can use \seteqnumber{subequations?}{section}{number} before each equation.
-// subequations? is 0 usually, 1 if inside subequations.
-// section is a string printed as-is, or empty.
-// number is auto-incremented by MathJax between equations.
-//
-MathJax = {
-  subequations: "0",
-  section: "",
-  loader: {
-    load: ['[tex]/tagformat', '[tex]/textmacros'],
-  },
-  startup: {
-    ready() {
-      // These would be replaced by import commands if you wanted to make
-      // a proper extension.
-      const Configuration = MathJax._.input.tex.Configuration.Configuration;
-      const CommandMap = MathJax._.input.tex.SymbolMap.CommandMap;
-      const Macro = MathJax._.input.tex.Symbol.Macro;
-      const TexError = MathJax._.input.tex.TexError.default;
-      const ParseUtil = MathJax._.input.tex.ParseUtil.default;
-      const expandable = MathJax._.util.Options.expandable;
-
-        // Insert the replacement string into the TeX string, and check
-        // that there haven't been too many maxro substitutions (prevents
-        // infinite loops).
-        const useArgument = (parser, text) => {
-          parser.string = ParseUtil.addArgs(parser, text, parser.string.slice(parser.i));
-          parser.i = 0;
-          if (++parser.macroCount > parser.configuration.options.maxMacros) {
-            throw new TexError('MaxMacroSub1',
-            'MathJax maximum macro substitution count exceeded; ' +
-            'is there a recursive macro call?');
-          }
-        }
-
-        // Create the command map for:
-        //     \ifstar, \ifnextchar, \ifblank, \ifstrequal, \gsub, \seteqnumber
-        new CommandMap('Lwarp-macros', {
-          ifstar: 'IfstarFunction',
-          ifnextchar: 'IfnextcharFunction',
-          ifblank: 'IfblankFunction',
-          ifstrequal: 'IfstrequalFunction',
-          gsubstitute: 'GsubstituteFunction',
-          seteqnumber: 'SeteqnumberFunction'
-        }, {
-          // This function implements an ifstar macro.
-          IfstarFunction(parser, name) {
-             const resultstar = parser.GetArgument(name);
-             const resultnostar = parser.GetArgument(name);
-             const star = parser.GetStar();                 // true if there is a *
-             useArgument(parser, star ? resultstar : resultnostar);
-          },
-
-          // This function implements an ifnextchar macro.
-          IfnextcharFunction(parser, name) {
-            let whichchar = parser.GetArgument(name);
-            if (whichchar.match(/^(?:0x[0-9A-F]+|[0-9]+)$/i)) {
-              // $ syntax highlighting
-              whichchar = String.fromCodePoint(parseInt(whichchar));
-            }
-            const resultnextchar = parser.GetArgument(name);
-            const resultnotnextchar = parser.GetArgument(name);
-            const gotchar = (parser.GetNext() === whichchar);
-            useArgument(parser, gotchar ? resultnextchar : resultnotnextchar);
-          },
-
-          // This function implements an ifblank macro.
-          IfblankFunction(parser, name) {
-            const blankarg = parser.GetArgument(name);
-            const resultblank = parser.GetArgument(name);
-            const resultnotblank = parser.GetArgument(name);
-            const isblank = (blankarg.trim() == "");
-            useArgument(parser, isblank ? resultblank : resultnotblank);
-          },
-
-          // This function implements an ifstrequal macro.
-          IfstrequalFunction(parser, name) {
-            const strequalfirst = parser.GetArgument(name);
-            const strequalsecond = parser.GetArgument(name);
-            const resultequal = parser.GetArgument(name);
-            const resultnotequal = parser.GetArgument(name);
-            const isequal = (strequalfirst == strequalsecond);
-            useArgument(parser, isequal ? resultequal : resultnotequal);
-          },
-
-          // This function implements a gsub macro.
-          GsubstituteFunction(parser, name) {
-            const gsubfirst = parser.GetArgument(name);
-            const gsubsecond = parser.GetArgument(name);
-            const gsubthird = parser.GetArgument(name);
-            let gsubresult=gsubfirst.replace(gsubsecond, gsubthird);
-            useArgument(parser, gsubresult);
-          },
-
-          // This function modifies the equation numbers.
-          SeteqnumberFunction(parser, name) {
-              // Get the macro parameters
-              const star = parser.GetStar();                  // true if there is a *
-              const optBrackets = parser.GetBrackets(name);   // contents of optional brackets
-              const newsubequations = parser.GetArgument(name); // the subequations argument
-              const neweqsection = parser.GetArgument(name); // the eq section argument
-              const neweqnumber = parser.GetArgument(name);   // the eq number argument
-              MathJax.config.subequations=newsubequations ;   // a string with boolean meaning
-              MathJax.config.section=neweqsection ;           // a string with numeric meaning
-              parser.tags.counter = parser.tags.allCounter = neweqnumber ;
-          }
-
-        });
-
-        // Create the Lwarp-macros package
-        Configuration.create('Lwarp-macros', {
-          handler: {macro: ['Lwarp-macros']}
-        });
-
-        MathJax.startup.defaultReady();
-
-        // For forward references:
-        MathJax.startup.input[0].preFilters.add(({math}) => {
-          if (math.inputData.recompile){
-              MathJax.config.subequations = math.inputData.recompile.subequations;
-              MathJax.config.section = math.inputData.recompile.section;
-          }
-        });
-        MathJax.startup.input[0].postFilters.add(({math}) => {
-          if (math.inputData.recompile){
-              math.inputData.recompile.subequations = MathJax.config.subequations;
-              math.inputData.recompile.section = MathJax.config.section;
-          }
-        });
-
-          // For \left, \right with unicode-math:
-          const {DelimiterMap} = MathJax._.input.tex.SymbolMap;
-          const {Symbol} = MathJax._.input.tex.Symbol;
-          const {MapHandler} = MathJax._.input.tex.MapHandler;
-          const delimiter = MapHandler.getMap('delimiter');
-          delimiter.add('\\lBrack', new Symbol('\\lBrack', '\u27E6'));
-          delimiter.add('\\rBrack', new Symbol('\\rBrack', '\u27E7'));
-          delimiter.add('\\lAngle', new Symbol('\\lAngle', '\u27EA'));
-          delimiter.add('\\rAngle', new Symbol('\\rAngle', '\u27EB'));
-          delimiter.add('\\lbrbrak', new Symbol('\\lbrbrak', '\u2772'));
-          delimiter.add('\\rbrbrak', new Symbol('\\rbrbrak', '\u2773'));
-          delimiter.add('\\lbag', new Symbol('\\lbag', '\u27C5'));
-          delimiter.add('\\rbag', new Symbol('\\rbag', '\u27C6'));
-          delimiter.add('\\llparenthesis', new Symbol('\\llparenthesis', '\u2987'));
-          delimiter.add('\\rrparenthesis', new Symbol('\\rrparenthesis', '\u2988'));
-          delimiter.add('\\llangle', new Symbol('\\llangle', '\u2989'));
-          delimiter.add('\\rrangle', new Symbol('\\rrangle', '\u298A'));
-          delimiter.add('\\Lbrbrak', new Symbol('\\Lbrbrak', '\u27EC'));
-          delimiter.add('\\Rbrbrak', new Symbol('\\Rbrbrak', '\u27ED'));
-          delimiter.add('\\lBrace', new Symbol('\\lBrace', '\u2983'));
-          delimiter.add('\\rBrace', new Symbol('\\rBrace', '\u2984'));
-          delimiter.add('\\lParen', new Symbol('\\lParen', '\u2985'));
-          delimiter.add('\\rParen', new Symbol('\\rParen', '\u2986'));
-          delimiter.add('\\lbrackubar', new Symbol('\\lbrackubar', '\u298B'));
-          delimiter.add('\\rbrackubar', new Symbol('\\rbrackubar', '\u298C'));
-          delimiter.add('\\lbrackultick', new Symbol('\\lbrackultick', '\u298D'));
-          delimiter.add('\\rbracklrtick', new Symbol('\\rbracklrtick', '\u298E'));
-          delimiter.add('\\lbracklltick', new Symbol('\\lbracklltick', '\u298F'));
-          delimiter.add('\\rbrackurtick', new Symbol('\\rbrackurtick', '\u2990'));
-          delimiter.add('\\langledot', new Symbol('\\langledot', '\u2991'));
-          delimiter.add('\\rangledot', new Symbol('\\rangledot', '\u2992'));
-          delimiter.add('\\lparenless', new Symbol('\\lparenless', '\u2993'));
-          delimiter.add('\\rparengtr', new Symbol('\\rparengtr', '\u2994'));
-          delimiter.add('\\Lparengtr', new Symbol('\\Lparengtr', '\u2995'));
-          delimiter.add('\\Rparenless', new Symbol('\\Rparenless', '\u2996'));
-          delimiter.add('\\lblkbrbrak', new Symbol('\\lblkbrbrak', '\u2997'));
-          delimiter.add('\\rblkbrbrak', new Symbol('\\rblkbrbrak', '\u2998'));
-          delimiter.add('\\lvzigzag', new Symbol('\\lvzigzag', '\u29D8'));
-          delimiter.add('\\rvzigzag', new Symbol('\\rvzigzag', '\u29D9'));
-          delimiter.add('\\Lvzigzag', new Symbol('\\Lvzigzag', '\u29DA'));
-          delimiter.add('\\Rvzigzag', new Symbol('\\Rvzigzag', '\u29DB'));
-          delimiter.add('\\lcurvyangle', new Symbol('\\lcurvyangle', '\u29FC'));
-          delimiter.add('\\rcurvyangle', new Symbol('\\rcurvyangle', '\u29FD'));
-          delimiter.add('\\Vvert', new Symbol('\\Vvert', '\u2980'));
-    }     // ready
-  },      // startup
-
-  tex: {
-    packages: {'[+]': ['tagformat', 'Lwarp-macros', 'textmacros']},
-    tags: "ams",
-         tagformat: {
-             number: function (n) {
-                 if(MathJax.config.subequations==0)
-                     return(MathJax.config.section + n);
-                 else
-                     return(MathJax.config.section + String.fromCharCode(96+n));
-             },
-         },
-  }
-}
-</script>
-
-<script
-    id="MathJax-script"
-    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"
-></script>
-
 </head>
 <body>
 
 
-<a id="beameruserguide-autopage-115"></a>
+<a id="beameruserguide-autopage-118"></a>
 <nav class="topnavigation"><a href="home.html" class="linkhome" >
 Home</a></nav>
 
@@ -271,157 +63,157 @@ Home</a>
 
 
 <p>
-<a href="Tutorial-Euclid-Presentation.html#autosec-42" class="tocsection" >
+<a href="Tutorial-Euclid-Presentation.html#autosec-44" class="tocsection" >
 <span class="sectionnumber">3</span>&#x2003;Tutorial: Euclid’s Presentation</a>
 </p>
 
 
 <p>
-<a href="Workflow-For-Creating-Beamer-Presentation.html#autosec-93" class="tocsection" >
+<a href="Workflow-For-Creating-Beamer-Presentation.html#autosec-96" class="tocsection" >
 <span class="sectionnumber">4</span>&#x2003;Workflow For Creating a Beamer Presentation</a>
 </p>
 
 
 <p>
-<a href="Guidelines-Creating-Presentations.html#autosec-116" class="tocsection" >
+<a href="Guidelines-Creating-Presentations.html#autosec-119" class="tocsection" >
 <span class="sectionnumber">5</span>&#x2003;Guidelines for Creating Presentations</a>
 </p>
 
 
 <p>
-<a href="Solution-Templates.html#autosec-141" class="tocsection" >
+<a href="Solution-Templates.html#autosec-154" class="tocsection" >
 <span class="sectionnumber">6</span>&#x2003;Solution Templates</a>
 </p>
 
 
 <p>
-<a href="Licenses-Copyright.html#autosec-144" class="tocsection" >
+<a href="Licenses-Copyright.html#autosec-157" class="tocsection" >
 <span class="sectionnumber">7</span>&#x2003;Licenses and Copyright</a>
 </p>
 
 
 <p>
-<a href="Building-Presentation.html#autosec-185" class="tocpart" >
+<a href="Building-Presentation.html#autosec-198" class="tocpart" >
 <span class="sectionnumber">II</span>&#x2003;Building a Presentation</a>
 </p>
 
 
 <p>
-<a href="Creating-Frames.html#autosec-188" class="tocsection" >
+<a href="Creating-Frames.html#autosec-201" class="tocsection" >
 <span class="sectionnumber">8</span>&#x2003;Creating Frames</a>
 </p>
 
 
 <p>
-<a href="Creating-Overlays.html#autosec-234" class="tocsection" >
+<a href="Creating-Overlays.html#autosec-247" class="tocsection" >
 <span class="sectionnumber">9</span>&#x2003;Creating Overlays</a>
 </p>
 
 
 <p>
-<a href="Structuring-Presentation-The-Static-Global-Structure.html#autosec-295" class="tocsection" >
+<a href="Structuring-Presentation-The-Static-Global-Structure.html#autosec-312" class="tocsection" >
 <span class="sectionnumber">10</span>&#x2003;Structuring a Presentation: The Static Global Structure</a>
 </p>
 
 
 <p>
-<a href="Structuring-Presentation-The-Interactive-Global-Structure.html#autosec-322" class="tocsection" >
+<a href="Structuring-Presentation-The-Interactive-Global-Structure.html#autosec-339" class="tocsection" >
 <span class="sectionnumber">11</span>&#x2003;Structuring a Presentation: The Interactive Global Structure</a>
 </p>
 
 
 <p>
-<a href="Structuring-Presentation-The-Local-Structure.html#autosec-336" class="tocsection" >
+<a href="Structuring-Presentation-The-Local-Structure.html#autosec-353" class="tocsection" >
 <span class="sectionnumber">12</span>&#x2003;Structuring a Presentation: The Local Structure</a>
 </p>
 
 
 <p>
-<a href="Graphics.html#autosec-380" class="tocsection" >
+<a href="Graphics.html#autosec-401" class="tocsection" >
 <span class="sectionnumber">13</span>&#x2003;Graphics</a>
 </p>
 
 
 <p>
-<a href="Animations-Sounds-Slide-Transitions.html#autosec-390" class="tocsection" >
+<a href="Animations-Sounds-Slide-Transitions.html#autosec-411" class="tocsection" >
 <span class="sectionnumber">14</span>&#x2003;Animations, Sounds, and Slide Transitions</a>
 </p>
 
 
 <p>
-<a href="Changing-Way-Things-Look.html#autosec-410" class="tocpart" >
+<a href="Changing-Way-Things-Look.html#autosec-435" class="tocpart" >
 <span class="sectionnumber">III</span>&#x2003;Changing the Way Things Look</a>
 </p>
 
 
 <p>
-<a href="Themes.html#autosec-413" class="tocsection" >
+<a href="Themes.html#autosec-438" class="tocsection" >
 <span class="sectionnumber">15</span>&#x2003;Themes</a>
 </p>
 
 
 <p>
-<a href="Inner-Themes-Outer-Themes-Templates.html#autosec-428" class="tocsection" >
+<a href="Inner-Themes-Outer-Themes-Templates.html#autosec-453" class="tocsection" >
 <span class="sectionnumber">16</span>&#x2003;Inner Themes, Outer Themes, and Templates</a>
 </p>
 
 
 <p>
-<a href="Colors.html#autosec-452" class="tocsection" >
+<a href="Colors.html#autosec-477" class="tocsection" >
 <span class="sectionnumber">17</span>&#x2003;Colors</a>
 </p>
 
 
 <p>
-<a href="Fonts.html#autosec-481" class="tocsection" >
+<a href="Fonts.html#autosec-506" class="tocsection" >
 <span class="sectionnumber">18</span>&#x2003;Fonts</a>
 </p>
 
 
 <p>
-<a href="Creating-Supporting-Material.html#autosec-497" class="tocpart" >
+<a href="Creating-Supporting-Material.html#autosec-522" class="tocpart" >
 <span class="sectionnumber">IV</span>&#x2003;Creating Supporting Material</a>
 </p>
 
 
 <p>
-<a href="Adding-Notes-Yourself.html#autosec-500" class="tocsection" >
+<a href="Adding-Notes-Yourself.html#autosec-525" class="tocsection" >
 <span class="sectionnumber">19</span>&#x2003;Adding Notes for Yourself</a>
 </p>
 
 
 <p>
-<a href="Creating-Transparencies.html#autosec-512" class="tocsection" >
+<a href="Creating-Transparencies.html#autosec-537" class="tocsection" >
 <span class="sectionnumber">20</span>&#x2003;Creating Transparencies</a>
 </p>
 
 
 <p>
-<a href="Creating-Handouts-Lecture-Notes.html#autosec-521" class="tocsection" >
+<a href="Creating-Handouts-Lecture-Notes.html#autosec-546" class="tocsection" >
 <span class="sectionnumber">21</span>&#x2003;Creating Handouts and Lecture Notes</a>
 </p>
 
 
 <p>
-<a href="Taking-Advantage-Multiple-Screens.html#autosec-546" class="tocsection" >
+<a href="Taking-Advantage-Multiple-Screens.html#autosec-571" class="tocsection" >
 <span class="sectionnumber">22</span>&#x2003;Taking Advantage of Multiple Screens</a>
 </p>
 
 
 <p>
-<a href="Howtos.html#autosec-554" class="tocpart" >
+<a href="Howtos.html#autosec-579" class="tocpart" >
 <span class="sectionnumber">V</span>&#x2003;Howtos</a>
 </p>
 
 
 <p>
-<a href="How-To-Uncover-Things-Piecewise.html#autosec-557" class="tocsection" >
+<a href="How-To-Uncover-Things-Piecewise.html#autosec-582" class="tocsection" >
 <span class="sectionnumber">23</span>&#x2003;How To Uncover Things Piecewise</a>
 </p>
 
 
 <p>
-<a href="How-To-Import-Presentations-Based-on-Other-Packages-Classes.html#autosec-580" class="tocsection" >
+<a href="How-To-Import-Presentations-Based-on-Other-Packages-Classes.html#autosec-605" class="tocsection" >
 <span class="sectionnumber">24</span>&#x2003;How To Import Presentations Based on Other Packages and Classes</a>
 </p>
 
@@ -442,140 +234,14 @@ Home</a>
 <a href="https://github.com/josephwright/beamer" target="_blank" >https://github.com/josephwright/beamer</a><br />
 User Guide for version 3.70.</h1>
 
-<!--MathJax customizations:-->
-
-
-<div class="hidden">
-
-\(\newcommand{\footnotename}{footnote}\)
-
-\(\def \LWRfootnote {1}\)
-
-\(\newcommand {\footnote }[2][\LWRfootnote ]{{}^{\mathrm {#1}}}\)
-
-\(\newcommand {\footnotemark }[1][\LWRfootnote ]{{}^{\mathrm {#1}}}\)
-
-\(\let \LWRorighspace \hspace \)
-
-\(\renewcommand {\hspace }{\ifstar \LWRorighspace \LWRorighspace }\)
-
-\(\newcommand {\mathnormal }[1]{{#1}}\)
-
-\(\newcommand \ensuremath [1]{#1}\)
-
-\(\newcommand {\LWRframebox }[2][]{\fbox {#2}} \newcommand {\framebox }[1][]{\LWRframebox } \)
-
-\(\newcommand {\setlength }[2]{}\)
-
-\(\newcommand {\addtolength }[2]{}\)
-
-\(\newcommand {\setcounter }[2]{}\)
-
-\(\newcommand {\addtocounter }[2]{}\)
-
-\(\newcommand {\arabic }[1]{}\)
-
-\(\newcommand {\number }[1]{}\)
-
-\(\newcommand {\noalign }[1]{\text {#1}\notag \\}\)
-
-\(\newcommand {\cline }[1]{}\)
-
-\(\newcommand {\directlua }[1]{\text {(directlua)}}\)
-
-\(\newcommand {\luatexdirectlua }[1]{\text {(directlua)}}\)
-
-\(\newcommand {\protect }{}\)
-
-\(\def \LWRabsorbnumber #1 {}\)
-
-\(\def \LWRabsorbquotenumber &quot;#1 {}\)
-
-\(\newcommand {\LWRabsorboption }[1][]{}\)
-
-\(\newcommand {\LWRabsorbtwooptions }[1][]{\LWRabsorboption }\)
-
-\(\def \mathchar {\ifnextchar &quot;\LWRabsorbquotenumber \LWRabsorbnumber }\)
-
-\(\def \mathcode #1={\mathchar }\)
-
-\(\let \delcode \mathcode \)
-
-\(\let \delimiter \mathchar \)
-
-\(\def \oe {\unicode {x0153}}\)
-
-\(\def \OE {\unicode {x0152}}\)
-
-\(\def \ae {\unicode {x00E6}}\)
-
-\(\def \AE {\unicode {x00C6}}\)
-
-\(\def \aa {\unicode {x00E5}}\)
-
-\(\def \AA {\unicode {x00C5}}\)
-
-\(\def \o {\unicode {x00F8}}\)
-
-\(\def \O {\unicode {x00D8}}\)
-
-\(\def \l {\unicode {x0142}}\)
-
-\(\def \L {\unicode {x0141}}\)
-
-\(\def \ss {\unicode {x00DF}}\)
-
-\(\def \SS {\unicode {x1E9E}}\)
-
-\(\def \dag {\unicode {x2020}}\)
-
-\(\def \ddag {\unicode {x2021}}\)
-
-\(\def \P {\unicode {x00B6}}\)
-
-\(\def \copyright {\unicode {x00A9}}\)
-
-\(\def \pounds {\unicode {x00A3}}\)
-
-\(\let \LWRref \ref \)
-
-\(\renewcommand {\ref }{\ifstar \LWRref \LWRref }\)
-
-\( \newcommand {\multicolumn }[3]{#3}\)
-
-\(\require {textcomp}\)
-
-\(\newcommand {\intertext }[1]{\text {#1}\notag \\}\)
-
-\(\let \Hat \hat \)
-
-\(\let \Check \check \)
-
-\(\let \Tilde \tilde \)
-
-\(\let \Acute \acute \)
-
-\(\let \Grave \grave \)
-
-\(\let \Dot \dot \)
-
-\(\let \Ddot \ddot \)
-
-\(\let \Breve \breve \)
-
-\(\let \Bar \bar \)
-
-\(\let \Vec \vec \)
-
-</div>
-
-<p>
 <!--
 ...... section Guidelines for Creating Presentations ......
 -->
-<h4 id="autosec-116"><span class="sectionnumber">5&#x2003;</span>Guidelines for Creating Presentations</h4>
-<a id="beameruserguide-autopage-116"></a>
-<a id="beameruserguide-autofile-6"></a> <a id="section-guidelines"></a>
+<h4 id="autosec-119"><span class="sectionnumber">5&#x2003;</span>Guidelines for Creating Presentations</h4>
+<a id="beameruserguide-autopage-119"></a>
+<a id="beameruserguide-autofile-6"></a>
+
+<a id="section-guidelines"></a>
 
 <p>
 In this section we sketch the guidelines that we try to stick to when we create presentations. These guidelines either arise out of experience, out of common sense, or out of recommendations by other people or books. These rules are certainly not intended as
@@ -584,16 +250,16 @@ commandments that, if not followed, will result in catastrophe. The central rule
 <!--
 ...... subsection Structuring a Presentation ......
 -->
-<h5 id="autosec-117"><span class="sectionnumber">5.1&#x2003;</span>Structuring a Presentation</h5>
-<a id="beameruserguide-autopage-117"></a>
+<h5 id="autosec-120"><span class="sectionnumber">5.1&#x2003;</span>Structuring a Presentation</h5>
+<a id="beameruserguide-autopage-120"></a>
 
 
 <a id="section-structure-guidelines"></a>
 <!--
 ...... subsubsection Know the Time Constraints ......
 -->
-<h6 id="autosec-118"><span class="sectionnumber">5.1.1&#x2003;</span>Know the Time Constraints</h6>
-<a id="beameruserguide-autopage-118"></a>
+<h6 id="autosec-121"><span class="sectionnumber">5.1.1&#x2003;</span>Know the Time Constraints</h6>
+<a id="beameruserguide-autopage-121"></a>
 
 
 <p>
@@ -632,8 +298,8 @@ In many situations, a quick appraisal of how much time you have will show that y
 <!--
 ...... subsubsection Global Structure ......
 -->
-<h6 id="autosec-119"><span class="sectionnumber">5.1.2&#x2003;</span>Global Structure</h6>
-<a id="beameruserguide-autopage-119"></a>
+<h6 id="autosec-122"><span class="sectionnumber">5.1.2&#x2003;</span>Global Structure</h6>
+<a id="beameruserguide-autopage-122"></a>
 
 
 <p>
@@ -681,8 +347,8 @@ contents.
 
 
 <p>
-<span class="paragraph" id="autosec-120">Parts, Section, and Subsections.</span>
-<a id="beameruserguide-autopage-120"></a>
+<span class="paragraph" id="autosec-123">Parts, Section, and Subsections.</span>
+<a id="beameruserguide-autopage-123"></a>
 
 </p>
 
@@ -777,8 +443,8 @@ Audience Law into account.)
 
 
 <p>
-<span class="paragraph" id="autosec-121">Giving an Abstract</span>
-<a id="beameruserguide-autopage-121"></a>
+<span class="paragraph" id="autosec-124">Giving an Abstract</span>
+<a id="beameruserguide-autopage-124"></a>
 
 </p>
 
@@ -816,7 +482,29 @@ In papers, the abstract gives a short summary of the whole paper in about 100 wo
 
 
 <p>
-• <em>Never, ever</em> reuse a paper abstract for a presentation, <em>except</em> if the abstract is “We show \(\operatorname {P} = \operatorname {NP}\)” or “We show \(\operatorname {P} \neq \operatorname {NP}\)”
+• <em>Never, ever</em> reuse a paper abstract for a presentation, <em>except</em> if the abstract is “We show <span
+      id="lateximage-beameruserguide-3"
+      class="lateximagesource"
+><!--
+P = NP
+--><img
+    src="beameruserguide-images/8B1258EDC4BBDFC6B523F37A08D4AB9E.svg"
+    alt="\( \operatorname {P} = \operatorname {NP} \)"
+    role="math"
+    style="width:4.08063em"
+    class="lateximage"
+></span>” or “We show <span
+    id="lateximage-beameruserguide-4"
+    class="lateximagesource"
+><!--
+P ̸= NP
+--><img
+      src="beameruserguide-images/C5F25B7075B8979AF642C7D3F64010E7.svg"
+      alt="\( \operatorname {P} \neq \operatorname {NP} \)"
+      role="math"
+      style="width:4.08063em ; vertical-align:-0.22876em "
+      class="lateximage"
+></span>”
 </p>
 
 
@@ -835,8 +523,8 @@ In papers, the abstract gives a short summary of the whole paper in about 100 wo
 
 
 <p>
-<span class="paragraph" id="autosec-122">Numbered Theorems and Definitions.</span>
-<a id="beameruserguide-autopage-122"></a>
+<span class="paragraph" id="autosec-129">Numbered Theorems and Definitions.</span>
+<a id="beameruserguide-autopage-129"></a>
 
 </p>
 
@@ -869,8 +557,8 @@ Definition&nbsp;1 are a pain.
 
 
 <p>
-<span class="paragraph" id="autosec-123">Bibliographies.</span>
-<a id="beameruserguide-autopage-123"></a>
+<span class="paragraph" id="autosec-130">Bibliographies.</span>
+<a id="beameruserguide-autopage-130"></a>
 
 </p>
 
@@ -935,8 +623,8 @@ using the full name.
 <!--
 ...... subsubsection Frame Structure ......
 -->
-<h6 id="autosec-124"><span class="sectionnumber">5.1.3&#x2003;</span>Frame Structure</h6>
-<a id="beameruserguide-autopage-124"></a>
+<h6 id="autosec-131"><span class="sectionnumber">5.1.3&#x2003;</span>Frame Structure</h6>
+<a id="beameruserguide-autopage-131"></a>
 
 
 <a id="section-frame-guidelines"></a>
@@ -953,8 +641,8 @@ important, which information is just a detail, how the presented information is 
 
 
 <p>
-<span class="paragraph" id="autosec-125">The Frame Title</span>
-<a id="beameruserguide-autopage-125"></a>
+<span class="paragraph" id="autosec-132">The Frame Title</span>
+<a id="beameruserguide-autopage-132"></a>
 
 </p>
 
@@ -1014,13 +702,13 @@ true for block titles. For example, do not use titles like “A short Review of 
 </li>
 </ul>
 <!--
-......   paragraph How Much Can I Put On a Frame?        ......
+......   paragraph How Much Can I Put On a Frame?       ......
 -->
 
 
 <p>
-<span class="paragraph" id="autosec-126">How Much Can I Put On a Frame?</span>
-<a id="beameruserguide-autopage-126"></a>
+<span class="paragraph" id="autosec-133">How Much Can I Put On a Frame?</span>
+<a id="beameruserguide-autopage-133"></a>
 
 </p>
 
@@ -1038,7 +726,18 @@ true for block titles. For example, do not use titles like “A short Review of 
 
 <p>
 • Do not assume that everyone in the audience is an expert on the subject matter. Even if the people listening to you should be experts, they may last have heard about things you consider obvious several years ago. You should always have the time for a quick reminder
-of what exactly a “semantical complexity class” or an “\(\omega \)-complete partial ordering” is.
+of what exactly a “semantical complexity class” or an “<span
+      id="lateximage-beameruserguide-5"
+      class="lateximagesource"
+><!--
+𝜔
+--><img
+      src="beameruserguide-images/99BA3E39A784E2F12A0B22C11AEDD795.svg"
+      alt="\( \omega   \)"
+      role="math"
+      style="width:0.80284em"
+      class="lateximage"
+></span>-complete partial ordering” is.
 </p>
 
 
@@ -1069,7 +768,29 @@ of what exactly a “semantical complexity class” or an “\(\omega \)-complet
 </p>
 <p>
 There is some truth in this in our opinion. The great math-typesetting capabilities of <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> can easily lure you into using many more formulas than is
-necessary and healthy. For example, instead of writing “Since \(\left |\{x \in \{0,1\}^* \mid x \sqsubseteq y\}\right | &lt; \infty \), we have&#x2026;” use “Since \(y\) has only finitely many prefixes, we have&#x2026;”
+necessary and healthy. For example, instead of writing “Since <span
+      id="lateximage-beameruserguide-6"
+      class="lateximagesource"
+><!--
+|{𝑥 ∈ {0, 1}* | 𝑥 ⊑ 𝑦}| < ∞
+--><img
+    src="beameruserguide-images/F4119DCD75A9A10D2BBC4C3CE911F1EA.svg"
+    alt="\( \left |\{x \in \{0,1\}^* \mid x \sqsubseteq y\}\right | &lt; \infty   \)"
+    role="math"
+    style="width:13.97083em ; vertical-align:-0.29411em "
+    class="lateximage"
+></span>, we have&#x2026;” use “Since <span
+    id="lateximage-beameruserguide-7"
+    class="lateximagesource"
+><!--
+𝑦
+--><img
+      src="beameruserguide-images/B43C84B664F1E2A8F3F25F3AC98C91E3.svg"
+      alt="\( y \)"
+      role="math"
+      style="width:0.64735em ; vertical-align:-0.22876em "
+      class="lateximage"
+></span> has only finitely many prefixes, we have&#x2026;”
 </p>
 <p>
 You will be surprised how much mathematical text can be reformulated in plain English or can just be omitted. Naturally, if some mathematical argument is what you are actually talking about, as in a math lecture, make use of <span class="latexlogofont"><span
@@ -1083,8 +804,8 @@ class="latexlogo">T<span class="latexlogosub">e</span>X</span></span>’s typese
 
 
 <p>
-<span class="paragraph" id="autosec-127">Structuring a Frame</span>
-<a id="beameruserguide-autopage-127"></a>
+<span class="paragraph" id="autosec-140">Structuring a Frame</span>
+<a id="beameruserguide-autopage-140"></a>
 
 </p>
 
@@ -1201,8 +922,8 @@ class="latexlogo">T<span class="latexlogosub">e</span>X</span></span>’s typese
 
 
 <p>
-<span class="paragraph" id="autosec-128">Writing the Text</span>
-<a id="beameruserguide-autopage-128"></a>
+<span class="paragraph" id="autosec-141">Writing the Text</span>
+<a id="beameruserguide-autopage-141"></a>
 
 </p>
 
@@ -1273,8 +994,8 @@ before the second “the.” Bad breaks are before either “alphabet” and bef
 <!--
 ...... subsubsection Interactive Elements ......
 -->
-<h6 id="autosec-129"><span class="sectionnumber">5.1.4&#x2003;</span>Interactive Elements</h6>
-<a id="beameruserguide-autopage-129"></a>
+<h6 id="autosec-142"><span class="sectionnumber">5.1.4&#x2003;</span>Interactive Elements</h6>
+<a id="beameruserguide-autopage-142"></a>
 
 
 <p>
@@ -1374,8 +1095,8 @@ can use the <span class="texttt">\againframe</span> command at a much later poin
 <!--
 ...... subsection Using Graphics ......
 -->
-<h5 id="autosec-130"><span class="sectionnumber">5.2&#x2003;</span>Using Graphics</h5>
-<a id="beameruserguide-autopage-130"></a>
+<h5 id="autosec-143"><span class="sectionnumber">5.2&#x2003;</span>Using Graphics</h5>
+<a id="beameruserguide-autopage-143"></a>
 
 
 <p>
@@ -1440,8 +1161,8 @@ should use a command like <span class="texttt">\framezoom</span> to create antic
 <!--
 ...... subsection Using Animations and Transitions ......
 -->
-<h5 id="autosec-131"><span class="sectionnumber">5.3&#x2003;</span>Using Animations and Transitions</h5>
-<a id="beameruserguide-autopage-131"></a>
+<h5 id="autosec-144"><span class="sectionnumber">5.3&#x2003;</span>Using Animations and Transitions</h5>
+<a id="beameruserguide-autopage-144"></a>
 
 
 <ul style="list-style-type:none">
@@ -1475,8 +1196,8 @@ might wish to dissolve this slide into a slide showing a grown man instead. In t
 <!--
 ...... subsection Choosing Appropriate Themes ......
 -->
-<h5 id="autosec-132"><span class="sectionnumber">5.4&#x2003;</span>Choosing Appropriate Themes</h5>
-<a id="beameruserguide-autopage-132"></a>
+<h5 id="autosec-145"><span class="sectionnumber">5.4&#x2003;</span>Choosing Appropriate Themes</h5>
+<a id="beameruserguide-autopage-145"></a>
 
 
 <p>
@@ -1540,8 +1261,8 @@ class="texttt">seahorse</span> and <span class="texttt">lily</span>.
 <!--
 ...... subsection Choosing Appropriate Colors ......
 -->
-<h5 id="autosec-133"><span class="sectionnumber">5.5&#x2003;</span>Choosing Appropriate Colors</h5>
-<a id="beameruserguide-autopage-133"></a>
+<h5 id="autosec-146"><span class="sectionnumber">5.5&#x2003;</span>Choosing Appropriate Colors</h5>
+<a id="beameruserguide-autopage-146"></a>
 
 
 <ul style="list-style-type:none">
@@ -1592,8 +1313,8 @@ colors when you use them on bright backgrounds.
 <!--
 ...... subsection Choosing Appropriate Fonts and Font Attributes ......
 -->
-<h5 id="autosec-134"><span class="sectionnumber">5.6&#x2003;</span>Choosing Appropriate Fonts and Font Attributes</h5>
-<a id="beameruserguide-autopage-134"></a>
+<h5 id="autosec-147"><span class="sectionnumber">5.6&#x2003;</span>Choosing Appropriate Fonts and Font Attributes</h5>
+<a id="beameruserguide-autopage-147"></a>
 
 
 <p>
@@ -1609,8 +1330,8 @@ font in presentations. In the following, these attributes are described and adva
 <!--
 ...... subsubsection Font Size ......
 -->
-<h6 id="autosec-135"><span class="sectionnumber">5.6.1&#x2003;</span>Font Size</h6>
-<a id="beameruserguide-autopage-135"></a>
+<h6 id="autosec-148"><span class="sectionnumber">5.6.1&#x2003;</span>Font Size</h6>
+<a id="beameruserguide-autopage-148"></a>
 
 
 <a id="section-sizes"></a>
@@ -1668,8 +1389,8 @@ know what to expect.” So, instead of using a very large frame title, also cons
 <!--
 ...... subsubsection Font Families ......
 -->
-<h6 id="autosec-136"><span class="sectionnumber">5.6.2&#x2003;</span>Font Families</h6>
-<a id="beameruserguide-autopage-136"></a>
+<h6 id="autosec-149"><span class="sectionnumber">5.6.2&#x2003;</span>Font Families</h6>
+<a id="beameruserguide-autopage-149"></a>
 
 
 <a id="section-guidelines-serif"></a>
@@ -1843,8 +1564,8 @@ similar). A combination of Gills Sans and Helvetica is dangerous but perhaps pos
 <!--
 ...... subsubsection Font Shapes: Italics and Small Capitals ......
 -->
-<h6 id="autosec-137"><span class="sectionnumber">5.6.3&#x2003;</span>Font Shapes: Italics and Small Capitals</h6>
-<a id="beameruserguide-autopage-137"></a>
+<h6 id="autosec-150"><span class="sectionnumber">5.6.3&#x2003;</span>Font Shapes: Italics and Small Capitals</h6>
+<a id="beameruserguide-autopage-150"></a>
 
 
 <a id="section-italics"></a>
@@ -1936,8 +1657,8 @@ them much harder to actually read.
 <!--
 ...... subsubsection Font Weight ......
 -->
-<h6 id="autosec-138"><span class="sectionnumber">5.6.4&#x2003;</span>Font Weight</h6>
-<a id="beameruserguide-autopage-138"></a>
+<h6 id="autosec-151"><span class="sectionnumber">5.6.4&#x2003;</span>Font Weight</h6>
+<a id="beameruserguide-autopage-151"></a>
 
 
 <p>

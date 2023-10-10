@@ -102,12 +102,12 @@
 \def\endclassoption{\endlist\endBlockClass}
 
 
-\newcommand\beameroption[2]{\list{}{\leftmargin=2em\itemindent-\leftmargin\def\makelabel##1{\hss##1}}%
-\item{{\ttfamily\char`\\setbeameroption\char`\{\declare{#1}{\normalfont\opt{#2}}\char`\}}}
+\newcommand\beameroption[2]{\BlockClass{beameroption}\BlockClass{beameroption-headline}\list{}{\leftmargin=2em\itemindent-\leftmargin\def\makelabel##1{\hss##1}}%
+  \item{{\ttfamily\char`\\setbeameroption\char`\{\declare{#1}{\normalfont\opt{#2}}\char`\}}}
   \index{#1@\protect\texttt{#1} beamer option}%
   \index{Beamer options!#1@\protect\texttt{#1}}%
-  \par\topsep=0pt}
-\def\endbeameroption{\endlist}
+  \par\topsep=0pt\endBlockClass}
+\def\endbeameroption{\endlist\endBlockClass}
 
 
 \def\smallpackage{\vbox\bgroup\package}
@@ -138,11 +138,11 @@
 
 \def\typesetsol#1{\texttt{\def\_{\char`\_}#1}}
 
-\def\solution#1{\list{}{\leftmargin=2em\itemindent-\leftmargin\def\makelabel##1{\hss##1}}%
+\def\solution#1{\BlockClass{solution}\BlockClass{solution-headline}\list{}{\leftmargin=2em\itemindent-\leftmargin\def\makelabel##1{\hss##1}}%
 \item \textbf{Solution Template }\declare{\typesetsol{#1}}\par\topsep=0pt%
   \index{#1@\protect\typesetsol{#1} solution}%
-  \index{Solutions!#1@\protect\typesetsol{#1}}}
-\def\endsolution{\endlist}
+  \index{Solutions!#1@\protect\typesetsol{#1}}\endBlockClass}
+\def\endsolution{\endlist\endBlockClass}
 
 \def\template#1{\list{}{\leftmargin=2em\itemindent-\leftmargin\def\makelabel##1{\hss##1}}%
 \item {\ttfamily\char`\\setbeamertemplate\char`\{\declare{#1}\char`\}}\oarg{options}\opt{\meta{args}}\par\topsep=0pt}
@@ -273,7 +273,7 @@
 
 \newenvironment{translatormanualentry}{\list{}{\leftmargin=2em\itemindent-\leftmargin\def\makelabel##1{\hss##1}}}{\endlist}
 \newcommand\translatormanualentryheadline[1]{%
-  \BlockClass{translatormanualentryheadline}{\itemsep=0pt\parskip=0pt\item\strut#1\par\topsep=0pt}\endBlockClass}
+  {\itemsep=0pt\parskip=0pt\item\strut#1\par\topsep=0pt}}
 \newcommand\translatormanualbody{\parskip3pt}
 
 
@@ -303,13 +303,9 @@
 }
 
 \def\extractenvironement#1#2\@@{%
-  \BlockClass{begin-environment}%
-    \translatormanualentryheadline{{\ttfamily\char`\\begin\char`\{\declare{#1}\char`\}}#2}%
-  \endBlockClass
+  \translatormanualentryheadline{\BlockClass{begin-environment}{\ttfamily\char`\\begin\char`\{\declare{#1}\char`\}}#2\endBlockClass}%
   \translatormanualentryheadline{{\ttfamily\ \ }\meta{environment contents}}%
-  \BlockClass{end-environment}%
-    \translatormanualentryheadline{{\ttfamily\char`\\end\char`\{\declare{#1}\char`\}}}%
-  \endBlockClass
+  \translatormanualentryheadline{\BlockClass{end-environment}{\ttfamily\char`\\end\char`\{\declare{#1}\char`\}}\endBlockClass}%
   \index{#1@\protect\texttt{#1} environment}%
   \index{Environments!#1@\protect\texttt{#1}}}
 

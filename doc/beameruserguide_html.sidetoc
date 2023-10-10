@@ -15,221 +15,221 @@
 \contentsline {subsection}{\numberline {2.4}{\ignorespaces Updating the Installation\relax }}{33}{}
 \contentsline {subsection}{\numberline {2.5}{\ignorespaces Testing the Installation\relax }}{35}{}
 \contentsline {subsection}{\numberline {2.6}{\ignorespaces Compatibility with Other Packages and Classes\relax }}{37}{}
-\contentsline {section}{\numberline {3}{\ignorespaces Tutorial: Euclid's Presentation\relax }}{42}{}
-\contentsline {subsection}{\numberline {3.1}{\ignorespaces Problem Statement\relax }}{43}{}
-\contentsline {subsection}{\numberline {3.2}{\ignorespaces Solution Template\relax }}{44}{}
-\contentsline {subsection}{\numberline {3.3}{\ignorespaces Title Material\relax }}{48}{}
-\contentsline {subsection}{\numberline {3.4}{\ignorespaces The Title Page Frame\relax }}{52}{}
-\contentsline {subsection}{\numberline {3.5}{\ignorespaces Creating the Presentation PDF File\relax }}{54}{}
-\contentsline {subsection}{\numberline {3.6}{\ignorespaces The Table of Contents\relax }}{55}{}
-\contentsline {subsection}{\numberline {3.7}{\ignorespaces Sections and Subsections\relax }}{58}{}
-\contentsline {subsection}{\numberline {3.8}{\ignorespaces Creating a Simple Frame\relax }}{60}{}
-\contentsline {subsection}{\numberline {3.9}{\ignorespaces Creating Simple Overlays\relax }}{64}{}
-\contentsline {subsection}{\numberline {3.10}{\ignorespaces Using Overlay Specifications\relax }}{66}{}
-\contentsline {subsection}{\numberline {3.11}{\ignorespaces Structuring a Frame\relax }}{70}{}
-\contentsline {subsection}{\numberline {3.12}{\ignorespaces Adding References\relax }}{75}{}
-\contentsline {subsection}{\numberline {3.13}{\ignorespaces Verbatim Text\relax }}{78}{}
-\contentsline {subsection}{\numberline {3.14}{\ignorespaces Changing the Way Things Look I: Theming\relax }}{82}{}
-\contentsline {subsection}{\numberline {3.15}{\ignorespaces Changing the Way Things Look II: Colors and Fonts\relax }}{87}{}
-\contentsline {section}{\numberline {4}{\ignorespaces Workflow For Creating a Beamer Presentation\relax }}{93}{}
-\contentsline {subsection}{\numberline {4.1}{\ignorespaces Step One: Setup the Files\relax }}{94}{}
-\contentsline {subsection}{\numberline {4.2}{\ignorespaces Step Two: Structure Your Presentation\relax }}{95}{}
-\contentsline {subsection}{\numberline {4.3}{\ignorespaces Step Three: Creating a PDF or PostScript File\relax }}{97}{}
-\contentsline {subsubsection}{\numberline {4.3.1}{\ignorespaces Creating PDF\relax }}{98}{}
-\contentsline {subsubsection}{\numberline {4.3.2}{\ignorespaces Creating PostScript\relax }}{101}{}
-\contentsline {subsubsection}{\numberline {4.3.3}{\ignorespaces Ways of Improving Compilation Speed\relax }}{104}{}
-\contentsline {subsection}{\numberline {4.4}{\ignorespaces Step Four: Create Frames\relax }}{106}{}
-\contentsline {subsection}{\numberline {4.5}{\ignorespaces Step Five: Test Your Presentation\relax }}{107}{}
-\contentsline {subsection}{\numberline {4.6}{\ignorespaces Step Six: Create a Handout\relax }}{108}{}
-\contentsline {subsubsection}{\numberline {4.6.1}{\ignorespaces Creating the Handout\relax }}{109}{}
-\contentsline {subsubsection}{\numberline {4.6.2}{\ignorespaces Printing the Handout\relax }}{110}{}
-\contentsline {section}{\numberline {5}{\ignorespaces Guidelines for Creating Presentations\relax }}{116}{}
-\contentsline {subsection}{\numberline {5.1}{\ignorespaces Structuring a Presentation\relax }}{117}{}
-\contentsline {subsubsection}{\numberline {5.1.1}{\ignorespaces Know the Time Constraints\relax }}{118}{}
-\contentsline {subsubsection}{\numberline {5.1.2}{\ignorespaces Global Structure\relax }}{119}{}
-\contentsline {paragraph}{Parts, Section, and Subsections.}{120}{}
-\contentsline {paragraph}{Giving an Abstract}{121}{}
-\contentsline {paragraph}{Numbered Theorems and Definitions.}{122}{}
-\contentsline {paragraph}{Bibliographies.}{123}{}
-\contentsline {subsubsection}{\numberline {5.1.3}{\ignorespaces Frame Structure\relax }}{124}{}
-\contentsline {paragraph}{The Frame Title}{125}{}
-\contentsline {paragraph}{How Much Can I Put On a Frame?}{126}{}
-\contentsline {paragraph}{Structuring a Frame}{127}{}
-\contentsline {paragraph}{Writing the Text}{128}{}
-\contentsline {subsubsection}{\numberline {5.1.4}{\ignorespaces Interactive Elements\relax }}{129}{}
-\contentsline {subsection}{\numberline {5.2}{\ignorespaces Using Graphics\relax }}{130}{}
-\contentsline {subsection}{\numberline {5.3}{\ignorespaces Using Animations and Transitions\relax }}{131}{}
-\contentsline {subsection}{\numberline {5.4}{\ignorespaces Choosing Appropriate Themes\relax }}{132}{}
-\contentsline {subsection}{\numberline {5.5}{\ignorespaces Choosing Appropriate Colors\relax }}{133}{}
-\contentsline {subsection}{\numberline {5.6}{\ignorespaces Choosing Appropriate Fonts and Font Attributes\relax }}{134}{}
-\contentsline {subsubsection}{\numberline {5.6.1}{\ignorespaces Font Size\relax }}{135}{}
-\contentsline {subsubsection}{\numberline {5.6.2}{\ignorespaces Font Families\relax }}{136}{}
-\contentsline {subsubsection}{\numberline {5.6.3}{\ignorespaces Font Shapes: Italics and Small Capitals\relax }}{137}{}
-\contentsline {subsubsection}{\numberline {5.6.4}{\ignorespaces Font Weight\relax }}{138}{}
-\contentsline {section}{\numberline {6}{\ignorespaces Solution Templates\relax }}{141}{}
-\contentsline {section}{\numberline {7}{\ignorespaces Licenses and Copyright\relax }}{144}{}
-\contentsline {subsection}{\numberline {7.1}{\ignorespaces Which License Applies?\relax }}{145}{}
-\contentsline {subsection}{\numberline {7.2}{\ignorespaces The GNU General Public License, Version 2\relax }}{146}{}
-\contentsline {subsubsection}{\numberline {7.2.1}{\ignorespaces Preamble\relax }}{147}{}
-\contentsline {subsubsection}{\numberline {7.2.2}{\ignorespaces Terms and Conditions For Copying, Distribution and Modification\relax }}{148}{}
-\contentsline {subsubsection}{\numberline {7.2.3}{\ignorespaces No Warranty\relax }}{149}{}
-\contentsline {subsection}{\numberline {7.3}{\ignorespaces The GNU Free Documentation License, Version 1.3, 3 November 2008\relax }}{150}{}
-\contentsline {subsubsection}{\numberline {7.3.1}{\ignorespaces Preamble\relax }}{152}{}
-\contentsline {subsubsection}{\numberline {7.3.2}{\ignorespaces Applicability and definitions\relax }}{153}{}
-\contentsline {subsubsection}{\numberline {7.3.3}{\ignorespaces Verbatim Copying\relax }}{154}{}
-\contentsline {subsubsection}{\numberline {7.3.4}{\ignorespaces Copying in Quantity\relax }}{155}{}
-\contentsline {subsubsection}{\numberline {7.3.5}{\ignorespaces Modifications\relax }}{156}{}
-\contentsline {subsubsection}{\numberline {7.3.6}{\ignorespaces Combining Documents\relax }}{157}{}
-\contentsline {subsubsection}{\numberline {7.3.7}{\ignorespaces Collection of Documents\relax }}{158}{}
-\contentsline {subsubsection}{\numberline {7.3.8}{\ignorespaces Aggregating with Independent Works\relax }}{159}{}
-\contentsline {subsubsection}{\numberline {7.3.9}{\ignorespaces Translation\relax }}{160}{}
-\contentsline {subsubsection}{\numberline {7.3.10}{\ignorespaces Termination\relax }}{161}{}
-\contentsline {subsubsection}{\numberline {7.3.11}{\ignorespaces Future Revisions of this License\relax }}{162}{}
-\contentsline {subsubsection}{\numberline {7.3.12}{\ignorespaces Relicensing\relax }}{163}{}
-\contentsline {subsubsection}{\numberline {7.3.13}{\ignorespaces Addendum: How to use this License for your documents\relax }}{164}{}
-\contentsline {subsection}{\numberline {7.4}{\ignorespaces The \LaTeX \ Project Public License\relax }}{167}{}
-\contentsline {subsubsection}{\numberline {7.4.1}{\ignorespaces Preamble\relax }}{169}{}
-\contentsline {subsubsection}{\numberline {7.4.2}{\ignorespaces Definitions\relax }}{170}{}
-\contentsline {subsubsection}{\numberline {7.4.3}{\ignorespaces Conditions on Distribution and Modification\relax }}{171}{}
-\contentsline {subsubsection}{\numberline {7.4.4}{\ignorespaces No Warranty\relax }}{172}{}
-\contentsline {subsubsection}{\numberline {7.4.5}{\ignorespaces Maintenance of The Work\relax }}{173}{}
-\contentsline {subsubsection}{\numberline {7.4.6}{\ignorespaces Whether and How to Distribute Works under This License\relax }}{174}{}
-\contentsline {subsubsection}{\numberline {7.4.7}{\ignorespaces Choosing This License or Another License\relax }}{175}{}
-\contentsline {subsubsection}{\numberline {7.4.8}{\ignorespaces A Recommendation on Modification Without Distribution\relax }}{176}{}
-\contentsline {subsubsection}{\numberline {7.4.9}{\ignorespaces How to Use This License\relax }}{177}{}
-\contentsline {subsubsection}{\numberline {7.4.10}{\ignorespaces Derived Works That Are Not Replacements\relax }}{179}{}
-\contentsline {subsubsection}{\numberline {7.4.11}{\ignorespaces Important Recommendations\relax }}{180}{}
-\contentsline {paragraph}{Defining What Constitutes the Work}{181}{}
-\contentsline {part}{\numberline {II}{\ignorespaces Building a Presentation\relax }}{185}{}
-\contentsline {section}{\numberline {8}{\ignorespaces Creating Frames\relax }}{188}{}
-\contentsline {subsection}{\numberline {8.1}{\ignorespaces The Frame Environment\relax }}{189}{}
-\contentsline {subsection}{\numberline {8.2}{\ignorespaces Components of a Frame\relax }}{203}{}
-\contentsline {subsubsection}{\numberline {8.2.1}{\ignorespaces The Headline and Footline\relax }}{206}{}
-\contentsline {subsubsection}{\numberline {8.2.2}{\ignorespaces The Sidebars\relax }}{209}{}
-\contentsline {subsubsection}{\numberline {8.2.3}{\ignorespaces Navigation Bars\relax }}{213}{}
-\contentsline {subsubsection}{\numberline {8.2.4}{\ignorespaces The Navigation Symbols\relax }}{218}{}
-\contentsline {subsubsection}{\numberline {8.2.5}{\ignorespaces The Logo\relax }}{220}{}
-\contentsline {subsubsection}{\numberline {8.2.6}{\ignorespaces The Frame Title\relax }}{223}{}
-\contentsline {subsubsection}{\numberline {8.2.7}{\ignorespaces The Background\relax }}{226}{}
-\contentsline {subsection}{\numberline {8.3}{\ignorespaces Frame and Margin Sizes\relax }}{229}{}
-\contentsline {subsection}{\numberline {8.4}{\ignorespaces Restricting the Slides of a Frame\relax }}{230}{}
-\contentsline {section}{\numberline {9}{\ignorespaces Creating Overlays\relax }}{234}{}
-\contentsline {subsection}{\numberline {9.1}{\ignorespaces The Pause Commands\relax }}{235}{}
-\contentsline {subsection}{\numberline {9.2}{\ignorespaces The General Concept of Overlay Specifications\relax }}{238}{}
-\contentsline {subsection}{\numberline {9.3}{\ignorespaces Commands with Overlay Specifications\relax }}{241}{}
-\contentsline {subsection}{\numberline {9.4}{\ignorespaces Environments with Overlay Specifications\relax }}{251}{}
-\contentsline {subsection}{\numberline {9.5}{\ignorespaces Dynamically Changing Text or Images\relax }}{255}{}
-\contentsline {subsection}{\numberline {9.6}{\ignorespaces Advanced Overlay Specifications\relax }}{262}{}
-\contentsline {subsubsection}{\numberline {9.6.1}{\ignorespaces Making Commands and Environments Overlay Specification-Aware\relax }}{263}{}
-\contentsline {subsubsection}{\numberline {9.6.2}{\ignorespaces Mode Specifications\relax }}{274}{}
-\contentsline {subsubsection}{\numberline {9.6.3}{\ignorespaces Action Specifications\relax }}{279}{}
-\contentsline {subsubsection}{\numberline {9.6.4}{\ignorespaces Incremental Specifications\relax }}{284}{}
-\contentsline {section}{\numberline {10}{\ignorespaces Structuring a Presentation: The Static Global Structure\relax }}{295}{}
-\contentsline {subsection}{\numberline {10.1}{\ignorespaces Adding a Title Page\relax }}{296}{}
-\contentsline {subsection}{\numberline {10.2}{\ignorespaces Adding Sections and Subsections\relax }}{300}{}
-\contentsline {subsection}{\numberline {10.3}{\ignorespaces Adding Parts\relax }}{306}{}
-\contentsline {subsection}{\numberline {10.4}{\ignorespaces Splitting a Course Into Lectures\relax }}{309}{}
-\contentsline {subsection}{\numberline {10.5}{\ignorespaces Adding a Table of Contents\relax }}{312}{}
-\contentsline {subsection}{\numberline {10.6}{\ignorespaces Adding a Bibliography\relax }}{315}{}
-\contentsline {subsection}{\numberline {10.7}{\ignorespaces Adding an Appendix\relax }}{318}{}
-\contentsline {section}{\numberline {11}{\ignorespaces Structuring a Presentation: The Interactive Global Structure\relax }}{322}{}
-\contentsline {subsection}{\numberline {11.1}{\ignorespaces Adding Hyperlinks and Buttons\relax }}{323}{}
-\contentsline {subsection}{\numberline {11.2}{\ignorespaces Repeating a Frame at a Later Point\relax }}{328}{}
-\contentsline {subsection}{\numberline {11.3}{\ignorespaces Adding Anticipated Zooming\relax }}{331}{}
-\contentsline {section}{\numberline {12}{\ignorespaces Structuring a Presentation: The Local Structure\relax }}{336}{}
-\contentsline {subsection}{\numberline {12.1}{\ignorespaces Itemizations, Enumerations, and Descriptions\relax }}{337}{}
-\contentsline {subsection}{\numberline {12.2}{\ignorespaces Highlighting\relax }}{347}{}
-\contentsline {subsection}{\numberline {12.3}{\ignorespaces Block Environments\relax }}{348}{}
-\contentsline {subsection}{\numberline {12.4}{\ignorespaces Theorem Environments\relax }}{352}{}
-\contentsline {subsection}{\numberline {12.5}{\ignorespaces Framed and Boxed Text\relax }}{359}{}
-\contentsline {subsection}{\numberline {12.6}{\ignorespaces Figures and Tables\relax }}{364}{}
-\contentsline {subsection}{\numberline {12.7}{\ignorespaces Splitting a Frame into Multiple Columns\relax }}{366}{}
-\contentsline {subsection}{\numberline {12.8}{\ignorespaces Positioning Text and Graphics Absolutely\relax }}{371}{}
-\contentsline {subsection}{\numberline {12.9}{\ignorespaces Verbatim and Fragile Text\relax }}{373}{}
-\contentsline {subsection}{\numberline {12.10}{\ignorespaces Abstract\relax }}{375}{}
-\contentsline {subsection}{\numberline {12.11}{\ignorespaces Verse, Quotations, Quotes\relax }}{376}{}
-\contentsline {subsection}{\numberline {12.12}{\ignorespaces Footnotes\relax }}{377}{}
-\contentsline {section}{\numberline {13}{\ignorespaces Graphics\relax }}{380}{}
-\contentsline {subsection}{\numberline {13.1}{\ignorespaces Including External Graphic Files Versus Inlines Graphics\relax }}{381}{}
-\contentsline {subsection}{\numberline {13.2}{\ignorespaces Including Graphic Files Ending \texttt {.eps} or \texttt {.ps}\relax }}{383}{}
-\contentsline {subsection}{\numberline {13.3}{\ignorespaces Including Graphic Files Ending \texttt {.pdf}, \texttt {.jpg}, \texttt {.jpeg} or \texttt {.png}\relax }}{384}{}
-\contentsline {subsection}{\numberline {13.4}{\ignorespaces Including Graphic Files Ending \texttt {.mps}\relax }}{385}{}
-\contentsline {subsection}{\numberline {13.5}{\ignorespaces Including Graphic Files Ending \texttt {.mmp}\relax }}{387}{}
-\contentsline {section}{\numberline {14}{\ignorespaces Animations, Sounds, and Slide Transitions\relax }}{390}{}
-\contentsline {subsection}{\numberline {14.1}{\ignorespaces Animations\relax }}{391}{}
-\contentsline {subsubsection}{\numberline {14.1.1}{\ignorespaces Including External Animation Files\relax }}{392}{}
-\contentsline {subsubsection}{\numberline {14.1.2}{\ignorespaces Animations Created by Showing Slides in Rapid Succession\relax }}{395}{}
-\contentsline {subsubsection}{\numberline {14.1.3}{\ignorespaces Including External Animations Residing in Multiple Image Files\relax }}{399}{}
-\contentsline {subsection}{\numberline {14.2}{\ignorespaces Sounds\relax }}{403}{}
-\contentsline {subsection}{\numberline {14.3}{\ignorespaces Slide Transitions\relax }}{405}{}
-\contentsline {part}{\numberline {III}{\ignorespaces Changing the Way Things Look\relax }}{410}{}
-\contentsline {section}{\numberline {15}{\ignorespaces Themes\relax }}{413}{}
-\contentsline {subsection}{\numberline {15.1}{\ignorespaces Five Flavors of Themes\relax }}{414}{}
-\contentsline {subsection}{\numberline {15.2}{\ignorespaces Presentation Themes without Navigation Bars\relax }}{415}{}
-\contentsline {subsection}{\numberline {15.3}{\ignorespaces Presentation Themes with a Tree-Like Navigation Bar\relax }}{419}{}
-\contentsline {subsection}{\numberline {15.4}{\ignorespaces Presentation Themes with a Table of Contents Sidebar\relax }}{420}{}
-\contentsline {subsection}{\numberline {15.5}{\ignorespaces Presentation Themes with a Mini Frame Navigation\relax }}{422}{}
-\contentsline {subsection}{\numberline {15.6}{\ignorespaces Presentation Themes with Section and Subsection Tables\relax }}{423}{}
-\contentsline {subsection}{\numberline {15.7}{\ignorespaces Presentation Themes Included For Compatibility\relax }}{424}{}
-\contentsline {section}{\numberline {16}{\ignorespaces Inner Themes, Outer Themes, and Templates\relax }}{428}{}
-\contentsline {subsection}{\numberline {16.1}{\ignorespaces Inner Themes\relax }}{429}{}
-\contentsline {subsection}{\numberline {16.2}{\ignorespaces Outer Themes\relax }}{430}{}
-\contentsline {subsection}{\numberline {16.3}{\ignorespaces Changing the Templates Used for Different Elements of a Presentation\relax }}{431}{}
-\contentsline {subsubsection}{\numberline {16.3.1}{\ignorespaces Overview of Beamer's Template Management\relax }}{432}{}
-\contentsline {subsubsection}{\numberline {16.3.2}{\ignorespaces Using Beamer's Templates\relax }}{438}{}
-\contentsline {subsubsection}{\numberline {16.3.3}{\ignorespaces Setting Beamer's Templates\relax }}{440}{}
-\contentsline {section}{\numberline {17}{\ignorespaces Colors\relax }}{452}{}
-\contentsline {subsection}{\numberline {17.1}{\ignorespaces Color Themes\relax }}{453}{}
-\contentsline {subsubsection}{\numberline {17.1.1}{\ignorespaces Default and Special-Purpose Color Themes\relax }}{454}{}
-\contentsline {subsubsection}{\numberline {17.1.2}{\ignorespaces Complete Color Themes\relax }}{455}{}
-\contentsline {subsubsection}{\numberline {17.1.3}{\ignorespaces Inner Color Themes\relax }}{456}{}
-\contentsline {subsubsection}{\numberline {17.1.4}{\ignorespaces Outer Color Themes\relax }}{457}{}
-\contentsline {subsection}{\numberline {17.2}{\ignorespaces Changing the Colors Used for Different Elements of a Presentation\relax }}{458}{}
-\contentsline {subsubsection}{\numberline {17.2.1}{\ignorespaces Overview of Beamer's Color Management\relax }}{459}{}
-\contentsline {subsubsection}{\numberline {17.2.2}{\ignorespaces Using Beamer's Colors\relax }}{460}{}
-\contentsline {subsubsection}{\numberline {17.2.3}{\ignorespaces Setting Beamer's Colors\relax }}{465}{}
-\contentsline {subsection}{\numberline {17.3}{\ignorespaces The Color of Mathematical Text\relax }}{472}{}
-\contentsline {subsection}{\numberline {17.4}{\ignorespaces The Color Palettes\relax }}{473}{}
-\contentsline {subsection}{\numberline {17.5}{\ignorespaces Miscellaneous Colors\relax }}{474}{}
-\contentsline {subsection}{\numberline {17.6}{\ignorespaces Transparency Effects\relax }}{475}{}
-\contentsline {section}{\numberline {18}{\ignorespaces Fonts\relax }}{481}{}
-\contentsline {subsection}{\numberline {18.1}{\ignorespaces Font Themes\relax }}{482}{}
-\contentsline {subsection}{\numberline {18.2}{\ignorespaces Font Changes Made Without Using Font Themes\relax }}{483}{}
-\contentsline {subsubsection}{\numberline {18.2.1}{\ignorespaces Choosing a Font Size for Normal Text\relax }}{484}{}
-\contentsline {subsubsection}{\numberline {18.2.2}{\ignorespaces Choosing a Font Family\relax }}{485}{}
-\contentsline {subsubsection}{\numberline {18.2.3}{\ignorespaces Choosing a Font Encodings\relax }}{487}{}
-\contentsline {subsection}{\numberline {18.3}{\ignorespaces Changing the Fonts Used for Different Elements of a Presentation\relax }}{489}{}
-\contentsline {subsubsection}{\numberline {18.3.1}{\ignorespaces Overview of Beamer's Font Management\relax }}{490}{}
-\contentsline {subsubsection}{\numberline {18.3.2}{\ignorespaces Using Beamer's Fonts\relax }}{491}{}
-\contentsline {subsubsection}{\numberline {18.3.3}{\ignorespaces Setting Beamer's Fonts\relax }}{492}{}
-\contentsline {part}{\numberline {IV}{\ignorespaces Creating Supporting Material\relax }}{497}{}
-\contentsline {section}{\numberline {19}{\ignorespaces Adding Notes for Yourself\relax }}{500}{}
-\contentsline {subsection}{\numberline {19.1}{\ignorespaces Specifying Note Contents\relax }}{501}{}
-\contentsline {subsection}{\numberline {19.2}{\ignorespaces Specifying Contents for Multiple Notes\relax }}{504}{}
-\contentsline {subsection}{\numberline {19.3}{\ignorespaces Specifying Which Notes and Frames Are Shown\relax }}{506}{}
-\contentsline {section}{\numberline {20}{\ignorespaces Creating Transparencies\relax }}{512}{}
-\contentsline {section}{\numberline {21}{\ignorespaces Creating Handouts and Lecture Notes\relax }}{521}{}
-\contentsline {subsection}{\numberline {21.1}{\ignorespaces Creating Handouts Using the Handout Mode\relax }}{522}{}
-\contentsline {subsection}{\numberline {21.2}{\ignorespaces Creating Handouts Using the Article Mode\relax }}{524}{}
-\contentsline {subsubsection}{\numberline {21.2.1}{\ignorespaces Starting the Article Mode\relax }}{525}{}
-\contentsline {subsubsection}{\numberline {21.2.2}{\ignorespaces Workflow\relax }}{528}{}
-\contentsline {subsubsection}{\numberline {21.2.3}{\ignorespaces Including Slides from the Presentation Version in the Article Version\relax }}{531}{}
-\contentsline {subsection}{\numberline {21.3}{\ignorespaces Details on Modes\relax }}{535}{}
-\contentsline {section}{\numberline {22}{\ignorespaces Taking Advantage of Multiple Screens\relax }}{546}{}
-\contentsline {subsection}{\numberline {22.1}{\ignorespaces Showing Notes on the Second Screen\relax }}{547}{}
-\contentsline {subsection}{\numberline {22.2}{\ignorespaces Showing Second Mode Material on the Second Screen\relax }}{548}{}
-\contentsline {subsection}{\numberline {22.3}{\ignorespaces Showing the Previous Slide on the Second Screen\relax }}{551}{}
-\contentsline {part}{\numberline {V}{\ignorespaces Howtos\relax }}{554}{}
-\contentsline {section}{\numberline {23}{\ignorespaces How To Uncover Things Piecewise\relax }}{557}{}
-\contentsline {subsection}{\numberline {23.1}{\ignorespaces Uncovering an Enumeration Piecewise\relax }}{558}{}
-\contentsline {subsection}{\numberline {23.2}{\ignorespaces Highlighting the Current Item in an Enumeration\relax }}{562}{}
-\contentsline {subsection}{\numberline {23.3}{\ignorespaces Changing Symbol Before an Enumeration\relax }}{565}{}
-\contentsline {subsection}{\numberline {23.4}{\ignorespaces Uncovering Tagged Formulas Piecewise\relax }}{570}{}
-\contentsline {subsection}{\numberline {23.5}{\ignorespaces Uncovering a Table Rowwise\relax }}{574}{}
-\contentsline {subsection}{\numberline {23.6}{\ignorespaces Uncovering a Table Columnwise\relax }}{576}{}
-\contentsline {section}{\numberline {24}{\ignorespaces How To Import Presentations Based on Other Packages and Classes\relax }}{580}{}
-\contentsline {subsection}{\numberline {24.1}{\ignorespaces Prosper, HA-Prosper and Powerdot\relax }}{581}{}
-\contentsline {subsection}{\numberline {24.2}{\ignorespaces Seminar\relax }}{587}{}
-\contentsline {subsection}{\numberline {24.3}{\ignorespaces Foil\TeX \relax }}{591}{}
-\contentsline {subsection}{\numberline {24.4}{\ignorespaces \TeX Power\relax }}{594}{}
+\contentsline {section}{\numberline {3}{\ignorespaces Tutorial: Euclid's Presentation\relax }}{44}{}
+\contentsline {subsection}{\numberline {3.1}{\ignorespaces Problem Statement\relax }}{45}{}
+\contentsline {subsection}{\numberline {3.2}{\ignorespaces Solution Template\relax }}{48}{}
+\contentsline {subsection}{\numberline {3.3}{\ignorespaces Title Material\relax }}{52}{}
+\contentsline {subsection}{\numberline {3.4}{\ignorespaces The Title Page Frame\relax }}{56}{}
+\contentsline {subsection}{\numberline {3.5}{\ignorespaces Creating the Presentation PDF File\relax }}{58}{}
+\contentsline {subsection}{\numberline {3.6}{\ignorespaces The Table of Contents\relax }}{59}{}
+\contentsline {subsection}{\numberline {3.7}{\ignorespaces Sections and Subsections\relax }}{62}{}
+\contentsline {subsection}{\numberline {3.8}{\ignorespaces Creating a Simple Frame\relax }}{64}{}
+\contentsline {subsection}{\numberline {3.9}{\ignorespaces Creating Simple Overlays\relax }}{68}{}
+\contentsline {subsection}{\numberline {3.10}{\ignorespaces Using Overlay Specifications\relax }}{70}{}
+\contentsline {subsection}{\numberline {3.11}{\ignorespaces Structuring a Frame\relax }}{74}{}
+\contentsline {subsection}{\numberline {3.12}{\ignorespaces Adding References\relax }}{79}{}
+\contentsline {subsection}{\numberline {3.13}{\ignorespaces Verbatim Text\relax }}{82}{}
+\contentsline {subsection}{\numberline {3.14}{\ignorespaces Changing the Way Things Look I: Theming\relax }}{85}{}
+\contentsline {subsection}{\numberline {3.15}{\ignorespaces Changing the Way Things Look II: Colors and Fonts\relax }}{90}{}
+\contentsline {section}{\numberline {4}{\ignorespaces Workflow For Creating a Beamer Presentation\relax }}{96}{}
+\contentsline {subsection}{\numberline {4.1}{\ignorespaces Step One: Setup the Files\relax }}{97}{}
+\contentsline {subsection}{\numberline {4.2}{\ignorespaces Step Two: Structure Your Presentation\relax }}{98}{}
+\contentsline {subsection}{\numberline {4.3}{\ignorespaces Step Three: Creating a PDF or PostScript File\relax }}{100}{}
+\contentsline {subsubsection}{\numberline {4.3.1}{\ignorespaces Creating PDF\relax }}{101}{}
+\contentsline {subsubsection}{\numberline {4.3.2}{\ignorespaces Creating PostScript\relax }}{104}{}
+\contentsline {subsubsection}{\numberline {4.3.3}{\ignorespaces Ways of Improving Compilation Speed\relax }}{107}{}
+\contentsline {subsection}{\numberline {4.4}{\ignorespaces Step Four: Create Frames\relax }}{109}{}
+\contentsline {subsection}{\numberline {4.5}{\ignorespaces Step Five: Test Your Presentation\relax }}{110}{}
+\contentsline {subsection}{\numberline {4.6}{\ignorespaces Step Six: Create a Handout\relax }}{111}{}
+\contentsline {subsubsection}{\numberline {4.6.1}{\ignorespaces Creating the Handout\relax }}{112}{}
+\contentsline {subsubsection}{\numberline {4.6.2}{\ignorespaces Printing the Handout\relax }}{113}{}
+\contentsline {section}{\numberline {5}{\ignorespaces Guidelines for Creating Presentations\relax }}{119}{}
+\contentsline {subsection}{\numberline {5.1}{\ignorespaces Structuring a Presentation\relax }}{120}{}
+\contentsline {subsubsection}{\numberline {5.1.1}{\ignorespaces Know the Time Constraints\relax }}{121}{}
+\contentsline {subsubsection}{\numberline {5.1.2}{\ignorespaces Global Structure\relax }}{122}{}
+\contentsline {paragraph}{Parts, Section, and Subsections.}{123}{}
+\contentsline {paragraph}{Giving an Abstract}{124}{}
+\contentsline {paragraph}{Numbered Theorems and Definitions.}{129}{}
+\contentsline {paragraph}{Bibliographies.}{130}{}
+\contentsline {subsubsection}{\numberline {5.1.3}{\ignorespaces Frame Structure\relax }}{131}{}
+\contentsline {paragraph}{The Frame Title}{132}{}
+\contentsline {paragraph}{How Much Can I Put On a Frame?}{133}{}
+\contentsline {paragraph}{Structuring a Frame}{140}{}
+\contentsline {paragraph}{Writing the Text}{141}{}
+\contentsline {subsubsection}{\numberline {5.1.4}{\ignorespaces Interactive Elements\relax }}{142}{}
+\contentsline {subsection}{\numberline {5.2}{\ignorespaces Using Graphics\relax }}{143}{}
+\contentsline {subsection}{\numberline {5.3}{\ignorespaces Using Animations and Transitions\relax }}{144}{}
+\contentsline {subsection}{\numberline {5.4}{\ignorespaces Choosing Appropriate Themes\relax }}{145}{}
+\contentsline {subsection}{\numberline {5.5}{\ignorespaces Choosing Appropriate Colors\relax }}{146}{}
+\contentsline {subsection}{\numberline {5.6}{\ignorespaces Choosing Appropriate Fonts and Font Attributes\relax }}{147}{}
+\contentsline {subsubsection}{\numberline {5.6.1}{\ignorespaces Font Size\relax }}{148}{}
+\contentsline {subsubsection}{\numberline {5.6.2}{\ignorespaces Font Families\relax }}{149}{}
+\contentsline {subsubsection}{\numberline {5.6.3}{\ignorespaces Font Shapes: Italics and Small Capitals\relax }}{150}{}
+\contentsline {subsubsection}{\numberline {5.6.4}{\ignorespaces Font Weight\relax }}{151}{}
+\contentsline {section}{\numberline {6}{\ignorespaces Solution Templates\relax }}{154}{}
+\contentsline {section}{\numberline {7}{\ignorespaces Licenses and Copyright\relax }}{157}{}
+\contentsline {subsection}{\numberline {7.1}{\ignorespaces Which License Applies?\relax }}{158}{}
+\contentsline {subsection}{\numberline {7.2}{\ignorespaces The GNU General Public License, Version 2\relax }}{159}{}
+\contentsline {subsubsection}{\numberline {7.2.1}{\ignorespaces Preamble\relax }}{160}{}
+\contentsline {subsubsection}{\numberline {7.2.2}{\ignorespaces Terms and Conditions For Copying, Distribution and Modification\relax }}{161}{}
+\contentsline {subsubsection}{\numberline {7.2.3}{\ignorespaces No Warranty\relax }}{162}{}
+\contentsline {subsection}{\numberline {7.3}{\ignorespaces The GNU Free Documentation License, Version 1.3, 3 November 2008\relax }}{163}{}
+\contentsline {subsubsection}{\numberline {7.3.1}{\ignorespaces Preamble\relax }}{165}{}
+\contentsline {subsubsection}{\numberline {7.3.2}{\ignorespaces Applicability and definitions\relax }}{166}{}
+\contentsline {subsubsection}{\numberline {7.3.3}{\ignorespaces Verbatim Copying\relax }}{167}{}
+\contentsline {subsubsection}{\numberline {7.3.4}{\ignorespaces Copying in Quantity\relax }}{168}{}
+\contentsline {subsubsection}{\numberline {7.3.5}{\ignorespaces Modifications\relax }}{169}{}
+\contentsline {subsubsection}{\numberline {7.3.6}{\ignorespaces Combining Documents\relax }}{170}{}
+\contentsline {subsubsection}{\numberline {7.3.7}{\ignorespaces Collection of Documents\relax }}{171}{}
+\contentsline {subsubsection}{\numberline {7.3.8}{\ignorespaces Aggregating with Independent Works\relax }}{172}{}
+\contentsline {subsubsection}{\numberline {7.3.9}{\ignorespaces Translation\relax }}{173}{}
+\contentsline {subsubsection}{\numberline {7.3.10}{\ignorespaces Termination\relax }}{174}{}
+\contentsline {subsubsection}{\numberline {7.3.11}{\ignorespaces Future Revisions of this License\relax }}{175}{}
+\contentsline {subsubsection}{\numberline {7.3.12}{\ignorespaces Relicensing\relax }}{176}{}
+\contentsline {subsubsection}{\numberline {7.3.13}{\ignorespaces Addendum: How to use this License for your documents\relax }}{177}{}
+\contentsline {subsection}{\numberline {7.4}{\ignorespaces The \LaTeX \ Project Public License\relax }}{180}{}
+\contentsline {subsubsection}{\numberline {7.4.1}{\ignorespaces Preamble\relax }}{182}{}
+\contentsline {subsubsection}{\numberline {7.4.2}{\ignorespaces Definitions\relax }}{183}{}
+\contentsline {subsubsection}{\numberline {7.4.3}{\ignorespaces Conditions on Distribution and Modification\relax }}{184}{}
+\contentsline {subsubsection}{\numberline {7.4.4}{\ignorespaces No Warranty\relax }}{185}{}
+\contentsline {subsubsection}{\numberline {7.4.5}{\ignorespaces Maintenance of The Work\relax }}{186}{}
+\contentsline {subsubsection}{\numberline {7.4.6}{\ignorespaces Whether and How to Distribute Works under This License\relax }}{187}{}
+\contentsline {subsubsection}{\numberline {7.4.7}{\ignorespaces Choosing This License or Another License\relax }}{188}{}
+\contentsline {subsubsection}{\numberline {7.4.8}{\ignorespaces A Recommendation on Modification Without Distribution\relax }}{189}{}
+\contentsline {subsubsection}{\numberline {7.4.9}{\ignorespaces How to Use This License\relax }}{190}{}
+\contentsline {subsubsection}{\numberline {7.4.10}{\ignorespaces Derived Works That Are Not Replacements\relax }}{192}{}
+\contentsline {subsubsection}{\numberline {7.4.11}{\ignorespaces Important Recommendations\relax }}{193}{}
+\contentsline {paragraph}{Defining What Constitutes the Work}{194}{}
+\contentsline {part}{\numberline {II}{\ignorespaces Building a Presentation\relax }}{198}{}
+\contentsline {section}{\numberline {8}{\ignorespaces Creating Frames\relax }}{201}{}
+\contentsline {subsection}{\numberline {8.1}{\ignorespaces The Frame Environment\relax }}{202}{}
+\contentsline {subsection}{\numberline {8.2}{\ignorespaces Components of a Frame\relax }}{216}{}
+\contentsline {subsubsection}{\numberline {8.2.1}{\ignorespaces The Headline and Footline\relax }}{219}{}
+\contentsline {subsubsection}{\numberline {8.2.2}{\ignorespaces The Sidebars\relax }}{222}{}
+\contentsline {subsubsection}{\numberline {8.2.3}{\ignorespaces Navigation Bars\relax }}{226}{}
+\contentsline {subsubsection}{\numberline {8.2.4}{\ignorespaces The Navigation Symbols\relax }}{231}{}
+\contentsline {subsubsection}{\numberline {8.2.5}{\ignorespaces The Logo\relax }}{233}{}
+\contentsline {subsubsection}{\numberline {8.2.6}{\ignorespaces The Frame Title\relax }}{236}{}
+\contentsline {subsubsection}{\numberline {8.2.7}{\ignorespaces The Background\relax }}{239}{}
+\contentsline {subsection}{\numberline {8.3}{\ignorespaces Frame and Margin Sizes\relax }}{242}{}
+\contentsline {subsection}{\numberline {8.4}{\ignorespaces Restricting the Slides of a Frame\relax }}{243}{}
+\contentsline {section}{\numberline {9}{\ignorespaces Creating Overlays\relax }}{247}{}
+\contentsline {subsection}{\numberline {9.1}{\ignorespaces The Pause Commands\relax }}{248}{}
+\contentsline {subsection}{\numberline {9.2}{\ignorespaces The General Concept of Overlay Specifications\relax }}{251}{}
+\contentsline {subsection}{\numberline {9.3}{\ignorespaces Commands with Overlay Specifications\relax }}{254}{}
+\contentsline {subsection}{\numberline {9.4}{\ignorespaces Environments with Overlay Specifications\relax }}{264}{}
+\contentsline {subsection}{\numberline {9.5}{\ignorespaces Dynamically Changing Text or Images\relax }}{268}{}
+\contentsline {subsection}{\numberline {9.6}{\ignorespaces Advanced Overlay Specifications\relax }}{275}{}
+\contentsline {subsubsection}{\numberline {9.6.1}{\ignorespaces Making Commands and Environments Overlay Specification-Aware\relax }}{276}{}
+\contentsline {subsubsection}{\numberline {9.6.2}{\ignorespaces Mode Specifications\relax }}{291}{}
+\contentsline {subsubsection}{\numberline {9.6.3}{\ignorespaces Action Specifications\relax }}{296}{}
+\contentsline {subsubsection}{\numberline {9.6.4}{\ignorespaces Incremental Specifications\relax }}{301}{}
+\contentsline {section}{\numberline {10}{\ignorespaces Structuring a Presentation: The Static Global Structure\relax }}{312}{}
+\contentsline {subsection}{\numberline {10.1}{\ignorespaces Adding a Title Page\relax }}{313}{}
+\contentsline {subsection}{\numberline {10.2}{\ignorespaces Adding Sections and Subsections\relax }}{317}{}
+\contentsline {subsection}{\numberline {10.3}{\ignorespaces Adding Parts\relax }}{323}{}
+\contentsline {subsection}{\numberline {10.4}{\ignorespaces Splitting a Course Into Lectures\relax }}{326}{}
+\contentsline {subsection}{\numberline {10.5}{\ignorespaces Adding a Table of Contents\relax }}{329}{}
+\contentsline {subsection}{\numberline {10.6}{\ignorespaces Adding a Bibliography\relax }}{332}{}
+\contentsline {subsection}{\numberline {10.7}{\ignorespaces Adding an Appendix\relax }}{335}{}
+\contentsline {section}{\numberline {11}{\ignorespaces Structuring a Presentation: The Interactive Global Structure\relax }}{339}{}
+\contentsline {subsection}{\numberline {11.1}{\ignorespaces Adding Hyperlinks and Buttons\relax }}{340}{}
+\contentsline {subsection}{\numberline {11.2}{\ignorespaces Repeating a Frame at a Later Point\relax }}{345}{}
+\contentsline {subsection}{\numberline {11.3}{\ignorespaces Adding Anticipated Zooming\relax }}{348}{}
+\contentsline {section}{\numberline {12}{\ignorespaces Structuring a Presentation: The Local Structure\relax }}{353}{}
+\contentsline {subsection}{\numberline {12.1}{\ignorespaces Itemizations, Enumerations, and Descriptions\relax }}{354}{}
+\contentsline {subsection}{\numberline {12.2}{\ignorespaces Highlighting\relax }}{368}{}
+\contentsline {subsection}{\numberline {12.3}{\ignorespaces Block Environments\relax }}{369}{}
+\contentsline {subsection}{\numberline {12.4}{\ignorespaces Theorem Environments\relax }}{373}{}
+\contentsline {subsection}{\numberline {12.5}{\ignorespaces Framed and Boxed Text\relax }}{380}{}
+\contentsline {subsection}{\numberline {12.6}{\ignorespaces Figures and Tables\relax }}{385}{}
+\contentsline {subsection}{\numberline {12.7}{\ignorespaces Splitting a Frame into Multiple Columns\relax }}{387}{}
+\contentsline {subsection}{\numberline {12.8}{\ignorespaces Positioning Text and Graphics Absolutely\relax }}{392}{}
+\contentsline {subsection}{\numberline {12.9}{\ignorespaces Verbatim and Fragile Text\relax }}{394}{}
+\contentsline {subsection}{\numberline {12.10}{\ignorespaces Abstract\relax }}{396}{}
+\contentsline {subsection}{\numberline {12.11}{\ignorespaces Verse, Quotations, Quotes\relax }}{397}{}
+\contentsline {subsection}{\numberline {12.12}{\ignorespaces Footnotes\relax }}{398}{}
+\contentsline {section}{\numberline {13}{\ignorespaces Graphics\relax }}{401}{}
+\contentsline {subsection}{\numberline {13.1}{\ignorespaces Including External Graphic Files Versus Inlines Graphics\relax }}{402}{}
+\contentsline {subsection}{\numberline {13.2}{\ignorespaces Including Graphic Files Ending \texttt {.eps} or \texttt {.ps}\relax }}{404}{}
+\contentsline {subsection}{\numberline {13.3}{\ignorespaces Including Graphic Files Ending \texttt {.pdf}, \texttt {.jpg}, \texttt {.jpeg} or \texttt {.png}\relax }}{405}{}
+\contentsline {subsection}{\numberline {13.4}{\ignorespaces Including Graphic Files Ending \texttt {.mps}\relax }}{406}{}
+\contentsline {subsection}{\numberline {13.5}{\ignorespaces Including Graphic Files Ending \texttt {.mmp}\relax }}{408}{}
+\contentsline {section}{\numberline {14}{\ignorespaces Animations, Sounds, and Slide Transitions\relax }}{411}{}
+\contentsline {subsection}{\numberline {14.1}{\ignorespaces Animations\relax }}{412}{}
+\contentsline {subsubsection}{\numberline {14.1.1}{\ignorespaces Including External Animation Files\relax }}{413}{}
+\contentsline {subsubsection}{\numberline {14.1.2}{\ignorespaces Animations Created by Showing Slides in Rapid Succession\relax }}{416}{}
+\contentsline {subsubsection}{\numberline {14.1.3}{\ignorespaces Including External Animations Residing in Multiple Image Files\relax }}{420}{}
+\contentsline {subsection}{\numberline {14.2}{\ignorespaces Sounds\relax }}{424}{}
+\contentsline {subsection}{\numberline {14.3}{\ignorespaces Slide Transitions\relax }}{430}{}
+\contentsline {part}{\numberline {III}{\ignorespaces Changing the Way Things Look\relax }}{435}{}
+\contentsline {section}{\numberline {15}{\ignorespaces Themes\relax }}{438}{}
+\contentsline {subsection}{\numberline {15.1}{\ignorespaces Five Flavors of Themes\relax }}{439}{}
+\contentsline {subsection}{\numberline {15.2}{\ignorespaces Presentation Themes without Navigation Bars\relax }}{440}{}
+\contentsline {subsection}{\numberline {15.3}{\ignorespaces Presentation Themes with a Tree-Like Navigation Bar\relax }}{444}{}
+\contentsline {subsection}{\numberline {15.4}{\ignorespaces Presentation Themes with a Table of Contents Sidebar\relax }}{445}{}
+\contentsline {subsection}{\numberline {15.5}{\ignorespaces Presentation Themes with a Mini Frame Navigation\relax }}{447}{}
+\contentsline {subsection}{\numberline {15.6}{\ignorespaces Presentation Themes with Section and Subsection Tables\relax }}{448}{}
+\contentsline {subsection}{\numberline {15.7}{\ignorespaces Presentation Themes Included For Compatibility\relax }}{449}{}
+\contentsline {section}{\numberline {16}{\ignorespaces Inner Themes, Outer Themes, and Templates\relax }}{453}{}
+\contentsline {subsection}{\numberline {16.1}{\ignorespaces Inner Themes\relax }}{454}{}
+\contentsline {subsection}{\numberline {16.2}{\ignorespaces Outer Themes\relax }}{455}{}
+\contentsline {subsection}{\numberline {16.3}{\ignorespaces Changing the Templates Used for Different Elements of a Presentation\relax }}{456}{}
+\contentsline {subsubsection}{\numberline {16.3.1}{\ignorespaces Overview of Beamer's Template Management\relax }}{457}{}
+\contentsline {subsubsection}{\numberline {16.3.2}{\ignorespaces Using Beamer's Templates\relax }}{463}{}
+\contentsline {subsubsection}{\numberline {16.3.3}{\ignorespaces Setting Beamer's Templates\relax }}{465}{}
+\contentsline {section}{\numberline {17}{\ignorespaces Colors\relax }}{477}{}
+\contentsline {subsection}{\numberline {17.1}{\ignorespaces Color Themes\relax }}{478}{}
+\contentsline {subsubsection}{\numberline {17.1.1}{\ignorespaces Default and Special-Purpose Color Themes\relax }}{479}{}
+\contentsline {subsubsection}{\numberline {17.1.2}{\ignorespaces Complete Color Themes\relax }}{480}{}
+\contentsline {subsubsection}{\numberline {17.1.3}{\ignorespaces Inner Color Themes\relax }}{481}{}
+\contentsline {subsubsection}{\numberline {17.1.4}{\ignorespaces Outer Color Themes\relax }}{482}{}
+\contentsline {subsection}{\numberline {17.2}{\ignorespaces Changing the Colors Used for Different Elements of a Presentation\relax }}{483}{}
+\contentsline {subsubsection}{\numberline {17.2.1}{\ignorespaces Overview of Beamer's Color Management\relax }}{484}{}
+\contentsline {subsubsection}{\numberline {17.2.2}{\ignorespaces Using Beamer's Colors\relax }}{485}{}
+\contentsline {subsubsection}{\numberline {17.2.3}{\ignorespaces Setting Beamer's Colors\relax }}{490}{}
+\contentsline {subsection}{\numberline {17.3}{\ignorespaces The Color of Mathematical Text\relax }}{497}{}
+\contentsline {subsection}{\numberline {17.4}{\ignorespaces The Color Palettes\relax }}{498}{}
+\contentsline {subsection}{\numberline {17.5}{\ignorespaces Miscellaneous Colors\relax }}{499}{}
+\contentsline {subsection}{\numberline {17.6}{\ignorespaces Transparency Effects\relax }}{500}{}
+\contentsline {section}{\numberline {18}{\ignorespaces Fonts\relax }}{506}{}
+\contentsline {subsection}{\numberline {18.1}{\ignorespaces Font Themes\relax }}{507}{}
+\contentsline {subsection}{\numberline {18.2}{\ignorespaces Font Changes Made Without Using Font Themes\relax }}{508}{}
+\contentsline {subsubsection}{\numberline {18.2.1}{\ignorespaces Choosing a Font Size for Normal Text\relax }}{509}{}
+\contentsline {subsubsection}{\numberline {18.2.2}{\ignorespaces Choosing a Font Family\relax }}{510}{}
+\contentsline {subsubsection}{\numberline {18.2.3}{\ignorespaces Choosing a Font Encodings\relax }}{512}{}
+\contentsline {subsection}{\numberline {18.3}{\ignorespaces Changing the Fonts Used for Different Elements of a Presentation\relax }}{514}{}
+\contentsline {subsubsection}{\numberline {18.3.1}{\ignorespaces Overview of Beamer's Font Management\relax }}{515}{}
+\contentsline {subsubsection}{\numberline {18.3.2}{\ignorespaces Using Beamer's Fonts\relax }}{516}{}
+\contentsline {subsubsection}{\numberline {18.3.3}{\ignorespaces Setting Beamer's Fonts\relax }}{517}{}
+\contentsline {part}{\numberline {IV}{\ignorespaces Creating Supporting Material\relax }}{522}{}
+\contentsline {section}{\numberline {19}{\ignorespaces Adding Notes for Yourself\relax }}{525}{}
+\contentsline {subsection}{\numberline {19.1}{\ignorespaces Specifying Note Contents\relax }}{526}{}
+\contentsline {subsection}{\numberline {19.2}{\ignorespaces Specifying Contents for Multiple Notes\relax }}{529}{}
+\contentsline {subsection}{\numberline {19.3}{\ignorespaces Specifying Which Notes and Frames Are Shown\relax }}{531}{}
+\contentsline {section}{\numberline {20}{\ignorespaces Creating Transparencies\relax }}{537}{}
+\contentsline {section}{\numberline {21}{\ignorespaces Creating Handouts and Lecture Notes\relax }}{546}{}
+\contentsline {subsection}{\numberline {21.1}{\ignorespaces Creating Handouts Using the Handout Mode\relax }}{547}{}
+\contentsline {subsection}{\numberline {21.2}{\ignorespaces Creating Handouts Using the Article Mode\relax }}{549}{}
+\contentsline {subsubsection}{\numberline {21.2.1}{\ignorespaces Starting the Article Mode\relax }}{550}{}
+\contentsline {subsubsection}{\numberline {21.2.2}{\ignorespaces Workflow\relax }}{553}{}
+\contentsline {subsubsection}{\numberline {21.2.3}{\ignorespaces Including Slides from the Presentation Version in the Article Version\relax }}{556}{}
+\contentsline {subsection}{\numberline {21.3}{\ignorespaces Details on Modes\relax }}{560}{}
+\contentsline {section}{\numberline {22}{\ignorespaces Taking Advantage of Multiple Screens\relax }}{571}{}
+\contentsline {subsection}{\numberline {22.1}{\ignorespaces Showing Notes on the Second Screen\relax }}{572}{}
+\contentsline {subsection}{\numberline {22.2}{\ignorespaces Showing Second Mode Material on the Second Screen\relax }}{573}{}
+\contentsline {subsection}{\numberline {22.3}{\ignorespaces Showing the Previous Slide on the Second Screen\relax }}{576}{}
+\contentsline {part}{\numberline {V}{\ignorespaces Howtos\relax }}{579}{}
+\contentsline {section}{\numberline {23}{\ignorespaces How To Uncover Things Piecewise\relax }}{582}{}
+\contentsline {subsection}{\numberline {23.1}{\ignorespaces Uncovering an Enumeration Piecewise\relax }}{583}{}
+\contentsline {subsection}{\numberline {23.2}{\ignorespaces Highlighting the Current Item in an Enumeration\relax }}{587}{}
+\contentsline {subsection}{\numberline {23.3}{\ignorespaces Changing Symbol Before an Enumeration\relax }}{590}{}
+\contentsline {subsection}{\numberline {23.4}{\ignorespaces Uncovering Tagged Formulas Piecewise\relax }}{595}{}
+\contentsline {subsection}{\numberline {23.5}{\ignorespaces Uncovering a Table Rowwise\relax }}{599}{}
+\contentsline {subsection}{\numberline {23.6}{\ignorespaces Uncovering a Table Columnwise\relax }}{601}{}
+\contentsline {section}{\numberline {24}{\ignorespaces How To Import Presentations Based on Other Packages and Classes\relax }}{605}{}
+\contentsline {subsection}{\numberline {24.1}{\ignorespaces Prosper, HA-Prosper and Powerdot\relax }}{606}{}
+\contentsline {subsection}{\numberline {24.2}{\ignorespaces Seminar\relax }}{612}{}
+\contentsline {subsection}{\numberline {24.3}{\ignorespaces Foil\TeX \relax }}{620}{}
+\contentsline {subsection}{\numberline {24.4}{\ignorespaces \TeX Power\relax }}{623}{}
 

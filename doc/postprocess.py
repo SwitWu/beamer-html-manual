@@ -18,17 +18,20 @@ def kilobytes(filename):
 os.makedirs("processed", exist_ok=True)
 copyfile("style.css", "processed/style.css")
 copyfile("home.html", "processed/home.html")
-# copyfile("pgfmanual.js", "processed/pgfmanual.js")
-# copyfile("lwarp-mathjax-emulation.js", "processed/lwarp-mathjax-emulation.js")
+copyfile("beameruserguide.js", "processed/beameruserguide.js")
+copyfile("lwarp-mathjax-emulation.js", "processed/lwarp-mathjax-emulation.js")
 copytree("beameruserguide-images", "processed/beameruserguide-images", dirs_exist_ok=True)
 copytree("beamerthemeexample", "processed/beamerthemeexample", dirs_exist_ok=True)
 copytree("navigation-symbols", "processed/navigation-symbols", dirs_exist_ok=True)
 # copytree("banners/social-media-banners", "processed/social-media-banners", dirs_exist_ok=True)
 # copytree("banners/toc-banners", "processed/toc-banners", dirs_exist_ok=True)
 
+def add_js(soup):
+    script = soup.new_tag("script", src="beameruserguide.js")
+    soup.head.append(script)
 
 def specific_div_class_names(name):
-    if(name in ['command', 'environment', 'element', "class", "package", "theme"]):
+    if(name in ['command', 'environment', 'element', "class", "package", "theme", "beameroption", "solution"]):
         return True
     else:
         return False
@@ -39,6 +42,11 @@ def remove_unnecessary_lists(soup):
             div.ul.unwrap()
         while div.li != None:
             div.li.unwrap()
+
+def remove_empty_p(soup):
+    for p in soup.find_all('p'):
+        if p.contents == [] or p.contents == ["\n"]:
+            p.decompose()
 
 ## table of contents and anchor links
 def rearrange_heading_anchors(soup):
@@ -330,7 +338,6 @@ def remove_empty_line_from_pre(soup):
 def write_to_file(soup, filename):
     with open(filename, "w") as file:
         html = soup.encode(formatter="html5").decode("utf-8")
-        html = html.replace("index-0","/")
         lines = html.splitlines()
         new_lines = []
         for line in lines:
@@ -432,9 +439,9 @@ def add_header(soup):
     script = soup.new_tag('script')
     script.append("""
       docsearch({
-        apiKey: '196e8c10ec187c9ae525dd5226fb9378',
-        indexName: 'beamer',
-        appId: 'JS6V5VZSDB',
+        apiKey: '09762da49fe4ba391f7a3618c73720d8',
+        indexName: 'beamerplusio',
+        appId: 'WNNAN5R8GM',
         container: '#search',
         searchParameters: {
           filters: "tags:beamer",
@@ -443,15 +450,9 @@ def add_header(soup):
     """)
     soup.body.append(script)
 
-# def favicon(soup):
-#     link = soup.new_tag('link', rel="icon", type="image/png", sizes="16x16", href="/favicon-16x16.png")
-#     soup.head.append(link)
-#     link = soup.new_tag('link', rel="icon", type="image/png", sizes="32x32", href="/favicon-32x32.png")
-#     soup.head.append(link)
-#     link = soup.new_tag('link', rel="apple-touch-icon", type="image/png", sizes="180x180", href="/apple-touch-icon.png")
-#     soup.head.append(link)
-#     link = soup.new_tag('link', rel="manifest", href="/site.webmanifest")
-#     soup.head.append(link)
+def favicon(soup):
+    link = soup.new_tag('link', rel="icon", type="image/png", sizes="16x16", href="beameruserguide-images/favicon.png")
+    soup.head.append(link)
 
 
 ## add footer contents
@@ -663,32 +664,18 @@ for filename in sorted(os.listdir()):
                 shorten_sidetoc_and_add_part_header(soup, is_home=(filename == "index-0.html"))
                 rearrange_heading_anchors(soup)
                 make_local_toc(soup)
-                remove_mathjax_if_possible(filename, soup)
-                # make_entryheadline_anchor_links(soup)
+                # remove_mathjax_if_possible(filename, soup)
                 remove_useless_elements(soup)
-                # addClipboardButtons(soup)
                 rewrite_svg_links(soup)
                 add_version_to_css_js(soup)
-                # process_images(soup)
                 add_header(soup)
+                add_js(soup)
                 remove_unnecessary_lists(soup)
-                # favicon(soup)
-                # semantic_tags(soup)
-                # add_meta_tags(filename, soup)
-                # add_copyright_comment_block(filename, soup)
-                # handle_code_spaces(soup)
-                # remove_a_tag_from_themeexample(soup)
-                # del_style_attribute_from_themeexample_img(soup)
+                favicon(soup)
                 remove_empty_line_from_pre(soup)
+                remove_empty_p(soup)
                 soup.find(class_="bodyandsidetoc")['class'].append("grid-container")
                 write_to_file(soup, "processed/"+filename)
-                # add_spotlight_toc(filename)
-                # add_pgfplots_ad(filename)
-
-# prettify
-# run command with subprocess
-# print("Prettifying")
-# subprocess.run(["prettier", "--write", "processed/*.html"])
 
 # def numspace_to_spaces(filename):
 #     "replace numspaces by normal spaces in code blocks"
@@ -719,14 +706,18 @@ for filename in sorted(os.listdir()):
 print("Processing home.html")
 with open("home.html", "r") as file:
     soup = BeautifulSoup(file, "html.parser")
+    title = soup.find("title")
+    title.string = "Beamer Manual - Complete HTML Documentation"
     div = soup.find("body")
     div["class"] = "home-page"
     div = soup.find(class_ = "bodywithoutsidetoc")
     div["class"] = ["bodyandsidetoc", "grid-container"]
     add_footer(soup)
+    add_js(soup)
     add_header(soup)
     remove_empty_line_from_pre(soup)
     normalize_link(soup)
+    favicon(soup)
     div = soup.new_tag("div")
     div["class"] = "sidetoccontainer"
     div["id"] = "chapter-toc-container"
@@ -737,7 +728,7 @@ with open("home.html", "r") as file:
         a.parent.decompose()
     for a in soup.find_all('a', class_="tocsubsubsection"):
         a.parent.decompose()
-    soup.find('div', class_="hidden").decompose()
+    # soup.find('div', class_="hidden").decompose()
     manual_title_block = soup.new_tag('div', attrs={"class": "manual-title-block"})
     manual_title = soup.new_tag('div', attrs={"class": "manual-title"})
     beamer = soup.new_tag('span', attrs={"class": "textsc"})
@@ -775,5 +766,10 @@ with open("home.html", "r") as file:
     soup.find('pre', class_="verbatim").insert_before(manual_title_block)
     write_to_file(soup, "processed/home.html")
 
+
+# prettify
+# run command with subprocess
+print("Prettifying")
+subprocess.run(["npx", "prettier", "--write", "processed/*.html"])
 
 print("Finished")

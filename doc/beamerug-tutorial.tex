@@ -307,11 +307,11 @@ and he can then add a citation:
 \subsection{Verbatim Text}
 
 On another frame, Euclid would like to show a listing of an algorithm his friend Eratosthenes has sent him (saying he came up with it while reorganizing his sieve collection). Euclid normally uses the |verbatim| environment and sometimes also similar environments like |lstlisting| to typeset listings. He can also use them in \beamer, but he must add the |fragile| option to the frame:
-\begin{verbatim}
+\begin{Verbatim}
 \begin{frame}[fragile]
   \frametitle{An Algorithm For Finding Prime Numbers.}
 
-%\begin{verbatim}
+\begin{verbatim}
 int main (void)
 {
   std::vector<bool> is_prime (100, true);
@@ -324,17 +324,15 @@ int main (void)
   return 0;
 }
 \end{verbatim}
-\unskip{\MacroFont|\end{verbatim}|}
-                                %\begin{verbatim}
-\begin{verbatim}
+
   \begin{uncoverenv}<2>
     Note the use of \verb|std::|.
   \end{uncoverenv}
 \end{frame}
-\end{verbatim}
+\end{Verbatim}
 
 On second thought, Euclid would prefer to uncover part of the algorithm stepwise and to add an emphasis on certain lines or parts of lines. He can use package like |alltt| for this, but in simple cases the environment |{semiverbatim}| defined by \beamer\ is more useful: It works like |{verbatim}|, except that |\|, |{|, and |}| retain their meaning (one can typeset them by using |\\|, |\{|, and |\}|). Euclid might now typeset his algorithm as follows:
-\begin{verbatim}
+\begin{Verbatim}
 \begin{frame}[fragile]
   \frametitle{An Algorithm For Finding Primes Numbers.}
 
@@ -355,7 +353,7 @@ On second thought, Euclid would prefer to uncover part of the algorithm stepwise
 
   \visible<4->{Note the use of \alert{\texttt{std::}}.}
 \end{frame}
-\end{verbatim}
+\end{Verbatim}
 The |\visible| command does nearly the same as |\uncover|. However one difference occurs if the command |\setbeamercovered{transparent}| has been used to make covered text ``transparent'' instead, |\visible| still makes the text completely ``invisible'' on non-specified slides. Euclid has the feeling that the naming convention is a bit strange, but cannot quite pinpoint the problem.
 
 

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="6.723pt" height="7.57pt" viewBox="0 0 6.723 7.57" version="1.2">
+<defs>
+<g>
+<symbol overflow="visible" id="glyph0-0">
+<path style="stroke:none;" d=""/>
+</symbol>
+<symbol overflow="visible" id="glyph0-1">
+<path style="stroke:none;" d="M 5.703125 -1.421875 C 5.703125 -1.53125 5.609375 -1.53125 5.578125 -1.53125 C 5.484375 -1.53125 5.46875 -1.484375 5.4375 -1.34375 C 5.28125 -0.703125 5.09375 -0.109375 4.6875 -0.109375 C 4.421875 -0.109375 4.390625 -0.375 4.390625 -0.5625 C 4.390625 -0.78125 4.5 -1.25 4.578125 -1.609375 L 4.859375 -2.6875 C 4.890625 -2.828125 5 -3.203125 5.03125 -3.359375 C 5.078125 -3.59375 5.1875 -3.96875 5.1875 -4.03125 C 5.1875 -4.203125 5.046875 -4.296875 4.890625 -4.296875 C 4.84375 -4.296875 4.578125 -4.28125 4.5 -3.953125 L 4.03125 -2.078125 L 3.78125 -1.0625 C 3.765625 -1.015625 3.296875 -0.109375 2.484375 -0.109375 C 1.984375 -0.109375 1.75 -0.4375 1.75 -0.984375 C 1.75 -1.265625 1.8125 -1.546875 1.890625 -1.828125 L 2.296875 -3.5 C 2.359375 -3.703125 2.453125 -4.09375 2.453125 -4.140625 C 2.453125 -4.3125 2.328125 -4.40625 2.15625 -4.40625 C 2.140625 -4.40625 1.859375 -4.390625 1.765625 -4.046875 L 0.328125 1.71875 C 0.296875 1.84375 0.296875 1.890625 0.296875 1.890625 C 0.296875 2.03125 0.40625 2.15625 0.578125 2.15625 C 0.78125 2.15625 0.90625 1.96875 0.921875 1.9375 C 0.96875 1.859375 1.09375 1.328125 1.46875 -0.203125 C 1.796875 0.0625 2.25 0.109375 2.4375 0.109375 C 3.140625 0.109375 3.53125 -0.34375 3.765625 -0.625 C 3.859375 -0.171875 4.234375 0.109375 4.671875 0.109375 C 5.015625 0.109375 5.25 -0.125 5.40625 -0.4375 C 5.578125 -0.796875 5.703125 -1.421875 5.703125 -1.421875 Z M 5.703125 -1.421875 "/>
+</symbol>
+</g>
+<clipPath id="clip1">
+  <path d="M 0 0 L 6.585938 0 L 6.585938 7.355469 L 0 7.355469 Z M 0 0 "/>
+</clipPath>
+<image id="image8" width="1" height="1" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAAAAAA6fptVAAAAAmJLR0QA/4ePzL8AAAAKSURBVAiZY2ACAAAEAANTOtgzAAAAAElFTkSuQmCC"/>
+<mask id="mask0">
+<use xlink:href="#image8" transform="matrix(1,0,0,1,-0.000000000000000111,0)"/>
+</mask>
+<image id="image7" width="1" height="1" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAABmJLR0QA/wD/AP+gvaeTAAAADElEQVQImWNgYGAAAAAEAAGjChXjAAAAAElFTkSuQmCC"/>
+<clipPath id="clip3">
+  <path d="M 0 0 L 6 0 L 6 7.355469 L 0 7.355469 Z M 0 0 "/>
+</clipPath>
+<clipPath id="clip4">
+  <path d="M 6 7 L 6.585938 7 L 6.585938 7.355469 L 6 7.355469 Z M 6 7 "/>
+</clipPath>
+<image id="image14" width="1" height="1" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAAAAAA6fptVAAAAAmJLR0QA/4ePzL8AAAAKSURBVAiZY2ACAAAEAANTOtgzAAAAAElFTkSuQmCC"/>
+<mask id="mask1">
+<use xlink:href="#image14"/>
+</mask>
+<clipPath id="clip5">
+  <path d="M 6 5 L 6.585938 5 L 6.585938 6 L 6 6 Z M 6 5 "/>
+</clipPath>
+<image id="image20" width="1" height="1" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAAAAAA6fptVAAAAAmJLR0QA/4ePzL8AAAAKSURBVAiZY2ACAAAEAANTOtgzAAAAAElFTkSuQmCC"/>
+<mask id="mask2">
+<use xlink:href="#image20" transform="matrix(1,0,0,1,0.000000000000003553,0)"/>
+</mask>
+<clipPath id="clip2">
+  <rect x="0" y="0" width="7" height="8"/>
+</clipPath>
+<g id="surface23" clip-path="url(#clip2)">
+<use xlink:href="#image7" mask="url(#mask0)" transform="matrix(0.24,0,0,0.24,-0.1385,4.957)"/>
+<g clip-path="url(#clip3)" clip-rule="nonzero">
+<g style="fill:rgb(0%,0%,0%);fill-opacity:1;">
+  <use xlink:href="#glyph0-1" x="0.1015" y="5.197"/>
+</g>
+</g>
+<g clip-path="url(#clip4)" clip-rule="nonzero">
+<use xlink:href="#image7" mask="url(#mask1)" transform="matrix(0.24,0,0,0.24,6.1045,6.894)"/>
+</g>
+<g clip-path="url(#clip5)" clip-rule="nonzero">
+<use xlink:href="#image7" mask="url(#mask2)" transform="matrix(0.24,0,0,0.24,6.3445,4.957)"/>
+</g>
+</g>
+</defs>
+<g id="surface1">
+<g clip-path="url(#clip1)" clip-rule="nonzero">
+<use xlink:href="#surface23"/>
+</g>
+</g>
+</svg>

@@ -1,732 +1,1102 @@
-
-<!DOCTYPE html>
+<!doctype html>
 
 <html lang="en-US">
-<head>
-<meta charset="utf-8">
-<meta content="LaTeX Lwarp package" name="generator">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>Installation - Beamer Manual</title>
-<link href="style.css?v=20231007" rel="stylesheet" type="text/css">
-
-<script async id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
-<script async src="lwarp-mathjax-emulation.js"></script><link href="https://cdn.jsdelivr.net/npm/@docsearch/css@3" rel="stylesheet"></head>
-<body>
-<a id="beameruserguide-autopage-23"></a>
-
-<div class="bodyandsidetoc grid-container"><header><div id="hamburger-button">☰</div><strong><a href="home.html">Beamer Manual</a></strong><div id="search"></div></header><div class="sidetoccontainer" id="local-toc-container"><nav class="sidetoc"><div class="sidetoctitle"><p>On this page</p></div><div class="sidetoccontents"><p><a class="tocsubsection" href="#sec-2.1">Versions and Dependencies</a></p><p><a class="tocsubsection" href="#sec-2.2">Installation of Pre-bundled Packages</a></p><p><a class="tocsubsubsection" href="#sec-2.2.1">TeX Live and MacTeX</a></p><p><a class="tocsubsubsection" href="#sec-2.2.2">MiKTeX and proTeXt</a></p><p><a class="tocsubsubsection" href="#sec-2.2.3">Linux distributions</a></p><p><a class="tocsubsection" href="#sec-2.3">Installation in a texmf Tree</a></p><p><a class="tocsubsection" href="#sec-2.4">Updating the Installation</a></p><p><a class="tocsubsection" href="#sec-2.5">Testing the Installation</a></p><p><a class="tocsubsection" href="#sec-2.6">Compatibility with Other Packages and Classes</a></p></div></nav></div>
-<div class="sidetoccontainer" id="chapter-toc-container">
-<nav class="sidetoc">
-<div class="sidetoctitle">
-<p>
-<span class="sidetocthetitle">The <span class="beamer-name"><span class="textsc">beamer</span></span> <i>class</i><br>
-<a href="https://github.com/josephwright/beamer" target="_blank">https://github.com/josephwright/beamer</a><br>
-User Guide for version 3.70.</span>
-</p>
-<p>
-Contents
-</p>
-</div>
-<div class="sidetoccontents">
-
-<p>
-<a class="tocsection" href="Introduction.html">Introduction</a>
-</p>
-<p class="current-part">
-<a class="tocpart" href="Getting-Started.html">Getting Started</a>
-</p>
-<p class="current current-part">
-<a class="tocsection" href="Installation.html">Installation</a>
-</p>
-<p class="current-part">
-<a class="tocsection" href="Tutorial-Euclid-Presentation.html">Tutorial: Euclid&rsquo;s Presentation</a>
-</p>
-<p class="current-part">
-<a class="tocsection" href="Workflow-For-Creating-Beamer-Presentation.html">Workflow For Creating a Beamer Presentation</a>
-</p>
-<p class="current-part">
-<a class="tocsection" href="Guidelines-Creating-Presentations.html">Guidelines for Creating Presentations</a>
-</p>
-<p class="current-part">
-<a class="tocsection" href="Solution-Templates.html">Solution Templates</a>
-</p>
-<p class="current-part">
-<a class="tocsection" href="Licenses-Copyright.html">Licenses and Copyright</a>
-</p>
-<p>
-<a class="tocpart" href="Building-Presentation.html">Building a Presentation</a>
-</p>
-
-
-
-
-
-
-
-<p>
-<a class="tocpart" href="Changing-Way-Things-Look.html">Changing the Way Things Look</a>
-</p>
-
-
-
-
-<p>
-<a class="tocpart" href="Creating-Supporting-Material.html">Creating Supporting Material</a>
-</p>
-
-
-
-
-<p>
-<a class="tocpart" href="Howtos.html">Howtos</a>
-</p>
-
-
-</div>
-</nav>
-</div>
-<main class="bodycontainer">
-<section class="textbody">
-<h2 class="inserted">Getting Started</h2>
-<!--MathJax customizations:-->
-<div class="hidden">
-
-\(\newcommand{\footnotename}{footnote}\)
-
-\(\def \LWRfootnote {1}\)
-
-\(\newcommand {\footnote }[2][\LWRfootnote ]{{}^{\mathrm {#1}}}\)
-
-\(\newcommand {\footnotemark }[1][\LWRfootnote ]{{}^{\mathrm {#1}}}\)
-
-\(\let \LWRorighspace \hspace \)
-
-\(\renewcommand {\hspace }{\ifstar \LWRorighspace \LWRorighspace }\)
-
-\(\newcommand {\mathnormal }[1]{{#1}}\)
-
-\(\newcommand \ensuremath [1]{#1}\)
-
-\(\newcommand {\LWRframebox }[2][]{\fbox {#2}} \newcommand {\framebox }[1][]{\LWRframebox } \)
-
-\(\newcommand {\setlength }[2]{}\)
-
-\(\newcommand {\addtolength }[2]{}\)
-
-\(\newcommand {\setcounter }[2]{}\)
-
-\(\newcommand {\addtocounter }[2]{}\)
-
-\(\newcommand {\arabic }[1]{}\)
-
-\(\newcommand {\number }[1]{}\)
-
-\(\newcommand {\noalign }[1]{\text {#1}\notag \\}\)
-
-\(\newcommand {\cline }[1]{}\)
-
-\(\newcommand {\directlua }[1]{\text {(directlua)}}\)
-
-\(\newcommand {\luatexdirectlua }[1]{\text {(directlua)}}\)
-
-\(\newcommand {\protect }{}\)
-
-\(\def \LWRabsorbnumber #1 {}\)
-
-\(\def \LWRabsorbquotenumber "#1 {}\)
-
-\(\newcommand {\LWRabsorboption }[1][]{}\)
-
-\(\newcommand {\LWRabsorbtwooptions }[1][]{\LWRabsorboption }\)
-
-\(\def \mathchar {\ifnextchar "\LWRabsorbquotenumber \LWRabsorbnumber }\)
-
-\(\def \mathcode #1={\mathchar }\)
-
-\(\let \delcode \mathcode \)
-
-\(\let \delimiter \mathchar \)
-
-\(\def \oe {\unicode {x0153}}\)
-
-\(\def \OE {\unicode {x0152}}\)
-
-\(\def \ae {\unicode {x00E6}}\)
-
-\(\def \AE {\unicode {x00C6}}\)
-
-\(\def \aa {\unicode {x00E5}}\)
-
-\(\def \AA {\unicode {x00C5}}\)
-
-\(\def \o {\unicode {x00F8}}\)
-
-\(\def \O {\unicode {x00D8}}\)
-
-\(\def \l {\unicode {x0142}}\)
-
-\(\def \L {\unicode {x0141}}\)
-
-\(\def \ss {\unicode {x00DF}}\)
-
-\(\def \SS {\unicode {x1E9E}}\)
-
-\(\def \dag {\unicode {x2020}}\)
-
-\(\def \ddag {\unicode {x2021}}\)
-
-\(\def \P {\unicode {x00B6}}\)
-
-\(\def \copyright {\unicode {x00A9}}\)
-
-\(\def \pounds {\unicode {x00A3}}\)
-
-\(\let \LWRref \ref \)
-
-\(\renewcommand {\ref }{\ifstar \LWRref \LWRref }\)
-
-\( \newcommand {\multicolumn }[3]{#3}\)
-
-\(\require {textcomp}\)
-
-\(\newcommand {\intertext }[1]{\text {#1}\notag \\}\)
-
-\(\let \Hat \hat \)
-
-\(\let \Check \check \)
-
-\(\let \Tilde \tilde \)
-
-\(\let \Acute \acute \)
-
-\(\let \Grave \grave \)
-
-\(\let \Dot \dot \)
-
-\(\let \Ddot \ddot \)
-
-\(\let \Breve \breve \)
-
-\(\let \Bar \bar \)
-
-\(\let \Vec \vec \)
-
-</div>
-<p>
-<!--
+  <head>
+    <meta charset="utf-8" />
+    <meta content="LaTeX Lwarp package" name="generator" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Installation - Beamer Manual</title>
+    <link href="style.css?v=20231010" rel="stylesheet" type="text/css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
+      rel="stylesheet"
+    />
+    <script src="beameruserguide.js"></script>
+    <link
+      href="beameruserguide-images/favicon.png"
+      rel="icon"
+      sizes="16x16"
+      type="image/png"
+    />
+  </head>
+  <body>
+    <a id="beameruserguide-autopage-23"></a>
+
+    <div class="bodyandsidetoc grid-container">
+      <header>
+        <div id="hamburger-button">☰</div>
+        <strong><a href="home.html">Beamer Manual</a></strong>
+        <div id="search"></div>
+      </header>
+      <div class="sidetoccontainer" id="local-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle"><p>On this page</p></div>
+          <div class="sidetoccontents">
+            <p>
+              <a class="tocsubsection" href="#sec-2.1"
+                >Versions and Dependencies</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-2.2"
+                >Installation of Pre-bundled Packages</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-2.2.1"
+                >TeX Live and MacTeX</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-2.2.2"
+                >MiKTeX and proTeXt</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsubsection" href="#sec-2.2.3"
+                >Linux distributions</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-2.3"
+                >Installation in a texmf Tree</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-2.4"
+                >Updating the Installation</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-2.5"
+                >Testing the Installation</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-2.6"
+                >Compatibility with Other Packages and Classes</a
+              >
+            </p>
+          </div>
+        </nav>
+      </div>
+      <div class="sidetoccontainer" id="chapter-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle">
+            <p>
+              <span class="sidetocthetitle"
+                >The
+                <span class="beamer-name"
+                  ><span class="textsc">beamer</span></span
+                >
+                <i>class</i><br />
+                <a href="https://github.com/josephwright/beamer" target="_blank"
+                  >https://github.com/josephwright/beamer</a
+                ><br />
+                User Guide for version 3.70.</span
+              >
+            </p>
+            <p>Contents</p>
+          </div>
+          <div class="sidetoccontents">
+            <p>
+              <a class="tocsection" href="Introduction.html">Introduction</a>
+            </p>
+            <p class="current-part">
+              <a class="tocpart" href="Getting-Started.html">Getting Started</a>
+            </p>
+            <p class="current current-part">
+              <a class="tocsection" href="Installation.html">Installation</a>
+            </p>
+            <p class="current-part">
+              <a class="tocsection" href="Tutorial-Euclid-Presentation.html"
+                >Tutorial: Euclid&rsquo;s Presentation</a
+              >
+            </p>
+            <p class="current-part">
+              <a
+                class="tocsection"
+                href="Workflow-For-Creating-Beamer-Presentation.html"
+                >Workflow For Creating a Beamer Presentation</a
+              >
+            </p>
+            <p class="current-part">
+              <a
+                class="tocsection"
+                href="Guidelines-Creating-Presentations.html"
+                >Guidelines for Creating Presentations</a
+              >
+            </p>
+            <p class="current-part">
+              <a class="tocsection" href="Solution-Templates.html"
+                >Solution Templates</a
+              >
+            </p>
+            <p class="current-part">
+              <a class="tocsection" href="Licenses-Copyright.html"
+                >Licenses and Copyright</a
+              >
+            </p>
+            <p>
+              <a class="tocpart" href="Building-Presentation.html"
+                >Building a Presentation</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="Changing-Way-Things-Look.html"
+                >Changing the Way Things Look</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="Creating-Supporting-Material.html"
+                >Creating Supporting Material</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="Howtos.html">Howtos</a>
+            </p>
+          </div>
+        </nav>
+      </div>
+      <main class="bodycontainer">
+        <section class="textbody">
+          <h2 class="inserted">Getting Started</h2>
+          <!--
 ...... section Installation ......
 -->
-<h4 id="autosec-24"><a id="section-installation"></a><span class="sectionnumber" id="sec-2">2</span> Installation</h4>
-<a id="beameruserguide-autopage-24"></a>
-<a id="beameruserguide-autofile-3"></a>
-<p>
-There are different ways of installing the <span class="beamer-name"><span class="textsc">beamer</span></span> class, depending on your installation and needs. When installing the class, you may have to install some other packages as well as described below.
-Before installing, you may wish to review the licenses under which the class is distributed, see Section&nbsp;<a href="Licenses-Copyright.html#section-license">7</a>.
-</p>
-<p>
-Fortunately, most likely your system will already have <span class="beamer-name"><span class="textsc">beamer</span></span> preinstalled, so you can skip this section.
-</p>
-<!--
+          <h4 id="autosec-24">
+            <a id="section-installation"></a
+            ><span class="sectionnumber" id="sec-2">2</span> Installation
+          </h4>
+          <a id="beameruserguide-autopage-24"></a>
+          <a id="beameruserguide-autofile-3"></a>
+
+          <p>
+            There are different ways of installing the
+            <span class="beamer-name"><span class="textsc">beamer</span></span>
+            class, depending on your installation and needs. When installing the
+            class, you may have to install some other packages as well as
+            described below. Before installing, you may wish to review the
+            licenses under which the class is distributed, see Section&nbsp;<a
+              href="Licenses-Copyright.html#section-license"
+              >7</a
+            >.
+          </p>
+          <p>
+            Fortunately, most likely your system will already have
+            <span class="beamer-name"><span class="textsc">beamer</span></span>
+            preinstalled, so you can skip this section.
+          </p>
+          <!--
 ...... subsection Versions and Dependencies ......
 -->
-<h5 id="autosec-25"><span><span class="sectionnumber" id="sec-2.1">2.1</span> Versions and Dependencies</span><a class="anchor-link" href="#sec-2.1">&para;</a></h5>
-<a id="beameruserguide-autopage-25"></a>
-<p>
-This documentation is part of version 3.70 of the <span class="beamer-name"><span class="textsc">beamer</span></span> class. <span class="beamer-name"><span class="textsc">beamer</span></span> needs a reasonably recent version of several standard
-packages to run and also the following versions of two special packages (later versions should work, but not necessarily):
-</p>
-<ul style="list-style-type:none">
-<li>
-<p>
-&bull; <span class="texttt">pgf.sty</span> version 3.1.7,
-</p>
-</li>
-<li>
-<p>
-&bull; <span class="texttt">xcolor.sty</span> version 2.00.
-</p>
-</li>
-</ul>
-<p>
-If you use <span class="texttt">pdflatex</span>, which is optional, you need
-</p>
-<ul style="list-style-type:none">
-<li>
-<p>
-&bull; <span class="texttt">pdflatex</span> version 0.14 or higher. Earlier versions do not work.
-</p>
-</li>
-</ul>
-<!--
+          <h5 id="autosec-25">
+            <span
+              ><span class="sectionnumber" id="sec-2.1">2.1</span> Versions and
+              Dependencies</span
+            ><a class="anchor-link" href="#sec-2.1">&para;</a>
+          </h5>
+          <a id="beameruserguide-autopage-25"></a>
+          <p>
+            This documentation is part of version 3.70 of the
+            <span class="beamer-name"><span class="textsc">beamer</span></span>
+            class.
+            <span class="beamer-name"><span class="textsc">beamer</span></span>
+            needs a reasonably recent version of several standard packages to
+            run and also the following versions of two special packages (later
+            versions should work, but not necessarily):
+          </p>
+          <ul style="list-style-type: none">
+            <li>
+              <p>&bull; <span class="texttt">pgf.sty</span> version 3.1.7,</p>
+            </li>
+            <li>
+              <p>&bull; <span class="texttt">xcolor.sty</span> version 2.00.</p>
+            </li>
+          </ul>
+          <p>
+            If you use <span class="texttt">pdflatex</span>, which is optional,
+            you need
+          </p>
+          <ul style="list-style-type: none">
+            <li>
+              <p>
+                &bull; <span class="texttt">pdflatex</span> version 0.14 or
+                higher. Earlier versions do not work.
+              </p>
+            </li>
+          </ul>
+          <!--
 ...... subsection Installation of Pre-bundled Packages ......
 -->
-<h5 id="autosec-26"><span><span class="sectionnumber" id="sec-2.2">2.2</span> Installation of Pre-bundled Packages</span><a class="anchor-link" href="#sec-2.2">&para;</a></h5>
-<a id="beameruserguide-autopage-26"></a>
-<p>
-We do not create or manage pre-bundled packages of <span class="beamer-name"><span class="textsc">beamer</span></span>, but, fortunately, other nice people do. We cannot give detailed instructions on how to install these packages, since we do not manage them,
-but we <em>can</em> tell you where to find them and we can tell you what these nice people told us on how to install them. If you have a problem with installing, you might wish to have a look at the following first.
-</p>
-<!--
+          <h5 id="autosec-26">
+            <span
+              ><span class="sectionnumber" id="sec-2.2">2.2</span> Installation
+              of Pre-bundled Packages</span
+            ><a class="anchor-link" href="#sec-2.2">&para;</a>
+          </h5>
+          <a id="beameruserguide-autopage-26"></a>
+          <p>
+            We do not create or manage pre-bundled packages of
+            <span class="beamer-name"><span class="textsc">beamer</span></span
+            >, but, fortunately, other nice people do. We cannot give detailed
+            instructions on how to install these packages, since we do not
+            manage them, but we <em>can</em> tell you where to find them and we
+            can tell you what these nice people told us on how to install them.
+            If you have a problem with installing, you might wish to have a look
+            at the following first.
+          </p>
+          <!--
 ...... subsubsection TeX Live and MacTeX ......
 -->
-<h6 id="autosec-27"><span><span class="sectionnumber" id="sec-2.2.1">2.2.1</span><span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> Live and Mac<span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span></span><a class="anchor-link" href="#sec-2.2.1">&para;</a></h6>
-<a id="beameruserguide-autopage-27"></a>
-<p>
-In <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> Live, use the <span class="texttt">tlmgr</span> tool to install the packages called <span class="texttt">beamer</span>, <span class="texttt">pgf</span>, and <span class="texttt">xcolor</span>. If you have a fairly recent version of <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> Live, and you have done full installation,
-<span class="beamer-name"><span class="textsc">beamer</span></span> is included.
-</p>
-<!--
+          <h6 id="autosec-27">
+            <span
+              ><span class="sectionnumber" id="sec-2.2.1">2.2.1</span
+              ><span class="latexlogofont"
+                ><span class="latexlogo"
+                  >T<span class="latexlogosub">e</span>X</span
+                ></span
+              >
+              Live and Mac<span class="latexlogofont"
+                ><span class="latexlogo"
+                  >T<span class="latexlogosub">e</span>X</span
+                ></span
+              ></span
+            ><a class="anchor-link" href="#sec-2.2.1">&para;</a>
+          </h6>
+          <a id="beameruserguide-autopage-27"></a>
+          <p>
+            In
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >
+            Live, use the <span class="texttt">tlmgr</span> tool to install the
+            packages called <span class="texttt">beamer</span>,
+            <span class="texttt">pgf</span>, and
+            <span class="texttt">xcolor</span>. If you have a fairly recent
+            version of
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >
+            Live, and you have done full installation,
+            <span class="beamer-name"><span class="textsc">beamer</span></span>
+            is included.
+          </p>
+          <!--
 ...... subsubsection MiKTeX and proTeXt ......
 -->
-<h6 id="autosec-28"><span><span class="sectionnumber" id="sec-2.2.2">2.2.2</span> MiK<span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> and pro<span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span>t</span><a class="anchor-link" href="#sec-2.2.2">&para;</a></h6>
-<a id="beameruserguide-autopage-28"></a>
-<p>
-For MiK<span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> and pro<span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span>t, use the update
-wizard or package manager to install the (latest versions of the) packages called <span class="texttt">beamer</span>, <span class="texttt">pgf</span>, and <span class="texttt">xcolor</span>.
-</p>
-<!--
+          <h6 id="autosec-28">
+            <span
+              ><span class="sectionnumber" id="sec-2.2.2">2.2.2</span> MiK<span
+                class="latexlogofont"
+                ><span class="latexlogo"
+                  >T<span class="latexlogosub">e</span>X</span
+                ></span
+              >
+              and pro<span class="latexlogofont"
+                ><span class="latexlogo"
+                  >T<span class="latexlogosub">e</span>X</span
+                ></span
+              >t</span
+            ><a class="anchor-link" href="#sec-2.2.2">&para;</a>
+          </h6>
+          <a id="beameruserguide-autopage-28"></a>
+          <p>
+            For MiK<span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >
+            and pro<span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >t, use the update wizard or package manager to install the (latest
+            versions of the) packages called <span class="texttt">beamer</span>,
+            <span class="texttt">pgf</span>, and
+            <span class="texttt">xcolor</span>.
+          </p>
+          <!--
 ...... subsubsection Linux distributions ......
 -->
-<h6 id="autosec-29"><span><span class="sectionnumber" id="sec-2.2.3">2.2.3</span> Linux distributions</span><a class="anchor-link" href="#sec-2.2.3">&para;</a></h6>
-<a id="beameruserguide-autopage-29"></a>
-<p>
-Most linux distributions provide pre-packaged bundles of <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> Live. It is probably easiest to install a full (or at least recommended) scheme of <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> Live, but if you only want to install <span class="beamer-name"><span class="textsc">beamer</span></span>:
-</p>
-<ul style="list-style-type:none">
-<li>
-<p>
-&bull; Ubuntu/Debian: <span class="texttt">apt install texlive-latex-recommended</span>
-</p>
-</li>
-<li>
-<p>
-&bull; Fedora: <span class="texttt">dnf install texlive-beamer</span>
-</p>
-</li>
-</ul>
-<!--
+          <h6 id="autosec-29">
+            <span
+              ><span class="sectionnumber" id="sec-2.2.3">2.2.3</span> Linux
+              distributions</span
+            ><a class="anchor-link" href="#sec-2.2.3">&para;</a>
+          </h6>
+          <a id="beameruserguide-autopage-29"></a>
+          <p>
+            Most linux distributions provide pre-packaged bundles of
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >
+            Live. It is probably easiest to install a full (or at least
+            recommended) scheme of
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >
+            Live, but if you only want to install
+            <span class="beamer-name"><span class="textsc">beamer</span></span
+            >:
+          </p>
+          <ul style="list-style-type: none">
+            <li>
+              <p>
+                &bull; Ubuntu/Debian:
+                <span class="texttt"
+                  >apt install texlive-latex-recommended</span
+                >
+              </p>
+            </li>
+            <li>
+              <p>
+                &bull; Fedora:
+                <span class="texttt">dnf install texlive-beamer</span>
+              </p>
+            </li>
+          </ul>
+          <!--
 ...... subsection Installation in a texmf Tree ......
 -->
-<h5 id="autosec-30"><span><span class="sectionnumber" id="sec-2.3">2.3</span> Installation in a texmf Tree</span><a class="anchor-link" href="#sec-2.3">&para;</a></h5>
-<a id="beameruserguide-autopage-30"></a>
-<p>
-If, for whatever reason, you do not wish to use a prebundled package, the &ldquo;right&rdquo; way to install <span class="beamer-name"><span class="textsc">beamer</span></span> is to put it in a so-called <span class="texttt">texmf</span> tree. In the following, we explain
-how to do this.
-</p>
-<p>
-Obtain the latest source version (ending <span class="texttt">.tar.gz</span> or <span class="texttt">.zip</span>) of the <span class="beamer-name"><span class="textsc">beamer</span></span> package from
-</p>
-<pre class="verbatim">
+          <h5 id="autosec-30">
+            <span
+              ><span class="sectionnumber" id="sec-2.3">2.3</span> Installation
+              in a texmf Tree</span
+            ><a class="anchor-link" href="#sec-2.3">&para;</a>
+          </h5>
+          <a id="beameruserguide-autopage-30"></a>
+          <p>
+            If, for whatever reason, you do not wish to use a prebundled
+            package, the &ldquo;right&rdquo; way to install
+            <span class="beamer-name"><span class="textsc">beamer</span></span>
+            is to put it in a so-called <span class="texttt">texmf</span> tree.
+            In the following, we explain how to do this.
+          </p>
+          <p>
+            Obtain the latest source version (ending
+            <span class="texttt">.tar.gz</span> or
+            <span class="texttt">.zip</span>) of the
+            <span class="beamer-name"><span class="textsc">beamer</span></span>
+            package from
+          </p>
+          <pre class="verbatim">
 https://github.com/josephwright/beamer
-</pre>
-<p>
-(most likely, you have already done this). Next, you also need the <span class="textsc">pgf</span> package and the <span class="textsc">xcolor</span> packages, which you need to install separately (see their installation instructions).
-</p>
-<p>
-The package contains a bunch of files; <span class="texttt">beamer.cls</span> is one of these files and happens to be the most important one. You now need to put these files in an appropriate <span class="texttt">texmf</span> tree.
-</p>
-<p>
-When you ask <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> to use a certain class or package, it usually looks for the necessary files in so-called <span class="texttt">texmf</span> trees. These
-trees are simply huge directories that contain these files. By default, <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> looks for files in three different <span class="texttt">texmf</span> trees:
-</p>
-<ul style="list-style-type:none">
-<li>
-<p>
-&bull; The root <span class="texttt">texmf</span> tree, which is usually located at <span class="texttt">/usr/share/texmf/</span>, <span class="texttt">/usr/local/texlive/texmf/</span>, <span class="texttt">C:\texmf\</span>, or <span class="texttt">C:\texlive\texmf\</span>.
-</p>
-</li>
-<li>
-<p>
-&bull; The local <span class="texttt">texmf</span> tree, which is usually located at <span class="texttt">/usr/local/share/texmf/</span>,<br>
-<span class="texttt">/usr/local/texlive/texmf-local/</span>, <span class="texttt">C:\localtexmf\</span>, or <span class="texttt">C:\texlive\texmf-local\</span>.
-</p>
-</li>
-<li>
-<p>
-&bull; Your personal <span class="texttt">texmf</span> tree, which is usually located in your home directory at <span class="texttt">~/texmf/</span> or <span class="texttt">~/Library/texmf/</span>.
-</p>
-</li>
-</ul>
-<p>
-You should install the packages either in the local tree or in your personal tree, depending on whether you have write access to the local tree. Installation in the root tree can cause problems, since an update of the whole <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> installation will replace this whole tree.
-</p>
-<p>
-Inside whatever <span class="texttt">texmf</span> directory you have chosen, create the sub-sub-sub-directory
-</p>
-<pre class="verbatim">
+</pre
+          >
+          <p>
+            (most likely, you have already done this). Next, you also need the
+            <span class="textsc">pgf</span> package and the
+            <span class="textsc">xcolor</span> packages, which you need to
+            install separately (see their installation instructions).
+          </p>
+          <p>
+            The package contains a bunch of files;
+            <span class="texttt">beamer.cls</span> is one of these files and
+            happens to be the most important one. You now need to put these
+            files in an appropriate <span class="texttt">texmf</span> tree.
+          </p>
+          <p>
+            When you ask
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >
+            to use a certain class or package, it usually looks for the
+            necessary files in so-called
+            <span class="texttt">texmf</span> trees. These trees are simply huge
+            directories that contain these files. By default,
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >
+            looks for files in three different
+            <span class="texttt">texmf</span> trees:
+          </p>
+          <ul style="list-style-type: none">
+            <li>
+              <p>
+                &bull; The root <span class="texttt">texmf</span> tree, which is
+                usually located at
+                <span class="texttt">/usr/share/texmf/</span>,
+                <span class="texttt">/usr/local/texlive/texmf/</span>,
+                <span class="texttt">C:\texmf\</span>, or
+                <span class="texttt">C:\texlive\texmf\</span>.
+              </p>
+            </li>
+            <li>
+              <p>
+                &bull; The local <span class="texttt">texmf</span> tree, which
+                is usually located at
+                <span class="texttt">/usr/local/share/texmf/</span>,<br />
+                <span class="texttt">/usr/local/texlive/texmf-local/</span>,
+                <span class="texttt">C:\localtexmf\</span>, or
+                <span class="texttt">C:\texlive\texmf-local\</span>.
+              </p>
+            </li>
+            <li>
+              <p>
+                &bull; Your personal <span class="texttt">texmf</span> tree,
+                which is usually located in your home directory at
+                <span class="texttt">~/texmf/</span> or
+                <span class="texttt">~/Library/texmf/</span>.
+              </p>
+            </li>
+          </ul>
+          <p>
+            You should install the packages either in the local tree or in your
+            personal tree, depending on whether you have write access to the
+            local tree. Installation in the root tree can cause problems, since
+            an update of the whole
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >
+            installation will replace this whole tree.
+          </p>
+          <p>
+            Inside whatever <span class="texttt">texmf</span> directory you have
+            chosen, create the sub-sub-sub-directory
+          </p>
+          <pre class="verbatim">
 texmf/tex/latex/beamer
-</pre>
-<p>
-and place all files of the package in this directory.
-</p>
-<p>
-Finally, you need to rebuild <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span>&rsquo;s filename database. This is done by running the command <span class="texttt">texhash</span> or <span class="texttt">mktexlsr</span> (they are the same). In MiK<span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> package manager and <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> Live <span class="texttt">tlmgr</span>, there is a menu option to do this.
-</p>
-<p>
-For a more detailed explanation of the standard installation process of packages, you might wish to consult <a href="http://www.ctan.org/installationadvice/" target="_blank"><span class="texttt">http://www.ctan.org/installationadvice/</span></a>.
-However, note that the <span class="beamer-name"><span class="textsc">beamer</span></span> package does not come with a <span class="texttt">.ins</span> file (simply skip that part).
-</p>
-<!--
+</pre
+          >
+          <p>and place all files of the package in this directory.</p>
+          <p>
+            Finally, you need to rebuild
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >&rsquo;s filename database. This is done by running the command
+            <span class="texttt">texhash</span> or
+            <span class="texttt">mktexlsr</span> (they are the same). In
+            MiK<span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >
+            package manager and
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >
+            Live <span class="texttt">tlmgr</span>, there is a menu option to do
+            this.
+          </p>
+          <p>
+            For a more detailed explanation of the standard installation process
+            of packages, you might wish to consult
+            <a href="http://www.ctan.org/installationadvice/" target="_blank"
+              ><span class="texttt"
+                >http://www.ctan.org/installationadvice/</span
+              ></a
+            >. However, note that the
+            <span class="beamer-name"><span class="textsc">beamer</span></span>
+            package does not come with a <span class="texttt">.ins</span> file
+            (simply skip that part).
+          </p>
+          <!--
 ...... subsection Updating the Installation ......
 -->
-<h5 id="autosec-33"><span><span class="sectionnumber" id="sec-2.4">2.4</span> Updating the Installation</span><a class="anchor-link" href="#sec-2.4">&para;</a></h5>
-<a id="beameruserguide-autopage-33"></a>
-<p>
-To update your installation from a previous version, simply replace everything in the directory
-</p>
-<pre class="verbatim">
+          <h5 id="autosec-33">
+            <span
+              ><span class="sectionnumber" id="sec-2.4">2.4</span> Updating the
+              Installation</span
+            ><a class="anchor-link" href="#sec-2.4">&para;</a>
+          </h5>
+          <a id="beameruserguide-autopage-33"></a>
+          <p>
+            To update your installation from a previous version, simply replace
+            everything in the directory
+          </p>
+          <pre class="verbatim">
 texmf/tex/latex/beamer
-</pre>
-<p>
-with the files of the new version. The easiest way to do this is to first delete the old version and then to proceed as described above.
-</p>
-<p>
-Note that if you have two versions installed, one in <span class="texttt">texmf</span> and other in <span class="texttt">texmf-local</span> directory, <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> distribution will prefer one in <span class="texttt">texmf-local</span> directory. This generally allows you to update packages manually without administrator privileges.
-</p>
-<!--
+</pre
+          >
+          <p>
+            with the files of the new version. The easiest way to do this is to
+            first delete the old version and then to proceed as described above.
+          </p>
+          <p>
+            Note that if you have two versions installed, one in
+            <span class="texttt">texmf</span> and other in
+            <span class="texttt">texmf-local</span> directory,
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >T<span class="latexlogosub">e</span>X</span
+              ></span
+            >
+            distribution will prefer one in
+            <span class="texttt">texmf-local</span> directory. This generally
+            allows you to update packages manually without administrator
+            privileges.
+          </p>
+          <!--
 ...... subsection Testing the Installation ......
 -->
-<h5 id="autosec-35"><span><span class="sectionnumber" id="sec-2.5">2.5</span> Testing the Installation</span><a class="anchor-link" href="#sec-2.5">&para;</a></h5>
-<a id="beameruserguide-autopage-35"></a>
-<p>
-To test your installation, copy the file <span class="texttt">generic-ornate-15min-45min.en.tex</span> from the directory
-</p>
-<pre class="verbatim">
+          <h5 id="autosec-35">
+            <span
+              ><span class="sectionnumber" id="sec-2.5">2.5</span> Testing the
+              Installation</span
+            ><a class="anchor-link" href="#sec-2.5">&para;</a>
+          </h5>
+          <a id="beameruserguide-autopage-35"></a>
+          <p>
+            To test your installation, copy the file
+            <span class="texttt">generic-ornate-15min-45min.en.tex</span> from
+            the directory
+          </p>
+          <pre class="verbatim">
 beamer/doc/solutions/generic-talks
-</pre>
-<p>
-to some place where you usually create presentations. Then run the command <span class="texttt">pdflatex</span> several times on the file and check whether the resulting <span class="pgf-name"><span class="textsc">pdf</span></span> file looks correct. If so,
-you are all set.
-</p>
-<!--
+</pre
+          >
+          <p>
+            to some place where you usually create presentations. Then run the
+            command <span class="texttt">pdflatex</span> several times on the
+            file and check whether the resulting
+            <span class="pgf-name"><span class="textsc">pdf</span></span> file
+            looks correct. If so, you are all set.
+          </p>
+          <!--
 ...... subsection Compatibility with Other Packages and Classes ......
 -->
-<h5 id="autosec-37"><span><span class="sectionnumber" id="sec-2.6">2.6</span> Compatibility with Other Packages and Classes</span><a class="anchor-link" href="#sec-2.6">&para;</a></h5>
-<a id="beameruserguide-autopage-37"></a>
-<p>
-When using certain packages or classes together with the <span class="texttt">beamer</span> class, extra options or precautions may be necessary.
-</p>
-<div class="package">
-
-
-<p>
-<span class="extracttheme">\usepackage{<span class="declare">AlDraTex</span>}</span>
-</p>
-<p>
-Graphics created using AlDraTex must be treated like verbatim text. The reason is that DraTex fiddles with catcodes and spaces much like verbatim does. So, in order to insert a picture, either add the <span class="texttt">fragile</span> option to the frame or use
-the <span class="texttt">\defverbatim</span> command to create a box containing the picture.
-</p>
-
-
-</div>
-<div class="package">
-
-
-<p>
-<span class="extracttheme">\usepackage{<span class="declare">alltt</span>}</span>
-</p>
-<p>
-Text in an <span class="texttt">alltt</span> environment must be treated like verbatim text. So add the <span class="texttt">fragile</span> option to frames containing this environment or use <span class="texttt">\defverbatim</span>.
-</p>
-
-
-</div>
-<div class="package">
-
-
-<p>
-<span class="extracttheme">\usepackage{<span class="declare">amsthm</span>}</span>
-</p>
-<p>
-This package is automatically loaded since <span class="beamer-name"><span class="textsc">beamer</span></span> uses it for typesetting theorems. If you do not wish it to be loaded, which can be necessary especially in <span class="texttt">article</span> mode
-if the package is incompatible with the document class, you can use the class option <span class="texttt">noamsthm</span> to suppress its loading. See Section&nbsp;<a href="Structuring-Presentation-The-Local-Structure.html#section-theorems">12.4</a> for
-more details.
-</p>
-
-
-</div>
-<div class="package">
-
-
-<p>
-<span class="extracttheme">\usepackage<span class="texttt">[</span><span class="declare"><span class="texttt">french</span></span><span class="texttt">]</span>{<span class="declare">babel</span>}</span>
-</p>
-<p>
-When using the <span class="texttt">french</span> style, certain features that clash with the functionality of the <span class="beamer-name"><span class="textsc">beamer</span></span> class will be turned off. For example, enumerations are still produced the
-way the theme dictates, not the way the <span class="texttt">french</span> style does.
-</p>
-
-
-</div>
-<div class="package">
-
-
-<p>
-<span class="extracttheme">\usepackage<span class="texttt">[</span><span class="declare"><span class="texttt">spanish</span></span><span class="texttt">]</span>{<span class="declare">babel</span>}</span>
-</p>
-<p>
-When using the <span class="texttt">spanish</span> style, certain features that clash with the functionality of the <span class="beamer-name"><span class="textsc">beamer</span></span> class will be turned off. In particular, the special behavior of the pointed
-brackets <span class="texttt">&lt;</span> and <span class="texttt">&gt;</span> is deactivated.
-</p>
-<p>
-To make the characters <span class="texttt">&lt;</span> and <span class="texttt">&gt;</span> active in <span class="texttt">article</span> mode, pass the option <span class="texttt">activeospeccharacters</span> to the package <span class="texttt">beamerbasearticle</span>. This will lead to problems with overlay specifications.
-</p>
-
-
-</div>
-<div class="package">
-
-
-<p>
-<span class="extracttheme">\usepackage{<span class="declare">color</span>}</span>
-</p>
-<p>
-The <span class="texttt">color</span> package is automatically loaded by <span class="texttt">beamer.cls</span>. This makes it impossible to pass options to <span class="texttt">color</span> in the preamble of your document in the normal manner. To pass
-a <span class="meta"><span class="angle">&langle;</span><i>list of options</i><span class="angle">&rangle;</span></span> to <span class="texttt">color</span>, you can use the following class option:
-</p>
-<div class="classoption">
-
-
-<p>
-<span class="classoption-heading">\documentclass[<span class="declare">color=<span class="meta"><span class="angle">&langle;</span><i>list of options</i><span class="angle">&rangle;</span></span></span>]{beamer}</span>
-</p>
-<p>
-Causes the <span class="meta"><span class="angle">&langle;</span><i>list of options</i><span class="angle">&rangle;</span></span> to be passed on to the <span class="texttt">color</span> package. If the <span class="meta"><span class="angle">&langle;</span><i>list of options</i><span class="angle">&rangle;</span></span> contains more than one option you must enclose it in curly brackets.
-</p>
-
-
-</div>
-<p>
-The <span class="texttt">color</span> package is not loaded automatically if <span class="texttt">beamerarticle</span> is loaded with the <span class="texttt">noxcolor</span> option.
-</p>
-
-
-</div>
-<div class="package">
-
-
-<p>
-<span class="extracttheme">\usepackage{<span class="declare">colortbl</span>}</span>
-</p>
-<p>
-With newer versions of <span class="texttt">xcolor.sty</span>, you need to pass the option <span class="texttt">table</span> to <span class="texttt">xcolor.sty</span> if you wish to use <span class="texttt">colortbl</span>. See the notes on <span class="texttt">xcolor</span> below, on how to do this.
-</p>
-
-
-</div>
-<div class="package">
-
-
-<p>
-<span class="extracttheme">\usepackage{<span class="declare">CJK</span>}</span>
-</p>
-<p>
-When using the <span class="texttt">CJK</span> package for using Asian fonts, you must use the class option <span class="declare"><span class="texttt">CJK</span></span>.
-</p>
-
-
-</div>
-<div class="package">
-
-
-<p>
-<span class="extracttheme">\usepackage{<span class="declare">deluxetable</span>}</span>
-</p>
-<p>
-The caption generation facilities of <span class="texttt">deluxetable</span> are deactivated. Instead, the caption template is used.
-</p>
-
-
-</div>
-<div class="package">
-
-
-<p>
-<span class="extracttheme">\usepackage{<span class="declare">DraTex</span>}</span>
-</p>
-<p>
-See <span class="texttt">AlDraTex</span>.
-</p>
-
-
-</div>
-<div class="package">
-
-
-<p>
-<span class="extracttheme">\usepackage{<span class="declare">enumerate</span>}</span>
-</p>
-<p>
-This package is loaded automatically in the <span class="texttt">presentation</span> modes, but not in the <span class="texttt">article</span> mode. If you use its features, you have to load the package &ldquo;by hand&rdquo; in the <span class="texttt">article</span>
-mode.
-</p>
-
-
-</div>
-<div class="class">
-
-
-<p>
-<span class="extractclass">\documentclass{<span class="declare">foils</span>}</span>
-</p>
-<p>
-If you wish to emulate the <span class="texttt">foils</span> class using <span class="beamer-name"><span class="textsc">beamer</span></span>, please see Section&nbsp;<a href="How-To-Import-Presentations-Based-on-Other-Packages-Classes.html#section-foiltex">24.3</a>.
-</p>
-
-
-</div>
-<div class="package">
-
-
-<p>
-<span class="extracttheme">\usepackage<span class="texttt">[</span><span class="declare"><span class="texttt">T1,TU</span></span><span class="texttt">]</span>{<span class="declare">fontenc</span>}</span>
-</p>
-<p>
-Use the <span class="texttt">T1</span> option <em>only</em> with fonts that have outline fonts available in the T1 encoding like <span class="texttt">times</span> or the <span class="texttt">lmodern</span> fonts. In a standard installation standard Computer
-Modern fonts (the fonts Donald Knuth originally designed and which are used by default) are <em>not</em> available in the T1 encoding. Using this option with them will result in very poor rendering of your presentation when viewed with <span class="pgf-name"><span class="textsc">pdf</span></span> viewer applications like Acrobat, <span class="texttt">xpdf</span>, <span class="texttt">evince</span> or <span class="texttt">okular</span>. To use the Computer Modern fonts with the T1 encoding, make sure you have
-installed <span class="texttt">cm-super</span> package in your <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> distribution, or use Latin Modern fonts provided by <span class="texttt">lmorden</span> instead. See also Section&nbsp;<a href="Fonts.html#section-font-encoding">18.2.3</a>. This applies both to <span class="texttt">latex</span>+<span class="texttt">dvips</span> and <span class="texttt">pdflatex</span>.
-</p>
-<p>
-The newest version of <span class="latexlogofont"><span class="latexlogo">L<span class="latexlogosup">a</span>T<span class="latexlogosub">e</span>X</span></span><span class="latexlogofont"><span class="latexlogotwoe">2<span class="latexlogotwoesub">&epsilon;</span></span></span> kernel has introduced TU encoding for <span class="texttt">xelatex</span> and <span class="texttt">lualatex</span>. Note that <span class="texttt">xelatex</span> and <span class="texttt">lualatex</span> support OpenType fonts, and font encodings work very different compared to <span class="texttt">pdflatex</span>. Again, see Section&nbsp;<a href="Fonts.html#section-font-encoding">18.2.3</a> for more information.
-</p>
-
-
-</div>
-<div class="package">
-
-
-<p>
-<span class="extracttheme">\usepackage{<span class="declare">fourier</span>}</span>
-</p>
-<p>
-The package switches to a T1&nbsp;encoding, but it does not redefine all fonts such that outline fonts (non-bitmapped fonts) are used by default. For example, the sans-serif text and the typewriter text are not replaced. To use outline fonts for these, write <span class="texttt">\usepackage{lmodern}</span> <em>before</em> including the <span class="texttt">fourier</span> package.
-</p>
-
-
-</div>
-<div class="package">
-
-
-<p>
-<span class="extracttheme">\usepackage{<span class="declare">HA-prosper</span>}</span>
-</p>
-<p>
-You cannot use this package with <span class="beamer-name"><span class="textsc">beamer</span></span>. However, you might try to use the package <span class="texttt">beamerprosper</span> instead, see Section&nbsp;<a href="How-To-Import-Presentations-Based-on-Other-Packages-Classes.html#section-prosper">24.1</a>.
-</p>
-
-
-</div>
-<div class="package">
-
-
-<p>
-<span class="extracttheme">\usepackage{<span class="declare">hyperref</span>}</span>
-</p>
-<p>
-The <span class="texttt">hyperref</span> package is automatically loaded by <span class="texttt">beamer.cls</span> and certain options are set up. In order to pass additional options to <span class="texttt">hyperref</span> or to override options, you can use
-the following class option:
-</p>
-<div class="classoption">
-
-
-<p>
-<span class="classoption-heading">\documentclass[<span class="declare">hyperref=<span class="meta"><span class="angle">&langle;</span><i>list of options</i><span class="angle">&rangle;</span></span></span>]{beamer}</span>
-</p>
-<p>
-Causes the <span class="meta"><span class="angle">&langle;</span><i>list of options</i><span class="angle">&rangle;</span></span> to be passed on to the <span class="texttt">hyperref</span> package.
-</p>
-<p>
-<i>Example: </i><span class="texttt">\documentclass[hyperref={bookmarks=false}]{beamer}</span>
-</p>
-
-
-</div>
-<p>
-Alternatively, you can also use the <span class="texttt">\hypersetup</span> command.
-</p>
-<p>
-In the <span class="texttt">article</span> version, you must include <span class="texttt">hyperref</span> manually if you want to use it. You can do so by passing option <span class="texttt">hyperref</span> to <span class="texttt">beamerarticle</span>.
-It is not included automatically.
-</p>
-
-
-</div>
-<div class="package">
-
-
-<p>
-<span class="extracttheme">\usepackage<span class="texttt">[</span><span class="declare"><span class="texttt">utf8,utf8x</span></span><span class="texttt">]</span>{<span class="declare">inputenc</span>}</span>
-</p>
-<p>
-When using Unicode, you may wish to use <em>some</em> of the following class options:
-</p>
-<div class="classoption">
-
-
-<p>
-<span class="classoption-heading">\documentclass[<span class="declare">ucs</span>]{beamer}</span>
-</p>
-<p>
-Loads the package <span class="texttt">ucs</span> and passes the correct Unicode options to <span class="texttt">hyperref</span>. Also, it preloads the Unicode code pages zero and one.
-</p>
-
-
-</div>
-<div class="classoption">
-
-
-<p>
-<span class="classoption-heading">\documentclass[<span class="declare">utf8x</span>]{beamer}</span>
-</p>
-<p>
-Same as the option <span class="texttt">ucs</span>, but also sets the input encoding to <span class="texttt">utf8x</span>. You could also use the option <span class="texttt">ucs</span> and say <span class="texttt">\usepackage[utf8x]{inputenc}</span>
-in the preamble. This also automatically loads <span class="texttt">ucs</span> package in most <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> systems.
-</p>
-
-
-</div>
-<p>
-If you use a Unicode character outside the first two code pages (which includes the Latin alphabet and the extended Latin alphabet) in a section or subsection heading, you have to use the command <span class="texttt">\PreloadUnicodePage{</span><span class="meta"><span class="angle">&langle;</span><i>code page</i><span class="angle">&rangle;</span></span><span class="texttt">}</span> to give <span class="texttt">ucs</span> a chance to preload these code pages. You will know that a character has
-not been preloaded, if you get a message like &ldquo;Please insert into preamble.&rdquo; The code page of a character is given by the unicode number of the character divided by 256.
-</p>
-<div class="classoption">
-
-
-<p>
-<span class="classoption-heading">\documentclass[<span class="declare">utf8</span>]{beamer}</span>
-</p>
-<p>
-This option sets the input encoding to <span class="texttt">utf8</span>. It&rsquo;s designed to be used <em>without</em> <span class="texttt">ucs</span>. It&rsquo;s the same as saying <span class="texttt">\usepackage[utf8]{inputenc}</span> in the preamble.
-</p>
-
-
-</div>
-<p>
-Note that <em>none</em> of these options apply to <span class="texttt">lualatex</span> and <span class="texttt">xelatex</span>, since both support Unicode natively without any extra packages. Most of the time using these options actually harms output
-quality, so be careful about what you use. If you want to have a document that allows compiling with multiple drivers, take a look at <span class="texttt">iftex</span>, <span class="texttt">ifxetex</span> and <span class="texttt">ifluatex</span> packages.
-</p>
-<p>
-Passing option <span class="texttt">utf8</span> to <span class="texttt">beamerarticle</span> has the same effect as saying <span class="texttt">\usepackage[utf8]{inputenc}</span> in the preamble.
-</p>
-<p>
-Again, take care if you use <span class="texttt">lualatex</span> or <span class="texttt">xelatex</span>.
-</p>
-
-
-</div>
-<div class="package">
-
-
-<p>
-<span class="extracttheme">\usepackage{<span class="declare">listings</span>}</span>
-</p>
-<p>
-Note that you must treat <span class="texttt">lstlisting</span> environments exactly the same way as you would treat <span class="texttt">verbatim</span> environments. When using <span class="texttt">\defverbatim</span> that contains a colored <span class="texttt">lstlisting</span>, use the <span class="texttt">colored</span> option of <span class="texttt">\defverbatim</span>.
-</p>
-<p>
-<i>Example: </i>
-</p>
-<pre class="verbatim">
+          <h5 id="autosec-37">
+            <span
+              ><span class="sectionnumber" id="sec-2.6">2.6</span> Compatibility
+              with Other Packages and Classes</span
+            ><a class="anchor-link" href="#sec-2.6">&para;</a>
+          </h5>
+          <a id="beameruserguide-autopage-37"></a>
+          <p>
+            When using certain packages or classes together with the
+            <span class="texttt">beamer</span> class, extra options or
+            precautions may be necessary.
+          </p>
+          <div class="package">
+            <p>
+              <span class="extracttheme"
+                >\usepackage{<span class="declare">AlDraTex</span>}</span
+              >
+            </p>
+            <p>
+              Graphics created using AlDraTex must be treated like verbatim
+              text. The reason is that DraTex fiddles with catcodes and spaces
+              much like verbatim does. So, in order to insert a picture, either
+              add the <span class="texttt">fragile</span> option to the frame or
+              use the <span class="texttt">\defverbatim</span> command to create
+              a box containing the picture.
+            </p>
+          </div>
+          <div class="package">
+            <p>
+              <span class="extracttheme"
+                >\usepackage{<span class="declare">alltt</span>}</span
+              >
+            </p>
+            <p>
+              Text in an <span class="texttt">alltt</span> environment must be
+              treated like verbatim text. So add the
+              <span class="texttt">fragile</span> option to frames containing
+              this environment or use <span class="texttt">\defverbatim</span>.
+            </p>
+          </div>
+          <div class="package">
+            <p>
+              <span class="extracttheme"
+                >\usepackage{<span class="declare">amsthm</span>}</span
+              >
+            </p>
+            <p>
+              This package is automatically loaded since
+              <span class="beamer-name"
+                ><span class="textsc">beamer</span></span
+              >
+              uses it for typesetting theorems. If you do not wish it to be
+              loaded, which can be necessary especially in
+              <span class="texttt">article</span> mode if the package is
+              incompatible with the document class, you can use the class option
+              <span class="texttt">noamsthm</span> to suppress its loading. See
+              Section&nbsp;<a
+                href="Structuring-Presentation-The-Local-Structure.html#section-theorems"
+                >12.4</a
+              >
+              for more details.
+            </p>
+          </div>
+          <div class="package">
+            <p>
+              <span class="extracttheme"
+                >\usepackage<span class="texttt">[</span
+                ><span class="declare"><span class="texttt">french</span></span
+                ><span class="texttt">]</span>{<span class="declare">babel</span
+                >}</span
+              >
+            </p>
+            <p>
+              When using the <span class="texttt">french</span> style, certain
+              features that clash with the functionality of the
+              <span class="beamer-name"
+                ><span class="textsc">beamer</span></span
+              >
+              class will be turned off. For example, enumerations are still
+              produced the way the theme dictates, not the way the
+              <span class="texttt">french</span> style does.
+            </p>
+          </div>
+          <div class="package">
+            <p>
+              <span class="extracttheme"
+                >\usepackage<span class="texttt">[</span
+                ><span class="declare"><span class="texttt">spanish</span></span
+                ><span class="texttt">]</span>{<span class="declare">babel</span
+                >}</span
+              >
+            </p>
+            <p>
+              When using the <span class="texttt">spanish</span> style, certain
+              features that clash with the functionality of the
+              <span class="beamer-name"
+                ><span class="textsc">beamer</span></span
+              >
+              class will be turned off. In particular, the special behavior of
+              the pointed brackets <span class="texttt">&lt;</span> and
+              <span class="texttt">&gt;</span> is deactivated.
+            </p>
+            <p>
+              To make the characters <span class="texttt">&lt;</span> and
+              <span class="texttt">&gt;</span> active in
+              <span class="texttt">article</span> mode, pass the option
+              <span class="texttt">activeospeccharacters</span> to the package
+              <span class="texttt">beamerbasearticle</span>. This will lead to
+              problems with overlay specifications.
+            </p>
+          </div>
+          <div class="package">
+            <p>
+              <span class="extracttheme"
+                >\usepackage{<span class="declare">color</span>}</span
+              >
+            </p>
+            <p>
+              The <span class="texttt">color</span> package is automatically
+              loaded by <span class="texttt">beamer.cls</span>. This makes it
+              impossible to pass options to <span class="texttt">color</span> in
+              the preamble of your document in the normal manner. To pass a
+              <span class="meta"
+                ><span class="angle">&langle;</span><i>list of options</i
+                ><span class="angle">&rangle;</span></span
+              >
+              to <span class="texttt">color</span>, you can use the following
+              class option:
+            </p>
+            <div class="classoption">
+              <p>
+                <span class="classoption-heading"
+                  >\documentclass[<span class="declare"
+                    >color=<span class="meta"
+                      ><span class="angle">&langle;</span><i>list of options</i
+                      ><span class="angle">&rangle;</span></span
+                    ></span
+                  >]{beamer}</span
+                >
+              </p>
+              <p>
+                Causes the
+                <span class="meta"
+                  ><span class="angle">&langle;</span><i>list of options</i
+                  ><span class="angle">&rangle;</span></span
+                >
+                to be passed on to the
+                <span class="texttt">color</span> package. If the
+                <span class="meta"
+                  ><span class="angle">&langle;</span><i>list of options</i
+                  ><span class="angle">&rangle;</span></span
+                >
+                contains more than one option you must enclose it in curly
+                brackets.
+              </p>
+            </div>
+            <p>
+              The <span class="texttt">color</span> package is not loaded
+              automatically if <span class="texttt">beamerarticle</span> is
+              loaded with the <span class="texttt">noxcolor</span> option.
+            </p>
+          </div>
+          <div class="package">
+            <p>
+              <span class="extracttheme"
+                >\usepackage{<span class="declare">colortbl</span>}</span
+              >
+            </p>
+            <p>
+              With newer versions of <span class="texttt">xcolor.sty</span>, you
+              need to pass the option <span class="texttt">table</span> to
+              <span class="texttt">xcolor.sty</span> if you wish to use
+              <span class="texttt">colortbl</span>. See the notes on
+              <span class="texttt">xcolor</span> below, on how to do this.
+            </p>
+          </div>
+          <div class="package">
+            <p>
+              <span class="extracttheme"
+                >\usepackage{<span class="declare">CJK</span>}</span
+              >
+            </p>
+            <p>
+              When using the <span class="texttt">CJK</span> package for using
+              Asian fonts, you must use the class option
+              <span class="declare"><span class="texttt">CJK</span></span
+              >.
+            </p>
+          </div>
+          <div class="package">
+            <p>
+              <span class="extracttheme"
+                >\usepackage{<span class="declare">deluxetable</span>}</span
+              >
+            </p>
+            <p>
+              The caption generation facilities of
+              <span class="texttt">deluxetable</span> are deactivated. Instead,
+              the caption template is used.
+            </p>
+          </div>
+          <div class="package">
+            <p>
+              <span class="extracttheme"
+                >\usepackage{<span class="declare">DraTex</span>}</span
+              >
+            </p>
+            <p>See <span class="texttt">AlDraTex</span>.</p>
+          </div>
+          <div class="package">
+            <p>
+              <span class="extracttheme"
+                >\usepackage{<span class="declare">enumerate</span>}</span
+              >
+            </p>
+            <p>
+              This package is loaded automatically in the
+              <span class="texttt">presentation</span> modes, but not in the
+              <span class="texttt">article</span> mode. If you use its features,
+              you have to load the package &ldquo;by hand&rdquo; in the
+              <span class="texttt">article</span>
+              mode.
+            </p>
+          </div>
+          <div class="class">
+            <p>
+              <span class="extractclass"
+                >\documentclass{<span class="declare">foils</span>}</span
+              >
+            </p>
+            <p>
+              If you wish to emulate the <span class="texttt">foils</span> class
+              using
+              <span class="beamer-name"><span class="textsc">beamer</span></span
+              >, please see Section&nbsp;<a
+                href="How-To-Import-Presentations-Based-on-Other-Packages-Classes.html#section-foiltex"
+                >24.3</a
+              >.
+            </p>
+          </div>
+          <div class="package">
+            <p>
+              <span class="extracttheme"
+                >\usepackage<span class="texttt">[</span
+                ><span class="declare"><span class="texttt">T1,TU</span></span
+                ><span class="texttt">]</span>{<span class="declare"
+                  >fontenc</span
+                >}</span
+              >
+            </p>
+            <p>
+              Use the <span class="texttt">T1</span> option <em>only</em> with
+              fonts that have outline fonts available in the T1 encoding like
+              <span class="texttt">times</span> or the
+              <span class="texttt">lmodern</span> fonts. In a standard
+              installation standard Computer Modern fonts (the fonts Donald
+              Knuth originally designed and which are used by default) are
+              <em>not</em> available in the T1 encoding. Using this option with
+              them will result in very poor rendering of your presentation when
+              viewed with
+              <span class="pgf-name"><span class="textsc">pdf</span></span>
+              viewer applications like Acrobat,
+              <span class="texttt">xpdf</span>,
+              <span class="texttt">evince</span> or
+              <span class="texttt">okular</span>. To use the Computer Modern
+              fonts with the T1 encoding, make sure you have installed
+              <span class="texttt">cm-super</span> package in your
+              <span class="latexlogofont"
+                ><span class="latexlogo"
+                  >T<span class="latexlogosub">e</span>X</span
+                ></span
+              >
+              distribution, or use Latin Modern fonts provided by
+              <span class="texttt">lmorden</span> instead. See also
+              Section&nbsp;<a href="Fonts.html#section-font-encoding">18.2.3</a
+              >. This applies both to <span class="texttt">latex</span>+<span
+                class="texttt"
+                >dvips</span
+              >
+              and <span class="texttt">pdflatex</span>.
+            </p>
+            <p>
+              The newest version of
+              <span class="latexlogofont"
+                ><span class="latexlogo"
+                  >L<span class="latexlogosup">a</span>T<span
+                    class="latexlogosub"
+                    >e</span
+                  >X</span
+                ></span
+              ><span class="latexlogofont"
+                ><span class="latexlogotwoe"
+                  >2<span class="latexlogotwoesub">&epsilon;</span></span
+                ></span
+              >
+              kernel has introduced TU encoding for
+              <span class="texttt">xelatex</span> and
+              <span class="texttt">lualatex</span>. Note that
+              <span class="texttt">xelatex</span> and
+              <span class="texttt">lualatex</span> support OpenType fonts, and
+              font encodings work very different compared to
+              <span class="texttt">pdflatex</span>. Again, see Section&nbsp;<a
+                href="Fonts.html#section-font-encoding"
+                >18.2.3</a
+              >
+              for more information.
+            </p>
+          </div>
+          <div class="package">
+            <p>
+              <span class="extracttheme"
+                >\usepackage{<span class="declare">fourier</span>}</span
+              >
+            </p>
+            <p>
+              The package switches to a T1&nbsp;encoding, but it does not
+              redefine all fonts such that outline fonts (non-bitmapped fonts)
+              are used by default. For example, the sans-serif text and the
+              typewriter text are not replaced. To use outline fonts for these,
+              write <span class="texttt">\usepackage{lmodern}</span>
+              <em>before</em> including the
+              <span class="texttt">fourier</span> package.
+            </p>
+          </div>
+          <div class="package">
+            <p>
+              <span class="extracttheme"
+                >\usepackage{<span class="declare">HA-prosper</span>}</span
+              >
+            </p>
+            <p>
+              You cannot use this package with
+              <span class="beamer-name"><span class="textsc">beamer</span></span
+              >. However, you might try to use the package
+              <span class="texttt">beamerprosper</span> instead, see
+              Section&nbsp;<a
+                href="How-To-Import-Presentations-Based-on-Other-Packages-Classes.html#section-prosper"
+                >24.1</a
+              >.
+            </p>
+          </div>
+          <div class="package">
+            <p>
+              <span class="extracttheme"
+                >\usepackage{<span class="declare">hyperref</span>}</span
+              >
+            </p>
+            <p>
+              The <span class="texttt">hyperref</span> package is automatically
+              loaded by <span class="texttt">beamer.cls</span> and certain
+              options are set up. In order to pass additional options to
+              <span class="texttt">hyperref</span> or to override options, you
+              can use the following class option:
+            </p>
+            <div class="classoption">
+              <p>
+                <span class="classoption-heading"
+                  >\documentclass[<span class="declare"
+                    >hyperref=<span class="meta"
+                      ><span class="angle">&langle;</span><i>list of options</i
+                      ><span class="angle">&rangle;</span></span
+                    ></span
+                  >]{beamer}</span
+                >
+              </p>
+              <p>
+                Causes the
+                <span class="meta"
+                  ><span class="angle">&langle;</span><i>list of options</i
+                  ><span class="angle">&rangle;</span></span
+                >
+                to be passed on to the
+                <span class="texttt">hyperref</span> package.
+              </p>
+              <p>
+                <i>Example: </i
+                ><span class="texttt"
+                  >\documentclass[hyperref={bookmarks=false}]{beamer}</span
+                >
+              </p>
+            </div>
+            <p>
+              Alternatively, you can also use the
+              <span class="texttt">\hypersetup</span> command.
+            </p>
+            <p>
+              In the <span class="texttt">article</span> version, you must
+              include <span class="texttt">hyperref</span> manually if you want
+              to use it. You can do so by passing option
+              <span class="texttt">hyperref</span> to
+              <span class="texttt">beamerarticle</span>. It is not included
+              automatically.
+            </p>
+          </div>
+          <div class="package">
+            <p>
+              <span class="extracttheme"
+                >\usepackage<span class="texttt">[</span
+                ><span class="declare"
+                  ><span class="texttt">utf8,utf8x</span></span
+                ><span class="texttt">]</span>{<span class="declare"
+                  >inputenc</span
+                >}</span
+              >
+            </p>
+            <p>
+              When using Unicode, you may wish to use <em>some</em> of the
+              following class options:
+            </p>
+            <div class="classoption">
+              <p>
+                <span class="classoption-heading"
+                  >\documentclass[<span class="declare">ucs</span
+                  >]{beamer}</span
+                >
+              </p>
+              <p>
+                Loads the package <span class="texttt">ucs</span> and passes the
+                correct Unicode options to <span class="texttt">hyperref</span>.
+                Also, it preloads the Unicode code pages zero and one.
+              </p>
+            </div>
+            <div class="classoption">
+              <p>
+                <span class="classoption-heading"
+                  >\documentclass[<span class="declare">utf8x</span
+                  >]{beamer}</span
+                >
+              </p>
+              <p>
+                Same as the option <span class="texttt">ucs</span>, but also
+                sets the input encoding to <span class="texttt">utf8x</span>.
+                You could also use the option
+                <span class="texttt">ucs</span> and say
+                <span class="texttt">\usepackage[utf8x]{inputenc}</span> in the
+                preamble. This also automatically loads
+                <span class="texttt">ucs</span> package in most
+                <span class="latexlogofont"
+                  ><span class="latexlogo"
+                    >T<span class="latexlogosub">e</span>X</span
+                  ></span
+                >
+                systems.
+              </p>
+            </div>
+            <p>
+              If you use a Unicode character outside the first two code pages
+              (which includes the Latin alphabet and the extended Latin
+              alphabet) in a section or subsection heading, you have to use the
+              command <span class="texttt">\PreloadUnicodePage{</span
+              ><span class="meta"
+                ><span class="angle">&langle;</span><i>code page</i
+                ><span class="angle">&rangle;</span></span
+              ><span class="texttt">}</span> to give
+              <span class="texttt">ucs</span> a chance to preload these code
+              pages. You will know that a character has not been preloaded, if
+              you get a message like &ldquo;Please insert into preamble.&rdquo;
+              The code page of a character is given by the unicode number of the
+              character divided by 256.
+            </p>
+            <div class="classoption">
+              <p>
+                <span class="classoption-heading"
+                  >\documentclass[<span class="declare">utf8</span
+                  >]{beamer}</span
+                >
+              </p>
+              <p>
+                This option sets the input encoding to
+                <span class="texttt">utf8</span>. It&rsquo;s designed to be used
+                <em>without</em> <span class="texttt">ucs</span>. It&rsquo;s the
+                same as saying
+                <span class="texttt">\usepackage[utf8]{inputenc}</span> in the
+                preamble.
+              </p>
+            </div>
+            <p>
+              Note that <em>none</em> of these options apply to
+              <span class="texttt">lualatex</span> and
+              <span class="texttt">xelatex</span>, since both support Unicode
+              natively without any extra packages. Most of the time using these
+              options actually harms output quality, so be careful about what
+              you use. If you want to have a document that allows compiling with
+              multiple drivers, take a look at
+              <span class="texttt">iftex</span>,
+              <span class="texttt">ifxetex</span> and
+              <span class="texttt">ifluatex</span> packages.
+            </p>
+            <p>
+              Passing option <span class="texttt">utf8</span> to
+              <span class="texttt">beamerarticle</span> has the same effect as
+              saying <span class="texttt">\usepackage[utf8]{inputenc}</span> in
+              the preamble.
+            </p>
+            <p>
+              Again, take care if you use
+              <span class="texttt">lualatex</span> or
+              <span class="texttt">xelatex</span>.
+            </p>
+          </div>
+          <div class="package">
+            <p>
+              <span class="extracttheme"
+                >\usepackage{<span class="declare">listings</span>}</span
+              >
+            </p>
+            <p>
+              Note that you must treat
+              <span class="texttt">lstlisting</span> environments exactly the
+              same way as you would treat
+              <span class="texttt">verbatim</span> environments. When using
+              <span class="texttt">\defverbatim</span> that contains a colored
+              <span class="texttt">lstlisting</span>, use the
+              <span class="texttt">colored</span> option of
+              <span class="texttt">\defverbatim</span>.
+            </p>
+            <p>
+              <i>Example: </i>
+            </p>
+            <pre class="verbatim">
 \usepackage{listings}
 
 \begin{document}
@@ -740,199 +1110,313 @@ Note that you must treat <span class="texttt">lstlisting</span> environments exa
   \mycode
 \end{frame}
 \end{document}
-</pre>
-
-
-</div>
-<div class="package">
-
-
-<p>
-<span class="extracttheme">\usepackage{<span class="declare">msc</span>}</span>
-</p>
-<p>
-Since this package uses <span class="texttt">pstricks</span> internally, everything that applies to pstricks also applies to <span class="texttt">msc</span>.
-</p>
-
-
-</div>
-<div class="package">
-
-
-<p>
-<span class="extracttheme">\usepackage{<span class="declare">musixtex</span>}</span>
-</p>
-<p>
-When using MusiX<span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> to typeset musical scores, you have to have \(\varepsilon \)-<span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> extensions enabled. Most modern distributions enable that by default both in <span class="texttt">pdflatex</span> and <span class="texttt">latex</span>. However, if you have an older distribution, the
-document must be compiled with <span class="texttt">pdfelatex</span> or <span class="texttt">elatex</span> instead of <span class="texttt">pdflatex</span> or <span class="texttt">latex</span>.
-</p>
-<p>
-Inside a <span class="texttt">music</span> environment, the <span class="texttt">\pause</span> is redefined to match MusiX<span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span>&rsquo;s definition (a rest
-during one quarter of a whole). You can use the <span class="texttt">\beamerpause</span> command to create overlays in this environment.
-</p>
-
-
-</div>
-<div class="package">
-
-
-<p>
-<span class="extracttheme">\usepackage{<span class="declare">paralist</span>}</span>
-</p>
-<p>
-<span class="beamer-name"><span class="textsc">beamer</span></span> automatically patches list-related commands using <span class="texttt">beamerpatchparalist</span> package at the beginning of document. Besides, <span class="beamer-name"><span class="textsc">beamer</span></span> also supports using <span class="texttt">compactitem</span> and <span class="texttt">compactenum</span> environments with overlays, just like the usage of <span class="texttt">enumerate</span> environments:
-</p>
-<pre class="verbatim">
+</pre
+            >
+          </div>
+          <div class="package">
+            <p>
+              <span class="extracttheme"
+                >\usepackage{<span class="declare">msc</span>}</span
+              >
+            </p>
+            <p>
+              Since this package uses
+              <span class="texttt">pstricks</span> internally, everything that
+              applies to pstricks also applies to
+              <span class="texttt">msc</span>.
+            </p>
+          </div>
+          <div class="package">
+            <p>
+              <span class="extracttheme"
+                >\usepackage{<span class="declare">musixtex</span>}</span
+              >
+            </p>
+            <p>
+              When using MusiX<span class="latexlogofont"
+                ><span class="latexlogo"
+                  >T<span class="latexlogosub">e</span>X</span
+                ></span
+              >
+              to typeset musical scores, you have to have
+              <span class="lateximagesource" id="lateximage-beameruserguide-1"
+                ><!--
+𝜀
+--><img
+                  alt="\( \varepsilon \)"
+                  class="lateximage"
+                  role="math"
+                  src="beameruserguide-images/9020E760374275D66D6ED67719029778.svg"
+                  style="width: 0.57695em" /></span
+              >-<span class="latexlogofont"
+                ><span class="latexlogo"
+                  >T<span class="latexlogosub">e</span>X</span
+                ></span
+              >
+              extensions enabled. Most modern distributions enable that by
+              default both in <span class="texttt">pdflatex</span> and
+              <span class="texttt">latex</span>. However, if you have an older
+              distribution, the document must be compiled with
+              <span class="texttt">pdfelatex</span> or
+              <span class="texttt">elatex</span> instead of
+              <span class="texttt">pdflatex</span> or
+              <span class="texttt">latex</span>.
+            </p>
+            <p>
+              Inside a <span class="texttt">music</span> environment, the
+              <span class="texttt">\pause</span> is redefined to match
+              MusiX<span class="latexlogofont"
+                ><span class="latexlogo"
+                  >T<span class="latexlogosub">e</span>X</span
+                ></span
+              >&rsquo;s definition (a rest during one quarter of a whole). You
+              can use the <span class="texttt">\beamerpause</span> command to
+              create overlays in this environment.
+            </p>
+          </div>
+          <div class="package">
+            <p>
+              <span class="extracttheme"
+                >\usepackage{<span class="declare">paralist</span>}</span
+              >
+            </p>
+            <p>
+              <span class="beamer-name"
+                ><span class="textsc">beamer</span></span
+              >
+              automatically patches list-related commands using
+              <span class="texttt">beamerpatchparalist</span> package at the
+              beginning of document. Besides,
+              <span class="beamer-name"
+                ><span class="textsc">beamer</span></span
+              >
+              also supports using <span class="texttt">compactitem</span> and
+              <span class="texttt">compactenum</span> environments with
+              overlays, just like the usage of
+              <span class="texttt">enumerate</span> environments:
+            </p>
+            <pre class="verbatim">
 \begin{compactitem}[&lt;+-&gt;][$\bullet$]
   \item Alpha
   \item Bravo
 \end{compactitem}
-</pre>
+</pre
+            >
+          </div>
+          <div class="package">
+            <p>
+              <span class="extracttheme"
+                >\usepackage{<span class="declare">pdfpages</span>}</span
+              >
+            </p>
+            <p>
+              Commands like <span class="texttt">\includepdf</span> only work
+              <em>outside</em> frames as they produce pages &ldquo;by
+              themselves.&rdquo;
+            </p>
+          </div>
+          <div class="package">
+            <p>
+              <span class="extracttheme"
+                >\usepackage{<span class="declare"
+                  ><span class="meta"
+                    ><span class="angle">&langle;</span
+                    ><i>professional font package</i
+                    ><span class="angle">&rangle;</span></span
+                  ></span
+                >}</span
+              >
+            </p>
+            <p>
+              If you use a professional font package,
+              <span class="beamer-name"><span class="textsc">beamer</span></span
+              >&rsquo;s internal redefinition of how variables are typeset may
+              interfere with the font package&rsquo;s superior way of
+              typesetting them. In this case, you should use the class option
+              <span class="texttt">professionalfonts</span> to suppress any font
+              substitution. See Section&nbsp;<a
+                href="Fonts.html#section-substition"
+                >18.2.2</a
+              >
+              for details.
+            </p>
+          </div>
+          <div class="class">
+            <p>
+              <span class="extractclass"
+                >\documentclass{<span class="declare">prosper</span>}</span
+              >
+            </p>
+            <p>
+              If you wish to (partly) emulate the
+              <span class="texttt">prosper</span> class using
+              <span class="beamer-name"><span class="textsc">beamer</span></span
+              >, please see Section&nbsp;<a
+                href="How-To-Import-Presentations-Based-on-Other-Packages-Classes.html#section-prosper"
+                >24.1</a
+              >.
+            </p>
+          </div>
+          <div class="package">
+            <p>
+              <span class="extracttheme"
+                >\usepackage{<span class="declare">pstricks</span>}</span
+              >
+            </p>
+            <p>
+              You should add the option
+              <span class="texttt">xcolor=pst</span> to make
+              <span class="texttt">xcolor</span> aware of the fact that you are
+              using <span class="texttt">pstricks</span>.
+            </p>
+          </div>
+          <div class="class">
+            <p>
+              <span class="extractclass"
+                >\documentclass{<span class="declare">seminar</span>}</span
+              >
+            </p>
+            <p>
+              If you wish to emulate the
+              <span class="texttt">seminar</span> class using
+              <span class="beamer-name"><span class="textsc">beamer</span></span
+              >, please see Section&nbsp;<a
+                href="How-To-Import-Presentations-Based-on-Other-Packages-Classes.html#section-seminar"
+                >24.2</a
+              >.
+            </p>
+          </div>
+          <div class="package">
+            <p>
+              <span class="extracttheme"
+                >\usepackage{<span class="declare">texpower</span>}</span
+              >
+            </p>
+            <p>
+              You cannot use this package with
+              <span class="beamer-name"><span class="textsc">beamer</span></span
+              >. However, you might try to use the package
+              <span class="texttt">beamertexpower</span> instead, see
+              Section&nbsp;<a
+                href="How-To-Import-Presentations-Based-on-Other-Packages-Classes.html#section-texpower"
+                >24.4</a
+              >.
+            </p>
+          </div>
+          <div class="package">
+            <p>
+              <span class="extracttheme"
+                >\usepackage{<span class="declare">textpos</span>}</span
+              >
+            </p>
+            <p>
+              <span class="beamer-name"
+                ><span class="textsc">beamer</span></span
+              >
+              automatically installs a white background behind everything,
+              unless you install a different background template. Because of
+              this, you must use the <span class="texttt">overlay</span> option
+              when using <span class="texttt">textpos</span>, so that it will
+              place boxes <em>in front of</em> everything. Alternatively, you
+              can install an empty background template, but this may result in
+              an incorrect display in certain situations with older versions of
+              the Acrobat Reader.
+            </p>
+          </div>
+          <div class="package">
+            <p>
+              <span class="extracttheme"
+                >\usepackage{<span class="declare">ucs</span>}</span
+              >
+            </p>
+            <p>
+              See <span class="texttt">\usepackage[utf8,utf8x]{inputenc}</span>.
+            </p>
+          </div>
+          <div class="package">
+            <p>
+              <span class="extracttheme"
+                >\usepackage{<span class="declare">xcolor</span>}</span
+              >
+            </p>
+            <p>
+              The <span class="texttt">xcolor</span> package is automatically
+              loaded by <span class="texttt">beamer.cls</span>. The same applies
+              as to <span class="texttt">color</span>.
+            </p>
+            <div class="classoption">
+              <p>
+                <span class="classoption-heading"
+                  >\documentclass[<span class="declare"
+                    >xcolor=<span class="meta"
+                      ><span class="angle">&langle;</span><i>list of options</i
+                      ><span class="angle">&rangle;</span></span
+                    ></span
+                  >]{beamer}</span
+                >
+              </p>
+              <p>
+                Causes the
+                <span class="meta"
+                  ><span class="angle">&langle;</span><i>list of options</i
+                  ><span class="angle">&rangle;</span></span
+                >
+                to be passed on to the
+                <span class="texttt">xcolor</span> package.
+              </p>
+            </div>
+            <p>
+              When using
+              <span class="beamer-name"
+                ><span class="textsc">beamer</span></span
+              >
+              together with the <span class="texttt">pstricks</span> package, be
+              sure to pass the <span class="texttt">xcolor=pst</span> option to
+              <span class="beamer-name"
+                ><span class="textsc">beamer</span></span
+              >
+              (and hence to <span class="texttt">xcolor</span>).
+            </p>
+            <p>
+              The <span class="texttt">color</span> package is not loaded
+              automatically if <span class="texttt">beamerarticle</span> is
+              loaded with the <span class="texttt">noxcolor</span> option.
+            </p>
+          </div>
+        </section>
+      </main>
+      <footer>
+        <div class="footer-left">
+          <a href="Licenses-Copyright.html">License</a> &middot;
+          <a href="https://ctan.org/pkg/beamer">CTAN</a> &middot;
+          <a
+            href="http://mirrors.ctan.org/macros/latex/contrib/beamer/doc/beameruserguide.pdf"
+            >Official PDF version</a
+          >
+          &middot;
+          <a href="https://github.com/SwitWu/beamer-html-manual/issues"
+            >Feedback and issues</a
+          >
+          &middot;
+          <a href="https://github.com/SwitWu/beamer-html-manual">Repository</a>
+        </div>
+        <div class="footer-right">
+          <em>HTML version last updated: 2023-10-10</em>
+        </div>
+      </footer>
+    </div>
 
-
-</div>
-<div class="package">
-
-
-<p>
-<span class="extracttheme">\usepackage{<span class="declare">pdfpages</span>}</span>
-</p>
-<p>
-Commands like <span class="texttt">\includepdf</span> only work <em>outside</em> frames as they produce pages &ldquo;by themselves.&rdquo;
-</p>
-
-
-</div>
-<div class="package">
-
-
-<p>
-<span class="extracttheme">\usepackage{<span class="declare"><span class="meta"><span class="angle">&langle;</span><i>professional font package</i><span class="angle">&rangle;</span></span></span>}</span>
-</p>
-<p>
-If you use a professional font package, <span class="beamer-name"><span class="textsc">beamer</span></span>&rsquo;s internal redefinition of how variables are typeset may interfere with the font package&rsquo;s superior way of typesetting them. In this case, you should use the
-class option <span class="texttt">professionalfonts</span> to suppress any font substitution. See Section&nbsp;<a href="Fonts.html#section-substition">18.2.2</a> for details.
-</p>
-
-
-</div>
-<div class="class">
-
-
-<p>
-<span class="extractclass">\documentclass{<span class="declare">prosper</span>}</span>
-</p>
-<p>
-If you wish to (partly) emulate the <span class="texttt">prosper</span> class using <span class="beamer-name"><span class="textsc">beamer</span></span>, please see Section&nbsp;<a href="How-To-Import-Presentations-Based-on-Other-Packages-Classes.html#section-prosper">24.1</a>.
-</p>
-
-
-</div>
-<div class="package">
-
-
-<p>
-<span class="extracttheme">\usepackage{<span class="declare">pstricks</span>}</span>
-</p>
-<p>
-You should add the option <span class="texttt">xcolor=pst</span> to make <span class="texttt">xcolor</span> aware of the fact that you are using <span class="texttt">pstricks</span>.
-</p>
-
-
-</div>
-<div class="class">
-
-
-<p>
-<span class="extractclass">\documentclass{<span class="declare">seminar</span>}</span>
-</p>
-<p>
-If you wish to emulate the <span class="texttt">seminar</span> class using <span class="beamer-name"><span class="textsc">beamer</span></span>, please see Section&nbsp;<a href="How-To-Import-Presentations-Based-on-Other-Packages-Classes.html#section-seminar">24.2</a>.
-</p>
-
-
-</div>
-<div class="package">
-
-
-<p>
-<span class="extracttheme">\usepackage{<span class="declare">texpower</span>}</span>
-</p>
-<p>
-You cannot use this package with <span class="beamer-name"><span class="textsc">beamer</span></span>. However, you might try to use the package <span class="texttt">beamertexpower</span> instead, see Section&nbsp;<a href="How-To-Import-Presentations-Based-on-Other-Packages-Classes.html#section-texpower">24.4</a>.
-</p>
-
-
-</div>
-<div class="package">
-
-
-<p>
-<span class="extracttheme">\usepackage{<span class="declare">textpos</span>}</span>
-</p>
-<p>
-<span class="beamer-name"><span class="textsc">beamer</span></span> automatically installs a white background behind everything, unless you install a different background template. Because of this, you must use the <span class="texttt">overlay</span>
-option when using <span class="texttt">textpos</span>, so that it will place boxes <em>in front of</em> everything. Alternatively, you can install an empty background template, but this may result in an incorrect display in certain situations with older versions of the
-Acrobat Reader.
-</p>
-
-
-</div>
-<div class="package">
-
-
-<p>
-<span class="extracttheme">\usepackage{<span class="declare">ucs</span>}</span>
-</p>
-<p>
-See <span class="texttt">\usepackage[utf8,utf8x]{inputenc}</span>.
-</p>
-
-
-</div>
-<div class="package">
-
-
-<p>
-<span class="extracttheme">\usepackage{<span class="declare">xcolor</span>}</span>
-</p>
-<p>
-The <span class="texttt">xcolor</span> package is automatically loaded by <span class="texttt">beamer.cls</span>. The same applies as to <span class="texttt">color</span>.
-</p>
-<div class="classoption">
-
-
-<p>
-<span class="classoption-heading">\documentclass[<span class="declare">xcolor=<span class="meta"><span class="angle">&langle;</span><i>list of options</i><span class="angle">&rangle;</span></span></span>]{beamer}</span>
-</p>
-<p>
-Causes the <span class="meta"><span class="angle">&langle;</span><i>list of options</i><span class="angle">&rangle;</span></span> to be passed on to the <span class="texttt">xcolor</span> package.
-</p>
-
-
-</div>
-<p>
-When using <span class="beamer-name"><span class="textsc">beamer</span></span> together with the <span class="texttt">pstricks</span> package, be sure to pass the <span class="texttt">xcolor=pst</span> option to <span class="beamer-name"><span class="textsc">beamer</span></span> (and hence to <span class="texttt">xcolor</span>).
-</p>
-<p>
-The <span class="texttt">color</span> package is not loaded automatically if <span class="texttt">beamerarticle</span> is loaded with the <span class="texttt">noxcolor</span> option.
-</p>
-
-
-</div>
-</p></section>
-</main>
-<footer><div class="footer-left"><a href="Licenses-Copyright.html">License</a> &middot; <a href="https://ctan.org/pkg/beamer">CTAN</a> &middot; <a href="http://mirrors.ctan.org/macros/latex/contrib/beamer/doc/beameruserguide.pdf">Official PDF version</a> &middot; <a href="https://github.com/SwitWu/beamer-html-manual/issues">Feedback and issues</a> &middot; <a href="https://github.com/SwitWu/beamer-html-manual">Repository</a></div><div class="footer-right"><em>HTML version last updated: 2023-10-07</em></div></footer></div>
-
-<script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script><script>
+    <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
+    <script>
       docsearch({
-        apiKey: '196e8c10ec187c9ae525dd5226fb9378',
-        indexName: 'beamer',
-        appId: 'JS6V5VZSDB',
-        container: '#search',
+        apiKey: "09762da49fe4ba391f7a3618c73720d8",
+        indexName: "beamerplusio",
+        appId: "WNNAN5R8GM",
+        container: "#search",
         searchParameters: {
           filters: "tags:beamer",
         },
-    });
-    </script></body>
+      });
+    </script>
+  </body>
 </html>

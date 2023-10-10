@@ -1,421 +1,583 @@
-
-<!DOCTYPE html>
+<!doctype html>
 
 <html lang="en-US">
-<head>
-<meta charset="utf-8">
-<meta content="LaTeX Lwarp package" name="generator">
-<meta content="width=device-width, initial-scale=1.0" name="viewport">
-<title>Tutorial: Euclid&rsquo;s Presentation - Beamer Manual</title>
-<link href="style.css?v=20231007" rel="stylesheet" type="text/css">
-
-<script async id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
-<script async src="lwarp-mathjax-emulation.js"></script><link href="https://cdn.jsdelivr.net/npm/@docsearch/css@3" rel="stylesheet"></head>
-<body>
-<a id="beameruserguide-autopage-41"></a>
-
-<div class="bodyandsidetoc grid-container"><header><div id="hamburger-button">☰</div><strong><a href="home.html">Beamer Manual</a></strong><div id="search"></div></header><div class="sidetoccontainer" id="local-toc-container"><nav class="sidetoc"><div class="sidetoctitle"><p>On this page</p></div><div class="sidetoccontents"><p><a class="tocsubsection" href="#sec-3.1">Problem Statement</a></p><p><a class="tocsubsection" href="#sec-3.2">Solution Template</a></p><p><a class="tocsubsection" href="#sec-3.3">Title Material</a></p><p><a class="tocsubsection" href="#sec-3.4">The Title Page Frame</a></p><p><a class="tocsubsection" href="#sec-3.5">Creating the Presentation PDF File</a></p><p><a class="tocsubsection" href="#sec-3.6">The Table of Contents</a></p><p><a class="tocsubsection" href="#sec-3.7">Sections and Subsections</a></p><p><a class="tocsubsection" href="#sec-3.8">Creating a Simple Frame</a></p><p><a class="tocsubsection" href="#sec-3.9">Creating Simple Overlays</a></p><p><a class="tocsubsection" href="#sec-3.10">Using Overlay Specifications</a></p><p><a class="tocsubsection" href="#sec-3.11">Structuring a Frame</a></p><p><a class="tocsubsection" href="#sec-3.12">Adding References</a></p><p><a class="tocsubsection" href="#sec-3.13">Verbatim Text</a></p><p><a class="tocsubsection" href="#sec-3.14">Changing the Way Things Look I: Theming</a></p><p><a class="tocsubsection" href="#sec-3.15">Changing the Way Things Look II: Colors and Fonts</a></p></div></nav></div>
-<div class="sidetoccontainer" id="chapter-toc-container">
-<nav class="sidetoc">
-<div class="sidetoctitle">
-<p>
-<span class="sidetocthetitle">The <span class="beamer-name"><span class="textsc">beamer</span></span> <i>class</i><br>
-<a href="https://github.com/josephwright/beamer" target="_blank">https://github.com/josephwright/beamer</a><br>
-User Guide for version 3.70.</span>
-</p>
-<p>
-Contents
-</p>
-</div>
-<div class="sidetoccontents">
-
-<p>
-<a class="tocsection" href="Introduction.html">Introduction</a>
-</p>
-<p class="current-part">
-<a class="tocpart" href="Getting-Started.html">Getting Started</a>
-</p>
-<p class="current-part">
-<a class="tocsection" href="Installation.html">Installation</a>
-</p>
-<p class="current current-part">
-<a class="tocsection" href="Tutorial-Euclid-Presentation.html">Tutorial: Euclid&rsquo;s Presentation</a>
-</p>
-<p class="current-part">
-<a class="tocsection" href="Workflow-For-Creating-Beamer-Presentation.html">Workflow For Creating a Beamer Presentation</a>
-</p>
-<p class="current-part">
-<a class="tocsection" href="Guidelines-Creating-Presentations.html">Guidelines for Creating Presentations</a>
-</p>
-<p class="current-part">
-<a class="tocsection" href="Solution-Templates.html">Solution Templates</a>
-</p>
-<p class="current-part">
-<a class="tocsection" href="Licenses-Copyright.html">Licenses and Copyright</a>
-</p>
-<p>
-<a class="tocpart" href="Building-Presentation.html">Building a Presentation</a>
-</p>
-
-
-
-
-
-
-
-<p>
-<a class="tocpart" href="Changing-Way-Things-Look.html">Changing the Way Things Look</a>
-</p>
-
-
-
-
-<p>
-<a class="tocpart" href="Creating-Supporting-Material.html">Creating Supporting Material</a>
-</p>
-
-
-
-
-<p>
-<a class="tocpart" href="Howtos.html">Howtos</a>
-</p>
-
-
-</div>
-</nav>
-</div>
-<main class="bodycontainer">
-<section class="textbody">
-<h2 class="inserted">Getting Started</h2>
-<!--MathJax customizations:-->
-<div class="hidden">
-
-\(\newcommand{\footnotename}{footnote}\)
-
-\(\def \LWRfootnote {1}\)
-
-\(\newcommand {\footnote }[2][\LWRfootnote ]{{}^{\mathrm {#1}}}\)
-
-\(\newcommand {\footnotemark }[1][\LWRfootnote ]{{}^{\mathrm {#1}}}\)
-
-\(\let \LWRorighspace \hspace \)
-
-\(\renewcommand {\hspace }{\ifstar \LWRorighspace \LWRorighspace }\)
-
-\(\newcommand {\mathnormal }[1]{{#1}}\)
-
-\(\newcommand \ensuremath [1]{#1}\)
-
-\(\newcommand {\LWRframebox }[2][]{\fbox {#2}} \newcommand {\framebox }[1][]{\LWRframebox } \)
-
-\(\newcommand {\setlength }[2]{}\)
-
-\(\newcommand {\addtolength }[2]{}\)
-
-\(\newcommand {\setcounter }[2]{}\)
-
-\(\newcommand {\addtocounter }[2]{}\)
-
-\(\newcommand {\arabic }[1]{}\)
-
-\(\newcommand {\number }[1]{}\)
-
-\(\newcommand {\noalign }[1]{\text {#1}\notag \\}\)
-
-\(\newcommand {\cline }[1]{}\)
-
-\(\newcommand {\directlua }[1]{\text {(directlua)}}\)
-
-\(\newcommand {\luatexdirectlua }[1]{\text {(directlua)}}\)
-
-\(\newcommand {\protect }{}\)
-
-\(\def \LWRabsorbnumber #1 {}\)
-
-\(\def \LWRabsorbquotenumber "#1 {}\)
-
-\(\newcommand {\LWRabsorboption }[1][]{}\)
-
-\(\newcommand {\LWRabsorbtwooptions }[1][]{\LWRabsorboption }\)
-
-\(\def \mathchar {\ifnextchar "\LWRabsorbquotenumber \LWRabsorbnumber }\)
-
-\(\def \mathcode #1={\mathchar }\)
-
-\(\let \delcode \mathcode \)
-
-\(\let \delimiter \mathchar \)
-
-\(\def \oe {\unicode {x0153}}\)
-
-\(\def \OE {\unicode {x0152}}\)
-
-\(\def \ae {\unicode {x00E6}}\)
-
-\(\def \AE {\unicode {x00C6}}\)
-
-\(\def \aa {\unicode {x00E5}}\)
-
-\(\def \AA {\unicode {x00C5}}\)
-
-\(\def \o {\unicode {x00F8}}\)
-
-\(\def \O {\unicode {x00D8}}\)
-
-\(\def \l {\unicode {x0142}}\)
-
-\(\def \L {\unicode {x0141}}\)
-
-\(\def \ss {\unicode {x00DF}}\)
-
-\(\def \SS {\unicode {x1E9E}}\)
-
-\(\def \dag {\unicode {x2020}}\)
-
-\(\def \ddag {\unicode {x2021}}\)
-
-\(\def \P {\unicode {x00B6}}\)
-
-\(\def \copyright {\unicode {x00A9}}\)
-
-\(\def \pounds {\unicode {x00A3}}\)
-
-\(\let \LWRref \ref \)
-
-\(\renewcommand {\ref }{\ifstar \LWRref \LWRref }\)
-
-\( \newcommand {\multicolumn }[3]{#3}\)
-
-\(\require {textcomp}\)
-
-\(\newcommand {\intertext }[1]{\text {#1}\notag \\}\)
-
-\(\let \Hat \hat \)
-
-\(\let \Check \check \)
-
-\(\let \Tilde \tilde \)
-
-\(\let \Acute \acute \)
-
-\(\let \Grave \grave \)
-
-\(\let \Dot \dot \)
-
-\(\let \Ddot \ddot \)
-
-\(\let \Breve \breve \)
-
-\(\let \Bar \bar \)
-
-\(\let \Vec \vec \)
-
-</div>
-<p>
-<!--
+  <head>
+    <meta charset="utf-8" />
+    <meta content="LaTeX Lwarp package" name="generator" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Tutorial: Euclid&rsquo;s Presentation - Beamer Manual</title>
+    <link href="style.css?v=20231010" rel="stylesheet" type="text/css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
+      rel="stylesheet"
+    />
+    <script src="beameruserguide.js"></script>
+    <link
+      href="beameruserguide-images/favicon.png"
+      rel="icon"
+      sizes="16x16"
+      type="image/png"
+    />
+  </head>
+  <body>
+    <a id="beameruserguide-autopage-43"></a>
+
+    <div class="bodyandsidetoc grid-container">
+      <header>
+        <div id="hamburger-button">☰</div>
+        <strong><a href="home.html">Beamer Manual</a></strong>
+        <div id="search"></div>
+      </header>
+      <div class="sidetoccontainer" id="local-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle"><p>On this page</p></div>
+          <div class="sidetoccontents">
+            <p>
+              <a class="tocsubsection" href="#sec-3.1">Problem Statement</a>
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-3.2">Solution Template</a>
+            </p>
+            <p><a class="tocsubsection" href="#sec-3.3">Title Material</a></p>
+            <p>
+              <a class="tocsubsection" href="#sec-3.4">The Title Page Frame</a>
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-3.5"
+                >Creating the Presentation PDF File</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-3.6">The Table of Contents</a>
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-3.7"
+                >Sections and Subsections</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-3.8"
+                >Creating a Simple Frame</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-3.9"
+                >Creating Simple Overlays</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-3.10"
+                >Using Overlay Specifications</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-3.11">Structuring a Frame</a>
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-3.12">Adding References</a>
+            </p>
+            <p><a class="tocsubsection" href="#sec-3.13">Verbatim Text</a></p>
+            <p>
+              <a class="tocsubsection" href="#sec-3.14"
+                >Changing the Way Things Look I: Theming</a
+              >
+            </p>
+            <p>
+              <a class="tocsubsection" href="#sec-3.15"
+                >Changing the Way Things Look II: Colors and Fonts</a
+              >
+            </p>
+          </div>
+        </nav>
+      </div>
+      <div class="sidetoccontainer" id="chapter-toc-container">
+        <nav class="sidetoc">
+          <div class="sidetoctitle">
+            <p>
+              <span class="sidetocthetitle"
+                >The
+                <span class="beamer-name"
+                  ><span class="textsc">beamer</span></span
+                >
+                <i>class</i><br />
+                <a href="https://github.com/josephwright/beamer" target="_blank"
+                  >https://github.com/josephwright/beamer</a
+                ><br />
+                User Guide for version 3.70.</span
+              >
+            </p>
+            <p>Contents</p>
+          </div>
+          <div class="sidetoccontents">
+            <p>
+              <a class="tocsection" href="Introduction.html">Introduction</a>
+            </p>
+            <p class="current-part">
+              <a class="tocpart" href="Getting-Started.html">Getting Started</a>
+            </p>
+            <p class="current-part">
+              <a class="tocsection" href="Installation.html">Installation</a>
+            </p>
+            <p class="current current-part">
+              <a class="tocsection" href="Tutorial-Euclid-Presentation.html"
+                >Tutorial: Euclid&rsquo;s Presentation</a
+              >
+            </p>
+            <p class="current-part">
+              <a
+                class="tocsection"
+                href="Workflow-For-Creating-Beamer-Presentation.html"
+                >Workflow For Creating a Beamer Presentation</a
+              >
+            </p>
+            <p class="current-part">
+              <a
+                class="tocsection"
+                href="Guidelines-Creating-Presentations.html"
+                >Guidelines for Creating Presentations</a
+              >
+            </p>
+            <p class="current-part">
+              <a class="tocsection" href="Solution-Templates.html"
+                >Solution Templates</a
+              >
+            </p>
+            <p class="current-part">
+              <a class="tocsection" href="Licenses-Copyright.html"
+                >Licenses and Copyright</a
+              >
+            </p>
+            <p>
+              <a class="tocpart" href="Building-Presentation.html"
+                >Building a Presentation</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="Changing-Way-Things-Look.html"
+                >Changing the Way Things Look</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="Creating-Supporting-Material.html"
+                >Creating Supporting Material</a
+              >
+            </p>
+
+            <p>
+              <a class="tocpart" href="Howtos.html">Howtos</a>
+            </p>
+          </div>
+        </nav>
+      </div>
+      <main class="bodycontainer">
+        <section class="textbody">
+          <h2 class="inserted">Getting Started</h2>
+          <!--
 ...... section Tutorial: Euclid’s Presentation ......
 -->
-<h4 id="autosec-42"><a id="section-tutorial"></a><span class="sectionnumber" id="sec-3">3</span> Tutorial: Euclid&rsquo;s Presentation</h4>
-<a id="beameruserguide-autopage-42"></a>
-<a id="beameruserguide-autofile-4"></a>
-<p>
-This section presents a short tutorial that focuses on those features of <span class="beamer-name"><span class="textsc">beamer</span></span> that you are likely to use when you start using <span class="beamer-name"><span class="textsc">beamer</span></span>. It leaves out all the glorious details that are explained in great detail later on.
-</p>
-<!--
+          <h4 id="autosec-44">
+            <a id="section-tutorial"></a
+            ><span class="sectionnumber" id="sec-3">3</span> Tutorial:
+            Euclid&rsquo;s Presentation
+          </h4>
+          <a id="beameruserguide-autopage-44"></a>
+          <a id="beameruserguide-autofile-4"></a>
+
+          <p>
+            This section presents a short tutorial that focuses on those
+            features of
+            <span class="beamer-name"><span class="textsc">beamer</span></span>
+            that you are likely to use when you start using
+            <span class="beamer-name"><span class="textsc">beamer</span></span
+            >. It leaves out all the glorious details that are explained in
+            great detail later on.
+          </p>
+          <!--
 ...... subsection Problem Statement ......
 -->
-<h5 id="autosec-43"><span><span class="sectionnumber" id="sec-3.1">3.1</span> Problem Statement</span><a class="anchor-link" href="#sec-3.1">&para;</a></h5>
-<a id="beameruserguide-autopage-43"></a>
-<p>
-We wish to help Prof. Euclid of the University of Alexandria to create a presentation on his latest discovery: There are infinitely many prime numbers! Euclid wrote a paper on this and it got accepted at the 27th International Symposium on Prime Numbers \(-280\)
-(ISPN&nbsp;&rsquo;80). Euclid wishes to use the <span class="beamer-name"><span class="textsc">beamer</span></span> class to create a presentation for the conference. On the conference webpage he found out that he will have twenty minutes for his talk, including
-questions.
-</p>
-<!--
+          <h5 id="autosec-45">
+            <span
+              ><span class="sectionnumber" id="sec-3.1">3.1</span> Problem
+              Statement</span
+            ><a class="anchor-link" href="#sec-3.1">&para;</a>
+          </h5>
+          <a id="beameruserguide-autopage-45"></a>
+          <p>
+            We wish to help Prof. Euclid of the University of Alexandria to
+            create a presentation on his latest discovery: There are infinitely
+            many prime numbers! Euclid wrote a paper on this and it got accepted
+            at the 27th International Symposium on Prime Numbers
+            <span class="lateximagesource" id="lateximage-beameruserguide-2"
+              ><!--
+−280
+--><img
+                alt="\( -280 \)"
+                class="lateximage"
+                role="math"
+                src="beameruserguide-images/B70B20399AF105F914327FC742931470.svg"
+                style="width: 2.70808em; vertical-align: -0.09804em"
+            /></span>
+            (ISPN&nbsp;&rsquo;80). Euclid wishes to use the
+            <span class="beamer-name"><span class="textsc">beamer</span></span>
+            class to create a presentation for the conference. On the conference
+            webpage he found out that he will have twenty minutes for his talk,
+            including questions.
+          </p>
+          <!--
 ...... subsection Solution Template ......
 -->
-<h5 id="autosec-44"><span><span class="sectionnumber" id="sec-3.2">3.2</span> Solution Template</span><a class="anchor-link" href="#sec-3.2">&para;</a></h5>
-<a id="beameruserguide-autopage-44"></a>
-<p>
-The first thing Euclid should do is to look for a solution template for his presentation. Having a look at Section&nbsp;<a href="Solution-Templates.html#section-solutions">6</a>, he finds that the file
-</p>
-<pre class="verbatim">
+          <h5 id="autosec-48">
+            <span
+              ><span class="sectionnumber" id="sec-3.2">3.2</span> Solution
+              Template</span
+            ><a class="anchor-link" href="#sec-3.2">&para;</a>
+          </h5>
+          <a id="beameruserguide-autopage-48"></a>
+          <p>
+            The first thing Euclid should do is to look for a solution template
+            for his presentation. Having a look at Section&nbsp;<a
+              href="Solution-Templates.html#section-solutions"
+              >6</a
+            >, he finds that the file
+          </p>
+          <pre class="verbatim">
 beamer/doc/solutions/conference-talks/conference-ornate-20min.en.tex
-</pre>
-<p>
-might be appropriate. He creates a subdirectory <span class="texttt">presentation</span> in the directory that contains the actual paper and copies the solution template to this subdirectory, renaming to <span class="texttt">main.tex</span>.
-</p>
-<p>
-He opens the file in his favorite editor. It starts
-</p>
-<pre class="verbatim">
+</pre
+          >
+          <p>
+            might be appropriate. He creates a subdirectory
+            <span class="texttt">presentation</span> in the directory that
+            contains the actual paper and copies the solution template to this
+            subdirectory, renaming to <span class="texttt">main.tex</span>.
+          </p>
+          <p>He opens the file in his favorite editor. It starts</p>
+          <pre class="verbatim">
 \documentclass{beamer}
-</pre>
-<p>
-which Euclid finds hardly surprising. Next comes a line reading
-</p>
-<div class="fancyvrb" style>
-<pre class="verbatim">
+</pre
+          >
+          <p>which Euclid finds hardly surprising. Next comes a line reading</p>
+          <div class="fancyvrb" style>
+            <pre class="verbatim">
 \mode&lt;presentation&gt;
-</pre>
-</div>
-<p>
-which Euclid does not understand. Since he finds more stuff in the file that he does not understand, he decides to ignore all of that for time being, hoping that it all serves some good purpose.
-</p>
-<!--
+</pre
+            >
+          </div>
+          <p>
+            which Euclid does not understand. Since he finds more stuff in the
+            file that he does not understand, he decides to ignore all of that
+            for time being, hoping that it all serves some good purpose.
+          </p>
+          <!--
 ...... subsection Title Material ......
 -->
-<h5 id="autosec-48"><span><span class="sectionnumber" id="sec-3.3">3.3</span> Title Material</span><a class="anchor-link" href="#sec-3.3">&para;</a></h5>
-<a id="beameruserguide-autopage-48"></a>
-<p>
-The next thing that seems logical is the place where the <span class="texttt">\title</span> command is used. Naturally, he replaces it with
-</p>
-<pre class="verbatim">
+          <h5 id="autosec-52">
+            <span
+              ><span class="sectionnumber" id="sec-3.3">3.3</span> Title
+              Material</span
+            ><a class="anchor-link" href="#sec-3.3">&para;</a>
+          </h5>
+          <a id="beameruserguide-autopage-52"></a>
+          <p>
+            The next thing that seems logical is the place where the
+            <span class="texttt">\title</span> command is used. Naturally, he
+            replaces it with
+          </p>
+          <pre class="verbatim">
 \title{There Is No Largest Prime Number}
-</pre>
-<p>
-since this was the title of the paper. He sees that the command <span class="texttt">\title</span> also takes an optional &ldquo;short&rdquo; argument in square brackets, which is shown in places where there is little space, but he decides that the title is short enough by itself.
-</p>
-<p>
-Euclid next adjusts the <span class="texttt">\author</span> and <span class="texttt">\date</span> fields as follows:
-</p>
-<pre class="verbatim">
+</pre
+          >
+          <p>
+            since this was the title of the paper. He sees that the command
+            <span class="texttt">\title</span> also takes an optional
+            &ldquo;short&rdquo; argument in square brackets, which is shown in
+            places where there is little space, but he decides that the title is
+            short enough by itself.
+          </p>
+          <p>
+            Euclid next adjusts the <span class="texttt">\author</span> and
+            <span class="texttt">\date</span> fields as follows:
+          </p>
+          <pre class="verbatim">
 %\author{Euclid of Alexandria}
 %\date[ISPN '80]{27th International Symposium of Prime Numbers}
-</pre>
-<p>
-For the date, he felt that the name was a little long, so a short version is given (<span class="texttt">ISPN &rsquo;80</span>). On second thought, Euclid decides to add his email address and replaces the <span class="texttt">\author</span> field as follows:
-</p>
-<pre class="verbatim">
+</pre
+          >
+          <p>
+            For the date, he felt that the name was a little long, so a short
+            version is given (<span class="texttt">ISPN &rsquo;80</span>). On
+            second thought, Euclid decides to add his email address and replaces
+            the <span class="texttt">\author</span> field as follows:
+          </p>
+          <pre class="verbatim">
 %\author[Euclid]{Euclid of Alexandria \\ \texttt{euclid@alexandria.edu}}
-</pre>
-<p>
-Somehow Euclid does not like the fact that there is no &ldquo;<span class="texttt">\email</span>&rdquo; command in <span class="beamer-name"><span class="textsc">beamer</span></span>. He decides to write an email to <span class="beamer-name"><span class="textsc">beamer</span></span>&rsquo;s author, asking him to fix this, but postpones this for later when the presentation is finished.
-</p>
-<p>
-There are two fields that Euclid does not know, but whose meaning he can guess: <span class="texttt">\subtitle</span> and <span class="texttt">\institute</span>. He adjusts them. (Euclid does not need to use the <span class="texttt">\and</span>
-command, which is used to separate several authors, nor the <span class="texttt">\inst</span> command, which just makes its argument a superscript).
-</p>
-<!--
+</pre
+          >
+          <p>
+            Somehow Euclid does not like the fact that there is no &ldquo;<span
+              class="texttt"
+              >\email</span
+            >&rdquo; command in
+            <span class="beamer-name"><span class="textsc">beamer</span></span
+            >. He decides to write an email to
+            <span class="beamer-name"><span class="textsc">beamer</span></span
+            >&rsquo;s author, asking him to fix this, but postpones this for
+            later when the presentation is finished.
+          </p>
+          <p>
+            There are two fields that Euclid does not know, but whose meaning he
+            can guess: <span class="texttt">\subtitle</span> and
+            <span class="texttt">\institute</span>. He adjusts them. (Euclid
+            does not need to use the <span class="texttt">\and</span> command,
+            which is used to separate several authors, nor the
+            <span class="texttt">\inst</span> command, which just makes its
+            argument a superscript).
+          </p>
+          <!--
 ...... subsection The Title Page Frame ......
 -->
-<h5 id="autosec-52"><span><span class="sectionnumber" id="sec-3.4">3.4</span> The Title Page Frame</span><a class="anchor-link" href="#sec-3.4">&para;</a></h5>
-<a id="beameruserguide-autopage-52"></a>
-<p>
-The next thing in the file that seems interesting is where the first &ldquo;frame&rdquo; is created, right after the <span class="texttt">\</span><span class="texttt">begin{document}</span>:
-</p>
-<pre class="verbatim">
+          <h5 id="autosec-56">
+            <span
+              ><span class="sectionnumber" id="sec-3.4">3.4</span> The Title
+              Page Frame</span
+            ><a class="anchor-link" href="#sec-3.4">&para;</a>
+          </h5>
+          <a id="beameruserguide-autopage-56"></a>
+          <p>
+            The next thing in the file that seems interesting is where the first
+            &ldquo;frame&rdquo; is created, right after the
+            <span class="texttt">\</span
+            ><span class="texttt">begin{document}</span>:
+          </p>
+          <pre class="verbatim">
 \begin{frame}
   \titlepage
 \end{frame}
-</pre>
-<p>
-In <span class="beamer-name"><span class="textsc">beamer</span></span>, a presentation consists of a series of frames. Each frame in turn may consist of several slides (if there is more than one, they are called overlays). Normally, everything between <span class="texttt">\begin{frame}</span> and <span class="texttt">\end{frame}</span> is put on a single slide. No page breaking is performed. So Euclid infers that the first frame is &ldquo;filled&rdquo; by the title page, which seems quite logical.
-</p>
-<!--
+</pre
+          >
+          <p>
+            In
+            <span class="beamer-name"><span class="textsc">beamer</span></span
+            >, a presentation consists of a series of frames. Each frame in turn
+            may consist of several slides (if there is more than one, they are
+            called overlays). Normally, everything between
+            <span class="texttt">\begin{frame}</span> and
+            <span class="texttt">\end{frame}</span> is put on a single slide. No
+            page breaking is performed. So Euclid infers that the first frame is
+            &ldquo;filled&rdquo; by the title page, which seems quite logical.
+          </p>
+          <!--
 ...... subsection Creating the Presentation PDF File ......
 -->
-<h5 id="autosec-54"><span><span class="sectionnumber" id="sec-3.5">3.5</span> Creating the Presentation PDF File</span><a class="anchor-link" href="#sec-3.5">&para;</a></h5>
-<a id="beameruserguide-autopage-54"></a>
-<p>
-Eager to find out how the first page will look, he invokes <span class="texttt">pdflatex</span> on his file <span class="texttt">main.tex</span> (twice). He could also use <span class="texttt">latex</span> (twice), followed by <span class="texttt">dvips</span>, and then possibly <span class="texttt">ps2pdf</span>, or <span class="texttt">lualatex</span> (twice), or <span class="texttt">xelatex</span> (twice). Then he uses the Acrobat Reader, <span class="texttt">xpdf</span>,
-<span class="texttt">evince</span> or <span class="texttt">okular</span> to view the resulting <span class="texttt">main.pdf</span>. Indeed, the first page contains all the information Euclid has provided until now. It even looks quite impressive with the
-colorful title and the rounded corners and the shadows, but he is doubtful whether he should leave it like that. He decides to address this problem later.
-</p>
-<p>
-Euclid is delighted to find out that clicking on a section or subsection in the navigation bar at the top hyperjumps there. Also, the small symbols at the bottom seem to be clickable. Toying around with them for a while, he finds that clicking on the arrows left or right of a
-symbol hyperjumps him backward or forward one slide&nbsp;/ frame&nbsp;/ subsection&nbsp;/ section. He finds the symbols quite small, but decides not to write an email to <span class="beamer-name"><span class="textsc">beamer</span></span>&rsquo;s authors since he
-also thinks that bigger symbols would be distracting.
-</p>
-<!--
+          <h5 id="autosec-58">
+            <span
+              ><span class="sectionnumber" id="sec-3.5">3.5</span> Creating the
+              Presentation PDF File</span
+            ><a class="anchor-link" href="#sec-3.5">&para;</a>
+          </h5>
+          <a id="beameruserguide-autopage-58"></a>
+          <p>
+            Eager to find out how the first page will look, he invokes
+            <span class="texttt">pdflatex</span> on his file
+            <span class="texttt">main.tex</span> (twice). He could also use
+            <span class="texttt">latex</span> (twice), followed by
+            <span class="texttt">dvips</span>, and then possibly
+            <span class="texttt">ps2pdf</span>, or
+            <span class="texttt">lualatex</span> (twice), or
+            <span class="texttt">xelatex</span> (twice). Then he uses the
+            Acrobat Reader, <span class="texttt">xpdf</span>,
+            <span class="texttt">evince</span> or
+            <span class="texttt">okular</span> to view the resulting
+            <span class="texttt">main.pdf</span>. Indeed, the first page
+            contains all the information Euclid has provided until now. It even
+            looks quite impressive with the colorful title and the rounded
+            corners and the shadows, but he is doubtful whether he should leave
+            it like that. He decides to address this problem later.
+          </p>
+          <p>
+            Euclid is delighted to find out that clicking on a section or
+            subsection in the navigation bar at the top hyperjumps there. Also,
+            the small symbols at the bottom seem to be clickable. Toying around
+            with them for a while, he finds that clicking on the arrows left or
+            right of a symbol hyperjumps him backward or forward one
+            slide&nbsp;/ frame&nbsp;/ subsection&nbsp;/ section. He finds the
+            symbols quite small, but decides not to write an email to
+            <span class="beamer-name"><span class="textsc">beamer</span></span
+            >&rsquo;s authors since he also thinks that bigger symbols would be
+            distracting.
+          </p>
+          <!--
 ...... subsection The Table of Contents ......
 -->
-<h5 id="autosec-55"><span><span class="sectionnumber" id="sec-3.6">3.6</span> The Table of Contents</span><a class="anchor-link" href="#sec-3.6">&para;</a></h5>
-<a id="beameruserguide-autopage-55"></a>
-<p>
-The next frame contains a table of contents:
-</p>
-<pre class="verbatim">
+          <h5 id="autosec-59">
+            <span
+              ><span class="sectionnumber" id="sec-3.6">3.6</span> The Table of
+              Contents</span
+            ><a class="anchor-link" href="#sec-3.6">&para;</a>
+          </h5>
+          <a id="beameruserguide-autopage-59"></a>
+          <p>The next frame contains a table of contents:</p>
+          <pre class="verbatim">
 \begin{frame}
   \frametitle{Outline}
   \tableofcontents
 \end{frame}
-</pre>
-<p>
-Furthermore, this frame has an individual title (Outline). A comment in the frame says that Euclid might wish to try to add the <span class="texttt">[pausesections]</span> option. He tries this, changing the frame to:
-</p>
-<pre class="verbatim">
+</pre
+          >
+          <p>
+            Furthermore, this frame has an individual title (Outline). A comment
+            in the frame says that Euclid might wish to try to add the
+            <span class="texttt">[pausesections]</span> option. He tries this,
+            changing the frame to:
+          </p>
+          <pre class="verbatim">
 \begin{frame}
   \frametitle{Outline}
   \tableofcontents[pausesections]
 \end{frame}
-</pre>
-<p>
-After re-pdf<span class="latexlogofont"><span class="latexlogo">L<span class="latexlogosup">a</span>T<span class="latexlogosub">e</span>X</span></span>ing the presentation, he finds that instead of a single slide, there are now two &ldquo;table of contents&rdquo;
-slides in the presentation. On the first of these, only the first section is shown, on the second both sections are shown (scanning down in the file, Euclid finds that, indeed, there are <span class="texttt">\section</span> commands introducing these sections). The effect
-of the <span class="texttt">pausesections</span> seems to be that one can talk about the first section before the second one is shown. Then, Euclid can press the down- or right-key, to show the complete table of contents and can talk about the second section.
-</p>
-<!--
+</pre
+          >
+          <p>
+            After re-pdf<span class="latexlogofont"
+              ><span class="latexlogo"
+                >L<span class="latexlogosup">a</span>T<span class="latexlogosub"
+                  >e</span
+                >X</span
+              ></span
+            >ing the presentation, he finds that instead of a single slide,
+            there are now two &ldquo;table of contents&rdquo; slides in the
+            presentation. On the first of these, only the first section is
+            shown, on the second both sections are shown (scanning down in the
+            file, Euclid finds that, indeed, there are
+            <span class="texttt">\section</span> commands introducing these
+            sections). The effect of the
+            <span class="texttt">pausesections</span> seems to be that one can
+            talk about the first section before the second one is shown. Then,
+            Euclid can press the down- or right-key, to show the complete table
+            of contents and can talk about the second section.
+          </p>
+          <!--
 ...... subsection Sections and Subsections ......
 -->
-<h5 id="autosec-58"><span><span class="sectionnumber" id="sec-3.7">3.7</span> Sections and Subsections</span><a class="anchor-link" href="#sec-3.7">&para;</a></h5>
-<a id="beameruserguide-autopage-58"></a>
-<p>
-The next commands Euclid finds are
-</p>
-<pre class="verbatim">
+          <h5 id="autosec-62">
+            <span
+              ><span class="sectionnumber" id="sec-3.7">3.7</span> Sections and
+              Subsections</span
+            ><a class="anchor-link" href="#sec-3.7">&para;</a>
+          </h5>
+          <a id="beameruserguide-autopage-62"></a>
+          <p>The next commands Euclid finds are</p>
+          <pre class="verbatim">
 \section{Motivation}
 \subsection{The Basic Problem That We Studied}
-</pre>
-<p>
-These commands are given <em>outside</em> of frames. So Euclid assumes that at the point of invocation they have no direct effect, they only create entries in the table of contents. Having a &ldquo;Motivation&rdquo; section seems reasonable to Euclid, but he changes the <span class="texttt">\subsection</span> title.
-</p>
-<p>
-As he looks at the presentation, he notices that his assumption was not quite true: each <span class="texttt">\subsection</span> command seems to insert a frame containing a table of contents into the presentation. Doubling back he finds the command that causes
-this: The <span class="texttt">\AtBeginSubsection</span> inserts a frame with only the current subsection highlighted at the beginning of each section. If Euclid does not like this, he can just delete the whole <span class="texttt">\AtBeginSubsection</span> stuff
-and the table of contents at the beginning of each subsection disappears.
-</p>
-<p>
-The <span class="texttt">\section</span> and <span class="texttt">\subsection</span> commands take optional short arguments. These short arguments are used whenever a short form of the section of subsection name is needed. While this is in keeping with the
-way <span class="beamer-name"><span class="textsc">beamer</span></span> treats the optional arguments of things like <span class="texttt">\title</span>, it is <em>different</em> from the usual way <span class="latexlogofont"><span class="latexlogo">L<span class="latexlogosup">a</span>T<span class="latexlogosub">e</span>X</span></span> treats an optional argument for sections (where the optional argument dictates what is shown in the table of contents and the main argument dictates
-what is shown everywhere else; in <span class="beamer-name"><span class="textsc">beamer</span></span> things are exactly the other way round).
-</p>
-<!--
+</pre
+          >
+          <p>
+            These commands are given <em>outside</em> of frames. So Euclid
+            assumes that at the point of invocation they have no direct effect,
+            they only create entries in the table of contents. Having a
+            &ldquo;Motivation&rdquo; section seems reasonable to Euclid, but he
+            changes the <span class="texttt">\subsection</span> title.
+          </p>
+          <p>
+            As he looks at the presentation, he notices that his assumption was
+            not quite true: each <span class="texttt">\subsection</span> command
+            seems to insert a frame containing a table of contents into the
+            presentation. Doubling back he finds the command that causes this:
+            The <span class="texttt">\AtBeginSubsection</span> inserts a frame
+            with only the current subsection highlighted at the beginning of
+            each section. If Euclid does not like this, he can just delete the
+            whole <span class="texttt">\AtBeginSubsection</span> stuff and the
+            table of contents at the beginning of each subsection disappears.
+          </p>
+          <p>
+            The <span class="texttt">\section</span> and
+            <span class="texttt">\subsection</span> commands take optional short
+            arguments. These short arguments are used whenever a short form of
+            the section of subsection name is needed. While this is in keeping
+            with the way
+            <span class="beamer-name"><span class="textsc">beamer</span></span>
+            treats the optional arguments of things like
+            <span class="texttt">\title</span>, it is <em>different</em> from
+            the usual way
+            <span class="latexlogofont"
+              ><span class="latexlogo"
+                >L<span class="latexlogosup">a</span>T<span class="latexlogosub"
+                  >e</span
+                >X</span
+              ></span
+            >
+            treats an optional argument for sections (where the optional
+            argument dictates what is shown in the table of contents and the
+            main argument dictates what is shown everywhere else; in
+            <span class="beamer-name"><span class="textsc">beamer</span></span>
+            things are exactly the other way round).
+          </p>
+          <!--
 ...... subsection Creating a Simple Frame ......
 -->
-<h5 id="autosec-60"><span><span class="sectionnumber" id="sec-3.8">3.8</span> Creating a Simple Frame</span><a class="anchor-link" href="#sec-3.8">&para;</a></h5>
-<a id="beameruserguide-autopage-60"></a>
-<p>
-Euclid then modifies the next frame, which is the first &ldquo;real&rdquo; frame of the presentation, as follows:
-</p>
-<pre class="verbatim">
+          <h5 id="autosec-64">
+            <span
+              ><span class="sectionnumber" id="sec-3.8">3.8</span> Creating a
+              Simple Frame</span
+            ><a class="anchor-link" href="#sec-3.8">&para;</a>
+          </h5>
+          <a id="beameruserguide-autopage-64"></a>
+          <p>
+            Euclid then modifies the next frame, which is the first
+            &ldquo;real&rdquo; frame of the presentation, as follows:
+          </p>
+          <pre class="verbatim">
 \begin{frame}
   \frametitle{What Are Prime Numbers?}
   A prime number is a number that has exactly two divisors.
 \end{frame}
-</pre>
-<p>
-This yields the desired result. It might be a good idea to put some emphasis on the object being defined (prime numbers). Euclid tries <span class="texttt">\emph</span> but finds that too mild an emphasis. <span class="beamer-name"><span class="textsc">beamer</span></span> offers the command <span class="texttt">\alert</span>, which is used like <span class="texttt">\emph</span> and, by default, typesets its argument in bright red.
-</p>
-<p>
-Next, Euclid decides to make it even clearer that he is giving a definition by putting a <span class="texttt">definition</span> environment around the definition.
-</p>
-<pre class="verbatim">
+</pre
+          >
+          <p>
+            This yields the desired result. It might be a good idea to put some
+            emphasis on the object being defined (prime numbers). Euclid tries
+            <span class="texttt">\emph</span> but finds that too mild an
+            emphasis.
+            <span class="beamer-name"><span class="textsc">beamer</span></span>
+            offers the command <span class="texttt">\alert</span>, which is used
+            like <span class="texttt">\emph</span> and, by default, typesets its
+            argument in bright red.
+          </p>
+          <p>
+            Next, Euclid decides to make it even clearer that he is giving a
+            definition by putting a
+            <span class="texttt">definition</span> environment around the
+            definition.
+          </p>
+          <pre class="verbatim">
 \begin{frame}
   \frametitle{What Are Prime Numbers?}
   \begin{definition}
     A \alert{prime number} is a number that has exactly two divisors.
   \end{definition}
 \end{frame}
-</pre>
-<p>
-Other useful environments like <span class="texttt">theorem</span>, <span class="texttt">lemma</span>, <span class="texttt">proof</span>, <span class="texttt">corollary</span>, or <span class="texttt">example</span> are also predefined by <span class="beamer-name"><span class="textsc">beamer</span></span>. As in <span class="texttt">amsmath</span>, they take optional arguments that they show in brackets. Indeed, <span class="texttt">amsmath</span> is automatically loaded by <span class="beamer-name"><span class="textsc">beamer</span></span>.
-</p>
-<p>
-Since it is always a good idea to add examples, Euclid decides to add one:
-</p>
-<pre class="verbatim">
+</pre
+          >
+          <p>
+            Other useful environments like <span class="texttt">theorem</span>,
+            <span class="texttt">lemma</span>,
+            <span class="texttt">proof</span>,
+            <span class="texttt">corollary</span>, or
+            <span class="texttt">example</span> are also predefined by
+            <span class="beamer-name"><span class="textsc">beamer</span></span
+            >. As in <span class="texttt">amsmath</span>, they take optional
+            arguments that they show in brackets. Indeed,
+            <span class="texttt">amsmath</span> is automatically loaded by
+            <span class="beamer-name"><span class="textsc">beamer</span></span
+            >.
+          </p>
+          <p>
+            Since it is always a good idea to add examples, Euclid decides to
+            add one:
+          </p>
+          <pre class="verbatim">
 \begin{frame}
   \frametitle{What Are Prime Numbers?}
   \begin{definition}
@@ -429,17 +591,26 @@ Since it is always a good idea to add examples, Euclid decides to add one:
     \end{itemize}
   \end{example}
 \end{frame}
-</pre>
-<!--
+</pre
+          >
+          <!--
 ...... subsection Creating Simple Overlays ......
 -->
-<h5 id="autosec-64"><span><span class="sectionnumber" id="sec-3.9">3.9</span> Creating Simple Overlays</span><a class="anchor-link" href="#sec-3.9">&para;</a></h5>
-<a id="beameruserguide-autopage-64"></a>
-<p>
-The frame already looks quite nice, though, perhaps a bit colorful. However, Euclid would now like to show the three items one after another, not all three right away. To achieve this, he adds <span class="texttt">\pause</span> commands after the first and second
-items:
-</p>
-<pre class="verbatim">
+          <h5 id="autosec-68">
+            <span
+              ><span class="sectionnumber" id="sec-3.9">3.9</span> Creating
+              Simple Overlays</span
+            ><a class="anchor-link" href="#sec-3.9">&para;</a>
+          </h5>
+          <a id="beameruserguide-autopage-68"></a>
+          <p>
+            The frame already looks quite nice, though, perhaps a bit colorful.
+            However, Euclid would now like to show the three items one after
+            another, not all three right away. To achieve this, he adds
+            <span class="texttt">\pause</span> commands after the first and
+            second items:
+          </p>
+          <pre class="verbatim">
  \begin{itemize}
  \item 2 is prime (two divisors: 1 and 2).
    \pause
@@ -447,27 +618,56 @@ items:
    \pause
  \item 4 is not prime (\alert{three} divisors: 1, 2, and 4).
  \end{itemize}
-</pre>
-<p>
-By showing them incrementally, he hopes to focus the audience&rsquo;s attention on the item he is currently talking about. On second thought, he deletes the <span class="texttt">\pause</span> stuff once more since in simple cases like the above the pausing is rather silly.
-Indeed, Euclid has noticed that good presentations make use of this uncovering mechanism only in special circumstances.
-</p>
-<p>
-Euclid finds that he can also add a <span class="texttt">\pause</span> between the definition and the example. So, <span class="texttt">\pause</span>s seem to transcend environments, which Euclid finds quite useful. After some experimentation he finds that
-<span class="texttt">\pause</span> only does not work in <span class="texttt">align</span> environments. He immediately writes an email about this to <span class="beamer-name"><span class="textsc">beamer</span></span>&rsquo;s author, but receives a polite
-answer stating that the implementation of <span class="texttt">align</span> does wicked things and there is no fix for this. Also, Euclid is pointed to the last part of the user&rsquo;s guide, where a workaround is described.
-</p>
-<!--
+</pre
+          >
+          <p>
+            By showing them incrementally, he hopes to focus the
+            audience&rsquo;s attention on the item he is currently talking
+            about. On second thought, he deletes the
+            <span class="texttt">\pause</span> stuff once more since in simple
+            cases like the above the pausing is rather silly. Indeed, Euclid has
+            noticed that good presentations make use of this uncovering
+            mechanism only in special circumstances.
+          </p>
+          <p>
+            Euclid finds that he can also add a
+            <span class="texttt">\pause</span> between the definition and the
+            example. So, <span class="texttt">\pause</span>s seem to transcend
+            environments, which Euclid finds quite useful. After some
+            experimentation he finds that
+            <span class="texttt">\pause</span> only does not work in
+            <span class="texttt">align</span> environments. He immediately
+            writes an email about this to
+            <span class="beamer-name"><span class="textsc">beamer</span></span
+            >&rsquo;s author, but receives a polite answer stating that the
+            implementation of <span class="texttt">align</span> does wicked
+            things and there is no fix for this. Also, Euclid is pointed to the
+            last part of the user&rsquo;s guide, where a workaround is
+            described.
+          </p>
+          <!--
 ...... subsection Using Overlay Specifications ......
 -->
-<h5 id="autosec-66"><span><span class="sectionnumber" id="sec-3.10">3.10</span> Using Overlay Specifications</span><a class="anchor-link" href="#sec-3.10">&para;</a></h5>
-<a id="beameruserguide-autopage-66"></a>
-<p>
-The next frame is to show his main argument and is put in a &ldquo;Results&rdquo; section. Euclid desires a more complicated overlay behavior for this frame: In an enumeration of four points he wishes to uncover the points one-by-one, but he wishes the fourth point to be shown at
-the same time as the first. The idea is to illustrate his new proof method, namely proof by contradiction, where a wrong assumption is brought to a contradiction at the end after a number of intermediate steps that are not important at the beginning. For this, Euclid uses
-<em>overlay specifications</em>:
-</p>
-<pre class="verbatim">
+          <h5 id="autosec-70">
+            <span
+              ><span class="sectionnumber" id="sec-3.10">3.10</span> Using
+              Overlay Specifications</span
+            ><a class="anchor-link" href="#sec-3.10">&para;</a>
+          </h5>
+          <a id="beameruserguide-autopage-70"></a>
+          <p>
+            The next frame is to show his main argument and is put in a
+            &ldquo;Results&rdquo; section. Euclid desires a more complicated
+            overlay behavior for this frame: In an enumeration of four points he
+            wishes to uncover the points one-by-one, but he wishes the fourth
+            point to be shown at the same time as the first. The idea is to
+            illustrate his new proof method, namely proof by contradiction,
+            where a wrong assumption is brought to a contradiction at the end
+            after a number of intermediate steps that are not important at the
+            beginning. For this, Euclid uses
+            <em>overlay specifications</em>:
+          </p>
+          <pre class="verbatim">
 \begin{frame}
   \frametitle{There Is No Largest Prime Number}
   \framesubtitle{The proof uses \textit{reductio ad absurdum}.}
@@ -486,52 +686,99 @@ the same time as the first. The idea is to illustrate his new proof method, name
   \end{proof}
   \uncover&lt;4-&gt;{The proof used \textit{reductio ad absurdum}.}
 \end{frame}
-</pre>
-<p>
-The overlay specifications are given in pointed brackets. The specification <span class="texttt">&lt;1-&gt;</span> means &ldquo;from slide 1 on.&rdquo; Thus, the first and fourth item are shown on the first slide of the frame, but the other two items are not shown. Rather, the second
-point is shown only from the second slide onward. <span class="beamer-name"><span class="textsc">beamer</span></span> automatically computes the number of slides needed for each frame. More generally, overlay specification are lists of numbers or number ranges
-where the start or ending of a range can be left open. For example <span class="texttt">-3,5-6,8-</span> means &ldquo;on all slides, except for slides 4 and&nbsp;7.&rdquo;
-</p>
-<p>
-The <span class="texttt">\qedhere</span> is used to put the <span class="textsc">qed</span> symbol at the end of the line <em>inside</em> the enumeration. Normally, the <span class="textsc">qed</span> symbol is automatically inserted at the end of a proof
-environment, but that would be on an ugly empty line here.
-</p>
-<p>
-The <span class="texttt">\item</span> command is not the only command that takes overlay specifications. Another useful command that takes one is the <span class="texttt">\uncover</span> command. It only shows its argument on the slides specified in the
-overlay specification. On all other slides, the argument is hidden (though it still occupies space). The command <span class="texttt">\only</span> is similar and Euclid could also have tried
-</p>
-<pre class="verbatim">
+</pre
+          >
+          <p>
+            The overlay specifications are given in pointed brackets. The
+            specification <span class="texttt">&lt;1-&gt;</span> means
+            &ldquo;from slide 1 on.&rdquo; Thus, the first and fourth item are
+            shown on the first slide of the frame, but the other two items are
+            not shown. Rather, the second point is shown only from the second
+            slide onward.
+            <span class="beamer-name"><span class="textsc">beamer</span></span>
+            automatically computes the number of slides needed for each frame.
+            More generally, overlay specification are lists of numbers or number
+            ranges where the start or ending of a range can be left open. For
+            example <span class="texttt">-3,5-6,8-</span> means &ldquo;on all
+            slides, except for slides 4 and&nbsp;7.&rdquo;
+          </p>
+          <p>
+            The <span class="texttt">\qedhere</span> is used to put the
+            <span class="textsc">qed</span> symbol at the end of the line
+            <em>inside</em> the enumeration. Normally, the
+            <span class="textsc">qed</span> symbol is automatically inserted at
+            the end of a proof environment, but that would be on an ugly empty
+            line here.
+          </p>
+          <p>
+            The <span class="texttt">\item</span> command is not the only
+            command that takes overlay specifications. Another useful command
+            that takes one is the <span class="texttt">\uncover</span> command.
+            It only shows its argument on the slides specified in the overlay
+            specification. On all other slides, the argument is hidden (though
+            it still occupies space). The command
+            <span class="texttt">\only</span> is similar and Euclid could also
+            have tried
+          </p>
+          <pre class="verbatim">
  \only&lt;4-&gt;{The proof used \textit{reductio ad absurdum}.}
-</pre>
-<p>
-On non-specified slides the <span class="texttt">\only</span> command simply &ldquo;throws its argument away&rdquo; and the argument does not occupy any space. This leads to different heights of the text on the first three slides and on the fourth slide. If the text is centered
-vertically, this will cause the text to &ldquo;wobble&rdquo; and thus <span class="texttt">\uncover</span> should be used. However, you sometimes wish things to &ldquo;really disappear&rdquo; on some slides and then <span class="texttt">\only</span> is useful. Euclid could also have
-used the class option <span class="texttt">t</span>, which causes the text in frames to be vertically flushed to the top. Then a differing text height does not cause wobbling. Vertical flushing can also be achieved for only a single frame by giving the optional argument
-<span class="texttt">[t]</span> like this to the <span class="texttt">frame</span> environment as in
-</p>
-<pre class="verbatim">
+</pre
+          >
+          <p>
+            On non-specified slides the
+            <span class="texttt">\only</span> command simply &ldquo;throws its
+            argument away&rdquo; and the argument does not occupy any space.
+            This leads to different heights of the text on the first three
+            slides and on the fourth slide. If the text is centered vertically,
+            this will cause the text to &ldquo;wobble&rdquo; and thus
+            <span class="texttt">\uncover</span> should be used. However, you
+            sometimes wish things to &ldquo;really disappear&rdquo; on some
+            slides and then <span class="texttt">\only</span> is useful. Euclid
+            could also have used the class option <span class="texttt">t</span>,
+            which causes the text in frames to be vertically flushed to the top.
+            Then a differing text height does not cause wobbling. Vertical
+            flushing can also be achieved for only a single frame by giving the
+            optional argument <span class="texttt">[t]</span> like this to the
+            <span class="texttt">frame</span> environment as in
+          </p>
+          <pre class="verbatim">
 \begin{frame}[t]
   \frametitle{There Is No Largest Prime Number}
   ...
 \end{frame}
-</pre>
-<p>
-Vice versa, if the <span class="texttt">t</span> class option is given, a frame can be vertically centered using the <span class="texttt">[c]</span> option for the frame.
-</p>
-<p>
-It turns out that certain environments, including the <span class="texttt">theorem</span> and <span class="texttt">proof</span> environments above, also take overlay specifications. If such a specification is given, the whole theorem or proof is only shown on the
-specified slides.
-</p>
-<!--
+</pre
+          >
+          <p>
+            Vice versa, if the <span class="texttt">t</span> class option is
+            given, a frame can be vertically centered using the
+            <span class="texttt">[c]</span> option for the frame.
+          </p>
+          <p>
+            It turns out that certain environments, including the
+            <span class="texttt">theorem</span> and
+            <span class="texttt">proof</span> environments above, also take
+            overlay specifications. If such a specification is given, the whole
+            theorem or proof is only shown on the specified slides.
+          </p>
+          <!--
 ...... subsection Structuring a Frame ......
 -->
-<h5 id="autosec-70"><span><span class="sectionnumber" id="sec-3.11">3.11</span> Structuring a Frame</span><a class="anchor-link" href="#sec-3.11">&para;</a></h5>
-<a id="beameruserguide-autopage-70"></a>
-<p>
-On the next frame, Euclid wishes to contrast solved and open problems on prime numbers. Since there is no &ldquo;Solved problem&rdquo; environment similar to the <span class="texttt">theorem</span> environment, Euclid decides to use the <span class="texttt">block</span>
-environment, which allows him to give an arbitrary title:
-</p>
-<pre class="verbatim">
+          <h5 id="autosec-74">
+            <span
+              ><span class="sectionnumber" id="sec-3.11">3.11</span> Structuring
+              a Frame</span
+            ><a class="anchor-link" href="#sec-3.11">&para;</a>
+          </h5>
+          <a id="beameruserguide-autopage-74"></a>
+          <p>
+            On the next frame, Euclid wishes to contrast solved and open
+            problems on prime numbers. Since there is no &ldquo;Solved
+            problem&rdquo; environment similar to the
+            <span class="texttt">theorem</span> environment, Euclid decides to
+            use the <span class="texttt">block</span>
+            environment, which allows him to give an arbitrary title:
+          </p>
+          <pre class="verbatim">
 \begin{frame}
   \frametitle{What's Still To Do?}
   \begin{block}{Answered Questions}
@@ -541,22 +788,28 @@ environment, which allows him to give an arbitrary title:
     Is every even number the sum of two primes?
   \end{block}
 \end{frame}
-</pre>
-<p>
-He could also have defined his own theorem-like environment by putting the following in the preamble:
-</p>
-<pre class="verbatim">
+</pre
+          >
+          <p>
+            He could also have defined his own theorem-like environment by
+            putting the following in the preamble:
+          </p>
+          <pre class="verbatim">
 %\newtheorem{answeredquestions}[theorem]{Answered Questions}
 %\newtheorem{openquestions}[theorem]{Open Questions}
-</pre>
-<p>
-The optional argument <span class="texttt">[theorem]</span> ensures that these environments are numbered the same way as everything else. Since these numbers are not shown anyway, it does not really matter whether they are given, but it&rsquo;s a good practice and,
-perhaps, Euclid might need these numbers some other time.
-</p>
-<p>
-An alternative would be nested <span class="texttt">itemize</span>:
-</p>
-<pre class="verbatim">
+</pre
+          >
+          <p>
+            The optional argument <span class="texttt">[theorem]</span> ensures
+            that these environments are numbered the same way as everything
+            else. Since these numbers are not shown anyway, it does not really
+            matter whether they are given, but it&rsquo;s a good practice and,
+            perhaps, Euclid might need these numbers some other time.
+          </p>
+          <p>
+            An alternative would be nested <span class="texttt">itemize</span>:
+          </p>
+          <pre class="verbatim">
 \begin{frame}
   \frametitle{What's Still To Do?}
   \begin{itemize}
@@ -570,12 +823,18 @@ An alternative would be nested <span class="texttt">itemize</span>:
     \end{itemize}
   \end{itemize}
 \end{frame}
-</pre>
-<p>
-Pondering on the problem some more, Euclid decides that it would be even nicer to have the &ldquo;Answered Questions&rdquo; on the left and the &ldquo;Open Questions&rdquo; on the right, so as to create a stronger visual contrast. For this, he uses the <span class="texttt">columns</span>
-environment. Inside this environment, <span class="texttt">\column</span> commands create new columns.
-</p>
-<pre class="verbatim">
+</pre
+          >
+          <p>
+            Pondering on the problem some more, Euclid decides that it would be
+            even nicer to have the &ldquo;Answered Questions&rdquo; on the left
+            and the &ldquo;Open Questions&rdquo; on the right, so as to create a
+            stronger visual contrast. For this, he uses the
+            <span class="texttt">columns</span> environment. Inside this
+            environment, <span class="texttt">\column</span> commands create new
+            columns.
+          </p>
+          <pre class="verbatim">
 \begin{frame}
   \frametitle{What's Still To Do?}
   \begin{columns}
@@ -590,90 +849,137 @@ environment. Inside this environment, <span class="texttt">\column</span> comman
       \end{block}
   \end{columns}
 \end{frame}
-</pre>
-<p>
-Trying this, he is not quite satisfied with the result as the block on the left has a different height than the one on the right. He thinks it would be nicer if they were vertically top-aligned. So he adds the <span class="texttt">[t]</span> option to the <span class="texttt">columns</span> environment.
-</p>
-<p>
-Euclid is somewhat pleased to find out that a <span class="texttt">\pause</span> at the end of the first column allows him to &ldquo;uncover&rdquo; the second column only on the second slide of the frame.
-</p>
-<!--
+</pre
+          >
+          <p>
+            Trying this, he is not quite satisfied with the result as the block
+            on the left has a different height than the one on the right. He
+            thinks it would be nicer if they were vertically top-aligned. So he
+            adds the <span class="texttt">[t]</span> option to the
+            <span class="texttt">columns</span> environment.
+          </p>
+          <p>
+            Euclid is somewhat pleased to find out that a
+            <span class="texttt">\pause</span> at the end of the first column
+            allows him to &ldquo;uncover&rdquo; the second column only on the
+            second slide of the frame.
+          </p>
+          <!--
 ...... subsection Adding References ......
 -->
-<h5 id="autosec-75"><span><span class="sectionnumber" id="sec-3.12">3.12</span> Adding References</span><a class="anchor-link" href="#sec-3.12">&para;</a></h5>
-<a id="beameruserguide-autopage-75"></a>
-<p>
-Euclid decides that he would like to add a citation to his open questions list, since he would like to attribute the question to his good old friend Christian. Euclid is not really sure whether using a bibliography in his talk is a good idea, but he goes ahead anyway.
-</p>
-<p>
-To this end, he adds an entry to the bibliography, which he fortunately already finds in the solution file. Having the bibliography in the appendix does not quite suit Euclid, so he removes the <span class="texttt">\appendix</span> command. He also notices <span class="texttt"><presentation></presentation></span> overlay specifications and finds them a bit strange, but they don&rsquo;t seem to hurt either. Hopefully they do something useful. His bibliography looks like this:
-</p>
-<pre class="verbatim">
+          <h5 id="autosec-79">
+            <span
+              ><span class="sectionnumber" id="sec-3.12">3.12</span> Adding
+              References</span
+            ><a class="anchor-link" href="#sec-3.12">&para;</a>
+          </h5>
+          <a id="beameruserguide-autopage-79"></a>
+          <p>
+            Euclid decides that he would like to add a citation to his open
+            questions list, since he would like to attribute the question to his
+            good old friend Christian. Euclid is not really sure whether using a
+            bibliography in his talk is a good idea, but he goes ahead anyway.
+          </p>
+          <p>
+            To this end, he adds an entry to the bibliography, which he
+            fortunately already finds in the solution file. Having the
+            bibliography in the appendix does not quite suit Euclid, so he
+            removes the <span class="texttt">\appendix</span> command. He also
+            notices
+            <span class="texttt"><presentation></presentation></span> overlay
+            specifications and finds them a bit strange, but they don&rsquo;t
+            seem to hurt either. Hopefully they do something useful. His
+            bibliography looks like this:
+          </p>
+          <pre class="verbatim">
  \begin{thebibliography}{10}
  \bibitem{Goldbach1742}[Goldbach, 1742]
    Christian Goldbach.
    \newblock A problem we should try to solve before the ISPN '43 deadline,
    \newblock \emph{Letter to Leonhard Euler}, 1742.
  \end{thebibliography}
-</pre>
-<p>
-and he can then add a citation:
-</p>
-<pre class="verbatim">
+</pre
+          >
+          <p>and he can then add a citation:</p>
+          <pre class="verbatim">
 \begin{block}{Open Questions}
   Is every even number the sum of two primes?
   \cite{Goldbach1742}
 \end{block}
-</pre>
-<!--
+</pre
+          >
+          <!--
 ...... subsection Verbatim Text ......
 -->
-<h5 id="autosec-78"><span><span class="sectionnumber" id="sec-3.13">3.13</span> Verbatim Text</span><a class="anchor-link" href="#sec-3.13">&para;</a></h5>
-<a id="beameruserguide-autopage-78"></a>
-<p>
-On another frame, Euclid would like to show a listing of an algorithm his friend Eratosthenes has sent him (saying he came up with it while reorganizing his sieve collection). Euclid normally uses the <span class="texttt">verbatim</span> environment and sometimes
-also similar environments like <span class="texttt">lstlisting</span> to typeset listings. He can also use them in <span class="beamer-name"><span class="textsc">beamer</span></span>, but he must add the <span class="texttt">fragile</span> option to the
-frame:
-</p>
-<pre class="verbatim">
+          <h5 id="autosec-82">
+            <span
+              ><span class="sectionnumber" id="sec-3.13">3.13</span> Verbatim
+              Text</span
+            ><a class="anchor-link" href="#sec-3.13">&para;</a>
+          </h5>
+          <a id="beameruserguide-autopage-82"></a>
+          <p>
+            On another frame, Euclid would like to show a listing of an
+            algorithm his friend Eratosthenes has sent him (saying he came up
+            with it while reorganizing his sieve collection). Euclid normally
+            uses the <span class="texttt">verbatim</span> environment and
+            sometimes also similar environments like
+            <span class="texttt">lstlisting</span> to typeset listings. He can
+            also use them in
+            <span class="beamer-name"><span class="textsc">beamer</span></span
+            >, but he must add the <span class="texttt">fragile</span> option to
+            the frame:
+          </p>
+          <div class="fancyvrb" style>
+            <pre class="verbatim">
 \begin{frame}[fragile]
-  \frametitle{An Algorithm For Finding Prime Numbers.}
+ \frametitle{An Algorithm For Finding Prime Numbers.}
 
-%\begin{verbatim}
+\begin{verbatim}
 int main (void)
 {
-  std::vector<bool> is_prime (100, true);
-  for (int i = 2; i &lt; 100; i++)
-    if (is_prime[i])
-      {
-        std::cout &lt;&lt; i &lt;&lt; " ";
-        for (int j = i; j &lt; 100; is_prime [j] = false, j+=i);
-      }
-  return 0;
+ std::vector&lt;bool&gt; is_prime (100, true);
+ for (int i = 2; i &lt; 100; i++)
+   if (is_prime[i])
+     {
+       std::cout &lt;&lt; i &lt;&lt; " ";
+       for (int j = i; j &lt; 100; is_prime [j] = false, j+=i);
+     }
+ return 0;
 }
+\end{verbatim}
 
-</bool></pre>
-<p>
-<span class="texttt">\end{verbatim}</span>
-</p>
-<pre class="verbatim">
-  \begin{uncoverenv}&lt;2&gt;
-    Note the use of \verb|std::|.
-  \end{uncoverenv}
+ \begin{uncoverenv}&lt;2&gt;
+   Note the use of \verb|std::|.
+ \end{uncoverenv}
 \end{frame}
-</pre>
-<p>
-On second thought, Euclid would prefer to uncover part of the algorithm stepwise and to add an emphasis on certain lines or parts of lines. He can use package like <span class="texttt">alltt</span> for this, but in simple cases the environment <span class="texttt">{semiverbatim}</span> defined by <span class="beamer-name"><span class="textsc">beamer</span></span> is more useful: It works like <span class="texttt">{verbatim}</span>, except that <span class="texttt">\</span>, <span class="texttt">{</span>, and <span class="texttt">}</span> retain their meaning (one can typeset them by using <span class="texttt">\\</span>, <span class="texttt">\{</span>, and <span class="texttt">\}</span>). Euclid might now typeset his algorithm
-as follows:
-</p>
-<pre class="verbatim">
+</pre
+            >
+          </div>
+          <p>
+            On second thought, Euclid would prefer to uncover part of the
+            algorithm stepwise and to add an emphasis on certain lines or parts
+            of lines. He can use package like
+            <span class="texttt">alltt</span> for this, but in simple cases the
+            environment <span class="texttt">{semiverbatim}</span> defined by
+            <span class="beamer-name"><span class="textsc">beamer</span></span>
+            is more useful: It works like
+            <span class="texttt">{verbatim}</span>, except that
+            <span class="texttt">\</span>, <span class="texttt">{</span>, and
+            <span class="texttt">}</span> retain their meaning (one can typeset
+            them by using <span class="texttt">\\</span>,
+            <span class="texttt">\{</span>, and <span class="texttt">\}</span>).
+            Euclid might now typeset his algorithm as follows:
+          </p>
+          <div class="fancyvrb" style>
+            <pre class="verbatim">
 \begin{frame}[fragile]
-  \frametitle{An Algorithm For Finding Primes Numbers.}
+ \frametitle{An Algorithm For Finding Primes Numbers.}
 
 \begin{semiverbatim}
 \uncover&lt;1-&gt;{\alert&lt;0&gt;{int main (void)}}
 \uncover&lt;1-&gt;{\alert&lt;0&gt;{\{}}
-\uncover&lt;1-&gt;{\alert&lt;1&gt;{ \alert&lt;4&gt;{std::}vector<bool> is_prime (100, true);}}
+\uncover&lt;1-&gt;{\alert&lt;1&gt;{ \alert&lt;4&gt;{std::}vector&lt;bool&gt; is_prime (100, true);}}
 \uncover&lt;1-&gt;{\alert&lt;1&gt;{ for (int i = 2; i &lt; 100; i++)}}
 \uncover&lt;2-&gt;{\alert&lt;2&gt;{ if (is_prime[i])}}
 \uncover&lt;2-&gt;{\alert&lt;0&gt;{ \{}}
@@ -685,94 +991,173 @@ as follows:
 \uncover&lt;1-&gt;{\alert&lt;0&gt;{\}}}
 \end{semiverbatim}
 
-  \visible&lt;4-&gt;{Note the use of \alert{\texttt{std::}}.}
+ \visible&lt;4-&gt;{Note the use of \alert{\texttt{std::}}.}
 \end{frame}
-
-</bool></pre>
-<p>
-The <span class="texttt">\visible</span> command does nearly the same as <span class="texttt">\uncover</span>. However one difference occurs if the command <span class="texttt">\setbeamercovered{transparent}</span> has been used to make covered
-text &ldquo;transparent&rdquo; instead, <span class="texttt">\visible</span> still makes the text completely &ldquo;invisible&rdquo; on non-specified slides. Euclid has the feeling that the naming convention is a bit strange, but cannot quite pinpoint the problem.
-</p>
-<!--
+</pre
+            >
+          </div>
+          <p>
+            The <span class="texttt">\visible</span> command does nearly the
+            same as <span class="texttt">\uncover</span>. However one difference
+            occurs if the command
+            <span class="texttt">\setbeamercovered{transparent}</span> has been
+            used to make covered text &ldquo;transparent&rdquo; instead,
+            <span class="texttt">\visible</span> still makes the text completely
+            &ldquo;invisible&rdquo; on non-specified slides. Euclid has the
+            feeling that the naming convention is a bit strange, but cannot
+            quite pinpoint the problem.
+          </p>
+          <!--
 ...... subsection Changing the Way Things Look I: Theming ......
 -->
-<h5 id="autosec-82"><span><span class="sectionnumber" id="sec-3.14">3.14</span> Changing the Way Things Look I: Theming</span><a class="anchor-link" href="#sec-3.14">&para;</a></h5>
-<a id="beameruserguide-autopage-82"></a>
-<p>
-With the contents of this talk fixed, Euclid decides to have a second look at the way things look. He goes back to the beginning and finds the line
-</p>
-<pre class="verbatim">
+          <h5 id="autosec-85">
+            <span
+              ><span class="sectionnumber" id="sec-3.14">3.14</span> Changing
+              the Way Things Look I: Theming</span
+            ><a class="anchor-link" href="#sec-3.14">&para;</a>
+          </h5>
+          <a id="beameruserguide-autopage-85"></a>
+          <p>
+            With the contents of this talk fixed, Euclid decides to have a
+            second look at the way things look. He goes back to the beginning
+            and finds the line
+          </p>
+          <pre class="verbatim">
 \usetheme{Warsaw}
-</pre>
-<p>
-By substituting other cities (he notices that these cities seem to have in common that there has been a workshop or conference on theoretical computer science there at which always the same person had a paper, attended, or gave a talk) Euclid can change the way his
-presentation is going to look. He decides to choose some theme that is reasonably simple but, since his talk is not too short, shows a bit of navigational information.
-</p>
-<p>
-He settles on the <span class="texttt">Frankfurt</span> theme but decides that the light-dark contrast is too strong. He adds
-</p>
-<pre class="verbatim">
+</pre
+          >
+          <p>
+            By substituting other cities (he notices that these cities seem to
+            have in common that there has been a workshop or conference on
+            theoretical computer science there at which always the same person
+            had a paper, attended, or gave a talk) Euclid can change the way his
+            presentation is going to look. He decides to choose some theme that
+            is reasonably simple but, since his talk is not too short, shows a
+            bit of navigational information.
+          </p>
+          <p>
+            He settles on the <span class="texttt">Frankfurt</span> theme but
+            decides that the light-dark contrast is too strong. He adds
+          </p>
+          <pre class="verbatim">
 \usecolortheme{seahorse}
 \usecolortheme{rose}
-</pre>
-<p>
-The result seems some more subdued to him.
-</p>
-<p>
-Euclid decides that the font used for the titles is not quite classical enough (classical fonts are the latest chic in Alexandria). So, he adds
-</p>
-<pre class="verbatim">
+</pre
+          >
+          <p>The result seems some more subdued to him.</p>
+          <p>
+            Euclid decides that the font used for the titles is not quite
+            classical enough (classical fonts are the latest chic in
+            Alexandria). So, he adds
+          </p>
+          <pre class="verbatim">
 \usefonttheme[onlylarge]{structuresmallcapsserif}
-</pre>
-<p>
-Euclid notices that the small fonts in the navigation bars are a bit hard to read as they are so thin. Adding the following helps:
-</p>
-<pre class="verbatim">
+</pre
+          >
+          <p>
+            Euclid notices that the small fonts in the navigation bars are a bit
+            hard to read as they are so thin. Adding the following helps:
+          </p>
+          <pre class="verbatim">
 \usefonttheme[onlysmall]{structurebold}
-</pre>
-<!--
+</pre
+          >
+          <!--
 ...... subsection Changing the Way Things Look II: Colors and Fonts ......
 -->
-<h5 id="autosec-87"><span><span class="sectionnumber" id="sec-3.15">3.15</span> Changing the Way Things Look II: Colors and Fonts</span><a class="anchor-link" href="#sec-3.15">&para;</a></h5>
-<a id="beameruserguide-autopage-87"></a>
-<p>
-Since Euclid wants to give a <em>perfect</em> talk, he decides that the font used for the title simply has to be a serif italics. To change only the font used for the title, Euclid uses the following command:
-</p>
-<pre class="verbatim">
+          <h5 id="autosec-90">
+            <span
+              ><span class="sectionnumber" id="sec-3.15">3.15</span> Changing
+              the Way Things Look II: Colors and Fonts</span
+            ><a class="anchor-link" href="#sec-3.15">&para;</a>
+          </h5>
+          <a id="beameruserguide-autopage-90"></a>
+          <p>
+            Since Euclid wants to give a <em>perfect</em> talk, he decides that
+            the font used for the title simply has to be a serif italics. To
+            change only the font used for the title, Euclid uses the following
+            command:
+          </p>
+          <pre class="verbatim">
 \setbeamerfont{title}{shape=\itshape,family=\rmfamily}
-</pre>
-<p>
-He notices that the font is still quite large (which he likes), but wonders why this is the case since he did not specify this. The reason is that calls of <span class="texttt">\setbeamerfont</span> accumulate and the size was already set to <span class="texttt">\large</span> by some font theme. Using the starred version of <span class="texttt">\setbeamerfont</span> &ldquo;resets&rdquo; the font.
-</p>
-<p>
-Euclid decides that he would also like to change the color of the title to a dashing red, though, perhaps, with a bit of black added. He uses the following command:
-</p>
-<pre class="verbatim">
+</pre
+          >
+          <p>
+            He notices that the font is still quite large (which he likes), but
+            wonders why this is the case since he did not specify this. The
+            reason is that calls of
+            <span class="texttt">\setbeamerfont</span> accumulate and the size
+            was already set to <span class="texttt">\large</span> by some font
+            theme. Using the starred version of
+            <span class="texttt">\setbeamerfont</span> &ldquo;resets&rdquo; the
+            font.
+          </p>
+          <p>
+            Euclid decides that he would also like to change the color of the
+            title to a dashing red, though, perhaps, with a bit of black added.
+            He uses the following command:
+          </p>
+          <pre class="verbatim">
 \setbeamercolor{title}{fg=red!80!black}
-</pre>
-<p>
-Trying the following command, Euclid is delighted to find that specifying a background color also has an effect:
-</p>
-<pre class="verbatim">
+</pre
+          >
+          <p>
+            Trying the following command, Euclid is delighted to find that
+            specifying a background color also has an effect:
+          </p>
+          <pre class="verbatim">
 \setbeamercolor{title}{fg=red!80!black,bg=red!20!white}
-</pre>
-<p>
-Finally, Euclid is satisfied with the presentation and goes ahead and gives a great talk at the conference, making many new friends. He also writes that email to <span class="beamer-name"><span class="textsc">beamer</span></span>&rsquo;s author containing that long list
-of things that he missed in <span class="beamer-name"><span class="textsc">beamer</span></span> or that do not work. He is a bit disappointed to learn that it might take till ISPN&nbsp;&rsquo;79 for all these things to be taken care of, but he also understands that <span class="beamer-name"><span class="textsc">beamer</span></span>&rsquo;s authors also need some time to do research or otherwise he would have nothing to give presentations about.
-</p>
-</p></section>
-</main>
-<footer><div class="footer-left"><a href="Licenses-Copyright.html">License</a> &middot; <a href="https://ctan.org/pkg/beamer">CTAN</a> &middot; <a href="http://mirrors.ctan.org/macros/latex/contrib/beamer/doc/beameruserguide.pdf">Official PDF version</a> &middot; <a href="https://github.com/SwitWu/beamer-html-manual/issues">Feedback and issues</a> &middot; <a href="https://github.com/SwitWu/beamer-html-manual">Repository</a></div><div class="footer-right"><em>HTML version last updated: 2023-10-07</em></div></footer></div>
+</pre
+          >
+          <p>
+            Finally, Euclid is satisfied with the presentation and goes ahead
+            and gives a great talk at the conference, making many new friends.
+            He also writes that email to
+            <span class="beamer-name"><span class="textsc">beamer</span></span
+            >&rsquo;s author containing that long list of things that he missed
+            in
+            <span class="beamer-name"><span class="textsc">beamer</span></span>
+            or that do not work. He is a bit disappointed to learn that it might
+            take till ISPN&nbsp;&rsquo;79 for all these things to be taken care
+            of, but he also understands that
+            <span class="beamer-name"><span class="textsc">beamer</span></span
+            >&rsquo;s authors also need some time to do research or otherwise he
+            would have nothing to give presentations about.
+          </p>
+        </section>
+      </main>
+      <footer>
+        <div class="footer-left">
+          <a href="Licenses-Copyright.html">License</a> &middot;
+          <a href="https://ctan.org/pkg/beamer">CTAN</a> &middot;
+          <a
+            href="http://mirrors.ctan.org/macros/latex/contrib/beamer/doc/beameruserguide.pdf"
+            >Official PDF version</a
+          >
+          &middot;
+          <a href="https://github.com/SwitWu/beamer-html-manual/issues"
+            >Feedback and issues</a
+          >
+          &middot;
+          <a href="https://github.com/SwitWu/beamer-html-manual">Repository</a>
+        </div>
+        <div class="footer-right">
+          <em>HTML version last updated: 2023-10-10</em>
+        </div>
+      </footer>
+    </div>
 
-<script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script><script>
+    <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@3"></script>
+    <script>
       docsearch({
-        apiKey: '196e8c10ec187c9ae525dd5226fb9378',
-        indexName: 'beamer',
-        appId: 'JS6V5VZSDB',
-        container: '#search',
+        apiKey: "09762da49fe4ba391f7a3618c73720d8",
+        indexName: "beamerplusio",
+        appId: "WNNAN5R8GM",
+        container: "#search",
         searchParameters: {
           filters: "tags:beamer",
         },
-    });
-    </script></body>
+      });
+    </script>
+  </body>
 </html>

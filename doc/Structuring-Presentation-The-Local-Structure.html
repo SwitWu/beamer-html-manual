@@ -7,219 +7,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>The beamer class- <a href=https://github.com/josephwright/beamer target=-blank >https://github.com/josephwright/beamer</a>- User Guide for version 3.70. — Structuring a Presentation: The Local Structure</title>
 <link rel="stylesheet" type="text/css" href="style.css" />
-
-<script>
-// Lwarp MathJax emulation code
-//
-// Based on code by Davide P. Cervone.
-// Equation numbering: https://github.com/mathjax/MathJax/issues/2427
-// Starred and ifnextchar macros: https://github.com/mathjax/MathJax/issues/2428
-// \left, \right delimiters: https://github.com/mathjax/MathJax/issues/2535
-//
-// Modified by Brian Dunn to adjust equation numbering and add subequations.
-//
-// LaTeX can use \seteqnumber{subequations?}{section}{number} before each equation.
-// subequations? is 0 usually, 1 if inside subequations.
-// section is a string printed as-is, or empty.
-// number is auto-incremented by MathJax between equations.
-//
-MathJax = {
-  subequations: "0",
-  section: "",
-  loader: {
-    load: ['[tex]/tagformat', '[tex]/textmacros'],
-  },
-  startup: {
-    ready() {
-      // These would be replaced by import commands if you wanted to make
-      // a proper extension.
-      const Configuration = MathJax._.input.tex.Configuration.Configuration;
-      const CommandMap = MathJax._.input.tex.SymbolMap.CommandMap;
-      const Macro = MathJax._.input.tex.Symbol.Macro;
-      const TexError = MathJax._.input.tex.TexError.default;
-      const ParseUtil = MathJax._.input.tex.ParseUtil.default;
-      const expandable = MathJax._.util.Options.expandable;
-
-        // Insert the replacement string into the TeX string, and check
-        // that there haven't been too many maxro substitutions (prevents
-        // infinite loops).
-        const useArgument = (parser, text) => {
-          parser.string = ParseUtil.addArgs(parser, text, parser.string.slice(parser.i));
-          parser.i = 0;
-          if (++parser.macroCount > parser.configuration.options.maxMacros) {
-            throw new TexError('MaxMacroSub1',
-            'MathJax maximum macro substitution count exceeded; ' +
-            'is there a recursive macro call?');
-          }
-        }
-
-        // Create the command map for:
-        //     \ifstar, \ifnextchar, \ifblank, \ifstrequal, \gsub, \seteqnumber
-        new CommandMap('Lwarp-macros', {
-          ifstar: 'IfstarFunction',
-          ifnextchar: 'IfnextcharFunction',
-          ifblank: 'IfblankFunction',
-          ifstrequal: 'IfstrequalFunction',
-          gsubstitute: 'GsubstituteFunction',
-          seteqnumber: 'SeteqnumberFunction'
-        }, {
-          // This function implements an ifstar macro.
-          IfstarFunction(parser, name) {
-             const resultstar = parser.GetArgument(name);
-             const resultnostar = parser.GetArgument(name);
-             const star = parser.GetStar();                 // true if there is a *
-             useArgument(parser, star ? resultstar : resultnostar);
-          },
-
-          // This function implements an ifnextchar macro.
-          IfnextcharFunction(parser, name) {
-            let whichchar = parser.GetArgument(name);
-            if (whichchar.match(/^(?:0x[0-9A-F]+|[0-9]+)$/i)) {
-              // $ syntax highlighting
-              whichchar = String.fromCodePoint(parseInt(whichchar));
-            }
-            const resultnextchar = parser.GetArgument(name);
-            const resultnotnextchar = parser.GetArgument(name);
-            const gotchar = (parser.GetNext() === whichchar);
-            useArgument(parser, gotchar ? resultnextchar : resultnotnextchar);
-          },
-
-          // This function implements an ifblank macro.
-          IfblankFunction(parser, name) {
-            const blankarg = parser.GetArgument(name);
-            const resultblank = parser.GetArgument(name);
-            const resultnotblank = parser.GetArgument(name);
-            const isblank = (blankarg.trim() == "");
-            useArgument(parser, isblank ? resultblank : resultnotblank);
-          },
-
-          // This function implements an ifstrequal macro.
-          IfstrequalFunction(parser, name) {
-            const strequalfirst = parser.GetArgument(name);
-            const strequalsecond = parser.GetArgument(name);
-            const resultequal = parser.GetArgument(name);
-            const resultnotequal = parser.GetArgument(name);
-            const isequal = (strequalfirst == strequalsecond);
-            useArgument(parser, isequal ? resultequal : resultnotequal);
-          },
-
-          // This function implements a gsub macro.
-          GsubstituteFunction(parser, name) {
-            const gsubfirst = parser.GetArgument(name);
-            const gsubsecond = parser.GetArgument(name);
-            const gsubthird = parser.GetArgument(name);
-            let gsubresult=gsubfirst.replace(gsubsecond, gsubthird);
-            useArgument(parser, gsubresult);
-          },
-
-          // This function modifies the equation numbers.
-          SeteqnumberFunction(parser, name) {
-              // Get the macro parameters
-              const star = parser.GetStar();                  // true if there is a *
-              const optBrackets = parser.GetBrackets(name);   // contents of optional brackets
-              const newsubequations = parser.GetArgument(name); // the subequations argument
-              const neweqsection = parser.GetArgument(name); // the eq section argument
-              const neweqnumber = parser.GetArgument(name);   // the eq number argument
-              MathJax.config.subequations=newsubequations ;   // a string with boolean meaning
-              MathJax.config.section=neweqsection ;           // a string with numeric meaning
-              parser.tags.counter = parser.tags.allCounter = neweqnumber ;
-          }
-
-        });
-
-        // Create the Lwarp-macros package
-        Configuration.create('Lwarp-macros', {
-          handler: {macro: ['Lwarp-macros']}
-        });
-
-        MathJax.startup.defaultReady();
-
-        // For forward references:
-        MathJax.startup.input[0].preFilters.add(({math}) => {
-          if (math.inputData.recompile){
-              MathJax.config.subequations = math.inputData.recompile.subequations;
-              MathJax.config.section = math.inputData.recompile.section;
-          }
-        });
-        MathJax.startup.input[0].postFilters.add(({math}) => {
-          if (math.inputData.recompile){
-              math.inputData.recompile.subequations = MathJax.config.subequations;
-              math.inputData.recompile.section = MathJax.config.section;
-          }
-        });
-
-          // For \left, \right with unicode-math:
-          const {DelimiterMap} = MathJax._.input.tex.SymbolMap;
-          const {Symbol} = MathJax._.input.tex.Symbol;
-          const {MapHandler} = MathJax._.input.tex.MapHandler;
-          const delimiter = MapHandler.getMap('delimiter');
-          delimiter.add('\\lBrack', new Symbol('\\lBrack', '\u27E6'));
-          delimiter.add('\\rBrack', new Symbol('\\rBrack', '\u27E7'));
-          delimiter.add('\\lAngle', new Symbol('\\lAngle', '\u27EA'));
-          delimiter.add('\\rAngle', new Symbol('\\rAngle', '\u27EB'));
-          delimiter.add('\\lbrbrak', new Symbol('\\lbrbrak', '\u2772'));
-          delimiter.add('\\rbrbrak', new Symbol('\\rbrbrak', '\u2773'));
-          delimiter.add('\\lbag', new Symbol('\\lbag', '\u27C5'));
-          delimiter.add('\\rbag', new Symbol('\\rbag', '\u27C6'));
-          delimiter.add('\\llparenthesis', new Symbol('\\llparenthesis', '\u2987'));
-          delimiter.add('\\rrparenthesis', new Symbol('\\rrparenthesis', '\u2988'));
-          delimiter.add('\\llangle', new Symbol('\\llangle', '\u2989'));
-          delimiter.add('\\rrangle', new Symbol('\\rrangle', '\u298A'));
-          delimiter.add('\\Lbrbrak', new Symbol('\\Lbrbrak', '\u27EC'));
-          delimiter.add('\\Rbrbrak', new Symbol('\\Rbrbrak', '\u27ED'));
-          delimiter.add('\\lBrace', new Symbol('\\lBrace', '\u2983'));
-          delimiter.add('\\rBrace', new Symbol('\\rBrace', '\u2984'));
-          delimiter.add('\\lParen', new Symbol('\\lParen', '\u2985'));
-          delimiter.add('\\rParen', new Symbol('\\rParen', '\u2986'));
-          delimiter.add('\\lbrackubar', new Symbol('\\lbrackubar', '\u298B'));
-          delimiter.add('\\rbrackubar', new Symbol('\\rbrackubar', '\u298C'));
-          delimiter.add('\\lbrackultick', new Symbol('\\lbrackultick', '\u298D'));
-          delimiter.add('\\rbracklrtick', new Symbol('\\rbracklrtick', '\u298E'));
-          delimiter.add('\\lbracklltick', new Symbol('\\lbracklltick', '\u298F'));
-          delimiter.add('\\rbrackurtick', new Symbol('\\rbrackurtick', '\u2990'));
-          delimiter.add('\\langledot', new Symbol('\\langledot', '\u2991'));
-          delimiter.add('\\rangledot', new Symbol('\\rangledot', '\u2992'));
-          delimiter.add('\\lparenless', new Symbol('\\lparenless', '\u2993'));
-          delimiter.add('\\rparengtr', new Symbol('\\rparengtr', '\u2994'));
-          delimiter.add('\\Lparengtr', new Symbol('\\Lparengtr', '\u2995'));
-          delimiter.add('\\Rparenless', new Symbol('\\Rparenless', '\u2996'));
-          delimiter.add('\\lblkbrbrak', new Symbol('\\lblkbrbrak', '\u2997'));
-          delimiter.add('\\rblkbrbrak', new Symbol('\\rblkbrbrak', '\u2998'));
-          delimiter.add('\\lvzigzag', new Symbol('\\lvzigzag', '\u29D8'));
-          delimiter.add('\\rvzigzag', new Symbol('\\rvzigzag', '\u29D9'));
-          delimiter.add('\\Lvzigzag', new Symbol('\\Lvzigzag', '\u29DA'));
-          delimiter.add('\\Rvzigzag', new Symbol('\\Rvzigzag', '\u29DB'));
-          delimiter.add('\\lcurvyangle', new Symbol('\\lcurvyangle', '\u29FC'));
-          delimiter.add('\\rcurvyangle', new Symbol('\\rcurvyangle', '\u29FD'));
-          delimiter.add('\\Vvert', new Symbol('\\Vvert', '\u2980'));
-    }     // ready
-  },      // startup
-
-  tex: {
-    packages: {'[+]': ['tagformat', 'Lwarp-macros', 'textmacros']},
-    tags: "ams",
-         tagformat: {
-             number: function (n) {
-                 if(MathJax.config.subequations==0)
-                     return(MathJax.config.section + n);
-                 else
-                     return(MathJax.config.section + String.fromCharCode(96+n));
-             },
-         },
-  }
-}
-</script>
-
-<script
-    id="MathJax-script"
-    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"
-></script>
-
 </head>
 <body>
 
 
-<a id="beameruserguide-autopage-335"></a>
+<a id="beameruserguide-autopage-352"></a>
 <nav class="topnavigation"><a href="home.html" class="linkhome" >
 Home</a></nav>
 
@@ -271,157 +63,157 @@ Home</a>
 
 
 <p>
-<a href="Tutorial-Euclid-Presentation.html#autosec-42" class="tocsection" >
+<a href="Tutorial-Euclid-Presentation.html#autosec-44" class="tocsection" >
 <span class="sectionnumber">3</span>&#x2003;Tutorial: Euclid’s Presentation</a>
 </p>
 
 
 <p>
-<a href="Workflow-For-Creating-Beamer-Presentation.html#autosec-93" class="tocsection" >
+<a href="Workflow-For-Creating-Beamer-Presentation.html#autosec-96" class="tocsection" >
 <span class="sectionnumber">4</span>&#x2003;Workflow For Creating a Beamer Presentation</a>
 </p>
 
 
 <p>
-<a href="Guidelines-Creating-Presentations.html#autosec-116" class="tocsection" >
+<a href="Guidelines-Creating-Presentations.html#autosec-119" class="tocsection" >
 <span class="sectionnumber">5</span>&#x2003;Guidelines for Creating Presentations</a>
 </p>
 
 
 <p>
-<a href="Solution-Templates.html#autosec-141" class="tocsection" >
+<a href="Solution-Templates.html#autosec-154" class="tocsection" >
 <span class="sectionnumber">6</span>&#x2003;Solution Templates</a>
 </p>
 
 
 <p>
-<a href="Licenses-Copyright.html#autosec-144" class="tocsection" >
+<a href="Licenses-Copyright.html#autosec-157" class="tocsection" >
 <span class="sectionnumber">7</span>&#x2003;Licenses and Copyright</a>
 </p>
 
 
 <p>
-<a href="Building-Presentation.html#autosec-185" class="tocpart" >
+<a href="Building-Presentation.html#autosec-198" class="tocpart" >
 <span class="sectionnumber">II</span>&#x2003;Building a Presentation</a>
 </p>
 
 
 <p>
-<a href="Creating-Frames.html#autosec-188" class="tocsection" >
+<a href="Creating-Frames.html#autosec-201" class="tocsection" >
 <span class="sectionnumber">8</span>&#x2003;Creating Frames</a>
 </p>
 
 
 <p>
-<a href="Creating-Overlays.html#autosec-234" class="tocsection" >
+<a href="Creating-Overlays.html#autosec-247" class="tocsection" >
 <span class="sectionnumber">9</span>&#x2003;Creating Overlays</a>
 </p>
 
 
 <p>
-<a href="Structuring-Presentation-The-Static-Global-Structure.html#autosec-295" class="tocsection" >
+<a href="Structuring-Presentation-The-Static-Global-Structure.html#autosec-312" class="tocsection" >
 <span class="sectionnumber">10</span>&#x2003;Structuring a Presentation: The Static Global Structure</a>
 </p>
 
 
 <p>
-<a href="Structuring-Presentation-The-Interactive-Global-Structure.html#autosec-322" class="tocsection" >
+<a href="Structuring-Presentation-The-Interactive-Global-Structure.html#autosec-339" class="tocsection" >
 <span class="sectionnumber">11</span>&#x2003;Structuring a Presentation: The Interactive Global Structure</a>
 </p>
 
 
 <p>
-<a href="Structuring-Presentation-The-Local-Structure.html#autosec-336" class="tocsection" >
+<a href="Structuring-Presentation-The-Local-Structure.html#autosec-353" class="tocsection" >
 <span class="sectionnumber">12</span>&#x2003;Structuring a Presentation: The Local Structure</a>
 </p>
 
 
 <p>
-<a href="Graphics.html#autosec-380" class="tocsection" >
+<a href="Graphics.html#autosec-401" class="tocsection" >
 <span class="sectionnumber">13</span>&#x2003;Graphics</a>
 </p>
 
 
 <p>
-<a href="Animations-Sounds-Slide-Transitions.html#autosec-390" class="tocsection" >
+<a href="Animations-Sounds-Slide-Transitions.html#autosec-411" class="tocsection" >
 <span class="sectionnumber">14</span>&#x2003;Animations, Sounds, and Slide Transitions</a>
 </p>
 
 
 <p>
-<a href="Changing-Way-Things-Look.html#autosec-410" class="tocpart" >
+<a href="Changing-Way-Things-Look.html#autosec-435" class="tocpart" >
 <span class="sectionnumber">III</span>&#x2003;Changing the Way Things Look</a>
 </p>
 
 
 <p>
-<a href="Themes.html#autosec-413" class="tocsection" >
+<a href="Themes.html#autosec-438" class="tocsection" >
 <span class="sectionnumber">15</span>&#x2003;Themes</a>
 </p>
 
 
 <p>
-<a href="Inner-Themes-Outer-Themes-Templates.html#autosec-428" class="tocsection" >
+<a href="Inner-Themes-Outer-Themes-Templates.html#autosec-453" class="tocsection" >
 <span class="sectionnumber">16</span>&#x2003;Inner Themes, Outer Themes, and Templates</a>
 </p>
 
 
 <p>
-<a href="Colors.html#autosec-452" class="tocsection" >
+<a href="Colors.html#autosec-477" class="tocsection" >
 <span class="sectionnumber">17</span>&#x2003;Colors</a>
 </p>
 
 
 <p>
-<a href="Fonts.html#autosec-481" class="tocsection" >
+<a href="Fonts.html#autosec-506" class="tocsection" >
 <span class="sectionnumber">18</span>&#x2003;Fonts</a>
 </p>
 
 
 <p>
-<a href="Creating-Supporting-Material.html#autosec-497" class="tocpart" >
+<a href="Creating-Supporting-Material.html#autosec-522" class="tocpart" >
 <span class="sectionnumber">IV</span>&#x2003;Creating Supporting Material</a>
 </p>
 
 
 <p>
-<a href="Adding-Notes-Yourself.html#autosec-500" class="tocsection" >
+<a href="Adding-Notes-Yourself.html#autosec-525" class="tocsection" >
 <span class="sectionnumber">19</span>&#x2003;Adding Notes for Yourself</a>
 </p>
 
 
 <p>
-<a href="Creating-Transparencies.html#autosec-512" class="tocsection" >
+<a href="Creating-Transparencies.html#autosec-537" class="tocsection" >
 <span class="sectionnumber">20</span>&#x2003;Creating Transparencies</a>
 </p>
 
 
 <p>
-<a href="Creating-Handouts-Lecture-Notes.html#autosec-521" class="tocsection" >
+<a href="Creating-Handouts-Lecture-Notes.html#autosec-546" class="tocsection" >
 <span class="sectionnumber">21</span>&#x2003;Creating Handouts and Lecture Notes</a>
 </p>
 
 
 <p>
-<a href="Taking-Advantage-Multiple-Screens.html#autosec-546" class="tocsection" >
+<a href="Taking-Advantage-Multiple-Screens.html#autosec-571" class="tocsection" >
 <span class="sectionnumber">22</span>&#x2003;Taking Advantage of Multiple Screens</a>
 </p>
 
 
 <p>
-<a href="Howtos.html#autosec-554" class="tocpart" >
+<a href="Howtos.html#autosec-579" class="tocpart" >
 <span class="sectionnumber">V</span>&#x2003;Howtos</a>
 </p>
 
 
 <p>
-<a href="How-To-Uncover-Things-Piecewise.html#autosec-557" class="tocsection" >
+<a href="How-To-Uncover-Things-Piecewise.html#autosec-582" class="tocsection" >
 <span class="sectionnumber">23</span>&#x2003;How To Uncover Things Piecewise</a>
 </p>
 
 
 <p>
-<a href="How-To-Import-Presentations-Based-on-Other-Packages-Classes.html#autosec-580" class="tocsection" >
+<a href="How-To-Import-Presentations-Based-on-Other-Packages-Classes.html#autosec-605" class="tocsection" >
 <span class="sectionnumber">24</span>&#x2003;How To Import Presentations Based on Other Packages and Classes</a>
 </p>
 
@@ -442,139 +234,11 @@ Home</a>
 <a href="https://github.com/josephwright/beamer" target="_blank" >https://github.com/josephwright/beamer</a><br />
 User Guide for version 3.70.</h1>
 
-<!--MathJax customizations:-->
-
-
-<div class="hidden">
-
-\(\newcommand{\footnotename}{footnote}\)
-
-\(\def \LWRfootnote {1}\)
-
-\(\newcommand {\footnote }[2][\LWRfootnote ]{{}^{\mathrm {#1}}}\)
-
-\(\newcommand {\footnotemark }[1][\LWRfootnote ]{{}^{\mathrm {#1}}}\)
-
-\(\let \LWRorighspace \hspace \)
-
-\(\renewcommand {\hspace }{\ifstar \LWRorighspace \LWRorighspace }\)
-
-\(\newcommand {\mathnormal }[1]{{#1}}\)
-
-\(\newcommand \ensuremath [1]{#1}\)
-
-\(\newcommand {\LWRframebox }[2][]{\fbox {#2}} \newcommand {\framebox }[1][]{\LWRframebox } \)
-
-\(\newcommand {\setlength }[2]{}\)
-
-\(\newcommand {\addtolength }[2]{}\)
-
-\(\newcommand {\setcounter }[2]{}\)
-
-\(\newcommand {\addtocounter }[2]{}\)
-
-\(\newcommand {\arabic }[1]{}\)
-
-\(\newcommand {\number }[1]{}\)
-
-\(\newcommand {\noalign }[1]{\text {#1}\notag \\}\)
-
-\(\newcommand {\cline }[1]{}\)
-
-\(\newcommand {\directlua }[1]{\text {(directlua)}}\)
-
-\(\newcommand {\luatexdirectlua }[1]{\text {(directlua)}}\)
-
-\(\newcommand {\protect }{}\)
-
-\(\def \LWRabsorbnumber #1 {}\)
-
-\(\def \LWRabsorbquotenumber &quot;#1 {}\)
-
-\(\newcommand {\LWRabsorboption }[1][]{}\)
-
-\(\newcommand {\LWRabsorbtwooptions }[1][]{\LWRabsorboption }\)
-
-\(\def \mathchar {\ifnextchar &quot;\LWRabsorbquotenumber \LWRabsorbnumber }\)
-
-\(\def \mathcode #1={\mathchar }\)
-
-\(\let \delcode \mathcode \)
-
-\(\let \delimiter \mathchar \)
-
-\(\def \oe {\unicode {x0153}}\)
-
-\(\def \OE {\unicode {x0152}}\)
-
-\(\def \ae {\unicode {x00E6}}\)
-
-\(\def \AE {\unicode {x00C6}}\)
-
-\(\def \aa {\unicode {x00E5}}\)
-
-\(\def \AA {\unicode {x00C5}}\)
-
-\(\def \o {\unicode {x00F8}}\)
-
-\(\def \O {\unicode {x00D8}}\)
-
-\(\def \l {\unicode {x0142}}\)
-
-\(\def \L {\unicode {x0141}}\)
-
-\(\def \ss {\unicode {x00DF}}\)
-
-\(\def \SS {\unicode {x1E9E}}\)
-
-\(\def \dag {\unicode {x2020}}\)
-
-\(\def \ddag {\unicode {x2021}}\)
-
-\(\def \P {\unicode {x00B6}}\)
-
-\(\def \copyright {\unicode {x00A9}}\)
-
-\(\def \pounds {\unicode {x00A3}}\)
-
-\(\let \LWRref \ref \)
-
-\(\renewcommand {\ref }{\ifstar \LWRref \LWRref }\)
-
-\( \newcommand {\multicolumn }[3]{#3}\)
-
-\(\require {textcomp}\)
-
-\(\newcommand {\intertext }[1]{\text {#1}\notag \\}\)
-
-\(\let \Hat \hat \)
-
-\(\let \Check \check \)
-
-\(\let \Tilde \tilde \)
-
-\(\let \Acute \acute \)
-
-\(\let \Grave \grave \)
-
-\(\let \Dot \dot \)
-
-\(\let \Ddot \ddot \)
-
-\(\let \Breve \breve \)
-
-\(\let \Bar \bar \)
-
-\(\let \Vec \vec \)
-
-</div>
-
-<p>
 <!--
 ...... section Structuring a Presentation: The Local Structure ......
 -->
-<h4 id="autosec-336"><span class="sectionnumber">12&#x2003;</span>Structuring a Presentation: The Local Structure</h4>
-<a id="beameruserguide-autopage-336"></a>
+<h4 id="autosec-353"><span class="sectionnumber">12&#x2003;</span>Structuring a Presentation: The Local Structure</h4>
+<a id="beameruserguide-autopage-353"></a>
 <a id="beameruserguide-autofile-14"></a>
 
 <p>
@@ -585,8 +249,8 @@ class="beamer-name"><span class="textsc">beamer</span></span> class also defines
 <!--
 ...... subsection Itemizations, Enumerations, and Descriptions ......
 -->
-<h5 id="autosec-337"><span class="sectionnumber">12.1&#x2003;</span>Itemizations, Enumerations, and Descriptions</h5>
-<a id="beameruserguide-autopage-337"></a>
+<h5 id="autosec-354"><span class="sectionnumber">12.1&#x2003;</span>Itemizations, Enumerations, and Descriptions</h5>
+<a id="beameruserguide-autopage-354"></a>
 
 
 <a id="section-enumerate"></a>
@@ -622,35 +286,34 @@ optional argument and an overlay specification, the overlay specification can ei
 
 <ul style="list-style-type:none">
 
+<li>
+<p>
+
+</p>
 
 <div class="begin-environment">
-<div class="translatormanualentryheadline"><li>
 <p>
 \begin{<span class="declare">itemize</span>}<span class="opt"><span class="texttt">[<</span><span class="meta"><span class="angle">&langle;</span><i>default overlay specification</i><span class="angle">&rangle;</span></span><span
 class="texttt">>]</span></span>
 </p>
 </div>
-</div>
-
-<div class="translatormanualentryheadline">
 </li>
 <li>
 
 <p>
   <span class="meta"><span class="angle">&langle;</span><i>environment contents</i><span class="angle">&rangle;</span></span>
 </p>
-</div>
-
-<div class="end-environment">
-
-<div class="translatormanualentryheadline">
 </li>
 <li>
 
 <p>
+
+</p>
+
+<div class="end-environment">
+<p>
 \end{<span class="declare">itemize</span>}
 </p>
-</div>
 </div>
 <p>
 Used to display a list of items that do not have a special ordering. Inside the environment, use an <span class="texttt">\item</span> command for each topic.
@@ -834,36 +497,35 @@ Like <span class="texttt">itemize item</span>, only for third-level items.
 
 <ul style="list-style-type:none">
 
+<li>
+<p>
+
+</p>
 
 <div class="begin-environment">
-<div class="translatormanualentryheadline"><li>
 <p>
 \begin{<span class="declare">enumerate</span>}<span class="opt"><span class="texttt">[<</span><span class="meta"><span class="angle">&langle;</span><i>default overlay specification</i><span class="angle">&rangle;</span></span><span
 class="texttt">>]</span></span><span class="opt"><span class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>mini template</i><span class="angle">&rangle;</span></span><span
 class="oarg-right-bracket">]</span></span>
 </p>
 </div>
-</div>
-
-<div class="translatormanualentryheadline">
 </li>
 <li>
 
 <p>
   <span class="meta"><span class="angle">&langle;</span><i>environment contents</i><span class="angle">&rangle;</span></span>
 </p>
-</div>
-
-<div class="end-environment">
-
-<div class="translatormanualentryheadline">
 </li>
 <li>
 
 <p>
+
+</p>
+
+<div class="end-environment">
+<p>
 \end{<span class="declare">enumerate</span>}
 </p>
-</div>
 </div>
 <p>
 Used to display a list of items that are ordered. Inside the environment, use an <span class="texttt">\item</span> command for each topic. By default, before each item increasing Arabic numbers followed by a dot are printed (as in “1.” and “2.”). This can be changed
@@ -877,9 +539,30 @@ this argument does not start with <span class="texttt"><</span>, then it is cons
 <p>
 The syntax of the <span class="meta"><span class="angle">&langle;</span><i>mini template</i><span class="angle">&rangle;</span></span> is the same as the syntax of mini templates in the <span class="texttt">enumerate</span> package (you do not need
 to include the <span class="texttt">enumerate</span> package, this is done automatically). Roughly spoken, the text of the <span class="meta"><span class="angle">&langle;</span><i>mini template</i><span class="angle">&rangle;</span></span> is printed
-before each item, but any occurrence of a <span class="texttt">1</span> in the mini template is replaced by the current item number, an occurrence of the letter <span class="texttt">A</span> is replaced by the \(i\)-th letter of the alphabet (in uppercase) for the
-\(i\)-th item, and the letters <span class="texttt">a</span>, <span class="texttt">i</span>, and <span class="texttt">I</span> are replaced by the corresponding lowercase letters, lowercase Roman letters, and uppercase Roman letters, respectively. So the mini
-template <span class="texttt">(i)</span> would yield the items (i), (ii), (iii), (iv), and so on. The mini template <span class="texttt">A.)</span> would yield the items A.), B.), C.), D.) and so on. For more details on the possible mini templates, see the
+before each item, but any occurrence of a <span class="texttt">1</span> in the mini template is replaced by the current item number, an occurrence of the letter <span class="texttt">A</span> is replaced by the <span
+     id="lateximage-beameruserguide-11"
+     class="lateximagesource"
+><!--
+𝑖
+--><img
+    src="beameruserguide-images/D50F79E2E66556E5AE928DD6FF809A89.svg"
+    alt="\( i \)"
+    role="math"
+    style="height:0.77591em"
+    class="lateximage"
+></span>-th letter of the alphabet (in uppercase) for the <span
+    id="lateximage-beameruserguide-12"
+    class="lateximagesource"
+><!--
+𝑖
+--><img
+    src="beameruserguide-images/D50F79E2E66556E5AE928DD6FF809A89.svg"
+    alt="\( i \)"
+    role="math"
+    style="height:0.77591em"
+    class="lateximage"
+></span>-th item, and the letters <span class="texttt">a</span>, <span class="texttt">i</span>, and <span class="texttt">I</span> are replaced by the corresponding lowercase letters, lowercase Roman letters, and uppercase Roman letters, respectively. So the
+mini template <span class="texttt">(i)</span> would yield the items (i), (ii), (iii), (iv), and so on. The mini template <span class="texttt">A.)</span> would yield the items A.), B.), C.), D.) and so on. For more details on the possible mini templates, see the
 documentation of the <span class="texttt">enumerate</span> package. Note that there is also a template that governs the appearance of the mini template.
 </p>
 <p>
@@ -1132,36 +815,35 @@ This template is a parent template of <span class="texttt">itemize items</span> 
 
 <ul style="list-style-type:none">
 
+<li>
+<p>
+
+</p>
 
 <div class="begin-environment">
-<div class="translatormanualentryheadline"><li>
 <p>
 \begin{<span class="declare">description</span>}<span class="opt"><span class="texttt">[<</span><span class="meta"><span class="angle">&langle;</span><i>default overlay specification</i><span class="angle">&rangle;</span></span><span
 class="texttt">>]</span></span><span class="opt"><span class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>long text</i><span class="angle">&rangle;</span></span><span
 class="oarg-right-bracket">]</span></span>
 </p>
 </div>
-</div>
-
-<div class="translatormanualentryheadline">
 </li>
 <li>
 
 <p>
   <span class="meta"><span class="angle">&langle;</span><i>environment contents</i><span class="angle">&rangle;</span></span>
 </p>
-</div>
-
-<div class="end-environment">
-
-<div class="translatormanualentryheadline">
 </li>
 <li>
 
 <p>
+
+</p>
+
+<div class="end-environment">
+<p>
 \end{<span class="declare">description</span>}
 </p>
-</div>
 </div>
 <p>
 Like <span class="texttt">itemize</span>, but used to display a list that explains or defines labels. The width of <span class="meta"><span class="angle">&langle;</span><i>long text</i><span class="angle">&rangle;</span></span> is used to set the
@@ -1393,8 +1075,8 @@ Same as <span class="texttt">subitem projected</span> for subsubitems, that is, 
 <!--
 ...... subsection Highlighting ......
 -->
-<h5 id="autosec-347"><span class="sectionnumber">12.2&#x2003;</span>Highlighting</h5>
-<a id="beameruserguide-autopage-347"></a>
+<h5 id="autosec-368"><span class="sectionnumber">12.2&#x2003;</span>Highlighting</h5>
+<a id="beameruserguide-autopage-368"></a>
 
 
 <p>
@@ -1493,34 +1175,33 @@ necessary to use a boldface version for them. Also, one might wish to have serif
 
 <ul style="list-style-type:none">
 
+<li>
+<p>
+
+</p>
 
 <div class="begin-environment">
-<div class="translatormanualentryheadline"><li>
 <p>
 \begin{<span class="declare">structureenv</span>}<span class="opt"><<span class="meta"><span class="angle">&langle;</span><i>overlay specification</i><span class="angle">&rangle;</span></span>></span>
 </p>
 </div>
-</div>
-
-<div class="translatormanualentryheadline">
 </li>
 <li>
 
 <p>
   <span class="meta"><span class="angle">&langle;</span><i>environment contents</i><span class="angle">&rangle;</span></span>
 </p>
-</div>
-
-<div class="end-environment">
-
-<div class="translatormanualentryheadline">
 </li>
 <li>
 
 <p>
+
+</p>
+
+<div class="end-environment">
+<p>
 \end{<span class="declare">structureenv</span>}
 </p>
-</div>
 </div>
 <p>
 Environment version of the <span class="texttt">\structure</span> command.
@@ -1626,34 +1307,33 @@ class="texttt">alerted text end</span> that are inserted before and after alerte
 
 <ul style="list-style-type:none">
 
+<li>
+<p>
+
+</p>
 
 <div class="begin-environment">
-<div class="translatormanualentryheadline"><li>
 <p>
 \begin{<span class="declare">alertenv</span>}<span class="opt"><<span class="meta"><span class="angle">&langle;</span><i>overlay specification</i><span class="angle">&rangle;</span></span>></span>
 </p>
 </div>
-</div>
-
-<div class="translatormanualentryheadline">
 </li>
 <li>
 
 <p>
   <span class="meta"><span class="angle">&langle;</span><i>environment contents</i><span class="angle">&rangle;</span></span>
 </p>
-</div>
-
-<div class="end-environment">
-
-<div class="translatormanualentryheadline">
 </li>
 <li>
 
 <p>
+
+</p>
+
+<div class="end-environment">
+<p>
 \end{<span class="declare">alertenv</span>}
 </p>
-</div>
 </div>
 <p>
 Environment version of the <span class="texttt">\alert</span> command.
@@ -1712,8 +1392,8 @@ This text is inserted at the end of an <span class="texttt">alertenv</span> envi
 <!--
 ...... subsection Block Environments ......
 -->
-<h5 id="autosec-348"><span class="sectionnumber">12.3&#x2003;</span>Block Environments</h5>
-<a id="beameruserguide-autopage-348"></a>
+<h5 id="autosec-369"><span class="sectionnumber">12.3&#x2003;</span>Block Environments</h5>
+<a id="beameruserguide-autopage-369"></a>
 
 
 <a id="predefined"></a>
@@ -1773,35 +1453,34 @@ option is given, a “shadow” is drawn behind the block.
 
 <ul style="list-style-type:none">
 
+<li>
+<p>
+
+</p>
 
 <div class="begin-environment">
-<div class="translatormanualentryheadline"><li>
 <p>
 \begin{<span class="declare">block</span>}<span class="opt"><<span class="meta"><span class="angle">&langle;</span><i>action specification</i><span class="angle">&rangle;</span></span>></span>{<span class="meta"><span
 class="angle">&langle;</span><i>block title</i><span class="angle">&rangle;</span></span>}<span class="opt"><<span class="meta"><span class="angle">&langle;</span><i>action specification</i><span class="angle">&rangle;</span></span>></span>
 </p>
 </div>
-</div>
-
-<div class="translatormanualentryheadline">
 </li>
 <li>
 
 <p>
   <span class="meta"><span class="angle">&langle;</span><i>environment contents</i><span class="angle">&rangle;</span></span>
 </p>
-</div>
-
-<div class="end-environment">
-
-<div class="translatormanualentryheadline">
 </li>
 <li>
 
 <p>
+
+</p>
+
+<div class="end-environment">
+<p>
 \end{<span class="declare">block</span>}
 </p>
-</div>
 </div>
 <p>
 Only one <span class="meta"><span class="angle">&langle;</span><i>action specification</i><span class="angle">&rangle;</span></span> may be given. Inserts a block, like a definition or a theorem, with the title <span class="meta"><span
@@ -1903,35 +1582,34 @@ class="angle">&rangle;</span></span>. As for <span class="texttt">block title</s
 
 <ul style="list-style-type:none">
 
+<li>
+<p>
+
+</p>
 
 <div class="begin-environment">
-<div class="translatormanualentryheadline"><li>
 <p>
 \begin{<span class="declare">alertblock</span>}<span class="opt"><<span class="meta"><span class="angle">&langle;</span><i>action specification</i><span class="angle">&rangle;</span></span>></span>{<span class="meta"><span
 class="angle">&langle;</span><i>block title</i><span class="angle">&rangle;</span></span>}<span class="opt"><<span class="meta"><span class="angle">&langle;</span><i>action specification</i><span class="angle">&rangle;</span></span>></span>
 </p>
 </div>
-</div>
-
-<div class="translatormanualentryheadline">
 </li>
 <li>
 
 <p>
   <span class="meta"><span class="angle">&langle;</span><i>environment contents</i><span class="angle">&rangle;</span></span>
 </p>
-</div>
-
-<div class="end-environment">
-
-<div class="translatormanualentryheadline">
 </li>
 <li>
 
 <p>
+
+</p>
+
+<div class="end-environment">
+<p>
 \end{<span class="declare">alertblock</span>}
 </p>
-</div>
 </div>
 <p>
 Inserts a block whose title is highlighting. Behaves like the <span class="texttt">block</span> environment otherwise.
@@ -2014,35 +1692,34 @@ Same applies as for normal blocks.
 
 <ul style="list-style-type:none">
 
+<li>
+<p>
+
+</p>
 
 <div class="begin-environment">
-<div class="translatormanualentryheadline"><li>
 <p>
 \begin{<span class="declare">exampleblock</span>}<span class="opt"><<span class="meta"><span class="angle">&langle;</span><i>action specification</i><span class="angle">&rangle;</span></span>></span>{<span class="meta"><span
 class="angle">&langle;</span><i>block title</i><span class="angle">&rangle;</span></span>}<span class="opt"><<span class="meta"><span class="angle">&langle;</span><i>overlay specification</i><span class="angle">&rangle;</span></span>></span>
 </p>
 </div>
-</div>
-
-<div class="translatormanualentryheadline">
 </li>
 <li>
 
 <p>
   <span class="meta"><span class="angle">&langle;</span><i>environment contents</i><span class="angle">&rangle;</span></span>
 </p>
-</div>
-
-<div class="end-environment">
-
-<div class="translatormanualentryheadline">
 </li>
 <li>
 
 <p>
+
+</p>
+
+<div class="end-environment">
+<p>
 \end{<span class="declare">exampleblock</span>}
 </p>
-</div>
 </div>
 <p>
 Inserts a block that is supposed to be an example. Behaves like the <span class="texttt">block</span> environment otherwise.
@@ -2122,8 +1799,8 @@ Same applies as for normal blocks.
 <!--
 ...... subsection Theorem Environments ......
 -->
-<h5 id="autosec-352"><span class="sectionnumber">12.4&#x2003;</span>Theorem Environments</h5>
-<a id="beameruserguide-autopage-352"></a>
+<h5 id="autosec-373"><span class="sectionnumber">12.4&#x2003;</span>Theorem Environments</h5>
+<a id="beameruserguide-autopage-373"></a>
 
 
 <a id="section-theorems"></a>
@@ -2167,36 +1844,35 @@ In the following, only the English versions are discussed. The German ones behav
 
 <ul style="list-style-type:none">
 
+<li>
+<p>
+
+</p>
 
 <div class="begin-environment">
-<div class="translatormanualentryheadline"><li>
 <p>
 \begin{<span class="declare">theorem</span>}<span class="opt"><<span class="meta"><span class="angle">&langle;</span><i>action specification</i><span class="angle">&rangle;</span></span>></span><span class="opt"><span
 class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>additional text</i><span class="angle">&rangle;</span></span><span class="oarg-right-bracket">]</span></span><span class="opt"><<span
 class="meta"><span class="angle">&langle;</span><i>action specification</i><span class="angle">&rangle;</span></span>></span>
 </p>
 </div>
-</div>
-
-<div class="translatormanualentryheadline">
 </li>
 <li>
 
 <p>
   <span class="meta"><span class="angle">&langle;</span><i>environment contents</i><span class="angle">&rangle;</span></span>
 </p>
-</div>
-
-<div class="end-environment">
-
-<div class="translatormanualentryheadline">
 </li>
 <li>
 
 <p>
+
+</p>
+
+<div class="end-environment">
+<p>
 \end{<span class="declare">theorem</span>}
 </p>
-</div>
 </div>
 <p>
 Inserts a theorem. Only one <span class="meta"><span class="angle">&langle;</span><i>action specification</i><span class="angle">&rangle;</span></span> may be given. If present, the <span class="meta"><span class="angle">&langle;</span><i>additional
@@ -2260,36 +1936,35 @@ Causes theorems, definitions, and so on to be numbered locally to each section. 
 
 <ul style="list-style-type:none">
 
+<li>
+<p>
+
+</p>
 
 <div class="begin-environment">
-<div class="translatormanualentryheadline"><li>
 <p>
 \begin{<span class="declare">definition</span>}<span class="opt"><<span class="meta"><span class="angle">&langle;</span><i>action specification</i><span class="angle">&rangle;</span></span>></span><span class="opt"><span
 class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>additional text</i><span class="angle">&rangle;</span></span><span class="oarg-right-bracket">]</span></span><span class="opt"><<span
 class="meta"><span class="angle">&langle;</span><i>action specification</i><span class="angle">&rangle;</span></span>></span>
 </p>
 </div>
-</div>
-
-<div class="translatormanualentryheadline">
 </li>
 <li>
 
 <p>
   <span class="meta"><span class="angle">&langle;</span><i>environment contents</i><span class="angle">&rangle;</span></span>
 </p>
-</div>
-
-<div class="end-environment">
-
-<div class="translatormanualentryheadline">
 </li>
 <li>
 
 <p>
+
+</p>
+
+<div class="end-environment">
+<p>
 \end{<span class="declare">definition</span>}
 </p>
-</div>
 </div>
 <p>
 Behaves like the <span class="texttt">theorem</span> environment, except that the theorem style <span class="texttt">definition</span> is used. In this style, the body of a theorem is typeset in an upright font.
@@ -2308,36 +1983,35 @@ The environment <span class="declare"><span class="texttt">definitions</span></s
 
 <ul style="list-style-type:none">
 
+<li>
+<p>
+
+</p>
 
 <div class="begin-environment">
-<div class="translatormanualentryheadline"><li>
 <p>
 \begin{<span class="declare">example</span>}<span class="opt"><<span class="meta"><span class="angle">&langle;</span><i>action specification</i><span class="angle">&rangle;</span></span>></span><span class="opt"><span
 class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>additional text</i><span class="angle">&rangle;</span></span><span class="oarg-right-bracket">]</span></span><span class="opt"><<span
 class="meta"><span class="angle">&langle;</span><i>action specification</i><span class="angle">&rangle;</span></span>></span>
 </p>
 </div>
-</div>
-
-<div class="translatormanualentryheadline">
 </li>
 <li>
 
 <p>
   <span class="meta"><span class="angle">&langle;</span><i>environment contents</i><span class="angle">&rangle;</span></span>
 </p>
-</div>
-
-<div class="end-environment">
-
-<div class="translatormanualentryheadline">
 </li>
 <li>
 
 <p>
+
+</p>
+
+<div class="end-environment">
+<p>
 \end{<span class="declare">example</span>}
 </p>
-</div>
 </div>
 <p>
 Behaves like the <span class="texttt">theorem</span> environment, except that the theorem style <span class="texttt">example</span> is used. A side-effect of using this theorem style is that the <span class="meta"><span
@@ -2367,36 +2041,35 @@ articles.
 
 <ul style="list-style-type:none">
 
+<li>
+<p>
+
+</p>
 
 <div class="begin-environment">
-<div class="translatormanualentryheadline"><li>
 <p>
 \begin{<span class="declare">proof</span>}<span class="opt"><<span class="meta"><span class="angle">&langle;</span><i>action specification</i><span class="angle">&rangle;</span></span>></span><span class="opt"><span
 class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>proof name</i><span class="angle">&rangle;</span></span><span class="oarg-right-bracket">]</span></span><span class="opt"><<span class="meta"><span
 class="angle">&langle;</span><i>action specification</i><span class="angle">&rangle;</span></span>></span>
 </p>
 </div>
-</div>
-
-<div class="translatormanualentryheadline">
 </li>
 <li>
 
 <p>
   <span class="meta"><span class="angle">&langle;</span><i>environment contents</i><span class="angle">&rangle;</span></span>
 </p>
-</div>
-
-<div class="end-environment">
-
-<div class="translatormanualentryheadline">
 </li>
 <li>
 
 <p>
+
+</p>
+
+<div class="end-environment">
+<p>
 \end{<span class="declare">proof</span>}
 </p>
-</div>
 </div>
 <p>
 Typesets a proof. If the optional <span class="meta"><span class="angle">&langle;</span><i>proof name</i><span class="angle">&rangle;</span></span> is given, it completely replaces the word “Proof.” This is different from normal theorems, where the optional
@@ -2795,8 +2468,8 @@ Inserted at the end of a <span class="texttt">proof</span> environment.
 <!--
 ...... subsection Framed and Boxed Text ......
 -->
-<h5 id="autosec-359"><span class="sectionnumber">12.5&#x2003;</span>Framed and Boxed Text</h5>
-<a id="beameruserguide-autopage-359"></a>
+<h5 id="autosec-380"><span class="sectionnumber">12.5&#x2003;</span>Framed and Boxed Text</h5>
+<a id="beameruserguide-autopage-380"></a>
 
 
 <p>
@@ -2816,35 +2489,34 @@ The <span class="beamer-name"><span class="textsc">beamer</span></span> class al
 
 <ul style="list-style-type:none">
 
+<li>
+<p>
+
+</p>
 
 <div class="begin-environment">
-<div class="translatormanualentryheadline"><li>
 <p>
 \begin{<span class="declare">beamercolorbox</span>}<span class="opt"><span class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>options</i><span class="angle">&rangle;</span></span><span
 class="oarg-right-bracket">]</span></span>{<span class="meta"><span class="angle">&langle;</span><i>beamer color</i><span class="angle">&rangle;</span></span>}
 </p>
 </div>
-</div>
-
-<div class="translatormanualentryheadline">
 </li>
 <li>
 
 <p>
   <span class="meta"><span class="angle">&langle;</span><i>environment contents</i><span class="angle">&rangle;</span></span>
 </p>
-</div>
-
-<div class="end-environment">
-
-<div class="translatormanualentryheadline">
 </li>
 <li>
 
 <p>
+
+</p>
+
+<div class="end-environment">
+<p>
 \end{<span class="declare">beamercolorbox</span>}
 </p>
-</div>
 </div>
 <p>
 This environment can be used to conveniently typeset some text using some <span class="beamer-name"><span class="textsc">beamer</span></span>-color. Basically, the following two command blocks do the same:
@@ -3079,35 +2751,34 @@ this option is given). Only <span class="latexlogofont"><span class="latexlogo">
 
 <ul style="list-style-type:none">
 
+<li>
+<p>
+
+</p>
 
 <div class="begin-environment">
-<div class="translatormanualentryheadline"><li>
 <p>
 \begin{<span class="declare">beamerboxesrounded</span>}<span class="opt"><span class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>options</i><span class="angle">&rangle;</span></span><span
 class="oarg-right-bracket">]</span></span>{<span class="meta"><span class="angle">&langle;</span><i>head</i><span class="angle">&rangle;</span></span>}
 </p>
 </div>
-</div>
-
-<div class="translatormanualentryheadline">
 </li>
 <li>
 
 <p>
   <span class="meta"><span class="angle">&langle;</span><i>environment contents</i><span class="angle">&rangle;</span></span>
 </p>
-</div>
-
-<div class="end-environment">
-
-<div class="translatormanualentryheadline">
 </li>
 <li>
 
 <p>
+
+</p>
+
+<div class="end-environment">
+<p>
 \end{<span class="declare">beamerboxesrounded</span>}
 </p>
-</div>
 </div>
 <p>
 The text inside the environment is framed by a rectangular area with rounded corners. For the large rectangular area, the <span class="beamer-name"><span class="textsc">beamer</span></span>-color specified with the <span class="texttt">lower</span> option is
@@ -3176,8 +2847,8 @@ This environment is not available in <span class="texttt">article</span> mode.
 <!--
 ...... subsection Figures and Tables ......
 -->
-<h5 id="autosec-364"><span class="sectionnumber">12.6&#x2003;</span>Figures and Tables</h5>
-<a id="beameruserguide-autopage-364"></a>
+<h5 id="autosec-385"><span class="sectionnumber">12.6&#x2003;</span>Figures and Tables</h5>
+<a id="beameruserguide-autopage-385"></a>
 
 
 <p>
@@ -3375,8 +3046,8 @@ The following template options are predefined:
 <!--
 ...... subsection Splitting a Frame into Multiple Columns ......
 -->
-<h5 id="autosec-366"><span class="sectionnumber">12.7&#x2003;</span>Splitting a Frame into Multiple Columns</h5>
-<a id="beameruserguide-autopage-366"></a>
+<h5 id="autosec-387"><span class="sectionnumber">12.7&#x2003;</span>Splitting a Frame into Multiple Columns</h5>
+<a id="beameruserguide-autopage-387"></a>
 
 
 <p>
@@ -3395,35 +3066,34 @@ class="texttt">\column</span> command to create new columns.
 
 <ul style="list-style-type:none">
 
+<li>
+<p>
+
+</p>
 
 <div class="begin-environment">
-<div class="translatormanualentryheadline"><li>
 <p>
 \begin{<span class="declare">columns</span>}<span class="opt"><<span class="meta"><span class="angle">&langle;</span><i>overlay specification</i><span class="angle">&rangle;</span></span>></span><span class="opt"><span
 class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>options</i><span class="angle">&rangle;</span></span><span class="oarg-right-bracket">]</span></span>
 </p>
 </div>
-</div>
-
-<div class="translatormanualentryheadline">
 </li>
 <li>
 
 <p>
   <span class="meta"><span class="angle">&langle;</span><i>environment contents</i><span class="angle">&rangle;</span></span>
 </p>
-</div>
-
-<div class="end-environment">
-
-<div class="translatormanualentryheadline">
 </li>
 <li>
 
 <p>
+
+</p>
+
+<div class="end-environment">
+<p>
 \end{<span class="declare">columns</span>}
 </p>
-</div>
 </div>
 <p>
 A multi-column area. If <span class="meta"><span class="angle">&langle;</span><i>overlay specification</i><span class="angle">&rangle;</span></span> is present, the environment will only be shown on the specified slides. Inside the environment you should
@@ -3543,36 +3213,35 @@ To create a column, you can either use the <span class="texttt">column</span> en
 
 <ul style="list-style-type:none">
 
+<li>
+<p>
+
+</p>
 
 <div class="begin-environment">
-<div class="translatormanualentryheadline"><li>
 <p>
 \begin{<span class="declare">column</span>}<span class="opt"><<span class="meta"><span class="angle">&langle;</span><i>overlay specification</i><span class="angle">&rangle;</span></span>></span><span class="opt"><span
 class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle;</span><i>placement</i><span class="angle">&rangle;</span></span><span class="oarg-right-bracket">]</span></span>{<span class="meta"><span
 class="angle">&langle;</span><i>column width</i><span class="angle">&rangle;</span></span>}
 </p>
 </div>
-</div>
-
-<div class="translatormanualentryheadline">
 </li>
 <li>
 
 <p>
   <span class="meta"><span class="angle">&langle;</span><i>environment contents</i><span class="angle">&rangle;</span></span>
 </p>
-</div>
-
-<div class="end-environment">
-
-<div class="translatormanualentryheadline">
 </li>
 <li>
 
 <p>
+
+</p>
+
+<div class="end-environment">
+<p>
 \end{<span class="declare">column</span>}
 </p>
-</div>
 </div>
 <p>
 Creates a single column of width <span class="meta"><span class="angle">&langle;</span><i>column width</i><span class="angle">&rangle;</span></span>. If <span class="meta"><span class="angle">&langle;</span><i>overlay specification</i><span
@@ -3642,8 +3311,8 @@ This command is ignored in <span class="texttt">article</span> mode.
 <!--
 ...... subsection Positioning Text and Graphics Absolutely ......
 -->
-<h5 id="autosec-371"><span class="sectionnumber">12.8&#x2003;</span>Positioning Text and Graphics Absolutely</h5>
-<a id="beameruserguide-autopage-371"></a>
+<h5 id="autosec-392"><span class="sectionnumber">12.8&#x2003;</span>Positioning Text and Graphics Absolutely</h5>
+<a id="beameruserguide-autopage-392"></a>
 
 
 <p>
@@ -3676,8 +3345,8 @@ Another package to conveniently position elements at specific positions on the f
 <!--
 ...... subsection Verbatim and Fragile Text ......
 -->
-<h5 id="autosec-373"><span class="sectionnumber">12.9&#x2003;</span>Verbatim and Fragile Text</h5>
-<a id="beameruserguide-autopage-373"></a>
+<h5 id="autosec-394"><span class="sectionnumber">12.9&#x2003;</span>Verbatim and Fragile Text</h5>
+<a id="beameruserguide-autopage-394"></a>
 
 
 <p>
@@ -3701,34 +3370,33 @@ class="textsc">beamer</span></span>:
 
 <ul style="list-style-type:none">
 
+<li>
+<p>
+
+</p>
 
 <div class="begin-environment">
-<div class="translatormanualentryheadline"><li>
 <p>
 \begin{<span class="declare">semiverbatim</span>}
 </p>
 </div>
-</div>
-
-<div class="translatormanualentryheadline">
 </li>
 <li>
 
 <p>
   <span class="meta"><span class="angle">&langle;</span><i>environment contents</i><span class="angle">&rangle;</span></span>
 </p>
-</div>
-
-<div class="end-environment">
-
-<div class="translatormanualentryheadline">
 </li>
 <li>
 
 <p>
+
+</p>
+
+<div class="end-environment">
+<p>
 \end{<span class="declare">semiverbatim</span>}
 </p>
-</div>
 </div>
 <p>
 The text inside this environment is typeset like verbatim text. However, the characters <span class="texttt">\</span>, <span class="texttt">{</span>, and <span class="texttt">}</span> retain their meaning. Thus, you can say things like
@@ -3747,8 +3415,8 @@ anyway), <span class="texttt">\{</span>, and <span class="texttt">\}</span>. Thu
 <!--
 ...... subsection Abstract ......
 -->
-<h5 id="autosec-375"><span class="sectionnumber">12.10&#x2003;</span>Abstract</h5>
-<a id="beameruserguide-autopage-375"></a>
+<h5 id="autosec-396"><span class="sectionnumber">12.10&#x2003;</span>Abstract</h5>
+<a id="beameruserguide-autopage-396"></a>
 
 
 <p>
@@ -3760,34 +3428,33 @@ The <span class="texttt">{abstract}</span> environment is overlay specification-
 
 <ul style="list-style-type:none">
 
+<li>
+<p>
+
+</p>
 
 <div class="begin-environment">
-<div class="translatormanualentryheadline"><li>
 <p>
 \begin{<span class="declare">abstract</span>}<span class="opt"><<span class="meta"><span class="angle">&langle;</span><i>action specification</i><span class="angle">&rangle;</span></span>></span>
 </p>
 </div>
-</div>
-
-<div class="translatormanualentryheadline">
 </li>
 <li>
 
 <p>
   <span class="meta"><span class="angle">&langle;</span><i>environment contents</i><span class="angle">&rangle;</span></span>
 </p>
-</div>
-
-<div class="end-environment">
-
-<div class="translatormanualentryheadline">
 </li>
 <li>
 
 <p>
+
+</p>
+
+<div class="end-environment">
+<p>
 \end{<span class="declare">abstract</span>}
 </p>
-</div>
 </div>
 <p>
 You can use this environment to typeset an abstract.
@@ -3859,8 +3526,8 @@ This template is inserted at the end of the abstract, after the <span class="met
 <!--
 ...... subsection Verse, Quotations, Quotes ......
 -->
-<h5 id="autosec-376"><span class="sectionnumber">12.11&#x2003;</span>Verse, Quotations, Quotes</h5>
-<a id="beameruserguide-autopage-376"></a>
+<h5 id="autosec-397"><span class="sectionnumber">12.11&#x2003;</span>Verse, Quotations, Quotes</h5>
+<a id="beameruserguide-autopage-397"></a>
 
 
 <p>
@@ -3881,34 +3548,33 @@ standard document font).
 
 <ul style="list-style-type:none">
 
+<li>
+<p>
+
+</p>
 
 <div class="begin-environment">
-<div class="translatormanualentryheadline"><li>
 <p>
 \begin{<span class="declare">verse</span>}<span class="opt"><<span class="meta"><span class="angle">&langle;</span><i>action specification</i><span class="angle">&rangle;</span></span>></span>
 </p>
 </div>
-</div>
-
-<div class="translatormanualentryheadline">
 </li>
 <li>
 
 <p>
   <span class="meta"><span class="angle">&langle;</span><i>environment contents</i><span class="angle">&rangle;</span></span>
 </p>
-</div>
-
-<div class="end-environment">
-
-<div class="translatormanualentryheadline">
 </li>
 <li>
 
 <p>
+
+</p>
+
+<div class="end-environment">
+<p>
 \end{<span class="declare">verse</span>}
 </p>
-</div>
 </div>
 <p>
 You can use this environment to typeset a verse.
@@ -3966,34 +3632,33 @@ This template is inserted at the end of the verse.
 
 <ul style="list-style-type:none">
 
+<li>
+<p>
+
+</p>
 
 <div class="begin-environment">
-<div class="translatormanualentryheadline"><li>
 <p>
 \begin{<span class="declare">quotation</span>}<span class="opt"><<span class="meta"><span class="angle">&langle;</span><i>action specification</i><span class="angle">&rangle;</span></span>></span>
 </p>
 </div>
-</div>
-
-<div class="translatormanualentryheadline">
 </li>
 <li>
 
 <p>
   <span class="meta"><span class="angle">&langle;</span><i>environment contents</i><span class="angle">&rangle;</span></span>
 </p>
-</div>
-
-<div class="end-environment">
-
-<div class="translatormanualentryheadline">
 </li>
 <li>
 
 <p>
+
+</p>
+
+<div class="end-environment">
+<p>
 \end{<span class="declare">quotation</span>}
 </p>
-</div>
 </div>
 <p>
 Use this environment to typeset multi-paragraph quotations. Think again, before presenting multi-paragraph quotations.
@@ -4051,34 +3716,33 @@ This template is inserted at the end of the quotation.
 
 <ul style="list-style-type:none">
 
+<li>
+<p>
+
+</p>
 
 <div class="begin-environment">
-<div class="translatormanualentryheadline"><li>
 <p>
 \begin{<span class="declare">quote</span>}<span class="opt"><<span class="meta"><span class="angle">&langle;</span><i>action specification</i><span class="angle">&rangle;</span></span>></span>
 </p>
 </div>
-</div>
-
-<div class="translatormanualentryheadline">
 </li>
 <li>
 
 <p>
   <span class="meta"><span class="angle">&langle;</span><i>environment contents</i><span class="angle">&rangle;</span></span>
 </p>
-</div>
-
-<div class="end-environment">
-
-<div class="translatormanualentryheadline">
 </li>
 <li>
 
 <p>
+
+</p>
+
+<div class="end-environment">
+<p>
 \end{<span class="declare">quote</span>}
 </p>
-</div>
 </div>
 <p>
 Use this environment to typeset a single-paragraph quotation.
@@ -4133,8 +3797,8 @@ This template is inserted at the end of the quote.
 <!--
 ...... subsection Footnotes ......
 -->
-<h5 id="autosec-377"><span class="sectionnumber">12.12&#x2003;</span>Footnotes</h5>
-<a id="beameruserguide-autopage-377"></a>
+<h5 id="autosec-398"><span class="sectionnumber">12.12&#x2003;</span>Footnotes</h5>
+<a id="beameruserguide-autopage-398"></a>
 
 
 <p>
