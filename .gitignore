@@ -10,6 +10,6 @@ doc/.latexmkrc
 # doc/postprocess-analysis.py
 *_html_inc.tex
 .prettierrc
-doc/**/*.html
+# doc/**/*.html
 cpcss.py
 home.py
