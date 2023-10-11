@@ -620,6 +620,17 @@ ul > li {
 }
 
 
+/* figures */
+
+figure > p {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+div.figurecaption {
+  font-size: 85%;
+}
+
 
 /* Home page */
 
