@@ -23,6 +23,11 @@ For feedback, bug reports, and feature requests, please open an issue in [beamer
 + [JetBrains Mono font family](https://www.jetbrains.com/lp/mono/)
 + Algolia's [DocSearch](https://docsearch.algolia.com/docs/legacy/run-your-own)
 
+## Remarks
+
++ If you think the default font size is small, you could use the [stylebot](https://stylebot.dev/) browser plugin to customize the web page style.
++ If you find there are some typos in the online documentation, go to the original repository [josephwright/beamer](https://github.com/josephwright/beamer) and pull requests there.
+
 ## Sponsor
 
 If you find this project helpful, please consider to make a donation to help the author have a better
