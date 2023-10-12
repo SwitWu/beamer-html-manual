@@ -90,7 +90,7 @@ body {
 kbd,
 pre.verbatim,
 span.extracttheme,
-span.classoption-heading,
+div.classoption-headline,
 span.extractclass,
 div.begin-environment,
 div.end-environment,
@@ -578,11 +578,11 @@ body.home-page nav.toc > p > a {
 div.command > :not(div.command-headline),
 div.element > :not(div.element-headline),
 div.environment > :not(div.environment-headline),
+div.classoption > :not(div.classoption-headline),
 div.solution > p,
 div.package > pre.verbatim,
 div.package > p:nth-child(n+2),
 div.package > div.classoption,
-div.classoption > p:nth-child(n+2),
 div.class > p:nth-child(n+2) {
   margin-left: 3em;
 }
