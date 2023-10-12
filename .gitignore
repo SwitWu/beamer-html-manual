@@ -7,9 +7,9 @@ icon.png
 !doc/beamerthemeexample/*.pdf
 doc/.latexmkrc
 .latexmkrc
-# doc/postprocess-analysis.py
-*_html_inc.tex
+doc/*_html_inc.tex
 .prettierrc
-# doc/**/*.html
-cpcss.py
-home.py
+doc/*.html
+doc/processed/
+doc/cpcss.py
+doc/home.py
