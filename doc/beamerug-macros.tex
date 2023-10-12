@@ -214,8 +214,10 @@
 %\def\opt{\afterassignment\translatormanualopt\let\next=}
 \def\translatormanualopt{\ifx\next\bgroup\bgroup\color{black!50!green}\else{\color{black!50!green}\next}\fi}
 
-\newcommand{\beamernote}{\warpprintonly{\par\smallskip\noindent\llap{\color{blue}\vtop to0pt{\llap{\textsc{presen-\!}}\vskip-3pt\llap{\textsc{tation}}\vss}\ \ }}}
-\newcommand{\articlenote}{\warpprintonly{\par\smallskip\noindent\llap{\color{blue}\textsc{article}\ \ }}}
+\newcommand{\beamernote}{\warpprintonly{\par\smallskip\noindent\llap{\color{blue}\vtop to0pt{\llap{\textsc{presen-\!}}\vskip-3pt\llap{\textsc{tation}}\vss}\ \ }}%
+  \warpHTMLonly{\BlockClass{beamernote}\par\smallskip\noindent\textsc{presentation}\endBlockClass}}
+\newcommand{\articlenote}{\warpprintonly{\par\smallskip\noindent\llap{\color{blue}\textsc{article}\ \ }}%
+  \warpHTMLonly{\BlockClass{articlenote}\par\smallskip\noindent\textsc{article}\endBlockClass}}
 \newcommand{\appearancenote}{\par\smallskip\noindent\appearancenotetext}
 
 \def\appearancenotetext{\llap{\color{blue}\vtop
