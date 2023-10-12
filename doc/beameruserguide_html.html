@@ -2072,11 +2072,27 @@ use them in conjunction. Add a star to the command to first “reset” the font
 </ul>
 </div>
 
+
+<div class="beamernote">
+
+<p>
+<span class="textsc">presentation</span>
+</p>
+</div>
+
 <p>
 As next to this paragraph, you will sometimes find the word <span class="textsc">presentation</span> in blue next to some paragraph. This means that the paragraph applies only when you “normally typeset your presentation using <span
 class="latexlogofont"><span class="latexlogo">L<span class="latexlogosup">a</span>T<span class="latexlogosub">e</span>X</span></span> or pdf<span class="latexlogofont"><span class="latexlogo">L<span class="latexlogosup">a</span>T<span
 class="latexlogosub">e</span>X</span></span>.”
 </p>
+
+
+<div class="articlenote">
+
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 
 <p>
 Opposed to this, a paragraph with <span class="textsc">article</span> next to it describes some behavior that is special for the <span class="texttt">article</span> mode. This special mode is used to create lecture notes out of a presentation (the two can coexist
@@ -3001,10 +3017,22 @@ way the theme dictates, not the way the <span class="texttt">french</span> style
 <p>
 <span class="extracttheme">\usepackage<span class="texttt">[</span><span class="declare"><span class="texttt">spanish</span></span><span class="texttt">]</span>{<span class="declare">babel</span>}</span>
 </p>
+
+<div class="beamernote">
+<p>
+<span class="textsc">presentation</span>
+</p>
+</div>
 <p>
 When using the <span class="texttt">spanish</span> style, certain features that clash with the functionality of the <span class="beamer-name"><span class="textsc">beamer</span></span> class will be turned off. In particular, the special behavior of the pointed
 brackets <span class="texttt"><</span> and <span class="texttt">></span> is deactivated.
 </p>
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 To make the characters <span class="texttt"><</span> and <span class="texttt">></span> active in <span class="texttt">article</span> mode, pass the option <span class="texttt">activeospeccharacters</span> to the package <span
 class="texttt">beamerbasearticle</span>. This will lead to problems with overlay specifications.
@@ -3022,6 +3050,12 @@ class="texttt">beamerbasearticle</span>. This will lead to problems with overlay
 <p>
 <span class="extracttheme">\usepackage{<span class="declare">color</span>}</span>
 </p>
+
+<div class="beamernote">
+<p>
+<span class="textsc">presentation</span>
+</p>
+</div>
 <p>
 The <span class="texttt">color</span> package is automatically loaded by <span class="texttt">beamer.cls</span>. This makes it impossible to pass options to <span class="texttt">color</span> in the preamble of your document in the normal manner. To pass
 a <span class="meta"><span class="angle">&langle;</span><i>list of options</i><span class="angle">&rangle;</span></span> to <span class="texttt">color</span>, you can use the following class option:
@@ -3041,6 +3075,12 @@ class="angle">&langle;</span><i>list of options</i><span class="angle">&rangle;<
 </li>
 </ul>
 </div>
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 The <span class="texttt">color</span> package is not loaded automatically if <span class="texttt">beamerarticle</span> is loaded with the <span class="texttt">noxcolor</span> option.
 </p>
@@ -3057,6 +3097,12 @@ The <span class="texttt">color</span> package is not loaded automatically if <sp
 <p>
 <span class="extracttheme">\usepackage{<span class="declare">colortbl</span>}</span>
 </p>
+
+<div class="beamernote">
+<p>
+<span class="textsc">presentation</span>
+</p>
+</div>
 <p>
 With newer versions of <span class="texttt">xcolor.sty</span>, you need to pass the option <span class="texttt">table</span> to <span class="texttt">xcolor.sty</span> if you wish to use <span class="texttt">colortbl</span>. See the notes on <span
 class="texttt">xcolor</span> below, on how to do this.
@@ -3074,6 +3120,12 @@ class="texttt">xcolor</span> below, on how to do this.
 <p>
 <span class="extracttheme">\usepackage{<span class="declare">CJK</span>}</span>
 </p>
+
+<div class="beamernote">
+<p>
+<span class="textsc">presentation</span>
+</p>
+</div>
 <p>
 When using the <span class="texttt">CJK</span> package for using Asian fonts, you must use the class option <span class="declare"><span class="texttt">CJK</span></span>.
 </p>
@@ -3090,6 +3142,12 @@ When using the <span class="texttt">CJK</span> package for using Asian fonts, yo
 <p>
 <span class="extracttheme">\usepackage{<span class="declare">deluxetable</span>}</span>
 </p>
+
+<div class="beamernote">
+<p>
+<span class="textsc">presentation</span>
+</p>
+</div>
 <p>
 The caption generation facilities of <span class="texttt">deluxetable</span> are deactivated. Instead, the caption template is used.
 </p>
@@ -3122,6 +3180,12 @@ See <span class="texttt">AlDraTex</span>.
 <p>
 <span class="extracttheme">\usepackage{<span class="declare">enumerate</span>}</span>
 </p>
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 This package is loaded automatically in the <span class="texttt">presentation</span> modes, but not in the <span class="texttt">article</span> mode. If you use its features, you have to load the package “by hand” in the <span class="texttt">article</span>
 mode.
@@ -3215,6 +3279,12 @@ href="How-To-Import-Presentations-Based-on-Other-Packages-Classes.html#section-p
 <p>
 <span class="extracttheme">\usepackage{<span class="declare">hyperref</span>}</span>
 </p>
+
+<div class="beamernote">
+<p>
+<span class="textsc">presentation</span>
+</p>
+</div>
 <p>
 The <span class="texttt">hyperref</span> package is automatically loaded by <span class="texttt">beamer.cls</span> and certain options are set up. In order to pass additional options to <span class="texttt">hyperref</span> or to override options, you can use
 the following class option:
@@ -3239,6 +3309,12 @@ Causes the <span class="meta"><span class="angle">&langle;</span><i>list of opti
 <p>
 Alternatively, you can also use the <span class="texttt">\hypersetup</span> command.
 </p>
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 In the <span class="texttt">article</span> version, you must include <span class="texttt">hyperref</span> manually if you want to use it. You can do so by passing option <span class="texttt">hyperref</span> to <span class="texttt">beamerarticle</span>.
 It is not included automatically.
@@ -3256,6 +3332,12 @@ It is not included automatically.
 <p>
 <span class="extracttheme">\usepackage<span class="texttt">[</span><span class="declare"><span class="texttt">utf8,utf8x</span></span><span class="texttt">]</span>{<span class="declare">inputenc</span>}</span>
 </p>
+
+<div class="beamernote">
+<p>
+<span class="textsc">presentation</span>
+</p>
+</div>
 <p>
 When using Unicode, you may wish to use <em>some</em> of the following class options:
 </p>
@@ -3311,6 +3393,12 @@ This option sets the input encoding to <span class="texttt">utf8</span>. It’s 
 Note that <em>none</em> of these options apply to <span class="texttt">lualatex</span> and <span class="texttt">xelatex</span>, since both support Unicode natively without any extra packages. Most of the time using these options actually harms output
 quality, so be careful about what you use. If you want to have a document that allows compiling with multiple drivers, take a look at <span class="texttt">iftex</span>, <span class="texttt">ifxetex</span> and <span class="texttt">ifluatex</span> packages.
 </p>
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 Passing option <span class="texttt">utf8</span> to <span class="texttt">beamerarticle</span> has the same effect as saying <span class="texttt">\usepackage[utf8]{inputenc}</span> in the preamble.
 </p>
@@ -3330,6 +3418,12 @@ Again, take care if you use <span class="texttt">lualatex</span> or <span class=
 <p>
 <span class="extracttheme">\usepackage{<span class="declare">listings</span>}</span>
 </p>
+
+<div class="beamernote">
+<p>
+<span class="textsc">presentation</span>
+</p>
+</div>
 <p>
 Note that you must treat <span class="texttt">lstlisting</span> environments exactly the same way as you would treat <span class="texttt">verbatim</span> environments. When using <span class="texttt">\defverbatim</span> that contains a colored <span
 class="texttt">lstlisting</span>, use the <span class="texttt">colored</span> option of <span class="texttt">\defverbatim</span>.
@@ -3365,6 +3459,12 @@ class="texttt">lstlisting</span>, use the <span class="texttt">colored</span> op
 <p>
 <span class="extracttheme">\usepackage{<span class="declare">msc</span>}</span>
 </p>
+
+<div class="beamernote">
+<p>
+<span class="textsc">presentation</span>
+</p>
+</div>
 <p>
 Since this package uses <span class="texttt">pstricks</span> internally, everything that applies to pstricks also applies to <span class="texttt">msc</span>.
 </p>
@@ -3414,6 +3514,12 @@ during one quarter of a whole). You can use the <span class="texttt">\beamerpaus
 <p>
 <span class="extracttheme">\usepackage{<span class="declare">paralist</span>}</span>
 </p>
+
+<div class="beamernote">
+<p>
+<span class="textsc">presentation</span>
+</p>
+</div>
 <p>
 <span class="beamer-name"><span class="textsc">beamer</span></span> automatically patches list-related commands using <span class="texttt">beamerpatchparalist</span> package at the beginning of document. Besides, <span class="beamer-name"><span
 class="textsc">beamer</span></span> also supports using <span class="texttt">compactitem</span> and <span class="texttt">compactenum</span> environments with overlays, just like the usage of <span class="texttt">enumerate</span> environments:
@@ -3453,6 +3559,12 @@ Commands like <span class="texttt">\includepdf</span> only work <em>outside</em>
 <p>
 <span class="extracttheme">\usepackage{<span class="declare"><span class="meta"><span class="angle">&langle;</span><i>professional font package</i><span class="angle">&rangle;</span></span></span>}</span>
 </p>
+
+<div class="beamernote">
+<p>
+<span class="textsc">presentation</span>
+</p>
+</div>
 <p>
 If you use a professional font package, <span class="beamer-name"><span class="textsc">beamer</span></span>’s internal redefinition of how variables are typeset may interfere with the font package’s superior way of typesetting them. In this case, you should use the
 class option <span class="texttt">professionalfonts</span> to suppress any font substitution. See Section&nbsp;<a href="Fonts.html#section-substition">18.2.2</a> for details.
@@ -3537,6 +3649,12 @@ href="How-To-Import-Presentations-Based-on-Other-Packages-Classes.html#section-t
 <p>
 <span class="extracttheme">\usepackage{<span class="declare">textpos</span>}</span>
 </p>
+
+<div class="beamernote">
+<p>
+<span class="textsc">presentation</span>
+</p>
+</div>
 <p>
 <span class="beamer-name"><span class="textsc">beamer</span></span> automatically installs a white background behind everything, unless you install a different background template. Because of this, you must use the <span class="texttt">overlay</span>
 option when using <span class="texttt">textpos</span>, so that it will place boxes <em>in front of</em> everything. Alternatively, you can install an empty background template, but this may result in an incorrect display in certain situations with older versions of the
@@ -3571,6 +3689,12 @@ See <span class="texttt">\usepackage[utf8,utf8x]{inputenc}</span>.
 <p>
 <span class="extracttheme">\usepackage{<span class="declare">xcolor</span>}</span>
 </p>
+
+<div class="beamernote">
+<p>
+<span class="textsc">presentation</span>
+</p>
+</div>
 <p>
 The <span class="texttt">xcolor</span> package is automatically loaded by <span class="texttt">beamer.cls</span>. The same applies as to <span class="texttt">color</span>.
 </p>
@@ -3592,6 +3716,12 @@ Causes the <span class="meta"><span class="angle">&langle;</span><i>list of opti
 When using <span class="beamer-name"><span class="textsc">beamer</span></span> together with the <span class="texttt">pstricks</span> package, be sure to pass the <span class="texttt">xcolor=pst</span> option to <span class="beamer-name"><span
 class="textsc">beamer</span></span> (and hence to <span class="texttt">xcolor</span>).
 </p>
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 The <span class="texttt">color</span> package is not loaded automatically if <span class="texttt">beamerarticle</span> is loaded with the <span class="texttt">noxcolor</span> option.
 </p>
@@ -4805,6 +4935,14 @@ parameters.
 <a id="beameruserguide-autopage-97"></a>
 
 
+
+<div class="beamernote">
+
+<p>
+<span class="textsc">presentation</span>
+</p>
+</div>
+
 <p>
 It is advisable that you create a folder for each presentation. Even though your presentation will usually reside in a single file, <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span> produces so many extra
 files that things can easily get very confusing otherwise. The folder’s name should ideally start with the date of your talk in ISO format (like 2003-12-25 for a Christmas talk), followed by some reminder text of what the talk is all about. Putting the date at the front in this
@@ -4888,6 +5026,14 @@ command following the last page of a document has no effect.
 <a id="beameruserguide-autopage-100"></a>
 
 
+
+<div class="beamernote">
+
+<p>
+<span class="textsc">presentation</span>
+</p>
+</div>
+
 <p>
 Once a first version of the structure is finished, you should try to create a first PDF or PostScript file of your (still empty) talk to ensure that everything is working properly. This file will only contain the title page and the table of contents.
 </p>
@@ -4897,6 +5043,14 @@ Once a first version of the structure is finished, you should try to create a fi
 <h6 id="autosec-101"><span class="sectionnumber">4.3.1&#x2003;</span>Creating PDF</h6>
 <a id="beameruserguide-autopage-101"></a>
 
+
+
+<div class="beamernote">
+
+<p>
+<span class="textsc">presentation</span>
+</p>
+</div>
 
 <p>
 To create a <span class="texttt">PDF</span> version of this file, run the program <span class="texttt">pdflatex</span> on <span class="texttt">main.tex</span> at least twice. You need to run it twice, so that <span class="latexlogofont"><span
@@ -4929,6 +5083,14 @@ You can next use a program like the Acrobat Reader, <span class="texttt">xpdf</s
 
 
 <a id="section-postscript"></a>
+
+
+<div class="beamernote">
+
+<p>
+<span class="textsc">presentation</span>
+</p>
+</div>
 
 <p>
 To create a PostScript version, you should first ascertain that the <span class="textsc">hyperref</span> package (which is automatically loaded by the <span class="beamer-name"><span class="textsc">beamer</span></span> class) uses the option <span
@@ -7159,6 +7321,12 @@ The following list of solution templates is sorted by the length of the talks fo
 </p>
 </li>
 </ul>
+
+<div class="beamernote">
+<p>
+<span class="textsc">presentation</span>
+</p>
+</div>
 <p>
 <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span>-version available in languages <span class="texttt">de</span>, <span class="texttt">en</span>, and <span class="texttt">fr</span>.
 </p>
@@ -7205,6 +7373,12 @@ The following list of solution templates is sorted by the length of the talks fo
 </p>
 </li>
 </ul>
+
+<div class="beamernote">
+<p>
+<span class="textsc">presentation</span>
+</p>
+</div>
 <p>
 <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span>-version available in languages <span class="texttt">de</span>, <span class="texttt">en</span>, and <span class="texttt">fr</span>.
 </p>
@@ -7251,6 +7425,12 @@ The following list of solution templates is sorted by the length of the talks fo
 </p>
 </li>
 </ul>
+
+<div class="beamernote">
+<p>
+<span class="textsc">presentation</span>
+</p>
+</div>
 <p>
 <span class="latexlogofont"><span class="latexlogo">T<span class="latexlogosub">e</span>X</span></span>-version available in languages <span class="texttt">de</span>, <span class="texttt">en</span>, and <span class="texttt">fr</span>.
 </p>
@@ -9859,6 +10039,12 @@ Using this option is not good, but also not evil.
 </p>
 </li>
 </ul>
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 In <span class="texttt">article</span> mode, the <span class="texttt">frame</span> environment does not create any visual reference to the original frame (no frame is drawn). Rather, the frame text is inserted into the normal text. To change this, you can modify
 the templates <span class="texttt">frame begin</span> and <span class="texttt">frame end</span>, see below. To suppress a frame in <span class="texttt">article</span> mode, you can, for example, specify <span class="texttt"><presentation></span> as
@@ -12018,6 +12204,12 @@ theme; you cannot (currently) specify this position directly.
 <p>
 Currently, the effect of this command is just to setup the <span class="texttt">logo</span> template. However, a more sophisticated effect might be implemented in the future.
 </p>
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 This command has no effect.
 </p>
@@ -12103,11 +12295,23 @@ class="meta"><span class="angle">&langle;</span><i>overlay specification</i><spa
 If you are using the <span class="texttt">allowframebreaks</span> option with the current frame, a continuation text (like “(cont.)” or something similar, depending on the template <span class="texttt">frametitle continuation</span>) is automatically added to
 the <span class="meta"><span class="angle">&langle;</span><i>frame title text</i><span class="angle">&rangle;</span></span> at the end, separated with a space.
 </p>
+
+<div class="beamernote">
+<p>
+<span class="textsc">presentation</span>
+</p>
+</div>
 <p>
 The frame title is not typeset immediately when the command <span class="texttt">\frametitle</span> is encountered. Rather, the argument of the command is stored internally and the frame title is only typeset when the complete frame has been read. This gives
 you access to both the <span class="meta"><span class="angle">&langle;</span><i>frame title text</i><span class="angle">&rangle;</span></span> and to the <span class="meta"><span class="angle">&langle;</span><i>subframe title text</i><span
 class="angle">&rangle;</span></span> that is possibly introduced using the <span class="texttt">\framesubtitle</span> command.
 </p>
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 By default, this command creates a new paragraph in <span class="texttt">article</span> mode, entitled <span class="meta"><span class="angle">&langle;</span><i>frame title text</i><span class="angle">&rangle;</span></span>. Using the <span
 class="meta"><span class="angle">&langle;</span><i>overlay specification</i><span class="angle">&rangle;</span></span> makes it easy to suppress a frame title once in a while. If you generally wish to suppress <em>all</em> frame titles in <span
@@ -12241,6 +12445,12 @@ been typeset.
   Frame contents.
 \end{frame}
 </pre>
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 By default, the subtitle is not shown in any way in <span class="texttt">article</span> mode.
 </p>
@@ -12820,6 +13030,12 @@ dimension</i><span class="angle">&rangle;</span></span></span> set an additional
 </p>
 </li>
 </ul>
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 This command has no effect in <span class="texttt">article</span> mode.
 </p>
@@ -13216,6 +13432,12 @@ environments like <span class="texttt">align</span>, since these do really wicke
   \end{itemize}
 \end{frame}
 </pre>
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 This command is ignored.
 </p>
@@ -13455,6 +13677,12 @@ or just transparent see Section&nbsp;<a href="Colors.html#section-transparent">1
 <p>
 <i>Example: </i><span class="texttt">\uncover<3->{Text shown from slide 3 on.}</span>
 </p>
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 This command has the same effect as <span class="texttt">\only</span>.
 </p>
@@ -13484,6 +13712,12 @@ This command does almost the same as <span class="texttt">\uncover</span>. The o
 <p>
 <i>Example: </i><span class="texttt">\visible<2->{Text shown from slide 2 on.}</span>
 </p>
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 This command has the same effect as <span class="texttt">\only</span>.
 </p>
@@ -13622,6 +13856,12 @@ class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle
 class="angle">&langle;</span><i>alert specification</i><span class="angle">&rangle;</span></span>></span>
 </p>
 </div>
+
+<div class="beamernote">
+<p>
+<span class="textsc">presentation</span>
+</p>
+</div>
 <p>
 Only one <span class="meta"><span class="angle">&langle;</span><i>alert specification</i><span class="angle">&rangle;</span></span> may be given. The effect of <span class="meta"><span class="angle">&langle;</span><i>alert specification</i><span
 class="angle">&rangle;</span></span> is described in Section&nbsp;<a href="Creating-Overlays.html#section-action-specifications">9.6.3</a>.
@@ -13647,6 +13887,12 @@ class="angle">&rangle;</span></span> is described in Section&nbsp;<a href="Creat
   \end{enumerate}
 \end{frame}
 </pre>
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 The <span class="meta"><span class="angle">&langle;</span><i>action specification</i><span class="angle">&rangle;</span></span> is currently completely ignored.
 </p>
@@ -15385,6 +15631,12 @@ For compatibility with other classes, in <span class="texttt">article</span> mod
 <span class="declare"><kbd>\maketitle</kbd></span>
 </p>
 </div>
+
+<div class="beamernote">
+<p>
+<span class="textsc">presentation</span>
+</p>
+</div>
 <p>
 If used inside a frame, it has the same effect as <span class="texttt">\titlepage</span>. If used outside a frame, it has the same effect as <span class="texttt">\begin{frame}\titlepage\end{frame}</span>; in other words, a frame is added if necessary.
 </p>
@@ -15423,6 +15675,12 @@ class="angle">&rangle;</span></span> line breaks can be inserted using the doubl
 \title{The Beamer Class}
 \title[Short Version]{A Very Long Title\\Over Several Lines}
 </pre>
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 The short form is ignored in <span class="texttt">article</span> mode.
 </p>
@@ -15457,6 +15715,12 @@ below the title in a smaller font.
 \title{The Beamer Class}
 \subtitle{An easily paced introduction with many examples.}
 </pre>
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 This command causes the subtitle to be appended to the title with a linebreak and a <span class="texttt">\normalsize</span> command issued before it. This may or may not be what you would like to happen.
 </p>
@@ -15486,6 +15750,12 @@ The names should be separated using the command <span class="texttt">\and</span>
 <p>
 <i>Example: </i><span class="texttt">\author[Hemaspaandra et al.]{L. Hemaspaandra\inst{1} \and T. Tantau\inst{2}}</span>
 </p>
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 The short form is ignored in <span class="texttt">article</span> mode.
 </p>
@@ -15523,6 +15793,12 @@ If more than one institute is given, they should be separated using the command 
   \inst{2}Fakult\"at f\"ur Elektrotechnik und Informatik\\
   Technical University of Berlin}
 </pre>
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 The short form is ignored in <span class="texttt">article</span> mode. The long form is also ignored, except if the document class (like <span class="texttt">llncs</span>) defines it.
 </p>
@@ -15549,6 +15825,12 @@ class="oarg-right-bracket">]</span></span>{<span class="meta"><span class="angle
 <p>
 <i>Example: </i><span class="texttt">\date{\today}</span> or <span class="texttt">\date[STACS 2003]{STACS Conference, 2003}</span>.
 </p>
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 The short form is ignored in <span class="texttt">article</span> mode.
 </p>
@@ -15578,6 +15860,12 @@ class="angle">&langle;</span><i>text</i><span class="angle">&rangle;</span></spa
 <p>
 <i>Example: </i><span class="texttt">\titlegraphic{\pgfuseimage{titlegraphic}}</span>
 </p>
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 The command is ignored in <span class="texttt">article</span> mode.
 </p>
@@ -15693,6 +15981,12 @@ the command only has an effect for the specified modes.
 <p>
 <i>Example: </i><span class="texttt">\section[Summary]{Summary of Main Results}</span>
 </p>
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 The <span class="meta"><span class="angle">&langle;</span><i>mode specification</i><span class="angle">&rangle;</span></span> allows you to provide an alternate section command in <span class="texttt">article</span> mode. This is necessary for
 example if the <span class="meta"><span class="angle">&langle;</span><i>short section name</i><span class="angle">&rangle;</span></span> is unsuitable for the table of contents:
@@ -16078,6 +16372,12 @@ instead. Different calls of this command will not “add up” the given texts (
   \end{frame}
 }
 </pre>
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 This command has no effect in <span class="texttt">article</span> mode.
 </p>
@@ -16752,6 +17052,12 @@ class="angle">&langle;</span><i>short lecture name</i><span class="angle">&rangl
 
 \end{document}
 </pre>
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 This command has no effect in <span class="texttt">article</span> mode.
 </p>
@@ -16782,6 +17088,12 @@ class="texttt">\lecture</span> commands are always included. This command should
 <p>
 <i>Example: </i><span class="texttt">\includeonlylecture{week 1}</span>
 </p>
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 This command has no effect in <span class="texttt">article</span> mode.
 </p>
@@ -16817,6 +17129,12 @@ The given text will be inserted at the beginning of every lecture.
   \end{frame}
 }
 </pre>
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 This command has no effect in <span class="texttt">article</span> mode.
 </p>
@@ -17041,6 +17359,12 @@ class="texttt">subsectionstyle</span>.
 <p>
 The last examples are useful if you do not wish to show too many details when presenting the talk outline.
 </p>
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 The options are ignored in <span class="texttt">article</span> mode.
 </p>
@@ -17882,6 +18206,12 @@ have defined the same target on different slides).
   \hypertarget<2>{jumptosecond}{}
 \end{frame}
 </pre>
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 You must say <span class="texttt">\usepackage[hyperref]{beamerarticle}</span> or <span class="texttt">\usepackage{hyperref}</span> in your preamble to use this command in <span class="texttt">article</span> mode.
 </p>
@@ -17932,6 +18262,12 @@ Draws a button with the given <span class="meta"><span class="angle">&langle;</s
 <p>
 <i>Example: </i><span class="texttt">\hyperlink{somewhere}{\beamerbutton{Go somewhere}}</span>
 </p>
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 This command (and the following) just insert their argument in <span class="texttt">article</span> mode.
 </p>
@@ -18483,6 +18819,12 @@ class="oarg-left-bracket">[</span><span class="meta"><span class="angle">&langle
 class="angle">&langle;</span><i>name</i><span class="angle">&rangle;</span></span>}
 </p>
 </div>
+
+<div class="beamernote">
+<p>
+<span class="textsc">presentation</span>
+</p>
+</div>
 <p>
 Resumes a frame that was previously created using <span class="texttt">\frame</span> with the option <span class="texttt">label=</span><span class="meta"><span class="angle">&langle;</span><i>name</i><span class="angle">&rangle;</span></span>.
 You must have used this option, just placing a label inside a frame “by hand” is not enough. You can use this command to “continue” a frame that has been interrupted by another frame. The effect of this command is to call the <span class="texttt">\frame</span>
@@ -18544,6 +18886,12 @@ is now highlighted.
 <p>
 In this example, the proof details are deferred to a slide in the appendix. Hyperlinks are setup, so that one can jump to the proof and go back.
 </p>
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 This command is ignored in <span class="texttt">article</span> mode.
 </p>
@@ -19323,6 +19671,12 @@ documentation of the <span class="texttt">enumerate</span> package. Note that th
 </pre>
 </div>
 
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 To use the <span class="meta"><span class="angle">&langle;</span><i>mini template</i><span class="angle">&rangle;</span></span>, you have to include the package <span class="texttt">enumerate</span>.
 </p>
@@ -19963,6 +20317,12 @@ class="angle">&rangle;</span></span> is present, the command only has an effect 
 <p>
 Internally, this command just puts the <em>text</em> inside a <span class="texttt">structureenv</span> environment.
 </p>
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 Structure text is typeset as bold text. This can be changed by modifying the templates.
 </p>
@@ -20107,6 +20467,13 @@ The following template options are predefined:
 <p>
 • <span class="itemoption"><kbd>[<span class="declare">default</span>]</kbd></span>
 </p>
+
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 The text is typeset in boldface.
 </p>
@@ -20166,6 +20533,12 @@ slides.
 <p>
 Internally, this command just puts the <em>highlighted text</em> inside an <span class="texttt">alertenv</span>.
 </p>
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 Alerted text is typeset as emphasized text. This can be changed by modifying the templates, see below.
 </p>
@@ -20259,10 +20632,24 @@ The following template options are predefined:
 <p>
 • <span class="itemoption"><kbd>[<span class="declare">default</span>]</kbd></span>
 </p>
+
+
+<div class="beamernote">
+<p>
+<span class="textsc">presentation</span>
+</p>
+</div>
 <p>
 This changes the color <span class="texttt">local structure</span> to <span class="texttt">alerted text</span>. This causes things like buttons or items to be colored in the same color as the alerted text, which is often visually pleasing. See also the <span
 class="texttt">\structure</span> command.
 </p>
+
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 The text is emphasized.
 </p>
@@ -20415,6 +20802,12 @@ are taken on the specified slides, see Section&nbsp;<a href="Creating-Overlays.h
 </pre>
 </div>
 
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 The block name is typeset in bold.
 </p>
@@ -20568,6 +20961,13 @@ Inserts a block whose title is highlighting. Behaves like the <span class="textt
    $1=2$.
  \end{alertblock}
 </pre>
+
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 The block name is typeset in bold and is emphasized.
 </p>
@@ -20710,6 +21110,12 @@ Inserts a block that is supposed to be an example. Behaves like the <span class=
 </pre>
 </div>
 
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 The block name is typeset in italics.
 </p>
@@ -21043,10 +21449,26 @@ class="angle">&langle;</span><i>environment contents</i><span class="angle">&ran
 The environment <span class="declare"><span class="texttt">examples</span></span> behaves exactly the same way.
 </p>
 
+
+<div class="beamernote">
+
+<p>
+<span class="textsc">presentation</span>
+</p>
+</div>
+
 <p>
 The default template for typesetting theorems suppresses the theorem number, even if this number is “available” for typesetting (which it is by default in all predefined environments; but if you define your own environment using <span
 class="texttt">\newtheorem*</span> no number will be available).
 </p>
+
+
+<div class="articlenote">
+
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 
 <p>
 In <span class="texttt">article</span> mode, theorems are automatically numbered. By specifying the class option <span class="texttt">envcountsect</span>, theorems will be numbered locally to each section, which is usually a good idea, except for very short
@@ -21171,6 +21593,12 @@ class="angle">&langle;</span><i>numbered same as</i><span class="angle">&rangle;
 see the documentation of <span class="texttt">amsthm</span> for details. The only difference is that environments declared using this command are overlay specification-aware in <span class="beamer-name"><span class="textsc">beamer</span></span> and that,
 when typeset, are typeset according to <span class="beamer-name"><span class="textsc">beamer</span></span>’s templates.
 </p>
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 Environments declared using this command are also overlay specification-aware in <span class="texttt">article</span> mode.
 </p>
@@ -21208,6 +21636,14 @@ Switches off the definition of default blocks like <span class="texttt">theorem<
 <p>
 The option is also available as a package option for <span class="texttt">beamerarticle</span> and has the same effect.
 </p>
+
+
+<div class="articlenote">
+
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 
 <p>
 In the <span class="texttt">article</span> version, the package <span class="texttt">amsthm</span> sometimes clashes with the document class. In this case you can use the following option, which is once more available as a class option for <span
@@ -21901,6 +22337,13 @@ If no <span class="meta"><span class="angle">&langle;</span><i>head</i><span cla
   $A = B$.
 \end{beamerboxesrounded}
 </pre>
+
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 This environment is not available in <span class="texttt">article</span> mode.
 </p>
@@ -22280,6 +22723,13 @@ only <span class="meta"><span class="angle">&langle;</span><i>width</i><span cla
     \includegraphics[height=3cm]{mygraphic.jpg}
 \end{columns}
 </pre>
+
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 This environment is ignored in <span class="texttt">article</span> mode.
 </p>
@@ -22348,6 +22798,13 @@ class="texttt">b</span> for bottom).
   \end{column}
 \end{columns}
 </pre>
+
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 This command is ignored in <span class="texttt">article</span> mode.
 </p>
@@ -22388,6 +22845,12 @@ class="texttt">column</span> environment or of the end of the current <span clas
     One line (but aligned).
 \end{columns}
 </pre>
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 This command is ignored in <span class="texttt">article</span> mode.
 </p>
@@ -23032,6 +23495,12 @@ class="angle">&rangle;</span></span> to be shown only on the specified slides. T
 <p>
 <i>Example: </i><span class="texttt">\footnote<.->{Der Spiegel, 4/04, S.~90.}</span>
 </p>
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 In <span class="texttt">article</span> mode, footnotes are typeset as usual. The <span class="texttt">frame</span> option has no effect, which means in a minipage the footnote is shown as part of it.
 </p>
@@ -24331,6 +24800,12 @@ The slides specified by <span class="meta"><span class="angle">&langle;</span><i
   ... code for creating an animation with five slides ...
 \end{frame}
 </pre>
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 This command is ignored in <span class="texttt">article</span> mode.
 </p>
@@ -24409,6 +24884,12 @@ class="angle">&rangle;</span></span> it is set to <span class="meta"><span class
   \end{colormixin}
 \end{frame}
 </pre>
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 This command is ignored in <span class="texttt">article</span> mode.
 </p>
@@ -25060,6 +25541,14 @@ class="texttt">0</span>, <span class="texttt">90</span>, <span class="texttt">18
 </p>
 </li>
 </ul>
+
+
+<div class="articlenote">
+
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 
 <p>
 All of these commands are ignored in <span class="texttt">article</span> mode.
@@ -29379,6 +29868,14 @@ is typeset. Thus, we should rewrite the code as follows:
 Users, themes, or whoever can now easily change the color or font of the frametitle without having to mess with the code used to typeset it.
 </p>
 
+
+<div class="articlenote">
+
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
+
 <p>
 In <span class="texttt">article</span> mode, most of the template mechanism is switched off and has no effect. However, a few templates are also available. If this is the case, it is specially indicated.
 </p>
@@ -29747,6 +30244,12 @@ class="angle">&langle;</span><i>predefined option</i><span class="angle">&rangle
 %% \usebeamertemplate{background canvas} will yield
 %% ``\pgfuseshading{myshading}''.
 </pre>
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 Normally, this command has no effect in <span class="texttt">article</span> mode. However, if a <span class="meta"><span class="angle">&langle;</span><i>mode specification</i><span class="angle">&rangle;</span></span> is given, this command is
 applied for the specified modes. Thus, this command behaves like the <span class="texttt">\\</span> command, which also gets the implicit mode specification <span class="texttt"><presentation></span> if no other specification is given.
@@ -31415,6 +31918,12 @@ So, try not to get into the habit of writing <span class="texttt">\color{structu
    \colorbox{bg}{Frame Title}
  }
 </pre>
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 This command has no effect in <span class="texttt">article</span> mode.
 </p>
@@ -34182,6 +34691,12 @@ The following <span class="meta"><span class="angle">&langle;</span><i>options</
 <p>
 <i>Example: </i><span class="texttt">\note<2>{Do not talk longer than 2 minutes about this.}</span>
 </p>
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 Notes are ignored in <span class="texttt">article</span> mode.
 </p>
@@ -34247,6 +34762,12 @@ some text
 \item Then this.
 }
 </pre>
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 Notes are ignored in <span class="texttt">article</span> mode.
 </p>
@@ -37750,6 +38271,12 @@ class="textsc">prosper</span>’s behavior. In a long talk this will create way 
 </p>
 </li>
 </ul>
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 The <span class="texttt">framesassubsections</span> option has no effect in <span class="texttt">article</span> mode.
 </p>
@@ -38556,6 +39083,12 @@ Creates a section named <span class="meta"><span class="angle">&langle;</span><i
 <p>
 Mapped to a <span class="texttt">\section</span> command followed by a <span class="texttt">\prosperpart</span> command.
 </p>
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 In <span class="texttt">article</span> mode, no part page is added.
 </p>

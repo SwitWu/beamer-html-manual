@@ -744,6 +744,12 @@ Using this option is not good, but also not evil.
 </p>
 </li>
 </ul>
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 In <span class="texttt">article</span> mode, the <span class="texttt">frame</span> environment does not create any visual reference to the original frame (no frame is drawn). Rather, the frame text is inserted into the normal text. To change this, you can modify
 the templates <span class="texttt">frame begin</span> and <span class="texttt">frame end</span>, see below. To suppress a frame in <span class="texttt">article</span> mode, you can, for example, specify <span class="texttt"><presentation></span> as
@@ -2903,6 +2909,12 @@ theme; you cannot (currently) specify this position directly.
 <p>
 Currently, the effect of this command is just to setup the <span class="texttt">logo</span> template. However, a more sophisticated effect might be implemented in the future.
 </p>
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 This command has no effect.
 </p>
@@ -2988,11 +3000,23 @@ class="meta"><span class="angle">&langle;</span><i>overlay specification</i><spa
 If you are using the <span class="texttt">allowframebreaks</span> option with the current frame, a continuation text (like “(cont.)” or something similar, depending on the template <span class="texttt">frametitle continuation</span>) is automatically added to
 the <span class="meta"><span class="angle">&langle;</span><i>frame title text</i><span class="angle">&rangle;</span></span> at the end, separated with a space.
 </p>
+
+<div class="beamernote">
+<p>
+<span class="textsc">presentation</span>
+</p>
+</div>
 <p>
 The frame title is not typeset immediately when the command <span class="texttt">\frametitle</span> is encountered. Rather, the argument of the command is stored internally and the frame title is only typeset when the complete frame has been read. This gives
 you access to both the <span class="meta"><span class="angle">&langle;</span><i>frame title text</i><span class="angle">&rangle;</span></span> and to the <span class="meta"><span class="angle">&langle;</span><i>subframe title text</i><span
 class="angle">&rangle;</span></span> that is possibly introduced using the <span class="texttt">\framesubtitle</span> command.
 </p>
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 By default, this command creates a new paragraph in <span class="texttt">article</span> mode, entitled <span class="meta"><span class="angle">&langle;</span><i>frame title text</i><span class="angle">&rangle;</span></span>. Using the <span
 class="meta"><span class="angle">&langle;</span><i>overlay specification</i><span class="angle">&rangle;</span></span> makes it easy to suppress a frame title once in a while. If you generally wish to suppress <em>all</em> frame titles in <span
@@ -3126,6 +3150,12 @@ been typeset.
   Frame contents.
 \end{frame}
 </pre>
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 By default, the subtitle is not shown in any way in <span class="texttt">article</span> mode.
 </p>
@@ -3705,6 +3735,12 @@ dimension</i><span class="angle">&rangle;</span></span></span> set an additional
 </p>
 </li>
 </ul>
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 This command has no effect in <span class="texttt">article</span> mode.
 </p>

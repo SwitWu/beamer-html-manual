@@ -575,10 +575,22 @@ way the theme dictates, not the way the <span class="texttt">french</span> style
 <p>
 <span class="extracttheme">\usepackage<span class="texttt">[</span><span class="declare"><span class="texttt">spanish</span></span><span class="texttt">]</span>{<span class="declare">babel</span>}</span>
 </p>
+
+<div class="beamernote">
+<p>
+<span class="textsc">presentation</span>
+</p>
+</div>
 <p>
 When using the <span class="texttt">spanish</span> style, certain features that clash with the functionality of the <span class="beamer-name"><span class="textsc">beamer</span></span> class will be turned off. In particular, the special behavior of the pointed
 brackets <span class="texttt"><</span> and <span class="texttt">></span> is deactivated.
 </p>
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 To make the characters <span class="texttt"><</span> and <span class="texttt">></span> active in <span class="texttt">article</span> mode, pass the option <span class="texttt">activeospeccharacters</span> to the package <span
 class="texttt">beamerbasearticle</span>. This will lead to problems with overlay specifications.
@@ -596,6 +608,12 @@ class="texttt">beamerbasearticle</span>. This will lead to problems with overlay
 <p>
 <span class="extracttheme">\usepackage{<span class="declare">color</span>}</span>
 </p>
+
+<div class="beamernote">
+<p>
+<span class="textsc">presentation</span>
+</p>
+</div>
 <p>
 The <span class="texttt">color</span> package is automatically loaded by <span class="texttt">beamer.cls</span>. This makes it impossible to pass options to <span class="texttt">color</span> in the preamble of your document in the normal manner. To pass
 a <span class="meta"><span class="angle">&langle;</span><i>list of options</i><span class="angle">&rangle;</span></span> to <span class="texttt">color</span>, you can use the following class option:
@@ -615,6 +633,12 @@ class="angle">&langle;</span><i>list of options</i><span class="angle">&rangle;<
 </li>
 </ul>
 </div>
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 The <span class="texttt">color</span> package is not loaded automatically if <span class="texttt">beamerarticle</span> is loaded with the <span class="texttt">noxcolor</span> option.
 </p>
@@ -631,6 +655,12 @@ The <span class="texttt">color</span> package is not loaded automatically if <sp
 <p>
 <span class="extracttheme">\usepackage{<span class="declare">colortbl</span>}</span>
 </p>
+
+<div class="beamernote">
+<p>
+<span class="textsc">presentation</span>
+</p>
+</div>
 <p>
 With newer versions of <span class="texttt">xcolor.sty</span>, you need to pass the option <span class="texttt">table</span> to <span class="texttt">xcolor.sty</span> if you wish to use <span class="texttt">colortbl</span>. See the notes on <span
 class="texttt">xcolor</span> below, on how to do this.
@@ -648,6 +678,12 @@ class="texttt">xcolor</span> below, on how to do this.
 <p>
 <span class="extracttheme">\usepackage{<span class="declare">CJK</span>}</span>
 </p>
+
+<div class="beamernote">
+<p>
+<span class="textsc">presentation</span>
+</p>
+</div>
 <p>
 When using the <span class="texttt">CJK</span> package for using Asian fonts, you must use the class option <span class="declare"><span class="texttt">CJK</span></span>.
 </p>
@@ -664,6 +700,12 @@ When using the <span class="texttt">CJK</span> package for using Asian fonts, yo
 <p>
 <span class="extracttheme">\usepackage{<span class="declare">deluxetable</span>}</span>
 </p>
+
+<div class="beamernote">
+<p>
+<span class="textsc">presentation</span>
+</p>
+</div>
 <p>
 The caption generation facilities of <span class="texttt">deluxetable</span> are deactivated. Instead, the caption template is used.
 </p>
@@ -696,6 +738,12 @@ See <span class="texttt">AlDraTex</span>.
 <p>
 <span class="extracttheme">\usepackage{<span class="declare">enumerate</span>}</span>
 </p>
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 This package is loaded automatically in the <span class="texttt">presentation</span> modes, but not in the <span class="texttt">article</span> mode. If you use its features, you have to load the package “by hand” in the <span class="texttt">article</span>
 mode.
@@ -789,6 +837,12 @@ href="How-To-Import-Presentations-Based-on-Other-Packages-Classes.html#section-p
 <p>
 <span class="extracttheme">\usepackage{<span class="declare">hyperref</span>}</span>
 </p>
+
+<div class="beamernote">
+<p>
+<span class="textsc">presentation</span>
+</p>
+</div>
 <p>
 The <span class="texttt">hyperref</span> package is automatically loaded by <span class="texttt">beamer.cls</span> and certain options are set up. In order to pass additional options to <span class="texttt">hyperref</span> or to override options, you can use
 the following class option:
@@ -813,6 +867,12 @@ Causes the <span class="meta"><span class="angle">&langle;</span><i>list of opti
 <p>
 Alternatively, you can also use the <span class="texttt">\hypersetup</span> command.
 </p>
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 In the <span class="texttt">article</span> version, you must include <span class="texttt">hyperref</span> manually if you want to use it. You can do so by passing option <span class="texttt">hyperref</span> to <span class="texttt">beamerarticle</span>.
 It is not included automatically.
@@ -830,6 +890,12 @@ It is not included automatically.
 <p>
 <span class="extracttheme">\usepackage<span class="texttt">[</span><span class="declare"><span class="texttt">utf8,utf8x</span></span><span class="texttt">]</span>{<span class="declare">inputenc</span>}</span>
 </p>
+
+<div class="beamernote">
+<p>
+<span class="textsc">presentation</span>
+</p>
+</div>
 <p>
 When using Unicode, you may wish to use <em>some</em> of the following class options:
 </p>
@@ -885,6 +951,12 @@ This option sets the input encoding to <span class="texttt">utf8</span>. It’s 
 Note that <em>none</em> of these options apply to <span class="texttt">lualatex</span> and <span class="texttt">xelatex</span>, since both support Unicode natively without any extra packages. Most of the time using these options actually harms output
 quality, so be careful about what you use. If you want to have a document that allows compiling with multiple drivers, take a look at <span class="texttt">iftex</span>, <span class="texttt">ifxetex</span> and <span class="texttt">ifluatex</span> packages.
 </p>
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 Passing option <span class="texttt">utf8</span> to <span class="texttt">beamerarticle</span> has the same effect as saying <span class="texttt">\usepackage[utf8]{inputenc}</span> in the preamble.
 </p>
@@ -904,6 +976,12 @@ Again, take care if you use <span class="texttt">lualatex</span> or <span class=
 <p>
 <span class="extracttheme">\usepackage{<span class="declare">listings</span>}</span>
 </p>
+
+<div class="beamernote">
+<p>
+<span class="textsc">presentation</span>
+</p>
+</div>
 <p>
 Note that you must treat <span class="texttt">lstlisting</span> environments exactly the same way as you would treat <span class="texttt">verbatim</span> environments. When using <span class="texttt">\defverbatim</span> that contains a colored <span
 class="texttt">lstlisting</span>, use the <span class="texttt">colored</span> option of <span class="texttt">\defverbatim</span>.
@@ -939,6 +1017,12 @@ class="texttt">lstlisting</span>, use the <span class="texttt">colored</span> op
 <p>
 <span class="extracttheme">\usepackage{<span class="declare">msc</span>}</span>
 </p>
+
+<div class="beamernote">
+<p>
+<span class="textsc">presentation</span>
+</p>
+</div>
 <p>
 Since this package uses <span class="texttt">pstricks</span> internally, everything that applies to pstricks also applies to <span class="texttt">msc</span>.
 </p>
@@ -988,6 +1072,12 @@ during one quarter of a whole). You can use the <span class="texttt">\beamerpaus
 <p>
 <span class="extracttheme">\usepackage{<span class="declare">paralist</span>}</span>
 </p>
+
+<div class="beamernote">
+<p>
+<span class="textsc">presentation</span>
+</p>
+</div>
 <p>
 <span class="beamer-name"><span class="textsc">beamer</span></span> automatically patches list-related commands using <span class="texttt">beamerpatchparalist</span> package at the beginning of document. Besides, <span class="beamer-name"><span
 class="textsc">beamer</span></span> also supports using <span class="texttt">compactitem</span> and <span class="texttt">compactenum</span> environments with overlays, just like the usage of <span class="texttt">enumerate</span> environments:
@@ -1027,6 +1117,12 @@ Commands like <span class="texttt">\includepdf</span> only work <em>outside</em>
 <p>
 <span class="extracttheme">\usepackage{<span class="declare"><span class="meta"><span class="angle">&langle;</span><i>professional font package</i><span class="angle">&rangle;</span></span></span>}</span>
 </p>
+
+<div class="beamernote">
+<p>
+<span class="textsc">presentation</span>
+</p>
+</div>
 <p>
 If you use a professional font package, <span class="beamer-name"><span class="textsc">beamer</span></span>’s internal redefinition of how variables are typeset may interfere with the font package’s superior way of typesetting them. In this case, you should use the
 class option <span class="texttt">professionalfonts</span> to suppress any font substitution. See Section&nbsp;<a href="Fonts.html#section-substition">18.2.2</a> for details.
@@ -1111,6 +1207,12 @@ href="How-To-Import-Presentations-Based-on-Other-Packages-Classes.html#section-t
 <p>
 <span class="extracttheme">\usepackage{<span class="declare">textpos</span>}</span>
 </p>
+
+<div class="beamernote">
+<p>
+<span class="textsc">presentation</span>
+</p>
+</div>
 <p>
 <span class="beamer-name"><span class="textsc">beamer</span></span> automatically installs a white background behind everything, unless you install a different background template. Because of this, you must use the <span class="texttt">overlay</span>
 option when using <span class="texttt">textpos</span>, so that it will place boxes <em>in front of</em> everything. Alternatively, you can install an empty background template, but this may result in an incorrect display in certain situations with older versions of the
@@ -1145,6 +1247,12 @@ See <span class="texttt">\usepackage[utf8,utf8x]{inputenc}</span>.
 <p>
 <span class="extracttheme">\usepackage{<span class="declare">xcolor</span>}</span>
 </p>
+
+<div class="beamernote">
+<p>
+<span class="textsc">presentation</span>
+</p>
+</div>
 <p>
 The <span class="texttt">xcolor</span> package is automatically loaded by <span class="texttt">beamer.cls</span>. The same applies as to <span class="texttt">color</span>.
 </p>
@@ -1166,6 +1274,12 @@ Causes the <span class="meta"><span class="angle">&langle;</span><i>list of opti
 When using <span class="beamer-name"><span class="textsc">beamer</span></span> together with the <span class="texttt">pstricks</span> package, be sure to pass the <span class="texttt">xcolor=pst</span> option to <span class="beamer-name"><span
 class="textsc">beamer</span></span> (and hence to <span class="texttt">xcolor</span>).
 </p>
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 The <span class="texttt">color</span> package is not loaded automatically if <span class="texttt">beamerarticle</span> is loaded with the <span class="texttt">noxcolor</span> option.
 </p>

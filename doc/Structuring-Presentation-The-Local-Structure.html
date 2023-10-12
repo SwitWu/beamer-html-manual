@@ -641,6 +641,12 @@ documentation of the <span class="texttt">enumerate</span> package. Note that th
 </pre>
 </div>
 
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 To use the <span class="meta"><span class="angle">&langle;</span><i>mini template</i><span class="angle">&rangle;</span></span>, you have to include the package <span class="texttt">enumerate</span>.
 </p>
@@ -1281,6 +1287,12 @@ class="angle">&rangle;</span></span> is present, the command only has an effect 
 <p>
 Internally, this command just puts the <em>text</em> inside a <span class="texttt">structureenv</span> environment.
 </p>
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 Structure text is typeset as bold text. This can be changed by modifying the templates.
 </p>
@@ -1425,6 +1437,13 @@ The following template options are predefined:
 <p>
 • <span class="itemoption"><kbd>[<span class="declare">default</span>]</kbd></span>
 </p>
+
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 The text is typeset in boldface.
 </p>
@@ -1484,6 +1503,12 @@ slides.
 <p>
 Internally, this command just puts the <em>highlighted text</em> inside an <span class="texttt">alertenv</span>.
 </p>
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 Alerted text is typeset as emphasized text. This can be changed by modifying the templates, see below.
 </p>
@@ -1577,10 +1602,24 @@ The following template options are predefined:
 <p>
 • <span class="itemoption"><kbd>[<span class="declare">default</span>]</kbd></span>
 </p>
+
+
+<div class="beamernote">
+<p>
+<span class="textsc">presentation</span>
+</p>
+</div>
 <p>
 This changes the color <span class="texttt">local structure</span> to <span class="texttt">alerted text</span>. This causes things like buttons or items to be colored in the same color as the alerted text, which is often visually pleasing. See also the <span
 class="texttt">\structure</span> command.
 </p>
+
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 The text is emphasized.
 </p>
@@ -1733,6 +1772,12 @@ are taken on the specified slides, see Section&nbsp;<a href="Creating-Overlays.h
 </pre>
 </div>
 
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 The block name is typeset in bold.
 </p>
@@ -1886,6 +1931,13 @@ Inserts a block whose title is highlighting. Behaves like the <span class="textt
    $1=2$.
  \end{alertblock}
 </pre>
+
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 The block name is typeset in bold and is emphasized.
 </p>
@@ -2028,6 +2080,12 @@ Inserts a block that is supposed to be an example. Behaves like the <span class=
 </pre>
 </div>
 
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 The block name is typeset in italics.
 </p>
@@ -2361,10 +2419,26 @@ class="angle">&langle;</span><i>environment contents</i><span class="angle">&ran
 The environment <span class="declare"><span class="texttt">examples</span></span> behaves exactly the same way.
 </p>
 
+
+<div class="beamernote">
+
+<p>
+<span class="textsc">presentation</span>
+</p>
+</div>
+
 <p>
 The default template for typesetting theorems suppresses the theorem number, even if this number is “available” for typesetting (which it is by default in all predefined environments; but if you define your own environment using <span
 class="texttt">\newtheorem*</span> no number will be available).
 </p>
+
+
+<div class="articlenote">
+
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 
 <p>
 In <span class="texttt">article</span> mode, theorems are automatically numbered. By specifying the class option <span class="texttt">envcountsect</span>, theorems will be numbered locally to each section, which is usually a good idea, except for very short
@@ -2489,6 +2563,12 @@ class="angle">&langle;</span><i>numbered same as</i><span class="angle">&rangle;
 see the documentation of <span class="texttt">amsthm</span> for details. The only difference is that environments declared using this command are overlay specification-aware in <span class="beamer-name"><span class="textsc">beamer</span></span> and that,
 when typeset, are typeset according to <span class="beamer-name"><span class="textsc">beamer</span></span>’s templates.
 </p>
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 Environments declared using this command are also overlay specification-aware in <span class="texttt">article</span> mode.
 </p>
@@ -2526,6 +2606,14 @@ Switches off the definition of default blocks like <span class="texttt">theorem<
 <p>
 The option is also available as a package option for <span class="texttt">beamerarticle</span> and has the same effect.
 </p>
+
+
+<div class="articlenote">
+
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 
 <p>
 In the <span class="texttt">article</span> version, the package <span class="texttt">amsthm</span> sometimes clashes with the document class. In this case you can use the following option, which is once more available as a class option for <span
@@ -3219,6 +3307,13 @@ If no <span class="meta"><span class="angle">&langle;</span><i>head</i><span cla
   $A = B$.
 \end{beamerboxesrounded}
 </pre>
+
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 This environment is not available in <span class="texttt">article</span> mode.
 </p>
@@ -3598,6 +3693,13 @@ only <span class="meta"><span class="angle">&langle;</span><i>width</i><span cla
     \includegraphics[height=3cm]{mygraphic.jpg}
 \end{columns}
 </pre>
+
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 This environment is ignored in <span class="texttt">article</span> mode.
 </p>
@@ -3666,6 +3768,13 @@ class="texttt">b</span> for bottom).
   \end{column}
 \end{columns}
 </pre>
+
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 This command is ignored in <span class="texttt">article</span> mode.
 </p>
@@ -3706,6 +3815,12 @@ class="texttt">column</span> environment or of the end of the current <span clas
     One line (but aligned).
 \end{columns}
 </pre>
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 This command is ignored in <span class="texttt">article</span> mode.
 </p>
@@ -4350,6 +4465,12 @@ class="angle">&rangle;</span></span> to be shown only on the specified slides. T
 <p>
 <i>Example: </i><span class="texttt">\footnote<.->{Der Spiegel, 4/04, S.~90.}</span>
 </p>
+
+<div class="articlenote">
+<p>
+<span class="textsc">article</span>
+</p>
+</div>
 <p>
 In <span class="texttt">article</span> mode, footnotes are typeset as usual. The <span class="texttt">frame</span> option has no effect, which means in a minipage the footnote is shown as part of it.
 </p>

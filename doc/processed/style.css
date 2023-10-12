@@ -632,6 +632,19 @@ div.figurecaption {
 }
 
 
+/* beamernote and articlenote */
+
+div.beamernote > p,
+div.articlenote > p {
+  margin-bottom: -1em;
+}
+
+div.beamernote > p > span,
+div.articlenote > p > span {
+  color: blue;
+}
+
+
 /* Home page */
 
 .manual-title-block {

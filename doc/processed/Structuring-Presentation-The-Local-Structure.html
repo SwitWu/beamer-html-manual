@@ -8,7 +8,7 @@
     <title>
       Structuring a Presentation: The Local Structure - Beamer Manual
     </title>
-    <link href="style.css?v=20231011" rel="stylesheet" type="text/css" />
+    <link href="style.css?v=20231012" rel="stylesheet" type="text/css" />
     <link
       href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
       rel="stylesheet"
@@ -636,6 +636,11 @@
 </pre
               >
             </div>
+            <div class="articlenote">
+              <p>
+                <span class="textsc">article</span>
+              </p>
+            </div>
             <p>
               To use the
               <span class="meta"
@@ -1194,6 +1199,11 @@
               Internally, this command just puts the <em>text</em> inside a
               <span class="texttt">structureenv</span> environment.
             </p>
+            <div class="articlenote">
+              <p>
+                <span class="textsc">article</span>
+              </p>
+            </div>
             <p>
               Structure text is typeset as bold text. This can be changed by
               modifying the templates.
@@ -1327,6 +1337,11 @@
                       ><kbd>[<span class="declare">default</span>]</kbd></span
                     >
                   </p>
+                  <div class="articlenote">
+                    <p>
+                      <span class="textsc">article</span>
+                    </p>
+                  </div>
                   <p>The text is typeset in boldface.</p>
                 </li>
               </ul>
@@ -1379,6 +1394,11 @@
               <em>highlighted text</em> inside an
               <span class="texttt">alertenv</span>.
             </p>
+            <div class="articlenote">
+              <p>
+                <span class="textsc">article</span>
+              </p>
+            </div>
             <p>
               Alerted text is typeset as emphasized text. This can be changed by
               modifying the templates, see below.
@@ -1449,6 +1469,11 @@
                       ><kbd>[<span class="declare">default</span>]</kbd></span
                     >
                   </p>
+                  <div class="beamernote">
+                    <p>
+                      <span class="textsc">presentation</span>
+                    </p>
+                  </div>
                   <p>
                     This changes the color
                     <span class="texttt">local structure</span> to
@@ -1457,6 +1482,11 @@
                     alerted text, which is often visually pleasing. See also the
                     <span class="texttt">\structure</span> command.
                   </p>
+                  <div class="articlenote">
+                    <p>
+                      <span class="textsc">article</span>
+                    </p>
+                  </div>
                   <p>The text is emphasized.</p>
                 </li>
               </ul>
@@ -1623,6 +1653,11 @@
 </pre
               >
             </div>
+            <div class="articlenote">
+              <p>
+                <span class="textsc">article</span>
+              </p>
+            </div>
             <p>The block name is typeset in bold.</p>
             <div class="element">
               <div class="element-headline">
@@ -1760,6 +1795,11 @@
  \end{alertblock}
 </pre
             >
+            <div class="articlenote">
+              <p>
+                <span class="textsc">article</span>
+              </p>
+            </div>
             <p>The block name is typeset in bold and is emphasized.</p>
             <div class="element">
               <div class="element-headline">
@@ -1848,6 +1888,11 @@
  \end{exampleblock}
 </pre
               >
+            </div>
+            <div class="articlenote">
+              <p>
+                <span class="textsc">article</span>
+              </p>
             </div>
             <p>The block name is typeset in italics.</p>
             <div class="element">
@@ -2179,6 +2224,11 @@
             <span class="declare"><span class="texttt">examples</span></span>
             behaves exactly the same way.
           </p>
+          <div class="beamernote">
+            <p>
+              <span class="textsc">presentation</span>
+            </p>
+          </div>
           <p>
             The default template for typesetting theorems suppresses the theorem
             number, even if this number is &ldquo;available&rdquo; for
@@ -2187,6 +2237,11 @@
             <span class="texttt">\newtheorem*</span> no number will be
             available).
           </p>
+          <div class="articlenote">
+            <p>
+              <span class="textsc">article</span>
+            </p>
+          </div>
           <p>
             In <span class="texttt">article</span> mode, theorems are
             automatically numbered. By specifying the class option
@@ -2332,6 +2387,11 @@
               <span class="beamer-name"><span class="textsc">beamer</span></span
               >&rsquo;s templates.
             </p>
+            <div class="articlenote">
+              <p>
+                <span class="textsc">article</span>
+              </p>
+            </div>
             <p>
               Environments declared using this command are also overlay
               specification-aware in <span class="texttt">article</span> mode.
@@ -2377,6 +2437,11 @@
             The option is also available as a package option for
             <span class="texttt">beamerarticle</span> and has the same effect.
           </p>
+          <div class="articlenote">
+            <p>
+              <span class="textsc">article</span>
+            </p>
+          </div>
           <p>
             In the <span class="texttt">article</span> version, the package
             <span class="texttt">amsthm</span> sometimes clashes with the
@@ -3352,6 +3417,11 @@
 \end{beamerboxesrounded}
 </pre
             >
+            <div class="articlenote">
+              <p>
+                <span class="textsc">article</span>
+              </p>
+            </div>
             <p>
               This environment is not available in
               <span class="texttt">article</span> mode.
@@ -3770,6 +3840,11 @@
 \end{columns}
 </pre
             >
+            <div class="articlenote">
+              <p>
+                <span class="textsc">article</span>
+              </p>
+            </div>
             <p>
               This environment is ignored in
               <span class="texttt">article</span> mode.
@@ -3852,6 +3927,11 @@
 \end{columns}
 </pre
             >
+            <div class="articlenote">
+              <p>
+                <span class="textsc">article</span>
+              </p>
+            </div>
             <p>
               This command is ignored in
               <span class="texttt">article</span> mode.
@@ -3899,6 +3979,11 @@
 \end{columns}
 </pre
             >
+            <div class="articlenote">
+              <p>
+                <span class="textsc">article</span>
+              </p>
+            </div>
             <p>
               This command is ignored in
               <span class="texttt">article</span> mode.
@@ -4473,6 +4558,11 @@
                 >\footnote&lt;.-&gt;{Der Spiegel, 4/04, S.~90.}</span
               >
             </p>
+            <div class="articlenote">
+              <p>
+                <span class="textsc">article</span>
+              </p>
+            </div>
             <p>
               In <span class="texttt">article</span> mode, footnotes are typeset
               as usual. The <span class="texttt">frame</span> option has no
@@ -4542,7 +4632,7 @@
           <a href="https://github.com/SwitWu/beamer-html-manual">Repository</a>
         </div>
         <div class="footer-right">
-          <em>HTML version last updated: 2023-10-11</em>
+          <em>HTML version last updated: 2023-10-12</em>
         </div>
       </footer>
     </div>
