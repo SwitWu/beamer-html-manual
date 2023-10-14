@@ -298,7 +298,7 @@ The command actually comes in three ``flavors,'' which only slightly differ in s
   The \meta{text} should not do anything fancy that involves mode switches or including other files. In particular, you should not put an |\include| command inside \meta{text}. Use the argument-free form below, instead.
 
   \example
-\begin{verbatim}
+\begin{Verbatim}
 \mode<article>{Extra detail mentioned only in the article version.}
 
 \mode<beamer| trans>{
@@ -306,7 +306,7 @@ The command actually comes in three ``flavors,'' which only slightly differ in s
     \tableofcontents[currentsection]
   \end{frame}
 }
-\end{verbatim}
+\end{Verbatim}
 \end{command}
 
 The second flavor of the |\mode| command takes no argument. ``No argument'' means that it is not followed by an opening brace, but any other symbol.
@@ -330,12 +330,12 @@ The second flavor of the |\mode| command takes no argument. ``No argument'' mean
 
   \emph{Note:} When searching line-wise for a |\mode| command to shake it out of its gobbling state, \TeX\ will not recognize a |\mode| command if a mode specification follows on the same line. Thus, such a specification must be given on the next line.
 
-  \emph{Note:} When a \TeX\ file ends, \TeX\ must not be in the gobbling state. Switch this state off using |\mode| on one line and |<all>| on the next.
+  \emph{Note:} When a \TeX\ file ends, \TeX\ must not be in the gobbling state. Switch this state off using |\mode| on one line and \Verb|<all>| on the next.
 
   \emph{Note:} The behavior of |\mode| command is different inside a frame: instead of line-wise gobbling, it puts every subsequent tokens inside a ``comment box'' until another |\mode| command is encountered. Some commands may cause errors in this situation, including the assignment of global variables and |\mode| of the first flavor, since they are not actually ``gobbled''. Please use |\mode| command \emph{of any flavor} outside frames.
 
   \example
-\begin{verbatim}
+\begin{Verbatim}
 \mode<article>
 
 This text is typeset only in |article| mode.
@@ -354,7 +354,7 @@ is not inserted in presentation mode
 <presentation>
 
 This text is only inserted in presentation mode.
-\end{verbatim}
+\end{Verbatim}
 \end{command}
 
 The last flavor of the mode command behaves quite differently.
@@ -371,7 +371,7 @@ The last flavor of the mode command behaves quite differently.
   The class option |ignorenonframetext| will switch on |\mode*| at the beginning of the document.
 
   \example
-\begin{verbatim}
+\begin{Verbatim}
 \begin{document}
 \mode*
 
@@ -390,11 +390,11 @@ Back to article stuff again.
 \frame<presentation>
 { this frame is shown only in the presentation. }
 \end{document}
-\end{verbatim}
+\end{Verbatim}
 
   \example The following example shows how you can include other files in a main file. The contents of a |main.tex|:
 
-\begin{verbatim}
+\begin{Verbatim}
 \documentclass[ignorenonframetext]{beamer}
 \begin{document}
 This is star mode stuff.
@@ -407,11 +407,11 @@ Let's include files:
 
 Back to star mode
 \end{document}
-\end{verbatim}
+\end{Verbatim}
 
   And |a.tex| (and likewise |b.tex|):
 
-\begin{verbatim}
+\begin{Verbatim}
 \mode*
 \section{First section}
 Extra text in article version.
@@ -419,5 +419,5 @@ Extra text in article version.
   Some text.
 \end{frame}
 \mode<all>
-\end{verbatim}
+\end{Verbatim}
 \end{command}

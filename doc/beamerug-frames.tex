@@ -41,11 +41,11 @@ A presentation consists of a series of frames. Each frame consists of a series o
 \end{verbatim}
 
   \example
-\begin{verbatim}
+\begin{Verbatim}
 \begin{frame}<beamer>{Outline}  % frame is only shown in beamer mode
   \tabelofcontent[current]
 \end{frame}
-\end{verbatim}
+\end{Verbatim}
 
   Normally, the complete \meta{environment contents} is put on a slide. If the text does not fit on a slide, being too high, it will be squeezed as much as possible, a warning will be issued, and the text just extends unpleasantly over the bottom. You can use the option |allowframebreaks| to cause the \meta{frame text} to be split among several slides, though you cannot use overlays then. See the explanation of the |allowframebreaks| option for details.
 
@@ -1323,6 +1323,6 @@ You can also specify the number of slides in the frame ``by hand.'' To do so, yo
 
 This command will create a frame containing four slides. The first will contain the text ``This is slide number~1,'' the second ``This is slide number~2,'' the third ``This is slide number~4,'' and the fourth ``This is slide number~5.''
 
-A useful specification is just |<0>|, which causes the frame to have no slides at all. For example, |\begin{frame}<handout:0>| causes the frame to be suppressed in the handout version, but to be shown normally in all other versions. Another useful specification is |<beamer>|, which causes the frame to be shown normally in |beamer| mode, but to be suppressed in all other versions.
+A useful specification is just |<0>|, which causes the frame to have no slides at all. For example, \Verb|\begin{frame}<handout:0>| causes the frame to be suppressed in the handout version, but to be shown normally in all other versions. Another useful specification is \Verb|<beamer>|, which causes the frame to be shown normally in |beamer| mode, but to be suppressed in all other versions.
 
-Frames which are hidden with |<0>| behave like the |noframenumbering| option and will not be counted for the number of frames (this only applies if no mode is specified, e.g. not for |< all:0>|). 
+Frames which are hidden with |<0>| behave like the |noframenumbering| option and will not be counted for the number of frames (this only applies if no mode is specified, e.g. not for \Verb|<all:0>|). 

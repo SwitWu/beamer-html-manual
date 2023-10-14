@@ -588,7 +588,7 @@ It is also possible to give an overlay specification that contains only a mode n
 \only<article>{This text is shown only in article mode.}
 \end{Verbatim}
 
-An overlay specification that does not contain any slide numbers is called a (pure) \emph{mode specification}. If a mode specification is given, all modes that are not mentioned are automatically suppressed. Thus |<beamer:1->| means ``on all slides in |beamer| mode and also on all slides in all other modes, since nothing special is specified for them,'' whereas |<beamer>| means ``on all slides in |beamer| mode and not on any other slide.''
+An overlay specification that does not contain any slide numbers is called a (pure) \emph{mode specification}. If a mode specification is given, all modes that are not mentioned are automatically suppressed. Thus |<beamer:1->| means ``on all slides in |beamer| mode and also on all slides in all other modes, since nothing special is specified for them,'' whereas \Verb|<beamer>| means ``on all slides in |beamer| mode and not on any other slide.''
 
 Mode specifications can also be used outside frames as in the following examples:
 \begin{Verbatim}
@@ -603,7 +603,7 @@ You can also mix pure mode specifications and overlay specifications, although t
 \only<article| beamer:1>{Riddle}
 \end{Verbatim}
 
-This will cause the text |Riddle| to be inserted in |article| mode and on the first slide of a frame in |beamer| mode, but not at all in |handout| or |trans| mode. (Try to find out how \verb/<beamer| beamer:1>/ differs from |<beamer>| and from |<beamer:1>|.)
+This will cause the text |Riddle| to be inserted in |article| mode and on the first slide of a frame in |beamer| mode, but not at all in |handout| or |trans| mode. (Try to find out how \Verb/<beamer| beamer:1>/ differs from \Verb|<beamer>| and from \Verb|<beamer:1>|.)
 
 As if all this were not already complicated enough, there is another mode that behaves in a special way: the mode |second|. For this mode a special rule applies: An overlay specification for mode |beamer| also applies to mode |second| (but not the other way round). Thus, if we are in mode |second|, the specification |<second:2>| means ``on slide 2'' and |<beamer:2>| also means ``on slide 2''. To get a slide that is typeset in |beamer| mode, but not in |second| mode, you can use, |<second:0>|.
 

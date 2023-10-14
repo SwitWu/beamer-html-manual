@@ -47,7 +47,7 @@ To specify what is shown on the second screen, you can use a special \beamer-mod
   The |second| mode behaves more like the |beamer| mode than other modes: Any overlay specification for |beamer| will also apply to |second| mode, unless an explicit |second| mode specification is also given. In particular, |\only<1-2>{Text}| will be shown on slides 1 and 2 in |second| mode, but only on the first slide in |handout| mode or |trans| mode.
 
   \example
-\begin{verbatim}
+\begin{Verbatim}
 \documentclass{beamer}
 \setbeameroption{second mode text on second screen}
 \begin{document}
@@ -66,11 +66,11 @@ To specify what is shown on the second screen, you can use a special \beamer-mod
   {Here comes some normal text for the first slide.}
 \end{frame}
 \end{document}
-\end{verbatim}
+\end{Verbatim}
 
   \example
   The following example shows how translations can be added in a comfortable way.
-\begin{verbatim}
+\begin{Verbatim}
 \documentclass{beamer}
 \setbeameroption{second mode text on second screen}
 \DeclareRobustCommand\translation[1]{\mytranslation#1\relax}
@@ -92,7 +92,7 @@ To specify what is shown on the second screen, you can use a special \beamer-mod
   Zeile f\"ur Zeile aufdecken.}
 \end{frame}
 \end{document}
-\end{verbatim}
+\end{Verbatim}
 \end{beameroption}
 
 In the last of the above example, it is a bit bothersome that the option |typeset second| has to be added to each frame. The following option globally sets this option:

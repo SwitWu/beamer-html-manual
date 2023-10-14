@@ -165,10 +165,10 @@ In order to create a line break in the table of contents (usually not a good ide
   The \meta{mode specification} allows you to provide an alternate section command in |article| mode. This is necessary for example if the \meta{short section name} is unsuitable for the table of contents:
 
   \example
-\begin{verbatim}
+\begin{Verbatim}
 \section<presentation>[Results]{Results on the Main Problem}
 \section<article>{Results on the Main Problem}
-\end{verbatim}
+\end{Verbatim}
 
   \begin{element}{section in toc}\yes\yes\yes
     This template is used when a section entry is to be typeset. For the permissible \meta{options} see the parent template |table of contents|.
@@ -193,7 +193,7 @@ In order to create a line break in the table of contents (usually not a good ide
   \example
   |\section*{Outline}|
   \example
-  |\section<beamer>*{Outline}|
+  \Verb|\section<beamer>*{Outline}|
 \end{command}
 
 \begin{command}{\subsection\sarg{mode specification}\oarg{short subsection name}\marg{subsection name}}
@@ -281,7 +281,7 @@ Often, you may want a certain type of frame to be shown directly after a section
   The given text will be inserted at the beginning of every section. If the \meta{special star text} parameter is specified, this text will be used for starred sections instead. Different calls of this command will not ``add up'' the given texts (like the |\AtBeginDocument| command does), but will overwrite any previous text.
 
   \example
-\begin{verbatim}
+\begin{Verbatim}
 \AtBeginSection[] % Do nothing for \section*
 {
   \begin{frame}<beamer>
@@ -289,7 +289,7 @@ Often, you may want a certain type of frame to be shown directly after a section
     \tableofcontents[currentsection]
   \end{frame}
 }
-\end{verbatim}
+\end{Verbatim}
 
   \articlenote
   This command has no effect in |article| mode.
@@ -300,7 +300,7 @@ Often, you may want a certain type of frame to be shown directly after a section
   The given text will be inserted at the beginning of every subsection. If the \meta{special star text} parameter is specified, this text will be used for starred subsections instead. Different calls of this command will not ``add up'' the given texts.
 
   \example
-\begin{verbatim}
+\begin{Verbatim}
 \AtBeginSubsection[] % Do nothing for \subsection*
 {
   \begin{frame}<beamer>
@@ -308,7 +308,7 @@ Often, you may want a certain type of frame to be shown directly after a section
     \tableofcontents[currentsection,currentsubsection]
   \end{frame}
 }
-\end{verbatim}
+\end{Verbatim}
 \end{command}
 
 \begin{command}{\AtBeginSubsubsection\oarg{special star text}\marg{text}}
