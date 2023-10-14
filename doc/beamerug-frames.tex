@@ -115,7 +115,7 @@ A presentation consists of a series of frames. Each frame consists of a series o
 
     If a frame needs to be broken into several pages, the material on all but the last page fills only 95\% of each page by default. Thus, there will be some space left at the top and/or bottom, depending on the vertical placement option for the frame. This yields a better visual result than a 100\% filling, which typically looks crowded. However, you can change this percentage using the optional argument \meta{fraction}, where 1 means 100\% and 0.5 means 50\%. This percentage includes the frame title. Thus, in order to split a frame ``roughly in half,'' you should give 0.6 as \meta{fraction}.
 
-    Most of the fine details of normal \TeX\ page breaking also apply to this option. For example, when you wish equations to be broken automatically, be sure to use the |\allowdisplaybreaks| command. You can insert |\break|, |\nobreak|, and |\penalty| commands to control where breaks should occur. The commands |\pagebreak| and |\nopagebreak| also work, including their options. Since you typically do not want page breaks for the frame to apply also to the |article| mode, you can add a mode specification like |<presentation>| to make these commands apply only to the presentation modes. The command \declare{|\string\framebreak|} is a shorthand for |\pagebreak<presentation>| and \declare{|\string\noframebreak|} is a shorthand for |\nopagebreak<presentation>|.
+    Most of the fine details of normal \TeX\ page breaking also apply to this option. For example, when you wish equations to be broken automatically, be sure to use the |\allowdisplaybreaks| command. You can insert |\break|, |\nobreak|, and |\penalty| commands to control where breaks should occur. The commands |\pagebreak| and |\nopagebreak| also work, including their options. Since you typically do not want page breaks for the frame to apply also to the |article| mode, you can add a mode specification like \Verb|<presentation>| to make these commands apply only to the presentation modes. The command \declare{|\string\framebreak|} is a shorthand for \Verb|\pagebreak<presentation>| and \declare{|\string\noframebreak|} is a shorthand for \Verb|\nopagebreak<presentation>|.
 
     The use of this option is \emph{evil}. In a (good) presentation you prepare each slide carefully and think twice before putting something on a certain slide rather than on some different slide. Using the |allowframebreaks| option invites the creation of horrible, endless presentations that resemble more a ``paper projected on the wall'' than a presentation. Nevertheless, the option does have its uses. Most noticeably, it can be convenient for automatically splitting bibliographies or long equations.
 
@@ -241,7 +241,7 @@ A presentation consists of a series of frames. Each frame consists of a series o
   \end{itemize}
 
   \articlenote
-  In |article| mode, the |frame| environment does not create any visual reference to the original frame (no frame is drawn). Rather, the frame text is inserted into the normal text. To change this, you can modify the templates |frame begin| and |frame end|, see below. To suppress a frame in |article| mode, you can, for example, specify |<presentation>| as overlay specification.
+  In |article| mode, the |frame| environment does not create any visual reference to the original frame (no frame is drawn). Rather, the frame text is inserted into the normal text. To change this, you can modify the templates |frame begin| and |frame end|, see below. To suppress a frame in |article| mode, you can, for example, specify \Verb|<presentation>| as overlay specification.
 
   \begin{element}{frame begin}\yes\no\no
     The text of this template is inserted at the beginning of each frame in |article| mode (and only there). You can use it, say, to start a |minipage| environment at the beginning of a frame or to insert a horizontal bar or whatever.
@@ -1132,14 +1132,14 @@ The frame title is shown prominently at the top of the frame and can be specifie
   If present, a subtitle will be shown in a smaller font below the main title. Like the |\frametitle| command, this command can be given anywhere in the frame, since the frame title is actually typeset only when everything else has already been typeset.
 
   \example
-\begin{verbatim}
+\begin{Verbatim}
 \begin{frame}
   \frametitle<presentation>{Frame Title Should Be in Uppercase.}
   \framesubtitle{Subtitles can be in lowercase if they are full sentences.}
 
   Frame contents.
 \end{frame}
-\end{verbatim}
+\end{Verbatim}
 
   \articlenote
   By default, the subtitle is not shown in any way in |article| mode.
