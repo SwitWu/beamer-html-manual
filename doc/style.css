@@ -574,17 +574,42 @@ body.home-page nav.toc > p > a {
 /*   padding-left: 3em; */
 /* } */
 
+:root {
+  --block-indent: 10px;
+}
+
+@media screen and (min-width: 640px) {
+  :root {
+    --block-indent: 20px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  :root {
+    --block-indent: 30px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  :root {
+    --block-indent: 40px;
+  }
+}
 
 div.command > :not(div.command-headline),
 div.element > :not(div.element-headline),
 div.environment > :not(div.environment-headline),
+div.beameroption > :not(div.beameroption-headline),
 div.classoption > :not(div.classoption-headline),
+div.package > :not(div.package-headline),
+div.theme > :nth-child(n+2),
+div.innertheme > :nth-child(n+2),
+div.outertheme > :nth-child(n+2),
+div.colortheme > :nth-child(n+2),
+div.fonttheme > :nth-child(n+2),
 div.solution > p,
-div.package > pre.verbatim,
-div.package > p:nth-child(n+2),
-div.package > div.classoption,
 div.class > p:nth-child(n+2) {
-  margin-left: 3em;
+  margin-left: var(--block-indent);
 }
 
 div.environment-headline > p {

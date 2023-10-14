@@ -113,8 +113,8 @@
 \def\smallpackage{\vbox\bgroup\package}
 \def\endsmallpackage{\egroup\endpackage}
 
-\def\package#1{\BlockClass{package}\list{}{\leftmargin=2em\itemindent-\leftmargin\def\makelabel##1{\hss##1}}%
-  \extracttheme#1@usepackage@package@Packages@\par\topsep=0pt}
+\def\package#1{\BlockClass{package}\BlockClass{package-headline}\list{}{\leftmargin=2em\itemindent-\leftmargin\def\makelabel##1{\hss##1}}%
+  \extracttheme#1@usepackage@package@Packages@\par\topsep=0pt\endBlockClass}
 \def\endpackage{\endlist\endBlockClass}
 %\def\extracttheme#1#2@{%
 %\item{{{\ttfamily\char`\\usepackage}#2{\ttfamily\char`\{\declare{#1}\char`\}}}}}

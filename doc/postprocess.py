@@ -31,7 +31,7 @@ def add_js(soup):
     soup.head.append(script)
 
 def specific_div_class_names(name):
-    if(name in ['command', 'environment', 'element', "class", "package", "theme", "beameroption", "solution", "classoption"]):
+    if(name in ['command', 'environment', 'element', "class", "package", "theme", "beameroption", "solution", "classoption", "innertheme", "outertheme", "colortheme", "fonttheme"]):
         return True
     else:
         return False
