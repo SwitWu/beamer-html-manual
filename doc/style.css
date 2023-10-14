@@ -148,10 +148,16 @@ pre.verbatim {
   max-width: 100%;
 }
 
-
-
 div.hidden {
   display: none;
+}
+
+div.center {
+  text-align: center;
+}
+
+div.center img {
+  width: 70%;
 }
 
 
