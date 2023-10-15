@@ -80,6 +80,7 @@
 
 body {
   font-family: var(--base-font-family);
+  background: #faf7f4;
   margin: 0;
   padding: 0;
 }
