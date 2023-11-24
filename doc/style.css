@@ -6,7 +6,7 @@
   font-display: swap;
   font-style: normal;
   font-named-instance: 'Regular';
-  src: url(https://cdn.jsdelivr.net/npm/inter-ui@3.19.3/Inter (web)/Inter.var.woff2) format('woff2');
+  src: url("https://cdnjs.cloudflare.com/ajax/libs/inter-ui/3.13.1/Inter%20(web)/Inter-roman.var.woff2") format('woff2');
 }
 
 @font-face {
@@ -15,7 +15,7 @@
   font-display: swap;
   font-style: italic;
   font-named-instance: 'Italic';
-  src: url(https://cdn.jsdelivr.net/npm/inter-ui@3.19.3/Inter (web)/Inter-italic.var.woff2) format('woff2');
+  src: url("https://cdnjs.cloudflare.com/ajax/libs/inter-ui/3.13.1/Inter%20(web)/Inter-italic.var.woff2") format('woff2');
 }
 
 @font-face {
