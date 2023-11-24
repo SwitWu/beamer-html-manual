@@ -14,3 +14,4 @@ doc/processed/
 doc/cpcss.py
 doc/home.py
 doc/*.sidetoc
+migrate.sh
