@@ -87,6 +87,7 @@ body {
 
 /* inline elements */
 
+.verb,
 .texttt,
 kbd,
 pre.verbatim,
