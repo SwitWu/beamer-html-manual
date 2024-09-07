@@ -1,7 +1,7 @@
 % Copyright 2007 by Till Tantau
 % Copyright 2012,2015 by Vedran Mileti\'c, Joseph Wright
 % Copyright 2017,2018 by Louis Stuart, Joseph Wright
-% Copyright 2021,2023 by Joseph Wright, samcarter
+% Copyright 2021-2024 by Joseph Wright, samcarter
 %
 % This file may be distributed and/or modified
 %
@@ -49,10 +49,10 @@
   \hbox{%
   \usebeamerfont{section in head/foot}%
   \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.65ex,dp=1.5ex,right]{section in head/foot}%
-    \usebeamerfont{headline}\usebeamerfont{section in head/foot}\insertsectionhead\hspace*{2ex}
+    \usebeamerfont{headline}\usebeamerfont{section in head/foot}\usebeamertemplate{section in head/foot}\hspace*{2ex}
   \end{beamercolorbox}%
   \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.65ex,dp=1.5ex,left]{subsection in head/foot}%
-    \usebeamerfont{headline}\usebeamerfont{subsection in head/foot}\hspace*{2ex}\insertsubsectionhead
+    \usebeamerfont{headline}\usebeamerfont{subsection in head/foot}\hspace*{2ex}\usebeamertemplate{subsection in head/foot}
   \end{beamercolorbox}}%
   \vskip0pt%
 }

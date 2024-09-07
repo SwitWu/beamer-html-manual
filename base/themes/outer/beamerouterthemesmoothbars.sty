@@ -1,6 +1,6 @@
 % Copyright 2007 by Till Tantau
 % Copyright 2015 by Vedran Mileti\'c, Joseph Wright
-% Copyright 2019,2021,2023 by Joseph Wright, samcarter
+% Copyright 2019-2024 by Joseph Wright, samcarter
 %
 % This file may be distributed and/or modified
 %
@@ -98,7 +98,7 @@
   \ifbeamer@sb@subsection%
     \begin{beamercolorbox}[ignorebg,ht=2.125ex,dp=1.125ex,%
       leftskip=.3cm,rightskip=.3cm plus1fil]{subsection in head/foot}
-      \usebeamerfont{subsection in head/foot}\insertsubsectionhead
+      \usebeamerfont{subsection in head/foot}\usebeamertemplate{subsection in head/foot}
     \end{beamercolorbox}%
     \vskip-0.1ex%
   \fi%
