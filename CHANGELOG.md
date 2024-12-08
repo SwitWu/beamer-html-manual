@@ -8,12 +8,17 @@ a major and minor version only.
 
 ## [Unreleased]
 
+### Added
+
+- doc: added sentence about limitations of xelatex
+
 ### Changed
 
 - unified usage of `(sub)section in head/foot` template in headlines
 - simplify decision tree for `\beamer@howtotreatframe` (see #874)
 - added `\maketitle`, `\title`, `\author`, `\institute` and `\date` to the exceptions for `ignorenonframetext`
 - avoid frame breaks between block title and body for rectangular blocks
+- added `\gdef\@currentHref{#2}` to labels (see #917)
 
 ### Fixed
 
